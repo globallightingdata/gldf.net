@@ -1,0 +1,62 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="FluentAssertions" Version="5.10.3" />
+        <PackageReference Include="NUnit" Version="3.12.0" />
+        <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Gldf.Net\Gldf.Net.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="TestData\ControlGears\ControlGearCompleteXml.xml" />
+        <EmbeddedResource Include="TestData\ControlGears\ControlGearMandatoryXml.xml" />
+        <EmbeddedResource Include="TestData\Descriptive\DescriptiveAttributesXml.xml" />
+        <EmbeddedResource Include="TestData\Equipments\EquipmentCompleteXml.xml" />
+        <EmbeddedResource Include="TestData\Equipments\EquipmentMandatoryXml.xml" />
+        <EmbeddedResource Include="TestData\Files\FilesCompleteXml.xml" />
+        <EmbeddedResource Include="TestData\Files\FilesMandatoryXml.xml" />
+        <EmbeddedResource Include="TestData\Geometries\GeometryCompleteXml.xml" />
+        <EmbeddedResource Include="TestData\Geometries\GeometryMandatoryXml.xml" />
+        <EmbeddedResource Include="TestData\Head\HeaderCompleteXml.xml" />
+        <EmbeddedResource Include="TestData\Head\HeaderMandatoryXml.xml" />
+        <EmbeddedResource Include="TestData\LightSources\LightSourceCompleteXml.xml" />
+        <EmbeddedResource Include="TestData\LightSources\LightSourceMandatoryXml.xml" />
+        <EmbeddedResource Include="TestData\Photometries\PhotometryCompleteXml.xml" />
+        <EmbeddedResource Include="TestData\Photometries\PhotometryMandatoryXml.xml" />
+        <EmbeddedResource Include="TestData\MetaData\ProductMetaDataCompleteXml.xml" />
+        <EmbeddedResource Include="TestData\MetaData\ProductMetaDataMandatoryXml.xml" />
+        <EmbeddedResource Include="TestData\Sensors\SensorsCompleteXml.xml" />
+        <EmbeddedResource Include="TestData\Sensors\SensorsMandatoryXml.xml" />
+        <EmbeddedResource Include="TestData\Simple\RootWithHeaderUnintendedXml.xml" />
+        <EmbeddedResource Include="TestData\Simple\RootWithHeaderXml.xml" />
+        <EmbeddedResource Include="TestData\Spectrums\SpectrumCompleteXml.xml" />
+        <EmbeddedResource Include="TestData\Spectrums\SpectrumMandatoryXml.xml" />
+        <EmbeddedResource Include="TestData\Variants\VariantCompleteXml.xml" />
+        <EmbeddedResource Include="TestData\Variants\VariantMandatoryXml.xml" />
+        <EmbeddedResource Include="TestData\Container\GldfWithHeaderMandatory.gldf" />
+        <EmbeddedResource Include="TestData\Container\GldfWithFiles.gldf" />
+        <EmbeddedResource Include="TestData\Container\GldfWithSignature.gldf" />
+        <EmbeddedResource Include="TestData\Container\GldfWithNoFiles.gldf" />
+        <EmbeddedResource Include="TestData\Container\GldfWithLargeFiles.gldf" />
+        <EmbeddedResource Include="TestData\Container\GldfWithInvalidRoot.gldf" />
+        <EmbeddedResource Include="TestData\Container\GldfWithOrphanedFiles.gldf" />
+        <EmbeddedResource Include="TestData\Container\GldfWithMissingFiles.gldf" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="TestData\Container" />
+    </ItemGroup>
+</Project>

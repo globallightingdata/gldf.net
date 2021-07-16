@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.5/gldf.xsd">
+    <Header>
+        <Manufacturer>Manufacturer</Manufacturer>
+        <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
+        <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
+        <FormatVersion>0.9</FormatVersion>
+    </Header>
+    <GeneralDefinitions>
+        <Files>
+            <File id="eulumdat" contentType="ldc/eulumdat" type="url" language="en">https://example.org</File>
+            <File id="ies" contentType="ldc/ies" type="localFileName" language="de">product.ies</File>
+            <File id="iesxml" contentType="ldc/iesxml" type="localFileName" language="de">product.iesxml</File>
+            <File id="jpg" contentType="image/jpg" type="localFileName" language="de">product.jpg</File>
+            <File id="png" contentType="image/png" type="localFileName" language="de">product.png</File>
+            <File id="svg" contentType="image/svg" type="localFileName" language="de">product.svg</File>
+            <File id="sensxml" contentType="sensor/sensxml" type="localFileName" language="de">product.sensxml</File>
+            <File id="sensldt" contentType="sensor/sensldt" type="localFileName" language="de">product.sensldt</File>
+            <File id="text" contentType="spectrum/text" type="localFileName" language="de">product.text</File>
+            <File id="l3d" contentType="geo/l3d" type="localFileName" language="de">product.l3d</File>
+            <File id="m3d" contentType="geo/m3d" type="localFileName" language="de">product.m3d</File>
+            <File id="r3d" contentType="geo/r3d" type="localFileName" language="de">product.r3d</File>
+            <File id="pdf" contentType="document/pdf" type="localFileName" language="de">product.pdf</File>
+            <File id="symbol-dxf" contentType="symbol/dxf" type="localFileName" language="de">product.dxf</File>
+            <File id="symbol-svg" contentType="symbol/svg" type="localFileName" language="de">product.svg</File>
+            <File id="other" contentType="other" type="localFileName" language="de">product.other</File>
+        </Files>
+        <Photometries>
+            <Photometry id="photometry">
+                <PhotometryFileReference fileId="eulumdat"/>
+            </Photometry>
+        </Photometries>
+    </GeneralDefinitions>
+    <ProductDefinitions>
+        <ProductMetaData>
+            <ProductNumber>
+                <Locale language="en">Product number</Locale>
+            </ProductNumber>
+            <ProductName>
+                <Locale language="en">Product name</Locale>
+            </ProductName>
+        </ProductMetaData>
+        <Variants>
+            <Variant id="variant-1">
+                <EmitterReferences>
+                    <LightEmitterReference photometryId="photometry"/>
+                </EmitterReferences>
+            </Variant>
+        </Variants>
+    </ProductDefinitions>
+</Root>

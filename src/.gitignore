@@ -1,0 +1,10 @@
+# Studio/Rider
+.vs/
+.idea/
+*.DotSettings.user
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/

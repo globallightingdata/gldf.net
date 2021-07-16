@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.5/gldf.xsd">
+    <Header>
+        <Manufacturer>DIAL</Manufacturer>
+        <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
+        <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
+        <FormatVersion>0.9</FormatVersion>
+    </Header>
+    <GeneralDefinitions>
+        <Files>
+            <File id="eulumdat" contentType="ldc/eulumdat" type="url">https://example.org/eulumdat.ldt</File>
+            <File id="image" contentType="image/png" type="url">https://example.org/image.png</File>
+        </Files>
+        <Photometries>
+            <Photometry id="photometry">
+                <PhotometryFileReference fileId="eulumdat"/>
+            </Photometry>
+        </Photometries>
+    </GeneralDefinitions>
+    <ProductDefinitions>
+        <ProductMetaData>
+            <ProductNumber>
+                <Locale language="en">Product number</Locale>
+                <Locale language="de">Produktnummer</Locale>
+            </ProductNumber>
+            <ProductName>
+                <Locale language="en">Product name</Locale>
+                <Locale language="de">Produktname</Locale>
+            </ProductName>
+            <Description>
+                <Locale language="en">Product description</Locale>
+                <Locale language="de">Produktbeschreibung</Locale>
+            </Description>
+            <TenderText>
+                <Locale language="en">Product tendertext</Locale>
+                <Locale language="de">Produkt Auschreibungstext</Locale>
+            </TenderText>
+            <ProductSeries>
+                <ProductSerie>
+                    <Name>
+                        <Locale language="en">Product series name</Locale>
+                        <Locale language="de">Produktserienname</Locale>
+                    </Name>
+                    <Description>
+                        <Locale language="en">Product series description</Locale>
+                        <Locale language="de">Produktserienbeschreibung</Locale>
+                    </Description>
+                    <Pictures>
+                        <Image fileId="image" imageType="Product Picture"/>
+                        <Image fileId="image" imageType="Application Picture"/>
+                        <Image fileId="image" imageType="Technical Sketch"/>
+                        <Image fileId="image" imageType="Other"/>
+                    </Pictures>
+                    <Hyperlinks>
+                        <Hyperlink href="https://example.org" language="en" region="eu" countryCode="gb">Hyperlink PlainText</Hyperlink>
+                    </Hyperlinks>
+                </ProductSerie>
+            </ProductSeries>
+            <Pictures>
+                <Image fileId="image" imageType="Other" />
+            </Pictures>
+            <Maintenance>
+                <Cie97LuminaireType>Dust Proof IP5X</Cie97LuminaireType>
+                <CieLuminaireMaintenanceFactors>
+                    <LuminaireMaintenanceFactor years="1" roomCondition="Dirty">0.1</LuminaireMaintenanceFactor>
+                    <LuminaireMaintenanceFactor years="2" roomCondition="Normal">0.2</LuminaireMaintenanceFactor>
+                    <LuminaireMaintenanceFactor years="3" roomCondition="Very Clean">0.2</LuminaireMaintenanceFactor>
+                    <LuminaireMaintenanceFactor years="4" roomCondition="Clean">0.2</LuminaireMaintenanceFactor>
+                </CieLuminaireMaintenanceFactors>
+                <IesLuminaireLightLossFactors>
+                    <LuminaireDirtDepreciation years="5" roomCondition="Very Clean">0.3</LuminaireDirtDepreciation>
+                    <LuminaireDirtDepreciation years="6" roomCondition="Very Dirty">0.4</LuminaireDirtDepreciation>
+                    <LuminaireDirtDepreciation years="7" roomCondition="Dirty">0.4</LuminaireDirtDepreciation>
+                    <LuminaireDirtDepreciation years="8" roomCondition="Clean">0.4</LuminaireDirtDepreciation>
+                    <LuminaireDirtDepreciation years="9" roomCondition="Moderate">0.4</LuminaireDirtDepreciation>
+                </IesLuminaireLightLossFactors>
+                <JiegMaintenanceFactors>
+                    <LuminaireMaintenanceFactor years="10" roomCondition="Normal">0.5</LuminaireMaintenanceFactor>
+                    <LuminaireMaintenanceFactor years="11" roomCondition="Dirty">0.6</LuminaireMaintenanceFactor>
+                    <LuminaireMaintenanceFactor years="12" roomCondition="Clean">0.6</LuminaireMaintenanceFactor>
+                </JiegMaintenanceFactors>
+            </Maintenance>
+            <DescriptiveAttributes>
+                <Mechanical>
+                    <OperatingTemperature>
+                        <Lower>1</Lower>
+                        <Upper>2</Upper>
+                    </OperatingTemperature>
+                    <SealingMaterial>
+                        <Locale language="en">Sealing Metarial</Locale>
+                        <Locale language="de">Gehäusematerial</Locale>
+                    </SealingMaterial>
+                    <Weight>0.01</Weight>
+                </Mechanical>
+                <Electrical>
+                    <ClampingRange>
+                        <Lower>0.02</Lower>
+                        <Upper>0.03</Upper>
+                    </ClampingRange>
+                    <SwitchingCapacity>SwitchingCapacity</SwitchingCapacity>
+                    <ElectricalSafetyClass>II</ElectricalSafetyClass>
+                    <IngressProtectionIPCode>IP26</IngressProtectionIPCode>
+                    <IKRating>IK06</IKRating>
+                    <PowerFactor>0.04</PowerFactor>
+                    <ConstantLightOutput>true</ConstantLightOutput>
+                </Electrical>
+                <Emergency>
+                    <DurationTimeAndFlux>
+                        <Flux hours="3">4</Flux>
+                        <Flux hours="5">6</Flux>
+                    </DurationTimeAndFlux>
+                    <DedicatedEmergencyLightingType>For Signage</DedicatedEmergencyLightingType>
+                </Emergency>
+                <SensingDevice>
+                    <DetectorCharacteristics>
+                        <DetectorCharacteristic>Square</DetectorCharacteristic>
+                        <DetectorCharacteristic>Other</DetectorCharacteristic>
+                    </DetectorCharacteristics>
+                    <DetectionMethods>
+                        <DetectionMethod>Camera</DetectionMethod>
+                        <DetectionMethod>Ultrasonic</DetectionMethod>
+                    </DetectionMethods>
+                    <DetectorTypes>
+                        <DetectorType>Presence Detector</DetectorType>
+                        <DetectorType>Other</DetectorType>
+                    </DetectorTypes>
+                </SensingDevice>
+                <MountingAndAccessory>
+                    <ATEX>
+                        <Directives>
+                            <Directive>IECEx</Directive>
+                            <Directive>ATEX</Directive>
+                        </Directives>
+                        <Classes>
+                            <Class>I</Class>
+                            <Class>III</Class>
+                        </Classes>
+                        <Divisions>
+                            <Division>1</Division>
+                            <Division>2</Division>
+                        </Divisions>
+                        <DivisionGroups>
+                            <Gas>
+                                <Group>A</Group>
+                                <Group>C</Group>
+                            </Gas>
+                            <Dust>
+                                <Group>F</Group>
+                                <Group>G</Group>
+                            </Dust>
+                        </DivisionGroups>
+                        <Zones>
+                            <Gas>
+                                <Zone>0</Zone>
+                                <Zone>2</Zone>
+                            </Gas>
+                            <Dust>
+                                <Zone>21</Zone>
+                                <Zone>22</Zone>
+                            </Dust>
+                        </Zones>
+                        <ZoneGroups>
+                            <Gas>
+                                <Group>IIB</Group>
+                                <Group>IIB + H2</Group>
+                            </Gas>
+                            <Dust>
+                                <Group>IIIA</Group>
+                                <Group>IIIC</Group>
+                            </Dust>
+                        </ZoneGroups>
+                        <MaximumSurfaceTemperature>MaximumSurfaceTemperature</MaximumSurfaceTemperature>
+                        <TemperatureClasses>
+                            <TemperatureClass>T2B</TemperatureClass>
+                            <TemperatureClass>T2C</TemperatureClass>
+                        </TemperatureClasses>
+                        <ExCodes>
+                            <ExCode>eb</ExCode>
+                            <ExCode>ib</ExCode>
+                        </ExCodes>
+                        <EquipmentProtectionLevels>
+                            <EquipmentProtectionLevel>Ga</EquipmentProtectionLevel>
+                            <EquipmentProtectionLevel>Ma</EquipmentProtectionLevel>
+                        </EquipmentProtectionLevels>
+                        <EquipmentGroups>
+                            <EquipmentGroup>I</EquipmentGroup>
+                            <EquipmentGroup>II</EquipmentGroup>
+                        </EquipmentGroups>
+                        <EquipmentCategories>
+                            <EquipmentCategory>2G</EquipmentCategory>
+                            <EquipmentCategory>M1</EquipmentCategory>
+                        </EquipmentCategories>
+                        <Atmospheres>
+                            <Atmosphere>D</Atmosphere>
+                            <Atmosphere>G</Atmosphere>
+                        </Atmospheres>
+                        <Groups>
+                            <Group>II</Group>
+                            <Group>IIA</Group>
+                        </Groups>
+                    </ATEX>
+                    <AmbientTemperature>
+                        <Lower>7</Lower>
+                        <Upper>8</Upper>
+                    </AmbientTemperature>
+                </MountingAndAccessory>
+                <Marketing>
+                    <ListPrices>
+                        <ListPrice currency="eur">9</ListPrice>
+                        <ListPrice currency="usd">10</ListPrice>
+                    </ListPrices>
+                    <HousingColors>
+                        <HousingColor ral="3000">
+                            <Locale language="en">Red</Locale>
+                            <Locale language="de">Rot</Locale>
+                        </HousingColor>
+                    </HousingColors>
+                    <Markets>
+                        <Region>
+                            <Locale language="en">South europe</Locale>
+                            <Locale language="de">Südeuropa</Locale>
+                        </Region>
+                    </Markets>
+                    <Hyperlinks>
+                        <Hyperlink href="https://example.org" language="en" region="Europe" countryCode="gb">Hyperlink PlainText</Hyperlink>
+                    </Hyperlinks>
+                    <Designer>Designer</Designer>
+                    <ApprovalMarks>
+                        <ApprovalMark>ApprovalMark 1</ApprovalMark>
+                        <ApprovalMark>ApprovalMark 2</ApprovalMark>
+                    </ApprovalMarks>
+                    <DesignAwards>
+                        <DesignAward>DesignAward 1</DesignAward>
+                        <DesignAward>DesignAward 2</DesignAward>
+                    </DesignAwards>
+                    <Applications>
+                        <Application>Exterior: Streets: Motorways</Application>
+                        <Application>Interior: Traffic Zones: Corridors</Application>
+                    </Applications>
+                </Marketing>
+                <OperationsAndMaintenance>
+                    <UsefulLifeTimes>
+                        <UsefulLife>L80B50 50000h 25°C</UsefulLife>
+                        <UsefulLife>L80B75 40000h 25°C</UsefulLife>
+                    </UsefulLifeTimes>
+                    <MedianUsefulLifeTimes>
+                        <MedianUsefulLife>L100B50 40000h 20°C</MedianUsefulLife>
+                        <MedianUsefulLife>L80B50 50000h 20°C</MedianUsefulLife>
+                    </MedianUsefulLifeTimes>
+                    <RatedAmbientTemperature>11</RatedAmbientTemperature>
+                    <AcousticAbsorptionRates>
+                        <AbsorptionRate hertz="12">0.05</AbsorptionRate>
+                        <AbsorptionRate hertz="13">0.06</AbsorptionRate>
+                    </AcousticAbsorptionRates>
+                </OperationsAndMaintenance>
+                <CustomProperties>
+                    <Property id="propertyWithFileReference">
+                        <Name>
+                            <Locale language="en">Property 1</Locale>
+                            <Locale language="de">Eigenschaft 1</Locale>
+                        </Name>
+                        <PropertySource>PropertySource 1</PropertySource>
+                        <FileReference fileId="image"/>
+                    </Property>
+                    <Property id="propertyWithValue">
+                        <Name>
+                            <Locale language="en">Property 2</Locale>
+                            <Locale language="de">Eigenschaft 2</Locale>
+                        </Name>
+                        <PropertySource>PropertySource 2</PropertySource>
+                        <Value>Value 2</Value>
+                    </Property>
+                </CustomProperties>
+            </DescriptiveAttributes>
+        </ProductMetaData>
+        <Variants>
+            <Variant id="variant-1">
+                <EmitterReferences>
+                    <LightEmitterReference photometryId="photometry" />
+                </EmitterReferences>
+            </Variant>
+        </Variants>
+    </ProductDefinitions>
+</Root>

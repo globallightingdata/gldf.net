@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.5/gldf.xsd">
+    <Header>
+        <Manufacturer>DIAL</Manufacturer>
+        <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
+        <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
+        <FormatVersion>0.9</FormatVersion>
+    </Header>
+    <GeneralDefinitions>
+        <Files>
+            <File id="eulumdat" contentType="ldc/eulumdat" type="url">https://example.org/eulumdat.ldt</File>
+            <File id="spectrumFile" contentType="spectrum/text" type="url">https://example.org/spectrum.txt</File>
+            <File id="image" contentType="image/jpg" type="url">https://example.org/image.jpg</File>
+        </Files>
+        <Photometries>
+            <Photometry id="photometry">
+                <PhotometryFileReference fileId="eulumdat"/>
+            </Photometry>
+        </Photometries>
+        <Spectrums>
+            <Spectrum id="spectrum">
+                <SpectrumFileReference fileId="spectrumFile"/>                
+            </Spectrum>
+        </Spectrums>
+        <LightSources>
+            <LightSource id="lightSource-1">
+                <Fixed>
+                    <ZhagaStandard>true</ZhagaStandard>
+                </Fixed>
+                <Maintenance>
+                    <LedMaintenanceFactor hours="1">0.1</LedMaintenanceFactor>
+                </Maintenance>
+            </LightSource>
+            <LightSource id="lightSource-2">
+                <Changeable>
+                    <RatedInputPower>1</RatedInputPower>
+                    <RatedInputVoltage>
+                        <VoltageRange>
+                            <Min>0.3</Min>
+                            <Max>0.4</Max>
+                        </VoltageRange>
+                        <Type>AC</Type>
+                        <Frequency>50</Frequency>
+                    </RatedInputVoltage>
+                    <RatedLuminousFlux>2</RatedLuminousFlux>
+                </Changeable>
+                <Maintenance>
+                    <Cie97LampType>Incandescent</Cie97LampType>
+                </Maintenance>
+            </LightSource>
+            <LightSource id="lightSource-3">
+                <Name>
+                    <Locale language="en">LightSource name</Locale>
+                </Name>
+                <Description>
+                    <Locale language="en">LightSource description</Locale>
+                </Description>
+                <Changeable>
+                    <Manufacturer>Manufacturer</Manufacturer>
+                    <GTIN>12345678</GTIN>
+                    <ILCOS>ILCOS</ILCOS>
+                    <ZVEI>ZVEI</ZVEI>
+                    <Socket>Socket</Socket>
+                    <RatedInputPower>1</RatedInputPower>
+                    <RatedInputVoltage>
+                        <FixedVoltage>230</FixedVoltage>
+                        <Type>UC</Type>
+                        <Frequency>50/60</Frequency>
+                    </RatedInputVoltage>
+                    <RatedLuminousFlux>2</RatedLuminousFlux>
+                    <PowerRange>
+                        <Lower>3</Lower>
+                        <Upper>4</Upper>
+                        <DefaultLightSourcePower>5</DefaultLightSourcePower>
+                    </PowerRange>
+                    <LightSourcePositionOfUsage>LightSourcePositionOfUsage</LightSourcePositionOfUsage>
+                    <EnergyLabels>
+                        <EnergyLabel region="de">A+</EnergyLabel>
+                        <EnergyLabel region="gb">A++</EnergyLabel>
+                    </EnergyLabels>
+                </Changeable>
+                <SpectrumReference spectrumId="spectrum"/>
+                <PhotometryReference photometryId="photometry"/>
+                <ActivePowerTable type="Continuously">
+                    <FluxFactor inputPower="0.1" description="Description 1">0.2</FluxFactor>
+                    <FluxFactor inputPower="0.3" description="Description 2">0.4</FluxFactor>
+                </ActivePowerTable>
+                <Maintenance lifetime="1">
+                    <CieLampMaintenanceFactors>
+                        <CieLampMaintenanceFactor burningTime="2">
+                            <LampLumenMaintenanceFactor>0.1</LampLumenMaintenanceFactor>
+                            <LampSurvivalFactor>0.2</LampSurvivalFactor>
+                        </CieLampMaintenanceFactor>
+                        <CieLampMaintenanceFactor burningTime="3">
+                            <LampLumenMaintenanceFactor>0.3</LampLumenMaintenanceFactor>
+                            <LampSurvivalFactor>0.4</LampSurvivalFactor>
+                        </CieLampMaintenanceFactor>
+                    </CieLampMaintenanceFactors>
+                </Maintenance>
+                <ColorInformation>
+                    <ColorRenderingIndex>1</ColorRenderingIndex>
+                    <CorrelatedColorTemperature>2</CorrelatedColorTemperature>
+                    <ColorTemperatureAdjustingRange>
+                        <Lower>3</Lower>
+                        <Upper>4</Upper>
+                    </ColorTemperatureAdjustingRange>
+                    <Cie1931ColorAppearance>
+                        <X>0.1</X>
+                        <Y>0.2</Y>
+                        <Z>0.3</Z>
+                    </Cie1931ColorAppearance>
+                    <InitialColorTolerance>3 SDCM</InitialColorTolerance>
+                    <MaintainedColorTolerance>4 SDCM</MaintainedColorTolerance>
+                    <RatedChromacityCoordinateValues>
+                        <X>0.4</X>
+                        <Y>0.5</Y>
+                    </RatedChromacityCoordinateValues>
+                    <TLCI>5</TLCI>
+                    <IES-TM-30-15>
+                        <Rf>6</Rf>
+                        <Rg>7</Rg>
+                    </IES-TM-30-15>
+                    <MelanopicFactor>0.8</MelanopicFactor>
+                </ColorInformation>
+                <LightSourceImages>
+                    <Image fileId="image" imageType="Product Picture"/>
+                </LightSourceImages>
+            </LightSource>
+            <LightSource id="lightSource-4">
+                <Changeable>
+                    <RatedInputPower>1</RatedInputPower>
+                    <RatedInputVoltage>
+                        <VoltageRange>
+                            <Min>0.3</Min>
+                            <Max>0.4</Max>
+                        </VoltageRange>
+                        <Type>DC</Type>
+                        <Frequency>60</Frequency>
+                    </RatedInputVoltage>
+                    <RatedLuminousFlux>2</RatedLuminousFlux>
+                </Changeable>
+                <Maintenance>
+                    <Cie97LampType>Halogen</Cie97LampType>
+                </Maintenance>
+                <LightSourceImages>
+                    <Image fileId="image" imageType="Application Picture"/>
+                </LightSourceImages>
+            </LightSource>
+            <LightSource id="lightSource-5">
+                <Changeable>
+                    <RatedInputPower>1</RatedInputPower>
+                    <RatedInputVoltage>
+                        <VoltageRange>
+                            <Min>0.3</Min>
+                            <Max>0.4</Max>
+                        </VoltageRange>
+                        <Type>DC</Type>
+                        <Frequency>400</Frequency>
+                    </RatedInputVoltage>
+                    <RatedLuminousFlux>2</RatedLuminousFlux>
+                </Changeable>
+                <Maintenance>
+                    <Cie97LampType>Flourescent Triphosphor</Cie97LampType>
+                </Maintenance>
+                <LightSourceImages>
+                    <Image fileId="image" imageType="Technical Sketch"/>
+                </LightSourceImages>
+            </LightSource>
+            <LightSource id="lightSource-6">
+                <Fixed />
+                <Maintenance>
+                    <Cie97LampType>Flourescent Halophosphate</Cie97LampType>
+                </Maintenance>
+                <LightSourceImages>
+                    <Image fileId="image" imageType="Other"/>
+                </LightSourceImages>
+            </LightSource>
+            <LightSource id="lightSource-7">
+                <Fixed />
+                <Maintenance>
+                    <Cie97LampType>Compact Fluorescent</Cie97LampType>
+                </Maintenance>
+            </LightSource>
+            <LightSource id="lightSource-8">
+                <Fixed />
+                <Maintenance>
+                    <Cie97LampType>Mercury</Cie97LampType>
+                </Maintenance>
+            </LightSource>
+            <LightSource id="lightSource-9">
+                <Fixed />
+                <Maintenance>
+                    <Cie97LampType>Metal Halide (250/400W)</Cie97LampType>
+                </Maintenance>
+            </LightSource>
+            <LightSource id="lightSource-10">
+                <Fixed />
+                <Maintenance>
+                        <Cie97LampType>Ceramic Metal Halide (50/150W)</Cie97LampType>
+                </Maintenance>
+            </LightSource>
+            <LightSource id="lightSource-11">
+                <Fixed />
+                <Maintenance>
+                    <Cie97LampType>High Pressure Sodium (250/400W)</Cie97LampType>
+                </Maintenance>
+            </LightSource>
+        </LightSources>
+    </GeneralDefinitions>
+    <ProductDefinitions>
+        <ProductMetaData>
+            <ProductNumber>
+                <Locale language="en">Product number</Locale>
+            </ProductNumber>
+            <ProductName>
+                <Locale language="en">Product name</Locale>
+            </ProductName>
+        </ProductMetaData>
+        <Variants>
+            <Variant id="variant-1">
+                <EmitterReferences>
+                    <LightEmitterReference photometryId="photometry" />
+                </EmitterReferences>
+            </Variant>
+        </Variants>
+    </ProductDefinitions>
+</Root>

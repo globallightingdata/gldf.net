@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.5/gldf.xsd">
+    <Header>
+        <Manufacturer>DIAL</Manufacturer>
+        <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
+        <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
+        <FormatVersion>0.9</FormatVersion>
+    </Header>
+    <GeneralDefinitions>
+        <Files>
+            <File id="eulumdat" contentType="ldc/eulumdat" type="url">https://example.org/eulumdat.ldt</File>
+        </Files>
+        <Photometries>
+            <Photometry id="photometry">
+                <PhotometryFileReference fileId="eulumdat"/>
+                <Rotation-G0>1</Rotation-G0>
+                <DescriptivePhotometry>
+                    <LuminaireLuminance>2</LuminaireLuminance>
+                    <LightOutputRatio>0.01</LightOutputRatio>
+                    <LuminousEfficacy>0.02</LuminousEfficacy>
+                    <DownwardFluxFraction>0.03</DownwardFluxFraction>
+                    <DownwardLightOutputRatio>0.04</DownwardLightOutputRatio>
+                    <UpwardLightOutputRatio>0.05</UpwardLightOutputRatio>
+                    <TenthPeakDivergence>0.06</TenthPeakDivergence>
+                    <HalfPeakDivergence>0.07</HalfPeakDivergence>
+                    <PhotometricCode>PhotometricCode</PhotometricCode>
+                    <CIE-FluxCode>CIE-FluxCode</CIE-FluxCode>
+                    <CutOffAngle>0.08</CutOffAngle>
+                    <UGR-4H8H-70-50-20-LQ>
+                        <X>0.09</X>
+                        <Y>0.1</Y>
+                    </UGR-4H8H-70-50-20-LQ>
+                    <IESNA-LightDistributionDefinition>IESNA-LightDistributionDefinition</IESNA-LightDistributionDefinition>
+                    <LightDistributionBUG-Rating>LightDistributionBUG-Rating</LightDistributionBUG-Rating>
+                    <FlickerPstLM>FlickerPstLM</FlickerPstLM>
+                    <StroboscopicEffectsSVM>StroboscopicEffectsSVM</StroboscopicEffectsSVM>
+                </DescriptivePhotometry>
+            </Photometry>
+        </Photometries>
+    </GeneralDefinitions>
+    <ProductDefinitions>
+        <ProductMetaData>
+            <ProductNumber>
+                <Locale language="en">Product number</Locale>
+            </ProductNumber>
+            <ProductName>
+                <Locale language="en">Product name</Locale>
+            </ProductName>
+        </ProductMetaData>
+        <Variants>
+            <Variant id="variant-1">
+                <EmitterReferences>
+                    <LightEmitterReference photometryId="photometry"/>
+                </EmitterReferences>
+            </Variant>
+        </Variants>
+    </ProductDefinitions>
+</Root>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.5/gldf.xsd">
+    <Header>
+        <Manufacturer>DIAL</Manufacturer>
+        <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
+        <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
+        <FormatVersion>0.9</FormatVersion>
+    </Header>
+    <GeneralDefinitions>
+        <Files>
+            <File id="sensorFile" contentType="sensor/sensldt" type="url">https://example.org/sensor.sensldt</File>
+        </Files>
+        <Sensors>
+            <Sensor id="sensor">
+                <SensorFileReference fileId="sensorFile"/>
+            </Sensor>
+        </Sensors>
+    </GeneralDefinitions>
+    <ProductDefinitions>
+        <ProductMetaData>
+            <ProductNumber>
+                <Locale language="en">Product number</Locale>
+            </ProductNumber>
+            <ProductName>
+                <Locale language="en">Product name</Locale>
+            </ProductName>
+        </ProductMetaData>
+        <Variants>
+            <Variant id="variant-1">
+                <EmitterReferences>
+                    <SensorReference sensorId="sensor" />
+                </EmitterReferences>
+            </Variant>
+        </Variants>
+    </ProductDefinitions>
+</Root>

@@ -1,0 +1,33 @@
+name: OnPublishedRelease
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: dotnet restore ./src/Gldf.Net/Gldf.Net.csproj
+    - name: Build
+      run: dotnet build --no-restore --configuration Release ./src/Gldf.Net/Gldf.Net.csproj
+    - name: Test
+      run: dotnet test --no-build --verbosity normal ./src/Gldf.Net/Gldf.Net.csproj
+    - name: publish on nuget.org
+      id: publish_nuget
+      uses: rohith/publish-nuget@v2
+      with:
+        PROJECT_FILE_PATH: src/MinVer.Example/MinVer.Example.csproj
+        PACKAGE_NAME: GLDF.Net
+        VERSION_STATIC: 1.0.0         
+        TAG_COMMIT: false
+        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+        NUGET_SOURCE: https://api.nuget.org
+        INCLUDE_SYMBOLS: false

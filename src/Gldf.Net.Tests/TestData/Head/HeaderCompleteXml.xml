@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.5/gldf.xsd" checksum="Checksum">
+    <Header>
+        <Author>Author</Author>
+        <Manufacturer>Manufacturer</Manufacturer>
+        <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
+        <CreatedWithApplication>CreatedWithApplication</CreatedWithApplication>
+        <FormatVersion>0.9</FormatVersion>
+        <DefaultLanguage>de</DefaultLanguage>
+        <LicenseKeys>
+            <LicenseKey application="DIALux">Key 1</LicenseKey>
+            <LicenseKey application="RELUX">Key 2</LicenseKey>
+        </LicenseKeys>
+        <ReluxMemberId>ReluxMemberId</ReluxMemberId>
+        <DIALuxMemberId>DIALuxMemberId</DIALuxMemberId>
+        <Contact>
+            <Address>
+                <FirstName>FirstName</FirstName>
+                <Name>Name 1</Name>
+                <Street>Street</Street>
+                <Number>Number</Number>
+                <ZIPCode>ZIPCode</ZIPCode>
+                <City>City</City>
+                <Country>Country</Country>
+                <Phone>Phone</Phone>
+                <EMailAddresses>
+                    <EMail mailto="mailto">PlainText</EMail>
+                </EMailAddresses>
+                <Websites>
+                    <Hyperlink href="href 1" countryCode="de">PlainText 1</Hyperlink>
+                    <Hyperlink href="href 2" language="en">PlainText 2</Hyperlink>
+                </Websites>
+                <AdditionalInfo>AdditionalInfo</AdditionalInfo>
+            </Address>
+            <Address>
+                <Name>Name 2</Name>
+                <EMailAddresses>
+                    <EMail mailto="Mailto 1">PlainText 1</EMail>
+                    <EMail mailto="Mailto 2">PlainText 2</EMail>
+                </EMailAddresses>
+            </Address>
+        </Contact>
+    </Header>
+    <GeneralDefinitions>
+        <Files>
+            <File id="eulumdat" contentType="ldc/eulumdat" type="url">https://example.org/eulumdat.ldt</File>
+        </Files>
+        <Photometries>
+            <Photometry id="photometry">
+                <PhotometryFileReference fileId="eulumdat"/>
+            </Photometry>
+        </Photometries>
+    </GeneralDefinitions>
+    <ProductDefinitions>
+        <ProductMetaData>
+            <ProductNumber>
+                <Locale language="en">Product number</Locale>
+            </ProductNumber>
+            <ProductName>
+                <Locale language="en">Product name</Locale>
+            </ProductName>
+        </ProductMetaData>
+        <Variants>
+            <Variant id="variant-1">
+                <EmitterReferences>
+                    <LightEmitterReference photometryId="photometry"/>
+                </EmitterReferences>
+            </Variant>
+        </Variants>
+    </ProductDefinitions>
+</Root>

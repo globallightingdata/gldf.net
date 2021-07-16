@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.5/gldf.xsd">
+    <Header>
+        <Manufacturer>DIAL</Manufacturer>
+        <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
+        <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
+        <FormatVersion>0.9</FormatVersion>
+    </Header>
+    <GeneralDefinitions>
+        <Files>
+            <File id="eulumdatFile" contentType="ldc/eulumdat" type="url">https://example.org/eulumdat.ldt</File>
+            <File id="geometryFile" contentType="geo/l3d" type="url">https://example.org/geo.l3d</File>
+            <File id="sensorFile" contentType="sensor/sensxml" type="url">https://example.org/sensor.xml</File>
+            <File id="pictureFile" contentType="image/svg" type="localFileName">picture.svg</File>
+        </Files>
+        <Sensors>
+            <Sensor id="sensor">
+                <SensorFileReference fileId="sensorFile"/>
+            </Sensor>
+        </Sensors>
+        <Photometries>
+            <Photometry id="photometry">
+                <PhotometryFileReference fileId="eulumdatFile"/>
+            </Photometry>
+        </Photometries>
+        <LightSources>
+            <LightSource id="lightSource">
+                <Fixed/>
+            </LightSource>
+        </LightSources>
+        <Equipments>
+            <Equipment id="equipment">
+                <LightSourceReference lightSourceId="lightSource" lightSourceCount="2"/>
+                <RatedInputPower>1</RatedInputPower>
+                <RatedLuminousFlux>2</RatedLuminousFlux>
+            </Equipment>
+        </Equipments>
+        <Geometries>
+            <Geometry id="geometry">
+                <GeometryFileReference fileId="geometryFile"/>
+            </Geometry>
+        </Geometries>
+    </GeneralDefinitions>
+    <ProductDefinitions>
+        <ProductMetaData>
+            <ProductNumber>
+                <Locale language="en">Product number</Locale>
+            </ProductNumber>
+            <ProductName>
+                <Locale language="en">Product name</Locale>
+            </ProductName>
+        </ProductMetaData>
+        <Variants>
+            <Variant id="variant-1">
+                <VariantName>
+                    <Locale language="en">Variant name</Locale>
+                    <Locale language="de">Variantenname</Locale>
+                </VariantName>
+                <Description>
+                    <Locale language="en">Variant description</Locale>
+                    <Locale language="de">Variantenbeschreibung</Locale>
+                </Description>
+                <TenderText>
+                    <Locale language="en">Variant tender text</Locale>
+                    <Locale language="de">Varianten Ausschreibungstext</Locale>
+                </TenderText>
+                <GTIN>12345678</GTIN>
+                <OrderNumber>OrderNumber</OrderNumber>
+                <Mountings>
+                    <Ceilling>
+                        <Recessed recessedDepth="0.1">
+                            <CircularCutout>
+                                <Diameter>0.2</Diameter>
+                                <Depth>0.3</Depth>
+                            </CircularCutout>
+                        </Recessed>
+                        <SurfaceMounted/>
+                        <Pendant pendantLength="0.4"/>
+                    </Ceilling>
+                    <Wall mountingHeight="0.5">
+                        <Recessed recessedDepth="0.6">
+                            <RectangularCutout>
+                                <Width>0.7</Width>
+                                <Length>0.8</Length>
+                                <Depth>0.9</Depth>
+                            </RectangularCutout>
+                        </Recessed>
+                        <SurfaceMounted/>
+                    </Wall>
+                    <WorkingPlane>
+                        <FreeStanding/>
+                    </WorkingPlane>
+                    <Ground>
+                        <PoleTop poleHeight="0.11"/>
+                        <PoleIntegrated poleHeight="0.12"/>
+                        <FreeStanding/>
+                        <SurfaceMounted/>
+                        <Recessed recessedDepth="0.13">
+                            <CircularCutout>
+                                <Diameter>0.14</Diameter>
+                                <Depth>0.15</Depth>
+                            </CircularCutout>
+                        </Recessed>
+                    </Ground>
+                </Mountings>
+                <EmitterReferences>
+                    <LightEmitterReference photometryId="photometry" />
+                </EmitterReferences>
+                <Pictures>
+                    <Image fileId="pictureFile" imageType="Other"/>
+                    <Image fileId="pictureFile" imageType="Technical Sketch"/>
+                    <Image fileId="pictureFile" imageType="Application Picture"/>
+                    <Image fileId="pictureFile" imageType="Product Picture"/>
+                </Pictures>
+                <Symbol fileId="pictureFile"/>
+            </Variant>
+            <Variant id="variant-2">
+                <Mountings>
+                    <Ceilling>
+                        <Recessed recessedDepth="0.16">
+                            <RectangularCutout>
+                                <Width>0.17</Width>
+                                <Length>0.18</Length>
+                                <Depth>0.19</Depth>
+                            </RectangularCutout>
+                        </Recessed>
+                    </Ceilling>
+                    <Wall mountingHeight="0.21">
+                        <Recessed recessedDepth="0.22">
+                            <CircularCutout>
+                                <Diameter>0.23</Diameter>
+                                <Depth>0.24</Depth>
+                            </CircularCutout>
+                        </Recessed>
+                    </Wall>
+                    <Ground>
+                        <Recessed recessedDepth="0.25">
+                            <RectangularCutout>
+                                <Width>0.26</Width>
+                                <Length>0.27</Length>
+                                <Depth>0.28</Depth>
+                            </RectangularCutout>
+                        </Recessed>
+                    </Ground>
+                </Mountings>
+                <EmitterReferences>
+                    <SensorReference sensorId="sensor" />
+                </EmitterReferences>
+            </Variant>
+            <Variant id="variant-3" sortOrder="3">
+                <EmitterReferences>
+                    <GeometryReference geometryId="geometry">
+                        <EmissionObjectReference>
+                            <LightEmitterReference photometryId="photometry" equipmentId="equipment">
+                                <DisplayName>
+                                    <Locale language="en">Display name</Locale>
+                                    <Locale language="de">Anzeigename</Locale>
+                                </DisplayName>
+                            </LightEmitterReference>
+                            <LightEmitterReference photometryId="photometry" emergencyBehaviour="None"/>
+                            <LightEmitterReference photometryId="photometry" equipmentId="equipment" emergencyBehaviour="EmergencyOnly"/>
+                            <LightEmitterReference photometryId="photometry" equipmentId="equipment" emergencyBehaviour="Combined"/>
+                            <ExternalEmitterReferences>
+                                <ExternalEmitterReference>
+                                    <EmitterObjectExternalName>leo1</EmitterObjectExternalName>
+                                </ExternalEmitterReference>
+                            </ExternalEmitterReferences>
+                        </EmissionObjectReference>
+                    </GeometryReference>
+                </EmitterReferences>
+            </Variant>
+            <Variant id="variant-4" sortOrder="4">
+                <EmitterReferences>
+                    <GeometryReference geometryId="geometry">
+                        <EmissionObjectReference>
+                            <SensorReference sensorId="sensor">
+                                <DisplayName>
+                                    <Locale language="en">Display name</Locale>
+                                    <Locale language="de">Anzeigename</Locale>
+                                </DisplayName>
+                            </SensorReference>
+                            <ExternalEmitterReferences>
+                                <ExternalEmitterReference targetModelType="l3d">
+                                    <EmitterObjectExternalName>leo2</EmitterObjectExternalName>
+                                </ExternalEmitterReference>
+                            </ExternalEmitterReferences>
+                        </EmissionObjectReference>
+                    </GeometryReference>
+                </EmitterReferences>
+                <ProductSeries>
+                    <ProductSerie>
+                        <Name>
+                            <Locale language="en">Variant name 1</Locale>
+                            <Locale language="de">Variantenname 1</Locale>
+                        </Name>
+                        <Description>
+                            <Locale language="en">Variant description</Locale>
+                            <Locale language="de">Variantenbeschreibung</Locale>
+                        </Description>
+                        <Pictures>
+                            <Image fileId="pictureFile" imageType="Technical Sketch"/>
+                            <Image fileId="pictureFile" imageType="Application Picture"/>
+                            <Image fileId="pictureFile" imageType="Product Picture"/>
+                            <Image fileId="pictureFile" imageType="Other"/>
+                        </Pictures>
+                        <Hyperlinks>
+                            <Hyperlink href="href1">Hyperlink 1</Hyperlink>
+                            <Hyperlink href="href2" language="en" region="region" countryCode="de">Hyperlink 2</Hyperlink>
+                        </Hyperlinks>
+                    </ProductSerie>
+                    <ProductSerie>
+                        <Name>
+                            <Locale language="en">Variant name 2</Locale>
+                            <Locale language="de">Variantenname 2</Locale>
+                        </Name>
+                    </ProductSerie>
+                </ProductSeries>
+                <VariantDescriptiveAttributes>
+                    <Electrical>
+                        <IKRating>IK05</IKRating>
+                    </Electrical>
+                </VariantDescriptiveAttributes>
+            </Variant>
+        </Variants>
+    </ProductDefinitions>
+</Root>

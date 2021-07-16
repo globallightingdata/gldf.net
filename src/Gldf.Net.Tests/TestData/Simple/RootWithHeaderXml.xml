@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.5/gldf.xsd">
+  <Header>
+    <Manufacturer>Manufacturer</Manufacturer>
+    <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
+    <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
+    <FormatVersion>0.9</FormatVersion>
+  </Header>
+</Root>

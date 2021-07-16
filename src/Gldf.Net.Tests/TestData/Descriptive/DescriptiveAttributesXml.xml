@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.5/gldf.xsd">
+    <Header>
+        <Manufacturer>Manufacturer</Manufacturer>
+        <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
+        <CreatedWithApplication>CreatedWithApplication</CreatedWithApplication>
+        <FormatVersion>0.9</FormatVersion>
+    </Header>
+    <GeneralDefinitions>
+        <Files>
+            <File id="eulumdat" contentType="ldc/eulumdat" type="url">https://example.org/eulumdat.ldt</File>
+        </Files>
+        <Photometries>
+            <Photometry id="photometry">
+                <PhotometryFileReference fileId="eulumdat"/>
+            </Photometry>
+        </Photometries>
+    </GeneralDefinitions>
+    <ProductDefinitions>
+        <ProductMetaData>
+            <ProductNumber>
+                <Locale language="en">Product number</Locale>
+            </ProductNumber>
+            <ProductName>
+                <Locale language="en">Product name</Locale>
+            </ProductName>
+        </ProductMetaData>
+        <Variants>
+            <Variant id="variant-1">
+                <EmitterReferences>
+                    <LightEmitterReference photometryId="photometry"/>
+                </EmitterReferences>
+                <VariantDescriptiveAttributes>
+                    <Electrical>
+                        <ElectricalSafetyClass>0</ElectricalSafetyClass>
+                        <IngressProtectionIPCode>IP20</IngressProtectionIPCode>
+                        <IKRating>IK00</IKRating>
+                        <ConstantLightOutput>true</ConstantLightOutput>
+                    </Electrical>
+                    <Emergency>
+                        <DedicatedEmergencyLightingType>Exit Light</DedicatedEmergencyLightingType>
+                    </Emergency>
+                    <SensingDevice>
+                        <DetectorCharacteristics>
+                            <DetectorCharacteristic>Round</DetectorCharacteristic>
+                            <DetectorCharacteristic>Square</DetectorCharacteristic>
+                            <DetectorCharacteristic>Other</DetectorCharacteristic>
+                        </DetectorCharacteristics>
+                        <DetectionMethods>
+                            <DetectionMethod>Passive Infrared</DetectionMethod>
+                            <DetectionMethod>High Frequency</DetectionMethod>
+                            <DetectionMethod>Microwave</DetectionMethod>
+                            <DetectionMethod>Ultrasonic</DetectionMethod>
+                            <DetectionMethod>Camera</DetectionMethod>
+                            <DetectionMethod>Other</DetectionMethod>
+                        </DetectionMethods>
+                        <DetectorTypes>
+                            <DetectorType>Motion Detector</DetectorType>
+                            <DetectorType>Presence Detector</DetectorType>
+                            <DetectorType>Daylight Detector</DetectorType>
+                            <DetectorType>Other</DetectorType>
+                        </DetectorTypes>
+                    </SensingDevice>
+                    <Marketing>
+                        <Applications>
+                            <Application>Interior: Traffic Zones</Application>
+                            <Application>Interior: Traffic Zones: Corridors</Application>
+                            <Application>Interior: Traffic Zones: Staircases</Application>
+                            <Application>Interior: Traffic Zones: Loading Zones</Application>
+                            <Application>Interior: Traffic Zones: Cove Lighting / Cornices (Indoor)</Application>
+                            <Application>Interior: General Areas (Interior)</Application>
+                            <Application>Interior: General Areas (Interior): Break Rooms</Application>
+                            <Application>Interior: General Areas (Interior): Reception Areas</Application>
+                            <Application>Interior: Office</Application>
+                            <Application>Interior: Office: Office Desks</Application>
+                            <Application>Interior: Office: Group Offices</Application>
+                            <Application>Interior: Office: Discussions</Application>
+                            <Application>Interior: Office: Archives</Application>
+                            <Application>Interior: Industry/Craft</Application>
+                            <Application>Interior: Industry/Craft: Industrial Workshops</Application>
+                            <Application>Interior: Industry/Craft: Warehouses</Application>
+                            <Application>Interior: Industry/Craft: Cold Storage Facilities</Application>
+                            <Application>Interior: Industry/Craft: Kitchens</Application>
+                            <Application>Interior: Industry/Craft: Assembly Work Stations</Application>
+                            <Application>Interior: Industry/Craft: Machine Illumination</Application>
+                            <Application>Interior: Industry/Craft: Control Work Stations</Application>
+                            <Application>Interior: Industry/Craft: Laboratories</Application>
+                            <Application>Interior: Industry/Craft: Hangars</Application>
+                            <Application>Interior: Shop Lighting</Application>
+                            <Application>Interior: Shop Lighting: Retail</Application>
+                            <Application>Interior: Shop Lighting: Food</Application>
+                            <Application>Interior: Shop Lighting: Clothing</Application>
+                            <Application>Interior: Shop Lighting: Display Windows</Application>
+                            <Application>Interior: Shop Lighting: Halls</Application>
+                            <Application>Interior: Shop Lighting: Great Halls</Application>
+                            <Application>Interior: Shop Lighting: Mirrors</Application>
+                            <Application>Interior: Public Areas</Application>
+                            <Application>Interior: Public Areas: Restaurants</Application>
+                            <Application>Interior: Public Areas: Theatres</Application>
+                            <Application>Interior: Public Areas: Railway Stations</Application>
+                            <Application>Interior: Public Areas: Museums</Application>
+                            <Application>Interior: Public Areas: Fairs</Application>
+                            <Application>Interior: Public Areas: Prisons</Application>
+                            <Application>Interior: Public Areas: Canteens</Application>
+                            <Application>Interior: Emergency Lighting</Application>
+                            <Application>Interior: Emergency Lighting: Emergency Lighting</Application>
+                            <Application>Interior: Emergency Lighting: Signal Lighting</Application>
+                            <Application>Interior: Educational Facilities</Application>
+                            <Application>Interior: Educational Facilities: Classrooms</Application>
+                            <Application>Interior: Educational Facilities: Libraries</Application>
+                            <Application>Interior: Educational Facilities: Lounges</Application>
+                            <Application>Interior: Educational Facilities: Sports Halls</Application>
+                            <Application>Interior: Private Areas</Application>
+                            <Application>Interior: Private Areas: Living Areas</Application>
+                            <Application>Interior: Private Areas: Baths</Application>
+                            <Application>Interior: Private Areas: Kitchens</Application>
+                            <Application>Interior: Hospitals and Care Places</Application>
+                            <Application>Interior: Hospitals and Care Places: Hospital Wards</Application>
+                            <Application>Interior: Hospitals and Care Places: Health Care Patient Rooms</Application>
+                            <Application>Interior: Hospitals and Care Places: Health Care Clean Room Areas</Application>
+                            <Application>Interior: Hospitals and Care Places: Health Care Examination Rooms</Application>
+                            <Application>Interior: Hospitals and Care Places: Health Care Circulation Areas</Application>
+                            <Application>Exterior: General Areas (Exterior)</Application>
+                            <Application>Exterior: General Areas (Exterior): Places</Application>
+                            <Application>Exterior: General Areas (Exterior): Parks</Application>
+                            <Application>Exterior: General Areas (Exterior): Underpasses</Application>
+                            <Application>Exterior: General Areas (Exterior): (Outdoor) Stairs</Application>
+                            <Application>Exterior: General Areas (Exterior): Platform-Roofs</Application>
+                            <Application>Exterior: General Areas (Exterior): Parking Spaces (Indoor)</Application>
+                            <Application>Exterior: General Areas (Exterior): Outdoor Parkings</Application>
+                            <Application>Exterior: General Areas (Exterior): Pools</Application>
+                            <Application>Exterior: General Areas (Exterior): Fountains</Application>
+                            <Application>Exterior: Streets</Application>
+                            <Application>Exterior: Streets: Motorways</Application>
+                            <Application>Exterior: Streets: Access Roads</Application>
+                            <Application>Exterior: Streets: Residential Areas</Application>
+                            <Application>Exterior: Streets: Bicycle Paths</Application>
+                            <Application>Exterior: Streets: Footpaths</Application>
+                            <Application>Exterior: Streets: Petrol-Gas Stations</Application>
+                            <Application>Exterior: Streets: Tunnels</Application>
+                            <Application>Exterior: Sports Fields</Application>
+                            <Application>Exterior: Sports Fields: Spotlightings</Application>
+                            <Application>Exterior: Other</Application>
+                            <Application>Exterior: Other: Facades</Application>
+                        </Applications>
+                    </Marketing>
+                </VariantDescriptiveAttributes>
+            </Variant>
+            <Variant id="variant-2">
+                <EmitterReferences>
+                    <LightEmitterReference photometryId="photometry"/>
+                </EmitterReferences>
+                <VariantDescriptiveAttributes>
+                    <Electrical>
+                        <ElectricalSafetyClass>I</ElectricalSafetyClass>
+                        <IngressProtectionIPCode>IP30</IngressProtectionIPCode>
+                        <IKRating>IK01</IKRating>
+                        <ConstantLightOutput>false</ConstantLightOutput>
+                    </Electrical>
+                    <Emergency>
+                        <DedicatedEmergencyLightingType>Guide Light</DedicatedEmergencyLightingType>
+                    </Emergency>
+                    <MountingAndAccessory>
+                        <ATEX>
+                            <Directives>
+                                <Directive>ATEX</Directive>
+                                <Directive>IECEx</Directive>
+                                <Directive>CEC</Directive>
+                                <Directive>NEC</Directive>
+                            </Directives>
+                            <Classes>
+                                <Class>I</Class>
+                                <Class>II</Class>
+                                <Class>III</Class>
+                            </Classes>
+                            <Divisions>
+                                <Division>1</Division>
+                                <Division>2</Division>
+                            </Divisions>
+                            <DivisionGroups>
+                                <Gas>
+                                    <Group>A</Group>
+                                    <Group>B</Group>
+                                    <Group>C</Group>
+                                    <Group>D</Group>
+                                </Gas>
+                                <Dust>
+                                    <Group>E</Group>
+                                    <Group>F</Group>
+                                    <Group>G</Group>
+                                </Dust>
+                            </DivisionGroups>
+                            <Zones>
+                                <Gas>
+                                    <Zone>0</Zone>
+                                    <Zone>1</Zone>
+                                    <Zone>2</Zone>
+                                </Gas>
+                                <Dust>
+                                    <Zone>20</Zone>
+                                    <Zone>21</Zone>
+                                    <Zone>22</Zone>
+                                </Dust>
+                            </Zones>
+                            <ZoneGroups>
+                                <Gas>
+                                    <Group>IIC</Group>
+                                    <Group>IIB + H2</Group>
+                                    <Group>IIB</Group>
+                                    <Group>IIA</Group>
+                                </Gas>
+                                <Dust>
+                                    <Group>IIIC</Group>
+                                    <Group>IIIB</Group>
+                                    <Group>IIIA</Group>
+                                </Dust>
+                            </ZoneGroups>
+                            <MaximumSurfaceTemperature>MaximumSurfaceTemperature</MaximumSurfaceTemperature>
+                            <TemperatureClasses>
+                                <TemperatureClass>T1</TemperatureClass>
+                                <TemperatureClass>T2</TemperatureClass>
+                                <TemperatureClass>T2A</TemperatureClass>
+                                <TemperatureClass>T2B</TemperatureClass>
+                                <TemperatureClass>T2C</TemperatureClass>
+                                <TemperatureClass>T2D</TemperatureClass>
+                                <TemperatureClass>T3</TemperatureClass>
+                                <TemperatureClass>T3A</TemperatureClass>
+                                <TemperatureClass>T3B</TemperatureClass>
+                                <TemperatureClass>T3C</TemperatureClass>
+                                <TemperatureClass>T4</TemperatureClass>
+                                <TemperatureClass>T4A</TemperatureClass>
+                                <TemperatureClass>T5</TemperatureClass>
+                                <TemperatureClass>T6</TemperatureClass>
+                            </TemperatureClasses>
+                            <ExCodes>
+                                <ExCode>da</ExCode>
+                                <ExCode>db</ExCode>
+                                <ExCode>dc</ExCode>
+                                <ExCode>eb</ExCode>
+                                <ExCode>ec</ExCode>
+                                <ExCode>ia</ExCode>
+                                <ExCode>ib</ExCode>
+                                <ExCode>ic</ExCode>
+                                <ExCode>ma</ExCode>
+                                <ExCode>mb</ExCode>
+                                <ExCode>mc</ExCode>
+                                <ExCode>nC</ExCode>
+                                <ExCode>nR</ExCode>
+                                <ExCode>ob</ExCode>
+                                <ExCode>oc</ExCode>
+                                <ExCode>op is</ExCode>
+                                <ExCode>op pr</ExCode>
+                                <ExCode>op sh</ExCode>
+                                <ExCode>pxb</ExCode>
+                                <ExCode>pyb</ExCode>
+                                <ExCode>pyc</ExCode>
+                                <ExCode>pzc</ExCode>
+                                <ExCode>q</ExCode>
+                                <ExCode>ta</ExCode>
+                                <ExCode>tb</ExCode>
+                                <ExCode>tc</ExCode>
+                            </ExCodes>
+                            <EquipmentProtectionLevels>
+                                <EquipmentProtectionLevel>Ga</EquipmentProtectionLevel>
+                                <EquipmentProtectionLevel>Gb</EquipmentProtectionLevel>
+                                <EquipmentProtectionLevel>Gc</EquipmentProtectionLevel>
+                                <EquipmentProtectionLevel>Da</EquipmentProtectionLevel>
+                                <EquipmentProtectionLevel>Db</EquipmentProtectionLevel>
+                                <EquipmentProtectionLevel>Dc</EquipmentProtectionLevel>
+                                <EquipmentProtectionLevel>Ma</EquipmentProtectionLevel>
+                                <EquipmentProtectionLevel>Mb</EquipmentProtectionLevel>
+                            </EquipmentProtectionLevels>
+                            <EquipmentGroups>
+                                <EquipmentGroup>I</EquipmentGroup>
+                                <EquipmentGroup>II</EquipmentGroup>
+                            </EquipmentGroups>
+                            <EquipmentCategories>
+                                <EquipmentCategory>M1</EquipmentCategory>
+                                <EquipmentCategory>M2</EquipmentCategory>
+                                <EquipmentCategory>1G</EquipmentCategory>
+                                <EquipmentCategory>2G</EquipmentCategory>
+                                <EquipmentCategory>3G</EquipmentCategory>
+                                <EquipmentCategory>1D</EquipmentCategory>
+                                <EquipmentCategory>2D</EquipmentCategory>
+                                <EquipmentCategory>3D</EquipmentCategory>
+                            </EquipmentCategories>
+                            <Atmospheres>
+                                <Atmosphere>G</Atmosphere>
+                                <Atmosphere>D</Atmosphere>
+                            </Atmospheres>
+                            <Groups>
+                                <Group>I</Group>
+                                <Group>II</Group>
+                                <Group>IIA</Group>
+                                <Group>IIB</Group>
+                                <Group>IIC</Group>
+                                <Group>III</Group>
+                                <Group>IIIA</Group>
+                                <Group>IIIB</Group>
+                                <Group>IIIC</Group>
+                            </Groups>
+                        </ATEX>
+                    </MountingAndAccessory>
+                </VariantDescriptiveAttributes>
+            </Variant>
+            <Variant id="variant-3">
+                <EmitterReferences>
+                    <LightEmitterReference photometryId="photometry"/>
+                </EmitterReferences>
+                <VariantDescriptiveAttributes>
+                    <Electrical>
+                        <ElectricalSafetyClass>II</ElectricalSafetyClass>
+                        <IngressProtectionIPCode>IP40</IngressProtectionIPCode>
+                        <IKRating>IK02</IKRating>
+                    </Electrical>
+                    <Emergency>
+                        <DedicatedEmergencyLightingType>Evacuation Light</DedicatedEmergencyLightingType>
+                    </Emergency>
+                </VariantDescriptiveAttributes>
+            </Variant>
+            <Variant id="variant-4">
+                <EmitterReferences>
+                    <LightEmitterReference photometryId="photometry"/>
+                </EmitterReferences>
+                <VariantDescriptiveAttributes>
+                    <Electrical>
+                        <ElectricalSafetyClass>III</ElectricalSafetyClass>
+                        <IngressProtectionIPCode>IP40</IngressProtectionIPCode>
+                        <IKRating>IK03</IKRating>
+                    </Electrical>
+                    <Emergency>
+                        <DedicatedEmergencyLightingType>Reference Light</DedicatedEmergencyLightingType>
+                    </Emergency>
+                </VariantDescriptiveAttributes>
+            </Variant>
+            <Variant id="variant-5">
+                <EmitterReferences>
+                    <LightEmitterReference photometryId="photometry"/>
+                </EmitterReferences>
+                <VariantDescriptiveAttributes>
+                    <Electrical>
+                        <ElectricalSafetyClass>0I</ElectricalSafetyClass>
+                        <IngressProtectionIPCode>IP50</IngressProtectionIPCode>
+                        <IKRating>IK09</IKRating>
+                    </Electrical>
+                    <Emergency>
+                        <DedicatedEmergencyLightingType>For Signage</DedicatedEmergencyLightingType>
+                    </Emergency>
+                </VariantDescriptiveAttributes>
+            </Variant>
+            <Variant id="variant-6">
+                <EmitterReferences>
+                    <LightEmitterReference photometryId="photometry"/>
+                </EmitterReferences>
+                <VariantDescriptiveAttributes>
+                    <Electrical>
+                        <IngressProtectionIPCode>IP69</IngressProtectionIPCode>
+                        <IKRating>IK10</IKRating>
+                    </Electrical>
+                    <Emergency>
+                        <DedicatedEmergencyLightingType>For Lighting</DedicatedEmergencyLightingType>
+                    </Emergency>
+                </VariantDescriptiveAttributes>
+            </Variant>
+            <Variant id="variant-7">
+                <EmitterReferences>
+                    <LightEmitterReference photometryId="photometry"/>
+                </EmitterReferences>
+                <VariantDescriptiveAttributes>
+                    <Electrical>
+                        <IngressProtectionIPCode>IP69K</IngressProtectionIPCode>
+                        <IKRating>IK10+</IKRating>
+                    </Electrical>
+                </VariantDescriptiveAttributes>
+            </Variant>
+        </Variants>
+    </ProductDefinitions>
+</Root>

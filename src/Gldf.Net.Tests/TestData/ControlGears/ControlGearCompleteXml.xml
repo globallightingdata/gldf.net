@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.5/gldf.xsd">
+    <Header>
+        <Manufacturer>DIAL</Manufacturer>
+        <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
+        <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
+        <FormatVersion>0.9</FormatVersion>
+    </Header>
+    <GeneralDefinitions>
+        <Files>
+            <File id="eulumdat" contentType="ldc/eulumdat" type="url">https://example.org/eulumdat.ldt</File>
+        </Files>
+        <Photometries>
+            <Photometry id="photometry">
+                <PhotometryFileReference fileId="eulumdat"/>
+            </Photometry>
+        </Photometries>
+        <ControlGears>
+            <ControlGear id="controlGear-1">
+                <Description>
+                    <Locale language="en">ControlGear description</Locale>
+                </Description>
+                <NominalVoltage>
+                    <VoltageRange>
+                        <Min>120</Min>
+                        <Max>230</Max>
+                    </VoltageRange>
+                    <Type>DC</Type>
+                    <Frequency>400</Frequency>
+                </NominalVoltage>
+                <StandbyPower>0.1</StandbyPower>
+                <ConstantLightOutputStartPower>0.2</ConstantLightOutputStartPower>
+                <ConstantLightOutputEndPower>0.3</ConstantLightOutputEndPower>
+                <PowerConsumptionControls>0.4</PowerConsumptionControls>
+                <Dimmable>true</Dimmable>
+                <ColorControllable>false</ColorControllable>
+                <Interfaces>
+                    <Interface>DALI Broadcast</Interface>
+                    <Interface>DALI Addressable</Interface>
+                </Interfaces>
+                <EnergyLabels>
+                    <EnergyLabel region="eu">A+</EnergyLabel>
+                    <EnergyLabel region="us">B</EnergyLabel>
+                </EnergyLabels>
+            </ControlGear>
+            <ControlGear id="controlGear-2">
+                <Description>
+                    <Locale language="en">ControlGear description</Locale>
+                </Description>
+                <Interfaces>
+                    <Interface>KNX</Interface>
+                    <Interface>0-10V</Interface>
+                    <Interface>1-10V</Interface>
+                    <Interface>230V</Interface>
+                    <Interface>RF</Interface>
+                    <Interface>WiFi</Interface>
+                    <Interface>Bluetooth</Interface>
+                    <Interface>Inter-Connection</Interface>
+                    <Interface>DMX</Interface>
+                    <Interface>DMX/RDM</Interface>
+                </Interfaces>
+            </ControlGear>
+        </ControlGears>
+    </GeneralDefinitions>
+    <ProductDefinitions>
+        <ProductMetaData>
+            <ProductNumber>
+                <Locale language="en">Product number</Locale>
+            </ProductNumber>
+            <ProductName>
+                <Locale language="en">Product name</Locale>
+            </ProductName>
+        </ProductMetaData>
+        <Variants>
+            <Variant id="variant-1">
+                <EmitterReferences>
+                    <LightEmitterReference photometryId="photometry" />
+                </EmitterReferences>
+            </Variant>
+        </Variants>
+    </ProductDefinitions>
+</Root>

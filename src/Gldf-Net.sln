@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gldf.Net", "Gldf.Net\Gldf.Net.csproj", "{B681045C-A9EA-4357-ABCB-07DE5D8513BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gldf.Net.Tests", "Gldf.Net.Tests\Gldf.Net.Tests.csproj", "{6CF6ED9C-7112-4F92-AE86-237FCB94CD28}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B681045C-A9EA-4357-ABCB-07DE5D8513BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B681045C-A9EA-4357-ABCB-07DE5D8513BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B681045C-A9EA-4357-ABCB-07DE5D8513BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B681045C-A9EA-4357-ABCB-07DE5D8513BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CF6ED9C-7112-4F92-AE86-237FCB94CD28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CF6ED9C-7112-4F92-AE86-237FCB94CD28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CF6ED9C-7112-4F92-AE86-237FCB94CD28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CF6ED9C-7112-4F92-AE86-237FCB94CD28}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
