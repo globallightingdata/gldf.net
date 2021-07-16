@@ -15,7 +15,9 @@ jobs:
         dotnet-version: 5.0.x
     - name: Restore dependencies
       run: dotnet restore ./src/Gldf.Net/Gldf.Net.csproj
+      run: dotnet restore ./src/Gldf.Net.Tests/Gldf.Net.Tests.csproj
     - name: Build
       run: dotnet build --no-restore --configuration Release ./src/Gldf.Net/Gldf.Net.csproj
+      run: dotnet build --no-restore --configuration Debug ./src/Gldf.Net.Tests/Gldf.Net.Tests.csproj
     - name: Test
-      run: dotnet test --no-build --verbosity normal ./src/Gldf.Net/Gldf.Net.csproj
+      run: dotnet test --no-build --verbosity normal ./src/Gldf.Net.Tests/Gldf.Net.Tests.csproj
