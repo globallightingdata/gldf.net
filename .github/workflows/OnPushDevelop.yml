@@ -25,9 +25,9 @@ jobs:
       id: publish_nuget
       uses: rohith/publish-nuget@v2
       with:
-        PROJECT_FILE_PATH: src/MinVer.Example/MinVer.Example.csproj
+        PROJECT_FILE_PATH: /src/Gldf.Net/Gldf.Net.csproj
         PACKAGE_NAME: GLDF.Net
-        VERSION_STATIC: 1.0.0         
+        VERSION_STATIC: 1.0.0
         TAG_COMMIT: false
         NUGET_KEY: ${{secrets.NUGET_API_KEY}}
         NUGET_SOURCE: https://api.nuget.org
