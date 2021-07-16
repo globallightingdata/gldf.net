@@ -211,6 +211,24 @@ foreach (var validationHint in validationResult)
 
 ---
 
+### Interfaces
+
+There are also Interfaces you can use:
+
+```CSharp
+// 1) Serialize XML
+IGldfXmlSerializer serializer = new GldfXmlSerializer();
+// 2) Validate XML
+IGldfXmlValidator xmlValidator = new GldfXmlValidator();
+
+// 3) Read + Write GLDF container
+IGldfContainer container = new GldfContainer();
+// 4) Validate GLDF Container
+IGldfContainerValidator containerValidator = new GldfContainerValidator();
+```
+
+---
+
 ## Questions, Issues & Contribution
 
 Please use the discussion section for questions or create issues, when something seems to be wrong. PRs are welcome.
