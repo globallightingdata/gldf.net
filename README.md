@@ -2,7 +2,8 @@
 
 ![GLDF Logo](/img/logo.png)
 
-[![OnPublishedRelease](https://github.com/globallightingdata/gldf.net/actions/workflows/OnPublishedRelease.yml/badge.svg)](https://github.com/globallightingdata/gldf.net/actions/workflows/OnPublishedRelease.yml) [![OnPush develop](https://github.com/globallightingdata/gldf.net/actions/workflows/OnPushDevelop.yml/badge.svg)](https://github.com/globallightingdata/gldf.net/actions/workflows/OnPushDevelop.yml)  
+[![OnPublishedRelease](https://github.com/globallightingdata/gldf.net/actions/workflows/OnPublishedRelease.yml/badge.svg)](https://github.com/globallightingdata/gldf.net/actions/workflows/OnPublishedRelease.yml)  
+[![OnPush develop](https://github.com/globallightingdata/gldf.net/actions/workflows/OnPushDevelop.yml/badge.svg)](https://github.com/globallightingdata/gldf.net/actions/workflows/OnPushDevelop.yml)  
 [![NuGet Status](https://img.shields.io/nuget/v/GLDF.Net.svg)](https://www.nuget.org/packages/GLDF.Net/) [![GLDF.Net on fuget.org](https://www.fuget.org/packages/GLDF.Net/badge.svg)](https://www.fuget.org/packages/GLDF.Net)
 
 ## Intro
