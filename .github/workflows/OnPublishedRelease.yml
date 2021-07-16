@@ -24,7 +24,7 @@ jobs:
       id: publish_nuget
       uses: rohith/publish-nuget@v2
       with:
-        PROJECT_FILE_PATH: /src/Gldf.Net/Gldf.Net.csproj
+        PROJECT_FILE_PATH: ./src/Gldf.Net/Gldf.Net.csproj
         PACKAGE_NAME: GLDF.Net
         VERSION_STATIC: 1.0.0
         TAG_COMMIT: false
