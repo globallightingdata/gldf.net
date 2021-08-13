@@ -39,7 +39,7 @@ dotnet add package GLDF.Net
 
 ### XML Serialization
 
-#### Serialize GLDF domain POCOs to XML string
+#### Serialize GLDF domain DTOs to XML string
 
 All models in the following examples are incomplete. For valid GLDF luminaires/sensors read the docs.
 
@@ -49,7 +49,7 @@ var root = new Root {Header = new Header {Author = "Github Example"}};
 var xml = serializer.SerializeToXml(root);
 ```
 
-#### Serialize GLDF domain POCOs to .xml file
+#### Serialize GLDF domain DTOs to .xml file
 
 ```CSharp
 var serializer = new GldfXmlSerializer();
@@ -57,7 +57,7 @@ var root = new Root {Header = new Header {Author = "Github Example"}};
 serializer.SerializeToFile(root, @"c:\some\file\path\luminaire.xml");
 ```
 
-#### Deserialize GLDF XML string to domain POCOs
+#### Deserialize GLDF XML string to domain DTOs
 
 ```CSharp
 var serializer = new GldfXmlSerializer();
@@ -65,7 +65,7 @@ var xml = @"<Root><Header><Author>Github Example</Author></Header></Root>";
 Root root = serializer.DeserializeFromXml(xml);
 ```
 
-#### Deserialize GLDF .xml file to domain POCOs
+#### Deserialize GLDF .xml file to domain DTOs
 
 ```CSharp
 var serializer = new GldfXmlSerializer();
@@ -177,7 +177,7 @@ gldfContainer.CreateFromDirectory(sourceDirectory, targetFile);
 
 ### Container Validation
 
-#### Validate a GldfArchive domain POCO
+#### Validate a GldfArchive domain DTO
 
 ```CSharp
 var validator = new GldfContainerValidator();
