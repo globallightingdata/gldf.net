@@ -43,8 +43,8 @@ namespace Gldf.Net.Container
 
         private static byte[] GetBytes(IEnumerable<ContainerFile> assetCollection, string fileName)
         {
-            return assetCollection.FirstOrDefault(p =>
-                string.Equals(p.FileName, fileName, StringComparison.OrdinalIgnoreCase))?.Bytes;
+            return assetCollection.FirstOrDefault(file =>
+                string.Equals(file.FileName, fileName, StringComparison.OrdinalIgnoreCase))?.Bytes;
         }
     }
 }

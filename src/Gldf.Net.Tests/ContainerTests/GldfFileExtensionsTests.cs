@@ -20,6 +20,17 @@ namespace Gldf.Net.Tests.ContainerTests
         }
 
         [Test]
+        public void GetBytesFromContainer_Should_ReturnNull_When_FileNotExists()
+        {
+            var gldfFile = new GldfFile { File = "file.jpg", ContentType = FileContentType.ImageJpg };
+            var gldfContainer = new GldfContainer();
+
+            var fileContent = gldfFile.GetBytesFromContainer(gldfContainer);
+
+            fileContent.Should().BeNull();
+        }
+
+        [Test]
         public void GetBytesFromContainer_Should_IgnoreCase()
         {
             var gldfFile = new GldfFile { File = "file1.jpg", ContentType = FileContentType.ImageJpg };
