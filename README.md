@@ -46,7 +46,7 @@ All models in the following examples are incomplete. For valid GLDF luminaires/s
 ```CSharp
 var serializer = new GldfXmlSerializer();
 var root = new Root {Header = new Header {Author = "Github Example"}};
-var xml = serializer.SerializeToXml(root);
+var xml = serializer.SerializeToString(root);
 ```
 
 #### Serialize GLDF domain DTOs to .xml file
@@ -62,7 +62,7 @@ serializer.SerializeToFile(root, @"c:\some\file\path\luminaire.xml");
 ```CSharp
 var serializer = new GldfXmlSerializer();
 var xml = @"<Root><Header><Author>Github Example</Author></Header></Root>";
-Root root = serializer.DeserializeFromXml(xml);
+Root root = serializer.DeserializeFromString(xml);
 ```
 
 #### Deserialize GLDF .xml file to domain DTOs
@@ -92,7 +92,7 @@ var serializer = new GldfXmlSerializer(settings);
 ```CSharp
 var gldfXmlValidator = new GldfXmlValidator();
 var xml = @"<Root><Header><Author>Github Example</Author></Header></Root>";
-IEnumerable<ValidationHint> validationResult = gldfXmlValidator.ValidateXml(xml);
+IEnumerable<ValidationHint> validationResult = gldfXmlValidator.ValidateString(xml);
 
 foreach (var validationHint in validationResult)
 {
@@ -108,7 +108,7 @@ foreach (var validationHint in validationResult)
 ```CSharp
 var gldfXmlValidator = new GldfXmlValidator();
 var filePath = @"c:\some\file\path\luminaire.xml";
-IEnumerable<ValidationHint> validationResult = gldfXmlValidator.ValidateXmlFile(filePath);
+IEnumerable<ValidationHint> validationResult = gldfXmlValidator.ValidateFile(filePath);
 
 foreach (var validationHint in validationResult)
 {
@@ -125,7 +125,7 @@ foreach (var validationHint in validationResult)
 var encoding = Encoding.UTF32;
 var gldfXmlValidator = new GldfXmlValidator(encoding);
 var filePath = @"c:\some\file\path\luminaire.xml";
-gldfXmlValidator.ValidateXmlFile(filePath);
+gldfXmlValidator.ValidateFile(filePath);
 ```
 
 ---
@@ -135,42 +135,42 @@ gldfXmlValidator.ValidateXmlFile(filePath);
 #### Write a .gldf container file
 
 ```CSharp
-var gldfContainer = new GldfContainer();
-var gldfArchive = new GldfArchive
+var containerWriter = new GldfContainerWriter();
+var gldfArchive = new GldfContainer
 {
     Product = new Root {Header = new Header {Author = "Github example"}},
     Assets = new GldfAssets(),
     Signature = "some checksum"
 };
 var filePath = @"c:\some\file\path\luminaire.gldf";
-gldfContainer.WriteToFile(filePath, gldfArchive);
+containerWriter.WriteToFile(filePath, gldfArchive);
 ```
 
 #### Read a .gldf container file
 
 ```CSharp
-var gldfContainer = new GldfContainer();
+var containerReader = new GldfContainerReader();
 var filePath = @"c:\some\file\path\luminaire.gldf";
-GldfArchive container = gldfContainer.ReadFromFile(filePath);
+GldfContainer container = containerReader.ReadFromFile(filePath);
 Console.WriteLine($"Luminaire author: {container.Product.Header.Author}");
 ```
 
 #### Extract a .gldf container content to a directory
 
 ```CSharp
-var gldfContainer = new GldfContainer();
+var containerReader = new GldfContainerReader();
 var sourceFilePath = @"c:\some\file\path\luminaire.gldf";
 var targetFolder = @"c:\some\file\path\extractedContent\";
-gldfContainer.ExtractToDirectory(sourceFilePath, targetFolder);
+containerReader.ExtractToDirectory(sourceFilePath, targetFolder);
 ```
 
 #### Create a .gldf container from content in a directory
 
 ```CSharp
-var gldfContainer = new GldfContainer();
+var containerWriter = new GldfContainerWriter();
 var sourceDirectory = @"c:\some\file\path\extractedContent\";
 var targetFile = @"c:\some\file\path\luminaire.gldf";
-gldfContainer.CreateFromDirectory(sourceDirectory, targetFile);
+containerWriter.CreateFromDirectory(sourceDirectory, targetFile);
 ```
 
 ---
@@ -181,13 +181,13 @@ gldfContainer.CreateFromDirectory(sourceDirectory, targetFile);
 
 ```CSharp
 var validator = new GldfContainerValidator();
-var gldfArchive = new GldfArchive
+var gldfContainer = new GldfContainer
 {
     Product = new Root {Header = new Header {Author = "Github example"}},
     Assets = new GldfAssets(),
     Signature = "some checksum"
 };
-var validationResult = validator.Validate(gldfArchive);
+var validationResult = validator.Validate(gldfContainer);
 
 foreach (var validationHint in validationResult)
 {
@@ -226,9 +226,11 @@ IGldfXmlSerializer serializer = new GldfXmlSerializer();
 // 2) Validate XML
 IGldfXmlValidator xmlValidator = new GldfXmlValidator();
 
-// 3) Read + Write GLDF container
-IGldfContainer container = new GldfContainer();
-// 4) Validate GLDF Container
+// 3) Read GLDF container
+IGldfContainerReader containerReader = new GldfContainerReader();
+// 4) Write GLDF container
+IGldfContainerWriter containerWriter = new GldfContainerWriter()
+// 5) Validate GLDF Container
 IGldfContainerValidator containerValidator = new GldfContainerValidator();
 ```
 
