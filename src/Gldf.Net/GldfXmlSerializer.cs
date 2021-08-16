@@ -49,7 +49,7 @@ namespace Gldf.Net
         /// <param name="root">The value to convert.</param>
         /// <returns>The GLDF XML representation of the value.</returns>
         /// <exception cref="GldfException">Input is invalid. See also InnerException.</exception>
-        public string SerializeToXml(Root root)
+        public string SerializeToString(Root root)
         {
             try
             {
@@ -95,7 +95,7 @@ namespace Gldf.Net
         ///     Representation of the GLDF-XML text as instance of the type <see cref="Gldf.Net.Domain.Root" />
         /// </returns>
         /// <exception cref="GldfException">Input is invalid GLDF-XML. See also InnerException.</exception>
-        public Root DeserializeFromXml(string xml)
+        public Root DeserializeFromString(string xml)
         {
             try
             {

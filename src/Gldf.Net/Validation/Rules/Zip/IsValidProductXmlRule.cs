@@ -24,7 +24,7 @@ namespace Gldf.Net.Validation.Rules.Zip
             try
             {
                 var rootXml = _zipArchiveReader.ReadRootXml(filePath);
-                return _xmlValidator.ValidateXml(rootXml);
+                return _xmlValidator.ValidateString(rootXml);
             }
             catch (Exception e)
             {

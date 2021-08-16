@@ -78,7 +78,7 @@ namespace Gldf.Net.Container
         private void AddDeserializedRoot(GldfArchive archive, ZipArchive zipArchive)
         {
             var rootXml = ReadRootXml(zipArchive);
-            var deserializedRoot = _gldfXmlSerializer.DeserializeFromXml(rootXml);
+            var deserializedRoot = _gldfXmlSerializer.DeserializeFromString(rootXml);
             archive.Product = deserializedRoot;
         }
 

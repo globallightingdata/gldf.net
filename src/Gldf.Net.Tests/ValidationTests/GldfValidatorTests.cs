@@ -33,7 +33,7 @@ namespace Gldf.Net.Tests.ValidationTests
         [Test, TestCaseSource(nameof(_validXmlTestCases))]
         public void ValidateXml_ValidTestData_Should_Return_EmptyList(string xml)
         {
-            var validationResult = _xmlValidator.ValidateXml(xml);
+            var validationResult = _xmlValidator.ValidateString(xml);
 
             validationResult.Should().BeEmpty();
         }
@@ -41,7 +41,7 @@ namespace Gldf.Net.Tests.ValidationTests
         [Test]
         public void ValidateXml_WithNull_Should_Throw_GldfValidationException()
         {
-            Action act = () => _xmlValidator.ValidateXml(null);
+            Action act = () => _xmlValidator.ValidateString(null);
 
             act.Should()
                 .ThrowExactly<GldfValidationException>().WithMessage("Failed to validate XML. See inner exception")
@@ -51,7 +51,7 @@ namespace Gldf.Net.Tests.ValidationTests
         [Test]
         public void ValidateXml_WithEmptyXml_Should_Throw_GldfException()
         {
-            Action act = () => _xmlValidator.ValidateXml(string.Empty);
+            Action act = () => _xmlValidator.ValidateString(string.Empty);
 
             act.Should()
                 .ThrowExactly<GldfValidationException>().WithMessage("Failed to validate XML. See inner exception")
@@ -66,7 +66,7 @@ namespace Gldf.Net.Tests.ValidationTests
                                    "List of possible elements expected: 'GeneralDefinitions'.";
             var expectedHint = new ValidationHint(SeverityType.Error, expectedMmessage, ErrorType.XmlSchema);
 
-            var validationResult = _xmlValidator.ValidateXml(xml);
+            var validationResult = _xmlValidator.ValidateString(xml);
 
             validationResult.Should().ContainEquivalentOf(expectedHint);
         }
@@ -78,7 +78,7 @@ namespace Gldf.Net.Tests.ValidationTests
             var xmlWithXsd = EmbeddedXmlTestData.GetHeaderMandatoryXml();
             var xmlWithoutXsd = xmlWithXsd.Replace(xsdLocationString, string.Empty);
 
-            var validationResult = _xmlValidator.ValidateXml(xmlWithoutXsd);
+            var validationResult = _xmlValidator.ValidateString(xmlWithoutXsd);
 
             xmlWithoutXsd.ToLower().Should().NotContain("xsd");
             validationResult.Should().BeEmpty();
@@ -92,7 +92,7 @@ namespace Gldf.Net.Tests.ValidationTests
             var xmlWithCurrentXsd = EmbeddedXmlTestData.GetHeaderMandatoryXml();
             var xmlWithWrongXsd = xmlWithCurrentXsd.Replace(currentXsd, wrongXsd);
 
-            var validationResult = _xmlValidator.ValidateXml(xmlWithWrongXsd);
+            var validationResult = _xmlValidator.ValidateString(xmlWithWrongXsd);
 
             xmlWithWrongXsd.Should().NotBeEquivalentTo(xmlWithCurrentXsd);
             validationResult.Should().BeEmpty();
@@ -102,7 +102,7 @@ namespace Gldf.Net.Tests.ValidationTests
         public void ValidateXmlFile_ValidTestData_Should_Return_EmptyList(string xml)
         {
             File.WriteAllText(_tempFile, xml);
-            var validationResult = _xmlValidator.ValidateXmlFile(_tempFile);
+            var validationResult = _xmlValidator.ValidateFile(_tempFile);
 
             validationResult.Should().BeEmpty();
         }
@@ -110,7 +110,7 @@ namespace Gldf.Net.Tests.ValidationTests
         [Test]
         public void ValidateXmlFile_WithNull_Should_Throw_GldfValidationException()
         {
-            Action act = () => _xmlValidator.ValidateXmlFile(null);
+            Action act = () => _xmlValidator.ValidateFile(null);
 
             act.Should()
                 .ThrowExactly<GldfValidationException>()
@@ -122,7 +122,7 @@ namespace Gldf.Net.Tests.ValidationTests
         [Test]
         public void ValidateXmlFile_WithEmptyXml_Should_Throw_GldfValidationException()
         {
-            Action act = () => _xmlValidator.ValidateXmlFile(string.Empty);
+            Action act = () => _xmlValidator.ValidateFile(string.Empty);
 
             act.Should()
                 .ThrowExactly<GldfValidationException>()
@@ -140,7 +140,7 @@ namespace Gldf.Net.Tests.ValidationTests
             var expectedHint = new ValidationHint(SeverityType.Error, expectedMmessage, ErrorType.XmlSchema);
 
             File.WriteAllText(_tempFile, xml);
-            var validationResult = _xmlValidator.ValidateXmlFile(_tempFile);
+            var validationResult = _xmlValidator.ValidateFile(_tempFile);
 
             validationResult.Should().ContainEquivalentOf(expectedHint);
         }
@@ -153,7 +153,7 @@ namespace Gldf.Net.Tests.ValidationTests
             var xmlWithoutXsd = xmlWithXsd.Replace(xsdLocationString, string.Empty);
 
             File.WriteAllText(_tempFile, xmlWithoutXsd);
-            var validationResult = _xmlValidator.ValidateXmlFile(_tempFile);
+            var validationResult = _xmlValidator.ValidateFile(_tempFile);
 
             xmlWithoutXsd.ToLower().Should().NotContain("xsd");
             validationResult.Should().BeEmpty();
@@ -168,7 +168,7 @@ namespace Gldf.Net.Tests.ValidationTests
             var xmlWithWrongXsd = xmlWithCurrentXsd.Replace(currentXsd, wrongXsd);
 
             File.WriteAllText(_tempFile, xmlWithWrongXsd);
-            var validationResult = _xmlValidator.ValidateXmlFile(_tempFile);
+            var validationResult = _xmlValidator.ValidateFile(_tempFile);
 
             xmlWithWrongXsd.Should().NotBeEquivalentTo(xmlWithCurrentXsd);
             validationResult.Should().BeEmpty();

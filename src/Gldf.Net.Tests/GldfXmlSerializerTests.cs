@@ -39,7 +39,7 @@ namespace Gldf.Net.Tests
             var root = EmbeddedXmlTestData.GetRootWithHeaderModel();
             var expectedXml = EmbeddedXmlTestData.GetRootWithHeaderXml();
 
-            var xml = _serializer.SerializeToXml(root);
+            var xml = _serializer.SerializeToString(root);
 
             xml.ShouldBe().EquivalentTo(expectedXml);
         }
@@ -50,7 +50,7 @@ namespace Gldf.Net.Tests
             var root = EmbeddedXmlTestData.GetRootWithHeaderModel();
             var expectedXml = EmbeddedXmlTestData.GetRootWithHeaderUnintendXml();
 
-            var xml = _serializerWithSettings.SerializeToXml(root);
+            var xml = _serializerWithSettings.SerializeToString(root);
 
             xml.ShouldBe().EquivalentTo(expectedXml);
         }
@@ -58,7 +58,7 @@ namespace Gldf.Net.Tests
         [Test]
         public void SerializeToXml_InvalidObject_Should_Throw_GldfException()
         {
-            Action act = () => _serializer.SerializeToXml(new InvalidRoot());
+            Action act = () => _serializer.SerializeToString(new InvalidRoot());
 
             act.Should().Throw<GldfException>();
         }
@@ -103,7 +103,7 @@ namespace Gldf.Net.Tests
             var xml = EmbeddedXmlTestData.GetRootWithHeaderXml();
             var expectedRoot = EmbeddedXmlTestData.GetRootWithHeaderModel();
 
-            var root = _serializer.DeserializeFromXml(xml);
+            var root = _serializer.DeserializeFromString(xml);
 
             root.Should().BeEquivalentTo(expectedRoot);
         }
@@ -113,7 +113,7 @@ namespace Gldf.Net.Tests
         {
             const string invalidXml = "<";
 
-            Action act = () => _serializer.DeserializeFromXml(invalidXml);
+            Action act = () => _serializer.DeserializeFromString(invalidXml);
 
             act.Should()
                 .Throw<GldfException>()

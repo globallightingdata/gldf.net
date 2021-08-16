@@ -45,7 +45,7 @@ namespace Gldf.Net
         /// </summary>
         /// <param name="xml">The GLDF XML string to validate</param>
         /// <returns>An IEnumerable of <see cref="ValidationHint" /> with possible warnings and errors</returns>
-        public IEnumerable<ValidationHint> ValidateXml(string xml)
+        public IEnumerable<ValidationHint> ValidateString(string xml)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace Gldf.Net
         /// </summary>
         /// <param name="filePath">The path to the GLDF XML file</param>
         /// <returns>An IEnumerable of <see cref="ValidationHint" /> with possible warnings and errors</returns>
-        public IEnumerable<ValidationHint> ValidateXmlFile(string filePath)
+        public IEnumerable<ValidationHint> ValidateFile(string filePath)
         {
             try
             {
