@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Gldf.Net.Validation.Rules.Zip
 {
-    internal class HasNoLargeFilesRule : IZipContaineraValidationRule
+    internal class HasNoLargeFilesRule : IZipArchiveValidationRule
     {
         public int Priority => 50;
         public const int LimitInBytes = 5 * 1024 * 1024;

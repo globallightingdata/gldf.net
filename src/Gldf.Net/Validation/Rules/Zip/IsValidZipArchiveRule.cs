@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace Gldf.Net.Validation.Rules.Zip
 {
-    internal class IsValidZipContainerRule : IZipContaineraValidationRule
+    internal class IsValidZipArchiveRule : IZipArchiveValidationRule
     {
         public int Priority => 10;
 
         private readonly ZipArchiveReader _zipArchiveReader;
 
-        public IsValidZipContainerRule()
+        public IsValidZipArchiveRule()
         {
             _zipArchiveReader = new ZipArchiveReader();
         }

@@ -10,23 +10,23 @@ namespace Gldf.Net.Validation
     internal class ZipArchiveValidator
     {
         private readonly ZipArchiveReader _zipArchiveReader;
-        private readonly List<IZipContaineraValidationRule> _zipValidationRules;
-        private readonly List<IArchiveValidationRule> _archiveValidationRules;
+        private readonly List<IZipArchiveValidationRule> _zipValidationRules;
+        private readonly List<IContainerValidationRule> _containerValidationRules;
 
         public ZipArchiveValidator()
         {
-            _zipValidationRules = GetValidationRules<IZipContaineraValidationRule>()
+            _zipValidationRules = GetValidationRules<IZipArchiveValidationRule>()
                 .OrderBy(rule => rule.Priority).ToList();
-            _archiveValidationRules = GetValidationRules<IArchiveValidationRule>()
+            _containerValidationRules = GetValidationRules<IContainerValidationRule>()
                 .OrderBy(rule => rule.Priority).ToList();
             _zipArchiveReader = new ZipArchiveReader();
         }
 
-        public IEnumerable<ValidationHint> Validate(GldfArchive archive)
+        public IEnumerable<ValidationHint> Validate(GldfContainer container)
         {
             try
             {
-                return _archiveValidationRules.SelectMany(rule => rule.Validate(archive));
+                return _containerValidationRules.SelectMany(rule => rule.Validate(container));
             }
             catch (Exception e)
             {
@@ -62,8 +62,8 @@ namespace Gldf.Net.Validation
         {
             const AssetLoadBehaviour assetLoadBehaviour = AssetLoadBehaviour.FileNamesOnly;
             var containerLoadSettings = new ContainerLoadSettings {AssetLoadBehaviour = assetLoadBehaviour};
-            var gldfArchive = _zipArchiveReader.ReadArchive(filePath, containerLoadSettings);
-            return _archiveValidationRules.SelectMany(rule => rule.Validate(gldfArchive));
+            var gldfContainer = _zipArchiveReader.ReadContainer(filePath, containerLoadSettings);
+            return _containerValidationRules.SelectMany(rule => rule.Validate(gldfContainer));
         }
     }
 }

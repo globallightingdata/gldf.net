@@ -8,6 +8,6 @@ namespace Gldf.Net.Abstract
     {
         IEnumerable<ValidationHint> Validate(string filePath);
 
-        IEnumerable<ValidationHint> Validate(GldfArchive archive);
+        IEnumerable<ValidationHint> Validate(GldfContainer container);
     }
 }

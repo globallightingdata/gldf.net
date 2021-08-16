@@ -4,7 +4,7 @@ using System;
 
 namespace Gldf.Net.Container
 {
-    public class GldfArchive
+    public class GldfContainer
     {
         public Root Product { get; set; } = new();
 
@@ -12,17 +12,17 @@ namespace Gldf.Net.Container
 
         public string Signature { get; set; } = string.Empty;
 
-        public GldfArchive()
+        public GldfContainer()
         {
         }
 
-        public GldfArchive(Root root) => Product = root;
+        public GldfContainer(Root root) => Product = root;
 
-        public GldfArchive(Root root, GldfAssets assets) : this(root) => Assets = assets;
+        public GldfContainer(Root root, GldfAssets assets) : this(root) => Assets = assets;
 
-        public GldfArchive(Root root, string signature) : this(root) => Signature = signature;
+        public GldfContainer(Root root, string signature) : this(root) => Signature = signature;
 
-        public GldfArchive(Root root, GldfAssets assets, string signature) : this(root)
+        public GldfContainer(Root root, GldfAssets assets, string signature) : this(root)
         {
             Assets = assets;
             Signature = signature;

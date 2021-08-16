@@ -13,13 +13,13 @@ namespace Gldf.Net.Tests
     [TestFixture]
     public class GldfContainerReadTests
     {
-        private GldfContainer _gldfContainer;
+        private GldfContainerReader _gldfContainerReader;
         private string _tempFile;
 
         [SetUp]
         public void SetUp()
         {
-            _gldfContainer = new GldfContainer();
+            _gldfContainerReader = new GldfContainerReader();
             _tempFile = Path.GetTempFileName();
         }
 
@@ -34,7 +34,7 @@ namespace Gldf.Net.Tests
         {
             ZipFile.Open(_tempFile, ZipArchiveMode.Update).Dispose();
 
-            Action act = () => _gldfContainer.ReadFromFile(_tempFile);
+            Action act = () => _gldfContainerReader.ReadFromFile(_tempFile);
 
             act.Should()
                 .Throw<GldfContainerException>()
@@ -48,7 +48,7 @@ namespace Gldf.Net.Tests
         {
             File.WriteAllBytes(_tempFile, new byte[10]);
 
-            Action act = () => _gldfContainer.ReadFromFile(_tempFile);
+            Action act = () => _gldfContainerReader.ReadFromFile(_tempFile);
 
             act.Should()
                 .Throw<GldfContainerException>()
@@ -63,9 +63,9 @@ namespace Gldf.Net.Tests
             var gldfBytes = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
             File.WriteAllBytes(_tempFile, gldfBytes);
 
-            var archive = _gldfContainer.ReadFromFile(_tempFile);
+            var container = _gldfContainerReader.ReadFromFile(_tempFile);
 
-            archive.Product.Should().BeEquivalentTo(expectedModel);
+            container.Product.Should().BeEquivalentTo(expectedModel);
         }
 
         [Test]
@@ -76,9 +76,9 @@ namespace Gldf.Net.Tests
             var expectedEmptyRoot = new Root();
             File.WriteAllBytes(_tempFile, gldfBytesWithHeader);
 
-            var archive = _gldfContainer.ReadFromFile(_tempFile, settings);
+            var container = _gldfContainerReader.ReadFromFile(_tempFile, settings);
 
-            archive.Product.Should().BeEquivalentTo(expectedEmptyRoot);
+            container.Product.Should().BeEquivalentTo(expectedEmptyRoot);
         }
 
         [Test]
@@ -88,9 +88,9 @@ namespace Gldf.Net.Tests
             var gldfBytesWithHeader = EmbeddedGldfTestData.GetGldfWithFiles();
             File.WriteAllBytes(_tempFile, gldfBytesWithHeader);
 
-            var archive = _gldfContainer.ReadFromFile(_tempFile, settings);
+            var container = _gldfContainerReader.ReadFromFile(_tempFile, settings);
 
-            archive.Assets.All.Should().BeEmpty();
+            container.Assets.All.Should().BeEmpty();
         }
 
         [Test]
@@ -100,10 +100,10 @@ namespace Gldf.Net.Tests
             var gldfBytesWithHeader = EmbeddedGldfTestData.GetGldfWithFiles();
             File.WriteAllBytes(_tempFile, gldfBytesWithHeader);
 
-            var archive = _gldfContainer.ReadFromFile(_tempFile, settings);
+            var container = _gldfContainerReader.ReadFromFile(_tempFile, settings);
 
-            archive.Assets.All.Should().OnlyContain(f => !string.IsNullOrWhiteSpace(f.FileName));
-            archive.Assets.All.Should().NotContain(f => f.Bytes.Length > 0);
+            container.Assets.All.Should().OnlyContain(f => !string.IsNullOrWhiteSpace(f.FileName));
+            container.Assets.All.Should().NotContain(f => f.Bytes.Length > 0);
         }
 
         [Test]
@@ -113,9 +113,9 @@ namespace Gldf.Net.Tests
             var gldfBytesWithHeader = EmbeddedGldfTestData.GetGldfWithSignature();
             File.WriteAllBytes(_tempFile, gldfBytesWithHeader);
 
-            var archive = _gldfContainer.ReadFromFile(_tempFile, settings);
+            var container = _gldfContainerReader.ReadFromFile(_tempFile, settings);
 
-            archive.Signature.Should().BeEmpty();
+            container.Signature.Should().BeEmpty();
         }
 
         [Test]
@@ -124,9 +124,9 @@ namespace Gldf.Net.Tests
             var gldfBytes = EmbeddedGldfTestData.GetGldfNoFiles();
             File.WriteAllBytes(_tempFile, gldfBytes);
 
-            var archive = _gldfContainer.ReadFromFile(_tempFile);
+            var container = _gldfContainerReader.ReadFromFile(_tempFile);
 
-            archive.Assets.All.Should().BeEmpty();
+            container.Assets.All.Should().BeEmpty();
         }
 
         [Test]
@@ -135,10 +135,10 @@ namespace Gldf.Net.Tests
             var gldfBytes = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
             File.WriteAllBytes(_tempFile, gldfBytes);
 
-            var archive = _gldfContainer.ReadFromFile(_tempFile);
+            var container = _gldfContainerReader.ReadFromFile(_tempFile);
 
-            archive.Signature.Should().BeEmpty();
-            archive.Signature.Should().NotBeNull();
+            container.Signature.Should().BeEmpty();
+            container.Signature.Should().NotBeNull();
         }
 
         [Test]
@@ -147,9 +147,9 @@ namespace Gldf.Net.Tests
             var gldfBytes = EmbeddedGldfTestData.GetGldfWithSignature();
             File.WriteAllBytes(_tempFile, gldfBytes);
 
-            var archive = _gldfContainer.ReadFromFile(_tempFile);
+            var container = _gldfContainerReader.ReadFromFile(_tempFile);
 
-            archive.Signature.Should().Contain("signature");
+            container.Signature.Should().Contain("signature");
         }
 
         [Test]
@@ -158,20 +158,20 @@ namespace Gldf.Net.Tests
             var gldfBytes = EmbeddedGldfTestData.GetGldfWithFiles();
             File.WriteAllBytes(_tempFile, gldfBytes);
 
-            var archive = _gldfContainer.ReadFromFile(_tempFile);
+            var container = _gldfContainerReader.ReadFromFile(_tempFile);
 
-            archive.Assets.All.Should().HaveCount(11);
-            archive.Assets.Geometries.Should().ContainEquivalentOf(new ContainerFile("geometry.l3d", new byte[1]));
-            archive.Assets.Geometries.Should().ContainEquivalentOf(new ContainerFile("geometry.r3d", new byte[2]));
-            archive.Assets.Images.Should().ContainEquivalentOf(new ContainerFile("image.jpg", new byte[3]));
-            archive.Assets.Images.Should().ContainEquivalentOf(new ContainerFile("image.png", new byte[4]));
-            archive.Assets.Photometries.Should().ContainEquivalentOf(new ContainerFile("lvk.ldt", new byte[5]));
-            archive.Assets.Photometries.Should().ContainEquivalentOf(new ContainerFile("lvk.ies", new byte[6]));
-            archive.Assets.Documents.Should().ContainEquivalentOf(new ContainerFile("document.docx", new byte[7]));
-            archive.Assets.Sensors.Should().ContainEquivalentOf(new ContainerFile("sensor.xml", new byte[8]));
-            archive.Assets.Spectrums.Should().ContainEquivalentOf(new ContainerFile("spectrum.txt", new byte[9]));
-            archive.Assets.Symbols.Should().ContainEquivalentOf(new ContainerFile("symbol.svg", new byte[10]));
-            archive.Assets.Other.Should().ContainEquivalentOf(new ContainerFile("project.c4d", new byte[11]));
+            container.Assets.All.Should().HaveCount(11);
+            container.Assets.Geometries.Should().ContainEquivalentOf(new ContainerFile("geometry.l3d", new byte[1]));
+            container.Assets.Geometries.Should().ContainEquivalentOf(new ContainerFile("geometry.r3d", new byte[2]));
+            container.Assets.Images.Should().ContainEquivalentOf(new ContainerFile("image.jpg", new byte[3]));
+            container.Assets.Images.Should().ContainEquivalentOf(new ContainerFile("image.png", new byte[4]));
+            container.Assets.Photometries.Should().ContainEquivalentOf(new ContainerFile("lvk.ldt", new byte[5]));
+            container.Assets.Photometries.Should().ContainEquivalentOf(new ContainerFile("lvk.ies", new byte[6]));
+            container.Assets.Documents.Should().ContainEquivalentOf(new ContainerFile("document.docx", new byte[7]));
+            container.Assets.Sensors.Should().ContainEquivalentOf(new ContainerFile("sensor.xml", new byte[8]));
+            container.Assets.Spectrums.Should().ContainEquivalentOf(new ContainerFile("spectrum.txt", new byte[9]));
+            container.Assets.Symbols.Should().ContainEquivalentOf(new ContainerFile("symbol.svg", new byte[10]));
+            container.Assets.Other.Should().ContainEquivalentOf(new ContainerFile("project.c4d", new byte[11]));
         }
 
         [Test]
@@ -180,10 +180,10 @@ namespace Gldf.Net.Tests
             var gldfBytes = EmbeddedGldfTestData.GetGldfWithFiles();
             File.WriteAllBytes(_tempFile, gldfBytes);
 
-            var archive = _gldfContainer.ReadFromFile(_tempFile);
+            var container = _gldfContainerReader.ReadFromFile(_tempFile);
 
-            archive.Assets.All.Should().NotContain(file => file.FileName == "other.txt");
-            archive.Assets.All.Should().NotContainNulls();
+            container.Assets.All.Should().NotContain(file => file.FileName == "other.txt");
+            container.Assets.All.Should().NotContainNulls();
         }
     }
 }

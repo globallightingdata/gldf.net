@@ -7,18 +7,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Gldf.Net.Validation.Rules.Archive
+namespace Gldf.Net.Validation.Rules.Container
 {
-    internal class HasNoMissingAssetsRule : IArchiveValidationRule
+    internal class HasNoMissingAssetsRule : IContainerValidationRule
     {
         public int Priority => 100;
 
-        public IEnumerable<ValidationHint> Validate(GldfArchive archive)
+        public IEnumerable<ValidationHint> Validate(GldfContainer container)
         {
             try
             {
-                var filesWithoutAssets = archive.Product.GeneralDefinitions.Files.Where(file =>
-                    file.Type == FileType.LocalFileName && HasNoAsset(file, archive.Assets)).ToList();
+                var filesWithoutAssets = container.Product.GeneralDefinitions.Files.Where(file =>
+                    file.Type == FileType.LocalFileName && HasNoAsset(file, container.Assets)).ToList();
 
                 return filesWithoutAssets.Any()
                     ? ValidationHint.Error("The product.xml contains File definitions that are " +
@@ -28,7 +28,7 @@ namespace Gldf.Net.Validation.Rules.Archive
             }
             catch (Exception e)
             {
-                return ValidationHint.Warning("The GLDF archive could not be validate to have no missing files. " +
+                return ValidationHint.Warning("The GLDF container could not be validate to have no missing files. " +
                                               $"Error: {e.FlattenMessage()}", ErrorType.MissingContainerAssets);
             }
         }

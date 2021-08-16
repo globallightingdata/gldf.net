@@ -32,11 +32,11 @@ namespace Gldf.Net.Tests.ContainerTests
         }
 
         [Test]
-        public void ReadArchive_EmptyContainer_ShouldThrow_BecauseOf_Missing_ProductXml()
+        public void ReadContainer_EmptyContainer_ShouldThrow_BecauseOf_Missing_ProductXml()
         {
             ZipFile.Open(_tempFile, ZipArchiveMode.Update).Dispose();
 
-            Action act = () => _zipArchiveReader.ReadArchive(_tempFile);
+            Action act = () => _zipArchiveReader.ReadContainer(_tempFile);
 
             act.Should()
                 .Throw<RootNotFoundException>()
@@ -44,143 +44,143 @@ namespace Gldf.Net.Tests.ContainerTests
         }
 
         [Test]
-        public void ReadArchive_InvalidContainer_ShouldThrow_InvalidDataException()
+        public void ReadContainer_InvalidContainer_ShouldThrow_InvalidDataException()
         {
             File.WriteAllBytes(_tempFile, new byte[10]);
 
-            Action act = () => _zipArchiveReader.ReadArchive(_tempFile);
+            Action act = () => _zipArchiveReader.ReadContainer(_tempFile);
 
             act.Should().ThrowExactly<InvalidDataException>();
         }
 
         [Test]
-        public void ReadArchive_Should_ReadAndDeserialize_ProductXml()
+        public void ReadContainer_Should_ReadAndDeserialize_ProductXml()
         {
             var expectedModel = EmbeddedXmlTestData.GetHeaderMandatoryModel();
             var gldfBytes = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
             File.WriteAllBytes(_tempFile, gldfBytes);
 
-            var archive = _zipArchiveReader.ReadArchive(_tempFile);
+            var container = _zipArchiveReader.ReadContainer(_tempFile);
 
-            archive.Product.Should().BeEquivalentTo(expectedModel);
+            container.Product.Should().BeEquivalentTo(expectedModel);
         }
 
         [Test]
-        public void ReadArchive_WithSkipProductSetting_Should_SkipRoot()
+        public void ReadContainer_WithSkipProductSetting_Should_SkipRoot()
         {
             var settings = new ContainerLoadSettings(ProductLoadBehaviour.Skip);
             var gldfBytesWithHeader = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
             var expectedEmptyRoot = new Root();
             File.WriteAllBytes(_tempFile, gldfBytesWithHeader);
 
-            var archive = _zipArchiveReader.ReadArchive(_tempFile, settings);
+            var container = _zipArchiveReader.ReadContainer(_tempFile, settings);
 
-            archive.Product.Should().BeEquivalentTo(expectedEmptyRoot);
+            container.Product.Should().BeEquivalentTo(expectedEmptyRoot);
         }
 
         [Test]
-        public void ReadArchive_WithSkipFilesSetting_ShouldReturn_EmptyAssets()
+        public void ReadContainer_WithSkipFilesSetting_ShouldReturn_EmptyAssets()
         {
             var settings = new ContainerLoadSettings(AssetLoadBehaviour.Skip);
             var gldfBytesWithHeader = EmbeddedGldfTestData.GetGldfWithFiles();
             File.WriteAllBytes(_tempFile, gldfBytesWithHeader);
 
-            var archive = _zipArchiveReader.ReadArchive(_tempFile, settings);
+            var container = _zipArchiveReader.ReadContainer(_tempFile, settings);
 
-            archive.Assets.All.Should().BeEmpty();
+            container.Assets.All.Should().BeEmpty();
         }
 
         [Test]
-        public void ReadArchive_WithFilesNamesOnlySetting_ShouldReturn_AssetsWithoutContent()
+        public void ReadContainer_WithFilesNamesOnlySetting_ShouldReturn_AssetsWithoutContent()
         {
             var settings = new ContainerLoadSettings(AssetLoadBehaviour.FileNamesOnly);
             var gldfBytesWithHeader = EmbeddedGldfTestData.GetGldfWithFiles();
             File.WriteAllBytes(_tempFile, gldfBytesWithHeader);
 
-            var archive = _zipArchiveReader.ReadArchive(_tempFile, settings);
+            var container = _zipArchiveReader.ReadContainer(_tempFile, settings);
 
-            archive.Assets.All.Should().OnlyContain(f => !string.IsNullOrWhiteSpace(f.FileName));
-            archive.Assets.All.Should().NotContain(f => f.Bytes.Length > 0);
+            container.Assets.All.Should().OnlyContain(f => !string.IsNullOrWhiteSpace(f.FileName));
+            container.Assets.All.Should().NotContain(f => f.Bytes.Length > 0);
         }
 
         [Test]
-        public void ReadArchive_WithSkipSignatureSetting_ShouldReturn_EmptySignature()
+        public void ReadContainer_WithSkipSignatureSetting_ShouldReturn_EmptySignature()
         {
             var settings = new ContainerLoadSettings(SignatureLoadBehaviour.Skip);
             var gldfBytesWithHeader = EmbeddedGldfTestData.GetGldfWithSignature();
             File.WriteAllBytes(_tempFile, gldfBytesWithHeader);
 
-            var archive = _zipArchiveReader.ReadArchive(_tempFile, settings);
+            var container = _zipArchiveReader.ReadContainer(_tempFile, settings);
 
-            archive.Signature.Should().BeEmpty();
+            container.Signature.Should().BeEmpty();
         }
 
         [Test]
-        public void ReadArchive_Should_HaveNoAssets_WhenMissingInContainer()
+        public void ReadContainer_Should_HaveNoAssets_WhenMissingInContainer()
         {
             var gldfBytes = EmbeddedGldfTestData.GetGldfNoFiles();
             File.WriteAllBytes(_tempFile, gldfBytes);
 
-            var archive = _zipArchiveReader.ReadArchive(_tempFile);
+            var container = _zipArchiveReader.ReadContainer(_tempFile);
 
-            archive.Assets.All.Should().BeEmpty();
+            container.Assets.All.Should().BeEmpty();
         }
 
         [Test]
-        public void ReadArchive_Should_ReturnEmptySignature_WhenMissingInContainer()
+        public void ReadContainer_Should_ReturnEmptySignature_WhenMissingInContainer()
         {
             var gldfBytes = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
             File.WriteAllBytes(_tempFile, gldfBytes);
 
-            var archive = _zipArchiveReader.ReadArchive(_tempFile);
+            var container = _zipArchiveReader.ReadContainer(_tempFile);
 
-            archive.Signature.Should().BeEmpty();
-            archive.Signature.Should().NotBeNull();
+            container.Signature.Should().BeEmpty();
+            container.Signature.Should().NotBeNull();
         }
 
         [Test]
-        public void ReadArchive_Should_ReadAndDeserialize_Signature()
+        public void ReadContainer_Should_ReadAndDeserialize_Signature()
         {
             var gldfBytes = EmbeddedGldfTestData.GetGldfWithSignature();
             File.WriteAllBytes(_tempFile, gldfBytes);
 
-            var archive = _zipArchiveReader.ReadArchive(_tempFile);
+            var container = _zipArchiveReader.ReadContainer(_tempFile);
 
-            archive.Signature.Should().Contain("signature");
+            container.Signature.Should().Contain("signature");
         }
 
         [Test]
-        public void ReadArchive_Should_ReadAndDeserialize_Assets()
+        public void ReadContainer_Should_ReadAndDeserialize_Assets()
         {
             var gldfBytes = EmbeddedGldfTestData.GetGldfWithFiles();
             File.WriteAllBytes(_tempFile, gldfBytes);
 
-            var archive = _zipArchiveReader.ReadArchive(_tempFile);
+            var container = _zipArchiveReader.ReadContainer(_tempFile);
 
-            archive.Assets.All.Should().HaveCount(11);
-            archive.Assets.Geometries.Should().ContainEquivalentOf(new ContainerFile("geometry.l3d", new byte[1]));
-            archive.Assets.Geometries.Should().ContainEquivalentOf(new ContainerFile("geometry.r3d", new byte[2]));
-            archive.Assets.Images.Should().ContainEquivalentOf(new ContainerFile("image.jpg", new byte[3]));
-            archive.Assets.Images.Should().ContainEquivalentOf(new ContainerFile("image.png", new byte[4]));
-            archive.Assets.Photometries.Should().ContainEquivalentOf(new ContainerFile("lvk.ldt", new byte[5]));
-            archive.Assets.Photometries.Should().ContainEquivalentOf(new ContainerFile("lvk.ies", new byte[6]));
-            archive.Assets.Documents.Should().ContainEquivalentOf(new ContainerFile("document.docx", new byte[7]));
-            archive.Assets.Sensors.Should().ContainEquivalentOf(new ContainerFile("sensor.xml", new byte[8]));
-            archive.Assets.Spectrums.Should().ContainEquivalentOf(new ContainerFile("spectrum.txt", new byte[9]));
-            archive.Assets.Symbols.Should().ContainEquivalentOf(new ContainerFile("symbol.svg", new byte[10]));
-            archive.Assets.Other.Should().ContainEquivalentOf(new ContainerFile("project.c4d", new byte[11]));
+            container.Assets.All.Should().HaveCount(11);
+            container.Assets.Geometries.Should().ContainEquivalentOf(new ContainerFile("geometry.l3d", new byte[1]));
+            container.Assets.Geometries.Should().ContainEquivalentOf(new ContainerFile("geometry.r3d", new byte[2]));
+            container.Assets.Images.Should().ContainEquivalentOf(new ContainerFile("image.jpg", new byte[3]));
+            container.Assets.Images.Should().ContainEquivalentOf(new ContainerFile("image.png", new byte[4]));
+            container.Assets.Photometries.Should().ContainEquivalentOf(new ContainerFile("lvk.ldt", new byte[5]));
+            container.Assets.Photometries.Should().ContainEquivalentOf(new ContainerFile("lvk.ies", new byte[6]));
+            container.Assets.Documents.Should().ContainEquivalentOf(new ContainerFile("document.docx", new byte[7]));
+            container.Assets.Sensors.Should().ContainEquivalentOf(new ContainerFile("sensor.xml", new byte[8]));
+            container.Assets.Spectrums.Should().ContainEquivalentOf(new ContainerFile("spectrum.txt", new byte[9]));
+            container.Assets.Symbols.Should().ContainEquivalentOf(new ContainerFile("symbol.svg", new byte[10]));
+            container.Assets.Other.Should().ContainEquivalentOf(new ContainerFile("project.c4d", new byte[11]));
         }
 
         [Test]
-        public void ReadArchive_Should_Ignore_UnknownFiles()
+        public void ReadContainer_Should_Ignore_UnknownFiles()
         {
             var gldfBytes = EmbeddedGldfTestData.GetGldfWithFiles();
             File.WriteAllBytes(_tempFile, gldfBytes);
 
-            var archive = _zipArchiveReader.ReadArchive(_tempFile);
+            var container = _zipArchiveReader.ReadContainer(_tempFile);
 
-            archive.Assets.All.Should().NotContain(file => file.FileName == "other.txt");
-            archive.Assets.All.Should().NotContainNulls();
+            container.Assets.All.Should().NotContain(file => file.FileName == "other.txt");
+            container.Assets.All.Should().NotContainNulls();
         }
 
         [Test]
@@ -280,6 +280,23 @@ namespace Gldf.Net.Tests.ContainerTests
             Action act = () => _zipArchiveReader.GetLargeFileNames(_tempFile, 1);
 
             act.Should().ThrowExactly<InvalidDataException>();
+        }
+
+        [Test]
+        public void ExtractToDirectory_ShouldExtract_ExpectedContent()
+        {
+            var tempSubDirectory = Path.Combine(Path.GetTempPath(), $"gldf-{DateTime.Now.Ticks}");
+            var gldfWithFiles = EmbeddedGldfTestData.GetGldfWithFiles();
+            var expectedDirectoryFilePaths = EmbeddedGldfTestData.ExpectedDirectoryFilePaths;
+            File.WriteAllBytes(_tempFile, gldfWithFiles);
+
+            _zipArchiveReader.ExtractToDirectory(_tempFile, tempSubDirectory);
+            var options = new EnumerationOptions { RecurseSubdirectories = true };
+            var filesInsideDirectory = Directory.EnumerateFiles(tempSubDirectory, "*.*", options).ToList();
+            Directory.Delete(tempSubDirectory, true);
+
+            filesInsideDirectory.Should().HaveCount(12);
+            expectedDirectoryFilePaths.ForEach(e => filesInsideDirectory.Should().ContainMatch(e));
         }
     }
 }

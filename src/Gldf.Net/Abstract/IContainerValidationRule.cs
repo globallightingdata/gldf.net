@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 namespace Gldf.Net.Abstract
 {
-    public interface IArchiveValidationRule
+    public interface IContainerValidationRule
     {
         public int Priority { get; }
-        
-        IEnumerable<ValidationHint> Validate(GldfArchive archive);
+
+        IEnumerable<ValidationHint> Validate(GldfContainer container);
     }
 }

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Gldf.Net.Validation.Rules.Zip
 {
-    internal class ContainsProductXmlRule : IZipContaineraValidationRule
+    internal class ContainsProductXmlRule : IZipArchiveValidationRule
     {
         public int Priority => 20;
 

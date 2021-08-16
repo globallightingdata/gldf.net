@@ -7,29 +7,29 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Gldf.Net.Validation.Rules.Archive
+namespace Gldf.Net.Validation.Rules.Container
 {
-    internal class HasNoOrphanAssetsRule : IArchiveValidationRule
+    internal class HasNoOrphanAssetsRule : IContainerValidationRule
     {
         public int Priority => 110;
 
-        public IEnumerable<ValidationHint> Validate(GldfArchive archive)
+        public IEnumerable<ValidationHint> Validate(GldfContainer container)
         {
             try
             {
-                var filesWithAssets = archive.Product.GeneralDefinitions.Files.Where(file =>
-                    file.Type == FileType.LocalFileName).Select(file => GetAsset(file, archive.Assets));
-                var orpahnedAssets = archive.Assets.All.Except(filesWithAssets).ToList();
+                var filesWithAssets = container.Product.GeneralDefinitions.Files.Where(file =>
+                    file.Type == FileType.LocalFileName).Select(file => GetAsset(file, container.Assets));
+                var orpahnedAssets = container.Assets.All.Except(filesWithAssets).ToList();
 
                 return orpahnedAssets.Any()
-                    ? ValidationHint.Warning("The GLDF archive contains assets that are not referenced in the " +
+                    ? ValidationHint.Warning("The GLDF container contains assets that are not referenced in the " +
                                              "product.xml. They should be deleted: " +
                                              $"{FlattenFileNames(orpahnedAssets)}", ErrorType.OrphanedContainerAssets)
                     : ValidationHint.Empty();
             }
             catch (Exception e)
             {
-                return ValidationHint.Warning("The GLDF archive could not be validate to contain no orphan files. " +
+                return ValidationHint.Warning("The GLDF container could not be validate to contain no orphan files. " +
                                               $"Error: {e.FlattenMessage()}", ErrorType.OrphanedContainerAssets);
             }
         }
