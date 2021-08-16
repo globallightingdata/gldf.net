@@ -21,7 +21,7 @@ namespace Gldf.Net.Tests
         [SetUp]
         public void SetUp()
         {
-            var settings = new XmlWriterSettings {Indent = false, Encoding = Encoding.UTF32};
+            var settings = new XmlWriterSettings { Indent = false, Encoding = Encoding.UTF32 };
             _serializer = new GldfXmlSerializer();
             _serializerWithSettings = new GldfXmlSerializer(settings);
             _tempFile = Path.GetTempFileName();
@@ -34,7 +34,7 @@ namespace Gldf.Net.Tests
         }
 
         [Test]
-        public void SerializeToXml_Should_Return_ExpectedXml()
+        public void SerializeToString_Should_Return_ExpectedXml()
         {
             var root = EmbeddedXmlTestData.GetRootWithHeaderModel();
             var expectedXml = EmbeddedXmlTestData.GetRootWithHeaderXml();
@@ -45,7 +45,7 @@ namespace Gldf.Net.Tests
         }
 
         [Test]
-        public void SerializeToXml_WithSettings_Should_Return_ExpectedXml()
+        public void SerializeToString_WithSettings_Should_Return_ExpectedXml()
         {
             var root = EmbeddedXmlTestData.GetRootWithHeaderModel();
             var expectedXml = EmbeddedXmlTestData.GetRootWithHeaderUnintendXml();
@@ -56,7 +56,7 @@ namespace Gldf.Net.Tests
         }
 
         [Test]
-        public void SerializeToXml_InvalidObject_Should_Throw_GldfException()
+        public void SerializeToString_InvalidObject_Should_Throw_GldfException()
         {
             Action act = () => _serializer.SerializeToString(new InvalidRoot());
 
@@ -98,7 +98,7 @@ namespace Gldf.Net.Tests
         /************* Deserialize *************/
 
         [Test]
-        public void DerserializeFromXml_Should_Return_ExpectedRoot()
+        public void DeserializeFromString_Should_Return_ExpectedRoot()
         {
             var xml = EmbeddedXmlTestData.GetRootWithHeaderXml();
             var expectedRoot = EmbeddedXmlTestData.GetRootWithHeaderModel();
@@ -109,7 +109,7 @@ namespace Gldf.Net.Tests
         }
 
         [Test]
-        public void DerserializeFromXml_InvalidXml_Should_Throw()
+        public void DeserializeFromString_InvalidXml_Should_Throw()
         {
             const string invalidXml = "<";
 

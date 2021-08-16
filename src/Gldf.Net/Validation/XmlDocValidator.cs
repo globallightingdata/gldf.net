@@ -11,7 +11,7 @@ namespace Gldf.Net.Validation
 {
     internal class XmlDocValidator
     {
-        public List<ValidationHint> ValidateXml(string xml)
+        public List<ValidationHint> ValidateString(string xml)
         {
             var stringReader = new StringReader(xml);
             var xmlFormatVersion = GldfFormatVersionReader.GetFormatVersion(xml);

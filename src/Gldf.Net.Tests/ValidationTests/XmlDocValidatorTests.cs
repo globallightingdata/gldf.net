@@ -23,17 +23,17 @@ namespace Gldf.Net.Tests.ValidationTests
         }
 
         [Test, TestCaseSource(nameof(_validXmlTestCases))]
-        public void ValidateXml_ValidTestData_Should_Return_EmptyList(string xml)
+        public void ValidateString_ValidTestData_Should_Return_EmptyList(string xml)
         {
-            var validationResult = _validator.ValidateXml(xml);
+            var validationResult = _validator.ValidateString(xml);
 
             validationResult.Should().BeEmpty();
         }
 
         [Test]
-        public void ValidateXml_WithNull_Should_Throw_ArgumentNullException()
+        public void ValidateString_WithNull_Should_Throw_ArgumentNullException()
         {
-            Action act = () => _validator.ValidateXml(null);
+            Action act = () => _validator.ValidateString(null);
 
             act.Should()
                 .ThrowExactly<ArgumentNullException>()
@@ -41,9 +41,9 @@ namespace Gldf.Net.Tests.ValidationTests
         }
 
         [Test]
-        public void ValidateXml_WithEmptyXml_Should_Throw_GldfException()
+        public void ValidateString_WithEmptyXml_Should_Throw_GldfException()
         {
-            Action act = () => _validator.ValidateXml(string.Empty);
+            Action act = () => _validator.ValidateString(string.Empty);
 
             act.Should()
                 .Throw<GldfException>()
@@ -51,7 +51,7 @@ namespace Gldf.Net.Tests.ValidationTests
         }
 
         [Test]
-        public void ValidateXml_WithInvalidXml_Should_Return_ExpectedHint()
+        public void ValidateString_WithInvalidXml_Should_Return_ExpectedHint()
         {
             const string invalidXml = "<";
             const string expectedMessage = "Data at the root level is invalid. Line 1, position 1.";
@@ -64,40 +64,40 @@ namespace Gldf.Net.Tests.ValidationTests
         }
 
         [Test]
-        public void ValidateXml_WithMissingGeneralDefinition_Should_Return_ExpectedHint()
+        public void ValidateString_WithMissingGeneralDefinition_Should_Return_ExpectedHint()
         {
             var xml = EmbeddedXmlTestData.GetRootWithHeaderXml();
             var expectedMmessage = "The element 'Root' has incomplete content. " +
                                    "List of possible elements expected: 'GeneralDefinitions'.";
             var expectedHint = new ValidationHint(SeverityType.Error, expectedMmessage, ErrorType.XmlSchema);
 
-            var validationResult = _validator.ValidateXml(xml);
+            var validationResult = _validator.ValidateString(xml);
 
             validationResult.Should().ContainEquivalentOf(expectedHint);
         }
 
         [Test]
-        public void ValidateXml_WithoutXsd_Should_Validate_WithoutError()
+        public void ValidateString_WithoutXsd_Should_Validate_WithoutError()
         {
             var xsdLocationString = $@"xsi:noNamespaceSchemaLocation=""{new Root().SchemaLocation}""";
             var xmlWithXsd = EmbeddedXmlTestData.GetHeaderMandatoryXml();
             var xmlWithoutXsd = xmlWithXsd.Replace(xsdLocationString, string.Empty);
 
-            var validationResult = _validator.ValidateXml(xmlWithoutXsd);
+            var validationResult = _validator.ValidateString(xmlWithoutXsd);
 
             xmlWithoutXsd.ToLower().Should().NotContain("xsd");
             validationResult.Should().BeEmpty();
         }
 
         [Test]
-        public void ValidateXml_ValidContent_ButWrongXsd_Should_Ignore_And_ValidateWithEmbeddedXsd()
+        public void ValidateString_ValidContent_ButWrongXsd_Should_Ignore_And_ValidateWithEmbeddedXsd()
         {
             const string wrongXsd = "https://raw.githubusercontent.com/globallightingdata/l3d/master/xsd/l3d.xsd";
             var currentXsd = new Root().SchemaLocation;
             var xmlWithCurrentXsd = EmbeddedXmlTestData.GetHeaderMandatoryXml();
             var xmlWithWrongXsd = xmlWithCurrentXsd.Replace(currentXsd, wrongXsd);
 
-            var validationResult = _validator.ValidateXml(xmlWithWrongXsd);
+            var validationResult = _validator.ValidateString(xmlWithWrongXsd);
 
             xmlWithWrongXsd.Should().NotBeEquivalentTo(xmlWithCurrentXsd);
             validationResult.Should().BeEmpty();

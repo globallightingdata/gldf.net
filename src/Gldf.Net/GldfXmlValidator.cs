@@ -49,7 +49,7 @@ namespace Gldf.Net
         {
             try
             {
-                return _xmlValidator.ValidateXml(xml);
+                return _xmlValidator.ValidateString(xml);
             }
             catch (Exception e)
             {
@@ -69,7 +69,7 @@ namespace Gldf.Net
             {
                 using var streamReader = new StreamReader(filePath, Encoding, true);
                 var xml = streamReader.ReadToEnd();
-                return _xmlValidator.ValidateXml(xml);
+                return _xmlValidator.ValidateString(xml);
             }
             catch (Exception e)
             {

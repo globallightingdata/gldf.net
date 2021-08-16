@@ -31,7 +31,7 @@ namespace Gldf.Net.Tests.ValidationTests
         }
 
         [Test, TestCaseSource(nameof(_validXmlTestCases))]
-        public void ValidateXml_ValidTestData_Should_Return_EmptyList(string xml)
+        public void ValidateString_ValidTestData_Should_Return_EmptyList(string xml)
         {
             var validationResult = _xmlValidator.ValidateString(xml);
 
@@ -39,7 +39,7 @@ namespace Gldf.Net.Tests.ValidationTests
         }
 
         [Test]
-        public void ValidateXml_WithNull_Should_Throw_GldfValidationException()
+        public void ValidateString_WithNull_Should_Throw_GldfValidationException()
         {
             Action act = () => _xmlValidator.ValidateString(null);
 
@@ -49,7 +49,7 @@ namespace Gldf.Net.Tests.ValidationTests
         }
 
         [Test]
-        public void ValidateXml_WithEmptyXml_Should_Throw_GldfException()
+        public void ValidateString_WithEmptyXml_Should_Throw_GldfException()
         {
             Action act = () => _xmlValidator.ValidateString(string.Empty);
 
@@ -59,7 +59,7 @@ namespace Gldf.Net.Tests.ValidationTests
         }
 
         [Test]
-        public void ValidateXml_WithMissingGeneralDefinition_Should_Return_ExpectedHint()
+        public void ValidateString_WithMissingGeneralDefinition_Should_Return_ExpectedHint()
         {
             var xml = EmbeddedXmlTestData.GetRootWithHeaderXml();
             var expectedMmessage = "The element 'Root' has incomplete content. " +
@@ -72,7 +72,7 @@ namespace Gldf.Net.Tests.ValidationTests
         }
 
         [Test]
-        public void ValidateXml_WithoutXsd_Should_Validate_WithoutError()
+        public void ValidateString_WithoutXsd_Should_Validate_WithoutError()
         {
             var xsdLocationString = $@"xsi:noNamespaceSchemaLocation=""{new Root().SchemaLocation}""";
             var xmlWithXsd = EmbeddedXmlTestData.GetHeaderMandatoryXml();
@@ -85,7 +85,7 @@ namespace Gldf.Net.Tests.ValidationTests
         }
 
         [Test]
-        public void ValidateXml_ValidContent_ButWrongXsd_Should_Ignore_And_ValidateWithEmbeddedXsd()
+        public void ValidateString_ValidContent_ButWrongXsd_Should_Ignore_And_ValidateWithEmbeddedXsd()
         {
             const string wrongXsd = "https://raw.githubusercontent.com/globallightingdata/l3d/master/xsd/l3d.xsd";
             var currentXsd = new Root().SchemaLocation;
@@ -99,7 +99,7 @@ namespace Gldf.Net.Tests.ValidationTests
         }
 
         [Test, TestCaseSource(nameof(_validXmlTestCases))]
-        public void ValidateXmlFile_ValidTestData_Should_Return_EmptyList(string xml)
+        public void ValidateFileValidTestData_Should_Return_EmptyList(string xml)
         {
             File.WriteAllText(_tempFile, xml);
             var validationResult = _xmlValidator.ValidateFile(_tempFile);
@@ -108,7 +108,7 @@ namespace Gldf.Net.Tests.ValidationTests
         }
 
         [Test]
-        public void ValidateXmlFile_WithNull_Should_Throw_GldfValidationException()
+        public void ValidateFileWithNull_Should_Throw_GldfValidationException()
         {
             Action act = () => _xmlValidator.ValidateFile(null);
 
@@ -120,7 +120,7 @@ namespace Gldf.Net.Tests.ValidationTests
         }
 
         [Test]
-        public void ValidateXmlFile_WithEmptyXml_Should_Throw_GldfValidationException()
+        public void ValidateFileWithEmptyXml_Should_Throw_GldfValidationException()
         {
             Action act = () => _xmlValidator.ValidateFile(string.Empty);
 
@@ -132,7 +132,7 @@ namespace Gldf.Net.Tests.ValidationTests
         }
 
         [Test]
-        public void ValidateXmlFile_WithMissingGeneralDefinition_Should_Return_ExpectedHint()
+        public void ValidateFileWithMissingGeneralDefinition_Should_Return_ExpectedHint()
         {
             var xml = EmbeddedXmlTestData.GetRootWithHeaderXml();
             var expectedMmessage = "The element 'Root' has incomplete content. " +
@@ -146,7 +146,7 @@ namespace Gldf.Net.Tests.ValidationTests
         }
 
         [Test]
-        public void ValidateXmlFile_WithoutXsd_Should_Validate_WithoutError()
+        public void ValidateFileWithoutXsd_Should_Validate_WithoutError()
         {
             var xsdLocationString = $@"xsi:noNamespaceSchemaLocation=""{new Root().SchemaLocation}""";
             var xmlWithXsd = EmbeddedXmlTestData.GetHeaderMandatoryXml();
@@ -160,7 +160,7 @@ namespace Gldf.Net.Tests.ValidationTests
         }
 
         [Test]
-        public void ValidateXmlFile_ValidContent_ButWrongXsd_Should_Ignore_And_ValidateWithEmbeddedXsd()
+        public void ValidateFileValidContent_ButWrongXsd_Should_Ignore_And_ValidateWithEmbeddedXsd()
         {
             const string wrongXsd = "https://raw.githubusercontent.com/globallightingdata/l3d/master/xsd/l3d.xsd";
             var currentXsd = new Root().SchemaLocation;
