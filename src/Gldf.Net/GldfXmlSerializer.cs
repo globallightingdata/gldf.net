@@ -25,11 +25,8 @@ namespace Gldf.Net
         ///     instances of type <see cref="Gldf.Net.Domain.Root" /> into GLDF-XML text and to deserialize GLDF-XML
         ///     text into instances of type <see cref="Gldf.Net.Domain.Root" />.
         /// </summary>
-        public GldfXmlSerializer()
+        public GldfXmlSerializer() : this(new XmlWriterSettings { Indent = true })
         {
-            XmlSerializer = new XmlSerializer(typeof(Root));
-            XmlNamespaces = GldfNamespaceProvider.GetNamespaces();
-            Settings = new XmlWriterSettings {Indent = true};
         }
 
         /// <summary>
@@ -39,9 +36,11 @@ namespace Gldf.Net
         ///     <see cref="System.Xml.XmlWriterSettings" /> which allows the control of XML indentation, Encoding
         ///     and more.
         /// </summary>
-        public GldfXmlSerializer(XmlWriterSettings settings) : this()
+        public GldfXmlSerializer(XmlWriterSettings settings)
         {
-            Settings = settings ?? throw new GldfException($"{nameof(XmlWriterSettings)} must not be null");
+            Settings = settings ?? throw new ArgumentNullException($"{nameof(XmlWriterSettings)} must not be null");
+            XmlSerializer = new XmlSerializer(typeof(Root));
+            XmlNamespaces = GldfNamespaceProvider.GetNamespaces();
         }
 
         /// <summary>
@@ -102,7 +101,7 @@ namespace Gldf.Net
             {
                 using var stringReader = new StringReader(xml);
                 var deserializedXml = XmlSerializer.Deserialize(stringReader);
-                return (Root) deserializedXml;
+                return (Root)deserializedXml;
             }
             catch (Exception e)
             {
@@ -126,7 +125,7 @@ namespace Gldf.Net
             {
                 using var streamIn = new StreamReader(filePath, Settings.Encoding);
                 var deserializedXml = XmlSerializer.Deserialize(streamIn);
-                return (Root) deserializedXml;
+                return (Root)deserializedXml;
             }
             catch (Exception e)
             {
