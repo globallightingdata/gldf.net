@@ -16,7 +16,7 @@ namespace Gldf.Net.Tests.TestData.MetaData
             Header = new Header
             {
                 Manufacturer = "DIAL",
-                CreationTimeCode = new DateTime(2021, 3, 29, 16, 30, 0).ToUniversalTime(),
+                CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
                 CreatedWithApplication = "Visual Studio Code"
             },
             GeneralDefinitions = new GeneralDefinitions

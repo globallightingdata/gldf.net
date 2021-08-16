@@ -16,7 +16,7 @@ namespace Gldf.Net.Tests.TestData.Head
             Header = new Header
             {
                 Manufacturer = "Manufacturer",
-                CreationTimeCode = new DateTime(2021, 3, 29, 16, 30, 0).ToUniversalTime(),
+                CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
                 CreatedWithApplication = "CreatedWithApplication"
             },
             GeneralDefinitions = new GeneralDefinitions
