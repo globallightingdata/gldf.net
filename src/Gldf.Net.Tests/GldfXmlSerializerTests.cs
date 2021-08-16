@@ -2,6 +2,7 @@ using FluentAssertions;
 using Gldf.Net.Domain;
 using Gldf.Net.Exceptions;
 using Gldf.Net.Tests.TestData;
+using Gldf.Net.Tests.TestHelper;
 using NUnit.Framework;
 using System;
 using System.IO;
@@ -40,7 +41,7 @@ namespace Gldf.Net.Tests
 
             var xml = _serializer.SerializeToXml(root);
 
-            xml.Should().Be(expectedXml);
+            xml.ShouldBe().EquivalentTo(expectedXml);
         }
 
         [Test]
@@ -51,7 +52,7 @@ namespace Gldf.Net.Tests
 
             var xml = _serializerWithSettings.SerializeToXml(root);
 
-            xml.Should().Be(expectedXml);
+            xml.ShouldBe().EquivalentTo(expectedXml);
         }
 
         [Test]
@@ -71,7 +72,7 @@ namespace Gldf.Net.Tests
             _serializer.SerializeToFile(root, _tempFile);
             var xml = File.ReadAllText(_tempFile);
 
-            xml.Should().Be(expectedXml);
+            xml.ShouldBe().EquivalentTo(expectedXml);
         }
 
         [Test]
@@ -83,7 +84,7 @@ namespace Gldf.Net.Tests
             _serializerWithSettings.SerializeToFile(root, _tempFile);
             var xml = File.ReadAllText(_tempFile);
 
-            xml.Should().Be(expectedXml);
+            xml.ShouldBe().EquivalentTo(expectedXml);
         }
 
         [Test]
