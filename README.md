@@ -12,7 +12,8 @@
 
 Features
 
-- Serialize and deserialize GLDF XML,100% format coverage
+- Serialize and deserialize GLDF XML
+- 100% format coverage of [version 0.9](https://github.com/globallightingdata/gldf/releases)
 - Validate GLDF XML with the GLDF XmlSchema (XSD)
 - Read and write .gldf container files, including all assets and signature file
 - Validate .gldf container files
@@ -229,7 +230,7 @@ IGldfXmlValidator xmlValidator = new GldfXmlValidator();
 // 3) Read GLDF container
 IGldfContainerReader containerReader = new GldfContainerReader();
 // 4) Write GLDF container
-IGldfContainerWriter containerWriter = new GldfContainerWriter()
+IGldfContainerWriter containerWriter = new GldfContainerWriter();
 // 5) Validate GLDF Container
 IGldfContainerValidator containerValidator = new GldfContainerValidator();
 ```
