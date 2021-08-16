@@ -42,7 +42,7 @@ namespace Gldf.Net.Validation
             return resultList;
         }
 
-        protected XmlSchemaSet CreateSchemaSet(FormatVersion xmlFormatVersion)
+        private XmlSchemaSet CreateSchemaSet(FormatVersion xmlFormatVersion)
         {
             var embeddedXsd = EmbeddedXsdLoader.LoadXsd(xmlFormatVersion);
             var xsdStringReader = new StringReader(embeddedXsd);
