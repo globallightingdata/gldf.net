@@ -17,9 +17,9 @@ namespace Gldf.Net.Tests.XmlHelperTests
         [Test]
         public async Task LoadXsd_Should_BeEquivalentTo_XsdStoredOnGldfIo()
         {
+            using var httpClient = new HttpClient();
             var xsdUrl = new Root().SchemaLocation;
-
-            var githubXsd = await new HttpClient().GetStringAsync(xsdUrl);
+            var githubXsd = await httpClient.GetStringAsync(xsdUrl);
             var embeddedXsd = EmbeddedXsdLoader.LoadXsd(FormatVersion.V09);
 
             embeddedXsd.ShouldBe().EquivalentTo(githubXsd);

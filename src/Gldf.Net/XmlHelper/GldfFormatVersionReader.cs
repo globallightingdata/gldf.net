@@ -20,7 +20,8 @@ namespace Gldf.Net.XmlHelper
         {
             try
             {
-                var document = XDocument.Load(new StringReader(xml));
+                using var stringReader = new StringReader(xml);
+                var document = XDocument.Load(stringReader);
                 var formatElement = document.XPathSelectElement("Root/Header/FormatVersion");
                 return formatElement ?? throw new XmlException("Path Root/Header/FormatVersion not found");
             }

@@ -108,7 +108,7 @@ namespace Gldf.Net.Tests.ValidationTests
     {
         public IEnumerable<ValidationHint> CallValidateWithSchemaSet(string xml)
         {
-            var stringReader = new StringReader(xml);
+            using var stringReader = new StringReader(xml);
             return ValidateWithSchemaSet(stringReader, null);
         }
     }
