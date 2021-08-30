@@ -30,6 +30,9 @@ namespace Gldf.Net
         /// <param name="gldfContainer">The <see cref="GldfContainer" /> to wirte to disk</param>
         public void WriteToFile(string filePath, GldfContainer gldfContainer)
         {
+            if (filePath == null) throw new ArgumentNullException(nameof(filePath));
+            if (gldfContainer == null) throw new ArgumentNullException(nameof(gldfContainer));
+
             try
             {
                 _zipArchiveWriter.Write(filePath, gldfContainer);
@@ -53,13 +56,16 @@ namespace Gldf.Net
         /// </param>
         public void CreateFromDirectory(string sourceDirectory, string targetContainerFilePath)
         {
+            if (sourceDirectory == null) throw new ArgumentNullException(nameof(sourceDirectory));
+            if (targetContainerFilePath == null) throw new ArgumentNullException(nameof(targetContainerFilePath));
+
             try
             {
                 _zipArchiveWriter.CreateFromDirectory(sourceDirectory, targetContainerFilePath);
             }
             catch (Exception e)
             {
-                throw new GldfContainerException($"Failed to create GLDF container from '{sourceDirectory}' in " +
+                throw new GldfContainerException($"Failed to create {nameof(GldfContainer)} from '{sourceDirectory}' in " +
                                                  $"'{targetContainerFilePath}'. See inner exception", e);
             }
         }

@@ -11,7 +11,7 @@ using System.IO;
 namespace Gldf.Net.Tests.ValidationTests
 {
     [TestFixture]
-    public class GldfValidatorTests
+    public class GldfXmlValidatorTests
     {
         private GldfXmlValidator _xmlValidator;
         private string _tempFile;
@@ -30,6 +30,16 @@ namespace Gldf.Net.Tests.ValidationTests
             File.Delete(_tempFile);
         }
 
+        [Test]
+        public void Ctor_ShouldThrow_When_Encoding_IsNull()
+        {
+            Action act = () => _ = new GldfXmlValidator(null);
+
+            act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'encoding')");
+        }
+
         [Test, TestCaseSource(nameof(_validXmlTestCases))]
         public void ValidateString_ValidTestData_Should_Return_EmptyList(string xml)
         {
@@ -39,13 +49,13 @@ namespace Gldf.Net.Tests.ValidationTests
         }
 
         [Test]
-        public void ValidateString_WithNull_Should_Throw_GldfValidationException()
+        public void ValidateString_ShouldThrow_When_XmlString_IsNull()
         {
             Action act = () => _xmlValidator.ValidateString(null);
 
             act.Should()
-                .ThrowExactly<GldfValidationException>().WithMessage("Failed to validate XML. See inner exception")
-                .WithInnerException<ArgumentException>().WithMessage("Value cannot be null*");
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'xml')");
         }
 
         [Test]
@@ -108,15 +118,13 @@ namespace Gldf.Net.Tests.ValidationTests
         }
 
         [Test]
-        public void ValidateFileWithNull_Should_Throw_GldfValidationException()
+        public void ValidateFile_ShouldThrow_When_FilePath_IsNull()
         {
             Action act = () => _xmlValidator.ValidateFile(null);
 
             act.Should()
-                .ThrowExactly<GldfValidationException>()
-                .WithMessage("Failed to validate File with path ''. See inner exception")
-                .WithInnerException<ArgumentException>()
-                .WithMessage("Value cannot be null*");
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'filePath')");
         }
 
         [Test]

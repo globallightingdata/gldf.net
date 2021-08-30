@@ -23,8 +23,7 @@ namespace Gldf.Net.Container
 
         private void AddRootZipEntry(GldfContainer gldfContainer, ZipArchive zipArchive)
         {
-            var product = gldfContainer.Product ?? throw new RootNotFoundException("Product must not be null");
-            var xml = GldfXmlSerializer.SerializeToString(product);
+            var xml = GldfXmlSerializer.SerializeToString(gldfContainer.Product);
             var productEntry = zipArchive.CreateEntry("product.xml", CompressionLevel);
             using var entryStream = productEntry.Open();
             using var streamWriter = new StreamWriter(entryStream, Encoding);

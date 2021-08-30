@@ -12,7 +12,7 @@ using System.Xml;
 namespace Gldf.Net.Tests
 {
     [TestFixture]
-    public class GldfDeserializTests
+    public class GldfXmlSerializerTests
     {
         private GldfXmlSerializer _serializer;
         private GldfXmlSerializer _serializerWithSettings;
@@ -31,6 +31,26 @@ namespace Gldf.Net.Tests
         public void TearDown()
         {
             File.Delete(_tempFile);
+        }
+
+        [Test]
+        public void Ctor_ShouldThrow_When_Settings_IsNull()
+        {
+            Action act = () => _ = new GldfXmlSerializer(null);
+
+            act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'settings')");
+        }
+
+        [Test]
+        public void SerializeToString_ShouldThrow_When_Root_IsNull()
+        {
+            Action act = () => _serializer.SerializeToString(null);
+
+            act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'root')");
         }
 
         [Test]
@@ -61,6 +81,26 @@ namespace Gldf.Net.Tests
             Action act = () => _serializer.SerializeToString(new InvalidRoot());
 
             act.Should().Throw<GldfException>();
+        }
+
+        [Test]
+        public void SerializeToFile_ShouldThrow_When_Root_IsNull()
+        {
+            Action act = () => _serializer.SerializeToFile(null, "");
+
+            act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'root')");
+        }
+
+        [Test]
+        public void SerializeToFile_ShouldThrow_When_FilePath_IsNull()
+        {
+            Action act = () => _serializer.SerializeToFile(new Root(), null);
+
+            act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'filePath')");
         }
 
         [Test]
@@ -98,6 +138,16 @@ namespace Gldf.Net.Tests
         /************* Deserialize *************/
 
         [Test]
+        public void DeserializeFromString_ShouldThrow_When_XmlString_IsNull()
+        {
+            Action act = () => _serializer.DeserializeFromString(null);
+
+            act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'xml')");
+        }
+
+        [Test]
         public void DeserializeFromString_Should_Return_ExpectedRoot()
         {
             var xml = EmbeddedXmlTestData.GetRootWithHeaderXml();
@@ -120,6 +170,16 @@ namespace Gldf.Net.Tests
                 .WithMessage("Failed to read XML")
                 .WithInnerException<InvalidOperationException>()
                 .WithMessage("There is an error in XML document (1, 1).");
+        }
+
+        [Test]
+        public void DeserializeFromFile_ShouldThrow_When_FilePath_IsNull()
+        {
+            Action act = () => _serializer.DeserializeFromFile(null);
+
+            act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'filePath')");
         }
 
         [Test]

@@ -10,6 +10,9 @@ namespace Gldf.Net.Container
     {
         public static byte[] GetBytesFromContainer(this GldfFile file, GldfContainer container)
         {
+            if (file == null) throw new ArgumentNullException(nameof(file));
+            if (container == null) throw new ArgumentNullException(nameof(container));
+
             switch (file.ContentType)
             {
                 case FileContentType.LdcEulumdat:

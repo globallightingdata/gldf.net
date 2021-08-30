@@ -39,6 +39,9 @@ namespace Gldf.Net
         /// <returns><see cref="GldfContainer" /> with deserialised product.xml, file assets and signature</returns>
         public GldfContainer ReadFromFile(string filePath, ContainerLoadSettings settings)
         {
+            if (filePath == null) throw new ArgumentNullException(nameof(filePath));
+            if (settings == null) throw new ArgumentNullException(nameof(settings));
+
             try
             {
                 return _zipArchiveReader.ReadContainer(filePath, settings);
@@ -57,6 +60,9 @@ namespace Gldf.Net
         /// <param name="targetDirectory">The target directory the content wil be extracted to</param>
         public void ExtractToDirectory(string sourceContainerFilePath, string targetDirectory)
         {
+            if (sourceContainerFilePath == null) throw new ArgumentNullException(nameof(sourceContainerFilePath));
+            if (targetDirectory == null) throw new ArgumentNullException(nameof(targetDirectory));
+
             try
             {
                 _zipArchiveReader.ExtractToDirectory(sourceContainerFilePath, targetDirectory);

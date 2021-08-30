@@ -108,27 +108,34 @@ namespace Gldf.Net.Tests
         }
 
         [Test]
-        public void WriteToFile_ShouldThrow_ArgumentNullException_When_PathIsNull()
+        public void WriteToFile_ShouldThrow_When_FilePath_IsNull()
         {
             Action act = () => _gldfContainerWriter.WriteToFile(null, new GldfContainer());
 
             act.Should()
-                .ThrowExactly<GldfContainerException>()
-                .WithMessage($"Failed to create {nameof(GldfContainer)}*")
-                .WithInnerExceptionExactly<ArgumentNullException>()
-                .WithMessage("Path cannot be null. (Parameter 'path')");
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'filePath')");
         }
 
         [Test]
-        public void WriteToFile_ShouldThrow_RootNotFoundException_When_ProductIsNull()
+        public void WriteToFile_ShouldThrow_When_Container_IsNull()
         {
-            Action act = () => _gldfContainerWriter.WriteToFile(_tempFile1, new GldfContainer(null));
+            Action act = () => _gldfContainerWriter.WriteToFile("", null);
+
+            act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'gldfContainer')");
+        }
+
+        [Test]
+        public void WriteToFile_ShouldThrow_When_FilePath_IsInvalid()
+        {
+            Action act = () => _gldfContainerWriter.WriteToFile(@"AB:\UnknownPath", new GldfContainer());
 
             act.Should()
                 .ThrowExactly<GldfContainerException>()
-                .WithMessage($"Failed to create {nameof(GldfContainer)}*")
-                .WithInnerExceptionExactly<RootNotFoundException>()
-                .WithMessage("Product must not be null");
+                .WithMessage("Failed to create GldfContainer *")
+                .WithInnerException<IOException>();
         }
     }
 }

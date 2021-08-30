@@ -38,7 +38,7 @@ namespace Gldf.Net
         /// </summary>
         public GldfXmlSerializer(XmlWriterSettings settings)
         {
-            _settings = settings ?? throw new ArgumentNullException($"{nameof(XmlWriterSettings)} must not be null");
+            _settings = settings ?? throw new ArgumentNullException(nameof(settings));
             _xmlSerializer = new XmlSerializer(typeof(Root));
             _xmlNamespaces = GldfNamespaceProvider.GetNamespaces();
         }
@@ -51,6 +51,8 @@ namespace Gldf.Net
         /// <exception cref="GldfException">Input is invalid. See also InnerException.</exception>
         public string SerializeToString(Root root)
         {
+            if (root == null) throw new ArgumentNullException(nameof(root));
+
             try
             {
                 using var stringWriter = new XmlStringWriter(_settings.Encoding);
@@ -75,6 +77,9 @@ namespace Gldf.Net
         /// </exception>
         public void SerializeToFile(Root root, string filePath)
         {
+            if (root == null) throw new ArgumentNullException(nameof(root));
+            if (filePath == null) throw new ArgumentNullException(nameof(filePath));
+
             try
             {
                 using var streamWriter = new StreamWriter(filePath, false, _settings.Encoding);
@@ -97,6 +102,8 @@ namespace Gldf.Net
         /// <exception cref="GldfException">Input is invalid GLDF-XML. See also InnerException.</exception>
         public Root DeserializeFromString(string xml)
         {
+            if (xml == null) throw new ArgumentNullException(nameof(xml));
+
             try
             {
                 using var stringReader = new StringReader(xml);
@@ -121,6 +128,8 @@ namespace Gldf.Net
         /// </exception>
         public Root DeserializeFromFile(string filePath)
         {
+            if (filePath == null) throw new ArgumentNullException(nameof(filePath));
+
             try
             {
                 using var streamIn = new StreamReader(filePath, _settings.Encoding);

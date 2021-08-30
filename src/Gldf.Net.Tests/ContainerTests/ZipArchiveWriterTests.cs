@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using Gldf.Net.Container;
 using Gldf.Net.Domain;
-using Gldf.Net.Exceptions;
 using Gldf.Net.Tests.TestData;
 using NUnit.Framework;
 using System;
@@ -49,7 +48,7 @@ namespace Gldf.Net.Tests.ContainerTests
         }
 
         [Test]
-        public void Write_ShouldOverwrite_Container_WhenAlreadyExists()
+        public void Write_ShouldOverwrite_Container_When_AlreadyExists()
         {
             var gldfContainer1 = new GldfContainer(new Root { Checksum = "Old" });
             var gldfContainer2 = new GldfContainer(new Root { Checksum = "New" });
@@ -94,7 +93,7 @@ namespace Gldf.Net.Tests.ContainerTests
         }
 
         [Test]
-        public void Write_Should_OnlyCreate_ProductEntry_WhenNoAssets()
+        public void Write_Should_OnlyCreate_ProductEntry_When_NoAssets()
         {
             var gldfContainer = new GldfContainer(new Root());
 
@@ -115,16 +114,6 @@ namespace Gldf.Net.Tests.ContainerTests
             act.Should()
                 .Throw<ArgumentNullException>()
                 .WithMessage("Path cannot be null. (Parameter 'path')");
-        }
-
-        [Test]
-        public void Write_ShouldThrow_RootNotFoundException_When_ProductIsNull()
-        {
-            Action act = () => _zipArchiveWriter.Write(_tempFile1, new GldfContainer(null));
-
-            act.Should()
-                .Throw<RootNotFoundException>()
-                .WithMessage("Product must not be null");
         }
 
         [Test]

@@ -30,7 +30,27 @@ namespace Gldf.Net.Tests
         }
 
         [Test]
-        public void ReadFromFile_EmptyContainer_ShouldThrow_BecauseOf_Missing_ProductXml()
+        public void ReadFromFile_ShouldThrow_When_FilePathParameter_IsNull()
+        {
+            Action act = () => _gldfContainerReader.ReadFromFile(null);
+
+            act.Should()
+                .Throw<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'filePath')");
+        }
+
+        [Test]
+        public void ReadFromFile_ShouldThrow_When_SettingsParameter_IsNull()
+        {
+            Action act = () => _gldfContainerReader.ReadFromFile("", null);
+
+            act.Should()
+                .Throw<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'settings')");
+        }
+
+        [Test]
+        public void ReadFromFile_EmptyContainer_ShouldThrow_When_Missing_ProductXml()
         {
             ZipFile.Open(_tempFile, ZipArchiveMode.Update).Dispose();
 

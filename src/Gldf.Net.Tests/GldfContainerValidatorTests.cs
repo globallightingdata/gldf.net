@@ -30,6 +30,16 @@ namespace Gldf.Net.Tests
         }
 
         [Test]
+        public void Validate_Filepath_Should_Throw_When_FilePathParameter_IsNull()
+        {
+            Action act = () => _validator.Validate((string)null);
+
+            act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'filePath')");
+        }
+
+        [Test]
         public void Validate_Filepath_Should_Return_EmptyHintList()
         {
             var gldfWithInvalidRoot = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
@@ -53,7 +63,7 @@ namespace Gldf.Net.Tests
             {
                 Console.WriteLine(hint);
             }
-            
+
             hints.Should().HaveCount(5);
             hints.Should().ContainEquivalentOf(expected);
         }
@@ -134,6 +144,16 @@ namespace Gldf.Net.Tests
 
             hints.Should().HaveCount(1);
             hints.Should().ContainEquivalentOf(expected);
+        }
+
+        [Test]
+        public void Validate_Container_Should_Throw_When_ContainerParameter_IsNull()
+        {
+            Action act = () => _validator.Validate((GldfContainer)null);
+
+            act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'container')");
         }
 
         [Test]

@@ -11,6 +11,26 @@ namespace Gldf.Net.Tests.ContainerTests
     [TestFixture]
     public class GldfFileExtensionsTests
     {
+        [Test]
+        public void GetBytesFromContainer_ShouldThrow_When_File_IsNull()
+        {
+            Action act = () => ((GldfFile)null).GetBytesFromContainer(new GldfContainer());
+
+            act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'file')");
+        }
+
+        [Test]
+        public void GetBytesFromContainer_ShouldThrow_When_Container_IsNull()
+        {
+            Action act = () => new GldfFile().GetBytesFromContainer(null);
+
+            act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'container')");
+        }
+
         [Test, TestCaseSource(nameof(TestData))]
         public void GetBytesFromContainer_Should_ReturnExpected(GldfContainer container, GldfFile file, byte[] expected)
         {
@@ -44,7 +64,7 @@ namespace Gldf.Net.Tests.ContainerTests
         }
 
         [Test]
-        public void GetBytesFromContainer_Should_Throw_WhenInvalid_FileContentType()
+        public void GetBytesFromContainer_ShouldThrow_WhenInvalid_FileContentType()
         {
             var gldfContainer = new GldfContainer();
             const FileContentType invalidFileContentType = (FileContentType)int.MaxValue;

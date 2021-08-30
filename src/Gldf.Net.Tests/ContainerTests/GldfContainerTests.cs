@@ -5,6 +5,7 @@ using Gldf.Net.Domain.Definition.Types;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Gldf.Net.Tests.ContainerTests
 {
@@ -12,6 +13,50 @@ namespace Gldf.Net.Tests.ContainerTests
     public class GldfContainerTests
     {
         public delegate List<ContainerFile> ListSelector(GldfContainer container);
+
+        [Test]
+        public void Ctor_ShouldThrow_When_Root_IsNull()
+        {
+            void Ctor1() => _ = new GldfContainer(null);
+            void Ctor2() => _ = new GldfContainer(null, new GldfAssets());
+            void Ctor3() => _ = new GldfContainer(null, new GldfAssets(), "signature");
+
+            void Test(Action act) => act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'root')");
+
+            Test(Ctor1);
+            Test(Ctor2);
+            Test(Ctor3);
+        }
+
+        [Test]
+        public void Ctor_ShouldThrow_When_Assets_IsNull()
+        {
+            void Ctor1() => _ = new GldfContainer(new Root(), (GldfAssets)null);
+            void Ctor2() => _ = new GldfContainer(new Root(), null, "signature");
+
+            void Test(Action act) => act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'assets')");
+
+            Test(Ctor1);
+            Test(Ctor2);
+        }
+
+        [Test]
+        public void Ctor_ShouldThrow_When_Signature_IsNull()
+        {
+            void Ctor1() => _ = new GldfContainer(new Root(), (string)null);
+            void Ctor2() => _ = new GldfContainer(new Root(), new GldfAssets(), null);
+
+            void Test(Action act) => act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'signature')");
+
+            Test(Ctor1);
+            Test(Ctor2);
+        }
 
         [Test]
         public void Ctor_ShouldInitialize_AllProperties()
@@ -108,8 +153,9 @@ namespace Gldf.Net.Tests.ContainerTests
             Action act = () => gldfContainer.AddAssetFile((FileContentType)int.MaxValue, "fileName", null);
 
             act.Should()
-                .Throw<ArgumentOutOfRangeException>()
-                .WithMessage("Specified argument was out of the range*");
+                .ThrowExactly<InvalidEnumArgumentException>()
+                .WithMessage("The value of argument 'fileContentType' (2147483647) " +
+                             "is invalid for Enum type 'FileContentType'*");
         }
 
         public static List<TestCaseData> TestData => new()

@@ -34,6 +34,37 @@ namespace Gldf.Net.Tests
         }
 
         [Test]
+        public void CreateFromDirectory_ShouldThrow_When_SourceDirectory_IsNull()
+        {
+            Action act = () => _gldfContainerWriter.CreateFromDirectory(null, "");
+
+            act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'sourceDirectory')");
+        }
+
+        [Test]
+        public void CreateFromDirectory_ShouldThrow_When_TargetFilePath_IsNull()
+        {
+            Action act = () => _gldfContainerWriter.CreateFromDirectory("", null);
+
+            act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'targetContainerFilePath')");
+        }
+
+        [Test]
+        public void CreateFromDirectory_ShouldThrow_When_FilePath_IsInvalid()
+        {
+            Action act = () => _gldfContainerWriter.CreateFromDirectory(@"AB:\UnknownPath", @"AB:\UnknownPath");
+
+            act.Should()
+                .ThrowExactly<GldfContainerException>()
+                .WithMessage("Failed to create GldfContainer *")
+                .WithInnerException<IOException>();
+        }
+
+        [Test]
         public void CreateFromDirectory_ShouldCreate_GldfContainer_WithExpectedContent()
         {
             var expectedZipEntryNames = EmbeddedGldfTestData.ExpectedZipEntryNames;
@@ -52,14 +83,15 @@ namespace Gldf.Net.Tests
             zipArchiveEntries.Select(e => e.FullName).Should().BeEquivalentTo(expectedZipEntryNames);
         }
 
-        [Test]
-        public void CreateFromDirectory_ShouldThrow_When_InvalidPath()
+        [TestCase("", null)]
+        [TestCase(null, "")]
+        public void CreateFromDirectory_ShouldThrow_When_InvalidPath(string sourceDirectory, string containerFilePath)
         {
-            Action act = () => _gldfContainerWriter.CreateFromDirectory(null, null);
+            Action act = () => _gldfContainerWriter.CreateFromDirectory(sourceDirectory, containerFilePath);
 
             act.Should()
-                .Throw<GldfContainerException>()
-                .WithMessage("Failed to create GLDF container*");
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null*");
         }
 
         [Test]
@@ -79,14 +111,37 @@ namespace Gldf.Net.Tests
             expectedDirectoryFilePaths.ForEach(e => filesInsideDirectory.Should().ContainMatch(e));
         }
 
-        [Test]
-        public void ExtractToDirectory_ShouldThrow_When_InvalidPath()
+        [TestCase(null, "")]
+        [TestCase("", null)]
+        public void ExtractToDirectory_ShouldThrow_When_PathIsNull(string containerPath, string targetDirectory)
         {
-            Action act = () => _gldfContainerReader.ExtractToDirectory(null, null);
+            Action act = () => _gldfContainerReader.ExtractToDirectory(containerPath, targetDirectory);
 
             act.Should()
-                .Throw<GldfContainerException>()
-                .WithMessage("Failed to extract*");
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null.*");
+        }
+
+        [Test]
+        public void ExtractToDirectory_ShouldThrow_When_SourcePath_IsInvalid()
+        {
+            Action act = () => _gldfContainerReader.ExtractToDirectory(Guid.NewGuid().ToString(), Path.GetTempPath());
+
+            act.Should()
+                .ThrowExactly<GldfContainerException>()
+                .WithMessage("Failed to extract *")
+                .WithInnerException<FileNotFoundException>();
+        }
+
+        [Test]
+        public void ExtractToDirectory_ShouldThrow_When_TargetDirectory_IsInvalid()
+        {
+            Action act = () => _gldfContainerReader.ExtractToDirectory(Path.GetTempPath(), Guid.NewGuid().ToString());
+
+            act.Should()
+                .ThrowExactly<GldfContainerException>()
+                .WithMessage("Failed to extract *")
+                .WithInnerException<DirectoryNotFoundException>();
         }
     }
 }
