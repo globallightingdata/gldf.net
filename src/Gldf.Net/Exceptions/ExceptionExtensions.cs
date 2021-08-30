@@ -2,7 +2,7 @@
 
 namespace Gldf.Net.Exceptions
 {
-    public static class ExceptionExtensions
+    internal static class ExceptionExtensions
     {
         public static string FlattenMessage(this Exception exception)
         {
