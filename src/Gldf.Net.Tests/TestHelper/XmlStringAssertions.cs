@@ -10,9 +10,8 @@ namespace Gldf.Net.Tests.TestHelper
     {
         protected override string Identifier => "string";
 
-        public XmlStringAssertions(string xml)
+        public XmlStringAssertions(string xml) : base(xml)
         {
-            Subject = xml;
         }
 
         public AndConstraint<XmlStringAssertions> EquivalentTo(string xml, string because = "",

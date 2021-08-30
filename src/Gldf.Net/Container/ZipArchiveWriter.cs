@@ -1,5 +1,4 @@
-﻿using Gldf.Net.Exceptions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 
