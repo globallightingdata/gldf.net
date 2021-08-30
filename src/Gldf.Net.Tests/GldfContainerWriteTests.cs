@@ -130,12 +130,12 @@ namespace Gldf.Net.Tests
         [Test]
         public void WriteToFile_ShouldThrow_When_FilePath_IsInvalid()
         {
-            Action act = () => _gldfContainerWriter.WriteToFile(@"AB:\UnknownPath", new GldfContainer());
+            Action act = () => _gldfContainerWriter.WriteToFile("", new GldfContainer());
 
             act.Should()
                 .ThrowExactly<GldfContainerException>()
                 .WithMessage("Failed to create GldfContainer *")
-                .WithInnerException<IOException>();
+                .WithInnerException<ArgumentException>();
         }
     }
 }

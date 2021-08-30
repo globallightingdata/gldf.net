@@ -136,12 +136,12 @@ namespace Gldf.Net.Tests
         [Test]
         public void ExtractToDirectory_ShouldThrow_When_TargetDirectory_IsInvalid()
         {
-            Action act = () => _gldfContainerReader.ExtractToDirectory(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Action act = () => _gldfContainerReader.ExtractToDirectory("", "");
 
             act.Should()
                 .ThrowExactly<GldfContainerException>()
                 .WithMessage("Failed to extract *")
-                .WithInnerException<DirectoryNotFoundException>();
+                .WithInnerException<ArgumentException>();
         }
     }
 }
