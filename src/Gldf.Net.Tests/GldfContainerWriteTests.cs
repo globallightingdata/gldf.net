@@ -14,14 +14,14 @@ namespace Gldf.Net.Tests
     [TestFixture]
     public class GldfContainerWriteTests
     {
-        private GldfContainer _gldfContainer;
+        private GldfContainerWriter _gldfContainerWriter;
         private string _tempFile1;
         private string _tempFile2;
 
         [SetUp]
         public void SetUp()
         {
-            _gldfContainer = new GldfContainer();
+            _gldfContainerWriter = new GldfContainerWriter();
             _tempFile1 = Path.GetTempFileName();
             _tempFile2 = Path.GetTempFileName();
         }
@@ -34,70 +34,70 @@ namespace Gldf.Net.Tests
         }
 
         [Test]
-        public void WriteToFile_ShouldCreateArchive_InSubDirectory_When_SubDirectoryNotExists()
+        public void WriteToFile_ShouldCreateContainer_InSubDirectory_When_SubDirectoryNotExists()
         {
             var tempFileName = $"{Guid.NewGuid()}.gldf";
             var tempSubDirectory = Path.Combine(Path.GetTempPath(), $"gldf-{DateTime.Now.Ticks}");
             var tempPath = Path.Combine(tempSubDirectory, tempFileName);
-            var gldfArchive = new GldfArchive(new Root());
+            var gldfContainer = new GldfContainer(new Root());
 
-            _gldfContainer.WriteToFile(tempPath, gldfArchive);
-            var archiveExists = File.Exists(tempPath);
+            _gldfContainerWriter.WriteToFile(tempPath, gldfContainer);
+            var containerExists = File.Exists(tempPath);
             Directory.Delete(tempSubDirectory, true);
 
-            archiveExists.Should().BeTrue();
+            containerExists.Should().BeTrue();
         }
 
         [Test]
         public void WriteToFile_ShouldOverwrite_Container_WhenAlreadyExists()
         {
-            var gldfArchive1 = new GldfArchive(new Root {Checksum = "Old"});
-            var gldfArchive2 = new GldfArchive(new Root {Checksum = "New"});
+            var gldfContainer1 = new GldfContainer(new Root { Checksum = "Old" });
+            var gldfContainer2 = new GldfContainer(new Root { Checksum = "New" });
             var zipArchiveReader = new ZipArchiveReader();
 
-            _gldfContainer.WriteToFile(_tempFile1, gldfArchive1);
-            var checksumBefore = zipArchiveReader.ReadArchive(_tempFile1).Product.Checksum;
-            _gldfContainer.WriteToFile(_tempFile1, gldfArchive2);
-            var checksumAfter = zipArchiveReader.ReadArchive(_tempFile1).Product.Checksum;
+            _gldfContainerWriter.WriteToFile(_tempFile1, gldfContainer1);
+            var checksumBefore = zipArchiveReader.ReadContainer(_tempFile1).Product.Checksum;
+            _gldfContainerWriter.WriteToFile(_tempFile1, gldfContainer2);
+            var checksumAfter = zipArchiveReader.ReadContainer(_tempFile1).Product.Checksum;
 
-            checksumBefore.Should().Be(gldfArchive1.Product.Checksum);
-            checksumAfter.Should().Be(gldfArchive2.Product.Checksum);
+            checksumBefore.Should().Be(gldfContainer1.Product.Checksum);
+            checksumAfter.Should().Be(gldfContainer2.Product.Checksum);
         }
 
         [Test]
         public void WriteToFile_ShouldCreate_SameGldfArchive_AsExpected()
         {
             var rootWithHeaderModel = EmbeddedXmlTestData.GetRootWithHeaderModel();
-            var gldfArchive = new GldfArchive(rootWithHeaderModel);
-            var expectedArchiveBytes = EmbeddedGldfTestData.GetGldfWithFiles();
+            var gldfContainer = new GldfContainer(rootWithHeaderModel);
+            var expectedBytes = EmbeddedGldfTestData.GetGldfWithFiles();
             var zipArchiveReader = new ZipArchiveReader();
 
-            gldfArchive.Assets.Geometries.Add(new ContainerFile("geometry.l3d", new byte[1]));
-            gldfArchive.Assets.Geometries.Add(new ContainerFile("geometry.r3d", new byte[2]));
-            gldfArchive.Assets.Images.Add(new ContainerFile("image.jpg", new byte[3]));
-            gldfArchive.Assets.Images.Add(new ContainerFile("image.png", new byte[4]));
-            gldfArchive.Assets.Photometries.Add(new ContainerFile("lvk.ldt", new byte[5]));
-            gldfArchive.Assets.Photometries.Add(new ContainerFile("lvk.ies", new byte[6]));
-            gldfArchive.Assets.Documents.Add(new ContainerFile("document.docx", new byte[7]));
-            gldfArchive.Assets.Sensors.Add(new ContainerFile("sensor.xml", new byte[8]));
-            gldfArchive.Assets.Spectrums.Add(new ContainerFile("spectrum.txt", new byte[9]));
-            gldfArchive.Assets.Symbols.Add(new ContainerFile("symbol.svg", new byte[10]));
-            gldfArchive.Assets.Other.Add(new ContainerFile("project.c4d", new byte[11]));
+            gldfContainer.Assets.Geometries.Add(new ContainerFile("geometry.l3d", new byte[1]));
+            gldfContainer.Assets.Geometries.Add(new ContainerFile("geometry.r3d", new byte[2]));
+            gldfContainer.Assets.Images.Add(new ContainerFile("image.jpg", new byte[3]));
+            gldfContainer.Assets.Images.Add(new ContainerFile("image.png", new byte[4]));
+            gldfContainer.Assets.Photometries.Add(new ContainerFile("lvk.ldt", new byte[5]));
+            gldfContainer.Assets.Photometries.Add(new ContainerFile("lvk.ies", new byte[6]));
+            gldfContainer.Assets.Documents.Add(new ContainerFile("document.docx", new byte[7]));
+            gldfContainer.Assets.Sensors.Add(new ContainerFile("sensor.xml", new byte[8]));
+            gldfContainer.Assets.Spectrums.Add(new ContainerFile("spectrum.txt", new byte[9]));
+            gldfContainer.Assets.Symbols.Add(new ContainerFile("symbol.svg", new byte[10]));
+            gldfContainer.Assets.Other.Add(new ContainerFile("project.c4d", new byte[11]));
 
-            _gldfContainer.WriteToFile(_tempFile1, gldfArchive);
-            File.WriteAllBytes(_tempFile2, expectedArchiveBytes);
+            _gldfContainerWriter.WriteToFile(_tempFile1, gldfContainer);
+            File.WriteAllBytes(_tempFile2, expectedBytes);
 
-            var loadedWrittenArchive = zipArchiveReader.ReadArchive(_tempFile1);
-            var expectedArchive = zipArchiveReader.ReadArchive(_tempFile2);
+            var loadedWrittenArchive = zipArchiveReader.ReadContainer(_tempFile1);
+            var expectedContainer = zipArchiveReader.ReadContainer(_tempFile2);
 
-            loadedWrittenArchive.Should().BeEquivalentTo(expectedArchive);
+            loadedWrittenArchive.Should().BeEquivalentTo(expectedContainer);
         }
 
         [Test]
         public void WriteToFile_Should_OnlyCreate_ProductEntry_WhenNoAssets()
         {
-            var gldfArchive = new GldfArchive(new Root());
-            _gldfContainer.WriteToFile(_tempFile1, gldfArchive);
+            var gldfContainer = new GldfContainer(new Root());
+            _gldfContainerWriter.WriteToFile(_tempFile1, gldfContainer);
             using var zipArchive = ZipFile.Open(_tempFile1, ZipArchiveMode.Read);
 
             var archiveEntryCount = zipArchive.Entries.Count;
@@ -108,27 +108,34 @@ namespace Gldf.Net.Tests
         }
 
         [Test]
-        public void WriteToFile_ShouldThrow_ArgumentNullException_When_PathIsNull()
+        public void WriteToFile_ShouldThrow_When_FilePath_IsNull()
         {
-            Action act = () => _gldfContainer.WriteToFile(null, new GldfArchive());
+            Action act = () => _gldfContainerWriter.WriteToFile(null, new GldfContainer());
 
             act.Should()
-                .ThrowExactly<GldfContainerException>()
-                .WithMessage("Failed to create GldfArchive*")
-                .WithInnerExceptionExactly<ArgumentNullException>()
-                .WithMessage("Path cannot be null. (Parameter 'path')");
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'filePath')");
         }
 
         [Test]
-        public void WriteToFile_ShouldThrow_RootNotFoundException_When_ProductIsNull()
+        public void WriteToFile_ShouldThrow_When_Container_IsNull()
         {
-            Action act = () => _gldfContainer.WriteToFile(_tempFile1, new GldfArchive(null));
+            Action act = () => _gldfContainerWriter.WriteToFile("", null);
+
+            act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'gldfContainer')");
+        }
+
+        [Test]
+        public void WriteToFile_ShouldThrow_When_FilePath_IsInvalid()
+        {
+            Action act = () => _gldfContainerWriter.WriteToFile("", new GldfContainer());
 
             act.Should()
                 .ThrowExactly<GldfContainerException>()
-                .WithMessage("Failed to create GldfArchive*")
-                .WithInnerExceptionExactly<RootNotFoundException>()
-                .WithMessage("Product must not be null");
+                .WithMessage("Failed to create GldfContainer *")
+                .WithInnerException<ArgumentException>();
         }
     }
 }

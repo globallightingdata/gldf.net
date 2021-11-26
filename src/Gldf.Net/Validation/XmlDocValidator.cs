@@ -11,9 +11,9 @@ namespace Gldf.Net.Validation
 {
     internal class XmlDocValidator
     {
-        public List<ValidationHint> ValidateXml(string xml)
+        public List<ValidationHint> ValidateString(string xml)
         {
-            var stringReader = new StringReader(xml);
+            using var stringReader = new StringReader(xml);
             var xmlFormatVersion = GldfFormatVersionReader.GetFormatVersion(xml);
             var schemaSet = CreateSchemaSet(xmlFormatVersion);
             return ValidateWithSchemaSet(stringReader, schemaSet);
@@ -42,11 +42,11 @@ namespace Gldf.Net.Validation
             return resultList;
         }
 
-        protected XmlSchemaSet CreateSchemaSet(FormatVersion xmlFormatVersion)
+        private XmlSchemaSet CreateSchemaSet(FormatVersion xmlFormatVersion)
         {
             var embeddedXsd = EmbeddedXsdLoader.LoadXsd(xmlFormatVersion);
-            var xsdStringReader = new StringReader(embeddedXsd);
-            var schemaDoc = XmlReader.Create(xsdStringReader);
+            using var xsdStringReader = new StringReader(embeddedXsd);
+            using var schemaDoc = XmlReader.Create(xsdStringReader);
             var schemaSet = new XmlSchemaSet();
             schemaSet.Add(string.Empty, schemaDoc);
             return schemaSet;

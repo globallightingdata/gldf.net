@@ -1,25 +1,14 @@
-﻿using Gldf.Net.Abstract;
-using Gldf.Net.Exceptions;
+﻿using Gldf.Net.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Text;
 
 namespace Gldf.Net.Container
 {
-    internal class ZipArchiveReader
+    internal class ZipArchiveReader : ZipArchiveIO
     {
-        private readonly IGldfXmlSerializer _gldfXmlSerializer;
-        private readonly Encoding _encoding;
-
-        public ZipArchiveReader()
-        {
-            _gldfXmlSerializer = new GldfXmlSerializer();
-            _encoding = Encoding.UTF8;
-        }
-
         public bool IsZipArchive(string filePath)
         {
             return EvaluateFuncSafe(() =>
@@ -35,22 +24,22 @@ namespace Gldf.Net.Container
             return zipArchive.Entries.Any(entry => entry.FullName == "product.xml");
         }
 
-        public GldfArchive ReadArchive(string filePath)
+        public GldfContainer ReadContainer(string filePath)
         {
-            return ReadArchive(filePath, ContainerLoadSettings.Default);
+            return ReadContainer(filePath, ContainerLoadSettings.Default);
         }
 
-        public GldfArchive ReadArchive(string filePath, ContainerLoadSettings settings)
+        public GldfContainer ReadContainer(string filePath, ContainerLoadSettings settings)
         {
-            var archive = new GldfArchive();
+            var container = new GldfContainer();
             using var zipArchive = ZipFile.OpenRead(filePath);
             if (settings.ProductLoadBehaviour == ProductLoadBehaviour.Load)
-                AddDeserializedRoot(archive, zipArchive);
+                AddDeserializedRoot(container, zipArchive);
             if (settings.AssetLoadBehaviour != AssetLoadBehaviour.Skip)
-                AddAssets(zipArchive, archive, settings.AssetLoadBehaviour);
+                AddAssets(zipArchive, container, settings.AssetLoadBehaviour);
             if (settings.SignatureLoadBehaviour == SignatureLoadBehaviour.Load)
-                AddSignature(zipArchive, archive);
-            return archive;
+                AddSignature(zipArchive, container);
+            return container;
         }
 
         public string ReadRootXml(string filePath)
@@ -59,13 +48,20 @@ namespace Gldf.Net.Container
             return ReadRootXml(zipArchive);
         }
 
+        public void ExtractToDirectory(string sourceFilePath, string targetDirectory)
+        {
+            PrepareDirectory(targetDirectory, false);
+            ZipFile.ExtractToDirectory(sourceFilePath, targetDirectory);
+        }
+
         private string ReadRootXml(ZipArchive zipArchive)
         {
             var productEntry = zipArchive.GetEntry("product.xml");
             if (productEntry == null)
-                throw new RootNotFoundException($"Required product.xml not found in root of {nameof(GldfContainer)}");
+                throw new RootNotFoundException(
+                    $"Required product.xml not found in root of {nameof(GldfContainer)}");
             using var stream = productEntry.Open();
-            using var streamReader = new StreamReader(stream, _encoding);
+            using var streamReader = new StreamReader(stream, Encoding);
             return streamReader.ReadToEnd();
         }
 
@@ -75,42 +71,42 @@ namespace Gldf.Net.Container
             return zipArchive.Entries.Where(e => e.Length >= minBytes).Select(e => e.FullName);
         }
 
-        private void AddDeserializedRoot(GldfArchive archive, ZipArchive zipArchive)
+        private void AddDeserializedRoot(GldfContainer container, ZipArchive zipArchive)
         {
             var rootXml = ReadRootXml(zipArchive);
-            var deserializedRoot = _gldfXmlSerializer.DeserializeFromXml(rootXml);
-            archive.Product = deserializedRoot;
+            var deserializedRoot = GldfXmlSerializer.DeserializeFromString(rootXml);
+            container.Product = deserializedRoot;
         }
 
-        private void AddSignature(ZipArchive zipArchive, GldfArchive archive)
+        private void AddSignature(ZipArchive zipArchive, GldfContainer container)
         {
             var signatureEntry = zipArchive.GetEntry("signature");
             if (signatureEntry == null) return;
             using var stream = signatureEntry.Open();
-            using var streamReader = new StreamReader(stream, _encoding);
-            archive.Signature = streamReader.ReadToEnd();
+            using var streamReader = new StreamReader(stream, Encoding);
+            container.Signature = streamReader.ReadToEnd();
         }
 
-        private void AddAssets(ZipArchive zipArchive, GldfArchive archive, AssetLoadBehaviour loadBehaviour)
+        private void AddAssets(ZipArchive zipArchive, GldfContainer container, AssetLoadBehaviour loadBehaviour)
         {
             var fileEntries = zipArchive.Entries.Where(entry => !string.IsNullOrEmpty(entry.Name));
             foreach (var entry in fileEntries)
-                _ = HandleAssetEntry(archive, entry, loadBehaviour);
+                _ = HandleAssetEntry(container, entry, loadBehaviour);
         }
 
-        private string HandleAssetEntry(GldfArchive archive, ZipArchiveEntry entry, AssetLoadBehaviour loadBehaviour)
+        private string HandleAssetEntry(GldfContainer container, ZipArchiveEntry entry, AssetLoadBehaviour behaviour)
         {
             var firstPathPart = entry.FullName.Split('/')[0].ToLower();
             return firstPathPart switch
             {
-                AssetFolderNames.Geometries => AddFileFromEntry(archive.Assets.Geometries, entry, loadBehaviour),
-                AssetFolderNames.Photometries => AddFileFromEntry(archive.Assets.Photometries, entry, loadBehaviour),
-                AssetFolderNames.Images => AddFileFromEntry(archive.Assets.Images, entry, loadBehaviour),
-                AssetFolderNames.Documents => AddFileFromEntry(archive.Assets.Documents, entry, loadBehaviour),
-                AssetFolderNames.Sensors => AddFileFromEntry(archive.Assets.Sensors, entry, loadBehaviour),
-                AssetFolderNames.Symbols => AddFileFromEntry(archive.Assets.Symbols, entry, loadBehaviour),
-                AssetFolderNames.Spectrums => AddFileFromEntry(archive.Assets.Spectrums, entry, loadBehaviour),
-                AssetFolderNames.Other => AddFileFromEntry(archive.Assets.Other, entry, loadBehaviour),
+                AssetFolderNames.Geometries => AddFileFromEntry(container.Assets.Geometries, entry, behaviour),
+                AssetFolderNames.Photometries => AddFileFromEntry(container.Assets.Photometries, entry, behaviour),
+                AssetFolderNames.Images => AddFileFromEntry(container.Assets.Images, entry, behaviour),
+                AssetFolderNames.Documents => AddFileFromEntry(container.Assets.Documents, entry, behaviour),
+                AssetFolderNames.Sensors => AddFileFromEntry(container.Assets.Sensors, entry, behaviour),
+                AssetFolderNames.Symbols => AddFileFromEntry(container.Assets.Symbols, entry, behaviour),
+                AssetFolderNames.Spectrums => AddFileFromEntry(container.Assets.Spectrums, entry, behaviour),
+                AssetFolderNames.Other => AddFileFromEntry(container.Assets.Other, entry, behaviour),
                 _ => $"File does not match any asset category: {entry.FullName}"
             };
         }
@@ -127,8 +123,14 @@ namespace Gldf.Net.Container
 
         private bool EvaluateFuncSafe(Func<bool> checkFunc)
         {
-            try { return checkFunc(); }
-            catch { return false; }
+            try
+            {
+                return checkFunc();
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

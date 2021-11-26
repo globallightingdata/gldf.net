@@ -3,7 +3,7 @@ using Gldf.Net.Abstract;
 using Gldf.Net.Container;
 using Gldf.Net.Tests.TestData;
 using Gldf.Net.Validation;
-using Gldf.Net.Validation.Rules.Archive;
+using Gldf.Net.Validation.Rules.Container;
 using Gldf.Net.Validation.Rules.Zip;
 using NUnit.Framework;
 using System.IO;
@@ -34,24 +34,24 @@ namespace Gldf.Net.Tests.ContainerTests
         [Test]
         public void GetValidationRules_ZipRules_Should_ReturnExpectedRules()
         {
-            var zipRules = _zipArchiveValidator.GetValidationRules<IZipContaineraValidationRule>().ToList();
+            var zipRules = _zipArchiveValidator.GetValidationRules<IZipArchiveValidationRule>().ToList();
 
             zipRules.Should().HaveCount(5);
             zipRules.Should().Contain(rule => rule.GetType().IsAssignableFrom(typeof(CanDeserializeProductXmlRule)));
             zipRules.Should().Contain(rule => rule.GetType().IsAssignableFrom(typeof(ContainsProductXmlRule)));
             zipRules.Should().Contain(rule => rule.GetType().IsAssignableFrom(typeof(HasNoLargeFilesRule)));
             zipRules.Should().Contain(rule => rule.GetType().IsAssignableFrom(typeof(IsValidProductXmlRule)));
-            zipRules.Should().Contain(rule => rule.GetType().IsAssignableFrom(typeof(IsValidZipContainerRule)));
+            zipRules.Should().Contain(rule => rule.GetType().IsAssignableFrom(typeof(IsValidZipArchiveRule)));
         }
 
         [Test]
-        public void GetValidationRules_ArchiveRules_Should_ReturnExpectedRuleCount()
+        public void GetValidationRules_ContainerRules_Should_ReturnExpectedRuleCount()
         {
-            var archiveRules = _zipArchiveValidator.GetValidationRules<IArchiveValidationRule>().ToList();
+            var containerRules = _zipArchiveValidator.GetValidationRules<IContainerValidationRule>().ToList();
 
-            archiveRules.Should().HaveCount(2);
-            archiveRules.Should().Contain(rule => rule.GetType().IsAssignableFrom(typeof(HasNoMissingAssetsRule)));
-            archiveRules.Should().Contain(rule => rule.GetType().IsAssignableFrom(typeof(HasNoOrphanAssetsRule)));
+            containerRules.Should().HaveCount(2);
+            containerRules.Should().Contain(rule => rule.GetType().IsAssignableFrom(typeof(HasNoMissingAssetsRule)));
+            containerRules.Should().Contain(rule => rule.GetType().IsAssignableFrom(typeof(HasNoOrphanAssetsRule)));
         }
 
         [Test]
@@ -146,7 +146,7 @@ namespace Gldf.Net.Tests.ContainerTests
         {
             var gldfWithLargeFiles = EmbeddedGldfTestData.GetGldfWithOrphanedFiles();
             File.WriteAllBytes(_tempFile, gldfWithLargeFiles);
-            const string message = "The GLDF archive contains assets that are not referenced in the product.xml. " +
+            const string message = "The GLDF container contains assets that are not referenced in the product.xml. " +
                                    "They should be deleted: orphan.txt";
             var expected = new ValidationHint(SeverityType.Warning, message, ErrorType.OrphanedContainerAssets);
 
@@ -157,12 +157,12 @@ namespace Gldf.Net.Tests.ContainerTests
         }
 
         [Test]
-        public void Validate_Archive_Should_Return_MissingFiles()
+        public void Validate_Container_Should_Return_MissingFiles()
         {
             var gldfWithLargeFiles = EmbeddedGldfTestData.GetGldfWithMissingFiles();
             var zipArchiveReader = new ZipArchiveReader();
             File.WriteAllBytes(_tempFile, gldfWithLargeFiles);
-            var gldfArchive = zipArchiveReader.ReadArchive(_tempFile);
+            var gldfContainer = zipArchiveReader.ReadContainer(_tempFile);
             const string message = "The product.xml contains File definitions that are missing in the GLDF " +
                                    "container: file.ldt (LdcEulumdat), file.ies (LdcIes), file.xml (LdcIesXml), " +
                                    "file.l3d (GeoL3d), file.m3d (GeoM3d), file.r3d (GeoR3d), file.pdf (DocPdf), " +
@@ -171,24 +171,24 @@ namespace Gldf.Net.Tests.ContainerTests
                                    "(SymbolDxf), file.svg (SymbolSvg), file.doc (Other)";
             var expected = new ValidationHint(SeverityType.Error, message, ErrorType.MissingContainerAssets);
 
-            var hints = _zipArchiveValidator.Validate(gldfArchive).ToList();
+            var hints = _zipArchiveValidator.Validate(gldfContainer).ToList();
 
             hints.Should().HaveCount(1);
             hints.Should().ContainEquivalentOf(expected);
         }
 
         [Test]
-        public void Validate_Archive_Should_Return_OrphanedFiles()
+        public void Validate_Container_Should_Return_OrphanedFiles()
         {
             var gldfWithLargeFiles = EmbeddedGldfTestData.GetGldfWithOrphanedFiles();
             var zipArchiveReader = new ZipArchiveReader();
             File.WriteAllBytes(_tempFile, gldfWithLargeFiles);
-            var gldfArchive = zipArchiveReader.ReadArchive(_tempFile);
-            const string message = "The GLDF archive contains assets that are not referenced in " +
+            var container = zipArchiveReader.ReadContainer(_tempFile);
+            const string message = "The GLDF container contains assets that are not referenced in " +
                                    "the product.xml. They should be deleted: orphan.txt";
             var expected = new ValidationHint(SeverityType.Warning, message, ErrorType.OrphanedContainerAssets);
 
-            var hints = _zipArchiveValidator.Validate(gldfArchive).ToList();
+            var hints = _zipArchiveValidator.Validate(container).ToList();
 
             hints.Should().HaveCount(1);
             hints.Should().ContainEquivalentOf(expected);

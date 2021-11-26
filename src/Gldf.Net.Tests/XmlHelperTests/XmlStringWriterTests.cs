@@ -11,7 +11,7 @@ namespace Gldf.Net.Tests.XmlHelperTests
         [Test]
         public void Encoding_Default_Should_Be_Utf8()
         {
-            var xmlStringWriter = new XmlStringWriter();
+            using var xmlStringWriter = new XmlStringWriter();
 
             xmlStringWriter.Encoding.Should().Be(Encoding.UTF8);
         }
@@ -19,7 +19,7 @@ namespace Gldf.Net.Tests.XmlHelperTests
         [Test]
         public void Ctor_WithEncodingParameter_Should_SetIt()
         {
-            var xmlStringWriter = new XmlStringWriter(Encoding.UTF32);
+            using var xmlStringWriter = new XmlStringWriter(Encoding.UTF32);
 
             xmlStringWriter.Encoding.Should().Be(Encoding.UTF32);
         }

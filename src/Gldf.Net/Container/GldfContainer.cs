@@ -1,10 +1,11 @@
 ﻿using Gldf.Net.Domain;
 using Gldf.Net.Domain.Definition.Types;
 using System;
+using System.ComponentModel;
 
 namespace Gldf.Net.Container
 {
-    public class GldfArchive
+    public class GldfContainer
     {
         public Root Product { get; set; } = new();
 
@@ -12,24 +13,33 @@ namespace Gldf.Net.Container
 
         public string Signature { get; set; } = string.Empty;
 
-        public GldfArchive()
+        public GldfContainer()
         {
         }
 
-        public GldfArchive(Root root) => Product = root;
+        public GldfContainer(Root root) 
+            => Product = root ?? throw new ArgumentNullException(nameof(root));
 
-        public GldfArchive(Root root, GldfAssets assets) : this(root) => Assets = assets;
+        public GldfContainer(Root root, GldfAssets assets) : this(root) 
+            => Assets = assets ?? throw new ArgumentNullException(nameof(assets));
 
-        public GldfArchive(Root root, string signature) : this(root) => Signature = signature;
+        public GldfContainer(Root root, string signature) : this(root) 
+            => Signature = signature ?? throw new ArgumentNullException(nameof(signature));
 
-        public GldfArchive(Root root, GldfAssets assets, string signature) : this(root)
+        public GldfContainer(Root root, GldfAssets assets, string signature) : this(root)
         {
-            Assets = assets;
-            Signature = signature;
+            Assets = assets ?? throw new ArgumentNullException(nameof(assets));
+            Signature = signature ?? throw new ArgumentNullException(nameof(signature));
         }
 
         public void AddAssetFile(FileContentType fileContentType, string fileName, byte[] fileContent)
         {
+            if (!Enum.IsDefined(typeof(FileContentType), fileContentType))
+                throw new InvalidEnumArgumentException(nameof(fileContentType), (int)fileContentType,
+                    typeof(FileContentType));
+            if (fileName == null) throw new ArgumentNullException(nameof(fileName));
+            if (fileContent == null) throw new ArgumentNullException(nameof(fileContent));
+
             switch (fileContentType)
             {
                 case FileContentType.LdcEulumdat:
@@ -65,7 +75,7 @@ namespace Gldf.Net.Container
                     Assets.Other.Add(new ContainerFile(fileName, fileContent));
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(fileContentType));
+                    throw new ArgumentOutOfRangeException(nameof(fileContentType), fileContentType, null);
             }
         }
     }

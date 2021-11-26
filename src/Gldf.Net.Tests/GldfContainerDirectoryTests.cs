@@ -12,14 +12,16 @@ namespace Gldf.Net.Tests
     [TestFixture]
     public class GldfContainerDirectoryTests
     {
-        private GldfContainer _gldfContainer;
+        private GldfContainerReader _gldfContainerReader;
+        private GldfContainerWriter _gldfContainerWriter;
         private string _tempFile1;
         private string _tempFile2;
 
         [SetUp]
         public void SetUp()
         {
-            _gldfContainer = new GldfContainer();
+            _gldfContainerReader = new GldfContainerReader();
+            _gldfContainerWriter = new GldfContainerWriter();
             _tempFile1 = Path.GetTempFileName();
             _tempFile2 = Path.GetTempFileName();
         }
@@ -32,7 +34,38 @@ namespace Gldf.Net.Tests
         }
 
         [Test]
-        public void CreateFromDirectory_ShouldCreate_GldfArchive_WithExpectedContent()
+        public void CreateFromDirectory_ShouldThrow_When_SourceDirectory_IsNull()
+        {
+            Action act = () => _gldfContainerWriter.CreateFromDirectory(null, "");
+
+            act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'sourceDirectory')");
+        }
+
+        [Test]
+        public void CreateFromDirectory_ShouldThrow_When_TargetFilePath_IsNull()
+        {
+            Action act = () => _gldfContainerWriter.CreateFromDirectory("", null);
+
+            act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'targetContainerFilePath')");
+        }
+
+        [Test]
+        public void CreateFromDirectory_ShouldThrow_When_FilePath_IsInvalid()
+        {
+            Action act = () => _gldfContainerWriter.CreateFromDirectory(@"AB:\UnknownPath", @"AB:\UnknownPath");
+
+            act.Should()
+                .ThrowExactly<GldfContainerException>()
+                .WithMessage("Failed to create GldfContainer *")
+                .WithInnerException<IOException>();
+        }
+
+        [Test]
+        public void CreateFromDirectory_ShouldCreate_GldfContainer_WithExpectedContent()
         {
             var expectedZipEntryNames = EmbeddedGldfTestData.ExpectedZipEntryNames;
             var tempSubDirectory = Path.Combine(Path.GetTempPath(), $"gldf-{DateTime.Now.Ticks}");
@@ -40,7 +73,7 @@ namespace Gldf.Net.Tests
             File.WriteAllBytes(_tempFile1, gldfWithFiles);
             ZipFile.ExtractToDirectory(_tempFile1, tempSubDirectory);
 
-            _gldfContainer.CreateFromDirectory(tempSubDirectory, _tempFile2);
+            _gldfContainerWriter.CreateFromDirectory(tempSubDirectory, _tempFile2);
             var zipArchive = ZipFile.OpenRead(_tempFile2);
             var zipArchiveEntries = zipArchive.Entries;
             zipArchive.Dispose();
@@ -50,14 +83,15 @@ namespace Gldf.Net.Tests
             zipArchiveEntries.Select(e => e.FullName).Should().BeEquivalentTo(expectedZipEntryNames);
         }
 
-        [Test]
-        public void CreateFromDirectory_ShouldThrow_When_InvalidPath()
+        [TestCase("", null)]
+        [TestCase(null, "")]
+        public void CreateFromDirectory_ShouldThrow_When_InvalidPath(string sourceDirectory, string containerFilePath)
         {
-            Action act = () => _gldfContainer.CreateFromDirectory(null, null);
+            Action act = () => _gldfContainerWriter.CreateFromDirectory(sourceDirectory, containerFilePath);
 
             act.Should()
-                .Throw<GldfContainerException>()
-                .WithMessage("Failed to create GLDF container*");
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null*");
         }
 
         [Test]
@@ -68,8 +102,8 @@ namespace Gldf.Net.Tests
             var gldfWithFiles = EmbeddedGldfTestData.GetGldfWithFiles();
             File.WriteAllBytes(_tempFile1, gldfWithFiles);
 
-            _gldfContainer.ExtractToDirectory(_tempFile1, tempSubDirectory);
-            var options = new EnumerationOptions {RecurseSubdirectories = true};
+            _gldfContainerReader.ExtractToDirectory(_tempFile1, tempSubDirectory);
+            var options = new EnumerationOptions { RecurseSubdirectories = true };
             var filesInsideDirectory = Directory.EnumerateFiles(tempSubDirectory, "*.*", options).ToList();
             Directory.Delete(tempSubDirectory, true);
 
@@ -77,14 +111,37 @@ namespace Gldf.Net.Tests
             expectedDirectoryFilePaths.ForEach(e => filesInsideDirectory.Should().ContainMatch(e));
         }
 
-        [Test]
-        public void ExtractToDirectory_ShouldThrow_When_InvalidPath()
+        [TestCase(null, "")]
+        [TestCase("", null)]
+        public void ExtractToDirectory_ShouldThrow_When_PathIsNull(string containerPath, string targetDirectory)
         {
-            Action act = () => _gldfContainer.ExtractToDirectory(null, null);
+            Action act = () => _gldfContainerReader.ExtractToDirectory(containerPath, targetDirectory);
 
             act.Should()
-                .Throw<GldfContainerException>()
-                .WithMessage("Failed to extract*");
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null.*");
+        }
+
+        [Test]
+        public void ExtractToDirectory_ShouldThrow_When_SourcePath_IsInvalid()
+        {
+            Action act = () => _gldfContainerReader.ExtractToDirectory(Guid.NewGuid().ToString(), Path.GetTempPath());
+
+            act.Should()
+                .ThrowExactly<GldfContainerException>()
+                .WithMessage("Failed to extract *")
+                .WithInnerException<FileNotFoundException>();
+        }
+
+        [Test]
+        public void ExtractToDirectory_ShouldThrow_When_TargetDirectory_IsInvalid()
+        {
+            Action act = () => _gldfContainerReader.ExtractToDirectory("", "");
+
+            act.Should()
+                .ThrowExactly<GldfContainerException>()
+                .WithMessage("Failed to extract *")
+                .WithInnerException<ArgumentException>();
         }
     }
 }

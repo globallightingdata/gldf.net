@@ -19,7 +19,7 @@ namespace Gldf.Net.Tests.TestData.Variants
             Header = new Header
             {
                 Manufacturer = "DIAL",
-                CreationTimeCode = new DateTime(2021, 3, 29, 16, 30, 0).ToUniversalTime(),
+                CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
                 CreatedWithApplication = "Visual Studio Code"
             },
             GeneralDefinitions = new GeneralDefinitions
@@ -99,9 +99,9 @@ namespace Gldf.Net.Tests.TestData.Variants
                         RatedLuminousFlux = 2
                     }
                 },
-                Geometries = new Domain.Definition.Geometries
+                Geometries = new[]
                 {
-                    Geometry = new Geometry
+                    new Geometry
                     {
                         Id = "geometry",
                         GeometryFileReferences = new[]
@@ -145,12 +145,12 @@ namespace Gldf.Net.Tests.TestData.Variants
                             new Locale
                             {
                                 Language = "en",
-                                Text = "Variant name"
+                                Text = "Variant 1"
                             },
                             new Locale
                             {
                                 Language = "de",
-                                Text = "Variantenname"
+                                Text = "Variante 1"
                             }
                         },
                         Description = new[]
@@ -180,7 +180,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                             }
                         },
                         GTIN = "12345678",
-                        OrderNumber = "OrderNumber",
+                        ProductNumber = "ProductNumber",
                         Mountings = new Mountings
                         {
                             Ceilling = new Ceilling
@@ -280,6 +280,10 @@ namespace Gldf.Net.Tests.TestData.Variants
                     new Variant
                     {
                         Id = "variant-2",
+                        VariantName = new[]
+                        {
+                            new Locale { Language = "en", Text = "Variant 2" }
+                        },
                         Mountings = new Mountings
                         {
                             Ceilling = new Ceilling
@@ -334,6 +338,10 @@ namespace Gldf.Net.Tests.TestData.Variants
                     {
                         Id = "variant-3",
                         SortOrder = 3,
+                        VariantName = new[]
+                        {
+                            new Locale { Language = "en", Text = "Variant 3" }
+                        },
                         EmitterReferences = new EmitterReferences
                         {
                             Reference = new GeometryReference
@@ -397,6 +405,10 @@ namespace Gldf.Net.Tests.TestData.Variants
                     {
                         Id = "variant-4",
                         SortOrder = 4,
+                        VariantName = new[]
+                        {
+                            new Locale { Language = "en", Text = "Variant 4" }
+                        },
                         EmitterReferences = new EmitterReferences
                         {
                             Reference = new GeometryReference

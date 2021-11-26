@@ -35,7 +35,7 @@ namespace Gldf.Net
         /// <param name="encoding">Encoding for reading GLDF XML files</param>
         public GldfXmlValidator(Encoding encoding)
         {
-            Encoding = encoding;
+            Encoding = encoding ?? throw new ArgumentNullException(nameof(encoding));
             _xmlValidator = new XmlDocValidator();
         }
 
@@ -45,11 +45,13 @@ namespace Gldf.Net
         /// </summary>
         /// <param name="xml">The GLDF XML string to validate</param>
         /// <returns>An IEnumerable of <see cref="ValidationHint" /> with possible warnings and errors</returns>
-        public IEnumerable<ValidationHint> ValidateXml(string xml)
+        public IEnumerable<ValidationHint> ValidateString(string xml)
         {
+            if (xml == null) throw new ArgumentNullException(nameof(xml));
+
             try
             {
-                return _xmlValidator.ValidateXml(xml);
+                return _xmlValidator.ValidateString(xml);
             }
             catch (Exception e)
             {
@@ -63,13 +65,15 @@ namespace Gldf.Net
         /// </summary>
         /// <param name="filePath">The path to the GLDF XML file</param>
         /// <returns>An IEnumerable of <see cref="ValidationHint" /> with possible warnings and errors</returns>
-        public IEnumerable<ValidationHint> ValidateXmlFile(string filePath)
+        public IEnumerable<ValidationHint> ValidateFile(string filePath)
         {
+            if (filePath == null) throw new ArgumentNullException(nameof(filePath));
+
             try
             {
                 using var streamReader = new StreamReader(filePath, Encoding, true);
                 var xml = streamReader.ReadToEnd();
-                return _xmlValidator.ValidateXml(xml);
+                return _xmlValidator.ValidateString(xml);
             }
             catch (Exception e)
             {

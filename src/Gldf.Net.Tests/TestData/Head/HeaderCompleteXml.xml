@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.5/gldf.xsd" checksum="Checksum">
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.6/gldf.xsd" checksum="Checksum">
     <Header>
         <Author>Author</Author>
         <Manufacturer>Manufacturer</Manufacturer>
@@ -63,6 +63,9 @@
         </ProductMetaData>
         <Variants>
             <Variant id="variant-1">
+                <VariantName>
+                    <Locale language="en">Variant 1</Locale>
+                </VariantName>
                 <EmitterReferences>
                     <LightEmitterReference photometryId="photometry"/>
                 </EmitterReferences>

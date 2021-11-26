@@ -2,6 +2,7 @@
 using Gldf.Net.Domain;
 using Gldf.Net.Domain.Head.Types;
 using Gldf.Net.Exceptions;
+using Gldf.Net.Tests.TestHelper;
 using Gldf.Net.XmlHelper;
 using NUnit.Framework;
 using System;
@@ -16,18 +17,18 @@ namespace Gldf.Net.Tests.XmlHelperTests
         [Test]
         public async Task LoadXsd_Should_BeEquivalentTo_XsdStoredOnGldfIo()
         {
+            using var httpClient = new HttpClient();
             var xsdUrl = new Root().SchemaLocation;
-
-            var githubXsd = await new HttpClient().GetStringAsync(xsdUrl);
+            var githubXsd = await httpClient.GetStringAsync(xsdUrl);
             var embeddedXsd = EmbeddedXsdLoader.LoadXsd(FormatVersion.V09);
 
-            embeddedXsd.Should().BeEquivalentTo(githubXsd);
+            embeddedXsd.ShouldBe().EquivalentTo(githubXsd);
         }
 
         [Test]
         public void LoadXsd_Should_Throw_When_UnknownFormatVersion()
         {
-            var invalidFormatVersion = (FormatVersion) int.MaxValue;
+            var invalidFormatVersion = (FormatVersion)int.MaxValue;
 
             Action act = () => EmbeddedXsdLoader.LoadXsd(invalidFormatVersion);
 

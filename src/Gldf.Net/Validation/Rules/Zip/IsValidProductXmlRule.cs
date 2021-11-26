@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Gldf.Net.Validation.Rules.Zip
 {
-    internal class IsValidProductXmlRule : IZipContaineraValidationRule
+    internal class IsValidProductXmlRule : IZipArchiveValidationRule
     {
         public int Priority => 30;
 
@@ -24,7 +24,7 @@ namespace Gldf.Net.Validation.Rules.Zip
             try
             {
                 var rootXml = _zipArchiveReader.ReadRootXml(filePath);
-                return _xmlValidator.ValidateXml(rootXml);
+                return _xmlValidator.ValidateString(rootXml);
             }
             catch (Exception e)
             {

@@ -15,7 +15,7 @@ namespace Gldf.Net.XmlHelper
             {
                 var xsdResourceName = $"Gldf.Net.Xsd.{version}.xsd";
                 var currentAssembly = Assembly.GetAssembly(typeof(GldfXmlSerializer));
-                var xsdResource = currentAssembly.GetManifestResourceStream(xsdResourceName);
+                using var xsdResource = currentAssembly.GetManifestResourceStream(xsdResourceName);
                 using var reader = new StreamReader(xsdResource!, Encoding.UTF8);
                 return reader.ReadToEnd();
             }

@@ -6,15 +6,15 @@ using System.Collections.Generic;
 
 namespace Gldf.Net.Validation.Rules.Zip
 {
-    internal class CanDeserializeProductXmlRule : IZipContaineraValidationRule
+    internal class CanDeserializeProductXmlRule : IZipArchiveValidationRule
     {
         public int Priority => 40;
 
-        private readonly GldfContainer _gldfContainer;
+        private readonly GldfContainerReader _gldfContainerReader;
 
         public CanDeserializeProductXmlRule()
         {
-            _gldfContainer = new GldfContainer();
+            _gldfContainerReader = new GldfContainerReader();
         }
 
         public IEnumerable<ValidationHint> Validate(string filePath)
@@ -27,8 +27,8 @@ namespace Gldf.Net.Validation.Rules.Zip
                     AssetLoadBehaviour = AssetLoadBehaviour.Skip,
                     SignatureLoadBehaviour = SignatureLoadBehaviour.Skip
                 };
-                var archive = _gldfContainer.ReadFromFile(filePath, loadRootOnlySettings);
-                return archive.Product != null
+                var container = _gldfContainerReader.ReadFromFile(filePath, loadRootOnlySettings);
+                return container.Product != null
                     ? ValidationHint.Empty()
                     : ValidationHint.Error($"The product.xml in GLDF container '{filePath}' could not be " +
                                            "deserialised.", ErrorType.NonDeserialisableRoot);

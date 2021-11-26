@@ -16,7 +16,7 @@ namespace Gldf.Net.Tests.TestData.Geometries
             Header = new Header
             {
                 Manufacturer = "DIAL",
-                CreationTimeCode = new DateTime(2021, 3, 29, 16, 30, 0).ToUniversalTime(),
+                CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
                 CreatedWithApplication = "Visual Studio Code"
             },
             GeneralDefinitions = new GeneralDefinitions
@@ -49,9 +49,9 @@ namespace Gldf.Net.Tests.TestData.Geometries
                         }
                     }
                 },
-                Geometries = new Domain.Definition.Geometries
+                Geometries = new[]
                 {
-                    Geometry = new Geometry
+                    new Geometry
                     {
                         Id = "geometry",
                         GeometryFileReferences = new []
@@ -90,6 +90,10 @@ namespace Gldf.Net.Tests.TestData.Geometries
                     new Variant
                     {
                         Id = "variant-1",
+                        VariantName = new[]
+                        {
+                            new Locale { Language = "en", Text = "Variant 1" }
+                        },
                         EmitterReferences = new EmitterReferences
                         {
                             Reference = new LightEmitterReference

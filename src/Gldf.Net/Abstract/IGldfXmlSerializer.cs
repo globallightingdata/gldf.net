@@ -4,10 +4,10 @@ namespace Gldf.Net.Abstract
 {
     internal interface IGldfXmlSerializer
     {
-        string SerializeToXml(Root root);
+        string SerializeToString(Root root);
         void SerializeToFile(Root root, string filePath);
 
-        Root DeserializeFromXml(string xml);
+        Root DeserializeFromString(string xml);
         Root DeserializeFromFile(string filePath);
     }
 }

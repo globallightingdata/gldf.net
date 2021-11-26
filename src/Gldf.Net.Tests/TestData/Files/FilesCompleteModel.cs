@@ -17,7 +17,7 @@ namespace Gldf.Net.Tests.TestData.Files
             Header = new Header
             {
                 Manufacturer = "Manufacturer",
-                CreationTimeCode = new DateTime(2021, 3, 29, 16, 30, 0).ToUniversalTime(),
+                CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
                 CreatedWithApplication = "Visual Studio Code",
                 FormatVersion = FormatVersion.V09
             },
@@ -192,6 +192,10 @@ namespace Gldf.Net.Tests.TestData.Files
                     new Variant
                     {
                         Id = "variant-1",
+                        VariantName = new[]
+                        {
+                            new Locale { Language = "en", Text = "Variant 1" }
+                        },
                         EmitterReferences = new EmitterReferences
                         {
                             Reference = new LightEmitterReference

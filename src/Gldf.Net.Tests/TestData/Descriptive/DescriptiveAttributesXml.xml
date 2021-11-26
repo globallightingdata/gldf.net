@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.5/gldf.xsd">
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.6/gldf.xsd">
     <Header>
         <Manufacturer>Manufacturer</Manufacturer>
         <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
@@ -28,6 +28,9 @@
         </ProductMetaData>
         <Variants>
             <Variant id="variant-1">
+                <VariantName>
+                    <Locale language="en">Variant 1</Locale>
+                </VariantName>
                 <EmitterReferences>
                     <LightEmitterReference photometryId="photometry"/>
                 </EmitterReferences>
@@ -41,27 +44,6 @@
                     <Emergency>
                         <DedicatedEmergencyLightingType>Exit Light</DedicatedEmergencyLightingType>
                     </Emergency>
-                    <SensingDevice>
-                        <DetectorCharacteristics>
-                            <DetectorCharacteristic>Round</DetectorCharacteristic>
-                            <DetectorCharacteristic>Square</DetectorCharacteristic>
-                            <DetectorCharacteristic>Other</DetectorCharacteristic>
-                        </DetectorCharacteristics>
-                        <DetectionMethods>
-                            <DetectionMethod>Passive Infrared</DetectionMethod>
-                            <DetectionMethod>High Frequency</DetectionMethod>
-                            <DetectionMethod>Microwave</DetectionMethod>
-                            <DetectionMethod>Ultrasonic</DetectionMethod>
-                            <DetectionMethod>Camera</DetectionMethod>
-                            <DetectionMethod>Other</DetectionMethod>
-                        </DetectionMethods>
-                        <DetectorTypes>
-                            <DetectorType>Motion Detector</DetectorType>
-                            <DetectorType>Presence Detector</DetectorType>
-                            <DetectorType>Daylight Detector</DetectorType>
-                            <DetectorType>Other</DetectorType>
-                        </DetectorTypes>
-                    </SensingDevice>
                     <Marketing>
                         <Applications>
                             <Application>Interior: Traffic Zones</Application>
@@ -148,6 +130,9 @@
                 </VariantDescriptiveAttributes>
             </Variant>
             <Variant id="variant-2">
+                <VariantName>
+                    <Locale language="en">Variant 2</Locale>
+                </VariantName>
                 <EmitterReferences>
                     <LightEmitterReference photometryId="photometry"/>
                 </EmitterReferences>
@@ -305,6 +290,9 @@
                 </VariantDescriptiveAttributes>
             </Variant>
             <Variant id="variant-3">
+                <VariantName>
+                    <Locale language="en">Variant 3</Locale>
+                </VariantName>
                 <EmitterReferences>
                     <LightEmitterReference photometryId="photometry"/>
                 </EmitterReferences>
@@ -320,6 +308,9 @@
                 </VariantDescriptiveAttributes>
             </Variant>
             <Variant id="variant-4">
+                <VariantName>
+                    <Locale language="en">Variant 4</Locale>
+                </VariantName>
                 <EmitterReferences>
                     <LightEmitterReference photometryId="photometry"/>
                 </EmitterReferences>
@@ -335,6 +326,9 @@
                 </VariantDescriptiveAttributes>
             </Variant>
             <Variant id="variant-5">
+                <VariantName>
+                    <Locale language="en">Variant 5</Locale>
+                </VariantName>
                 <EmitterReferences>
                     <LightEmitterReference photometryId="photometry"/>
                 </EmitterReferences>
@@ -350,6 +344,9 @@
                 </VariantDescriptiveAttributes>
             </Variant>
             <Variant id="variant-6">
+                <VariantName>
+                    <Locale language="en">Variant 6</Locale>
+                </VariantName>
                 <EmitterReferences>
                     <LightEmitterReference photometryId="photometry"/>
                 </EmitterReferences>
@@ -364,6 +361,9 @@
                 </VariantDescriptiveAttributes>
             </Variant>
             <Variant id="variant-7">
+                <VariantName>
+                    <Locale language="en">Variant 7</Locale>
+                </VariantName>
                 <EmitterReferences>
                     <LightEmitterReference photometryId="photometry"/>
                 </EmitterReferences>

@@ -30,6 +30,16 @@ namespace Gldf.Net.Tests
         }
 
         [Test]
+        public void Validate_Filepath_Should_Throw_When_FilePathParameter_IsNull()
+        {
+            Action act = () => _validator.Validate((string)null);
+
+            act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'filePath')");
+        }
+
+        [Test]
         public void Validate_Filepath_Should_Return_EmptyHintList()
         {
             var gldfWithInvalidRoot = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
@@ -53,7 +63,7 @@ namespace Gldf.Net.Tests
             {
                 Console.WriteLine(hint);
             }
-            
+
             hints.Should().HaveCount(5);
             hints.Should().ContainEquivalentOf(expected);
         }
@@ -126,7 +136,7 @@ namespace Gldf.Net.Tests
         {
             var gldfWithLargeFiles = EmbeddedGldfTestData.GetGldfWithOrphanedFiles();
             File.WriteAllBytes(_tempFile, gldfWithLargeFiles);
-            const string message = "The GLDF archive contains assets that are not referenced in the product.xml. " +
+            const string message = "The GLDF container contains assets that are not referenced in the product.xml. " +
                                    "They should be deleted: orphan.txt";
             var expected = new ValidationHint(SeverityType.Warning, message, ErrorType.OrphanedContainerAssets);
 
@@ -137,12 +147,22 @@ namespace Gldf.Net.Tests
         }
 
         [Test]
-        public void Validate_Archive_Should_Return_MissingFiles()
+        public void Validate_Container_Should_Throw_When_ContainerParameter_IsNull()
+        {
+            Action act = () => _validator.Validate((GldfContainer)null);
+
+            act.Should()
+                .ThrowExactly<ArgumentNullException>()
+                .WithMessage("Value cannot be null. (Parameter 'container')");
+        }
+
+        [Test]
+        public void Validate_Container_Should_Return_MissingFiles()
         {
             var gldfWithLargeFiles = EmbeddedGldfTestData.GetGldfWithMissingFiles();
             var zipArchiveReader = new ZipArchiveReader();
             File.WriteAllBytes(_tempFile, gldfWithLargeFiles);
-            var gldfArchive = zipArchiveReader.ReadArchive(_tempFile);
+            var gldfContainer = zipArchiveReader.ReadContainer(_tempFile);
             const string message = "The product.xml contains File definitions that are missing in the GLDF " +
                                    "container: file.ldt (LdcEulumdat), file.ies (LdcIes), file.xml (LdcIesXml), " +
                                    "file.l3d (GeoL3d), file.m3d (GeoM3d), file.r3d (GeoR3d), file.pdf (DocPdf), " +
@@ -151,20 +171,20 @@ namespace Gldf.Net.Tests
                                    "(SymbolDxf), file.svg (SymbolSvg), file.doc (Other)";
             var expected = new ValidationHint(SeverityType.Error, message, ErrorType.MissingContainerAssets);
 
-            var hints = _validator.Validate(gldfArchive).ToList();
+            var hints = _validator.Validate(gldfContainer).ToList();
 
             hints.Should().HaveCount(1);
             hints.Should().ContainEquivalentOf(expected);
         }
 
         [Test]
-        public void Validate_Archive_Should_Return_OrphanedFiles()
+        public void Validate_Container_Should_Return_OrphanedFiles()
         {
             var gldfWithLargeFiles = EmbeddedGldfTestData.GetGldfWithOrphanedFiles();
             var zipArchiveReader = new ZipArchiveReader();
             File.WriteAllBytes(_tempFile, gldfWithLargeFiles);
-            var gldfArchive = zipArchiveReader.ReadArchive(_tempFile);
-            const string message = "The GLDF archive contains assets that are not referenced in the product.xml. " +
+            var gldfArchive = zipArchiveReader.ReadContainer(_tempFile);
+            const string message = "The GLDF container contains assets that are not referenced in the product.xml. " +
                                    "They should be deleted: orphan.txt";
             var expected = new ValidationHint(SeverityType.Warning, message, ErrorType.OrphanedContainerAssets);
 

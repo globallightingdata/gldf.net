@@ -16,20 +16,17 @@ namespace Gldf.Net
     /// </summary>
     public class GldfXmlSerializer : IGldfXmlSerializer
     {
-        protected readonly XmlSerializer XmlSerializer;
-        protected readonly XmlSerializerNamespaces XmlNamespaces;
-        protected readonly XmlWriterSettings Settings;
+        private readonly XmlSerializer _xmlSerializer;
+        private readonly XmlSerializerNamespaces _xmlNamespaces;
+        private readonly XmlWriterSettings _settings;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="GldfXmlSerializer" /> class that can serialize
         ///     instances of type <see cref="Gldf.Net.Domain.Root" /> into GLDF-XML text and to deserialize GLDF-XML
         ///     text into instances of type <see cref="Gldf.Net.Domain.Root" />.
         /// </summary>
-        public GldfXmlSerializer()
+        public GldfXmlSerializer() : this(new XmlWriterSettings { Indent = true })
         {
-            XmlSerializer = new XmlSerializer(typeof(Root));
-            XmlNamespaces = GldfNamespaceProvider.GetNamespaces();
-            Settings = new XmlWriterSettings {Indent = true};
         }
 
         /// <summary>
@@ -39,9 +36,11 @@ namespace Gldf.Net
         ///     <see cref="System.Xml.XmlWriterSettings" /> which allows the control of XML indentation, Encoding
         ///     and more.
         /// </summary>
-        public GldfXmlSerializer(XmlWriterSettings settings) : this()
+        public GldfXmlSerializer(XmlWriterSettings settings)
         {
-            Settings = settings ?? throw new GldfException($"{nameof(XmlWriterSettings)} must not be null");
+            _settings = settings ?? throw new ArgumentNullException(nameof(settings));
+            _xmlSerializer = new XmlSerializer(typeof(Root));
+            _xmlNamespaces = GldfNamespaceProvider.GetNamespaces();
         }
 
         /// <summary>
@@ -50,13 +49,15 @@ namespace Gldf.Net
         /// <param name="root">The value to convert.</param>
         /// <returns>The GLDF XML representation of the value.</returns>
         /// <exception cref="GldfException">Input is invalid. See also InnerException.</exception>
-        public string SerializeToXml(Root root)
+        public string SerializeToString(Root root)
         {
+            if (root == null) throw new ArgumentNullException(nameof(root));
+
             try
             {
-                using var stringWriter = new XmlStringWriter(Settings.Encoding);
-                using var xmlWriter = XmlWriter.Create(stringWriter, Settings);
-                XmlSerializer.Serialize(xmlWriter, root, XmlNamespaces);
+                using var stringWriter = new XmlStringWriter(_settings.Encoding);
+                using var xmlWriter = XmlWriter.Create(stringWriter, _settings);
+                _xmlSerializer.Serialize(xmlWriter, root, _xmlNamespaces);
                 return stringWriter.ToString();
             }
             catch (Exception e)
@@ -76,11 +77,14 @@ namespace Gldf.Net
         /// </exception>
         public void SerializeToFile(Root root, string filePath)
         {
+            if (root == null) throw new ArgumentNullException(nameof(root));
+            if (filePath == null) throw new ArgumentNullException(nameof(filePath));
+
             try
             {
-                using var streamWriter = new StreamWriter(filePath, false, Settings.Encoding);
-                using var xmlWriter = XmlWriter.Create(streamWriter, Settings);
-                XmlSerializer.Serialize(xmlWriter, root, XmlNamespaces);
+                using var streamWriter = new StreamWriter(filePath, false, _settings.Encoding);
+                using var xmlWriter = XmlWriter.Create(streamWriter, _settings);
+                _xmlSerializer.Serialize(xmlWriter, root, _xmlNamespaces);
             }
             catch (Exception e)
             {
@@ -96,13 +100,15 @@ namespace Gldf.Net
         ///     Representation of the GLDF-XML text as instance of the type <see cref="Gldf.Net.Domain.Root" />
         /// </returns>
         /// <exception cref="GldfException">Input is invalid GLDF-XML. See also InnerException.</exception>
-        public Root DeserializeFromXml(string xml)
+        public Root DeserializeFromString(string xml)
         {
+            if (xml == null) throw new ArgumentNullException(nameof(xml));
+
             try
             {
                 using var stringReader = new StringReader(xml);
-                var deserializedXml = XmlSerializer.Deserialize(stringReader);
-                return (Root) deserializedXml;
+                var deserializedXml = _xmlSerializer.Deserialize(stringReader);
+                return (Root)deserializedXml;
             }
             catch (Exception e)
             {
@@ -122,11 +128,13 @@ namespace Gldf.Net
         /// </exception>
         public Root DeserializeFromFile(string filePath)
         {
+            if (filePath == null) throw new ArgumentNullException(nameof(filePath));
+
             try
             {
-                using var streamIn = new StreamReader(filePath, Settings.Encoding);
-                var deserializedXml = XmlSerializer.Deserialize(streamIn);
-                return (Root) deserializedXml;
+                using var streamIn = new StreamReader(filePath, _settings.Encoding);
+                var deserializedXml = _xmlSerializer.Deserialize(streamIn);
+                return (Root)deserializedXml;
             }
             catch (Exception e)
             {

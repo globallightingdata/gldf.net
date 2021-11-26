@@ -17,7 +17,7 @@ namespace Gldf.Net.Tests.TestData.Sensors
             Header = new Header
             {
                 Manufacturer = "DIAL",
-                CreationTimeCode = new DateTime(2021, 3, 29, 16, 30, 0).ToUniversalTime(),
+                CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
                 CreatedWithApplication = "Visual Studio Code",
                 FormatVersion = FormatVersion.V09
             },
@@ -41,6 +41,28 @@ namespace Gldf.Net.Tests.TestData.Sensors
                         SensorFileReference = new SensorFileReference
                         {
                             FileId = "sensorFile"
+                        },
+                        DetectorCharacteristics = new[]
+                        {
+                            DetectorCharacteristic.Round,
+                            DetectorCharacteristic.Square,
+                            DetectorCharacteristic.Other
+                        },
+                        DetectionMethods = new[]
+                        {
+                            DetectionMethod.PassiveInfrared,
+                            DetectionMethod.HighFrequency,
+                            DetectionMethod.Microwave,
+                            DetectionMethod.Ultrasonic,
+                            DetectionMethod.Camera,
+                            DetectionMethod.Other
+                        },
+                        DetectorTypes = new[]
+                        {
+                            DetectorType.MotionDetector,
+                            DetectorType.PresenceDetector,
+                            DetectorType.DaylightDetector,
+                            DetectorType.Other
                         }
                     }
                 }
@@ -71,6 +93,10 @@ namespace Gldf.Net.Tests.TestData.Sensors
                     new Variant
                     {
                         Id = "variant-1",
+                        VariantName = new[]
+                        {
+                            new Locale { Language = "en", Text = "Variant 1" }
+                        },
                         EmitterReferences = new EmitterReferences
                         {
                             Reference = new SensorReference

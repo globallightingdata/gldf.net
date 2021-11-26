@@ -1,31 +1,17 @@
-﻿using Gldf.Net.Abstract;
-using Gldf.Net.Exceptions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
-using System.Text;
 
 namespace Gldf.Net.Container
 {
-    internal class ZipArchiveWriter
+    internal class ZipArchiveWriter : ZipArchiveIO
     {
-        private readonly IGldfXmlSerializer _gldfXmlSerializer;
-        private readonly CompressionLevel _compressionLevel;
-        private readonly Encoding _encoding;
-
-        public ZipArchiveWriter()
-        {
-            _gldfXmlSerializer = new GldfXmlSerializer();
-            _compressionLevel = CompressionLevel.Optimal;
-            _encoding = Encoding.UTF8;
-        }
-
-        public void Write(string filePath, GldfArchive gldfArchive)
+        public void Write(string filePath, GldfContainer gldfContainer)
         {
             PrepareDirectory(filePath, true);
-            using var zipArchive = ZipFile.Open(filePath, ZipArchiveMode.Create, _encoding);
-            AddRootZipEntry(gldfArchive, zipArchive);
-            AddAssetZipEntries(zipArchive, gldfArchive);
+            using var zipArchive = ZipFile.Open(filePath, ZipArchiveMode.Create, Encoding);
+            AddRootZipEntry(gldfContainer, zipArchive);
+            AddAssetZipEntries(zipArchive, gldfContainer);
         }
 
         public void CreateFromDirectory(string sourceDirectory, string targetFilePath)
@@ -34,41 +20,25 @@ namespace Gldf.Net.Container
             ZipFile.CreateFromDirectory(sourceDirectory, targetFilePath);
         }
 
-        public void ExtractToDirectory(string sourceFilePath, string targetDirectory)
+        private void AddRootZipEntry(GldfContainer gldfContainer, ZipArchive zipArchive)
         {
-            PrepareDirectory(targetDirectory, false);
-            ZipFile.ExtractToDirectory(sourceFilePath, targetDirectory);
-        }
-
-        private static void PrepareDirectory(string filePath, bool deleteContainerIfExists)
-        {
-            if (File.Exists(filePath) && deleteContainerIfExists)
-                File.Delete(filePath);
-            var directoryName = Path.GetDirectoryName(filePath);
-            if (!string.IsNullOrWhiteSpace(directoryName) && !Directory.Exists(directoryName))
-                Directory.CreateDirectory(directoryName);
-        }
-
-        private void AddRootZipEntry(GldfArchive gldfArchive, ZipArchive zipArchive)
-        {
-            var product = gldfArchive.Product ?? throw new RootNotFoundException("Product must not be null");
-            var xml = _gldfXmlSerializer.SerializeToXml(product);
-            var productEntry = zipArchive.CreateEntry("product.xml", _compressionLevel);
+            var xml = GldfXmlSerializer.SerializeToString(gldfContainer.Product);
+            var productEntry = zipArchive.CreateEntry("product.xml", CompressionLevel);
             using var entryStream = productEntry.Open();
-            using var streamWriter = new StreamWriter(entryStream, _encoding);
+            using var streamWriter = new StreamWriter(entryStream, Encoding);
             streamWriter.Write(xml);
         }
 
-        private void AddAssetZipEntries(ZipArchive zipArchive, GldfArchive gldfArchive)
+        private void AddAssetZipEntries(ZipArchive zipArchive, GldfContainer gldfContainer)
         {
-            AddAssetsFor(zipArchive, gldfArchive.Assets.Photometries, AssetFolderNames.Photometries);
-            AddAssetsFor(zipArchive, gldfArchive.Assets.Geometries, AssetFolderNames.Geometries);
-            AddAssetsFor(zipArchive, gldfArchive.Assets.Images, AssetFolderNames.Images);
-            AddAssetsFor(zipArchive, gldfArchive.Assets.Documents, AssetFolderNames.Documents);
-            AddAssetsFor(zipArchive, gldfArchive.Assets.Sensors, AssetFolderNames.Sensors);
-            AddAssetsFor(zipArchive, gldfArchive.Assets.Spectrums, AssetFolderNames.Spectrums);
-            AddAssetsFor(zipArchive, gldfArchive.Assets.Symbols, AssetFolderNames.Symbols);
-            AddAssetsFor(zipArchive, gldfArchive.Assets.Other, AssetFolderNames.Other);
+            AddAssetsFor(zipArchive, gldfContainer.Assets.Photometries, AssetFolderNames.Photometries);
+            AddAssetsFor(zipArchive, gldfContainer.Assets.Geometries, AssetFolderNames.Geometries);
+            AddAssetsFor(zipArchive, gldfContainer.Assets.Images, AssetFolderNames.Images);
+            AddAssetsFor(zipArchive, gldfContainer.Assets.Documents, AssetFolderNames.Documents);
+            AddAssetsFor(zipArchive, gldfContainer.Assets.Sensors, AssetFolderNames.Sensors);
+            AddAssetsFor(zipArchive, gldfContainer.Assets.Spectrums, AssetFolderNames.Spectrums);
+            AddAssetsFor(zipArchive, gldfContainer.Assets.Symbols, AssetFolderNames.Symbols);
+            AddAssetsFor(zipArchive, gldfContainer.Assets.Other, AssetFolderNames.Other);
         }
 
         private void AddAssetsFor(ZipArchive zipArchive, IEnumerable<ContainerFile> collection, string folder)
@@ -76,7 +46,7 @@ namespace Gldf.Net.Container
             foreach (var file in collection)
             {
                 var zipEntryName = $"{folder}/{file.FileName}";
-                var zipFileEntry = zipArchive.CreateEntry(zipEntryName, _compressionLevel);
+                var zipFileEntry = zipArchive.CreateEntry(zipEntryName, CompressionLevel);
                 using var entryStream = zipFileEntry.Open();
                 entryStream.Write(file.Bytes, 0, file.Bytes.Length);
             }

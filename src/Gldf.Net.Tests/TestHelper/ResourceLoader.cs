@@ -16,7 +16,8 @@ namespace Gldf.Net.Tests.TestHelper
         public static string LoadEmbeddedXml(string pathWithinAssembly)
         {
             using var stream = GetStream(pathWithinAssembly);
-            return new StreamReader(stream!).ReadToEnd();
+            using var streamReader = new StreamReader(stream!);
+            return streamReader.ReadToEnd();
         }
 
         public static byte[] LoadEmbeddedBytes(string pathWithinAssembly)

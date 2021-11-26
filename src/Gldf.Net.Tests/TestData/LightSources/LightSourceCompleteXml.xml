@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.5/gldf.xsd">
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.6/gldf.xsd">
     <Header>
         <Manufacturer>DIAL</Manufacturer>
         <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
@@ -20,7 +20,7 @@
         </Photometries>
         <Spectrums>
             <Spectrum id="spectrum">
-                <SpectrumFileReference fileId="spectrumFile"/>                
+                <SpectrumFileReference fileId="spectrumFile"/>
             </Spectrum>
         </Spectrums>
         <LightSources>
@@ -83,8 +83,14 @@
                 <SpectrumReference spectrumId="spectrum"/>
                 <PhotometryReference photometryId="photometry"/>
                 <ActivePowerTable type="Continuously">
-                    <FluxFactor inputPower="0.1" description="Description 1">0.2</FluxFactor>
-                    <FluxFactor inputPower="0.3" description="Description 2">0.4</FluxFactor>
+                    <FluxFactor inputPower="0.1"
+                                flickerPstLM="flicker 1"
+                                stroboscopicEffectsSVM="stroboscopic 1"
+                                description="Description 1">0.2</FluxFactor>
+                    <FluxFactor inputPower="0.3"
+                                flickerPstLM="flicker 2"
+                                stroboscopicEffectsSVM="stroboscopic 2"
+                                description="Description 2">0.4</FluxFactor>
                 </ActivePowerTable>
                 <Maintenance lifetime="1">
                     <CieLampMaintenanceFactors>
@@ -219,6 +225,9 @@
         </ProductMetaData>
         <Variants>
             <Variant id="variant-1">
+                <VariantName>
+                    <Locale language="en">Variant 1</Locale>
+                </VariantName>
                 <EmitterReferences>
                     <LightEmitterReference photometryId="photometry" />
                 </EmitterReferences>

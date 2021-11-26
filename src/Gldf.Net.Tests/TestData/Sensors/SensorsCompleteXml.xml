@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.5/gldf.xsd">
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.6/gldf.xsd">
     <Header>
         <Manufacturer>DIAL</Manufacturer>
         <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
@@ -14,6 +14,25 @@
         <Sensors>
             <Sensor id="sensor">
                 <SensorFileReference fileId="sensorFile"/>
+                <DetectorCharacteristics>
+                    <DetectorCharacteristic>Round</DetectorCharacteristic>
+                    <DetectorCharacteristic>Square</DetectorCharacteristic>
+                    <DetectorCharacteristic>Other</DetectorCharacteristic>
+                </DetectorCharacteristics>
+                <DetectionMethods>
+                    <DetectionMethod>Passive Infrared</DetectionMethod>
+                    <DetectionMethod>High Frequency</DetectionMethod>
+                    <DetectionMethod>Microwave</DetectionMethod>
+                    <DetectionMethod>Ultrasonic</DetectionMethod>
+                    <DetectionMethod>Camera</DetectionMethod>
+                    <DetectionMethod>Other</DetectionMethod>
+                </DetectionMethods>
+                <DetectorTypes>
+                    <DetectorType>Motion Detector</DetectorType>
+                    <DetectorType>Presence Detector</DetectorType>
+                    <DetectorType>Daylight Detector</DetectorType>
+                    <DetectorType>Other</DetectorType>
+                </DetectorTypes>
             </Sensor>
         </Sensors>
     </GeneralDefinitions>
@@ -28,6 +47,9 @@
         </ProductMetaData>
         <Variants>
             <Variant id="variant-1">
+                <VariantName>
+                    <Locale language="en">Variant 1</Locale>
+                </VariantName>
                 <EmitterReferences>
                     <SensorReference sensorId="sensor" />
                 </EmitterReferences>

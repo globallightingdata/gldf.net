@@ -25,6 +25,7 @@ namespace Gldf.Net.Domain.Definition
         [XmlArrayItem("Equipment")]
         public Equipment[] Equipments { get; set; }
 
-        public Geometries Geometries { get; set; }
+        [XmlArrayItem("Geometry")]
+        public Geometry[] Geometries { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace Gldf.Net.Tests
         public void Serialize_Model_Should_Return_Expected_Xml(Root model, string expectedXml)
         {
             var gldfSerializer = new GldfXmlSerializer();
-            var serializedXml = gldfSerializer.SerializeToXml(model);
+            var serializedXml = gldfSerializer.SerializeToString(model);
             expectedXml.ShouldBe().EquivalentTo(serializedXml);
         }
 
@@ -22,8 +22,8 @@ namespace Gldf.Net.Tests
         public void SerializeAndDeserialize_Model_Should_BeSameAs_Origin(Root model, string _)
         {
             var gldfSerializer = new GldfXmlSerializer();
-            var xml = gldfSerializer.SerializeToXml(model);
-            var resultModel = gldfSerializer.DeserializeFromXml(xml);
+            var xml = gldfSerializer.SerializeToString(model);
+            var resultModel = gldfSerializer.DeserializeFromString(xml);
             resultModel.Should().BeEquivalentTo(model);
         }
 
