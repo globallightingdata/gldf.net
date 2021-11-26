@@ -49,9 +49,9 @@ namespace Gldf.Net.Tests.TestData.Geometries
                         }
                     }
                 },
-                Geometries = new Domain.Definition.Geometries
+                Geometries = new[]
                 {
-                    Geometry = new Geometry
+                    new Geometry
                     {
                         Id = "geometry",
                         GeometryFileReferences = new[]
@@ -100,6 +100,10 @@ namespace Gldf.Net.Tests.TestData.Geometries
                     new Variant
                     {
                         Id = "variant-1",
+                        VariantName = new[]
+                        {
+                            new Locale { Language = "en", Text = "Variant 1" }
+                        },
                         EmitterReferences = new EmitterReferences
                         {
                             Reference = new LightEmitterReference

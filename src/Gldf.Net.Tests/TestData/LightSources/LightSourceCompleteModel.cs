@@ -168,8 +168,22 @@ namespace Gldf.Net.Tests.TestData.LightSources
                             Type = ActivePowerTableType.Continuously,
                             FluxFactor = new[]
                             {
-                                new FluxFactor {InputPower = 0.1, Factor = 0.2, Description = "Description 1"},
-                                new FluxFactor {InputPower = 0.3, Factor = 0.4, Description = "Description 2"}
+                                new FluxFactor
+                                {
+                                    InputPower = 0.1,
+                                    Factor = 0.2,
+                                    FlickerPstLm = "flicker 1",
+                                    StroboscopicEffectsSvm = "stroboscopic 1",
+                                    Description = "Description 1"
+                                },
+                                new FluxFactor
+                                {
+                                    InputPower = 0.3,
+                                    Factor = 0.4,
+                                    FlickerPstLm = "flicker 2",
+                                    StroboscopicEffectsSvm = "stroboscopic 2",
+                                    Description = "Description 2"
+                                }
                             }
                         },
                         Maintenance = new LightSourceMaintenance
@@ -410,6 +424,10 @@ namespace Gldf.Net.Tests.TestData.LightSources
                     new Variant
                     {
                         Id = "variant-1",
+                        VariantName = new[]
+                        {
+                            new Locale { Language = "en", Text = "Variant 1" }
+                        },
                         EmitterReferences = new EmitterReferences
                         {
                             Reference = new LightEmitterReference

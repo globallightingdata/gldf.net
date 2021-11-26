@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.5/gldf.xsd">
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.6/gldf.xsd">
     <Header>
         <Manufacturer>DIAL</Manufacturer>
         <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
@@ -83,9 +83,14 @@
             </Maintenance>
             <DescriptiveAttributes>
                 <Mechanical>
+                    <ProductSize>
+                        <Length>1</Length>
+                        <Width>2</Width>
+                        <Height>3</Height>
+                    </ProductSize>
                     <OperatingTemperature>
-                        <Lower>1</Lower>
-                        <Upper>2</Upper>
+                        <Lower>4</Lower>
+                        <Upper>5</Upper>
                     </OperatingTemperature>
                     <SealingMaterial>
                         <Locale language="en">Sealing Metarial</Locale>
@@ -112,20 +117,6 @@
                     </DurationTimeAndFlux>
                     <DedicatedEmergencyLightingType>For Signage</DedicatedEmergencyLightingType>
                 </Emergency>
-                <SensingDevice>
-                    <DetectorCharacteristics>
-                        <DetectorCharacteristic>Square</DetectorCharacteristic>
-                        <DetectorCharacteristic>Other</DetectorCharacteristic>
-                    </DetectorCharacteristics>
-                    <DetectionMethods>
-                        <DetectionMethod>Camera</DetectionMethod>
-                        <DetectionMethod>Ultrasonic</DetectionMethod>
-                    </DetectionMethods>
-                    <DetectorTypes>
-                        <DetectorType>Presence Detector</DetectorType>
-                        <DetectorType>Other</DetectorType>
-                    </DetectorTypes>
-                </SensingDevice>
                 <MountingAndAccessory>
                     <ATEX>
                         <Directives>
@@ -276,6 +267,9 @@
         </ProductMetaData>
         <Variants>
             <Variant id="variant-1">
+                <VariantName>
+                    <Locale language="en">Variant 1</Locale>
+                </VariantName>
                 <EmitterReferences>
                     <LightEmitterReference photometryId="photometry" />
                 </EmitterReferences>

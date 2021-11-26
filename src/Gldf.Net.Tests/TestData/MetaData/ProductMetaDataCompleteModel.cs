@@ -285,10 +285,16 @@ namespace Gldf.Net.Tests.TestData.MetaData
                     {
                         Mechanical = new Mechanical
                         {
+                            ProductSize = new ProductSize
+                            {
+                                Length = 1,
+                                Width = 2,
+                                Height = 3
+                            },
                             OperatingTemperature = new TemperatureRange
                             {
-                                Lower = 1,
-                                Upper = 2
+                                Lower = 4,
+                                Upper = 5
                             },
                             SealingMaterial = new[]
                             {
@@ -323,28 +329,10 @@ namespace Gldf.Net.Tests.TestData.MetaData
                         {
                             DurationTimeAndFlux = new[]
                             {
-                                new EmergencyFlux {Hours = 3, Flux = 4},
-                                new EmergencyFlux {Hours = 5, Flux = 6}
+                                new EmergencyFlux { Hours = 3, Flux = 4 },
+                                new EmergencyFlux { Hours = 5, Flux = 6 }
                             },
                             DedicatedEmergencyLightingType = EmergencyLightingType.ForSignage
-                        },
-                        SensingDevice = new SensingDevice
-                        {
-                            DetectorCharacteristics = new[]
-                            {
-                                DetectorCharacteristic.Square,
-                                DetectorCharacteristic.Other
-                            },
-                            DetectionMethods = new[]
-                            {
-                                DetectionMethod.Camera,
-                                DetectionMethod.Ultrasonic
-                            },
-                            DetectorTypes = new[]
-                            {
-                                DetectorType.PresenceDetector,
-                                DetectorType.Other
-                            }
                         },
                         MountingAndAccessory = new MountingAndAccessory
                         {
@@ -451,8 +439,8 @@ namespace Gldf.Net.Tests.TestData.MetaData
                         {
                             ListPrices = new[]
                             {
-                                new ListPrice {Currency = "eur", Price = 9},
-                                new ListPrice {Currency = "usd", Price = 10}
+                                new ListPrice { Currency = "eur", Price = 9 },
+                                new ListPrice { Currency = "usd", Price = 10 }
                             },
                             HousingColors = new[]
                             {
@@ -504,8 +492,8 @@ namespace Gldf.Net.Tests.TestData.MetaData
                                 }
                             },
                             Designer = "Designer",
-                            ApprovalMarks = new[] {"ApprovalMark 1", "ApprovalMark 2"},
-                            DesignAwards = new[] {"DesignAward 1", "DesignAward 2"},
+                            ApprovalMarks = new[] { "ApprovalMark 1", "ApprovalMark 2" },
+                            DesignAwards = new[] { "DesignAward 1", "DesignAward 2" },
                             Applications = new[]
                             {
                                 ApplicationArea.ExteriorStreetsMotorways,
@@ -516,10 +504,10 @@ namespace Gldf.Net.Tests.TestData.MetaData
                         {
                             UsefulLifeTimes = new[]
                             {
-                                "L80B50 50000h 25°C", 
+                                "L80B50 50000h 25°C",
                                 "L80B75 40000h 25°C"
                             },
-                            MedianUsefulLifeTimes = new []
+                            MedianUsefulLifeTimes = new[]
                             {
                                 "L100B50 40000h 20°C",
                                 "L80B50 50000h 20°C"
@@ -527,8 +515,8 @@ namespace Gldf.Net.Tests.TestData.MetaData
                             RatedAmbientTemperature = 11,
                             AcousticAbsorptionRates = new[]
                             {
-                                new AbsorptionRate {Hertz = 12, Rate = 0.05},
-                                new AbsorptionRate {Hertz = 13, Rate = 0.06}
+                                new AbsorptionRate { Hertz = 12, Rate = 0.05 },
+                                new AbsorptionRate { Hertz = 13, Rate = 0.06 }
                             }
                         },
                         CustomProperties = new[]
@@ -585,6 +573,10 @@ namespace Gldf.Net.Tests.TestData.MetaData
                     new Variant
                     {
                         Id = "variant-1",
+                        VariantName = new[]
+                        {
+                            new Locale { Language = "en", Text = "Variant 1" }
+                        },
                         EmitterReferences = new EmitterReferences
                         {
                             Reference = new LightEmitterReference

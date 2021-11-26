@@ -41,6 +41,28 @@ namespace Gldf.Net.Tests.TestData.Sensors
                         SensorFileReference = new SensorFileReference
                         {
                             FileId = "sensorFile"
+                        },
+                        DetectorCharacteristics = new[]
+                        {
+                            DetectorCharacteristic.Round,
+                            DetectorCharacteristic.Square,
+                            DetectorCharacteristic.Other
+                        },
+                        DetectionMethods = new[]
+                        {
+                            DetectionMethod.PassiveInfrared,
+                            DetectionMethod.HighFrequency,
+                            DetectionMethod.Microwave,
+                            DetectionMethod.Ultrasonic,
+                            DetectionMethod.Camera,
+                            DetectionMethod.Other
+                        },
+                        DetectorTypes = new[]
+                        {
+                            DetectorType.MotionDetector,
+                            DetectorType.PresenceDetector,
+                            DetectorType.DaylightDetector,
+                            DetectorType.Other
                         }
                     }
                 }
@@ -71,6 +93,10 @@ namespace Gldf.Net.Tests.TestData.Sensors
                     new Variant
                     {
                         Id = "variant-1",
+                        VariantName = new[]
+                        {
+                            new Locale { Language = "en", Text = "Variant 1" }
+                        },
                         EmitterReferences = new EmitterReferences
                         {
                             Reference = new SensorReference

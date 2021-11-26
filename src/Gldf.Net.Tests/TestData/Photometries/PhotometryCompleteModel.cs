@@ -57,9 +57,7 @@ namespace Gldf.Net.Tests.TestData.Photometries
                                 Y = 0.1
                             },
                             IesnaLightDistributionDefinition = "IESNA-LightDistributionDefinition",
-                            LightDistributionBugRating = "LightDistributionBUG-Rating",
-                            FlickerPstLm = "FlickerPstLM",
-                            StroboscopicEffectsSvm = "StroboscopicEffectsSVM"
+                            LightDistributionBugRating = "LightDistributionBUG-Rating"
                         }
                     }
                 }
@@ -90,6 +88,10 @@ namespace Gldf.Net.Tests.TestData.Photometries
                     new Variant
                     {
                         Id = "variant-1",
+                        VariantName = new[]
+                        {
+                            new Locale { Language = "en", Text = "Variant 1" }
+                        },
                         EmitterReferences = new EmitterReferences
                         {
                             Reference = new LightEmitterReference

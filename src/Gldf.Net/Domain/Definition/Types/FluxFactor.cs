@@ -7,6 +7,12 @@ namespace Gldf.Net.Domain.Definition.Types
         [XmlAttribute("inputPower")]
         public double InputPower { get; set; }
 
+        [XmlAttribute("flickerPstLM")]
+        public string FlickerPstLm { get; set; }
+
+        [XmlAttribute("stroboscopicEffectsSVM")]
+        public string StroboscopicEffectsSvm { get; set; }
+
         [XmlAttribute("description")]
         public string Description { get; set; }
 

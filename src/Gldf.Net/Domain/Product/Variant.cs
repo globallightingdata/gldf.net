@@ -37,7 +37,7 @@ namespace Gldf.Net.Domain.Product
 
         public string GTIN { get; set; }
 
-        public string OrderNumber { get; set; }
+        public string ProductNumber { get; set; }
 
         public Mountings Mountings { get; set; }
 

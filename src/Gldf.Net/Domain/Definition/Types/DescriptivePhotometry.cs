@@ -36,12 +36,6 @@ namespace Gldf.Net.Domain.Definition.Types
         [XmlElement("LightDistributionBUG-Rating")]
         public string LightDistributionBugRating { get; set; }
 
-        [XmlElement("FlickerPstLM")]
-        public string FlickerPstLm { get; set; }
-
-        [XmlElement("StroboscopicEffectsSVM")]
-        public string StroboscopicEffectsSvm { get; set; }
-
         public bool ShouldSerializeLuminaireLuminance() => LuminaireLuminance != null;
 
         public bool ShouldSerializeLightOutputRatio() => LightOutputRatio != null;

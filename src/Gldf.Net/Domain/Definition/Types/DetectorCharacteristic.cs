@@ -1,4 +1,4 @@
-﻿namespace Gldf.Net.Domain.Descriptive.Types
+﻿namespace Gldf.Net.Domain.Definition.Types
 {
     public enum DetectorCharacteristic
     {

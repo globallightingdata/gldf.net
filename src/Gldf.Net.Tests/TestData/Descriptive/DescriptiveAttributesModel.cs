@@ -72,6 +72,10 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                     new Variant
                     {
                         Id = "variant-1",
+                        VariantName = new[]
+                        {
+                            new Locale { Language = "en", Text = "Variant 1" }
+                        },
                         EmitterReferences = new EmitterReferences
                         {
                             Reference = new LightEmitterReference
@@ -91,31 +95,6 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                             Emergency = new Emergency
                             {
                                 DedicatedEmergencyLightingType = EmergencyLightingType.ExitLight
-                            },
-                            SensingDevice = new SensingDevice
-                            {
-                                DetectorCharacteristics = new[]
-                                {
-                                    DetectorCharacteristic.Round,
-                                    DetectorCharacteristic.Square,
-                                    DetectorCharacteristic.Other
-                                },
-                                DetectionMethods = new[]
-                                {
-                                    DetectionMethod.PassiveInfrared,
-                                    DetectionMethod.HighFrequency,
-                                    DetectionMethod.Microwave,
-                                    DetectionMethod.Ultrasonic,
-                                    DetectionMethod.Camera,
-                                    DetectionMethod.Other
-                                },
-                                DetectorTypes = new[]
-                                {
-                                    DetectorType.MotionDetector,
-                                    DetectorType.PresenceDetector,
-                                    DetectorType.DaylightDetector,
-                                    DetectorType.Other
-                                }
                             },
                             Marketing = new Marketing
                             {
@@ -207,6 +186,10 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                     new Variant
                     {
                         Id = "variant-2",
+                        VariantName = new[]
+                        {
+                            new Locale { Language = "en", Text = "Variant 2" }
+                        },
                         EmitterReferences = new EmitterReferences
                         {
                             Reference = new LightEmitterReference
@@ -394,6 +377,10 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                     new Variant
                     {
                         Id = "variant-3",
+                        VariantName = new[]
+                        {
+                            new Locale { Language = "en", Text = "Variant 3" }
+                        },
                         EmitterReferences = new EmitterReferences
                         {
                             Reference = new LightEmitterReference
@@ -418,6 +405,10 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                     new Variant
                     {
                         Id = "variant-4",
+                        VariantName = new[]
+                        {
+                            new Locale { Language = "en", Text = "Variant 4" }
+                        },
                         EmitterReferences = new EmitterReferences
                         {
                             Reference = new LightEmitterReference
@@ -442,6 +433,10 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                     new Variant
                     {
                         Id = "variant-5",
+                        VariantName = new[]
+                        {
+                            new Locale { Language = "en", Text = "Variant 5" }
+                        },
                         EmitterReferences = new EmitterReferences
                         {
                             Reference = new LightEmitterReference
@@ -466,6 +461,10 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                     new Variant
                     {
                         Id = "variant-6",
+                        VariantName = new[]
+                        {
+                            new Locale { Language = "en", Text = "Variant 6" }
+                        },
                         EmitterReferences = new EmitterReferences
                         {
                             Reference = new LightEmitterReference
@@ -489,6 +488,10 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                     new Variant
                     {
                         Id = "variant-7",
+                        VariantName = new[]
+                        {
+                            new Locale { Language = "en", Text = "Variant 7" }
+                        },
                         EmitterReferences = new EmitterReferences
                         {
                             Reference = new LightEmitterReference
