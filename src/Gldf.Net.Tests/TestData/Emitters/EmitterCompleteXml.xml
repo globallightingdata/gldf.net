@@ -10,7 +10,13 @@
     <GeneralDefinitions>
         <Files>
             <File id="eulumdat" contentType="ldc/eulumdat" type="url">https://example.org/eulumdat.ldt</File>
+            <File id="sensorFile" contentType="sensor/sensxml" type="url">https://example.org/sensor.xml</File>
         </Files>
+        <Sensors>
+            <Sensor id="sensor">
+                <SensorFileReference fileId="sensorFile"/>
+            </Sensor>
+        </Sensors>
         <Photometries>
             <Photometry id="photometry">
                 <PhotometryFileReference fileId="eulumdat"/>
@@ -21,32 +27,34 @@
                 <Fixed/>
             </LightSource>
         </LightSources>
-        <ControlGears>
-            <ControlGear id="controlGear">
-                <Description>
-                    <Locale language="en">ControlGear description</Locale>
-                </Description>
-            </ControlGear>
-        </ControlGears>
         <Equipments>
-            <Equipment id="equipment-1">
+            <Equipment id="equipment">
                 <LightSourceReference lightSourceId="lightSource"/>
-                <ControlGearReference controlGearId="controlGear" controlGearCount="2" />
-                <RatedInputPower>0.1</RatedInputPower>
-                <RatedLuminousFlux>1</RatedLuminousFlux>
-                <EmergencyBallastLumenFactor>0.2</EmergencyBallastLumenFactor>
-            </Equipment>
-            <Equipment id="equipment-2">
-                <LightSourceReference lightSourceId="lightSource"/>
-                <ControlGearReference controlGearId="controlGear" />
-                <RatedInputPower>0.1</RatedInputPower>
-                <RatedLuminousFlux>1</RatedLuminousFlux>
-                <EmergencyRatedLuminousFlux>2</EmergencyRatedLuminousFlux>
+                <RatedInputPower>10</RatedInputPower>
+                <RatedLuminousFlux>50</RatedLuminousFlux>
             </Equipment>
         </Equipments>
         <Emitters>
-            <Emitter id="emitter">
-                <LightEmitter photometryId="photometry" />
+            <Emitter id="emitter-1">
+                <LightEmitter photometryId="photometry">
+                    <DisplayName>
+                        <Locale language="en">Display name</Locale>
+                        <Locale language="de">Anzeigename</Locale>
+                    </DisplayName>
+                </LightEmitter>
+                <LightEmitter photometryId="photometry" equipmentId="equipment"/>
+                <LightEmitter photometryId="photometry" emergencyBehaviour="None" />
+                <LightEmitter photometryId="photometry" emergencyBehaviour="Combined" />
+                <LightEmitter photometryId="photometry" emergencyBehaviour="EmergencyOnly" />
+            </Emitter>
+            <Emitter id="emitter-2">
+                <Sensor sensorId="sensor">
+                    <DisplayName>
+                        <Locale language="en">Display name</Locale>
+                        <Locale language="de">Anzeigename</Locale>
+                    </DisplayName>
+                </Sensor>
+                <Sensor sensorId="sensor"/>
             </Emitter>
         </Emitters>
     </GeneralDefinitions>
@@ -64,7 +72,7 @@
                 <VariantName>
                     <Locale language="en">Variant 1</Locale>
                 </VariantName>
-                <EmitterReference emitterId="emitter"/>
+                <EmitterReference emitterId="emitter-1"/>
             </Variant>
         </Variants>
     </ProductDefinitions>

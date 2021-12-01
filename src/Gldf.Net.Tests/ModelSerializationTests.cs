@@ -77,6 +77,12 @@ namespace Gldf.Net.Tests
             new TestCaseData(EmbeddedXmlTestData.GetEquipmentCompleteModel(),
                     EmbeddedXmlTestData.GetEquipmentCompleteXml())
                 {TestName = "Equipment complete property set"},
+            new TestCaseData(EmbeddedXmlTestData.GetEmitterMandatoryModel(),
+                    EmbeddedXmlTestData.GetEmitterMandatoryXml())
+                {TestName = "Emitter mandatory property set"},
+            new TestCaseData(EmbeddedXmlTestData.GetEmitterCompleteModel(),
+                    EmbeddedXmlTestData.GetEmitterCompleteXml())
+                {TestName = "Emitter complete property set"},
             new TestCaseData(EmbeddedXmlTestData.GetGeometryMandatoryModel(),
                     EmbeddedXmlTestData.GetGeometryMandatoryXml())
                 {TestName = "Geometry mandatory property set"},

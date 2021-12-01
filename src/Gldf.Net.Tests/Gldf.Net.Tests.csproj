@@ -24,6 +24,8 @@
         <EmbeddedResource Include="TestData\ControlGears\ControlGearCompleteXml.xml" />
         <EmbeddedResource Include="TestData\ControlGears\ControlGearMandatoryXml.xml" />
         <EmbeddedResource Include="TestData\Descriptive\DescriptiveAttributesXml.xml" />
+        <EmbeddedResource Include="TestData\Emitters\EmitterCompleteXml.xml" />
+        <EmbeddedResource Include="TestData\Emitters\EmitterMandatoryXml.xml" />
         <EmbeddedResource Include="TestData\Equipments\EquipmentCompleteXml.xml" />
         <EmbeddedResource Include="TestData\Equipments\EquipmentMandatoryXml.xml" />
         <EmbeddedResource Include="TestData\Files\FilesCompleteXml.xml" />

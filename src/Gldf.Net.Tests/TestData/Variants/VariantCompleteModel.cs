@@ -99,6 +99,86 @@ namespace Gldf.Net.Tests.TestData.Variants
                         RatedLuminousFlux = 2
                     }
                 },
+                Emitters = new[]
+                {
+                    new Emitter
+                    {
+                        Id = "emitter",
+                        PossibleFittings = new EmitterBase[]
+                        {
+                            new LightEmitter
+                            {
+                                PhotometryId = "photometry"
+                            }
+                        }
+                    },
+                    new Emitter
+                    {
+                        Id = "leoEmitter",
+                        PossibleFittings = new EmitterBase[]
+                        {
+                            new LightEmitter
+                            {
+                                PhotometryId = "photometry",
+                                EquipmentId = "equipment",
+                                DisplayName = new[]
+                                {
+                                    new Locale
+                                    {
+                                        Language = "en",
+                                        Text = "Display name"
+                                    },
+                                    new Locale
+                                    {
+                                        Language = "de",
+                                        Text = "Anzeigename"
+                                    }
+                                }
+                            },
+                            new LightEmitter
+                            {
+                                PhotometryId = "photometry",
+                                EmergencyBehaviour = EmergencyBehaviour.None
+                            },
+                            new LightEmitter
+                            {
+                                PhotometryId = "photometry",
+                                EquipmentId = "equipment",
+                                EmergencyBehaviour = EmergencyBehaviour.EmergencyOnly
+                            },
+                            new LightEmitter
+                            {
+                                PhotometryId = "photometry",
+                                EquipmentId = "equipment",
+                                EmergencyBehaviour = EmergencyBehaviour.Combined
+                            }
+                        }
+                    },
+                    new Emitter
+                    {
+                        Id = "sensorEmitter",
+                        PossibleFittings = new EmitterBase[]
+                        {
+                            new SensorEmitter
+                            {
+                                SensorId = "sensor",
+                                DisplayName = new[]
+                                {
+                                    new Locale
+                                    {
+                                        Language = "en",
+                                        Text = "Display name"
+                                    },
+                                    new Locale
+                                    {
+                                        Language = "de",
+                                        Text = "Anzeigename"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 Geometries = new[]
                 {
                     new Geometry
@@ -183,7 +263,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                         ProductNumber = "ProductNumber",
                         Mountings = new Mountings
                         {
-                            Ceilling = new Ceilling
+                            Ceiling = new Ceiling
                             {
                                 Recessed = new Recessed
                                 {
@@ -242,12 +322,9 @@ namespace Gldf.Net.Tests.TestData.Variants
                                 }
                             }
                         },
-                        EmitterReferences = new EmitterReferences
+                        Reference = new EmitterReference
                         {
-                            Reference = new LightEmitterReference
-                            {
-                                PhotometryId = "photometry"
-                            }
+                            EmitterId = "emitter"
                         },
                         Pictures = new[]
                         {
@@ -286,7 +363,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                         },
                         Mountings = new Mountings
                         {
-                            Ceilling = new Ceilling
+                            Ceiling = new Ceiling
                             {
                                 Recessed = new Recessed
                                 {
@@ -326,12 +403,9 @@ namespace Gldf.Net.Tests.TestData.Variants
                                 }
                             }
                         },
-                        EmitterReferences = new EmitterReferences
+                        Reference = new EmitterReference
                         {
-                            Reference = new SensorReference
-                            {
-                                SensorId = "sensor"
-                            }
+                            EmitterId = "emitter"
                         }
                     },
                     new Variant
@@ -342,61 +416,15 @@ namespace Gldf.Net.Tests.TestData.Variants
                         {
                             new Locale { Language = "en", Text = "Variant 3" }
                         },
-                        EmitterReferences = new EmitterReferences
+                        Reference = new GeometryReference
                         {
-                            Reference = new GeometryReference
+                            GeometryId = "geometry",
+                            EmitterReferences = new[]
                             {
-                                GeometryId = "geometry",
-                                EmissionObjectReference = new[]
+                                new GeometryEmitterReference
                                 {
-                                    new GeometryEmissionObjectReference
-                                    {
-                                        EmitterReference = new EmissionObjectReference[]
-                                        {
-                                            new LightEmitterReference
-                                            {
-                                                PhotometryId = "photometry",
-                                                EquipmentId = "equipment",
-                                                DisplayName = new[]
-                                                {
-                                                    new Locale
-                                                    {
-                                                        Language = "en",
-                                                        Text = "Display name"
-                                                    },
-                                                    new Locale
-                                                    {
-                                                        Language = "de",
-                                                        Text = "Anzeigename"
-                                                    }
-                                                }
-                                            },
-                                            new LightEmitterReference
-                                            {
-                                                PhotometryId = "photometry",
-                                                EmergencyBehaviour = EmergencyBehaviour.None
-                                            },
-                                            new LightEmitterReference
-                                            {
-                                                PhotometryId = "photometry",
-                                                EquipmentId = "equipment",
-                                                EmergencyBehaviour = EmergencyBehaviour.EmergencyOnly
-                                            },
-                                            new LightEmitterReference
-                                            {
-                                                PhotometryId = "photometry",
-                                                EquipmentId = "equipment",
-                                                EmergencyBehaviour = EmergencyBehaviour.Combined
-                                            }
-                                        },
-                                        ExternalEmitterReferences = new[]
-                                        {
-                                            new ExternalEmitterReference
-                                            {
-                                                EmitterObjectExternalName = "leo1"
-                                            }
-                                        }
-                                    }
+                                    EmitterId = "leoEmitter",
+                                    EmitterObjectExternalName = "leo1"
                                 }
                             }
                         }
@@ -409,44 +437,28 @@ namespace Gldf.Net.Tests.TestData.Variants
                         {
                             new Locale { Language = "en", Text = "Variant 4" }
                         },
-                        EmitterReferences = new EmitterReferences
+                        Reference = new GeometryReference
                         {
-                            Reference = new GeometryReference
+                            GeometryId = "geometry",
+                            EmitterReferences = new[]
                             {
-                                GeometryId = "geometry",
-                                EmissionObjectReference = new[]
+                                new GeometryEmitterReference
                                 {
-                                    new GeometryEmissionObjectReference
-                                    {
-                                        EmitterReference = new EmissionObjectReference[]
-                                        {
-                                            new SensorReference
-                                            {
-                                                SensorId = "sensor",
-                                                DisplayName = new[]
-                                                {
-                                                    new Locale
-                                                    {
-                                                        Language = "en",
-                                                        Text = "Display name"
-                                                    },
-                                                    new Locale
-                                                    {
-                                                        Language = "de",
-                                                        Text = "Anzeigename"
-                                                    }
-                                                }
-                                            }
-                                        },
-                                        ExternalEmitterReferences = new[]
-                                        {
-                                            new ExternalEmitterReference
-                                            {
-                                                TargetModelType = TargetModelType.L3d,
-                                                EmitterObjectExternalName = "leo2"
-                                            }
-                                        }
-                                    }
+                                    EmitterId = "sensorEmitter",
+                                    EmitterObjectExternalName = "sensor1",
+                                    TargetModelType = TargetModelType.L3d
+                                },
+                                new GeometryEmitterReference
+                                {
+                                    EmitterId = "sensorEmitter",
+                                    EmitterObjectExternalName = "sensor1",
+                                    TargetModelType = TargetModelType.M3d
+                                },
+                                new GeometryEmitterReference
+                                {
+                                    EmitterId = "sensorEmitter",
+                                    EmitterObjectExternalName = "sensor1",
+                                    TargetModelType = TargetModelType.R3d
                                 }
                             }
                         },
@@ -480,7 +492,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                                         Text = "Variantenbeschreibung"
                                     }
                                 },
-                                Pictures = new []
+                                Pictures = new[]
                                 {
                                     new Image
                                     {
@@ -503,7 +515,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                                         ImageType = ImageType.Other
                                     }
                                 },
-                                Hyperlinks = new []
+                                Hyperlinks = new[]
                                 {
                                     new Hyperlink
                                     {
@@ -515,7 +527,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                                         Href = "href2",
                                         Region = "region",
                                         Language = "en",
-                                        CountryCode= "de",
+                                        CountryCode = "de",
                                         PlainText = "Hyperlink 2"
                                     }
                                 }
@@ -534,7 +546,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                                         Language = "de",
                                         Text = "Variantenname 2"
                                     }
-                                },
+                                }
                             }
                         },
                         VariantDescriptiveAttributes = new DescriptiveAttributes

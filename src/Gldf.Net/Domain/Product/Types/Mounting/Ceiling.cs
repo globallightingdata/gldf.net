@@ -1,6 +1,6 @@
 ﻿namespace Gldf.Net.Domain.Product.Types.Mounting
 {
-    public class Ceilling
+    public class Ceiling
     {
         public Recessed Recessed { get; set; }
 

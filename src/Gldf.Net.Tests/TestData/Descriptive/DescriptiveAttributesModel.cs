@@ -44,6 +44,20 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                             FileId = "eulumdat"
                         }
                     }
+                },
+                Emitters = new[]
+                {
+                    new Emitter
+                    {
+                        Id = "emitter",
+                        PossibleFittings = new EmitterBase[]
+                        {
+                            new LightEmitter
+                            {
+                                PhotometryId = "photometry"
+                            }
+                        }
+                    }
                 }
             },
             ProductDefinitions = new ProductDefinitions
@@ -76,12 +90,9 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        EmitterReferences = new EmitterReferences
+                        Reference = new EmitterReference
                         {
-                            Reference = new LightEmitterReference
-                            {
-                                PhotometryId = "photometry"
-                            }
+                            EmitterId = "emitter"
                         },
                         VariantDescriptiveAttributes = new DescriptiveAttributes
                         {
@@ -190,12 +201,9 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 2" }
                         },
-                        EmitterReferences = new EmitterReferences
+                        Reference = new EmitterReference
                         {
-                            Reference = new LightEmitterReference
-                            {
-                                PhotometryId = "photometry"
-                            }
+                            EmitterId = "emitter"
                         },
                         VariantDescriptiveAttributes = new DescriptiveAttributes
                         {
@@ -381,12 +389,9 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 3" }
                         },
-                        EmitterReferences = new EmitterReferences
+                        Reference = new EmitterReference
                         {
-                            Reference = new LightEmitterReference
-                            {
-                                PhotometryId = "photometry"
-                            }
+                            EmitterId = "emitter"
                         },
                         VariantDescriptiveAttributes = new DescriptiveAttributes
                         {
@@ -409,12 +414,9 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 4" }
                         },
-                        EmitterReferences = new EmitterReferences
+                        Reference = new EmitterReference
                         {
-                            Reference = new LightEmitterReference
-                            {
-                                PhotometryId = "photometry"
-                            }
+                            EmitterId = "emitter"
                         },
                         VariantDescriptiveAttributes = new DescriptiveAttributes
                         {
@@ -437,12 +439,9 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 5" }
                         },
-                        EmitterReferences = new EmitterReferences
+                        Reference = new EmitterReference
                         {
-                            Reference = new LightEmitterReference
-                            {
-                                PhotometryId = "photometry"
-                            }
+                            EmitterId = "emitter"
                         },
                         VariantDescriptiveAttributes = new DescriptiveAttributes
                         {
@@ -465,12 +464,9 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 6" }
                         },
-                        EmitterReferences = new EmitterReferences
+                        Reference = new EmitterReference
                         {
-                            Reference = new LightEmitterReference
-                            {
-                                PhotometryId = "photometry"
-                            }
+                            EmitterId = "emitter"
                         },
                         VariantDescriptiveAttributes = new DescriptiveAttributes
                         {
@@ -492,12 +488,9 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 7" }
                         },
-                        EmitterReferences = new EmitterReferences
+                        Reference = new EmitterReference
                         {
-                            Reference = new LightEmitterReference
-                            {
-                                PhotometryId = "photometry"
-                            }
+                            EmitterId = "emitter"
                         },
                         VariantDescriptiveAttributes = new DescriptiveAttributes
                         {

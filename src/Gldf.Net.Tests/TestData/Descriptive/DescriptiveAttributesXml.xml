@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.6/gldf.xsd">
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.7/gldf.xsd">
     <Header>
         <Manufacturer>Manufacturer</Manufacturer>
         <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
@@ -16,6 +16,11 @@
                 <PhotometryFileReference fileId="eulumdat"/>
             </Photometry>
         </Photometries>
+        <Emitters>
+            <Emitter id="emitter">
+                <LightEmitter photometryId="photometry" />
+            </Emitter>
+        </Emitters>
     </GeneralDefinitions>
     <ProductDefinitions>
         <ProductMetaData>
@@ -31,9 +36,7 @@
                 <VariantName>
                     <Locale language="en">Variant 1</Locale>
                 </VariantName>
-                <EmitterReferences>
-                    <LightEmitterReference photometryId="photometry"/>
-                </EmitterReferences>
+                <EmitterReference emitterId="emitter"/>
                 <VariantDescriptiveAttributes>
                     <Electrical>
                         <ElectricalSafetyClass>0</ElectricalSafetyClass>
@@ -133,9 +136,7 @@
                 <VariantName>
                     <Locale language="en">Variant 2</Locale>
                 </VariantName>
-                <EmitterReferences>
-                    <LightEmitterReference photometryId="photometry"/>
-                </EmitterReferences>
+                <EmitterReference emitterId="emitter"/>
                 <VariantDescriptiveAttributes>
                     <Electrical>
                         <ElectricalSafetyClass>I</ElectricalSafetyClass>
@@ -293,9 +294,7 @@
                 <VariantName>
                     <Locale language="en">Variant 3</Locale>
                 </VariantName>
-                <EmitterReferences>
-                    <LightEmitterReference photometryId="photometry"/>
-                </EmitterReferences>
+                <EmitterReference emitterId="emitter"/>
                 <VariantDescriptiveAttributes>
                     <Electrical>
                         <ElectricalSafetyClass>II</ElectricalSafetyClass>
@@ -311,9 +310,7 @@
                 <VariantName>
                     <Locale language="en">Variant 4</Locale>
                 </VariantName>
-                <EmitterReferences>
-                    <LightEmitterReference photometryId="photometry"/>
-                </EmitterReferences>
+                <EmitterReference emitterId="emitter"/>
                 <VariantDescriptiveAttributes>
                     <Electrical>
                         <ElectricalSafetyClass>III</ElectricalSafetyClass>
@@ -329,9 +326,7 @@
                 <VariantName>
                     <Locale language="en">Variant 5</Locale>
                 </VariantName>
-                <EmitterReferences>
-                    <LightEmitterReference photometryId="photometry"/>
-                </EmitterReferences>
+                <EmitterReference emitterId="emitter"/>
                 <VariantDescriptiveAttributes>
                     <Electrical>
                         <ElectricalSafetyClass>0I</ElectricalSafetyClass>
@@ -347,9 +342,7 @@
                 <VariantName>
                     <Locale language="en">Variant 6</Locale>
                 </VariantName>
-                <EmitterReferences>
-                    <LightEmitterReference photometryId="photometry"/>
-                </EmitterReferences>
+                <EmitterReference emitterId="emitter"/>
                 <VariantDescriptiveAttributes>
                     <Electrical>
                         <IngressProtectionIPCode>IP69</IngressProtectionIPCode>
@@ -364,9 +357,7 @@
                 <VariantName>
                     <Locale language="en">Variant 7</Locale>
                 </VariantName>
-                <EmitterReferences>
-                    <LightEmitterReference photometryId="photometry"/>
-                </EmitterReferences>
+                <EmitterReference emitterId="emitter"/>
                 <VariantDescriptiveAttributes>
                     <Electrical>
                         <IngressProtectionIPCode>IP69K</IngressProtectionIPCode>

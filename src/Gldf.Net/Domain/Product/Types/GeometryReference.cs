@@ -2,12 +2,12 @@
 
 namespace Gldf.Net.Domain.Product.Types
 {
-    public class GeometryReference : EmissionObjectReference
+    public class GeometryReference : EmitterReferenceBase
     {
         [XmlAttribute(DataType = "NCName", AttributeName = "geometryId")]
         public string GeometryId { get; set; }
 
-        [XmlElement("EmissionObjectReference")]
-        public GeometryEmissionObjectReference[] EmissionObjectReference { get; set; }
+        [XmlElement("EmitterReference")]
+        public GeometryEmitterReference[] EmitterReferences { get; set; }
     }
 }
