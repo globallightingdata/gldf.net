@@ -7,9 +7,9 @@ using Gldf.Net.Domain.Product;
 using Gldf.Net.Domain.Product.Types;
 using System;
 
-namespace Gldf.Net.Tests.TestData.ControlGears
+namespace Gldf.Net.Tests.TestData.Emitters
 {
-    public class ControlGearCompleteModel
+    public class EmitterMandatoryModel
     {
         public static Root Root => new()
         {
@@ -39,72 +39,6 @@ namespace Gldf.Net.Tests.TestData.ControlGears
                         Content = new PhotometryFileReference
                         {
                             FileId = "eulumdat"
-                        }
-                    }
-                },
-                ControlGears = new[]
-                {
-                    new ControlGear
-                    {
-                        Id = "controlGear-1",
-                        Description = new[]
-                        {
-                            new Locale
-                            {
-                                Language = "en",
-                                Text = "ControlGear description"
-                            }
-                        },
-                        NominalVoltage = new Voltage
-                        {
-                            Value = new VoltageRange
-                            {
-                                Min = 120,
-                                Max = 230
-                            },
-                            Type = VoltageType.DC,
-                            Frequency = VoltageFrequency.Hz400
-                        },
-                        StandbyPower = 0.1,
-                        ConstantLightOutputStartPower = 0.2,
-                        ConstantLightOutputEndPower = 0.3,
-                        PowerConsumptionControls = 0.4,
-                        IsDimmable = true,
-                        IsColorControllable = false,
-                        Interfaces = new[]
-                        {
-                            Interface.DaliBroadcast,
-                            Interface.DaliAddressable
-                        },
-                        EnergyLabels = new[]
-                        {
-                            new EnergyLabel { Region = "eu", Label = "A+" },
-                            new EnergyLabel { Region = "us", Label = "B" }
-                        }
-                    },
-                    new ControlGear
-                    {
-                        Id = "controlGear-2",
-                        Description = new[]
-                        {
-                            new Locale
-                            {
-                                Language = "en",
-                                Text = "ControlGear description"
-                            }
-                        },
-                        Interfaces = new[]
-                        {
-                            Interface.Knx,
-                            Interface.Volt0To10,
-                            Interface.Volt1To10,
-                            Interface.Volt230,
-                            Interface.Rf,
-                            Interface.WiFi,
-                            Interface.Bluetooth,
-                            Interface.InterConnection,
-                            Interface.Dmx,
-                            Interface.DmxRdm
                         }
                     }
                 },

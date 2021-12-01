@@ -65,6 +65,20 @@ namespace Gldf.Net.Tests.TestData.Sensors
                             DetectorType.Other
                         }
                     }
+                },
+                Emitters = new[]
+                {
+                    new Emitter
+                    {
+                        Id = "emitter",
+                        PossibleFittings = new EmitterBase[]
+                        {
+                            new SensorEmitter
+                            {
+                                SensorId = "sensor"
+                            }
+                        }
+                    }
                 }
             },
             ProductDefinitions = new ProductDefinitions
@@ -97,12 +111,9 @@ namespace Gldf.Net.Tests.TestData.Sensors
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        EmitterReferences = new EmitterReferences
+                        Reference = new EmitterReference
                         {
-                            Reference = new SensorReference
-                            {
-                                SensorId = "sensor"
-                            }
+                            EmitterId = "emitter"
                         }
                     }
                 }

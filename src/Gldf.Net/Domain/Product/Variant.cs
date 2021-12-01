@@ -41,7 +41,10 @@ namespace Gldf.Net.Domain.Product
 
         public Mountings Mountings { get; set; }
 
-        public EmitterReferences EmitterReferences { get; set; }
+
+        [XmlElement("EmitterReference", typeof(EmitterReference))]
+        [XmlElement("GeometryReference", typeof(GeometryReference))]
+        public EmitterReferenceBase Reference { get; set; }
 
         [XmlArrayItem("ProductSerie")]
         public ProductSerie[] ProductSeries { get; set; }

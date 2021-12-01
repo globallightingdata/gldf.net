@@ -1,6 +1,7 @@
 ﻿using Gldf.Net.Domain;
 using Gldf.Net.Tests.TestData.ControlGears;
 using Gldf.Net.Tests.TestData.Descriptive;
+using Gldf.Net.Tests.TestData.Emitters;
 using Gldf.Net.Tests.TestData.Equipments;
 using Gldf.Net.Tests.TestData.Files;
 using Gldf.Net.Tests.TestData.Geometries;
@@ -36,6 +37,8 @@ namespace Gldf.Net.Tests.TestData
         private const string ControlGearCompleteXml = "TestData.ControlGears.ControlGearCompleteXml.xml";
         private const string EquipmentMandatoryXml = "TestData.Equipments.EquipmentMandatoryXml.xml";
         private const string EquipmentCompleteXml = "TestData.Equipments.EquipmentCompleteXml.xml";
+        private const string EmitterMandatoryXml = "TestData.Emitters.EmitterMandatoryXml.xml";
+        private const string EmitterCompleteXml = "TestData.Emitters.EmitterCompleteXml.xml";
         private const string GeometryMandatoryXml = "TestData.Geometries.GeometryMandatoryXml.xml";
         private const string GeometryCompleteXml = "TestData.Geometries.GeometryCompleteXml.xml";
         private const string MetaDataMandatoryXml = "TestData.MetaData.ProductMetaDataMandatoryXml.xml";
@@ -64,6 +67,8 @@ namespace Gldf.Net.Tests.TestData
             new TestCaseData(GetControlGearCompleteXml()).SetName("ControlGear Complete"),
             new TestCaseData(GetEquipmentMandatoryXml()).SetName("Equipment Mandatory"),
             new TestCaseData(GetEquipmentCompleteXml()).SetName("Equipment Complete"),
+            new TestCaseData(GetEmitterMandatoryXml()).SetName("Emitter Mandatory"),
+            new TestCaseData(GetEmitterCompleteXml()).SetName("Emitter Complete"),
             new TestCaseData(GetGeometryMandatoryXml()).SetName("Geometry Mandatory"),
             new TestCaseData(GetGeometryCompleteXml()).SetName("Geometry Complete"),
             new TestCaseData(GetMetaDataMandatoryXml()).SetName("MetaData Mandatory"),
@@ -126,6 +131,12 @@ namespace Gldf.Net.Tests.TestData
         public static Root GetEquipmentMandatoryModel() => EquipmentMandatoryModel.Root;
         public static Root GetEquipmentCompleteModel() => EquipmentCompleteModel.Root;
 
+        // GeneralDefinitions => Emitters
+        public static string GetEmitterMandatoryXml() => ResourceLoader.LoadEmbeddedXml(EmitterMandatoryXml);
+        public static string GetEmitterCompleteXml() => ResourceLoader.LoadEmbeddedXml(EmitterCompleteXml);
+        public static Root GetEmitterMandatoryModel() => EmitterMandatoryModel.Root;
+        public static Root GetEmitterCompleteModel() => EmitterCompleteModel.Root;
+
         // GeneralDefinitions => Geometries
         public static string GetGeometryMandatoryXml() => ResourceLoader.LoadEmbeddedXml(GeometryMandatoryXml);
         public static string GetGeometryCompleteXml() => ResourceLoader.LoadEmbeddedXml(GeometryCompleteXml);
@@ -138,7 +149,7 @@ namespace Gldf.Net.Tests.TestData
         public static Root GetMetaDataMandatoryModel() => ProductMetaDataMandatoryModel.Root;
         public static Root GetMetaDataCompleteModel() => ProductMetaDataCompleteModel.Root;
 
-        // GeneralDefinitions => Variants
+        // GeneralDefinitions => Emitters
         public static string GetVariantMandatoryXml() => ResourceLoader.LoadEmbeddedXml(VariantMandatoryXml);
         public static string GetVariantCompleteXml() => ResourceLoader.LoadEmbeddedXml(VariantCompleteXml);
         public static Root GetVariantMandatoryModel() => VariantMandatoryModel.Root;

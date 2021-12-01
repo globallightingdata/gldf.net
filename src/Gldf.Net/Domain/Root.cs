@@ -10,7 +10,7 @@ namespace Gldf.Net.Domain
         [XmlAttribute(AttributeName = SchemaAttributeName, Namespace = SchemaAttributePrefixNamespace)]
         public string SchemaLocation
         {
-            get => "https://gldf.io/xsd/gldf/0.9-beta.6/gldf.xsd";
+            get => "https://gldf.io/xsd/gldf/0.9-beta.7/gldf.xsd";
             set => _ = value;
         }
 

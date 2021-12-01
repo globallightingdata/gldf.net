@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.6/gldf.xsd">
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.7/gldf.xsd">
     <Header>
         <Manufacturer>Manufacturer</Manufacturer>
         <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
@@ -16,6 +16,11 @@
                 <PhotometryFileReference fileId="eulumdat"/>
             </Photometry>
         </Photometries>
+        <Emitters>
+            <Emitter id="emitter">
+                <LightEmitter photometryId="photometry"/>
+            </Emitter>
+        </Emitters>
     </GeneralDefinitions>
     <ProductDefinitions>
         <ProductMetaData>
@@ -31,9 +36,7 @@
                 <VariantName>
                     <Locale language="en">Variant 1</Locale>
                 </VariantName>
-                <EmitterReferences>
-                    <LightEmitterReference photometryId="photometry"/>
-                </EmitterReferences>
+                <EmitterReference emitterId="emitter"/>
             </Variant>
         </Variants>
     </ProductDefinitions>

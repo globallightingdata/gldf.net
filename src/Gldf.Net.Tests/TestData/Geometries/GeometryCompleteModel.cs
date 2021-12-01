@@ -49,6 +49,20 @@ namespace Gldf.Net.Tests.TestData.Geometries
                         }
                     }
                 },
+                Emitters = new[]
+                {
+                    new Emitter
+                    {
+                        Id = "emitter",
+                        PossibleFittings = new EmitterBase[]
+                        {
+                            new LightEmitter
+                            {
+                                PhotometryId = "photometry"
+                            }
+                        }
+                    }
+                },
                 Geometries = new[]
                 {
                     new Geometry
@@ -104,12 +118,9 @@ namespace Gldf.Net.Tests.TestData.Geometries
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        EmitterReferences = new EmitterReferences
+                        Reference = new EmitterReference
                         {
-                            Reference = new LightEmitterReference
-                            {
-                                PhotometryId = "photometry"
-                            }
+                            EmitterId = "emitter"
                         }
                     }
                 }

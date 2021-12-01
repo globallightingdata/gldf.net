@@ -2,8 +2,11 @@
 
 namespace Gldf.Net.Domain.Product.Types
 {
-    public class ExternalEmitterReference
+    public class GeometryEmitterReference
     {
+        [XmlAttribute(DataType = "ID", AttributeName = "emitterId")]
+        public string EmitterId { get; set; }
+
         private TargetModelType _targetModelType;
 
         [XmlAttribute("targetModelType")]

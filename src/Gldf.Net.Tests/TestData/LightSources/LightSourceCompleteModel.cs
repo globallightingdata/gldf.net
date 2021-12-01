@@ -396,6 +396,20 @@ namespace Gldf.Net.Tests.TestData.LightSources
                             }
                         }
                     }
+                },
+                Emitters = new[]
+                {
+                    new Emitter
+                    {
+                        Id = "emitter",
+                        PossibleFittings = new EmitterBase[]
+                        {
+                            new LightEmitter
+                            {
+                                PhotometryId = "photometry"
+                            }
+                        }
+                    }
                 }
             },
             ProductDefinitions = new ProductDefinitions
@@ -428,12 +442,9 @@ namespace Gldf.Net.Tests.TestData.LightSources
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        EmitterReferences = new EmitterReferences
+                        Reference = new EmitterReference
                         {
-                            Reference = new LightEmitterReference
-                            {
-                                PhotometryId = "photometry"
-                            }
+                            EmitterId = "emitter"
                         }
                     }
                 }

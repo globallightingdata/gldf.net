@@ -2,7 +2,7 @@
 {
     public class Mountings
     {
-        public Ceilling Ceilling { get; set; }
+        public Ceiling Ceiling { get; set; }
 
         public Wall Wall { get; set; }
 
