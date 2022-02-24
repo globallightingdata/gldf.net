@@ -549,7 +549,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                                 }
                             }
                         },
-                        VariantDescriptiveAttributes = new DescriptiveAttributes
+                        DescriptiveAttributes = new DescriptiveAttributes
                         {
                             Electrical = new Electrical
                             {

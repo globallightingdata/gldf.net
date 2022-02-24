@@ -94,7 +94,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             EmitterId = "emitter"
                         },
-                        VariantDescriptiveAttributes = new DescriptiveAttributes
+                        DescriptiveAttributes = new DescriptiveAttributes
                         {
                             Electrical = new Electrical
                             {
@@ -205,7 +205,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             EmitterId = "emitter"
                         },
-                        VariantDescriptiveAttributes = new DescriptiveAttributes
+                        DescriptiveAttributes = new DescriptiveAttributes
                         {
                             Electrical = new Electrical
                             {
@@ -393,7 +393,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             EmitterId = "emitter"
                         },
-                        VariantDescriptiveAttributes = new DescriptiveAttributes
+                        DescriptiveAttributes = new DescriptiveAttributes
                         {
                             Electrical = new Electrical
                             {
@@ -418,7 +418,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             EmitterId = "emitter"
                         },
-                        VariantDescriptiveAttributes = new DescriptiveAttributes
+                        DescriptiveAttributes = new DescriptiveAttributes
                         {
                             Electrical = new Electrical
                             {
@@ -443,7 +443,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             EmitterId = "emitter"
                         },
-                        VariantDescriptiveAttributes = new DescriptiveAttributes
+                        DescriptiveAttributes = new DescriptiveAttributes
                         {
                             Electrical = new Electrical
                             {
@@ -468,7 +468,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             EmitterId = "emitter"
                         },
-                        VariantDescriptiveAttributes = new DescriptiveAttributes
+                        DescriptiveAttributes = new DescriptiveAttributes
                         {
                             Electrical = new Electrical
                             {
@@ -492,7 +492,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             EmitterId = "emitter"
                         },
-                        VariantDescriptiveAttributes = new DescriptiveAttributes
+                        DescriptiveAttributes = new DescriptiveAttributes
                         {
                             Electrical = new Electrical
                             {

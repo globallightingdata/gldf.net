@@ -54,7 +54,7 @@ namespace Gldf.Net.Domain.Product
 
         public Symbol Symbol { get; set; }
 
-        public DescriptiveAttributes VariantDescriptiveAttributes { get; set; }
+        public DescriptiveAttributes DescriptiveAttributes { get; set; }
 
         [XmlIgnore]
         public bool SortOrderSpecified { get; set; }
