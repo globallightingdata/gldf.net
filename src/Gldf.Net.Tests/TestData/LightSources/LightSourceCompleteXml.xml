@@ -25,6 +25,9 @@
         </Spectrums>
         <LightSources>
             <LightSource id="lightSource-1">
+                <Name>
+                    <Locale language="en">LightSource1 name</Locale>
+                </Name>
                 <Fixed>
                     <ZhagaStandard>true</ZhagaStandard>
                 </Fixed>
@@ -33,6 +36,9 @@
                 </Maintenance>
             </LightSource>
             <LightSource id="lightSource-2">
+                <Name>
+                    <Locale language="en">LightSource2 name</Locale>
+                </Name>
                 <Changeable>
                     <RatedInputPower>1</RatedInputPower>
                     <RatedInputVoltage>
@@ -51,7 +57,7 @@
             </LightSource>
             <LightSource id="lightSource-3">
                 <Name>
-                    <Locale language="en">LightSource name</Locale>
+                    <Locale language="en">LightSource3 name</Locale>
                 </Name>
                 <Description>
                     <Locale language="en">LightSource description</Locale>
@@ -134,6 +140,9 @@
                 </LightSourceImages>
             </LightSource>
             <LightSource id="lightSource-4">
+                <Name>
+                    <Locale language="en">LightSource4 name</Locale>
+                </Name>
                 <Changeable>
                     <RatedInputPower>1</RatedInputPower>
                     <RatedInputVoltage>
@@ -154,6 +163,9 @@
                 </LightSourceImages>
             </LightSource>
             <LightSource id="lightSource-5">
+                <Name>
+                    <Locale language="en">LightSource5 name</Locale>
+                </Name>
                 <Changeable>
                     <RatedInputPower>1</RatedInputPower>
                     <RatedInputVoltage>
@@ -174,6 +186,9 @@
                 </LightSourceImages>
             </LightSource>
             <LightSource id="lightSource-6">
+                <Name>
+                    <Locale language="en">LightSource6 name</Locale>
+                </Name>
                 <Fixed />
                 <Maintenance>
                     <Cie97LampType>Flourescent Halophosphate</Cie97LampType>
@@ -183,30 +198,45 @@
                 </LightSourceImages>
             </LightSource>
             <LightSource id="lightSource-7">
+                <Name>
+                    <Locale language="en">LightSource7 name</Locale>
+                </Name>
                 <Fixed />
                 <Maintenance>
                     <Cie97LampType>Compact Fluorescent</Cie97LampType>
                 </Maintenance>
             </LightSource>
             <LightSource id="lightSource-8">
+                <Name>
+                    <Locale language="en">LightSource8 name</Locale>
+                </Name>
                 <Fixed />
                 <Maintenance>
                     <Cie97LampType>Mercury</Cie97LampType>
                 </Maintenance>
             </LightSource>
             <LightSource id="lightSource-9">
+                <Name>
+                    <Locale language="en">LightSource9 name</Locale>
+                </Name>
                 <Fixed />
                 <Maintenance>
                     <Cie97LampType>Metal Halide (250/400W)</Cie97LampType>
                 </Maintenance>
             </LightSource>
             <LightSource id="lightSource-10">
+                <Name>
+                    <Locale language="en">LightSource10 name</Locale>
+                </Name>
                 <Fixed />
                 <Maintenance>
                         <Cie97LampType>Ceramic Metal Halide (50/150W)</Cie97LampType>
                 </Maintenance>
             </LightSource>
             <LightSource id="lightSource-11">
+                <Name>
+                    <Locale language="en">LightSource11 name</Locale>
+                </Name>
                 <Fixed />
                 <Maintenance>
                     <Cie97LampType>High Pressure Sodium (250/400W)</Cie97LampType>

@@ -23,7 +23,7 @@ namespace Gldf.Net.Domain.Product.Types
             }
         }
 
-        public Locale[] DisplayName { get; set; }
+        public Locale[] Name { get; set; }
 
         [XmlIgnore]
         public bool EmergencyBehaviourSpecified { get; set; }

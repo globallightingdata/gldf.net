@@ -18,11 +18,17 @@
         </Photometries>
         <LightSources>
             <LightSource id="lightSource">
+                <Name>
+                    <Locale language="en">LightSource name</Locale>
+                </Name>
                 <Fixed/>
             </LightSource>
         </LightSources>
         <ControlGears>
             <ControlGear id="controlGear">
+                <Name>
+                    <Locale language="en">ControlGear name</Locale>
+                </Name>
                 <Description>
                     <Locale language="en">ControlGear description</Locale>
                 </Description>

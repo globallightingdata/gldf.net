@@ -9,6 +9,6 @@ namespace Gldf.Net.Domain.Product.Types
         [XmlAttribute(DataType = "NCName", AttributeName = "sensorId")]
         public string SensorId { get; set; }
 
-        public Locale[] DisplayName { get; set; }
+        public Locale[] Name { get; set; }
     }
 }

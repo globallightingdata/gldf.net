@@ -47,6 +47,14 @@ namespace Gldf.Net.Tests.TestData.Equipments
                     new LightSource
                     {
                         Id = "lightSource",
+                        Name = new[]
+                        {
+                            new Locale
+                            {
+                                Language = "de",
+                                Text = "LightSource name"
+                            }
+                        },
                         LightSourceType = new FixedLightSource()
                     }
                 },
@@ -55,6 +63,14 @@ namespace Gldf.Net.Tests.TestData.Equipments
                     new ControlGear
                     {
                         Id = "controlGear",
+                        Name = new[]
+                        {
+                            new Locale
+                            {
+                                Language = "de",
+                                Text = "ControlGear name"
+                            }
+                        },
                         Description = new[]
                         {
                             new Locale

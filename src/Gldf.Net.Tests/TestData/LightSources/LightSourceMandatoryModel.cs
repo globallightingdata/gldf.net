@@ -47,6 +47,14 @@ namespace Gldf.Net.Tests.TestData.LightSources
                     new LightSource
                     {
                         Id = "lightSource",
+                        Name = new[]
+                        {
+                            new Locale
+                            {
+                                Language = "en",
+                                Text = "LightSource name"
+                            }
+                        },
                         LightSourceType = new FixedLightSource()
                     }
                 },

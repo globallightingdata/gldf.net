@@ -82,6 +82,14 @@ namespace Gldf.Net.Tests.TestData.Variants
                     new LightSource
                     {
                         Id = "lightSource",
+                        Name = new[]
+                        {
+                            new Locale
+                            {
+                                Language = "en",
+                                Text = "LightSource name"
+                            }
+                        },
                         LightSourceType = new FixedLightSource()
                     }
                 },
@@ -121,7 +129,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                             {
                                 PhotometryId = "photometry",
                                 EquipmentId = "equipment",
-                                DisplayName = new[]
+                                Name = new[]
                                 {
                                     new Locale
                                     {
@@ -162,7 +170,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                             new SensorEmitter
                             {
                                 SensorId = "sensor",
-                                DisplayName = new[]
+                                Name = new[]
                                 {
                                     new Locale
                                     {
@@ -179,14 +187,14 @@ namespace Gldf.Net.Tests.TestData.Variants
                         }
                     }
                 },
-                Geometries = new[]
+                Geometries = new Geometry[]
                 {
-                    new Geometry
+                    new ModelGeometry
                     {
                         Id = "geometry",
-                        GeometryFileReferences = new[]
+                        GeometryFileReferences = new GeometryFileReference[]
                         {
-                            new GeometryFileReference
+                            new()
                             {
                                 FileId = "geometryFile"
                             }
@@ -416,7 +424,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                         {
                             new Locale { Language = "en", Text = "Variant 3" }
                         },
-                        Reference = new GeometryReference
+                        Reference = new ModelGeometryReference
                         {
                             GeometryId = "geometry",
                             EmitterReferences = new[]
@@ -437,7 +445,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                         {
                             new Locale { Language = "en", Text = "Variant 4" }
                         },
-                        Reference = new GeometryReference
+                        Reference = new ModelGeometryReference
                         {
                             GeometryId = "geometry",
                             EmitterReferences = new[]

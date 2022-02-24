@@ -24,7 +24,10 @@
         </Photometries>
         <LightSources>
             <LightSource id="lightSource">
-                <Fixed/>
+                <Name>
+                    <Locale language="en">lightSource name</Locale>
+                </Name>
+                <Fixed />
             </LightSource>
         </LightSources>
         <Equipments>
@@ -37,10 +40,10 @@
         <Emitters>
             <Emitter id="emitter-1">
                 <LightEmitter photometryId="photometry">
-                    <DisplayName>
+                    <Name>
                         <Locale language="en">Display name</Locale>
                         <Locale language="de">Anzeigename</Locale>
-                    </DisplayName>
+                    </Name>
                 </LightEmitter>
                 <LightEmitter photometryId="photometry" equipmentId="equipment"/>
                 <LightEmitter photometryId="photometry" emergencyBehaviour="None" />
@@ -49,10 +52,10 @@
             </Emitter>
             <Emitter id="emitter-2">
                 <Sensor sensorId="sensor">
-                    <DisplayName>
+                    <Name>
                         <Locale language="en">Display name</Locale>
                         <Locale language="de">Anzeigename</Locale>
-                    </DisplayName>
+                    </Name>
                 </Sensor>
                 <Sensor sensorId="sensor"/>
             </Emitter>

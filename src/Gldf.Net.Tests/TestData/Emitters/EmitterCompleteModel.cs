@@ -38,7 +38,7 @@ namespace Gldf.Net.Tests.TestData.Emitters
                         File = "https://example.org/sensor.xml"
                     }
                 },
-                Sensors = new []
+                Sensors = new[]
                 {
                     new Sensor
                     {
@@ -60,15 +60,23 @@ namespace Gldf.Net.Tests.TestData.Emitters
                         }
                     }
                 },
-                LightSources = new []
+                LightSources = new[]
                 {
                     new LightSource
                     {
                         Id = "lightSource",
+                        Name = new[]
+                        {
+                            new Locale
+                            {
+                                Language = "de",
+                                Text = "LightSource name"
+                            }
+                        },
                         LightSourceType = new FixedLightSource()
                     }
                 },
-                Equipments = new []
+                Equipments = new[]
                 {
                     new Equipment
                     {
@@ -91,13 +99,14 @@ namespace Gldf.Net.Tests.TestData.Emitters
                             new LightEmitter
                             {
                                 PhotometryId = "photometry",
-                                DisplayName = new []
+                                Name = new[]
                                 {
                                     new Locale
                                     {
                                         Language = "en",
                                         Text = "Display name"
-                                    },new Locale
+                                    },
+                                    new Locale
                                     {
                                         Language = "de",
                                         Text = "Anzeigename"
@@ -125,7 +134,8 @@ namespace Gldf.Net.Tests.TestData.Emitters
                                 EmergencyBehaviour = EmergencyBehaviour.EmergencyOnly
                             }
                         }
-                    }, new Emitter
+                    },
+                    new Emitter
                     {
                         Id = "emitter-2",
                         PossibleFittings = new EmitterBase[]
@@ -133,13 +143,14 @@ namespace Gldf.Net.Tests.TestData.Emitters
                             new SensorEmitter
                             {
                                 SensorId = "sensor",
-                                DisplayName = new []
+                                Name = new[]
                                 {
                                     new Locale
                                     {
                                         Language = "en",
                                         Text = "Display name"
-                                    },new Locale
+                                    },
+                                    new Locale
                                     {
                                         Language = "de",
                                         Text = "Anzeigename"

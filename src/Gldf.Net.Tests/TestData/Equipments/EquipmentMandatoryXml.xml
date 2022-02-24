@@ -18,6 +18,9 @@
         </Photometries>
         <LightSources>
             <LightSource id="lightSource">
+                <Name>
+                    <Locale language="en">LightSource name</Locale>
+                </Name>
                 <Fixed/>
             </LightSource>
         </LightSources>
