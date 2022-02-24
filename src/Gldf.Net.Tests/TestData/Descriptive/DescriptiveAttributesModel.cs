@@ -72,7 +72,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                             Text = "Product number"
                         }
                     },
-                    ProductName = new[]
+                    Product = new[]
                     {
                         new Locale
                         {
@@ -86,7 +86,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                     new Variant
                     {
                         Id = "variant-1",
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
@@ -197,7 +197,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                     new Variant
                     {
                         Id = "variant-2",
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale { Language = "en", Text = "Variant 2" }
                         },
@@ -385,7 +385,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                     new Variant
                     {
                         Id = "variant-3",
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale { Language = "en", Text = "Variant 3" }
                         },
@@ -410,7 +410,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                     new Variant
                     {
                         Id = "variant-4",
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale { Language = "en", Text = "Variant 4" }
                         },
@@ -435,7 +435,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                     new Variant
                     {
                         Id = "variant-5",
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale { Language = "en", Text = "Variant 5" }
                         },
@@ -460,7 +460,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                     new Variant
                     {
                         Id = "variant-6",
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale { Language = "en", Text = "Variant 6" }
                         },
@@ -484,7 +484,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                     new Variant
                     {
                         Id = "variant-7",
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale { Language = "en", Text = "Variant 7" }
                         },

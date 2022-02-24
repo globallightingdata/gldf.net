@@ -206,7 +206,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                             Text = "Product number"
                         }
                     },
-                    ProductName = new[]
+                    Product = new[]
                     {
                         new Locale
                         {
@@ -220,7 +220,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                     new Variant
                     {
                         Id = "variant-1",
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale
                             {
@@ -357,7 +357,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                     new Variant
                     {
                         Id = "variant-2",
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale { Language = "en", Text = "Variant 2" }
                         },
@@ -412,7 +412,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                     {
                         Id = "variant-3",
                         SortOrder = 3,
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale { Language = "en", Text = "Variant 3" }
                         },
@@ -433,7 +433,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                     {
                         Id = "variant-4",
                         SortOrder = 4,
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale { Language = "en", Text = "Variant 4" }
                         },

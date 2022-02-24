@@ -90,7 +90,7 @@ namespace Gldf.Net.Tests.TestData.Geometries
                             Text = "Product number"
                         }
                     },
-                    ProductName = new[]
+                    Product = new[]
                     {
                         new Locale
                         {
@@ -104,7 +104,7 @@ namespace Gldf.Net.Tests.TestData.Geometries
                     new Variant
                     {
                         Id = "variant-1",
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },

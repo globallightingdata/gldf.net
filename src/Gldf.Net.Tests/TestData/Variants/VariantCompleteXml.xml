@@ -72,16 +72,16 @@
             <ProductNumber>
                 <Locale language="en">Product number</Locale>
             </ProductNumber>
-            <ProductName>
+            <Name>
                 <Locale language="en">Product name</Locale>
-            </ProductName>
+            </Name>
         </ProductMetaData>
         <Variants>
             <Variant id="variant-1">
-                <VariantName>
+                <Name>
                     <Locale language="en">Variant 1</Locale>
                     <Locale language="de">Variante 1</Locale>
-                </VariantName>
+                </Name>
                 <Description>
                     <Locale language="en">Variant description</Locale>
                     <Locale language="de">Variantenbeschreibung</Locale>
@@ -139,9 +139,9 @@
                 <Symbol fileId="pictureFile"/>
             </Variant>
             <Variant id="variant-2">
-                <VariantName>
+                <Name>
                     <Locale language="en">Variant 2</Locale>
-                </VariantName>
+                </Name>
                 <Mountings>
                     <Ceiling>
                         <Recessed recessedDepth="0.16">
@@ -173,9 +173,9 @@
                 <EmitterReference emitterId="emitter"/>
             </Variant>
             <Variant id="variant-3" sortOrder="3">
-                <VariantName>
+                <Name>
                     <Locale language="en">Variant 3</Locale>
-                </VariantName>
+                </Name>
                 <GeometryReference geometryId="geometry">
                     <EmitterReference emitterId="leoEmitter">
                         <EmitterObjectExternalName>leo1</EmitterObjectExternalName>
@@ -183,9 +183,9 @@
                 </GeometryReference>
             </Variant>
             <Variant id="variant-4" sortOrder="4">
-                <VariantName>
+                <Name>
                     <Locale language="en">Variant 4</Locale>
-                </VariantName>
+                </Name>
                 <GeometryReference geometryId="geometry">
                     <EmitterReference emitterId="sensorEmitter" targetModelType="l3d">
                         <EmitterObjectExternalName>sensor1</EmitterObjectExternalName>
