@@ -9,6 +9,8 @@ namespace Gldf.Net.Domain.Definition
         [XmlAttribute(DataType = "ID", AttributeName = "id")]
         public string Id { get; set; }
 
+        public Locale[] Name { get; set; }
+
         public Locale[] Description { get; set; }
 
         public Voltage NominalVoltage { get; set; }

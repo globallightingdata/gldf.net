@@ -85,6 +85,14 @@ namespace Gldf.Net.Tests.TestData.ControlGears
                     new ControlGear
                     {
                         Id = "controlGear-2",
+                        Name = new[]
+                        {
+                            new Locale
+                            {
+                                Language = "en",
+                                Text = "ControlGear name"
+                            }
+                        },
                         Description = new[]
                         {
                             new Locale

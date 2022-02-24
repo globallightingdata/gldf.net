@@ -18,9 +18,9 @@
         </Photometries>
         <ControlGears>
             <ControlGear id="controlGear">
-                <Description>
-                    <Locale language="en">ControlGear description</Locale>
-                </Description>
+                <Name>
+                    <Locale language="en">ControlGear name</Locale>
+                </Name>
             </ControlGear>
         </ControlGears>
         <Emitters>

@@ -18,6 +18,9 @@
         </Photometries>
         <ControlGears>
             <ControlGear id="controlGear-1">
+                <Name>
+                    <Locale language="en">ControlGear name</Locale>
+                </Name>
                 <Description>
                     <Locale language="en">ControlGear description</Locale>
                 </Description>
@@ -45,6 +48,9 @@
                 </EnergyLabels>
             </ControlGear>
             <ControlGear id="controlGear-2">
+                <Name>
+                    <Locale language="en">ControlGear name</Locale>
+                </Name>
                 <Description>
                     <Locale language="en">ControlGear description</Locale>
                 </Description>
