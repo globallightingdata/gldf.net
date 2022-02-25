@@ -228,6 +228,19 @@ namespace Gldf.Net.Tests.TestData.Variants
                     new Variant
                     {
                         Id = "variant-1",
+                        ProductNumber = new[]
+                        {
+                            new Locale
+                            {
+                                Language = "en",
+                                Text = "Product number"
+                            },
+                            new Locale
+                            {
+                                Language = "de",
+                                Text = "Produktnummer"
+                            }
+                        },
                         Name = new[]
                         {
                             new Locale
@@ -268,7 +281,6 @@ namespace Gldf.Net.Tests.TestData.Variants
                             }
                         },
                         GTIN = "12345678",
-                        ProductNumber = "ProductNumber",
                         Mountings = new Mountings
                         {
                             Ceiling = new Ceiling

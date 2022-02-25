@@ -26,6 +26,8 @@ namespace Gldf.Net.Domain.Product
             }
         }
 
+        public Locale[] ProductNumber { get; set; }
+
         [XmlArrayItem("Locale")]
         public Locale[] Name { get; set; }
 
@@ -36,8 +38,6 @@ namespace Gldf.Net.Domain.Product
         public Locale[] TenderText { get; set; }
 
         public string GTIN { get; set; }
-
-        public string ProductNumber { get; set; }
 
         public Mountings Mountings { get; set; }
 
