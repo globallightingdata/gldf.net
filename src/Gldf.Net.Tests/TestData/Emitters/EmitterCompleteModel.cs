@@ -111,6 +111,13 @@ namespace Gldf.Net.Tests.TestData.Emitters
                                         Language = "de",
                                         Text = "Anzeigename"
                                     }
+                                },
+                                Rotation = new Rotation
+                                {
+                                    X = 0,
+                                    Y = 1,
+                                    Z = 2,
+                                    G0 = 3
                                 }
                             },
                             new LightEmitter

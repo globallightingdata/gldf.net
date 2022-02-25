@@ -1,8 +1,8 @@
-﻿using Gldf.Net.Domain.Definition.Types;
-using Gldf.Net.Domain.Global;
+﻿using Gldf.Net.Domain.Global;
+using Gldf.Net.Domain.Product.Types;
 using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Product.Types
+namespace Gldf.Net.Domain.Definition.Types
 {
     public class LightEmitter : EmitterBase
     {
@@ -25,9 +25,12 @@ namespace Gldf.Net.Domain.Product.Types
 
         public Locale[] Name { get; set; }
 
+        public Rotation Rotation { get; set; }
+
         [XmlIgnore]
         public bool EmergencyBehaviourSpecified { get; set; }
 
         private EmergencyBehaviour _emergencyBehaviour;
     }
+
 }

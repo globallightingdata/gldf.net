@@ -44,6 +44,12 @@
                         <Locale language="en">Display name</Locale>
                         <Locale language="de">Anzeigename</Locale>
                     </Name>
+                    <Rotation>
+                        <X>0</X>
+                        <Y>1</Y>
+                        <Z>2</Z>
+                        <G0>3</G0>
+                    </Rotation>
                 </LightEmitter>
                 <LightEmitter photometryId="photometry" equipmentId="equipment"/>
                 <LightEmitter photometryId="photometry" emergencyBehaviour="None" />
