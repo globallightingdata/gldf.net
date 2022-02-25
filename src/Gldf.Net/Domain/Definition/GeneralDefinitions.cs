@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using Gldf.Net.Domain.Definition.Types;
+using System.Xml.Serialization;
 
 namespace Gldf.Net.Domain.Definition
 {
@@ -28,7 +29,10 @@ namespace Gldf.Net.Domain.Definition
         [XmlArrayItem("Emitter")]
         public Emitter[] Emitters { get; set; }
 
-        [XmlArrayItem("Geometry")]
+        [XmlElement("SimpleGeometry", typeof(SimpleGeometry))]
+        [XmlElement("ModelGeometry", typeof(ModelGeometry))]
         public Geometry[] Geometries { get; set; }
+
+        // todo implement AsGeometry
     }
 }

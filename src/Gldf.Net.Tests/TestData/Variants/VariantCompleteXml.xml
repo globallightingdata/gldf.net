@@ -65,9 +65,9 @@
 
         </Emitters>
         <Geometries>
-            <Geometry id="geometry">
+            <ModelGeometry id="geometry">
                 <GeometryFileReference fileId="geometryFile"/>
-            </Geometry>
+            </ModelGeometry>
         </Geometries>
     </GeneralDefinitions>
     <ProductDefinitions>
@@ -179,17 +179,17 @@
                 <Name>
                     <Locale language="en">Variant 3</Locale>
                 </Name>
-                <GeometryReference geometryId="geometry">
+                <ModelGeometryReference geometryId="geometry">
                     <EmitterReference emitterId="leoEmitter">
                         <EmitterObjectExternalName>leo1</EmitterObjectExternalName>
                     </EmitterReference>
-                </GeometryReference>
+                </ModelGeometryReference>
             </Variant>
             <Variant id="variant-4" sortOrder="4">
                 <Name>
                     <Locale language="en">Variant 4</Locale>
                 </Name>
-                <GeometryReference geometryId="geometry">
+                <ModelGeometryReference geometryId="geometry">
                     <EmitterReference emitterId="sensorEmitter" targetModelType="l3d">
                         <EmitterObjectExternalName>sensor1</EmitterObjectExternalName>
                     </EmitterReference>
@@ -199,7 +199,7 @@
                     <EmitterReference emitterId="sensorEmitter" targetModelType="r3d">
                         <EmitterObjectExternalName>sensor1</EmitterObjectExternalName>
                     </EmitterReference>
-                </GeometryReference>
+                </ModelGeometryReference>
                 <ProductSeries>
                     <ProductSerie>
                         <Name>

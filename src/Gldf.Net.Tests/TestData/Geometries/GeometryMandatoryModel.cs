@@ -63,16 +63,27 @@ namespace Gldf.Net.Tests.TestData.Geometries
                         }
                     }
                 },
-                Geometries = new[]
+                Geometries = new Geometry[]
                 {
-                    new Geometry
+                    new ModelGeometry
                     {
                         Id = "geometry",
-                        GeometryFileReferences = new []
+                        GeometryFileReferences = new GeometryFileReference[]
                         {
-                            new GeometryFileReference
+                            new()
                             {
-                                FileId = "geometryFile"
+                                FileId = "geometryFile",
+                                LevelOfDetail = LevelOfDetail.Low
+                            },
+                            new()
+                            {
+                                FileId = "geometryFile",
+                                LevelOfDetail = LevelOfDetail.Medium
+                            },
+                            new()
+                            {
+                                FileId = "geometryFile",
+                                LevelOfDetail = LevelOfDetail.High
                             }
                         }
                     }

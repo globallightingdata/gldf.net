@@ -23,9 +23,11 @@
             </Emitter>
         </Emitters>
         <Geometries>
-            <Geometry id="geometry">
-                <GeometryFileReference fileId="geometryFile" />
-            </Geometry>
+            <ModelGeometry id="geometry">
+                <GeometryFileReference fileId="geometryFile" levelOfDetail="Low" />
+                <GeometryFileReference fileId="geometryFile" levelOfDetail="Medium" />
+                <GeometryFileReference fileId="geometryFile" levelOfDetail="High" />
+            </ModelGeometry>
         </Geometries>
     </GeneralDefinitions>
     <ProductDefinitions>

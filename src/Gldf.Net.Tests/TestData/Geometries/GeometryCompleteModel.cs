@@ -63,27 +63,64 @@ namespace Gldf.Net.Tests.TestData.Geometries
                         }
                     }
                 },
-                Geometries = new[]
+                Geometries = new Geometry[]
                 {
-                    new Geometry
+                    new SimpleGeometry
                     {
-                        Id = "geometry",
-                        GeometryFileReferences = new[]
+                        Id = "geometry1",
+                        SimpleGeometryType = new SimpleCuboidGeometry
                         {
-                            new GeometryFileReference
-                            {
-                                FileId = "geometryFile"
-                            },
-                            new GeometryFileReference
-                            {
-                                FileId = "geometryFile",
-                                LevelOfDetail = LevelOfDetail.Medium
-                            },
-                            new GeometryFileReference
-                            {
-                                FileId = "geometryFile",
-                                LevelOfDetail = LevelOfDetail.High
-                            }
+                            Width = 1,
+                            Length = 2,
+                            Height = 3
+                        },
+                        SimpleGeometryEmitterType = new SimpleRectangularEmitter
+                        {
+                            Width = 4,
+                            Length = 5
+                        }
+                    },
+                    new SimpleGeometry
+                    {
+                        Id = "geometry2",
+                        SimpleGeometryType = new SimpleCylinderGeometry
+                        {
+                            Plane = SimpleCylinderPlane.X,
+                            Diameter = 1,
+                            Height = 2
+                        },
+                        SimpleGeometryEmitterType = new SimpleCircularEmitter
+                        {
+                            Diameter = 3
+                        }
+                    },
+                    new SimpleGeometry
+                    {
+                        Id = "geometry3",
+                        SimpleGeometryType = new SimpleCylinderGeometry
+                        {
+                            Plane = SimpleCylinderPlane.Y,
+                            Diameter = 1,
+                            Height = 2
+                        },
+                        SimpleGeometryEmitterType = new SimpleRectangularEmitter
+                        {
+                            Width = 3,
+                            Length = 4
+                        }
+                    },
+                    new SimpleGeometry
+                    {
+                        Id = "geometry4",
+                        SimpleGeometryType = new SimpleCylinderGeometry
+                        {
+                            Plane = SimpleCylinderPlane.Z,
+                            Diameter = 1,
+                            Height = 2
+                        },
+                        SimpleGeometryEmitterType = new SimpleCircularEmitter
+                        {
+                            Diameter = 3
                         }
                     }
                 }
