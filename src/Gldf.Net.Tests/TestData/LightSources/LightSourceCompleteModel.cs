@@ -148,7 +148,7 @@ namespace Gldf.Net.Tests.TestData.LightSources
                         },
                         LightSourceType = new ChangeableLightSource
                         {
-                            Manufacturer = "MAnufacturer",
+                            Manufacturer = "Manufacturer",
                             Gtin = "12345678",
                             Ilcos = "ILCOS",
                             Zvei = "ZVEI",
@@ -161,6 +161,7 @@ namespace Gldf.Net.Tests.TestData.LightSources
                                 Frequency = VoltageFrequency.Hz5060
                             },
                             RatedLuminousFlux = 2,
+                            RatedLuminousFluxRGB = 3,
                             PowerRange = new LightSourcePowerRange
                             {
                                 Lower = 3,

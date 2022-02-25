@@ -75,6 +75,7 @@
                         <Frequency>50/60</Frequency>
                     </RatedInputVoltage>
                     <RatedLuminousFlux>2</RatedLuminousFlux>
+                    <RatedLuminousFluxRGB>3</RatedLuminousFluxRGB>
                     <PowerRange>
                         <Lower>3</Lower>
                         <Upper>4</Upper>
