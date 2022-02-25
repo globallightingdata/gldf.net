@@ -108,6 +108,18 @@ public class VariantMandatoryModel
                             Language = "en",
                             Text = "Variant 1"
                         }
+                    }
+                },
+                new Variant
+                {
+                    Id = "variant-2",
+                    Name = new[]
+                    {
+                        new Locale
+                        {
+                            Language = "en",
+                            Text = "Variant 2"
+                        }
                     },
                     Reference = new SimpleGeometryReference
                     {

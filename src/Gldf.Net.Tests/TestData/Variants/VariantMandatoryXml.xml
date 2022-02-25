@@ -49,6 +49,11 @@
                 <Name>
                     <Locale language="en">Variant 1</Locale>
                 </Name>
+            </Variant>
+            <Variant id="variant-2">
+                <Name>
+                    <Locale language="en">Variant 2</Locale>
+                </Name>
                 <SimpleGeometryReference geometryId="geometry" emitterId="emitter"/>
             </Variant>
         </Variants>

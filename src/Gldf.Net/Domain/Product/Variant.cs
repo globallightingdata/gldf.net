@@ -41,7 +41,6 @@ namespace Gldf.Net.Domain.Product
 
         public Mountings Mountings { get; set; }
 
-
         [XmlElement("EmitterReference", typeof(EmitterReference))]
         [XmlElement("ModelGeometryReference", typeof(ModelGeometryReference))]
         [XmlElement("SimpleGeometryReference", typeof(SimpleGeometryReference))]
