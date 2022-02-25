@@ -21,8 +21,14 @@
                     <DownwardFluxFraction>0.03</DownwardFluxFraction>
                     <DownwardLightOutputRatio>0.04</DownwardLightOutputRatio>
                     <UpwardLightOutputRatio>0.05</UpwardLightOutputRatio>
-                    <TenthPeakDivergence>0.06</TenthPeakDivergence>
-                    <HalfPeakDivergence>0.07</HalfPeakDivergence>
+                    <TenthPeakDivergence>
+                        <C0-C180>11</C0-C180>
+                        <C90-C270>12</C90-C270>
+                    </TenthPeakDivergence>
+                    <HalfPeakDivergence>
+                        <C0-C180>13</C0-C180>
+                        <C90-C270>14</C90-C270>
+                    </HalfPeakDivergence>
                     <PhotometricCode>PhotometricCode</PhotometricCode>
                     <CIE-FluxCode>CIE-FluxCode</CIE-FluxCode>
                     <CutOffAngle>0.08</CutOffAngle>

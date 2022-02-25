@@ -16,9 +16,9 @@ namespace Gldf.Net.Domain.Definition.Types
 
         public double? UpwardLightOutputRatio { get; set; }
 
-        public double? TenthPeakDivergence { get; set; }
+        public TenthPeakDivergence TenthPeakDivergence { get; set; }
 
-        public double? HalfPeakDivergence { get; set; }
+        public HalfPeakDivergence HalfPeakDivergence { get; set; }
 
         public string PhotometricCode { get; set; }
 

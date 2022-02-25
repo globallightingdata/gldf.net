@@ -45,8 +45,16 @@ namespace Gldf.Net.Tests.TestData.Photometries
                             DownwardFluxFraction = 0.03,
                             DownwardLightOutputRatio = 0.04,
                             UpwardLightOutputRatio = 0.05,
-                            TenthPeakDivergence = 0.06,
-                            HalfPeakDivergence = 0.07,
+                            TenthPeakDivergence = new TenthPeakDivergence
+                            {
+                                C0C180 = 11,
+                                C90C270 = 12
+                            },
+                            HalfPeakDivergence = new HalfPeakDivergence
+                            {
+                                C0C180 = 13,
+                                C90C270 = 14
+                            },
                             PhotometricCode = "PhotometricCode",
                             CieFluxCode = "CIE-FluxCode",
                             CutOffAngle = 0.08,
