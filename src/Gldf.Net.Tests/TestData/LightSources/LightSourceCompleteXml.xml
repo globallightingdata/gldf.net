@@ -31,9 +31,9 @@
                 <Fixed>
                     <ZhagaStandard>true</ZhagaStandard>
                 </Fixed>
-                <Maintenance>
+                <LightSourceMaintenance>
                     <LedMaintenanceFactor hours="1">0.1</LedMaintenanceFactor>
-                </Maintenance>
+                </LightSourceMaintenance>
             </LightSource>
             <LightSource id="lightSource-2">
                 <Name>
@@ -51,9 +51,9 @@
                     </RatedInputVoltage>
                     <RatedLuminousFlux>2</RatedLuminousFlux>
                 </Changeable>
-                <Maintenance>
+                <LightSourceMaintenance>
                     <Cie97LampType>Incandescent</Cie97LampType>
-                </Maintenance>
+                </LightSourceMaintenance>
             </LightSource>
             <LightSource id="lightSource-3">
                 <Name>
@@ -99,7 +99,7 @@
                                 stroboscopicEffectsSVM="stroboscopic 2"
                                 description="Description 2">0.4</FluxFactor>
                 </ActivePowerTable>
-                <Maintenance lifetime="1">
+                <LightSourceMaintenance lifetime="1">
                     <CieLampMaintenanceFactors>
                         <CieLampMaintenanceFactor burningTime="2">
                             <LampLumenMaintenanceFactor>0.1</LampLumenMaintenanceFactor>
@@ -110,7 +110,7 @@
                             <LampSurvivalFactor>0.4</LampSurvivalFactor>
                         </CieLampMaintenanceFactor>
                     </CieLampMaintenanceFactors>
-                </Maintenance>
+                </LightSourceMaintenance>
                 <ColorInformation>
                     <ColorRenderingIndex>1</ColorRenderingIndex>
                     <CorrelatedColorTemperature>2</CorrelatedColorTemperature>
@@ -156,9 +156,9 @@
                     </RatedInputVoltage>
                     <RatedLuminousFlux>2</RatedLuminousFlux>
                 </Changeable>
-                <Maintenance>
+                <LightSourceMaintenance>
                     <Cie97LampType>Halogen</Cie97LampType>
-                </Maintenance>
+                </LightSourceMaintenance>
                 <LightSourceImages>
                     <Image fileId="image" imageType="Application Picture"/>
                 </LightSourceImages>
@@ -179,9 +179,9 @@
                     </RatedInputVoltage>
                     <RatedLuminousFlux>2</RatedLuminousFlux>
                 </Changeable>
-                <Maintenance>
+                <LightSourceMaintenance>
                     <Cie97LampType>Flourescent Triphosphor</Cie97LampType>
-                </Maintenance>
+                </LightSourceMaintenance>
                 <LightSourceImages>
                     <Image fileId="image" imageType="Technical Sketch"/>
                 </LightSourceImages>
@@ -191,9 +191,9 @@
                     <Locale language="en">LightSource6 name</Locale>
                 </Name>
                 <Fixed />
-                <Maintenance>
+                <LightSourceMaintenance>
                     <Cie97LampType>Flourescent Halophosphate</Cie97LampType>
-                </Maintenance>
+                </LightSourceMaintenance>
                 <LightSourceImages>
                     <Image fileId="image" imageType="Other"/>
                 </LightSourceImages>
@@ -203,45 +203,45 @@
                     <Locale language="en">LightSource7 name</Locale>
                 </Name>
                 <Fixed />
-                <Maintenance>
+                <LightSourceMaintenance>
                     <Cie97LampType>Compact Fluorescent</Cie97LampType>
-                </Maintenance>
+                </LightSourceMaintenance>
             </LightSource>
             <LightSource id="lightSource-8">
                 <Name>
                     <Locale language="en">LightSource8 name</Locale>
                 </Name>
                 <Fixed />
-                <Maintenance>
+                <LightSourceMaintenance>
                     <Cie97LampType>Mercury</Cie97LampType>
-                </Maintenance>
+                </LightSourceMaintenance>
             </LightSource>
             <LightSource id="lightSource-9">
                 <Name>
                     <Locale language="en">LightSource9 name</Locale>
                 </Name>
                 <Fixed />
-                <Maintenance>
+                <LightSourceMaintenance>
                     <Cie97LampType>Metal Halide (250/400W)</Cie97LampType>
-                </Maintenance>
+                </LightSourceMaintenance>
             </LightSource>
             <LightSource id="lightSource-10">
                 <Name>
                     <Locale language="en">LightSource10 name</Locale>
                 </Name>
                 <Fixed />
-                <Maintenance>
+                <LightSourceMaintenance>
                         <Cie97LampType>Ceramic Metal Halide (50/150W)</Cie97LampType>
-                </Maintenance>
+                </LightSourceMaintenance>
             </LightSource>
             <LightSource id="lightSource-11">
                 <Name>
                     <Locale language="en">LightSource11 name</Locale>
                 </Name>
                 <Fixed />
-                <Maintenance>
+                <LightSourceMaintenance>
                     <Cie97LampType>High Pressure Sodium (250/400W)</Cie97LampType>
-                </Maintenance>
+                </LightSourceMaintenance>
             </LightSource>
         </LightSources>
         <Emitters>

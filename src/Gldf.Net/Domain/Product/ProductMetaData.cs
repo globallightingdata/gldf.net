@@ -25,6 +25,7 @@ namespace Gldf.Net.Domain.Product
         [XmlArrayItem("Image")]
         public Image[] Pictures { get; set; }
 
+        [XmlElement("LuminaireMaintenance")]
         public LuminaireMaintenance Maintenance { get; set; }
 
         public DescriptiveAttributes DescriptiveAttributes { get; set; }

@@ -65,7 +65,7 @@
             <Pictures>
                 <Image fileId="image" imageType="Other" />
             </Pictures>
-            <Maintenance>
+            <LuminaireMaintenance>
                 <Cie97LuminaireType>Dust Proof IP5X</Cie97LuminaireType>
                 <CieLuminaireMaintenanceFactors>
                     <LuminaireMaintenanceFactor years="1" roomCondition="Dirty">0.1</LuminaireMaintenanceFactor>
@@ -85,7 +85,7 @@
                     <LuminaireMaintenanceFactor years="11" roomCondition="Dirty">0.6</LuminaireMaintenanceFactor>
                     <LuminaireMaintenanceFactor years="12" roomCondition="Clean">0.6</LuminaireMaintenanceFactor>
                 </JiegMaintenanceFactors>
-            </Maintenance>
+            </LuminaireMaintenance>
             <DescriptiveAttributes>
                 <Mechanical>
                     <ProductSize>

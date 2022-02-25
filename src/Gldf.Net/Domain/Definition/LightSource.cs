@@ -23,6 +23,7 @@ namespace Gldf.Net.Domain.Definition
 
         public ActivePowerTable ActivePowerTable { get; set; }
 
+        [XmlElement("LightSourceMaintenance")]
         public LightSourceMaintenance Maintenance { get; set; }
 
         public ColorInformation ColorInformation { get; set; }
