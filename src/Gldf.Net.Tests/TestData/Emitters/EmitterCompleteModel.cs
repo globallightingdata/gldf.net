@@ -69,7 +69,7 @@ namespace Gldf.Net.Tests.TestData.Emitters
                         {
                             new Locale
                             {
-                                Language = "de",
+                                Language = "en",
                                 Text = "LightSource name"
                             }
                         },
@@ -184,7 +184,7 @@ namespace Gldf.Net.Tests.TestData.Emitters
                             Text = "Product number"
                         }
                     },
-                    Product = new[]
+                    Name = new[]
                     {
                         new Locale
                         {

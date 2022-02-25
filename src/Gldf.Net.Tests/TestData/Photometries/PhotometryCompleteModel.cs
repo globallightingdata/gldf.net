@@ -36,7 +36,7 @@ namespace Gldf.Net.Tests.TestData.Photometries
                     new Photometry
                     {
                         Id = "photometry",
-                        Content = new PhotometryFileReference {FileId = "eulumdat"},
+                        Content = new PhotometryFileReference { FileId = "eulumdat" },
                         DescriptivePhotometry = new DescriptivePhotometry
                         {
                             LuminaireLuminance = 2,
@@ -95,7 +95,7 @@ namespace Gldf.Net.Tests.TestData.Photometries
                             Text = "Product number"
                         }
                     },
-                    Product = new[]
+                    Name = new[]
                     {
                         new Locale
                         {

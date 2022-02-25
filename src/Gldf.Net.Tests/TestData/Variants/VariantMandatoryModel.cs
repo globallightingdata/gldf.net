@@ -87,7 +87,7 @@ public class VariantMandatoryModel
                         Text = "Product number"
                     }
                 },
-                Product = new[]
+                Name = new[]
                 {
                     new Locale
                     {

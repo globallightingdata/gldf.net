@@ -505,7 +505,7 @@ namespace Gldf.Net.Tests.TestData.LightSources
                             Text = "Product number"
                         }
                     },
-                    Product = new[]
+                    Name = new[]
                     {
                         new Locale
                         {

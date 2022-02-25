@@ -69,7 +69,7 @@ namespace Gldf.Net.Tests.TestData.Photometries
                             Text = "Product number"
                         }
                     },
-                    Product = new[]
+                    Name = new[]
                     {
                         new Locale
                         {

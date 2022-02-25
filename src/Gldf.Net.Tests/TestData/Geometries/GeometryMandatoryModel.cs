@@ -101,7 +101,7 @@ namespace Gldf.Net.Tests.TestData.Geometries
                             Text = "Product number"
                         }
                     },
-                    Product = new[]
+                    Name = new[]
                     {
                         new Locale
                         {

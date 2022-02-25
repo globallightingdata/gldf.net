@@ -71,7 +71,7 @@ namespace Gldf.Net.Tests.TestData.Sensors
                             Text = "Product number"
                         }
                     },
-                    Product = new[]
+                    Name = new[]
                     {
                         new Locale
                         {

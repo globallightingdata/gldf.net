@@ -192,7 +192,7 @@ namespace Gldf.Net.Tests.TestData.Files
                             Text = "Product number"
                         }
                     },
-                    Product = new[]
+                    Name = new[]
                     {
                         new Locale
                         {

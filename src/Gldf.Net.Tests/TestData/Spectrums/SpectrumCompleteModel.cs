@@ -109,7 +109,7 @@ namespace Gldf.Net.Tests.TestData.Spectrums
                             Text = "Product number"
                         }
                     },
-                    Product = new[]
+                    Name = new[]
                     {
                         new Locale
                         {

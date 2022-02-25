@@ -214,7 +214,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                             Text = "Product number"
                         }
                     },
-                    Product = new[]
+                    Name = new[]
                     {
                         new Locale
                         {

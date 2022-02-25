@@ -144,7 +144,7 @@ namespace Gldf.Net.Tests.TestData.Head
                             Text = "Product number"
                         }
                     },
-                    Product = new[]
+                    Name = new[]
                     {
                         new Locale
                         {

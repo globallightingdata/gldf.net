@@ -29,8 +29,9 @@ namespace Gldf.Net.Domain.Definition
         [XmlArrayItem("Emitter")]
         public Emitter[] Emitters { get; set; }
 
-        [XmlElement("SimpleGeometry", typeof(SimpleGeometry))]
-        [XmlElement("ModelGeometry", typeof(ModelGeometry))]
+        [XmlArray("Geometries")]
+        [XmlArrayItem("SimpleGeometry", typeof(SimpleGeometry))]
+        [XmlArrayItem("ModelGeometry", typeof(ModelGeometry))]
         public Geometry[] Geometries { get; set; }
 
         // todo implement AsGeometry

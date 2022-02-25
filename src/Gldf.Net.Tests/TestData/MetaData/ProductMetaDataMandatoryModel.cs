@@ -74,7 +74,7 @@ namespace Gldf.Net.Tests.TestData.MetaData
                             Text = "Produktnummer"
                         }
                     },
-                    Product = new[]
+                    Name = new[]
                     {
                         new Locale
                         {

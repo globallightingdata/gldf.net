@@ -84,7 +84,7 @@ namespace Gldf.Net.Tests.TestData.ControlGears
                             Text = "Product number"
                         }
                     },
-                    Product = new[]
+                    Name = new[]
                     {
                         new Locale
                         {

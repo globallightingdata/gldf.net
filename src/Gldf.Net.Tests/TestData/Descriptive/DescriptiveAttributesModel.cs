@@ -72,7 +72,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                             Text = "Product number"
                         }
                     },
-                    Product = new[]
+                    Name = new[]
                     {
                         new Locale
                         {

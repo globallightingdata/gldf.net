@@ -51,7 +51,7 @@ namespace Gldf.Net.Tests.TestData.Equipments
                         {
                             new Locale
                             {
-                                Language = "de",
+                                Language = "en",
                                 Text = "LightSource name"
                             }
                         },
@@ -67,7 +67,7 @@ namespace Gldf.Net.Tests.TestData.Equipments
                         {
                             new Locale
                             {
-                                Language = "de",
+                                Language = "en",
                                 Text = "ControlGear name"
                             }
                         },
@@ -137,7 +137,7 @@ namespace Gldf.Net.Tests.TestData.Equipments
                             Text = "Product number"
                         }
                     },
-                    Product = new[]
+                    Name = new[]
                     {
                         new Locale
                         {
