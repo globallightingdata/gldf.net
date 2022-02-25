@@ -37,7 +37,6 @@ namespace Gldf.Net.Tests.TestData.Photometries
                     {
                         Id = "photometry",
                         Content = new PhotometryFileReference {FileId = "eulumdat"},
-                        RotationG0 = 1,
                         DescriptivePhotometry = new DescriptivePhotometry
                         {
                             LuminaireLuminance = 2,

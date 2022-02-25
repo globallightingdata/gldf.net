@@ -14,7 +14,6 @@
         <Photometries>
             <Photometry id="photometry">
                 <PhotometryFileReference fileId="eulumdat"/>
-                <Rotation-G0>1</Rotation-G0>
                 <DescriptivePhotometry>
                     <LuminaireLuminance>2</LuminaireLuminance>
                     <LightOutputRatio>0.01</LightOutputRatio>
