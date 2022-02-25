@@ -94,6 +94,7 @@ namespace Gldf.Net.Tests.TestData.Equipments
                         },
                         RatedInputPower = 0.1,
                         RatedLuminousFlux = 1,
+                        RatedLuminousFluxRGB = 2,
                         EmergencyModeOutput = new EmergencyBallastLumenFactor {Factor = 0.2}
                     },
                     new Equipment

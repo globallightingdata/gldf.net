@@ -1,5 +1,6 @@
 ﻿using Gldf.Net.Domain.Definition.Types;
 using System.Xml.Serialization;
+// ReSharper disable InconsistentNaming
 
 namespace Gldf.Net.Domain.Definition
 {
@@ -16,9 +17,13 @@ namespace Gldf.Net.Domain.Definition
 
         public int RatedLuminousFlux { get; set; }
 
+        public int? RatedLuminousFluxRGB { get; set; }
+
         [XmlElement("EmergencyBallastLumenFactor", typeof(EmergencyBallastLumenFactor))]
         [XmlElement("EmergencyRatedLuminousFlux", typeof(EmergencyRatedLuminousFlux))]
         public EmergencyModeOutput EmergencyModeOutput { get; set; }
+
+        public bool ShouldSerializeRatedLuminousFluxRGB() => RatedLuminousFluxRGB != null;
 
         public EmergencyBallastLumenFactor GetEmergencyModeOutputAsLumenFactor() =>
             EmergencyModeOutput as EmergencyBallastLumenFactor;

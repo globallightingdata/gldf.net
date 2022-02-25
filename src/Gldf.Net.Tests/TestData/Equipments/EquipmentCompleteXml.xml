@@ -40,6 +40,7 @@
                 <ControlGearReference controlGearId="controlGear" controlGearCount="2" />
                 <RatedInputPower>0.1</RatedInputPower>
                 <RatedLuminousFlux>1</RatedLuminousFlux>
+                <RatedLuminousFluxRGB>2</RatedLuminousFluxRGB>
                 <EmergencyBallastLumenFactor>0.2</EmergencyBallastLumenFactor>
             </Equipment>
             <Equipment id="equipment-2">
