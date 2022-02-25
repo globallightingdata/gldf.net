@@ -18,7 +18,7 @@
                 <DescriptivePhotometry>
                     <LuminaireLuminance>2</LuminaireLuminance>
                     <LightOutputRatio>0.01</LightOutputRatio>
-                    <LuminousEfficacy>0.02</LuminousEfficacy>
+                    <LuminousEfficacy>90</LuminousEfficacy>
                     <DownwardFluxFraction>0.03</DownwardFluxFraction>
                     <DownwardLightOutputRatio>0.04</DownwardLightOutputRatio>
                     <UpwardLightOutputRatio>0.05</UpwardLightOutputRatio>

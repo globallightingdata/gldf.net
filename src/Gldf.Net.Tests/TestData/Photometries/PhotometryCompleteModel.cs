@@ -42,7 +42,7 @@ namespace Gldf.Net.Tests.TestData.Photometries
                         {
                             LuminaireLuminance = 2,
                             LightOutputRatio = 0.01,
-                            LuminousEfficacy = 0.02,
+                            LuminousEfficacy = 90,
                             DownwardFluxFraction = 0.03,
                             DownwardLightOutputRatio = 0.04,
                             UpwardLightOutputRatio = 0.05,

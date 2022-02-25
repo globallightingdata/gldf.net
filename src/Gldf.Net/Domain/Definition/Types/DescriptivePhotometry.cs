@@ -8,7 +8,7 @@ namespace Gldf.Net.Domain.Definition.Types
 
         public double? LightOutputRatio { get; set; }
 
-        public double? LuminousEfficacy { get; set; }
+        public int? LuminousEfficacy { get; set; }
 
         public double? DownwardFluxFraction { get; set; }
 
