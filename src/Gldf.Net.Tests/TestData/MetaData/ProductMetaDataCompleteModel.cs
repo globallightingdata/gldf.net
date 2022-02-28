@@ -591,7 +591,7 @@ namespace Gldf.Net.Tests.TestData.MetaData
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        Reference = new EmitterReference
+                        EmitterReference = new EmitterReference
                         {
                             EmitterId = "emitter"
                         }

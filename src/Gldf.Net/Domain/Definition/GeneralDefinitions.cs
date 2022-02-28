@@ -1,4 +1,6 @@
 ﻿using Gldf.Net.Domain.Definition.Types;
+using System;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace Gldf.Net.Domain.Definition
@@ -34,6 +36,10 @@ namespace Gldf.Net.Domain.Definition
         [XmlArrayItem("ModelGeometry", typeof(ModelGeometry))]
         public Geometry[] Geometries { get; set; }
 
-        // todo implement AsGeometry
+        public SimpleGeometry[] GetAsSimpleGeometries()
+            => Geometries?.OfType<SimpleGeometry>().ToArray() ?? Array.Empty<SimpleGeometry>();
+
+        public ModelGeometry[] GetAsModelGeometries()
+            => Geometries?.OfType<ModelGeometry>().ToArray() ?? Array.Empty<ModelGeometry>();
     }
 }

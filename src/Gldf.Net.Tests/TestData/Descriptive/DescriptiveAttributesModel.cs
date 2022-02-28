@@ -90,7 +90,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        Reference = new EmitterReference
+                        EmitterReference = new EmitterReference
                         {
                             EmitterId = "emitter"
                         },
@@ -201,7 +201,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 2" }
                         },
-                        Reference = new EmitterReference
+                        EmitterReference = new EmitterReference
                         {
                             EmitterId = "emitter"
                         },
@@ -389,7 +389,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 3" }
                         },
-                        Reference = new EmitterReference
+                        EmitterReference = new EmitterReference
                         {
                             EmitterId = "emitter"
                         },
@@ -414,7 +414,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 4" }
                         },
-                        Reference = new EmitterReference
+                        EmitterReference = new EmitterReference
                         {
                             EmitterId = "emitter"
                         },
@@ -439,7 +439,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 5" }
                         },
-                        Reference = new EmitterReference
+                        EmitterReference = new EmitterReference
                         {
                             EmitterId = "emitter"
                         },
@@ -464,7 +464,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 6" }
                         },
-                        Reference = new EmitterReference
+                        EmitterReference = new EmitterReference
                         {
                             EmitterId = "emitter"
                         },
@@ -488,7 +488,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 7" }
                         },
-                        Reference = new EmitterReference
+                        EmitterReference = new EmitterReference
                         {
                             EmitterId = "emitter"
                         },

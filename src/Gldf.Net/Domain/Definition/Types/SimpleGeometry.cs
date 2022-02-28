@@ -15,7 +15,10 @@ namespace Gldf.Net.Domain.Definition.Types
         [XmlElement("CircularEmitter", typeof(SimpleCircularEmitter))]
         public SimpleGeometryEmitterBase SimpleGeometryEmitterType { get; set; }
 
-        // todo implement AsGeometry
-        // todo implement AsLeo
+        public SimpleCuboidGeometry GetAsCuboidGeometry() => SimpleGeometryType as SimpleCuboidGeometry;
+        public SimpleCylinderGeometry GetAsCylinderGeometry() => SimpleGeometryType as SimpleCylinderGeometry;
+
+        public SimpleRectangularEmitter GetAsRectangularEmitter() => SimpleGeometryEmitterType as SimpleRectangularEmitter;
+        public SimpleCircularEmitter GetAsCircularEmitter() => SimpleGeometryEmitterType as SimpleCircularEmitter;
     }
 }

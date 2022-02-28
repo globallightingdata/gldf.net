@@ -44,7 +44,7 @@ namespace Gldf.Net.Domain.Product
         [XmlElement("EmitterReference", typeof(EmitterReference))]
         [XmlElement("ModelGeometryReference", typeof(ModelGeometryReference))]
         [XmlElement("SimpleGeometryReference", typeof(SimpleGeometryReference))]
-        public EmitterReferenceBase Reference { get; set; }
+        public EmitterReferenceBase EmitterReference { get; set; }
 
         [XmlArrayItem("ProductSerie")]
         public ProductSerie[] ProductSeries { get; set; }
@@ -59,6 +59,8 @@ namespace Gldf.Net.Domain.Product
         [XmlIgnore]
         public bool SortOrderSpecified { get; set; }
 
-        // todo implement AsReference...
+        public EmitterReference GetAsEmitterReference() => EmitterReference as EmitterReference;
+        public ModelGeometryReference GetAsModelGeometryReference() => EmitterReference as ModelGeometryReference;
+        public SimpleGeometryReference GetAsSimpleGeometryReference() => EmitterReference as SimpleGeometryReference;
     }
 }

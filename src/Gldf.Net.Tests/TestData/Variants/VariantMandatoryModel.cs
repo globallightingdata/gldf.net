@@ -121,7 +121,7 @@ public class VariantMandatoryModel
                             Text = "Variant 2"
                         }
                     },
-                    Reference = new SimpleGeometryReference
+                    EmitterReference = new SimpleGeometryReference
                     {
                         GeometryId = "geometry",
                         EmitterId = "emitter"

@@ -1,5 +1,4 @@
 ﻿using Gldf.Net.Domain.Definition.Types;
-using Gldf.Net.Domain.Product.Types;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;

@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using Gldf.Net.Domain.Definition;
 using Gldf.Net.Domain.Definition.Types;
-using Gldf.Net.Domain.Product.Types;
 using NUnit.Framework;
 
 namespace Gldf.Net.Tests.DomainTests

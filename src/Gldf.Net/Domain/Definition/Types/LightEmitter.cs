@@ -32,5 +32,4 @@ namespace Gldf.Net.Domain.Definition.Types
 
         private EmergencyBehaviour _emergencyBehaviour;
     }
-
 }

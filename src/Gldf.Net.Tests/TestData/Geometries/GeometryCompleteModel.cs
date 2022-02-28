@@ -155,7 +155,7 @@ namespace Gldf.Net.Tests.TestData.Geometries
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        Reference = new EmitterReference
+                        EmitterReference = new EmitterReference
                         {
                             EmitterId = "emitter"
                         }

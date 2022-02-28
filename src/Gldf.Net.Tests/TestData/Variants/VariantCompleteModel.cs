@@ -342,7 +342,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                                 }
                             }
                         },
-                        Reference = new EmitterReference
+                        EmitterReference = new EmitterReference
                         {
                             EmitterId = "emitter"
                         },
@@ -423,7 +423,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                                 }
                             }
                         },
-                        Reference = new EmitterReference
+                        EmitterReference = new EmitterReference
                         {
                             EmitterId = "emitter"
                         }
@@ -436,7 +436,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                         {
                             new Locale { Language = "en", Text = "Variant 3" }
                         },
-                        Reference = new ModelGeometryReference
+                        EmitterReference = new ModelGeometryReference
                         {
                             GeometryId = "geometry",
                             EmitterReferences = new[]
@@ -457,7 +457,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                         {
                             new Locale { Language = "en", Text = "Variant 4" }
                         },
-                        Reference = new ModelGeometryReference
+                        EmitterReference = new ModelGeometryReference
                         {
                             GeometryId = "geometry",
                             EmitterReferences = new[]
