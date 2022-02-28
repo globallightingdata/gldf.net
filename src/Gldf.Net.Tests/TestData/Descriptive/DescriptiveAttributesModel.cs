@@ -72,7 +72,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                             Text = "Product number"
                         }
                     },
-                    ProductName = new[]
+                    Name = new[]
                     {
                         new Locale
                         {
@@ -86,15 +86,15 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                     new Variant
                     {
                         Id = "variant-1",
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        Reference = new EmitterReference
+                        EmitterReference = new EmitterReference
                         {
                             EmitterId = "emitter"
                         },
-                        VariantDescriptiveAttributes = new DescriptiveAttributes
+                        DescriptiveAttributes = new DescriptiveAttributes
                         {
                             Electrical = new Electrical
                             {
@@ -197,15 +197,15 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                     new Variant
                     {
                         Id = "variant-2",
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale { Language = "en", Text = "Variant 2" }
                         },
-                        Reference = new EmitterReference
+                        EmitterReference = new EmitterReference
                         {
                             EmitterId = "emitter"
                         },
-                        VariantDescriptiveAttributes = new DescriptiveAttributes
+                        DescriptiveAttributes = new DescriptiveAttributes
                         {
                             Electrical = new Electrical
                             {
@@ -385,15 +385,15 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                     new Variant
                     {
                         Id = "variant-3",
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale { Language = "en", Text = "Variant 3" }
                         },
-                        Reference = new EmitterReference
+                        EmitterReference = new EmitterReference
                         {
                             EmitterId = "emitter"
                         },
-                        VariantDescriptiveAttributes = new DescriptiveAttributes
+                        DescriptiveAttributes = new DescriptiveAttributes
                         {
                             Electrical = new Electrical
                             {
@@ -410,15 +410,15 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                     new Variant
                     {
                         Id = "variant-4",
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale { Language = "en", Text = "Variant 4" }
                         },
-                        Reference = new EmitterReference
+                        EmitterReference = new EmitterReference
                         {
                             EmitterId = "emitter"
                         },
-                        VariantDescriptiveAttributes = new DescriptiveAttributes
+                        DescriptiveAttributes = new DescriptiveAttributes
                         {
                             Electrical = new Electrical
                             {
@@ -435,15 +435,15 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                     new Variant
                     {
                         Id = "variant-5",
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale { Language = "en", Text = "Variant 5" }
                         },
-                        Reference = new EmitterReference
+                        EmitterReference = new EmitterReference
                         {
                             EmitterId = "emitter"
                         },
-                        VariantDescriptiveAttributes = new DescriptiveAttributes
+                        DescriptiveAttributes = new DescriptiveAttributes
                         {
                             Electrical = new Electrical
                             {
@@ -460,15 +460,15 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                     new Variant
                     {
                         Id = "variant-6",
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale { Language = "en", Text = "Variant 6" }
                         },
-                        Reference = new EmitterReference
+                        EmitterReference = new EmitterReference
                         {
                             EmitterId = "emitter"
                         },
-                        VariantDescriptiveAttributes = new DescriptiveAttributes
+                        DescriptiveAttributes = new DescriptiveAttributes
                         {
                             Electrical = new Electrical
                             {
@@ -484,15 +484,15 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                     new Variant
                     {
                         Id = "variant-7",
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale { Language = "en", Text = "Variant 7" }
                         },
-                        Reference = new EmitterReference
+                        EmitterReference = new EmitterReference
                         {
                             EmitterId = "emitter"
                         },
-                        VariantDescriptiveAttributes = new DescriptiveAttributes
+                        DescriptiveAttributes = new DescriptiveAttributes
                         {
                             Electrical = new Electrical
                             {

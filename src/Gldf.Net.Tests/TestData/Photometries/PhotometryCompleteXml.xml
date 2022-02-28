@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.7/gldf.xsd">
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.8/gldf.xsd">
     <Header>
         <Manufacturer>DIAL</Manufacturer>
         <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
@@ -14,16 +14,21 @@
         <Photometries>
             <Photometry id="photometry">
                 <PhotometryFileReference fileId="eulumdat"/>
-                <Rotation-G0>1</Rotation-G0>
                 <DescriptivePhotometry>
                     <LuminaireLuminance>2</LuminaireLuminance>
                     <LightOutputRatio>0.01</LightOutputRatio>
-                    <LuminousEfficacy>0.02</LuminousEfficacy>
+                    <LuminousEfficacy>90</LuminousEfficacy>
                     <DownwardFluxFraction>0.03</DownwardFluxFraction>
                     <DownwardLightOutputRatio>0.04</DownwardLightOutputRatio>
                     <UpwardLightOutputRatio>0.05</UpwardLightOutputRatio>
-                    <TenthPeakDivergence>0.06</TenthPeakDivergence>
-                    <HalfPeakDivergence>0.07</HalfPeakDivergence>
+                    <TenthPeakDivergence>
+                        <C0-C180>11</C0-C180>
+                        <C90-C270>12</C90-C270>
+                    </TenthPeakDivergence>
+                    <HalfPeakDivergence>
+                        <C0-C180>13</C0-C180>
+                        <C90-C270>14</C90-C270>
+                    </HalfPeakDivergence>
                     <PhotometricCode>PhotometricCode</PhotometricCode>
                     <CIE-FluxCode>CIE-FluxCode</CIE-FluxCode>
                     <CutOffAngle>0.08</CutOffAngle>
@@ -47,15 +52,15 @@
             <ProductNumber>
                 <Locale language="en">Product number</Locale>
             </ProductNumber>
-            <ProductName>
+            <Name>
                 <Locale language="en">Product name</Locale>
-            </ProductName>
+            </Name>
         </ProductMetaData>
         <Variants>
             <Variant id="variant-1">
-                <VariantName>
+                <Name>
                     <Locale language="en">Variant 1</Locale>
-                </VariantName>
+                </Name>
                 <EmitterReference emitterId="emitter"/>
             </Variant>
         </Variants>

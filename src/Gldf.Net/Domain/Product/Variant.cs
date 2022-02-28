@@ -26,8 +26,10 @@ namespace Gldf.Net.Domain.Product
             }
         }
 
+        public Locale[] ProductNumber { get; set; }
+
         [XmlArrayItem("Locale")]
-        public Locale[] VariantName { get; set; }
+        public Locale[] Name { get; set; }
 
         [XmlArrayItem("Locale")]
         public Locale[] Description { get; set; }
@@ -37,14 +39,12 @@ namespace Gldf.Net.Domain.Product
 
         public string GTIN { get; set; }
 
-        public string ProductNumber { get; set; }
-
         public Mountings Mountings { get; set; }
 
-
         [XmlElement("EmitterReference", typeof(EmitterReference))]
-        [XmlElement("GeometryReference", typeof(GeometryReference))]
-        public EmitterReferenceBase Reference { get; set; }
+        [XmlElement("ModelGeometryReference", typeof(ModelGeometryReference))]
+        [XmlElement("SimpleGeometryReference", typeof(SimpleGeometryReference))]
+        public EmitterReferenceBase EmitterReference { get; set; }
 
         [XmlArrayItem("ProductSerie")]
         public ProductSerie[] ProductSeries { get; set; }
@@ -54,9 +54,13 @@ namespace Gldf.Net.Domain.Product
 
         public Symbol Symbol { get; set; }
 
-        public DescriptiveAttributes VariantDescriptiveAttributes { get; set; }
+        public DescriptiveAttributes DescriptiveAttributes { get; set; }
 
         [XmlIgnore]
         public bool SortOrderSpecified { get; set; }
+
+        public EmitterReference GetAsEmitterReference() => EmitterReference as EmitterReference;
+        public ModelGeometryReference GetAsModelGeometryReference() => EmitterReference as ModelGeometryReference;
+        public SimpleGeometryReference GetAsSimpleGeometryReference() => EmitterReference as SimpleGeometryReference;
     }
 }

@@ -11,7 +11,7 @@ namespace Gldf.Net.Domain.Product
         public Locale[] ProductNumber { get; set; }
 
         [XmlArrayItem("Locale")]
-        public Locale[] ProductName { get; set; }
+        public Locale[] Name { get; set; }
 
         [XmlArrayItem("Locale")]
         public Locale[] Description { get; set; }
@@ -25,6 +25,7 @@ namespace Gldf.Net.Domain.Product
         [XmlArrayItem("Image")]
         public Image[] Pictures { get; set; }
 
+        [XmlElement("LuminaireMaintenance")]
         public LuminaireMaintenance Maintenance { get; set; }
 
         public DescriptiveAttributes DescriptiveAttributes { get; set; }

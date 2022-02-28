@@ -47,6 +47,14 @@ namespace Gldf.Net.Tests.TestData.Equipments
                     new LightSource
                     {
                         Id = "lightSource",
+                        Name = new[]
+                        {
+                            new Locale
+                            {
+                                Language = "en",
+                                Text = "LightSource name"
+                            }
+                        },
                         LightSourceType = new FixedLightSource()
                     }
                 },
@@ -55,6 +63,14 @@ namespace Gldf.Net.Tests.TestData.Equipments
                     new ControlGear
                     {
                         Id = "controlGear",
+                        Name = new[]
+                        {
+                            new Locale
+                            {
+                                Language = "en",
+                                Text = "ControlGear name"
+                            }
+                        },
                         Description = new[]
                         {
                             new Locale
@@ -78,6 +94,7 @@ namespace Gldf.Net.Tests.TestData.Equipments
                         },
                         RatedInputPower = 0.1,
                         RatedLuminousFlux = 1,
+                        RatedLuminousFluxRGB = 2,
                         EmergencyModeOutput = new EmergencyBallastLumenFactor {Factor = 0.2}
                     },
                     new Equipment
@@ -120,7 +137,7 @@ namespace Gldf.Net.Tests.TestData.Equipments
                             Text = "Product number"
                         }
                     },
-                    ProductName = new[]
+                    Name = new[]
                     {
                         new Locale
                         {
@@ -134,11 +151,11 @@ namespace Gldf.Net.Tests.TestData.Equipments
                     new Variant
                     {
                         Id = "variant-1",
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        Reference = new EmitterReference
+                        EmitterReference = new EmitterReference
                         {
                             EmitterId = "emitter"
                         }

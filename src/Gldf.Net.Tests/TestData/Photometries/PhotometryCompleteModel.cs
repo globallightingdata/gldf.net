@@ -36,18 +36,25 @@ namespace Gldf.Net.Tests.TestData.Photometries
                     new Photometry
                     {
                         Id = "photometry",
-                        Content = new PhotometryFileReference {FileId = "eulumdat"},
-                        RotationG0 = 1,
+                        Content = new PhotometryFileReference { FileId = "eulumdat" },
                         DescriptivePhotometry = new DescriptivePhotometry
                         {
                             LuminaireLuminance = 2,
                             LightOutputRatio = 0.01,
-                            LuminousEfficacy = 0.02,
+                            LuminousEfficacy = 90,
                             DownwardFluxFraction = 0.03,
                             DownwardLightOutputRatio = 0.04,
                             UpwardLightOutputRatio = 0.05,
-                            TenthPeakDivergence = 0.06,
-                            HalfPeakDivergence = 0.07,
+                            TenthPeakDivergence = new TenthPeakDivergence
+                            {
+                                C0C180 = 11,
+                                C90C270 = 12
+                            },
+                            HalfPeakDivergence = new HalfPeakDivergence
+                            {
+                                C0C180 = 13,
+                                C90C270 = 14
+                            },
                             PhotometricCode = "PhotometricCode",
                             CieFluxCode = "CIE-FluxCode",
                             CutOffAngle = 0.08,
@@ -88,7 +95,7 @@ namespace Gldf.Net.Tests.TestData.Photometries
                             Text = "Product number"
                         }
                     },
-                    ProductName = new[]
+                    Name = new[]
                     {
                         new Locale
                         {
@@ -102,11 +109,11 @@ namespace Gldf.Net.Tests.TestData.Photometries
                     new Variant
                     {
                         Id = "variant-1",
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        Reference = new EmitterReference
+                        EmitterReference = new EmitterReference
                         {
                             EmitterId = "emitter"
                         }

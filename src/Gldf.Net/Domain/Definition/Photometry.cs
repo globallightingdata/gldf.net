@@ -11,12 +11,7 @@ namespace Gldf.Net.Domain.Definition
         [XmlElement("PhotometryFileReference", typeof(PhotometryFileReference))]
         public PhotometryContent Content { get; set; }
 
-        [XmlElement("Rotation-G0")]
-        public int? RotationG0 { get; set; }
-
         public DescriptivePhotometry DescriptivePhotometry { get; set; }
-
-        public bool ShouldSerializeRotationG0() => RotationG0 != null;
 
         public PhotometryFileReference GetAsFileReference() => Content as PhotometryFileReference;
     }

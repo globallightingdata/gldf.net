@@ -7,93 +7,127 @@ using Gldf.Net.Domain.Product;
 using Gldf.Net.Domain.Product.Types;
 using System;
 
-namespace Gldf.Net.Tests.TestData.Variants
+namespace Gldf.Net.Tests.TestData.Variants;
+
+public class VariantMandatoryModel
 {
-    public class VariantMandatoryModel
+    public static Root Root => new()
     {
-        public static Root Root => new()
+        Header = new Header
         {
-            Header = new Header
+            Manufacturer = "DIAL",
+            CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            CreatedWithApplication = "Visual Studio Code"
+        },
+        GeneralDefinitions = new GeneralDefinitions
+        {
+            Files = new[]
             {
-                Manufacturer = "DIAL",
-                CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
-                CreatedWithApplication = "Visual Studio Code"
+                new GldfFile
+                {
+                    Id = "eulumdat",
+                    ContentType = FileContentType.LdcEulumdat,
+                    Type = FileType.Url,
+                    File = "https://example.org/eulumdat.ldt"
+                }
             },
-            GeneralDefinitions = new GeneralDefinitions
+            Photometries = new[]
             {
-                Files = new[]
+                new Photometry
                 {
-                    new GldfFile
+                    Id = "photometry",
+                    Content = new PhotometryFileReference
                     {
-                        Id = "eulumdat",
-                        ContentType = FileContentType.LdcEulumdat,
-                        Type = FileType.Url,
-                        File = "https://example.org/eulumdat.ldt"
-                    }
-                },
-                Photometries = new[]
-                {
-                    new Photometry
-                    {
-                        Id = "photometry",
-                        Content = new PhotometryFileReference
-                        {
-                            FileId = "eulumdat"
-                        }
-                    }
-                },
-                Emitters = new[]
-                {
-                    new Emitter
-                    {
-                        Id = "emitter",
-                        PossibleFittings = new EmitterBase[]
-                        {
-                            new LightEmitter
-                            {
-                                PhotometryId = "photometry"
-                            }
-                        }
+                        FileId = "eulumdat"
                     }
                 }
             },
-            ProductDefinitions = new ProductDefinitions
+            Geometries = new Geometry[]
             {
-                ProductMetaData = new ProductMetaData
+                new SimpleGeometry
                 {
-                    ProductNumber = new[]
+                    Id = "geometry",
+                    SimpleGeometryType = new SimpleCuboidGeometry
                     {
-                        new Locale
-                        {
-                            Language = "en",
-                            Text = "Product number"
-                        }
+                        Width = 1,
+                        Length = 2,
+                        Height = 3
                     },
-                    ProductName = new[]
+                    SimpleGeometryEmitterType = new SimpleRectangularEmitter
                     {
-                        new Locale
-                        {
-                            Language = "en",
-                            Text = "Product name"
-                        }
+                        Width = 4,
+                        Length = 5
                     }
-                },
-                Variants = new[]
+                }
+            },
+            Emitters = new[]
+            {
+                new Emitter
                 {
-                    new Variant
+                    Id = "emitter",
+                    PossibleFittings = new EmitterBase[]
                     {
-                        Id = "variant-1",
-                        VariantName = new[]
+                        new LightEmitter
                         {
-                            new Locale { Language = "en", Text = "Variant 1" }
-                        },
-                        Reference = new EmitterReference
-                        {
-                            EmitterId = "emitter"
+                            PhotometryId = "photometry"
                         }
                     }
                 }
             }
-        };
-    }
+        },
+        ProductDefinitions = new ProductDefinitions
+        {
+            ProductMetaData = new ProductMetaData
+            {
+                ProductNumber = new[]
+                {
+                    new Locale
+                    {
+                        Language = "en",
+                        Text = "Product number"
+                    }
+                },
+                Name = new[]
+                {
+                    new Locale
+                    {
+                        Language = "en",
+                        Text = "Product name"
+                    }
+                }
+            },
+            Variants = new[]
+            {
+                new Variant
+                {
+                    Id = "variant-1",
+                    Name = new[]
+                    {
+                        new Locale
+                        {
+                            Language = "en",
+                            Text = "Variant 1"
+                        }
+                    }
+                },
+                new Variant
+                {
+                    Id = "variant-2",
+                    Name = new[]
+                    {
+                        new Locale
+                        {
+                            Language = "en",
+                            Text = "Variant 2"
+                        }
+                    },
+                    EmitterReference = new SimpleGeometryReference
+                    {
+                        GeometryId = "geometry",
+                        EmitterId = "emitter"
+                    }
+                }
+            }
+        }
+    };
 }

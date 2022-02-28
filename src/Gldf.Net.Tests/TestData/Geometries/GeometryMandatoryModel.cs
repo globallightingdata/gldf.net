@@ -63,16 +63,27 @@ namespace Gldf.Net.Tests.TestData.Geometries
                         }
                     }
                 },
-                Geometries = new[]
+                Geometries = new Geometry[]
                 {
-                    new Geometry
+                    new ModelGeometry
                     {
                         Id = "geometry",
-                        GeometryFileReferences = new []
+                        GeometryFileReferences = new GeometryFileReference[]
                         {
-                            new GeometryFileReference
+                            new()
                             {
-                                FileId = "geometryFile"
+                                FileId = "geometryFile",
+                                LevelOfDetail = LevelOfDetail.Low
+                            },
+                            new()
+                            {
+                                FileId = "geometryFile",
+                                LevelOfDetail = LevelOfDetail.Medium
+                            },
+                            new()
+                            {
+                                FileId = "geometryFile",
+                                LevelOfDetail = LevelOfDetail.High
                             }
                         }
                     }
@@ -90,7 +101,7 @@ namespace Gldf.Net.Tests.TestData.Geometries
                             Text = "Product number"
                         }
                     },
-                    ProductName = new[]
+                    Name = new[]
                     {
                         new Locale
                         {
@@ -104,11 +115,11 @@ namespace Gldf.Net.Tests.TestData.Geometries
                     new Variant
                     {
                         Id = "variant-1",
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        Reference = new EmitterReference
+                        EmitterReference = new EmitterReference
                         {
                             EmitterId = "emitter"
                         }

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.7/gldf.xsd">
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.8/gldf.xsd">
     <Header>
         <Manufacturer>Manufacturer</Manufacturer>
         <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
@@ -27,17 +27,17 @@
             <ProductNumber>
                 <Locale language="en">Product number</Locale>
             </ProductNumber>
-            <ProductName>
+            <Name>
                 <Locale language="en">Product name</Locale>
-            </ProductName>
+            </Name>
         </ProductMetaData>
         <Variants>
             <Variant id="variant-1">
-                <VariantName>
+                <Name>
                     <Locale language="en">Variant 1</Locale>
-                </VariantName>
+                </Name>
                 <EmitterReference emitterId="emitter"/>
-                <VariantDescriptiveAttributes>
+                <DescriptiveAttributes>
                     <Electrical>
                         <ElectricalSafetyClass>0</ElectricalSafetyClass>
                         <IngressProtectionIPCode>IP20</IngressProtectionIPCode>
@@ -130,14 +130,14 @@
                             <Application>Exterior: Other: Facades</Application>
                         </Applications>
                     </Marketing>
-                </VariantDescriptiveAttributes>
+                </DescriptiveAttributes>
             </Variant>
             <Variant id="variant-2">
-                <VariantName>
+                <Name>
                     <Locale language="en">Variant 2</Locale>
-                </VariantName>
+                </Name>
                 <EmitterReference emitterId="emitter"/>
-                <VariantDescriptiveAttributes>
+                <DescriptiveAttributes>
                     <Electrical>
                         <ElectricalSafetyClass>I</ElectricalSafetyClass>
                         <IngressProtectionIPCode>IP30</IngressProtectionIPCode>
@@ -288,14 +288,14 @@
                             </Groups>
                         </ATEX>
                     </MountingAndAccessory>
-                </VariantDescriptiveAttributes>
+                </DescriptiveAttributes>
             </Variant>
             <Variant id="variant-3">
-                <VariantName>
+                <Name>
                     <Locale language="en">Variant 3</Locale>
-                </VariantName>
+                </Name>
                 <EmitterReference emitterId="emitter"/>
-                <VariantDescriptiveAttributes>
+                <DescriptiveAttributes>
                     <Electrical>
                         <ElectricalSafetyClass>II</ElectricalSafetyClass>
                         <IngressProtectionIPCode>IP40</IngressProtectionIPCode>
@@ -304,14 +304,14 @@
                     <Emergency>
                         <DedicatedEmergencyLightingType>Evacuation Light</DedicatedEmergencyLightingType>
                     </Emergency>
-                </VariantDescriptiveAttributes>
+                </DescriptiveAttributes>
             </Variant>
             <Variant id="variant-4">
-                <VariantName>
+                <Name>
                     <Locale language="en">Variant 4</Locale>
-                </VariantName>
+                </Name>
                 <EmitterReference emitterId="emitter"/>
-                <VariantDescriptiveAttributes>
+                <DescriptiveAttributes>
                     <Electrical>
                         <ElectricalSafetyClass>III</ElectricalSafetyClass>
                         <IngressProtectionIPCode>IP40</IngressProtectionIPCode>
@@ -320,14 +320,14 @@
                     <Emergency>
                         <DedicatedEmergencyLightingType>Reference Light</DedicatedEmergencyLightingType>
                     </Emergency>
-                </VariantDescriptiveAttributes>
+                </DescriptiveAttributes>
             </Variant>
             <Variant id="variant-5">
-                <VariantName>
+                <Name>
                     <Locale language="en">Variant 5</Locale>
-                </VariantName>
+                </Name>
                 <EmitterReference emitterId="emitter"/>
-                <VariantDescriptiveAttributes>
+                <DescriptiveAttributes>
                     <Electrical>
                         <ElectricalSafetyClass>0I</ElectricalSafetyClass>
                         <IngressProtectionIPCode>IP50</IngressProtectionIPCode>
@@ -336,14 +336,14 @@
                     <Emergency>
                         <DedicatedEmergencyLightingType>For Signage</DedicatedEmergencyLightingType>
                     </Emergency>
-                </VariantDescriptiveAttributes>
+                </DescriptiveAttributes>
             </Variant>
             <Variant id="variant-6">
-                <VariantName>
+                <Name>
                     <Locale language="en">Variant 6</Locale>
-                </VariantName>
+                </Name>
                 <EmitterReference emitterId="emitter"/>
-                <VariantDescriptiveAttributes>
+                <DescriptiveAttributes>
                     <Electrical>
                         <IngressProtectionIPCode>IP69</IngressProtectionIPCode>
                         <IKRating>IK10</IKRating>
@@ -351,19 +351,19 @@
                     <Emergency>
                         <DedicatedEmergencyLightingType>For Lighting</DedicatedEmergencyLightingType>
                     </Emergency>
-                </VariantDescriptiveAttributes>
+                </DescriptiveAttributes>
             </Variant>
             <Variant id="variant-7">
-                <VariantName>
+                <Name>
                     <Locale language="en">Variant 7</Locale>
-                </VariantName>
+                </Name>
                 <EmitterReference emitterId="emitter"/>
-                <VariantDescriptiveAttributes>
+                <DescriptiveAttributes>
                     <Electrical>
                         <IngressProtectionIPCode>IP69K</IngressProtectionIPCode>
                         <IKRating>IK10+</IKRating>
                     </Electrical>
-                </VariantDescriptiveAttributes>
+                </DescriptiveAttributes>
             </Variant>
         </Variants>
     </ProductDefinitions>

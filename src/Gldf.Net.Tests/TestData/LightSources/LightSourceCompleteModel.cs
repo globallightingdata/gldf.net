@@ -72,6 +72,14 @@ namespace Gldf.Net.Tests.TestData.LightSources
                     new LightSource
                     {
                         Id = "lightSource-1",
+                        Name = new[]
+                        {
+                            new Locale
+                            {
+                                Language = "en",
+                                Text = "LightSource1 name"
+                            }
+                        },
                         LightSourceType = new FixedLightSource
                         {
                             ZhagaStandard = true
@@ -88,6 +96,14 @@ namespace Gldf.Net.Tests.TestData.LightSources
                     new LightSource
                     {
                         Id = "lightSource-2",
+                        Name = new[]
+                        {
+                            new Locale
+                            {
+                                Language = "en",
+                                Text = "LightSource2 name"
+                            }
+                        },
                         LightSourceType = new ChangeableLightSource
                         {
                             RatedInputPower = 1,
@@ -119,7 +135,7 @@ namespace Gldf.Net.Tests.TestData.LightSources
                             new Locale
                             {
                                 Language = "en",
-                                Text = "LightSource name"
+                                Text = "LightSource3 name"
                             }
                         },
                         Description = new[]
@@ -132,7 +148,7 @@ namespace Gldf.Net.Tests.TestData.LightSources
                         },
                         LightSourceType = new ChangeableLightSource
                         {
-                            Manufacturer = "MAnufacturer",
+                            Manufacturer = "Manufacturer",
                             Gtin = "12345678",
                             Ilcos = "ILCOS",
                             Zvei = "ZVEI",
@@ -145,6 +161,7 @@ namespace Gldf.Net.Tests.TestData.LightSources
                                 Frequency = VoltageFrequency.Hz5060
                             },
                             RatedLuminousFlux = 2,
+                            RatedLuminousFluxRGB = 3,
                             PowerRange = new LightSourcePowerRange
                             {
                                 Lower = 3,
@@ -251,6 +268,14 @@ namespace Gldf.Net.Tests.TestData.LightSources
                     new LightSource
                     {
                         Id = "lightSource-4",
+                        Name = new[]
+                        {
+                            new Locale
+                            {
+                                Language = "en",
+                                Text = "LightSource4 name"
+                            }
+                        },
                         LightSourceType = new ChangeableLightSource
                         {
                             RatedInputPower = 1,
@@ -285,6 +310,14 @@ namespace Gldf.Net.Tests.TestData.LightSources
                     new LightSource
                     {
                         Id = "lightSource-5",
+                        Name = new[]
+                        {
+                            new Locale
+                            {
+                                Language = "en",
+                                Text = "LightSource5 name"
+                            }
+                        },
                         LightSourceType = new ChangeableLightSource
                         {
                             RatedInputPower = 1,
@@ -319,6 +352,14 @@ namespace Gldf.Net.Tests.TestData.LightSources
                     new LightSource
                     {
                         Id = "lightSource-6",
+                        Name = new[]
+                        {
+                            new Locale
+                            {
+                                Language = "en",
+                                Text = "LightSource6 name"
+                            }
+                        },
                         LightSourceType = new FixedLightSource(),
                         Maintenance = new LightSourceMaintenance
                         {
@@ -339,6 +380,14 @@ namespace Gldf.Net.Tests.TestData.LightSources
                     new LightSource
                     {
                         Id = "lightSource-7",
+                        Name = new[]
+                        {
+                            new Locale
+                            {
+                                Language = "en",
+                                Text = "LightSource7 name"
+                            }
+                        },
                         LightSourceType = new FixedLightSource(),
                         Maintenance = new LightSourceMaintenance
                         {
@@ -351,6 +400,14 @@ namespace Gldf.Net.Tests.TestData.LightSources
                     new LightSource
                     {
                         Id = "lightSource-8",
+                        Name = new[]
+                        {
+                            new Locale
+                            {
+                                Language = "en",
+                                Text = "LightSource8 name"
+                            }
+                        },
                         LightSourceType = new FixedLightSource(),
                         Maintenance = new LightSourceMaintenance
                         {
@@ -363,6 +420,14 @@ namespace Gldf.Net.Tests.TestData.LightSources
                     new LightSource
                     {
                         Id = "lightSource-9",
+                        Name = new[]
+                        {
+                            new Locale
+                            {
+                                Language = "en",
+                                Text = "LightSource9 name"
+                            }
+                        },
                         LightSourceType = new FixedLightSource(),
                         Maintenance = new LightSourceMaintenance
                         {
@@ -375,6 +440,14 @@ namespace Gldf.Net.Tests.TestData.LightSources
                     new LightSource
                     {
                         Id = "lightSource-10",
+                        Name = new[]
+                        {
+                            new Locale
+                            {
+                                Language = "en",
+                                Text = "LightSource10 name"
+                            }
+                        },
                         LightSourceType = new FixedLightSource(),
                         Maintenance = new LightSourceMaintenance
                         {
@@ -387,6 +460,14 @@ namespace Gldf.Net.Tests.TestData.LightSources
                     new LightSource
                     {
                         Id = "lightSource-11",
+                        Name = new[]
+                        {
+                            new Locale
+                            {
+                                Language = "en",
+                                Text = "LightSource11 name"
+                            }
+                        },
                         LightSourceType = new FixedLightSource(),
                         Maintenance = new LightSourceMaintenance
                         {
@@ -424,7 +505,7 @@ namespace Gldf.Net.Tests.TestData.LightSources
                             Text = "Product number"
                         }
                     },
-                    ProductName = new[]
+                    Name = new[]
                     {
                         new Locale
                         {
@@ -438,11 +519,11 @@ namespace Gldf.Net.Tests.TestData.LightSources
                     new Variant
                     {
                         Id = "variant-1",
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        Reference = new EmitterReference
+                        EmitterReference = new EmitterReference
                         {
                             EmitterId = "emitter"
                         }

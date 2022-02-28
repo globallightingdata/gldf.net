@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.7/gldf.xsd">
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.8/gldf.xsd">
     <Header>
         <Manufacturer>DIAL</Manufacturer>
         <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
@@ -23,11 +23,45 @@
             </Emitter>
         </Emitters>
         <Geometries>
-            <Geometry id="geometry">
-                <GeometryFileReference fileId="geometryFile" />
-                <GeometryFileReference fileId="geometryFile" levelOfDetail="Medium" />
-                <GeometryFileReference fileId="geometryFile" levelOfDetail="High"/>
-            </Geometry>
+            <SimpleGeometry id="geometry1">
+                <Cuboid>
+                    <Width>1</Width>
+                    <Length>2</Length>
+                    <Height>3</Height>
+                </Cuboid>
+                <RectangularEmitter>
+                    <Width>4</Width>
+                    <Length>5</Length>
+                </RectangularEmitter>
+            </SimpleGeometry>
+            <SimpleGeometry id="geometry2">
+                <Cylinder plane="X">
+                    <Diameter>1</Diameter>
+                    <Height>2</Height>
+                </Cylinder>
+                <CircularEmitter>
+                    <Diameter>3</Diameter>
+                </CircularEmitter>
+            </SimpleGeometry>
+            <SimpleGeometry id="geometry3">
+                <Cylinder plane="Y">
+                    <Diameter>1</Diameter>
+                    <Height>2</Height>
+                </Cylinder>
+                <RectangularEmitter>
+                    <Width>3</Width>
+                    <Length>4</Length>
+                </RectangularEmitter>
+            </SimpleGeometry>
+            <SimpleGeometry id="geometry4">
+                <Cylinder plane="Z">
+                    <Diameter>1</Diameter>
+                    <Height>2</Height>
+                </Cylinder>
+                <CircularEmitter>
+                    <Diameter>3</Diameter>
+                </CircularEmitter>
+            </SimpleGeometry>
         </Geometries>
     </GeneralDefinitions>
     <ProductDefinitions>
@@ -35,15 +69,15 @@
             <ProductNumber>
                 <Locale language="en">Product number</Locale>
             </ProductNumber>
-            <ProductName>
+            <Name>
                 <Locale language="en">Product name</Locale>
-            </ProductName>
+            </Name>
         </ProductMetaData>
         <Variants>
             <Variant id="variant-1">
-                <VariantName>
+                <Name>
                     <Locale language="en">Variant 1</Locale>
-                </VariantName>
+                </Name>
                 <EmitterReference emitterId="emitter"/>
             </Variant>
         </Variants>

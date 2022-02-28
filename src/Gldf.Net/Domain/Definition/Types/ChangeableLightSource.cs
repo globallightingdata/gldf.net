@@ -1,6 +1,8 @@
 ﻿using Gldf.Net.Domain.Global;
 using System.Xml.Serialization;
 
+// ReSharper disable InconsistentNaming
+
 namespace Gldf.Net.Domain.Definition.Types
 {
     public class ChangeableLightSource : LightSourceType
@@ -24,11 +26,15 @@ namespace Gldf.Net.Domain.Definition.Types
 
         public int RatedLuminousFlux { get; set; }
 
+        public int? RatedLuminousFluxRGB { get; set; }
+
         public LightSourcePowerRange PowerRange { get; set; }
 
         public string LightSourcePositionOfUsage { get; set; }
 
         [XmlArrayItem("EnergyLabel")]
         public EnergyLabel[] EnergyLabels { get; set; }
+
+        public bool ShouldSerializeRatedLuminousFluxRGB() => RatedLuminousFluxRGB != null;
     }
 }

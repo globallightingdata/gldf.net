@@ -47,6 +47,14 @@ namespace Gldf.Net.Tests.TestData.ControlGears
                     new ControlGear
                     {
                         Id = "controlGear-1",
+                        Name = new[]
+                        {
+                            new Locale
+                            {
+                                Language = "en",
+                                Text = "ControlGear name"
+                            }
+                        },
                         Description = new[]
                         {
                             new Locale
@@ -85,6 +93,14 @@ namespace Gldf.Net.Tests.TestData.ControlGears
                     new ControlGear
                     {
                         Id = "controlGear-2",
+                        Name = new[]
+                        {
+                            new Locale
+                            {
+                                Language = "en",
+                                Text = "ControlGear name"
+                            }
+                        },
                         Description = new[]
                         {
                             new Locale
@@ -135,7 +151,7 @@ namespace Gldf.Net.Tests.TestData.ControlGears
                             Text = "Product number"
                         }
                     },
-                    ProductName = new[]
+                    Name = new[]
                     {
                         new Locale
                         {
@@ -149,11 +165,11 @@ namespace Gldf.Net.Tests.TestData.ControlGears
                     new Variant
                     {
                         Id = "variant-1",
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        Reference = new EmitterReference
+                        EmitterReference = new EmitterReference
                         {
                             EmitterId = "emitter"
                         }

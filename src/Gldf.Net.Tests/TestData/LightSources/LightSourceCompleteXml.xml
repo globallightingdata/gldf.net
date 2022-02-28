@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.7/gldf.xsd">
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.8/gldf.xsd">
     <Header>
         <Manufacturer>DIAL</Manufacturer>
         <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
@@ -25,14 +25,20 @@
         </Spectrums>
         <LightSources>
             <LightSource id="lightSource-1">
+                <Name>
+                    <Locale language="en">LightSource1 name</Locale>
+                </Name>
                 <Fixed>
                     <ZhagaStandard>true</ZhagaStandard>
                 </Fixed>
-                <Maintenance>
+                <LightSourceMaintenance>
                     <LedMaintenanceFactor hours="1">0.1</LedMaintenanceFactor>
-                </Maintenance>
+                </LightSourceMaintenance>
             </LightSource>
             <LightSource id="lightSource-2">
+                <Name>
+                    <Locale language="en">LightSource2 name</Locale>
+                </Name>
                 <Changeable>
                     <RatedInputPower>1</RatedInputPower>
                     <RatedInputVoltage>
@@ -45,13 +51,13 @@
                     </RatedInputVoltage>
                     <RatedLuminousFlux>2</RatedLuminousFlux>
                 </Changeable>
-                <Maintenance>
+                <LightSourceMaintenance>
                     <Cie97LampType>Incandescent</Cie97LampType>
-                </Maintenance>
+                </LightSourceMaintenance>
             </LightSource>
             <LightSource id="lightSource-3">
                 <Name>
-                    <Locale language="en">LightSource name</Locale>
+                    <Locale language="en">LightSource3 name</Locale>
                 </Name>
                 <Description>
                     <Locale language="en">LightSource description</Locale>
@@ -69,6 +75,7 @@
                         <Frequency>50/60</Frequency>
                     </RatedInputVoltage>
                     <RatedLuminousFlux>2</RatedLuminousFlux>
+                    <RatedLuminousFluxRGB>3</RatedLuminousFluxRGB>
                     <PowerRange>
                         <Lower>3</Lower>
                         <Upper>4</Upper>
@@ -92,7 +99,7 @@
                                 stroboscopicEffectsSVM="stroboscopic 2"
                                 description="Description 2">0.4</FluxFactor>
                 </ActivePowerTable>
-                <Maintenance lifetime="1">
+                <LightSourceMaintenance lifetime="1">
                     <CieLampMaintenanceFactors>
                         <CieLampMaintenanceFactor burningTime="2">
                             <LampLumenMaintenanceFactor>0.1</LampLumenMaintenanceFactor>
@@ -103,7 +110,7 @@
                             <LampSurvivalFactor>0.4</LampSurvivalFactor>
                         </CieLampMaintenanceFactor>
                     </CieLampMaintenanceFactors>
-                </Maintenance>
+                </LightSourceMaintenance>
                 <ColorInformation>
                     <ColorRenderingIndex>1</ColorRenderingIndex>
                     <CorrelatedColorTemperature>2</CorrelatedColorTemperature>
@@ -134,6 +141,9 @@
                 </LightSourceImages>
             </LightSource>
             <LightSource id="lightSource-4">
+                <Name>
+                    <Locale language="en">LightSource4 name</Locale>
+                </Name>
                 <Changeable>
                     <RatedInputPower>1</RatedInputPower>
                     <RatedInputVoltage>
@@ -146,14 +156,17 @@
                     </RatedInputVoltage>
                     <RatedLuminousFlux>2</RatedLuminousFlux>
                 </Changeable>
-                <Maintenance>
+                <LightSourceMaintenance>
                     <Cie97LampType>Halogen</Cie97LampType>
-                </Maintenance>
+                </LightSourceMaintenance>
                 <LightSourceImages>
                     <Image fileId="image" imageType="Application Picture"/>
                 </LightSourceImages>
             </LightSource>
             <LightSource id="lightSource-5">
+                <Name>
+                    <Locale language="en">LightSource5 name</Locale>
+                </Name>
                 <Changeable>
                     <RatedInputPower>1</RatedInputPower>
                     <RatedInputVoltage>
@@ -166,51 +179,69 @@
                     </RatedInputVoltage>
                     <RatedLuminousFlux>2</RatedLuminousFlux>
                 </Changeable>
-                <Maintenance>
+                <LightSourceMaintenance>
                     <Cie97LampType>Flourescent Triphosphor</Cie97LampType>
-                </Maintenance>
+                </LightSourceMaintenance>
                 <LightSourceImages>
                     <Image fileId="image" imageType="Technical Sketch"/>
                 </LightSourceImages>
             </LightSource>
             <LightSource id="lightSource-6">
+                <Name>
+                    <Locale language="en">LightSource6 name</Locale>
+                </Name>
                 <Fixed />
-                <Maintenance>
+                <LightSourceMaintenance>
                     <Cie97LampType>Flourescent Halophosphate</Cie97LampType>
-                </Maintenance>
+                </LightSourceMaintenance>
                 <LightSourceImages>
                     <Image fileId="image" imageType="Other"/>
                 </LightSourceImages>
             </LightSource>
             <LightSource id="lightSource-7">
+                <Name>
+                    <Locale language="en">LightSource7 name</Locale>
+                </Name>
                 <Fixed />
-                <Maintenance>
+                <LightSourceMaintenance>
                     <Cie97LampType>Compact Fluorescent</Cie97LampType>
-                </Maintenance>
+                </LightSourceMaintenance>
             </LightSource>
             <LightSource id="lightSource-8">
+                <Name>
+                    <Locale language="en">LightSource8 name</Locale>
+                </Name>
                 <Fixed />
-                <Maintenance>
+                <LightSourceMaintenance>
                     <Cie97LampType>Mercury</Cie97LampType>
-                </Maintenance>
+                </LightSourceMaintenance>
             </LightSource>
             <LightSource id="lightSource-9">
+                <Name>
+                    <Locale language="en">LightSource9 name</Locale>
+                </Name>
                 <Fixed />
-                <Maintenance>
+                <LightSourceMaintenance>
                     <Cie97LampType>Metal Halide (250/400W)</Cie97LampType>
-                </Maintenance>
+                </LightSourceMaintenance>
             </LightSource>
             <LightSource id="lightSource-10">
+                <Name>
+                    <Locale language="en">LightSource10 name</Locale>
+                </Name>
                 <Fixed />
-                <Maintenance>
+                <LightSourceMaintenance>
                         <Cie97LampType>Ceramic Metal Halide (50/150W)</Cie97LampType>
-                </Maintenance>
+                </LightSourceMaintenance>
             </LightSource>
             <LightSource id="lightSource-11">
+                <Name>
+                    <Locale language="en">LightSource11 name</Locale>
+                </Name>
                 <Fixed />
-                <Maintenance>
+                <LightSourceMaintenance>
                     <Cie97LampType>High Pressure Sodium (250/400W)</Cie97LampType>
-                </Maintenance>
+                </LightSourceMaintenance>
             </LightSource>
         </LightSources>
         <Emitters>
@@ -224,15 +255,15 @@
             <ProductNumber>
                 <Locale language="en">Product number</Locale>
             </ProductNumber>
-            <ProductName>
+            <Name>
                 <Locale language="en">Product name</Locale>
-            </ProductName>
+            </Name>
         </ProductMetaData>
         <Variants>
             <Variant id="variant-1">
-                <VariantName>
+                <Name>
                     <Locale language="en">Variant 1</Locale>
-                </VariantName>
+                </Name>
                 <EmitterReference emitterId="emitter"/>
             </Variant>
         </Variants>

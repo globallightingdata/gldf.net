@@ -47,6 +47,14 @@ namespace Gldf.Net.Tests.TestData.LightSources
                     new LightSource
                     {
                         Id = "lightSource",
+                        Name = new[]
+                        {
+                            new Locale
+                            {
+                                Language = "en",
+                                Text = "LightSource name"
+                            }
+                        },
                         LightSourceType = new FixedLightSource()
                     }
                 },
@@ -77,7 +85,7 @@ namespace Gldf.Net.Tests.TestData.LightSources
                             Text = "Product number"
                         }
                     },
-                    ProductName = new[]
+                    Name = new[]
                     {
                         new Locale
                         {
@@ -91,11 +99,11 @@ namespace Gldf.Net.Tests.TestData.LightSources
                     new Variant
                     {
                         Id = "variant-1",
-                        VariantName = new[]
+                        Name = new[]
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        Reference = new EmitterReference
+                        EmitterReference = new EmitterReference
                         {
                             EmitterId = "emitter"
                         }
