@@ -19,7 +19,7 @@ namespace Gldf.Net.Tests.TestData.Files
                 Manufacturer = "Manufacturer",
                 CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
                 CreatedWithApplication = "Visual Studio Code",
-                FormatVersion = FormatVersion.V09
+                FormatVersion = FormatVersion.V100
             },
             GeneralDefinitions = new GeneralDefinitions
             {
@@ -172,9 +172,12 @@ namespace Gldf.Net.Tests.TestData.Files
                         Id = "emitter",
                         PossibleFittings = new EmitterBase[]
                         {
-                            new LightEmitter
+                            new ChangeableLightEmitter
                             {
-                                PhotometryId = "photometry"
+                                PhotometryReference = new PhotometryReference
+                                {
+                                    PhotometryId = "photometry"
+                                }
                             }
                         }
                     }
@@ -210,9 +213,12 @@ namespace Gldf.Net.Tests.TestData.Files
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        EmitterReference = new EmitterReference
+                        Geometry = new Geometry
                         {
-                            EmitterId = "emitter"
+                            Reference = new EmitterReference
+                            {
+                                EmitterId = "emitter"
+                            }
                         }
                     }
                 }

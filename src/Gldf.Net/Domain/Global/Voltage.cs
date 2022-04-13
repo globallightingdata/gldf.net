@@ -5,9 +5,9 @@ namespace Gldf.Net.Domain.Global
     public class Voltage
     {
         [XmlElement(ElementName = "VoltageValueType")]
-        [XmlElementAttribute("VoltageRange", typeof(VoltageRange))]
-        [XmlElementAttribute("FixedVoltage", typeof(FixedVoltage))]
-        public VoltageValue Value { get; set; }
+        [XmlElement("VoltageRange", typeof(VoltageRange))]
+        [XmlElement("FixedVoltage", typeof(FixedVoltage))]
+        public VoltageValueBase Value { get; set; }
 
         public VoltageType? Type { get; set; }
 

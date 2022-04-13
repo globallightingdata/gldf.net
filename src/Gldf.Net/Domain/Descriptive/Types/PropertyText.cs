@@ -2,7 +2,7 @@
 
 namespace Gldf.Net.Domain.Descriptive.Types
 {
-    public class PropertyText : PropertyContent
+    public class PropertyText : PropertyContentBase
     {
         [XmlText]
         public string Value { get; set; }

@@ -65,7 +65,7 @@ namespace Gldf.Net.Tests.ValidationTests
 
             act.Should()
                 .ThrowExactly<GldfValidationException>().WithMessage("Failed to validate XML. See inner exception")
-                .WithInnerException<GldfException>().WithMessage("Failed to get FormatVersion XML element");
+                .WithInnerException<GldfException>().WithMessage("Failed to get FormatVersion. See inner expcetion");
         }
 
         [Test]

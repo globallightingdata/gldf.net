@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.8/gldf.xsd">
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/1.0.0-rc.1/gldf.xsd">
     <Header>
         <Manufacturer>DIAL</Manufacturer>
         <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
         <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
-        <FormatVersion>0.9</FormatVersion>
+        <FormatVersion>1.0.0-rc.1</FormatVersion>
     </Header>
     <GeneralDefinitions>
         <Files>
@@ -24,47 +24,28 @@
                 <PhotometryFileReference fileId="eulumdatFile"/>
             </Photometry>
         </Photometries>
-        <LightSources>
-            <LightSource id="lightSource">
-                <Name>
-                    <Locale language="en">LightSource name</Locale>
-                </Name>
-                <Fixed/>
-            </LightSource>
-        </LightSources>
-        <Equipments>
-            <Equipment id="equipment">
-                <LightSourceReference lightSourceId="lightSource" lightSourceCount="2"/>
-                <RatedInputPower>1</RatedInputPower>
-                <RatedLuminousFlux>2</RatedLuminousFlux>
-            </Equipment>
-        </Equipments>
         <Emitters>
-            <Emitter id="emitter">
-                <LightEmitter photometryId="photometry"/>
-            </Emitter>
             <Emitter id="leoEmitter">
-                <LightEmitter photometryId="photometry" equipmentId="equipment">
-                    <Name>
-                        <Locale language="en">Display name</Locale>
-                        <Locale language="de">Anzeigename</Locale>
-                    </Name>
-                </LightEmitter>
-                <LightEmitter photometryId="photometry" emergencyBehaviour="None"/>
-                <LightEmitter photometryId="photometry" equipmentId="equipment" emergencyBehaviour="EmergencyOnly"/>
-                <LightEmitter photometryId="photometry" equipmentId="equipment" emergencyBehaviour="Combined"/>
+                <ChangeableLightEmitter>
+                    <PhotometryReference photometryId="photometry"/>
+                </ChangeableLightEmitter>
             </Emitter>
             <Emitter id="sensorEmitter">
-                <Sensor sensorId="sensor">
-                    <Name>
-                        <Locale language="en">Display name</Locale>
-                        <Locale language="de">Anzeigename</Locale>
-                    </Name>
-                </Sensor>
+                <Sensor sensorId="sensor"/>
             </Emitter>
-
         </Emitters>
         <Geometries>
+            <SimpleGeometry id="simpleGeometry">
+                <Cuboid>
+                    <Width>1</Width>
+                    <Length>2</Length>
+                    <Height>3</Height>
+                </Cuboid>
+                <RectangularEmitter>
+                    <Width>4</Width>
+                    <Length>5</Length>
+                </RectangularEmitter>
+            </SimpleGeometry>
             <ModelGeometry id="geometry">
                 <GeometryFileReference fileId="geometryFile"/>
             </ModelGeometry>
@@ -100,21 +81,21 @@
                 <GTIN>12345678</GTIN>
                 <Mountings>
                     <Ceiling>
-                        <Recessed recessedDepth="0.1">
+                        <Recessed recessedDepth="1">
                             <CircularCutout>
-                                <Diameter>0.2</Diameter>
-                                <Depth>0.3</Depth>
+                                <Diameter>2</Diameter>
+                                <Depth>3</Depth>
                             </CircularCutout>
                         </Recessed>
                         <SurfaceMounted/>
-                        <Pendant pendantLength="0.4"/>
+                        <Pendant pendantLength="4"/>
                     </Ceiling>
-                    <Wall mountingHeight="0.5">
-                        <Recessed recessedDepth="0.6">
+                    <Wall mountingHeight="5">
+                        <Recessed recessedDepth="6">
                             <RectangularCutout>
-                                <Width>0.7</Width>
-                                <Length>0.8</Length>
-                                <Depth>0.9</Depth>
+                                <Width>7</Width>
+                                <Length>8</Length>
+                                <Depth>9</Depth>
                             </RectangularCutout>
                         </Recessed>
                         <SurfaceMounted/>
@@ -123,19 +104,21 @@
                         <FreeStanding/>
                     </WorkingPlane>
                     <Ground>
-                        <PoleTop poleHeight="0.11"/>
-                        <PoleIntegrated poleHeight="0.12"/>
+                        <PoleTop poleHeight="11"/>
+                        <PoleIntegrated poleHeight="12"/>
                         <FreeStanding/>
                         <SurfaceMounted/>
-                        <Recessed recessedDepth="0.13">
+                        <Recessed recessedDepth="13">
                             <CircularCutout>
-                                <Diameter>0.14</Diameter>
-                                <Depth>0.15</Depth>
+                                <Diameter>14</Diameter>
+                                <Depth>15</Depth>
                             </CircularCutout>
                         </Recessed>
                     </Ground>
                 </Mountings>
-                <EmitterReference emitterId="emitter"/>
+                <Geometry>
+                    <EmitterReference emitterId="leoEmitter"/>
+                </Geometry>
                 <Pictures>
                     <Image fileId="pictureFile" imageType="Other"/>
                     <Image fileId="pictureFile" imageType="Technical Sketch"/>
@@ -150,59 +133,59 @@
                 </Name>
                 <Mountings>
                     <Ceiling>
-                        <Recessed recessedDepth="0.16">
+                        <Recessed recessedDepth="16">
                             <RectangularCutout>
-                                <Width>0.17</Width>
-                                <Length>0.18</Length>
-                                <Depth>0.19</Depth>
+                                <Width>17</Width>
+                                <Length>18</Length>
+                                <Depth>19</Depth>
                             </RectangularCutout>
                         </Recessed>
                     </Ceiling>
-                    <Wall mountingHeight="0.21">
-                        <Recessed recessedDepth="0.22">
+                    <Wall mountingHeight="21">
+                        <Recessed recessedDepth="22">
                             <CircularCutout>
-                                <Diameter>0.23</Diameter>
-                                <Depth>0.24</Depth>
+                                <Diameter>23</Diameter>
+                                <Depth>24</Depth>
                             </CircularCutout>
                         </Recessed>
                     </Wall>
                     <Ground>
-                        <Recessed recessedDepth="0.25">
+                        <Recessed recessedDepth="25">
                             <RectangularCutout>
-                                <Width>0.26</Width>
-                                <Length>0.27</Length>
-                                <Depth>0.28</Depth>
+                                <Width>26</Width>
+                                <Length>27</Length>
+                                <Depth>28</Depth>
                             </RectangularCutout>
                         </Recessed>
                     </Ground>
                 </Mountings>
-                <EmitterReference emitterId="emitter"/>
+                <Geometry>
+                    <SimpleGeometryReference geometryId="simpleGeometry" emitterId="leoEmitter"/>
+                </Geometry>
             </Variant>
             <Variant id="variant-3" sortOrder="3">
                 <Name>
                     <Locale language="en">Variant 3</Locale>
                 </Name>
-                <ModelGeometryReference geometryId="geometry">
-                    <EmitterReference emitterId="leoEmitter">
-                        <EmitterObjectExternalName>leo1</EmitterObjectExternalName>
-                    </EmitterReference>
-                </ModelGeometryReference>
-            </Variant>
-            <Variant id="variant-4" sortOrder="4">
-                <Name>
-                    <Locale language="en">Variant 4</Locale>
-                </Name>
-                <ModelGeometryReference geometryId="geometry">
-                    <EmitterReference emitterId="sensorEmitter" targetModelType="l3d">
-                        <EmitterObjectExternalName>sensor1</EmitterObjectExternalName>
-                    </EmitterReference>
-                    <EmitterReference emitterId="sensorEmitter" targetModelType="m3d">
-                        <EmitterObjectExternalName>sensor1</EmitterObjectExternalName>
-                    </EmitterReference>
-                    <EmitterReference emitterId="sensorEmitter" targetModelType="r3d">
-                        <EmitterObjectExternalName>sensor1</EmitterObjectExternalName>
-                    </EmitterReference>
-                </ModelGeometryReference>
+                <Geometry>
+                    <ModelGeometryReference geometryId="geometry">
+                        <EmitterReference emitterId="leoEmitter">
+                            <EmitterObjectExternalName>leo1</EmitterObjectExternalName>
+                        </EmitterReference>
+                        <EmitterReference emitterId="leoEmitter" targetModelType="l3d">
+                            <EmitterObjectExternalName>leo1</EmitterObjectExternalName>
+                        </EmitterReference>
+                        <EmitterReference emitterId="leoEmitter" targetModelType="m3d">
+                            <EmitterObjectExternalName>leo1</EmitterObjectExternalName>
+                        </EmitterReference>
+                        <EmitterReference emitterId="leoEmitter" targetModelType="r3d">
+                            <EmitterObjectExternalName>leo1</EmitterObjectExternalName>
+                        </EmitterReference>
+                        <EmitterReference emitterId="sensorEmitter">
+                            <EmitterObjectExternalName>sensor</EmitterObjectExternalName>
+                        </EmitterReference>
+                    </ModelGeometryReference>
+                </Geometry>
                 <ProductSeries>
                     <ProductSerie>
                         <Name>
@@ -231,11 +214,36 @@
                         </Name>
                     </ProductSerie>
                 </ProductSeries>
-                <DescriptiveAttributes>
-                    <Electrical>
-                        <IKRating>IK05</IKRating>
-                    </Electrical>
-                </DescriptiveAttributes>
+            </Variant>
+            <Variant id="variant-4" sortOrder="4">
+                <Name>
+                    <Locale language="en">Variant 4</Locale>
+                </Name>
+                <Geometry>
+                    <GeometryReferences>
+                        <SimpleGeometryReference geometryId="simpleGeometry" emitterId="leoEmitter"/>
+                        <ModelGeometryReference geometryId="geometry">
+                            <EmitterReference emitterId="leoEmitter" targetModelType="l3d">
+                                <EmitterObjectExternalName>Leo</EmitterObjectExternalName>
+                            </EmitterReference>
+                        </ModelGeometryReference>
+                    </GeometryReferences>
+                </Geometry>
+            </Variant>
+            <Variant id="variant-5" sortOrder="5">
+                <Name>
+                    <Locale language="en">Variant 5</Locale>
+                </Name>
+                <Geometry>
+                    <GeometryReferences>
+                        <SimpleGeometryReference geometryId="simpleGeometry" emitterId="leoEmitter"/>
+                        <ModelGeometryReference geometryId="geometry">
+                            <EmitterReference emitterId="leoEmitter">
+                                <EmitterObjectExternalName>Leo</EmitterObjectExternalName>
+                            </EmitterReference>
+                        </ModelGeometryReference>
+                    </GeometryReferences>
+                </Geometry>
             </Variant>
         </Variants>
     </ProductDefinitions>

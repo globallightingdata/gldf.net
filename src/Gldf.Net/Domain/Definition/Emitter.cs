@@ -1,4 +1,5 @@
 ﻿using Gldf.Net.Domain.Definition.Types;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
@@ -10,11 +11,14 @@ namespace Gldf.Net.Domain.Definition
         [XmlAttribute(DataType = "ID", AttributeName = "id")]
         public string Id { get; set; }
 
-        [XmlElement("LightEmitter", typeof(LightEmitter))]
+        [XmlElement("ChangeableLightEmitter", typeof(ChangeableLightEmitter))]
+        [XmlElement("FixedLightEmitter", typeof(FixedLightEmitter))]
         [XmlElement("Sensor", typeof(SensorEmitter))]
         public EmitterBase[] PossibleFittings { get; set; }
 
-        public IEnumerable<LightEmitter> GetLightEmitters() => PossibleFittings?.OfType<LightEmitter>();
+        public IEnumerable<ChangeableLightEmitter> GetChangeableLightEmitters() => PossibleFittings?.OfType<ChangeableLightEmitter>();
+        
+        public IEnumerable<FixedLightEmitter> GetFixedLightEmitters() => PossibleFittings?.OfType<FixedLightEmitter>();
 
         public IEnumerable<SensorEmitter> GetSensorEmitters() => PossibleFittings?.OfType<SensorEmitter>();
     }

@@ -43,4 +43,24 @@ public class GeneralDefinitionsTests
         definitions.GetAsModelGeometries().Should().HaveCount(1);
         definitions.GetAsModelGeometries().Should().OnlyContain(geo => geo == modelGeometry);
     }
+    
+    [Test]
+    public void GetAsChangeableLightSources_ShouldReturnExpected()
+    {
+        var expected = new ChangeableLightSource();
+        var definitions = new GeneralDefinitions { LightSources = new LightSourceBase[] { expected } };
+
+        definitions.GetAsChangeableLightSources().Should().HaveCount(1);
+        definitions.GetAsChangeableLightSources().Should().OnlyContain(ls => ls == expected);
+    }
+
+    [Test]
+    public void GetAsFixedLightSource_ShouldReturnExpected()
+    {
+        var expected = new FixedLightSource();
+        var definitions = new GeneralDefinitions { LightSources = new LightSourceBase[] { expected } };
+
+        definitions.GetAsFixedLightSources().Should().HaveCount(1);
+        definitions.GetAsFixedLightSources().Should().OnlyContain(ls => ls == expected);
+    }
 }

@@ -1,11 +1,11 @@
 ﻿namespace Gldf.Net.Domain.Product.Types.Mounting
 {
-    public class RectangularCutout : MountingCutout
+    public class RectangularCutout : MountingCutoutBase
     {
-        public double Width { get; set; }
+        public int Width { get; set; }
 
-        public double Length { get; set; }
+        public int Length { get; set; }
 
-        public double Depth { get; set; }
+        public int Depth { get; set; }
     }
 }

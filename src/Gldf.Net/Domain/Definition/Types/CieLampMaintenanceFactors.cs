@@ -2,7 +2,7 @@
 
 namespace Gldf.Net.Domain.Definition.Types
 {
-    public class CieLampMaintenanceFactors : LampMaintenanceType
+    public class CieLampMaintenanceFactors : LightSourceMaintenanceTypeBase
     {
         [XmlElement("CieLampMaintenanceFactor")]
         public CieLampMaintenanceFactor[] CieLampMaintenanceFactor { get; set; }

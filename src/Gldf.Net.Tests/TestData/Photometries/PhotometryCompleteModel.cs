@@ -41,7 +41,7 @@ namespace Gldf.Net.Tests.TestData.Photometries
                         {
                             LuminaireLuminance = 2,
                             LightOutputRatio = 0.01,
-                            LuminousEfficacy = 90,
+                            LuminousEfficacy = 90.5,
                             DownwardFluxFraction = 0.03,
                             DownwardLightOutputRatio = 0.04,
                             UpwardLightOutputRatio = 0.05,
@@ -75,9 +75,12 @@ namespace Gldf.Net.Tests.TestData.Photometries
                         Id = "emitter",
                         PossibleFittings = new EmitterBase[]
                         {
-                            new LightEmitter
+                            new ChangeableLightEmitter
                             {
-                                PhotometryId = "photometry"
+                                PhotometryReference = new PhotometryReference
+                                {
+                                    PhotometryId = "photometry"
+                                }
                             }
                         }
                     }
@@ -113,9 +116,12 @@ namespace Gldf.Net.Tests.TestData.Photometries
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        EmitterReference = new EmitterReference
+                        Geometry = new Geometry
                         {
-                            EmitterId = "emitter"
+                            Reference = new EmitterReference
+                            {
+                                EmitterId = "emitter"
+                            }
                         }
                     }
                 }

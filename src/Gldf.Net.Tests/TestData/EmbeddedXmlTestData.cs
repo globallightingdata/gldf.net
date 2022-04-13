@@ -32,7 +32,8 @@ namespace Gldf.Net.Tests.TestData
         private const string SpectrumMandatoryXml = "TestData.Spectrums.SpectrumMandatoryXml.xml";
         private const string SpectrumCompleteXml = "TestData.Spectrums.SpectrumCompleteXml.xml";
         private const string LightSourceMandatoryXml = "TestData.LightSources.LightSourceMandatoryXml.xml";
-        private const string LightSourceCompleteXml = "TestData.LightSources.LightSourceCompleteXml.xml";
+        private const string ChangeableCompleteXml = "TestData.LightSources.ChangeableCompleteXml.xml";
+        private const string FixedCompleteXml = "TestData.LightSources.FixedCompleteXml.xml";
         private const string ControlGearMandatoryXml = "TestData.ControlGears.ControlGearMandatoryXml.xml";
         private const string ControlGearCompleteXml = "TestData.ControlGears.ControlGearCompleteXml.xml";
         private const string EquipmentMandatoryXml = "TestData.Equipments.EquipmentMandatoryXml.xml";
@@ -62,7 +63,8 @@ namespace Gldf.Net.Tests.TestData
             new TestCaseData(GetSpectrumMandatoryXml()).SetName("Spectrum Mandatory"),
             new TestCaseData(GetSpectrumCompleteXml()).SetName("Spectrum Complete"),
             new TestCaseData(GetLightSourceMandatoryXml()).SetName("LightSource Mandatory"),
-            new TestCaseData(GetLightSourceCompleteXml()).SetName("LightSource Complete"),
+            new TestCaseData(GetChangeableCompleteXml()).SetName("LightSource Changeable Complete"),
+            new TestCaseData(GetFixedCompleteXml()).SetName("LightSource Fixed Complete"),
             new TestCaseData(GetControlGearMandatoryXml()).SetName("ControlGear Mandatory"),
             new TestCaseData(GetControlGearCompleteXml()).SetName("ControlGear Complete"),
             new TestCaseData(GetEquipmentMandatoryXml()).SetName("Equipment Mandatory"),
@@ -115,9 +117,11 @@ namespace Gldf.Net.Tests.TestData
 
         // GeneralDefinitions => LightSources
         public static string GetLightSourceMandatoryXml() => ResourceLoader.LoadEmbeddedXml(LightSourceMandatoryXml);
-        public static string GetLightSourceCompleteXml() => ResourceLoader.LoadEmbeddedXml(LightSourceCompleteXml);
+        public static string GetChangeableCompleteXml() => ResourceLoader.LoadEmbeddedXml(ChangeableCompleteXml);
+        public static string GetFixedCompleteXml() => ResourceLoader.LoadEmbeddedXml(FixedCompleteXml);
         public static Root GetLightSourceMandatoryModel() => LightSourceMandatoryModel.Root;
-        public static Root GetLightSourceCompleteModel() => LightSourceCompleteModel.Root;
+        public static Root GetChangeableCompleteModel() => ChangeableCompleteModel.Root;
+        public static Root GetFixedCompleteModel() => FixedCompleteModel.Root;
 
         // GeneralDefinitions => ControlGears
         public static string GetControlGearMandatoryXml() => ResourceLoader.LoadEmbeddedXml(ControlGearMandatoryXml);

@@ -42,9 +42,9 @@ namespace Gldf.Net.Tests.TestData.LightSources
                         }
                     }
                 },
-                LightSources = new[]
+                LightSources = new LightSourceBase[]
                 {
-                    new LightSource
+                    new FixedLightSource
                     {
                         Id = "lightSource",
                         Name = new[]
@@ -55,7 +55,7 @@ namespace Gldf.Net.Tests.TestData.LightSources
                                 Text = "LightSource name"
                             }
                         },
-                        LightSourceType = new FixedLightSource()
+                        RatedInputPower = 50
                     }
                 },
                 Emitters = new[]
@@ -65,9 +65,17 @@ namespace Gldf.Net.Tests.TestData.LightSources
                         Id = "emitter",
                         PossibleFittings = new EmitterBase[]
                         {
-                            new LightEmitter
+                            new FixedLightEmitter
                             {
-                                PhotometryId = "photometry"
+                                PhotometryReference = new PhotometryReference
+                                {
+                                    PhotometryId = "photometry"
+                                },
+                                LightSourceReference = new FixedLightSourceReference
+                                {
+                                    FixedLightSourceId = "lightSource"
+                                },
+                                RatedLuminousFlux = 250
                             }
                         }
                     }
@@ -103,9 +111,12 @@ namespace Gldf.Net.Tests.TestData.LightSources
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        EmitterReference = new EmitterReference
+                        Geometry = new Geometry
                         {
-                            EmitterId = "emitter"
+                            Reference = new EmitterReference
+                            {
+                                EmitterId = "emitter"
+                            }
                         }
                     }
                 }

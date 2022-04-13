@@ -4,7 +4,7 @@ namespace Gldf.Net.Domain.Head.Types
 {
     public enum FormatVersion
     {
-        [XmlEnum("0.9")]
-        V09
+        [XmlEnum("1.0.0-rc.1")]
+        V100
     }
 }

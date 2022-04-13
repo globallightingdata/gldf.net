@@ -1,5 +1,4 @@
-﻿using Gldf.Net.Domain.Global;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace Gldf.Net.Domain.Definition.Types
 {
@@ -7,7 +6,5 @@ namespace Gldf.Net.Domain.Definition.Types
     {
         [XmlAttribute(DataType = "NCName", AttributeName = "sensorId")]
         public string SensorId { get; set; }
-
-        public Locale[] Name { get; set; }
     }
 }

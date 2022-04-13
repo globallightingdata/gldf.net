@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.8/gldf.xsd">
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/1.0.0-rc.1/gldf.xsd">
     <Header>
         <Manufacturer>DIAL</Manufacturer>
         <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
         <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
-        <FormatVersion>0.9</FormatVersion>
+        <FormatVersion>1.0.0-rc.1</FormatVersion>
     </Header>
     <GeneralDefinitions>
         <Files>
@@ -23,38 +23,48 @@
             </Photometry>
         </Photometries>
         <LightSources>
-            <LightSource id="lightSource">
+            <ChangeableLightSource id="lightSource">
                 <Name>
-                    <Locale language="en">lightSource name</Locale>
+                    <Locale language="en">LightSource name</Locale>
                 </Name>
-                <Fixed />
-            </LightSource>
+                <RatedInputPower>50</RatedInputPower>
+                <RatedLuminousFlux>250</RatedLuminousFlux>
+            </ChangeableLightSource>
         </LightSources>
         <Equipments>
             <Equipment id="equipment">
-                <LightSourceReference lightSourceId="lightSource"/>
+                <LightSourceReference changeableLightSourceId="lightSource"/>
                 <RatedInputPower>10</RatedInputPower>
-                <RatedLuminousFlux>50</RatedLuminousFlux>
             </Equipment>
         </Equipments>
         <Emitters>
             <Emitter id="emitter-1">
-                <LightEmitter photometryId="photometry">
+                <ChangeableLightEmitter>
                     <Name>
                         <Locale language="en">Display name</Locale>
                         <Locale language="de">Anzeigename</Locale>
                     </Name>
                     <Rotation>
-                        <X>0</X>
-                        <Y>1</Y>
-                        <Z>2</Z>
-                        <G0>3</G0>
+                        <X>1</X>
+                        <Y>2</Y>
+                        <Z>3</Z>
+                        <G0>4</G0>
                     </Rotation>
-                </LightEmitter>
-                <LightEmitter photometryId="photometry" equipmentId="equipment"/>
-                <LightEmitter photometryId="photometry" emergencyBehaviour="None" />
-                <LightEmitter photometryId="photometry" emergencyBehaviour="Combined" />
-                <LightEmitter photometryId="photometry" emergencyBehaviour="EmergencyOnly" />
+                    <PhotometryReference photometryId="photometry"/>       
+                </ChangeableLightEmitter>
+                <ChangeableLightEmitter>
+                    <PhotometryReference photometryId="photometry"/>
+                    <EquipmentReference equipmentId="equipment"/>
+                </ChangeableLightEmitter>
+                <ChangeableLightEmitter emergencyBehaviour="None">
+                    <PhotometryReference photometryId="photometry"/>
+                </ChangeableLightEmitter>
+                <ChangeableLightEmitter emergencyBehaviour="Combined">
+                    <PhotometryReference photometryId="photometry"/>
+                </ChangeableLightEmitter>
+                <ChangeableLightEmitter emergencyBehaviour="EmergencyOnly">
+                    <PhotometryReference photometryId="photometry"/>
+                </ChangeableLightEmitter>
             </Emitter>
             <Emitter id="emitter-2">
                 <Sensor sensorId="sensor">
@@ -62,6 +72,12 @@
                         <Locale language="en">Display name</Locale>
                         <Locale language="de">Anzeigename</Locale>
                     </Name>
+                    <Rotation>
+                        <X>10.1</X>
+                        <Y>11.2</Y>
+                        <Z>12.3</Z>
+                        <G0>13.4</G0>
+                    </Rotation>
                 </Sensor>
                 <Sensor sensorId="sensor"/>
             </Emitter>
@@ -81,7 +97,9 @@
                 <Name>
                     <Locale language="en">Variant 1</Locale>
                 </Name>
-                <EmitterReference emitterId="emitter-1"/>
+                <Geometry>
+                    <EmitterReference emitterId="emitter-1"/>
+                </Geometry>
             </Variant>
         </Variants>
     </ProductDefinitions>

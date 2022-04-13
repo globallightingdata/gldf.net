@@ -9,16 +9,19 @@ namespace Gldf.Net.Domain.Definition.Types
 
         [XmlElement("Cuboid", typeof(SimpleCuboidGeometry))]
         [XmlElement("Cylinder", typeof(SimpleCylinderGeometry))]
-        public SimpleGeometryBase SimpleGeometryType { get; set; }
+        public SimpleGeometryBase GeometryType { get; set; }
 
         [XmlElement("RectangularEmitter", typeof(SimpleRectangularEmitter))]
         [XmlElement("CircularEmitter", typeof(SimpleCircularEmitter))]
-        public SimpleGeometryEmitterBase SimpleGeometryEmitterType { get; set; }
+        public SimpleGeometryEmitterBase EmitterType { get; set; }
 
-        public SimpleCuboidGeometry GetAsCuboidGeometry() => SimpleGeometryType as SimpleCuboidGeometry;
-        public SimpleCylinderGeometry GetAsCylinderGeometry() => SimpleGeometryType as SimpleCylinderGeometry;
+        [XmlElement("C-Heights")]
+        public CHeights CHeights { get; set; }
 
-        public SimpleRectangularEmitter GetAsRectangularEmitter() => SimpleGeometryEmitterType as SimpleRectangularEmitter;
-        public SimpleCircularEmitter GetAsCircularEmitter() => SimpleGeometryEmitterType as SimpleCircularEmitter;
+        public SimpleCuboidGeometry GetAsCuboidGeometry() => GeometryType as SimpleCuboidGeometry;
+        public SimpleCylinderGeometry GetAsCylinderGeometry() => GeometryType as SimpleCylinderGeometry;
+        public SimpleRectangularEmitter GetAsRectangularEmitter() => EmitterType as SimpleRectangularEmitter;
+        public SimpleCircularEmitter GetAsCircularEmitter() => EmitterType as SimpleCircularEmitter;
     }
+
 }

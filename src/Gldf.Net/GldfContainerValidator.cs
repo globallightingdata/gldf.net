@@ -18,8 +18,7 @@ namespace Gldf.Net
         ///     Initializes a new instance of the <see cref="GldfContainerValidator" /> class that validates GLDF
         ///     container files on disk. As well as instances of type <see cref="GldfContainer" />
         /// </summary>
-        public GldfContainerValidator() 
-            => _zipArchiveValidator = new ZipArchiveValidator();
+        public GldfContainerValidator() => _zipArchiveValidator = new ZipArchiveValidator();
 
         /// <summary>
         ///     Validates a GLDF container file on disk.

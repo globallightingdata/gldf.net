@@ -1,6 +1,6 @@
 ﻿namespace Gldf.Net.Domain.Global
 {
-    public class VoltageRange : VoltageValue
+    public class VoltageRange : VoltageValueBase
     {
         public double Min { get; set; }
 

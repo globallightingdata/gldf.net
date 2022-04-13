@@ -1,5 +1,6 @@
 ﻿using Gldf.Net.Domain.Head.Types;
 using System;
+// ReSharper disable InconsistentNaming
 
 namespace Gldf.Net.Domain.Head
 {
@@ -21,7 +22,7 @@ namespace Gldf.Net.Domain.Head
 
         public string ReluxMemberId { get; set; }
 
-        public string DiaLuxMemberId { get; set; }
+        public string DIALuxMemberId { get; set; }
 
         public Address[] Contact { get; set; }
     }

@@ -1,6 +1,6 @@
 ﻿namespace Gldf.Net.Domain.Definition.Types
 {
-    public abstract class LampMaintenanceType
+    public abstract class PhotometryContentBase
     {
     }
 }

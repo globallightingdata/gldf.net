@@ -5,6 +5,6 @@ namespace Gldf.Net.Domain.Product.Types.Mounting
     public class Pendant
     {
         [XmlAttribute("pendantLength")]
-        public double PendantLength { get; set; }
+        public int PendantLength { get; set; }
     }
 }

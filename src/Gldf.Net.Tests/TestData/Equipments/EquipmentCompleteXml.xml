@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.8/gldf.xsd">
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/1.0.0-rc.1/gldf.xsd">
     <Header>
         <Manufacturer>DIAL</Manufacturer>
         <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
         <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
-        <FormatVersion>0.9</FormatVersion>
+        <FormatVersion>1.0.0-rc.1</FormatVersion>
     </Header>
     <GeneralDefinitions>
         <Files>
@@ -17,12 +17,13 @@
             </Photometry>
         </Photometries>
         <LightSources>
-            <LightSource id="lightSource">
+            <ChangeableLightSource id="lightSource">
                 <Name>
                     <Locale language="en">LightSource name</Locale>
                 </Name>
-                <Fixed/>
-            </LightSource>
+                <RatedInputPower>50</RatedInputPower>
+                <RatedLuminousFlux>250</RatedLuminousFlux>                
+            </ChangeableLightSource>
         </LightSources>
         <ControlGears>
             <ControlGear id="controlGear">
@@ -36,24 +37,30 @@
         </ControlGears>
         <Equipments>
             <Equipment id="equipment-1">
-                <LightSourceReference lightSourceId="lightSource"/>
-                <ControlGearReference controlGearId="controlGear" controlGearCount="2" />
+                <LightSourceReference changeableLightSourceId="lightSource"/>
+                <ControlGearReference controlGearId="controlGear" controlGearCount="2"/>
                 <RatedInputPower>0.1</RatedInputPower>
-                <RatedLuminousFlux>1</RatedLuminousFlux>
-                <RatedLuminousFluxRGB>2</RatedLuminousFluxRGB>
                 <EmergencyBallastLumenFactor>0.2</EmergencyBallastLumenFactor>
             </Equipment>
             <Equipment id="equipment-2">
-                <LightSourceReference lightSourceId="lightSource"/>
-                <ControlGearReference controlGearId="controlGear" />
+                <LightSourceReference changeableLightSourceId="lightSource"/>
+                <ControlGearReference controlGearId="controlGear"/>
                 <RatedInputPower>0.1</RatedInputPower>
-                <RatedLuminousFlux>1</RatedLuminousFlux>
                 <EmergencyRatedLuminousFlux>2</EmergencyRatedLuminousFlux>
             </Equipment>
         </Equipments>
         <Emitters>
-            <Emitter id="emitter">
-                <LightEmitter photometryId="photometry" />
+            <Emitter id="emitter-1">
+                <ChangeableLightEmitter>
+                    <PhotometryReference photometryId="photometry"/>
+                    <EquipmentReference equipmentId="equipment-1"/>
+                </ChangeableLightEmitter>
+            </Emitter>
+            <Emitter id="emitter-2">
+                <ChangeableLightEmitter>
+                    <PhotometryReference photometryId="photometry"/>
+                    <EquipmentReference equipmentId="equipment-2"/>
+                </ChangeableLightEmitter>
             </Emitter>
         </Emitters>
     </GeneralDefinitions>
@@ -71,7 +78,9 @@
                 <Name>
                     <Locale language="en">Variant 1</Locale>
                 </Name>
-                <EmitterReference emitterId="emitter"/>
+                <Geometry>
+                    <EmitterReference emitterId="emitter-1"/>
+                </Geometry>
             </Variant>
         </Variants>
     </ProductDefinitions>

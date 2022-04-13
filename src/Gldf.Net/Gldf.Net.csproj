@@ -29,7 +29,7 @@
 
     <ItemGroup>
         <None Remove="Xsd\gldf.xsd" />
-        <EmbeddedResource Include="Xsd\V09.xsd" />
+        <EmbeddedResource Include="Xsd\V100.xsd" />
         <None Include=".\..\..\img\logo.png">
             <Pack>true</Pack>
             <PackagePath>\</PackagePath>

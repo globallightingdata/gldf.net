@@ -7,8 +7,8 @@ namespace Gldf.Net.Domain.Definition.Types
         private int _lightSourceCount;
         private bool _lightSourceCountSpecified;
 
-        [XmlAttribute(DataType = "NCName", AttributeName = "lightSourceId")]
-        public string LightSourceId { get; set; }
+        [XmlAttribute(DataType = "NCName", AttributeName = "changeableLightSourceId")]
+        public string ChangeableLightSourceId { get; set; }
 
         [XmlAttribute(AttributeName = "lightSourceCount")]
         public int LightSourceCount

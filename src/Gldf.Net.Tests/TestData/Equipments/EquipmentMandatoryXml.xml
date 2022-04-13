@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.8/gldf.xsd">
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/1.0.0-rc.1/gldf.xsd">
     <Header>
         <Manufacturer>DIAL</Manufacturer>
         <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
         <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
-        <FormatVersion>0.9</FormatVersion>
+        <FormatVersion>1.0.0-rc.1</FormatVersion>
     </Header>
     <GeneralDefinitions>
         <Files>
@@ -17,23 +17,25 @@
             </Photometry>
         </Photometries>
         <LightSources>
-            <LightSource id="lightSource">
+            <ChangeableLightSource id="lightSource">
                 <Name>
                     <Locale language="en">LightSource name</Locale>
                 </Name>
-                <Fixed/>
-            </LightSource>
+                <RatedInputPower>50</RatedInputPower>
+                <RatedLuminousFlux>250</RatedLuminousFlux>
+            </ChangeableLightSource>
         </LightSources>
         <Equipments>
             <Equipment id="equipment">
-                <LightSourceReference lightSourceId="lightSource"/>
+                <LightSourceReference changeableLightSourceId="lightSource"/>
                 <RatedInputPower>0.1</RatedInputPower>
-                <RatedLuminousFlux>1</RatedLuminousFlux>
             </Equipment>
         </Equipments>
         <Emitters>
             <Emitter id="emitter">
-                <LightEmitter photometryId="photometry" />
+                <ChangeableLightEmitter>
+                    <PhotometryReference photometryId="photometry"/>
+                </ChangeableLightEmitter>
             </Emitter>
         </Emitters>
     </GeneralDefinitions>
@@ -51,7 +53,9 @@
                 <Name>
                     <Locale language="en">Variant 1</Locale>
                 </Name>
-                <EmitterReference emitterId="emitter"/>
+                <Geometry>
+                    <EmitterReference emitterId="emitter"/>
+                </Geometry>
             </Variant>
         </Variants>
     </ProductDefinitions>

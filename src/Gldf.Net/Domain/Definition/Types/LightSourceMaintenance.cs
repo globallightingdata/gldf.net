@@ -20,15 +20,15 @@ namespace Gldf.Net.Domain.Definition.Types
         [XmlElement("Cie97LampType", typeof(Cie97LampType))]
         [XmlElement("CieLampMaintenanceFactors", typeof(CieLampMaintenanceFactors))]
         [XmlElement("LedMaintenanceFactor", typeof(LedMaintenanceFactor))]
-        public LampMaintenanceType Content { get; set; }
+        public LightSourceMaintenanceTypeBase MaintenanceType { get; set; }
 
         [XmlIgnore]
         public bool LifetimeSpecified { get; set; }
 
-        public Cie97LampType GetAsCie97LampType() => Content as Cie97LampType;
+        public Cie97LampType GetAsCie97LampType() => MaintenanceType as Cie97LampType;
 
-        public CieLampMaintenanceFactors GetAsLampMaintenanceFactors() => Content as CieLampMaintenanceFactors;
+        public CieLampMaintenanceFactors GetAsLampMaintenanceFactors() => MaintenanceType as CieLampMaintenanceFactors;
 
-        public LedMaintenanceFactor GetAsLedMaintenanceFactor() => Content as LedMaintenanceFactor;
+        public LedMaintenanceFactor GetAsLedMaintenanceFactor() => MaintenanceType as LedMaintenanceFactor;
     }
 }

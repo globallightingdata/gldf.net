@@ -3,5 +3,4 @@
     public abstract class SimpleGeometryBase
     {
     }
-
 }

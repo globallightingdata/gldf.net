@@ -34,7 +34,8 @@
         <EmbeddedResource Include="TestData\Geometries\GeometryMandatoryXml.xml" />
         <EmbeddedResource Include="TestData\Head\HeaderCompleteXml.xml" />
         <EmbeddedResource Include="TestData\Head\HeaderMandatoryXml.xml" />
-        <EmbeddedResource Include="TestData\LightSources\LightSourceCompleteXml.xml" />
+        <EmbeddedResource Include="TestData\LightSources\ChangeableCompleteXml.xml" />
+        <EmbeddedResource Include="TestData\LightSources\FixedCompleteXml.xml" />
         <EmbeddedResource Include="TestData\LightSources\LightSourceMandatoryXml.xml" />
         <EmbeddedResource Include="TestData\Photometries\PhotometryCompleteXml.xml" />
         <EmbeddedResource Include="TestData\Photometries\PhotometryMandatoryXml.xml" />

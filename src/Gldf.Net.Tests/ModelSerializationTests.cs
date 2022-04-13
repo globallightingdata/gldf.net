@@ -11,15 +11,23 @@ namespace Gldf.Net.Tests
     public class ModelSerializationTests
     {
         [TestCaseSource(nameof(TestCaseData))]
-        public void Serialize_Model_Should_Return_Expected_Xml(Root model, string expectedXml)
+        public void SerializeModel_ShouldReturnExpectedXml(Root model, string expectedXml)
         {
             var gldfSerializer = new GldfXmlSerializer();
             var serializedXml = gldfSerializer.SerializeToString(model);
             expectedXml.ShouldBe().EquivalentTo(serializedXml);
         }
+        
+        [TestCaseSource(nameof(TestCaseData))]
+        public void DeserializeXml_ShouldReturnExpectedModel(Root expectedModel, string xml)
+        {
+            var gldfSerializer = new GldfXmlSerializer();
+            var serializedXml = gldfSerializer.DeserializeFromString(xml);
+            expectedModel.Should().BeEquivalentTo(serializedXml);
+        }
 
         [TestCaseSource(nameof(TestCaseData))]
-        public void SerializeAndDeserialize_Model_Should_BeSameAs_Origin(Root model, string _)
+        public void SerializeAndDeserializeModel_ShouldBeSameAsOrigin(Root model, string _)
         {
             var gldfSerializer = new GldfXmlSerializer();
             var xml = gldfSerializer.SerializeToString(model);
@@ -62,9 +70,12 @@ namespace Gldf.Net.Tests
             new TestCaseData(EmbeddedXmlTestData.GetLightSourceMandatoryModel(),
                     EmbeddedXmlTestData.GetLightSourceMandatoryXml())
                 {TestName = "LightSource mandatory property set"},
-            new TestCaseData(EmbeddedXmlTestData.GetLightSourceCompleteModel(),
-                    EmbeddedXmlTestData.GetLightSourceCompleteXml())
-                {TestName = "LightSource complete property set"},
+            new TestCaseData(EmbeddedXmlTestData.GetChangeableCompleteModel(),
+                    EmbeddedXmlTestData.GetChangeableCompleteXml())
+                {TestName = "LightSource changeable complete property set"},
+            new TestCaseData(EmbeddedXmlTestData.GetFixedCompleteModel(),
+                    EmbeddedXmlTestData.GetFixedCompleteXml())
+                {TestName = "LightSource fixed complete property set"},
             new TestCaseData(EmbeddedXmlTestData.GetControlGearMandatoryModel(),
                     EmbeddedXmlTestData.GetControlGearMandatoryXml())
                 {TestName = "ControlGear mandatory property set"},
@@ -97,10 +108,10 @@ namespace Gldf.Net.Tests
                 {TestName = "ProductMetaData complete property set"},
             new TestCaseData(EmbeddedXmlTestData.GetVariantMandatoryModel(),
                     EmbeddedXmlTestData.GetVariantMandatoryXml())
-                {TestName = "ProductVariant mandatory property set"},
+                {TestName = "Variant mandatory property set"},
             new TestCaseData(EmbeddedXmlTestData.GetVariantCompleteModel(),
                     EmbeddedXmlTestData.GetVariantCompleteXml())
-                {TestName = "ProductVariant complete property set"},
+                {TestName = "Variant complete property set"},
             new TestCaseData(EmbeddedXmlTestData.GetDescriptiveAttributesModel(),
                     EmbeddedXmlTestData.GetDescriptiveAttributesXml())
                 {TestName = "DescriptiveAttributes"}

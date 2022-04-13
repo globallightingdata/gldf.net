@@ -14,14 +14,13 @@ namespace Gldf.Net.Tests.TestData.Head
     {
         public static Root Root => new()
         {
-            Checksum = "Checksum",
             Header = new Header
             {
                 Author = "Author",
                 Manufacturer = "Manufacturer",
                 CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
                 CreatedWithApplication = "CreatedWithApplication",
-                FormatVersion = FormatVersion.V09,
+                FormatVersion = FormatVersion.V100,
                 DefaultLanguage = "de",
                 LicenseKeys = new[]
                 {
@@ -37,7 +36,7 @@ namespace Gldf.Net.Tests.TestData.Head
                     }
                 },
                 ReluxMemberId = "ReluxMemberId",
-                DiaLuxMemberId = "DiaLuxMemberId",
+                DIALuxMemberId = "DIALuxMemberId",
                 Contact = new[]
                 {
                     new Address
@@ -54,7 +53,7 @@ namespace Gldf.Net.Tests.TestData.Head
                         {
                             new EMail
                             {
-                                Mailto = "Mailto",
+                                Mailto = "mailto",
                                 PlainText = "PlainText"
                             }
                         },
@@ -124,9 +123,12 @@ namespace Gldf.Net.Tests.TestData.Head
                         Id = "emitter",
                         PossibleFittings = new EmitterBase[]
                         {
-                            new LightEmitter
+                            new ChangeableLightEmitter
                             {
-                                PhotometryId = "photometry"
+                                PhotometryReference = new PhotometryReference
+                                {
+                                    PhotometryId = "photometry"
+                                }
                             }
                         }
                     }
@@ -162,9 +164,12 @@ namespace Gldf.Net.Tests.TestData.Head
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        EmitterReference = new EmitterReference
+                        Geometry = new Geometry
                         {
-                            EmitterId = "emitter"
+                            Reference = new EmitterReference
+                            {
+                                EmitterId = "emitter"
+                            }
                         }
                     }
                 }

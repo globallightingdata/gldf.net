@@ -29,6 +29,24 @@ namespace Gldf.Net.Tests.TestData.Emitters
                         ContentType = FileContentType.LdcEulumdat,
                         Type = FileType.Url,
                         File = "https://example.org/eulumdat.ldt"
+                    },
+                    new GldfFile
+                    {
+                        Id = "sensorXml",
+                        ContentType = FileContentType.SensorSensXml,
+                        Type = FileType.Url,
+                        File = "https://example.org/sens.xml"
+                    }
+                },
+                Sensors = new[]
+                {
+                    new Sensor
+                    {
+                        Id = "sensor",
+                        SensorFileReference = new SensorFileReference
+                        {
+                            FileId = "sensorXml"
+                        }
                     }
                 },
                 Photometries = new[]
@@ -42,16 +60,65 @@ namespace Gldf.Net.Tests.TestData.Emitters
                         }
                     }
                 },
+                LightSources = new LightSourceBase[]
+                {
+                    new FixedLightSource
+                    {
+                        Id = "fixedLightSource",
+                        Name = new[]
+                        {
+                            new Locale
+                            {
+                                Language = "en",
+                                Text = "FixedLightSource"
+                            }
+                        },
+                        RatedInputPower = 10
+                    }
+                },
                 Emitters = new[]
                 {
                     new Emitter
                     {
-                        Id = "emitter",
+                        Id = "emitter-1",
                         PossibleFittings = new EmitterBase[]
                         {
-                            new LightEmitter
+                            new ChangeableLightEmitter
                             {
-                                PhotometryId = "photometry"
+                                PhotometryReference = new PhotometryReference
+                                {
+                                    PhotometryId = "photometry"
+                                }
+                            }
+                        }
+                    },
+                    new Emitter
+                    {
+                        Id = "emitter-2",
+                        PossibleFittings = new EmitterBase[]
+                        {
+                            new FixedLightEmitter
+                            {
+                                PhotometryReference = new PhotometryReference
+                                {
+                                    PhotometryId = "photometry"
+                                },
+                                LightSourceReference = new FixedLightSourceReference
+                                {
+                                    FixedLightSourceId = "fixedLightSource"
+                                },
+                                RatedLuminousFlux = 50
+                            }
+                        }
+                    },
+                    new Emitter
+                    {
+                        Id = "emitter-3",
+                        PossibleFittings = new EmitterBase[]
+                        {
+                            new SensorEmitter
+                            {
+                                SensorId = "sensor"
                             }
                         }
                     }
@@ -87,9 +154,12 @@ namespace Gldf.Net.Tests.TestData.Emitters
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        EmitterReference = new EmitterReference
+                        Geometry = new Geometry
                         {
-                            EmitterId = "emitter"
+                            Reference = new EmitterReference
+                            {
+                                EmitterId = "emitter-1"
+                            }
                         }
                     }
                 }
