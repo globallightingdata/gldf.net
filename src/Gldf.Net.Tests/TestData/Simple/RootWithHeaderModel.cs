@@ -14,7 +14,7 @@ namespace Gldf.Net.Tests.TestData.Simple
                 Manufacturer = "Manufacturer",
                 CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
                 CreatedWithApplication = "Visual Studio Code",
-                FormatVersion = FormatVersion.V09
+                FormatVersion = FormatVersion.V100
             }
         };
     }

@@ -11,8 +11,6 @@ namespace Gldf.Net.Domain.Descriptive
 
         public Emergency Emergency { get; set; }
 
-        public MountingAndAccessory MountingAndAccessory { get; set; }
-
         public Marketing Marketing { get; set; }
 
         public OperationsAndMaintenance OperationsAndMaintenance { get; set; }

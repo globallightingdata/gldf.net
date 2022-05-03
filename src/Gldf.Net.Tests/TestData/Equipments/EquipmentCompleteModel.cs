@@ -42,9 +42,9 @@ namespace Gldf.Net.Tests.TestData.Equipments
                         }
                     }
                 },
-                LightSources = new[]
+                LightSources = new LightSourceBase[]
                 {
-                    new LightSource
+                    new ChangeableLightSource
                     {
                         Id = "lightSource",
                         Name = new[]
@@ -55,7 +55,8 @@ namespace Gldf.Net.Tests.TestData.Equipments
                                 Text = "LightSource name"
                             }
                         },
-                        LightSourceType = new FixedLightSource()
+                        RatedInputPower = 50,
+                        RatedLuminousFlux = 250
                     }
                 },
                 ControlGears = new[]
@@ -86,40 +87,62 @@ namespace Gldf.Net.Tests.TestData.Equipments
                     new Equipment
                     {
                         Id = "equipment-1",
-                        LightSourceReference = new LightSourceReference {LightSourceId = "lightSource"},
+                        LightSourceReference = new LightSourceReference { ChangeableLightSourceId = "lightSource" },
                         ControlGearReference = new ControlGearReference
                         {
                             ControlGearCount = 2,
                             ControlGearId = "controlGear"
                         },
                         RatedInputPower = 0.1,
-                        RatedLuminousFlux = 1,
-                        RatedLuminousFluxRGB = 2,
-                        EmergencyModeOutput = new EmergencyBallastLumenFactor {Factor = 0.2}
+                        EmergencyModeOutput = new EmergencyBallastLumenFactor { Factor = 0.2 }
                     },
                     new Equipment
                     {
                         Id = "equipment-2",
-                        LightSourceReference = new LightSourceReference {LightSourceId = "lightSource"},
+                        LightSourceReference = new LightSourceReference { ChangeableLightSourceId = "lightSource" },
                         ControlGearReference = new ControlGearReference
                         {
                             ControlGearId = "controlGear"
                         },
                         RatedInputPower = 0.1,
-                        RatedLuminousFlux = 1,
-                        EmergencyModeOutput = new EmergencyRatedLuminousFlux {Flux = 2}
+                        EmergencyModeOutput = new EmergencyRatedLuminousFlux { Flux = 2 }
                     }
                 },
                 Emitters = new[]
                 {
                     new Emitter
                     {
-                        Id = "emitter",
+                        Id = "emitter-1",
                         PossibleFittings = new EmitterBase[]
                         {
-                            new LightEmitter
+                            new ChangeableLightEmitter
                             {
-                                PhotometryId = "photometry"
+                                PhotometryReference = new PhotometryReference
+                                {
+                                    PhotometryId = "photometry"
+                                },
+                                EquipmentReference = new EquipmentReference
+                                {
+                                    EquipmentId = "equipment-1"
+                                }
+                            }
+                        }
+                    },
+                    new Emitter
+                    {
+                        Id = "emitter-2",
+                        PossibleFittings = new EmitterBase[]
+                        {
+                            new ChangeableLightEmitter
+                            {
+                                PhotometryReference = new PhotometryReference
+                                {
+                                    PhotometryId = "photometry"
+                                },
+                                EquipmentReference = new EquipmentReference
+                                {
+                                    EquipmentId = "equipment-2"
+                                }
                             }
                         }
                     }
@@ -155,9 +178,12 @@ namespace Gldf.Net.Tests.TestData.Equipments
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        EmitterReference = new EmitterReference
+                        Geometry = new Geometry
                         {
-                            EmitterId = "emitter"
+                            Reference = new EmitterReference
+                            {
+                                EmitterId = "emitter-1"
+                            }
                         }
                     }
                 }

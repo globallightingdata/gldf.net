@@ -1,6 +1,6 @@
 ﻿namespace Gldf.Net.Domain.Product.Types
 {
-    public abstract class EmitterReferenceBase
+    public abstract class GeometryReferenceBase
     {
     }
 }

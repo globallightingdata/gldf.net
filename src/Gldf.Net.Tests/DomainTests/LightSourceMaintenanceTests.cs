@@ -11,10 +11,8 @@ namespace Gldf.Net.Tests.DomainTests
         public void GetAsCie97LampType_Should_Return_Expected()
         {
             var expectedType = new Cie97LampType();
-            var equipment = new LightSourceMaintenance {Content = expectedType};
-
-            var maintenanceType = equipment.GetAsCie97LampType();
-
+            var lightSourceMaintenance = new LightSourceMaintenance { MaintenanceType = expectedType };
+            var maintenanceType = lightSourceMaintenance.GetAsCie97LampType();
             maintenanceType.Should().Be(expectedType);
         }
 
@@ -22,10 +20,8 @@ namespace Gldf.Net.Tests.DomainTests
         public void GetAsLampMaintenanceFactors_Should_Return_Expected()
         {
             var expectedType = new CieLampMaintenanceFactors();
-            var equipment = new LightSourceMaintenance {Content = expectedType};
-
-            var maintenanceType = equipment.GetAsLampMaintenanceFactors();
-
+            var lightSourceMaintenance = new LightSourceMaintenance { MaintenanceType = expectedType };
+            var maintenanceType = lightSourceMaintenance.GetAsLampMaintenanceFactors();
             maintenanceType.Should().Be(expectedType);
         }
 
@@ -33,10 +29,8 @@ namespace Gldf.Net.Tests.DomainTests
         public void GetAsLedMaintenanceFactor_Should_Return_Expected()
         {
             var expectedType = new LedMaintenanceFactor();
-            var equipment = new LightSourceMaintenance {Content = expectedType};
-
-            var maintenanceType = equipment.GetAsLedMaintenanceFactor();
-
+            var lightSourceMaintenance = new LightSourceMaintenance { MaintenanceType = expectedType };
+            var maintenanceType = lightSourceMaintenance.GetAsLedMaintenanceFactor();
             maintenanceType.Should().Be(expectedType);
         }
     }

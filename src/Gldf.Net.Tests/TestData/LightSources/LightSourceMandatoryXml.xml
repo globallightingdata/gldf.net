@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.8/gldf.xsd">
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/1.0.0-rc.1/gldf.xsd">
     <Header>
         <Manufacturer>DIAL</Manufacturer>
         <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
         <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
-        <FormatVersion>0.9</FormatVersion>
+        <FormatVersion>1.0.0-rc.1</FormatVersion>
     </Header>
     <GeneralDefinitions>
         <Files>
@@ -17,16 +17,20 @@
             </Photometry>
         </Photometries>
         <LightSources>
-            <LightSource id="lightSource">
+            <FixedLightSource id="lightSource">
                 <Name>
                     <Locale language="en">LightSource name</Locale>
                 </Name>
-                <Fixed/>
-            </LightSource>
+                <RatedInputPower>50</RatedInputPower>
+            </FixedLightSource>
         </LightSources>
         <Emitters>
             <Emitter id="emitter">
-                <LightEmitter photometryId="photometry" />
+                <FixedLightEmitter>
+                    <PhotometryReference photometryId="photometry"/>
+                    <LightSourceReference fixedLightSourceId="lightSource"/>
+                    <RatedLuminousFlux>250</RatedLuminousFlux>
+                </FixedLightEmitter>
             </Emitter>
         </Emitters>
     </GeneralDefinitions>
@@ -44,7 +48,9 @@
                 <Name>
                     <Locale language="en">Variant 1</Locale>
                 </Name>
-                <EmitterReference emitterId="emitter"/>
+                <Geometry>
+                    <EmitterReference emitterId="emitter"/>
+                </Geometry>
             </Variant>
         </Variants>
     </ProductDefinitions>

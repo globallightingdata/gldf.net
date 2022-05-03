@@ -59,9 +59,12 @@ namespace Gldf.Net.Tests.TestData.MetaData
                         Id = "emitter",
                         PossibleFittings = new EmitterBase[]
                         {
-                            new LightEmitter
+                            new ChangeableLightEmitter
                             {
-                                PhotometryId = "photometry"
+                                PhotometryReference = new PhotometryReference
+                                {
+                                    PhotometryId = "photometry"
+                                }
                             }
                         }
                     }
@@ -69,7 +72,7 @@ namespace Gldf.Net.Tests.TestData.MetaData
             },
             ProductDefinitions = new ProductDefinitions
             {
-                ProductMetaData = new ProductMetaData
+                ProductMetaData = new Domain.Product.ProductMetaData
                 {
                     ProductNumber = new[]
                     {
@@ -281,19 +284,6 @@ namespace Gldf.Net.Tests.TestData.MetaData
                                 Factor = 0.6
                             }
                         }
-
-                        // <CieLuminaireMaintenanceFactors>
-                        // <LuminaireMaintenanceFactor years="1" roomCondition="Dirty">0.1</LuminaireMaintenanceFactor>
-                        // <LuminaireMaintenanceFactor years="2" roomCondition="Normal">0.2</LuminaireMaintenanceFactor>
-                        // </CieLuminaireMaintenanceFactors>
-                        // <IesLuminaireLightLossFactors>
-                        // <LuminaireDirtDepreciation years="3" roomCondition="Very Clean">0.3</LuminaireDirtDepreciation>
-                        // <LuminaireDirtDepreciation years="4" roomCondition="Very Dirty">0.4</LuminaireDirtDepreciation>
-                        // </IesLuminaireLightLossFactors>
-                        // <JiegMaintenanceFactors>
-                        // <LuminaireMaintenanceFactor years="5" roomCondition="Normal">0.5</LuminaireMaintenanceFactor>
-                        // <LuminaireMaintenanceFactor years="6" roomCondition="Dirty">0.6</LuminaireMaintenanceFactor>
-                        // </JiegMaintenanceFactors>
                     },
                     DescriptiveAttributes = new DescriptiveAttributes
                     {
@@ -305,10 +295,16 @@ namespace Gldf.Net.Tests.TestData.MetaData
                                 Width = 2,
                                 Height = 3
                             },
-                            OperatingTemperature = new TemperatureRange
+                            ProductForm = ProductForm.Cylinder,
+                            Adjustabilities = new []
                             {
-                                Lower = 4,
-                                Upper = 5
+                                Adjustability.Fixed,
+                                Adjustability.Orientation,
+                                Adjustability.Turn,
+                                Adjustability.Tilt,
+                                Adjustability.Cardanic,
+                                Adjustability.HeightAdjustable,
+                                Adjustability.UserDefined,
                             },
                             SealingMaterial = new[]
                             {
@@ -323,6 +319,13 @@ namespace Gldf.Net.Tests.TestData.MetaData
                                     Text = "Gehäusematerial"
                                 }
                             },
+                            IKRating = IKRating.IK06,
+                            ProtectiveAreas = new []
+                            {
+                                ProtectiveArea.BallimpactProof,
+                                ProtectiveArea.CleanroomSuitable,
+                                ProtectiveArea.DriveOrRollOverProof,
+                            },
                             Weight = 0.01
                         },
                         Electrical = new Electrical
@@ -335,9 +338,9 @@ namespace Gldf.Net.Tests.TestData.MetaData
                             SwitchingCapacity = "SwitchingCapacity",
                             ElectricalSafetyClass = SafetyClass.ClassII,
                             IngressProtectionIPCode = IngressProtectionIPCode.IP26,
-                            IKRating = IKRating.IK06,
                             PowerFactor = 0.04,
-                            ConstantLightOutput = true
+                            ConstantLightOutput = true,
+                            LightDistribution = LightDistribution.Asymmetrical
                         },
                         Emergency = new Emergency
                         {
@@ -348,8 +351,188 @@ namespace Gldf.Net.Tests.TestData.MetaData
                             },
                             DedicatedEmergencyLightingType = EmergencyLightingType.ForSignage
                         },
-                        MountingAndAccessory = new MountingAndAccessory
+                        Marketing = new Marketing
                         {
+                            ListPrices = new[]
+                            {
+                                new ListPrice { Currency = "eur", Price = 9 },
+                                new ListPrice { Currency = "usd", Price = 10 }
+                            },
+                            HousingColors = new[]
+                            {
+                                new HousingColor
+                                {
+                                    Ral = "3000", ColorNames = new[]
+                                    {
+                                        new Locale
+                                        {
+                                            Language = "en",
+                                            Text = "Red"
+                                        },
+                                        new Locale
+                                        {
+                                            Language = "de",
+                                            Text = "Rot"
+                                        }
+                                    }
+                                }
+                            },
+                            Markets = new[]
+                            {
+                                new Region
+                                {
+                                    RegionName = new[]
+                                    {
+                                        new Locale
+                                        {
+                                            Language = "en",
+                                            Text = "South europe"
+                                        },
+                                        new Locale
+                                        {
+                                            Language = "de",
+                                            Text = "Südeuropa"
+                                        }
+                                    }
+                                }
+                            },
+                            Hyperlinks = new[]
+                            {
+                                new Hyperlink
+                                {
+                                    Href = "https://example.org",
+                                    Language = "en",
+                                    Region = "Europe",
+                                    CountryCode = "gb",
+                                    PlainText = "Hyperlink PlainText"
+                                }
+                            },
+                            Designer = "Designer",
+                            ApprovalMarks = new[] { "ApprovalMark 1", "ApprovalMark 2" },
+                            DesignAwards = new[] { "DesignAward 1", "DesignAward 2" },
+                            Labels = new []
+                            {
+                                Label.CE,
+                                Label.GS,
+                                Label.ENEC,
+                                Label.CCC,
+                                Label.VDE,
+                                Label.EAC,
+                                Label.D,
+                                Label.M,
+                                Label.MM,
+                                Label.F,
+                                Label.FF,
+                                Label.UL,
+                                Label.Handwarm,
+                                Label.IFSFood
+                            },
+                            Applications = new[]
+                            {
+                                ApplicationArea.InteriorTrafficZones,
+                                ApplicationArea.InteriorTrafficZonesCorridors,
+                                ApplicationArea.InteriorTrafficZonesStaircases,
+                                ApplicationArea.InteriorTrafficZonesLoadingZones,
+                                ApplicationArea.InteriorTrafficZonesCoveLightingCornices,
+                                ApplicationArea.InteriorGeneralAreasInterior,
+                                ApplicationArea.InteriorGeneralAreasInteriorBreakRooms,
+                                ApplicationArea.InteriorGeneralAreasInteriorReceptionAreas,
+                                ApplicationArea.InteriorOffice,
+                                ApplicationArea.InteriorOfficeOfficeDesks,
+                                ApplicationArea.InteriorOfficeGroupOffices,
+                                ApplicationArea.InteriorOfficeDiscussions,
+                                ApplicationArea.InteriorOfficeArchives,
+                                ApplicationArea.InteriorIndustryCraft,
+                                ApplicationArea.InteriorIndustryCraftIndustrialWorkshops,
+                                ApplicationArea.InteriorIndustryCraftWarehouses,
+                                ApplicationArea.InteriorIndustryCraftColdStorageFacilities,
+                                ApplicationArea.InteriorIndustryCraftKitchens,
+                                ApplicationArea.InteriorIndustryCraftAssemblyWorkStations,
+                                ApplicationArea.InteriorIndustryCraftMachineIllumination,
+                                ApplicationArea.InteriorIndustryCraftControlWorkStations,
+                                ApplicationArea.InteriorIndustryCraftLaboratories,
+                                ApplicationArea.InteriorIndustryCraftHangars,
+                                ApplicationArea.InteriorShopLighting,
+                                ApplicationArea.InteriorShopLightingRetail,
+                                ApplicationArea.InteriorShopLightingFood,
+                                ApplicationArea.InteriorShopLightingClothing,
+                                ApplicationArea.InteriorShopLightingDisplayWindows,
+                                ApplicationArea.InteriorShopLightingHalls,
+                                ApplicationArea.InteriorShopLightingGreatHalls,
+                                ApplicationArea.InteriorShopLightingMirrors,
+                                ApplicationArea.InteriorPublicAreas,
+                                ApplicationArea.InteriorPublicAreasRestaurants,
+                                ApplicationArea.InteriorPublicAreasTheatres,
+                                ApplicationArea.InteriorPublicAreasRailwayStations,
+                                ApplicationArea.InteriorPublicAreasMuseums,
+                                ApplicationArea.InteriorPublicAreasFairs,
+                                ApplicationArea.InteriorPublicAreasPrisons,
+                                ApplicationArea.InteriorPublicAreasCanteens,
+                                ApplicationArea.InteriorEmergencyLighting,
+                                ApplicationArea.InteriorEmergencyLightingEmergencyLighting,
+                                ApplicationArea.InteriorEmergencyLightingSignalLighting,
+                                ApplicationArea.InteriorEducationalFacilities,
+                                ApplicationArea.InteriorEducationalFacilitiesClassrooms,
+                                ApplicationArea.InteriorEducationalFacilitiesLibraries,
+                                ApplicationArea.InteriorEducationalFacilitiesLounges,
+                                ApplicationArea.InteriorEducationalFacilitiesSportsHalls,
+                                ApplicationArea.InteriorPrivateAreas,
+                                ApplicationArea.InteriorPrivateAreasLivingAreas,
+                                ApplicationArea.InteriorPrivateAreasBaths,
+                                ApplicationArea.InteriorPrivateAreasKitchens,
+                                ApplicationArea.InteriorHospitalsandCarePlaces,
+                                ApplicationArea.InteriorHospitalsandCarePlacesHospitalWards,
+                                ApplicationArea.InteriorHospitalsandCarePlacesPatientRooms,
+                                ApplicationArea.InteriorHospitalsandCarePlacesCleanRoomAreas,
+                                ApplicationArea.InteriorHospitalsandCarePlacesExaminationRooms,
+                                ApplicationArea.InteriorHospitalsandCarePlacesCirculationAreas,
+                                ApplicationArea.ExteriorGeneralAreasExterior,
+                                ApplicationArea.ExteriorGeneralAreasPlaces,
+                                ApplicationArea.ExteriorGeneralAreasParks,
+                                ApplicationArea.ExteriorGeneralAreasUnderpasses,
+                                ApplicationArea.ExteriorGeneralAreasOutdoorStairs,
+                                ApplicationArea.ExteriorGeneralAreasPlatformRoofs,
+                                ApplicationArea.ExteriorGeneralAreasParkingSpacesIndoor,
+                                ApplicationArea.ExteriorGeneralAreasOutdoorParkings,
+                                ApplicationArea.ExteriorGeneralAreasPools,
+                                ApplicationArea.ExteriorGeneralAreasFountains,
+                                ApplicationArea.ExteriorStreets,
+                                ApplicationArea.ExteriorStreetsMotorways,
+                                ApplicationArea.ExteriorStreetsAccessRoads,
+                                ApplicationArea.ExteriorStreetsResidentialAreas,
+                                ApplicationArea.ExteriorStreetsBicyclePaths,
+                                ApplicationArea.ExteriorStreetsFootpaths,
+                                ApplicationArea.ExteriorStreetsPetrolGasStations,
+                                ApplicationArea.ExteriorStreetsTunnels,
+                                ApplicationArea.ExteriorSportsFields,
+                                ApplicationArea.ExteriorSportsFieldsSpotlightings,
+                                ApplicationArea.ExteriorOther,
+                                ApplicationArea.ExteriorOtherFacades
+                            }
+                        },
+                        OperationsAndMaintenance = new OperationsAndMaintenance
+                        {
+                            UsefulLifeTimes = new[]
+                            {
+                                "L80B50 50000h 25°C",
+                                "L80B75 40000h 25°C"
+                            },
+                            MedianUsefulLifeTimes = new[]
+                            {
+                                "L100B50 40000h 20°C",
+                                "L80B50 50000h 20°C"
+                            },
+                            OperatingTemperature = new TemperatureRange
+                            {
+                                Lower = 4,
+                                Upper = 5
+                            },
+                            AmbientTemperature = new TemperatureRange
+                            {
+                                Lower = 7,
+                                Upper = 8
+                            },
+                            RatedAmbientTemperature = 11,
                             Atex = new Atex
                             {
                                 Directives = new[]
@@ -443,90 +626,6 @@ namespace Gldf.Net.Tests.TestData.MetaData
                                     AtexGroup.IIA
                                 }
                             },
-                            AmbientTemperature = new TemperatureRange
-                            {
-                                Lower = 7,
-                                Upper = 8
-                            }
-                        },
-                        Marketing = new Marketing
-                        {
-                            ListPrices = new[]
-                            {
-                                new ListPrice { Currency = "eur", Price = 9 },
-                                new ListPrice { Currency = "usd", Price = 10 }
-                            },
-                            HousingColors = new[]
-                            {
-                                new HousingColor
-                                {
-                                    Ral = "3000", ColorNames = new[]
-                                    {
-                                        new Locale
-                                        {
-                                            Language = "en",
-                                            Text = "Red"
-                                        },
-                                        new Locale
-                                        {
-                                            Language = "de",
-                                            Text = "Rot"
-                                        }
-                                    }
-                                }
-                            },
-                            Markets = new[]
-                            {
-                                new Region
-                                {
-                                    RegionName = new[]
-                                    {
-                                        new Locale
-                                        {
-                                            Language = "en",
-                                            Text = "South europe"
-                                        },
-                                        new Locale
-                                        {
-                                            Language = "de",
-                                            Text = "Südeuropa"
-                                        }
-                                    }
-                                }
-                            },
-                            Hyperlinks = new[]
-                            {
-                                new Hyperlink
-                                {
-                                    Href = "https://example.org",
-                                    Language = "en",
-                                    Region = "Europe",
-                                    CountryCode = "gb",
-                                    PlainText = "Hyperlink PlainText"
-                                }
-                            },
-                            Designer = "Designer",
-                            ApprovalMarks = new[] { "ApprovalMark 1", "ApprovalMark 2" },
-                            DesignAwards = new[] { "DesignAward 1", "DesignAward 2" },
-                            Applications = new[]
-                            {
-                                ApplicationArea.ExteriorStreetsMotorways,
-                                ApplicationArea.InteriorTrafficZonesCorridors
-                            }
-                        },
-                        OperationsAndMaintenance = new OperationsAndMaintenance
-                        {
-                            UsefulLifeTimes = new[]
-                            {
-                                "L80B50 50000h 25°C",
-                                "L80B75 40000h 25°C"
-                            },
-                            MedianUsefulLifeTimes = new[]
-                            {
-                                "L100B50 40000h 20°C",
-                                "L80B50 50000h 20°C"
-                            },
-                            RatedAmbientTemperature = 11,
                             AcousticAbsorptionRates = new[]
                             {
                                 new AbsorptionRate { Hertz = 12, Rate = 0.05 },
@@ -591,9 +690,12 @@ namespace Gldf.Net.Tests.TestData.MetaData
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        EmitterReference = new EmitterReference
+                        Geometry = new Geometry
                         {
-                            EmitterId = "emitter"
+                            Reference = new EmitterReference
+                            {
+                                EmitterId = "emitter"
+                            }
                         }
                     }
                 }

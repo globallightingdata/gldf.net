@@ -14,7 +14,7 @@ namespace Gldf.Net.Domain.Descriptive.Types
 
         [XmlElement("FileReference", typeof(PropertyFileReference))]
         [XmlElement("Value", typeof(PropertyText))]
-        public PropertyContent Content { get; set; }
+        public PropertyContentBase Content { get; set; }
 
         public PropertyFileReference GetAsFileReference() => Content as PropertyFileReference;
 

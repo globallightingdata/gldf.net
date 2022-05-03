@@ -2,7 +2,7 @@
 
 namespace Gldf.Net.Domain.Definition.Types
 {
-    public class CieLampMaintenanceFactor : LampMaintenanceType
+    public class CieLampMaintenanceFactor : LightSourceMaintenanceTypeBase
     {
         [XmlAttribute("burningTime")]
         public int BurningTime { get; set; }

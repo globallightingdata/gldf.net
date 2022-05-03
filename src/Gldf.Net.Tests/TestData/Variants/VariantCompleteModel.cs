@@ -1,8 +1,6 @@
 ﻿using Gldf.Net.Domain;
 using Gldf.Net.Domain.Definition;
 using Gldf.Net.Domain.Definition.Types;
-using Gldf.Net.Domain.Descriptive;
-using Gldf.Net.Domain.Descriptive.Types;
 using Gldf.Net.Domain.Global;
 using Gldf.Net.Domain.Head;
 using Gldf.Net.Domain.Product;
@@ -77,88 +75,19 @@ namespace Gldf.Net.Tests.TestData.Variants
                         }
                     }
                 },
-                LightSources = new[]
-                {
-                    new LightSource
-                    {
-                        Id = "lightSource",
-                        Name = new[]
-                        {
-                            new Locale
-                            {
-                                Language = "en",
-                                Text = "LightSource name"
-                            }
-                        },
-                        LightSourceType = new FixedLightSource()
-                    }
-                },
-                Equipments = new[]
-                {
-                    new Equipment
-                    {
-                        Id = "equipment",
-                        LightSourceReference = new LightSourceReference
-                        {
-                            LightSourceId = "lightSource",
-                            LightSourceCount = 2
-                        },
-                        RatedInputPower = 1,
-                        RatedLuminousFlux = 2
-                    }
-                },
                 Emitters = new[]
                 {
-                    new Emitter
-                    {
-                        Id = "emitter",
-                        PossibleFittings = new EmitterBase[]
-                        {
-                            new LightEmitter
-                            {
-                                PhotometryId = "photometry"
-                            }
-                        }
-                    },
                     new Emitter
                     {
                         Id = "leoEmitter",
                         PossibleFittings = new EmitterBase[]
                         {
-                            new LightEmitter
+                            new ChangeableLightEmitter
                             {
-                                PhotometryId = "photometry",
-                                EquipmentId = "equipment",
-                                Name = new[]
+                                PhotometryReference = new PhotometryReference
                                 {
-                                    new Locale
-                                    {
-                                        Language = "en",
-                                        Text = "Display name"
-                                    },
-                                    new Locale
-                                    {
-                                        Language = "de",
-                                        Text = "Anzeigename"
-                                    }
+                                    PhotometryId = "photometry"
                                 }
-                            },
-                            new LightEmitter
-                            {
-                                PhotometryId = "photometry",
-                                EmergencyBehaviour = EmergencyBehaviour.None
-                            },
-                            new LightEmitter
-                            {
-                                PhotometryId = "photometry",
-                                EquipmentId = "equipment",
-                                EmergencyBehaviour = EmergencyBehaviour.EmergencyOnly
-                            },
-                            new LightEmitter
-                            {
-                                PhotometryId = "photometry",
-                                EquipmentId = "equipment",
-                                EmergencyBehaviour = EmergencyBehaviour.Combined
                             }
                         }
                     },
@@ -169,26 +98,28 @@ namespace Gldf.Net.Tests.TestData.Variants
                         {
                             new SensorEmitter
                             {
-                                SensorId = "sensor",
-                                Name = new[]
-                                {
-                                    new Locale
-                                    {
-                                        Language = "en",
-                                        Text = "Display name"
-                                    },
-                                    new Locale
-                                    {
-                                        Language = "de",
-                                        Text = "Anzeigename"
-                                    }
-                                }
+                                SensorId = "sensor"
                             }
                         }
                     }
                 },
                 Geometries = new Geometry[]
                 {
+                    new SimpleGeometry
+                    {
+                        Id = "simpleGeometry",
+                        GeometryType = new SimpleCuboidGeometry
+                        {
+                            Width = 1,
+                            Length = 2,
+                            Height = 3
+                        },
+                        EmitterType = new SimpleRectangularEmitter
+                        {
+                            Width = 4,
+                            Length = 5
+                        }
+                    },
                     new ModelGeometry
                     {
                         Id = "geometry",
@@ -287,30 +218,30 @@ namespace Gldf.Net.Tests.TestData.Variants
                             {
                                 Recessed = new Recessed
                                 {
-                                    RecessedDepth = 0.1,
+                                    RecessedDepth = 1,
                                     Cutout = new CircularCutout
                                     {
-                                        Diameter = 0.2,
-                                        Depth = 0.3
+                                        Diameter = 2,
+                                        Depth = 3
                                     }
                                 },
                                 SurfaceMounted = new SurfaceMounted(),
                                 Pendant = new Pendant
                                 {
-                                    PendantLength = 0.4
+                                    PendantLength = 4
                                 }
                             },
                             Wall = new Wall
                             {
-                                MountingHeight = 0.5,
+                                MountingHeight = 5,
                                 Recessed = new WallRecessed
                                 {
-                                    RecessedDepth = 0.6,
+                                    RecessedDepth = 6,
                                     Cutout = new RectangularCutout
                                     {
-                                        Width = 0.7,
-                                        Length = 0.8,
-                                        Depth = 0.9
+                                        Width = 7,
+                                        Length = 8,
+                                        Depth = 9
                                     }
                                 },
                                 SurfaceMounted = new WallSurfaceMounted()
@@ -323,28 +254,31 @@ namespace Gldf.Net.Tests.TestData.Variants
                             {
                                 PoleTop = new PoleTop
                                 {
-                                    PoleHeight = 0.11
+                                    PoleHeight = 11
                                 },
                                 PoleIntegrated = new PoleIntegrated
                                 {
-                                    PoleHeight = 0.12
+                                    PoleHeight = 12
                                 },
                                 FreeStanding = new FreeStanding(),
                                 SurfaceMounted = new SurfaceMounted(),
                                 Recessed = new Recessed
                                 {
-                                    RecessedDepth = 0.13,
+                                    RecessedDepth = 13,
                                     Cutout = new CircularCutout
                                     {
-                                        Diameter = 0.14,
-                                        Depth = 0.15
+                                        Diameter = 14,
+                                        Depth = 15
                                     }
                                 }
                             }
                         },
-                        EmitterReference = new EmitterReference
+                        Geometry = new Geometry
                         {
-                            EmitterId = "emitter"
+                            Reference = new EmitterReference
+                            {
+                                EmitterId = "leoEmitter"
+                            }
                         },
                         Pictures = new[]
                         {
@@ -387,25 +321,25 @@ namespace Gldf.Net.Tests.TestData.Variants
                             {
                                 Recessed = new Recessed
                                 {
-                                    RecessedDepth = 0.16,
+                                    RecessedDepth = 16,
                                     Cutout = new RectangularCutout
                                     {
-                                        Width = 0.17,
-                                        Length = 0.18,
-                                        Depth = 0.19
+                                        Width = 17,
+                                        Length = 18,
+                                        Depth = 19
                                     }
                                 }
                             },
                             Wall = new Wall
                             {
-                                MountingHeight = 0.21,
+                                MountingHeight = 21,
                                 Recessed = new WallRecessed
                                 {
-                                    RecessedDepth = 0.22,
+                                    RecessedDepth = 22,
                                     Cutout = new CircularCutout
                                     {
-                                        Diameter = 0.23,
-                                        Depth = 0.24
+                                        Diameter = 23,
+                                        Depth = 24
                                     }
                                 }
                             },
@@ -413,19 +347,23 @@ namespace Gldf.Net.Tests.TestData.Variants
                             {
                                 Recessed = new Recessed
                                 {
-                                    RecessedDepth = 0.25,
+                                    RecessedDepth = 25,
                                     Cutout = new RectangularCutout
                                     {
-                                        Width = 0.26,
-                                        Length = 0.27,
-                                        Depth = 0.28
+                                        Width = 26,
+                                        Length = 27,
+                                        Depth = 28
                                     }
                                 }
                             }
                         },
-                        EmitterReference = new EmitterReference
+                        Geometry = new Geometry
                         {
-                            EmitterId = "emitter"
+                            Reference = new SimpleGeometryReference
+                            {
+                                GeometryId = "simpleGeometry",
+                                EmitterId = "leoEmitter"
+                            }
                         }
                     },
                     new Variant
@@ -436,49 +374,41 @@ namespace Gldf.Net.Tests.TestData.Variants
                         {
                             new Locale { Language = "en", Text = "Variant 3" }
                         },
-                        EmitterReference = new ModelGeometryReference
+                        Geometry = new Geometry
                         {
-                            GeometryId = "geometry",
-                            EmitterReferences = new[]
+                            Reference = new ModelGeometryReference
                             {
-                                new GeometryEmitterReference
+                                GeometryId = "geometry",
+                                EmitterReferences = new[]
                                 {
-                                    EmitterId = "leoEmitter",
-                                    EmitterObjectExternalName = "leo1"
-                                }
-                            }
-                        }
-                    },
-                    new Variant
-                    {
-                        Id = "variant-4",
-                        SortOrder = 4,
-                        Name = new[]
-                        {
-                            new Locale { Language = "en", Text = "Variant 4" }
-                        },
-                        EmitterReference = new ModelGeometryReference
-                        {
-                            GeometryId = "geometry",
-                            EmitterReferences = new[]
-                            {
-                                new GeometryEmitterReference
-                                {
-                                    EmitterId = "sensorEmitter",
-                                    EmitterObjectExternalName = "sensor1",
-                                    TargetModelType = TargetModelType.L3d
-                                },
-                                new GeometryEmitterReference
-                                {
-                                    EmitterId = "sensorEmitter",
-                                    EmitterObjectExternalName = "sensor1",
-                                    TargetModelType = TargetModelType.M3d
-                                },
-                                new GeometryEmitterReference
-                                {
-                                    EmitterId = "sensorEmitter",
-                                    EmitterObjectExternalName = "sensor1",
-                                    TargetModelType = TargetModelType.R3d
+                                    new GeometryEmitterReference
+                                    {
+                                        EmitterId = "leoEmitter",
+                                        EmitterObjectExternalName = "leo1"
+                                    },
+                                    new GeometryEmitterReference
+                                    {
+                                        EmitterId = "leoEmitter",
+                                        TargetModelType = TargetModelType.L3d,
+                                        EmitterObjectExternalName = "leo1"
+                                    },
+                                    new GeometryEmitterReference
+                                    {
+                                        EmitterId = "leoEmitter",
+                                        TargetModelType = TargetModelType.M3d,
+                                        EmitterObjectExternalName = "leo1"
+                                    },
+                                    new GeometryEmitterReference
+                                    {
+                                        EmitterId = "leoEmitter",
+                                        TargetModelType = TargetModelType.R3d,
+                                        EmitterObjectExternalName = "leo1"
+                                    },
+                                    new GeometryEmitterReference
+                                    {
+                                        EmitterId = "sensorEmitter",
+                                        EmitterObjectExternalName = "sensor"
+                                    }
                                 }
                             }
                         },
@@ -568,12 +498,70 @@ namespace Gldf.Net.Tests.TestData.Variants
                                     }
                                 }
                             }
-                        },
-                        DescriptiveAttributes = new DescriptiveAttributes
+                        }
+                    },
+                    new Variant
+                    {
+                        Id = "variant-4",
+                        SortOrder = 4,
+                        Name = new[]
                         {
-                            Electrical = new Electrical
+                            new Locale { Language = "en", Text = "Variant 4" }
+                        },
+                        Geometry = new Geometry
+                        {
+                            Reference = new GeometryReferences
                             {
-                                IKRating = IKRating.IK05
+                                SimpleGeometryReference = new SimpleGeometryReference
+                                {
+                                    GeometryId = "simpleGeometry",
+                                    EmitterId = "leoEmitter"
+                                },
+                                ModelGeometryReference = new ModelGeometryReference
+                                {
+                                    GeometryId = "geometry",
+                                    EmitterReferences = new[]
+                                    {
+                                        new GeometryEmitterReference
+                                        {
+                                            EmitterId = "leoEmitter",
+                                            TargetModelType = TargetModelType.L3d,
+                                            EmitterObjectExternalName = "Leo"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    new Variant
+                    {
+                        Id = "variant-5",
+                        SortOrder = 5,
+                        Name = new[]
+                        {
+                            new Locale { Language = "en", Text = "Variant 5" }
+                        },
+                        Geometry = new Geometry
+                        {
+                            Reference = new GeometryReferences
+                            {
+                                SimpleGeometryReference = new SimpleGeometryReference
+                                {
+                                    GeometryId = "simpleGeometry",
+                                    EmitterId = "leoEmitter"
+                                },
+                                ModelGeometryReference = new ModelGeometryReference
+                                {
+                                    GeometryId = "geometry",
+                                    EmitterReferences = new[]
+                                    {
+                                        new GeometryEmitterReference
+                                        {
+                                            EmitterId = "leoEmitter",
+                                            EmitterObjectExternalName = "Leo"
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

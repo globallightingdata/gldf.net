@@ -2,7 +2,7 @@
 
 namespace Gldf.Net.Domain.Global
 {
-    public class FixedVoltage : VoltageValue
+    public class FixedVoltage : VoltageValueBase
     {
         [XmlText]
         public double Value { get; set; }

@@ -60,9 +60,9 @@ namespace Gldf.Net.Tests.TestData.Emitters
                         }
                     }
                 },
-                LightSources = new[]
+                LightSources = new LightSourceBase[]
                 {
-                    new LightSource
+                    new ChangeableLightSource
                     {
                         Id = "lightSource",
                         Name = new[]
@@ -73,7 +73,8 @@ namespace Gldf.Net.Tests.TestData.Emitters
                                 Text = "LightSource name"
                             }
                         },
-                        LightSourceType = new FixedLightSource()
+                        RatedInputPower = 50,
+                        RatedLuminousFlux = 250
                     }
                 },
                 Equipments = new[]
@@ -83,10 +84,9 @@ namespace Gldf.Net.Tests.TestData.Emitters
                         Id = "equipment",
                         LightSourceReference = new LightSourceReference
                         {
-                            LightSourceId = "lightSource"
+                            ChangeableLightSourceId = "lightSource"
                         },
-                        RatedInputPower = 10,
-                        RatedLuminousFlux = 50
+                        RatedInputPower = 10
                     }
                 },
                 Emitters = new[]
@@ -96,9 +96,8 @@ namespace Gldf.Net.Tests.TestData.Emitters
                         Id = "emitter-1",
                         PossibleFittings = new EmitterBase[]
                         {
-                            new LightEmitter
+                            new ChangeableLightEmitter
                             {
-                                PhotometryId = "photometry",
                                 Name = new[]
                                 {
                                     new Locale
@@ -112,33 +111,52 @@ namespace Gldf.Net.Tests.TestData.Emitters
                                         Text = "Anzeigename"
                                     }
                                 },
+                                PhotometryReference = new PhotometryReference
+                                {
+                                    PhotometryId = "photometry"
+                                },
                                 Rotation = new Rotation
                                 {
-                                    X = 0,
-                                    Y = 1,
-                                    Z = 2,
-                                    G0 = 3
+                                    X = 1,
+                                    Y = 2,
+                                    Z = 3,
+                                    G0 = 4
                                 }
                             },
-                            new LightEmitter
+                            new ChangeableLightEmitter
                             {
-                                PhotometryId = "photometry",
-                                EquipmentId = "equipment"
+                                PhotometryReference = new PhotometryReference
+                                {
+                                    PhotometryId = "photometry"
+                                },
+                                EquipmentReference = new EquipmentReference
+                                {
+                                    EquipmentId = "equipment"
+                                }
                             },
-                            new LightEmitter
+                            new ChangeableLightEmitter
                             {
-                                PhotometryId = "photometry",
-                                EmergencyBehaviour = EmergencyBehaviour.None
+                                EmergencyBehaviour = EmergencyBehaviour.None,
+                                PhotometryReference = new PhotometryReference
+                                {
+                                    PhotometryId = "photometry"
+                                }
                             },
-                            new LightEmitter
+                            new ChangeableLightEmitter
                             {
-                                PhotometryId = "photometry",
-                                EmergencyBehaviour = EmergencyBehaviour.Combined
+                                EmergencyBehaviour = EmergencyBehaviour.Combined,
+                                PhotometryReference = new PhotometryReference
+                                {
+                                    PhotometryId = "photometry"
+                                }
                             },
-                            new LightEmitter
+                            new ChangeableLightEmitter
                             {
-                                PhotometryId = "photometry",
-                                EmergencyBehaviour = EmergencyBehaviour.EmergencyOnly
+                                EmergencyBehaviour = EmergencyBehaviour.EmergencyOnly,
+                                PhotometryReference = new PhotometryReference
+                                {
+                                    PhotometryId = "photometry"
+                                }
                             }
                         }
                     },
@@ -162,6 +180,13 @@ namespace Gldf.Net.Tests.TestData.Emitters
                                         Language = "de",
                                         Text = "Anzeigename"
                                     }
+                                },
+                                Rotation = new Rotation
+                                {
+                                    X = 10.1,
+                                    Y = 11.2,
+                                    Z = 12.3,
+                                    G0 = 13.4
                                 }
                             },
                             new SensorEmitter
@@ -202,9 +227,12 @@ namespace Gldf.Net.Tests.TestData.Emitters
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        EmitterReference = new EmitterReference
+                        Geometry = new Geometry
                         {
-                            EmitterId = "emitter-1"
+                            Reference = new EmitterReference
+                            {
+                                EmitterId = "emitter-1"
+                            }
                         }
                     }
                 }

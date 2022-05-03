@@ -14,20 +14,21 @@ namespace Gldf.Net.Domain.Descriptive
 
         public IngressProtectionIPCode? IngressProtectionIPCode { get; set; }
 
-        public IKRating? IKRating { get; set; }
-
         public double? PowerFactor { get; set; }
 
         public bool? ConstantLightOutput { get; set; }
+
+        public LightDistribution? LightDistribution { get; set; }
 
         public bool ShouldSerializeElectricalSafetyClass() => ElectricalSafetyClass != null;
 
         public bool ShouldSerializeIngressProtectionIPCode() => IngressProtectionIPCode != null;
 
-        public bool ShouldSerializeIKRating() => IKRating != null;
-
         public bool ShouldSerializePowerFactor() => PowerFactor != null;
 
         public bool ShouldSerializeConstantLightOutput() => ConstantLightOutput != null;
+        
+        public bool ShouldSerializeLightDistribution() => LightDistribution != null;
     }
+
 }

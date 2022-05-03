@@ -4,10 +4,10 @@ namespace Gldf.Net.Domain.Product.Types.Mounting
 {
     public class PoleIntegrated
     {
-        private double _poleHeight;
+        private int _poleHeight;
 
         [XmlAttribute("poleHeight")]
-        public double PoleHeight
+        public int PoleHeight
         {
             get => _poleHeight;
             set

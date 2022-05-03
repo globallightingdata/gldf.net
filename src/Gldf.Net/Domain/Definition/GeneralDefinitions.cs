@@ -20,7 +20,9 @@ namespace Gldf.Net.Domain.Definition
         public Spectrum[] Spectrums { get; set; }
 
         [XmlArrayItem("LightSource")]
-        public LightSource[] LightSources { get; set; }
+        [XmlArrayItem("ChangeableLightSource", typeof(ChangeableLightSource))]
+        [XmlArrayItem("FixedLightSource", typeof(FixedLightSource))]
+        public LightSourceBase[] LightSources { get; set; }
 
         [XmlArrayItem("ControlGear")]
         public ControlGear[] ControlGears { get; set; }
@@ -36,6 +38,12 @@ namespace Gldf.Net.Domain.Definition
         [XmlArrayItem("ModelGeometry", typeof(ModelGeometry))]
         public Geometry[] Geometries { get; set; }
 
+        public ChangeableLightSource[] GetAsChangeableLightSources()
+            => LightSources?.OfType<ChangeableLightSource>().ToArray() ?? Array.Empty<ChangeableLightSource>();
+        
+        public FixedLightSource[] GetAsFixedLightSources()
+            => LightSources?.OfType<FixedLightSource>().ToArray() ?? Array.Empty<FixedLightSource>();
+        
         public SimpleGeometry[] GetAsSimpleGeometries()
             => Geometries?.OfType<SimpleGeometry>().ToArray() ?? Array.Empty<SimpleGeometry>();
 

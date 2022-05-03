@@ -1,17 +1,10 @@
-﻿using Gldf.Net.Domain.Global;
-using Gldf.Net.Domain.Product.Types;
+﻿using Gldf.Net.Domain.Product.Types;
 using System.Xml.Serialization;
 
 namespace Gldf.Net.Domain.Definition.Types
 {
-    public class LightEmitter : EmitterBase
+    public class ChangeableLightEmitter : EmitterBase
     {
-        [XmlAttribute(DataType = "NCName", AttributeName = "photometryId")]
-        public string PhotometryId { get; set; }
-
-        [XmlAttribute(DataType = "NCName", AttributeName = "equipmentId")]
-        public string EquipmentId { get; set; }
-
         [XmlAttribute("emergencyBehaviour")]
         public EmergencyBehaviour EmergencyBehaviour
         {
@@ -23,9 +16,7 @@ namespace Gldf.Net.Domain.Definition.Types
             }
         }
 
-        public Locale[] Name { get; set; }
-
-        public Rotation Rotation { get; set; }
+        public EquipmentReference EquipmentReference { get; set; }
 
         [XmlIgnore]
         public bool EmergencyBehaviourSpecified { get; set; }

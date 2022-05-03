@@ -2,7 +2,7 @@
 
 namespace Gldf.Net.Domain.Descriptive.Types
 {
-    public class PropertyFileReference : PropertyContent
+    public class PropertyFileReference : PropertyContentBase
     {
         [XmlAttribute(DataType = "NCName", AttributeName = "fileId")]
         public string FileId { get; set; }

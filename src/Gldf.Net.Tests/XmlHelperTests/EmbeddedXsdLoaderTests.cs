@@ -20,7 +20,7 @@ namespace Gldf.Net.Tests.XmlHelperTests
             using var httpClient = new HttpClient();
             var xsdUrl = new Root().SchemaLocation;
             var githubXsd = await httpClient.GetStringAsync(xsdUrl);
-            var embeddedXsd = EmbeddedXsdLoader.LoadXsd(FormatVersion.V09);
+            var embeddedXsd = EmbeddedXsdLoader.LoadXsd(FormatVersion.V100);
 
             embeddedXsd.ShouldBe().EquivalentTo(githubXsd);
         }

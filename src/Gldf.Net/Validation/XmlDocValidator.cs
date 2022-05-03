@@ -42,9 +42,10 @@ namespace Gldf.Net.Validation
             return resultList;
         }
 
-        private XmlSchemaSet CreateSchemaSet(FormatVersion xmlFormatVersion)
+        // ReSharper disable once UnusedParameter.Local (Ignore xmlFormatVersion for now)
+        private XmlSchemaSet CreateSchemaSet(string xmlFormatVersion)
         {
-            var embeddedXsd = EmbeddedXsdLoader.LoadXsd(xmlFormatVersion);
+            var embeddedXsd = EmbeddedXsdLoader.LoadXsd(FormatVersion.V100);
             using var xsdStringReader = new StringReader(embeddedXsd);
             using var schemaDoc = XmlReader.Create(xsdStringReader);
             var schemaSet = new XmlSchemaSet();

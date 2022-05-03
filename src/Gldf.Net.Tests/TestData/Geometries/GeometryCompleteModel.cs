@@ -56,9 +56,12 @@ namespace Gldf.Net.Tests.TestData.Geometries
                         Id = "emitter",
                         PossibleFittings = new EmitterBase[]
                         {
-                            new LightEmitter
+                            new ChangeableLightEmitter
                             {
-                                PhotometryId = "photometry"
+                                PhotometryReference = new PhotometryReference
+                                {
+                                    PhotometryId = "photometry"
+                                }
                             }
                         }
                     }
@@ -68,28 +71,35 @@ namespace Gldf.Net.Tests.TestData.Geometries
                     new SimpleGeometry
                     {
                         Id = "geometry1",
-                        SimpleGeometryType = new SimpleCuboidGeometry
+                        GeometryType = new SimpleCuboidGeometry
                         {
                             Width = 1,
                             Length = 2,
                             Height = 3
                         },
-                        SimpleGeometryEmitterType = new SimpleRectangularEmitter
+                        EmitterType = new SimpleRectangularEmitter
                         {
                             Width = 4,
                             Length = 5
+                        },
+                        CHeights = new CHeights
+                        {
+                            C0 = 6,
+                            C90 = 7,
+                            C180 = 8,
+                            C270 = 9
                         }
                     },
                     new SimpleGeometry
                     {
                         Id = "geometry2",
-                        SimpleGeometryType = new SimpleCylinderGeometry
+                        GeometryType = new SimpleCylinderGeometry
                         {
                             Plane = SimpleCylinderPlane.X,
                             Diameter = 1,
                             Height = 2
                         },
-                        SimpleGeometryEmitterType = new SimpleCircularEmitter
+                        EmitterType = new SimpleCircularEmitter
                         {
                             Diameter = 3
                         }
@@ -97,13 +107,13 @@ namespace Gldf.Net.Tests.TestData.Geometries
                     new SimpleGeometry
                     {
                         Id = "geometry3",
-                        SimpleGeometryType = new SimpleCylinderGeometry
+                        GeometryType = new SimpleCylinderGeometry
                         {
                             Plane = SimpleCylinderPlane.Y,
                             Diameter = 1,
                             Height = 2
                         },
-                        SimpleGeometryEmitterType = new SimpleRectangularEmitter
+                        EmitterType = new SimpleRectangularEmitter
                         {
                             Width = 3,
                             Length = 4
@@ -112,13 +122,13 @@ namespace Gldf.Net.Tests.TestData.Geometries
                     new SimpleGeometry
                     {
                         Id = "geometry4",
-                        SimpleGeometryType = new SimpleCylinderGeometry
+                        GeometryType = new SimpleCylinderGeometry
                         {
                             Plane = SimpleCylinderPlane.Z,
                             Diameter = 1,
                             Height = 2
                         },
-                        SimpleGeometryEmitterType = new SimpleCircularEmitter
+                        EmitterType = new SimpleCircularEmitter
                         {
                             Diameter = 3
                         }
@@ -155,9 +165,12 @@ namespace Gldf.Net.Tests.TestData.Geometries
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        EmitterReference = new EmitterReference
+                        Geometry = new Geometry
                         {
-                            EmitterId = "emitter"
+                            Reference = new EmitterReference
+                            {
+                                EmitterId = "emitter"
+                            }
                         }
                     }
                 }

@@ -3,6 +3,7 @@ using Gldf.Net.Domain.Definition;
 using Gldf.Net.Domain.Definition.Types;
 using Gldf.Net.Domain.Global;
 using Gldf.Net.Domain.Head;
+using Gldf.Net.Domain.Head.Types;
 using Gldf.Net.Domain.Product;
 using Gldf.Net.Domain.Product.Types;
 using System;
@@ -17,7 +18,8 @@ namespace Gldf.Net.Tests.TestData.Head
             {
                 Manufacturer = "Manufacturer",
                 CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
-                CreatedWithApplication = "CreatedWithApplication"
+                CreatedWithApplication = "CreatedWithApplication",
+                FormatVersion = FormatVersion.V100
             },
             GeneralDefinitions = new GeneralDefinitions
             {
@@ -49,9 +51,12 @@ namespace Gldf.Net.Tests.TestData.Head
                         Id = "emitter",
                         PossibleFittings = new EmitterBase[]
                         {
-                            new LightEmitter
+                            new ChangeableLightEmitter
                             {
-                                PhotometryId = "photometry"
+                                PhotometryReference = new PhotometryReference
+                                {
+                                    PhotometryId = "photometry"
+                                }
                             }
                         }
                     }
@@ -87,9 +92,12 @@ namespace Gldf.Net.Tests.TestData.Head
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        EmitterReference = new EmitterReference
+                        Geometry = new Geometry
                         {
-                            EmitterId = "emitter"
+                            Reference = new EmitterReference
+                            {
+                                EmitterId = "emitter"
+                            }
                         }
                     }
                 }

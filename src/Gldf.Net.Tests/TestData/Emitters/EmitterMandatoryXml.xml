@@ -1,24 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.8/gldf.xsd">
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/1.0.0-rc.1/gldf.xsd">
     <Header>
         <Manufacturer>DIAL</Manufacturer>
         <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
         <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
-        <FormatVersion>0.9</FormatVersion>
+        <FormatVersion>1.0.0-rc.1</FormatVersion>
     </Header>
     <GeneralDefinitions>
         <Files>
             <File id="eulumdat" contentType="ldc/eulumdat" type="url">https://example.org/eulumdat.ldt</File>
+            <File id="sensorXml" contentType="sensor/sensxml" type="url">https://example.org/sens.xml</File>
         </Files>
+        <Sensors>
+            <Sensor id="sensor">
+                <SensorFileReference fileId="sensorXml"/>
+            </Sensor>
+        </Sensors>
         <Photometries>
             <Photometry id="photometry">
                 <PhotometryFileReference fileId="eulumdat"/>
             </Photometry>
         </Photometries>
+        <LightSources>
+            <FixedLightSource id="fixedLightSource">
+                <Name>
+                    <Locale language="en">FixedLightSource</Locale>
+                </Name>
+                <RatedInputPower>10</RatedInputPower> 
+            </FixedLightSource>
+        </LightSources>
         <Emitters>
-            <Emitter id="emitter">
-                <LightEmitter photometryId="photometry"/>
+            <Emitter id="emitter-1">
+                <ChangeableLightEmitter>
+                    <PhotometryReference photometryId="photometry"/>
+                </ChangeableLightEmitter>
+            </Emitter>
+            <Emitter id="emitter-2">
+                <FixedLightEmitter>
+                    <PhotometryReference photometryId="photometry"/>
+                    <LightSourceReference fixedLightSourceId="fixedLightSource"/>
+                    <RatedLuminousFlux>50</RatedLuminousFlux>
+                </FixedLightEmitter>
+            </Emitter>
+            <Emitter id="emitter-3">
+                <Sensor sensorId="sensor"/>
             </Emitter>
         </Emitters>
     </GeneralDefinitions>
@@ -36,7 +62,9 @@
                 <Name>
                     <Locale language="en">Variant 1</Locale>
                 </Name>
-                <EmitterReference emitterId="emitter"/>
+                <Geometry>
+                    <EmitterReference emitterId="emitter-1"/>
+                </Geometry>
             </Variant>
         </Variants>
     </ProductDefinitions>

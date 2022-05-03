@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.8/gldf.xsd">
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/1.0.0-rc.1/gldf.xsd">
     <Header>
         <Manufacturer>Manufacturer</Manufacturer>
         <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
         <CreatedWithApplication>CreatedWithApplication</CreatedWithApplication>
-        <FormatVersion>0.9</FormatVersion>
+        <FormatVersion>1.0.0-rc.1</FormatVersion>
     </Header>
     <GeneralDefinitions>
         <Files>
@@ -18,7 +18,9 @@
         </Photometries>
         <Emitters>
             <Emitter id="emitter">
-                <LightEmitter photometryId="photometry" />
+                <ChangeableLightEmitter>
+                    <PhotometryReference photometryId="photometry"/>
+                </ChangeableLightEmitter>
             </Emitter>
         </Emitters>
     </GeneralDefinitions>
@@ -36,13 +38,19 @@
                 <Name>
                     <Locale language="en">Variant 1</Locale>
                 </Name>
-                <EmitterReference emitterId="emitter"/>
+                <Geometry>
+                    <EmitterReference emitterId="emitter"/>
+                </Geometry>
                 <DescriptiveAttributes>
+                    <Mechanical>
+                        <ProductForm>Round</ProductForm>
+                        <IKRating>IK00</IKRating>
+                    </Mechanical>
                     <Electrical>
                         <ElectricalSafetyClass>0</ElectricalSafetyClass>
                         <IngressProtectionIPCode>IP20</IngressProtectionIPCode>
-                        <IKRating>IK00</IKRating>
                         <ConstantLightOutput>true</ConstantLightOutput>
+                        <LightDistribution>Laterally symmetrical narrow</LightDistribution>
                     </Electrical>
                     <Emergency>
                         <DedicatedEmergencyLightingType>Exit Light</DedicatedEmergencyLightingType>
@@ -136,18 +144,24 @@
                 <Name>
                     <Locale language="en">Variant 2</Locale>
                 </Name>
-                <EmitterReference emitterId="emitter"/>
+                <Geometry>
+                    <EmitterReference emitterId="emitter"/>
+                </Geometry>
                 <DescriptiveAttributes>
+                    <Mechanical>
+                        <ProductForm>Rounded</ProductForm>
+                        <IKRating>IK01</IKRating>
+                    </Mechanical>
                     <Electrical>
                         <ElectricalSafetyClass>I</ElectricalSafetyClass>
                         <IngressProtectionIPCode>IP30</IngressProtectionIPCode>
-                        <IKRating>IK01</IKRating>
                         <ConstantLightOutput>false</ConstantLightOutput>
+                        <LightDistribution>Laterally symmetrical medium</LightDistribution>
                     </Electrical>
                     <Emergency>
                         <DedicatedEmergencyLightingType>Guide Light</DedicatedEmergencyLightingType>
                     </Emergency>
-                    <MountingAndAccessory>
+                    <OperationsAndMaintenance>
                         <ATEX>
                             <Directives>
                                 <Directive>ATEX</Directive>
@@ -287,19 +301,25 @@
                                 <Group>IIIC</Group>
                             </Groups>
                         </ATEX>
-                    </MountingAndAccessory>
+                    </OperationsAndMaintenance>
                 </DescriptiveAttributes>
             </Variant>
             <Variant id="variant-3">
                 <Name>
                     <Locale language="en">Variant 3</Locale>
                 </Name>
-                <EmitterReference emitterId="emitter"/>
+                <Geometry>
+                    <EmitterReference emitterId="emitter"/>
+                </Geometry>
                 <DescriptiveAttributes>
+                    <Mechanical>
+                        <ProductForm>Square</ProductForm>
+                        <IKRating>IK02</IKRating>
+                    </Mechanical>
                     <Electrical>
                         <ElectricalSafetyClass>II</ElectricalSafetyClass>
                         <IngressProtectionIPCode>IP40</IngressProtectionIPCode>
-                        <IKRating>IK02</IKRating>
+                        <LightDistribution>Laterally symmetrical wide</LightDistribution>
                     </Electrical>
                     <Emergency>
                         <DedicatedEmergencyLightingType>Evacuation Light</DedicatedEmergencyLightingType>
@@ -310,28 +330,41 @@
                 <Name>
                     <Locale language="en">Variant 4</Locale>
                 </Name>
-                <EmitterReference emitterId="emitter"/>
+                <Geometry>
+                    <EmitterReference emitterId="emitter"/>
+                </Geometry>
                 <DescriptiveAttributes>
+                    <Mechanical>
+                        <ProductForm>Linear</ProductForm>
+                        <IKRating>IK03</IKRating>
+                    </Mechanical>
                     <Electrical>
                         <ElectricalSafetyClass>III</ElectricalSafetyClass>
                         <IngressProtectionIPCode>IP40</IngressProtectionIPCode>
-                        <IKRating>IK03</IKRating>
+                        <LightDistribution>Symmetrical in each quadrant</LightDistribution>
                     </Electrical>
                     <Emergency>
                         <DedicatedEmergencyLightingType>Reference Light</DedicatedEmergencyLightingType>
                     </Emergency>
+
                 </DescriptiveAttributes>
             </Variant>
             <Variant id="variant-5">
                 <Name>
                     <Locale language="en">Variant 5</Locale>
                 </Name>
-                <EmitterReference emitterId="emitter"/>
+                <Geometry>
+                    <EmitterReference emitterId="emitter"/>
+                </Geometry>
                 <DescriptiveAttributes>
+                    <Mechanical>
+                        <ProductForm>Areal</ProductForm>
+                        <IKRating>IK09</IKRating>
+                    </Mechanical>
                     <Electrical>
                         <ElectricalSafetyClass>0I</ElectricalSafetyClass>
                         <IngressProtectionIPCode>IP50</IngressProtectionIPCode>
-                        <IKRating>IK09</IKRating>
+                        <LightDistribution>Symmetric about 0-180 plane</LightDistribution>
                     </Electrical>
                     <Emergency>
                         <DedicatedEmergencyLightingType>For Signage</DedicatedEmergencyLightingType>
@@ -342,11 +375,17 @@
                 <Name>
                     <Locale language="en">Variant 6</Locale>
                 </Name>
-                <EmitterReference emitterId="emitter"/>
+                <Geometry>
+                    <EmitterReference emitterId="emitter"/>
+                </Geometry>
                 <DescriptiveAttributes>
+                    <Mechanical>
+                        <ProductForm>Sphere</ProductForm>
+                        <IKRating>IK10</IKRating>
+                    </Mechanical>
                     <Electrical>
                         <IngressProtectionIPCode>IP69</IngressProtectionIPCode>
-                        <IKRating>IK10</IKRating>
+                        <LightDistribution>Symmetric about 90-270 plane</LightDistribution>
                     </Electrical>
                     <Emergency>
                         <DedicatedEmergencyLightingType>For Lighting</DedicatedEmergencyLightingType>
@@ -357,11 +396,17 @@
                 <Name>
                     <Locale language="en">Variant 7</Locale>
                 </Name>
-                <EmitterReference emitterId="emitter"/>
+                <Geometry>
+                    <EmitterReference emitterId="emitter"/>
+                </Geometry>
                 <DescriptiveAttributes>
+                    <Mechanical>
+                        <ProductForm>Special</ProductForm>
+                        <IKRating>IK10+</IKRating>
+                    </Mechanical>
                     <Electrical>
                         <IngressProtectionIPCode>IP69K</IngressProtectionIPCode>
-                        <IKRating>IK10+</IKRating>
+                        <LightDistribution>Other</LightDistribution>
                     </Electrical>
                 </DescriptiveAttributes>
             </Variant>

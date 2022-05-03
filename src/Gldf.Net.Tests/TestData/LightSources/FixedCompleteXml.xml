@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/1.0.0-rc.1/gldf.xsd">
+    <Header>
+        <Manufacturer>DIAL</Manufacturer>
+        <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
+        <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
+        <FormatVersion>1.0.0-rc.1</FormatVersion>
+    </Header>
+    <GeneralDefinitions>
+        <Files>
+            <File id="eulumdat" contentType="ldc/eulumdat" type="url">https://example.org/eulumdat.ldt</File>
+            <File id="spectrumFile" contentType="spectrum/text" type="url">https://example.org/spectrum.txt</File>
+            <File id="image" contentType="image/jpg" type="url">https://example.org/image.jpg</File>
+        </Files>
+        <Photometries>
+            <Photometry id="photometry">
+                <PhotometryFileReference fileId="eulumdat"/>
+            </Photometry>
+        </Photometries>
+        <Spectrums>
+            <Spectrum id="spectrum">
+                <SpectrumFileReference fileId="spectrumFile"/>
+            </Spectrum>
+        </Spectrums>
+        <LightSources>
+            <FixedLightSource id="fixedLightSource">
+                <Name>
+                    <Locale language="en">Fixed lightsource</Locale>
+                    <Locale language="de">Absolute Lichtquelle</Locale>
+                </Name>
+                <Description>
+                    <Locale language="en">Fixed lightsource description</Locale>
+                    <Locale language="de">Absolute Lichtquelle Beschreibung</Locale>
+                </Description>
+                <Manufacturer>Manufacturer</Manufacturer>
+                <GTIN>12345678</GTIN>
+                <RatedInputPower>1</RatedInputPower>
+                <RatedInputVoltage>
+                    <FixedVoltage>230</FixedVoltage>
+                    <Type>AC</Type>
+                    <Frequency>50</Frequency>
+                </RatedInputVoltage>
+                <PowerRange>
+                    <Lower>3</Lower>
+                    <Upper>4</Upper>
+                    <DefaultLightSourcePower>5</DefaultLightSourcePower>
+                </PowerRange>
+                <LightSourcePositionOfUsage>LightSourcePositionOfUsage</LightSourcePositionOfUsage>
+                <EnergyLabels>
+                    <EnergyLabel region="de">A+</EnergyLabel>
+                    <EnergyLabel region="gb">A++</EnergyLabel>
+                </EnergyLabels>
+                <SpectrumReference spectrumId="spectrum"/>
+                <ActivePowerTable type="Continuously">
+                    <FluxFactor inputPower="0.1" flickerPstLM="flicker 1" stroboscopicEffectsSVM="stroboscopic 1" description="Description 1">0.2</FluxFactor>
+                    <FluxFactor inputPower="0.3" flickerPstLM="flicker 2" stroboscopicEffectsSVM="stroboscopic 2" description="Description 2">0.4</FluxFactor>
+                </ActivePowerTable>
+                <ColorInformation>
+                    <ColorRenderingIndex>1</ColorRenderingIndex>
+                    <CorrelatedColorTemperature>2</CorrelatedColorTemperature>
+                    <ColorTemperatureAdjustingRange>
+                        <Lower>3</Lower>
+                        <Upper>4</Upper>
+                    </ColorTemperatureAdjustingRange>
+                    <Cie1931ColorAppearance>
+                        <X>0.1</X>
+                        <Y>0.2</Y>
+                        <Z>0.3</Z>
+                    </Cie1931ColorAppearance>
+                    <InitialColorTolerance>3 SDCM</InitialColorTolerance>
+                    <MaintainedColorTolerance>4 SDCM</MaintainedColorTolerance>
+                    <RatedChromacityCoordinateValues>
+                        <X>0.4</X>
+                        <Y>0.5</Y>
+                    </RatedChromacityCoordinateValues>
+                    <TLCI>5</TLCI>
+                    <IES-TM-30-15>
+                        <Rf>6</Rf>
+                        <Rg>7</Rg>
+                    </IES-TM-30-15>
+                    <MelanopicFactor>0.8</MelanopicFactor>
+                </ColorInformation>
+                <LightSourceImages>
+                    <Image fileId="image" imageType="Product Picture"/>
+                </LightSourceImages>
+                <LightSourceMaintenance lifetime="9">
+                    <LedMaintenanceFactor hours="10">0.11</LedMaintenanceFactor>
+                </LightSourceMaintenance>
+                <ZhagaStandard>true</ZhagaStandard>
+            </FixedLightSource>
+        </LightSources>
+        <ControlGears>
+            <ControlGear id="controlGear">
+                <Name>
+                    <Locale language="en">ControlGear</Locale>
+                </Name>
+            </ControlGear>
+        </ControlGears>
+        <Emitters>
+            <Emitter id="emitter-1">
+                <FixedLightEmitter emergencyBehaviour="Combined">
+                    <Name>
+                        <Locale language="en">FixedLightEmitter</Locale>
+                    </Name>
+                    <Rotation>
+                        <X>1</X>
+                        <Y>2</Y>
+                        <Z>3</Z>
+                        <G0>4</G0>
+                    </Rotation>
+                    <PhotometryReference photometryId="photometry"/>
+                    <LightSourceReference fixedLightSourceId="fixedLightSource"/>
+                    <ControlGearReference controlGearId="controlGear" controlGearCount="2"/>
+                    <RatedLuminousFlux>250</RatedLuminousFlux>
+                    <RatedLuminousFluxRGB>251</RatedLuminousFluxRGB>
+                    <EmergencyBallastLumenFactor>0.1</EmergencyBallastLumenFactor>
+                </FixedLightEmitter>
+            </Emitter>
+            <Emitter id="emitter-2">
+                <FixedLightEmitter emergencyBehaviour="EmergencyOnly">
+                    <PhotometryReference photometryId="photometry"/>
+                    <LightSourceReference fixedLightSourceId="fixedLightSource"/>
+                    <RatedLuminousFlux>250</RatedLuminousFlux>
+                    <EmergencyRatedLuminousFlux>240</EmergencyRatedLuminousFlux>
+                </FixedLightEmitter>
+            </Emitter>
+        </Emitters>
+    </GeneralDefinitions>
+    <ProductDefinitions>
+        <ProductMetaData>
+            <ProductNumber>
+                <Locale language="en">Product number</Locale>
+            </ProductNumber>
+            <Name>
+                <Locale language="en">Product name</Locale>
+            </Name>
+        </ProductMetaData>
+        <Variants>
+            <Variant id="variant-1">
+                <Name>
+                    <Locale language="en">Variant 1</Locale>
+                </Name>
+                <Geometry>
+                    <EmitterReference emitterId="emitter-1"/>
+                </Geometry>
+            </Variant>
+        </Variants>
+    </ProductDefinitions>
+</Root>

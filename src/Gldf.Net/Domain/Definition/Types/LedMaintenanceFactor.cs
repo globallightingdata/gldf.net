@@ -2,7 +2,7 @@
 
 namespace Gldf.Net.Domain.Definition.Types
 {
-    public class LedMaintenanceFactor : LampMaintenanceType
+    public class LedMaintenanceFactor : LightSourceMaintenanceTypeBase
     {
         [XmlAttribute("hours")]
         public int Hours { get; set; }

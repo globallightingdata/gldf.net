@@ -25,7 +25,11 @@ namespace Gldf.Net.Domain.Descriptive
         [XmlArrayItem("DesignAward")]
         public string[] DesignAwards { get; set; }
 
+        [XmlArrayItem("Label")]
+        public Label[] Labels { get; set; }
+
         [XmlArrayItem("Application")]
         public ApplicationArea[] Applications { get; set; }
     }
+
 }

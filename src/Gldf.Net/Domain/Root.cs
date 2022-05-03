@@ -10,12 +10,9 @@ namespace Gldf.Net.Domain
         [XmlAttribute(AttributeName = SchemaAttributeName, Namespace = SchemaAttributePrefixNamespace)]
         public string SchemaLocation
         {
-            get => "https://gldf.io/xsd/gldf/0.9-beta.8/gldf.xsd";
+            get => "https://gldf.io/xsd/gldf/1.0.0-rc.1/gldf.xsd";
             set => _ = value;
         }
-
-        [XmlAttribute("checksum")]
-        public string Checksum { get; set; }
 
         public Header Header { get; set; }
 

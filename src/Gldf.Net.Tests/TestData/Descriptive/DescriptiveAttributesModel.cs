@@ -52,9 +52,12 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         Id = "emitter",
                         PossibleFittings = new EmitterBase[]
                         {
-                            new LightEmitter
+                            new ChangeableLightEmitter
                             {
-                                PhotometryId = "photometry"
+                                PhotometryReference = new PhotometryReference
+                                {
+                                    PhotometryId = "photometry"
+                                }
                             }
                         }
                     }
@@ -90,18 +93,26 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        EmitterReference = new EmitterReference
+                        Geometry = new Geometry
                         {
-                            EmitterId = "emitter"
+                            Reference = new EmitterReference
+                            {
+                                EmitterId = "emitter"
+                            }
                         },
                         DescriptiveAttributes = new DescriptiveAttributes
                         {
+                            Mechanical = new Mechanical
+                            {
+                                ProductForm = ProductForm.Round,
+                                IKRating = IKRating.IK00
+                            },
                             Electrical = new Electrical
                             {
                                 ElectricalSafetyClass = SafetyClass.Class0,
                                 IngressProtectionIPCode = IngressProtectionIPCode.IP20,
-                                IKRating = IKRating.IK00,
-                                ConstantLightOutput = true
+                                ConstantLightOutput = true,
+                                LightDistribution = LightDistribution.LaterallySymmetricalNarrow
                             },
                             Emergency = new Emergency
                             {
@@ -201,24 +212,32 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 2" }
                         },
-                        EmitterReference = new EmitterReference
+                        Geometry = new Geometry
                         {
-                            EmitterId = "emitter"
+                            Reference = new EmitterReference
+                            {
+                                EmitterId = "emitter"
+                            }
                         },
                         DescriptiveAttributes = new DescriptiveAttributes
                         {
+                            Mechanical = new Mechanical
+                            {
+                                ProductForm = ProductForm.Rounded,
+                                IKRating = IKRating.IK01
+                            },
                             Electrical = new Electrical
                             {
                                 ElectricalSafetyClass = SafetyClass.ClassI,
                                 IngressProtectionIPCode = IngressProtectionIPCode.IP30,
-                                IKRating = IKRating.IK01,
-                                ConstantLightOutput = false
+                                ConstantLightOutput = false,
+                                LightDistribution = LightDistribution.LaterallySymmetricalMedium 
                             },
                             Emergency = new Emergency
                             {
                                 DedicatedEmergencyLightingType = EmergencyLightingType.GuideLight
                             },
-                            MountingAndAccessory = new MountingAndAccessory
+                            OperationsAndMaintenance = new OperationsAndMaintenance
                             {
                                 Atex = new Atex
                                 {
@@ -389,17 +408,25 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 3" }
                         },
-                        EmitterReference = new EmitterReference
+                        Geometry = new Geometry
                         {
-                            EmitterId = "emitter"
+                            Reference = new EmitterReference
+                            {
+                                EmitterId = "emitter"
+                            }
                         },
                         DescriptiveAttributes = new DescriptiveAttributes
                         {
+                            Mechanical = new Mechanical
+                            {
+                                ProductForm = ProductForm.Square,
+                                IKRating = IKRating.IK02
+                            },
                             Electrical = new Electrical
                             {
                                 ElectricalSafetyClass = SafetyClass.ClassII,
                                 IngressProtectionIPCode = IngressProtectionIPCode.IP40,
-                                IKRating = IKRating.IK02
+                                LightDistribution = LightDistribution.LaterallySymmetricalWide
                             },
                             Emergency = new Emergency
                             {
@@ -414,17 +441,25 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 4" }
                         },
-                        EmitterReference = new EmitterReference
+                        Geometry = new Geometry
                         {
-                            EmitterId = "emitter"
+                            Reference = new EmitterReference
+                            {
+                                EmitterId = "emitter"
+                            }
                         },
                         DescriptiveAttributes = new DescriptiveAttributes
                         {
+                            Mechanical = new Mechanical
+                            {
+                                ProductForm = ProductForm.Linear,
+                                IKRating = IKRating.IK03
+                            },
                             Electrical = new Electrical
                             {
                                 ElectricalSafetyClass = SafetyClass.ClassIII,
                                 IngressProtectionIPCode = IngressProtectionIPCode.IP40,
-                                IKRating = IKRating.IK03
+                                LightDistribution = LightDistribution.SymmetricalInEachQuadrant
                             },
                             Emergency = new Emergency
                             {
@@ -439,17 +474,25 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 5" }
                         },
-                        EmitterReference = new EmitterReference
+                        Geometry = new Geometry
                         {
-                            EmitterId = "emitter"
+                            Reference = new EmitterReference
+                            {
+                                EmitterId = "emitter"
+                            }
                         },
                         DescriptiveAttributes = new DescriptiveAttributes
                         {
+                            Mechanical = new Mechanical
+                            {
+                                ProductForm = ProductForm.Areal,
+                                IKRating = IKRating.IK09
+                            },
                             Electrical = new Electrical
                             {
                                 ElectricalSafetyClass = SafetyClass.Item0I,
                                 IngressProtectionIPCode = IngressProtectionIPCode.IP50,
-                                IKRating = IKRating.IK09
+                                LightDistribution = LightDistribution.SymmetricAbout0To180Plane
                             },
                             Emergency = new Emergency
                             {
@@ -464,16 +507,24 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 6" }
                         },
-                        EmitterReference = new EmitterReference
+                        Geometry = new Geometry
                         {
-                            EmitterId = "emitter"
+                            Reference = new EmitterReference
+                            {
+                                EmitterId = "emitter"
+                            }
                         },
                         DescriptiveAttributes = new DescriptiveAttributes
                         {
+                            Mechanical = new Mechanical
+                            {
+                                ProductForm = ProductForm.Sphere,
+                                IKRating = IKRating.IK10
+                            },
                             Electrical = new Electrical
                             {
                                 IngressProtectionIPCode = IngressProtectionIPCode.IP69,
-                                IKRating = IKRating.IK10
+                                LightDistribution = LightDistribution.SymmetricAbout90To270Plane
                             },
                             Emergency = new Emergency
                             {
@@ -488,16 +539,24 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 7" }
                         },
-                        EmitterReference = new EmitterReference
+                        Geometry = new Geometry
                         {
-                            EmitterId = "emitter"
+                            Reference = new EmitterReference
+                            {
+                                EmitterId = "emitter"
+                            }
                         },
                         DescriptiveAttributes = new DescriptiveAttributes
                         {
+                            Mechanical = new Mechanical
+                            {
+                                ProductForm = ProductForm.Special,
+                                IKRating = IKRating.IK10Plus
+                            },
                             Electrical = new Electrical
                             {
                                 IngressProtectionIPCode = IngressProtectionIPCode.IP69K,
-                                IKRating = IKRating.IK10Plus
+                                LightDistribution = LightDistribution.Other
                             }
                         }
                     }

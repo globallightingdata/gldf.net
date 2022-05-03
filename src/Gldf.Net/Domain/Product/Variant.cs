@@ -1,7 +1,9 @@
-﻿using Gldf.Net.Domain.Descriptive;
+﻿using Gldf.Net.Domain.Definition;
+using Gldf.Net.Domain.Descriptive;
 using Gldf.Net.Domain.Global;
 using Gldf.Net.Domain.Product.Types;
 using Gldf.Net.Domain.Product.Types.Mounting;
+using System.Xml;
 using System.Xml.Serialization;
 
 // ReSharper disable InconsistentNaming
@@ -10,8 +12,6 @@ namespace Gldf.Net.Domain.Product
 {
     public class Variant
     {
-        private int _sortOrder;
-
         [XmlAttribute(DataType = "ID", AttributeName = "id")]
         public string Id { get; set; }
 
@@ -41,10 +41,8 @@ namespace Gldf.Net.Domain.Product
 
         public Mountings Mountings { get; set; }
 
-        [XmlElement("EmitterReference", typeof(EmitterReference))]
-        [XmlElement("ModelGeometryReference", typeof(ModelGeometryReference))]
-        [XmlElement("SimpleGeometryReference", typeof(SimpleGeometryReference))]
-        public EmitterReferenceBase EmitterReference { get; set; }
+        [XmlElement("Geometry")]
+        public Geometry Geometry { get; set; }
 
         [XmlArrayItem("ProductSerie")]
         public ProductSerie[] ProductSeries { get; set; }
@@ -58,9 +56,7 @@ namespace Gldf.Net.Domain.Product
 
         [XmlIgnore]
         public bool SortOrderSpecified { get; set; }
-
-        public EmitterReference GetAsEmitterReference() => EmitterReference as EmitterReference;
-        public ModelGeometryReference GetAsModelGeometryReference() => EmitterReference as ModelGeometryReference;
-        public SimpleGeometryReference GetAsSimpleGeometryReference() => EmitterReference as SimpleGeometryReference;
+        
+        private int _sortOrder;
     }
 }

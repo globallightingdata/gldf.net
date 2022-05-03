@@ -51,17 +51,17 @@ namespace Gldf.Net.Tests
         [Test]
         public void WriteToFile_ShouldOverwrite_Container_WhenAlreadyExists()
         {
-            var gldfContainer1 = new GldfContainer(new Root { Checksum = "Old" });
-            var gldfContainer2 = new GldfContainer(new Root { Checksum = "New" });
+            var gldfContainer1 = new GldfContainer(new Root { SchemaLocation = "Old" });
+            var gldfContainer2 = new GldfContainer(new Root { SchemaLocation = "New" });
             var zipArchiveReader = new ZipArchiveReader();
 
             _gldfContainerWriter.WriteToFile(_tempFile1, gldfContainer1);
-            var checksumBefore = zipArchiveReader.ReadContainer(_tempFile1).Product.Checksum;
+            var schemaLocationBefore = zipArchiveReader.ReadContainer(_tempFile1).Product.SchemaLocation;
             _gldfContainerWriter.WriteToFile(_tempFile1, gldfContainer2);
-            var checksumAfter = zipArchiveReader.ReadContainer(_tempFile1).Product.Checksum;
+            var schemaLocationAfter = zipArchiveReader.ReadContainer(_tempFile1).Product.SchemaLocation;
 
-            checksumBefore.Should().Be(gldfContainer1.Product.Checksum);
-            checksumAfter.Should().Be(gldfContainer2.Product.Checksum);
+            schemaLocationBefore.Should().Be(gldfContainer1.Product.SchemaLocation);
+            schemaLocationAfter.Should().Be(gldfContainer2.Product.SchemaLocation);
         }
 
         [Test]

@@ -9,7 +9,7 @@ namespace Gldf.Net.Domain.Definition
         public string Id { get; set; }
 
         [XmlElement("PhotometryFileReference", typeof(PhotometryFileReference))]
-        public PhotometryContent Content { get; set; }
+        public PhotometryContentBase Content { get; set; }
 
         public DescriptivePhotometry DescriptivePhotometry { get; set; }
 

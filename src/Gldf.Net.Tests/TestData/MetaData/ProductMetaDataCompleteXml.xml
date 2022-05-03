@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/0.9-beta.8/gldf.xsd">
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/1.0.0-rc.1/gldf.xsd">
     <Header>
         <Manufacturer>DIAL</Manufacturer>
         <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
         <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
-        <FormatVersion>0.9</FormatVersion>
+        <FormatVersion>1.0.0-rc.1</FormatVersion>
     </Header>
     <GeneralDefinitions>
         <Files>
@@ -19,7 +19,9 @@
         </Photometries>
         <Emitters>
             <Emitter id="emitter">
-                <LightEmitter photometryId="photometry" />
+                <ChangeableLightEmitter>
+                    <PhotometryReference photometryId="photometry"/>
+                </ChangeableLightEmitter>
             </Emitter>
         </Emitters>
     </GeneralDefinitions>
@@ -63,7 +65,7 @@
                 </ProductSerie>
             </ProductSeries>
             <Pictures>
-                <Image fileId="image" imageType="Other" />
+                <Image fileId="image" imageType="Other"/>
             </Pictures>
             <LuminaireMaintenance>
                 <Cie97LuminaireType>Dust Proof IP5X</Cie97LuminaireType>
@@ -93,14 +95,26 @@
                         <Width>2</Width>
                         <Height>3</Height>
                     </ProductSize>
-                    <OperatingTemperature>
-                        <Lower>4</Lower>
-                        <Upper>5</Upper>
-                    </OperatingTemperature>
+                    <ProductForm>Cylinder</ProductForm>
                     <SealingMaterial>
                         <Locale language="en">Sealing Metarial</Locale>
                         <Locale language="de">Gehäusematerial</Locale>
                     </SealingMaterial>
+                    <Adjustabilities>
+                        <Adjustability>Fixed</Adjustability>
+                        <Adjustability>Orientation</Adjustability>
+                        <Adjustability>Turn</Adjustability>
+                        <Adjustability>Tilt</Adjustability>
+                        <Adjustability>Cardanic</Adjustability>
+                        <Adjustability>Height adjustable</Adjustability>
+                        <Adjustability>User defined</Adjustability>
+                    </Adjustabilities>
+                    <IKRating>IK06</IKRating>
+                    <ProtectiveAreas>
+                        <Area>Ball-impact proof</Area>
+                        <Area>Cleanroom suitable</Area>
+                        <Area>Drive/Roll-over proof</Area>
+                    </ProtectiveAreas>
                     <Weight>0.01</Weight>
                 </Mechanical>
                 <Electrical>
@@ -111,9 +125,9 @@
                     <SwitchingCapacity>SwitchingCapacity</SwitchingCapacity>
                     <ElectricalSafetyClass>II</ElectricalSafetyClass>
                     <IngressProtectionIPCode>IP26</IngressProtectionIPCode>
-                    <IKRating>IK06</IKRating>
                     <PowerFactor>0.04</PowerFactor>
                     <ConstantLightOutput>true</ConstantLightOutput>
+                    <LightDistribution>Asymmetrical</LightDistribution>
                 </Electrical>
                 <Emergency>
                     <DurationTimeAndFlux>
@@ -122,7 +136,151 @@
                     </DurationTimeAndFlux>
                     <DedicatedEmergencyLightingType>For Signage</DedicatedEmergencyLightingType>
                 </Emergency>
-                <MountingAndAccessory>
+                <Marketing>
+                    <ListPrices>
+                        <ListPrice currency="eur">9</ListPrice>
+                        <ListPrice currency="usd">10</ListPrice>
+                    </ListPrices>
+                    <HousingColors>
+                        <HousingColor ral="3000">
+                            <Locale language="en">Red</Locale>
+                            <Locale language="de">Rot</Locale>
+                        </HousingColor>
+                    </HousingColors>
+                    <Markets>
+                        <Region>
+                            <Locale language="en">South europe</Locale>
+                            <Locale language="de">Südeuropa</Locale>
+                        </Region>
+                    </Markets>
+                    <Hyperlinks>
+                        <Hyperlink href="https://example.org" language="en" region="Europe" countryCode="gb">Hyperlink PlainText</Hyperlink>
+                    </Hyperlinks>
+                    <Designer>Designer</Designer>
+                    <ApprovalMarks>
+                        <ApprovalMark>ApprovalMark 1</ApprovalMark>
+                        <ApprovalMark>ApprovalMark 2</ApprovalMark>
+                    </ApprovalMarks>
+                    <DesignAwards>
+                        <DesignAward>DesignAward 1</DesignAward>
+                        <DesignAward>DesignAward 2</DesignAward>
+                    </DesignAwards>
+                    <Labels>
+                        <Label>CE</Label>
+                        <Label>GS</Label>
+                        <Label>ENEC</Label>
+                        <Label>CCC</Label>
+                        <Label>VDE</Label>
+                        <Label>EAC</Label>
+                        <Label>D</Label>
+                        <Label>M</Label>
+                        <Label>MM</Label>
+                        <Label>F</Label>
+                        <Label>FF</Label>
+                        <Label>UL</Label>
+                        <Label>Handwarm</Label>
+                        <Label>IFS Food</Label>
+                    </Labels>
+                    <Applications>
+                        <Application>Interior: Traffic Zones</Application>
+                        <Application>Interior: Traffic Zones: Corridors</Application>
+                        <Application>Interior: Traffic Zones: Staircases</Application>
+                        <Application>Interior: Traffic Zones: Loading Zones</Application>
+                        <Application>Interior: Traffic Zones: Cove Lighting / Cornices (Indoor)</Application>
+                        <Application>Interior: General Areas (Interior)</Application>
+                        <Application>Interior: General Areas (Interior): Break Rooms</Application>
+                        <Application>Interior: General Areas (Interior): Reception Areas</Application>
+                        <Application>Interior: Office</Application>
+                        <Application>Interior: Office: Office Desks</Application>
+                        <Application>Interior: Office: Group Offices</Application>
+                        <Application>Interior: Office: Discussions</Application>
+                        <Application>Interior: Office: Archives</Application>
+                        <Application>Interior: Industry/Craft</Application>
+                        <Application>Interior: Industry/Craft: Industrial Workshops</Application>
+                        <Application>Interior: Industry/Craft: Warehouses</Application>
+                        <Application>Interior: Industry/Craft: Cold Storage Facilities</Application>
+                        <Application>Interior: Industry/Craft: Kitchens</Application>
+                        <Application>Interior: Industry/Craft: Assembly Work Stations</Application>
+                        <Application>Interior: Industry/Craft: Machine Illumination</Application>
+                        <Application>Interior: Industry/Craft: Control Work Stations</Application>
+                        <Application>Interior: Industry/Craft: Laboratories</Application>
+                        <Application>Interior: Industry/Craft: Hangars</Application>
+                        <Application>Interior: Shop Lighting</Application>
+                        <Application>Interior: Shop Lighting: Retail</Application>
+                        <Application>Interior: Shop Lighting: Food</Application>
+                        <Application>Interior: Shop Lighting: Clothing</Application>
+                        <Application>Interior: Shop Lighting: Display Windows</Application>
+                        <Application>Interior: Shop Lighting: Halls</Application>
+                        <Application>Interior: Shop Lighting: Great Halls</Application>
+                        <Application>Interior: Shop Lighting: Mirrors</Application>
+                        <Application>Interior: Public Areas</Application>
+                        <Application>Interior: Public Areas: Restaurants</Application>
+                        <Application>Interior: Public Areas: Theatres</Application>
+                        <Application>Interior: Public Areas: Railway Stations</Application>
+                        <Application>Interior: Public Areas: Museums</Application>
+                        <Application>Interior: Public Areas: Fairs</Application>
+                        <Application>Interior: Public Areas: Prisons</Application>
+                        <Application>Interior: Public Areas: Canteens</Application>
+                        <Application>Interior: Emergency Lighting</Application>
+                        <Application>Interior: Emergency Lighting: Emergency Lighting</Application>
+                        <Application>Interior: Emergency Lighting: Signal Lighting</Application>
+                        <Application>Interior: Educational Facilities</Application>
+                        <Application>Interior: Educational Facilities: Classrooms</Application>
+                        <Application>Interior: Educational Facilities: Libraries</Application>
+                        <Application>Interior: Educational Facilities: Lounges</Application>
+                        <Application>Interior: Educational Facilities: Sports Halls</Application>
+                        <Application>Interior: Private Areas</Application>
+                        <Application>Interior: Private Areas: Living Areas</Application>
+                        <Application>Interior: Private Areas: Baths</Application>
+                        <Application>Interior: Private Areas: Kitchens</Application>
+                        <Application>Interior: Hospitals and Care Places</Application>
+                        <Application>Interior: Hospitals and Care Places: Hospital Wards</Application>
+                        <Application>Interior: Hospitals and Care Places: Health Care Patient Rooms</Application>
+                        <Application>Interior: Hospitals and Care Places: Health Care Clean Room Areas</Application>
+                        <Application>Interior: Hospitals and Care Places: Health Care Examination Rooms</Application>
+                        <Application>Interior: Hospitals and Care Places: Health Care Circulation Areas</Application>
+                        <Application>Exterior: General Areas (Exterior)</Application>
+                        <Application>Exterior: General Areas (Exterior): Places</Application>
+                        <Application>Exterior: General Areas (Exterior): Parks</Application>
+                        <Application>Exterior: General Areas (Exterior): Underpasses</Application>
+                        <Application>Exterior: General Areas (Exterior): (Outdoor) Stairs</Application>
+                        <Application>Exterior: General Areas (Exterior): Platform-Roofs</Application>
+                        <Application>Exterior: General Areas (Exterior): Parking Spaces (Indoor)</Application>
+                        <Application>Exterior: General Areas (Exterior): Outdoor Parkings</Application>
+                        <Application>Exterior: General Areas (Exterior): Pools</Application>
+                        <Application>Exterior: General Areas (Exterior): Fountains</Application>
+                        <Application>Exterior: Streets</Application>
+                        <Application>Exterior: Streets: Motorways</Application>
+                        <Application>Exterior: Streets: Access Roads</Application>
+                        <Application>Exterior: Streets: Residential Areas</Application>
+                        <Application>Exterior: Streets: Bicycle Paths</Application>
+                        <Application>Exterior: Streets: Footpaths</Application>
+                        <Application>Exterior: Streets: Petrol-Gas Stations</Application>
+                        <Application>Exterior: Streets: Tunnels</Application>
+                        <Application>Exterior: Sports Fields</Application>
+                        <Application>Exterior: Sports Fields: Spotlightings</Application>
+                        <Application>Exterior: Other</Application>
+                        <Application>Exterior: Other: Facades</Application>
+                    </Applications>
+                </Marketing>
+                <OperationsAndMaintenance>
+                    <UsefulLifeTimes>
+                        <UsefulLife>L80B50 50000h 25°C</UsefulLife>
+                        <UsefulLife>L80B75 40000h 25°C</UsefulLife>
+                    </UsefulLifeTimes>
+                    <MedianUsefulLifeTimes>
+                        <MedianUsefulLife>L100B50 40000h 20°C</MedianUsefulLife>
+                        <MedianUsefulLife>L80B50 50000h 20°C</MedianUsefulLife>
+                    </MedianUsefulLifeTimes>
+                    <OperatingTemperature>
+                        <Lower>4</Lower>
+                        <Upper>5</Upper>
+                    </OperatingTemperature>
+                    <AmbientTemperature>
+                        <Lower>7</Lower>
+                        <Upper>8</Upper>
+                    </AmbientTemperature>
+                    <RatedAmbientTemperature>11</RatedAmbientTemperature>
                     <ATEX>
                         <Directives>
                             <Directive>IECEx</Directive>
@@ -196,55 +354,6 @@
                             <Group>IIA</Group>
                         </Groups>
                     </ATEX>
-                    <AmbientTemperature>
-                        <Lower>7</Lower>
-                        <Upper>8</Upper>
-                    </AmbientTemperature>
-                </MountingAndAccessory>
-                <Marketing>
-                    <ListPrices>
-                        <ListPrice currency="eur">9</ListPrice>
-                        <ListPrice currency="usd">10</ListPrice>
-                    </ListPrices>
-                    <HousingColors>
-                        <HousingColor ral="3000">
-                            <Locale language="en">Red</Locale>
-                            <Locale language="de">Rot</Locale>
-                        </HousingColor>
-                    </HousingColors>
-                    <Markets>
-                        <Region>
-                            <Locale language="en">South europe</Locale>
-                            <Locale language="de">Südeuropa</Locale>
-                        </Region>
-                    </Markets>
-                    <Hyperlinks>
-                        <Hyperlink href="https://example.org" language="en" region="Europe" countryCode="gb">Hyperlink PlainText</Hyperlink>
-                    </Hyperlinks>
-                    <Designer>Designer</Designer>
-                    <ApprovalMarks>
-                        <ApprovalMark>ApprovalMark 1</ApprovalMark>
-                        <ApprovalMark>ApprovalMark 2</ApprovalMark>
-                    </ApprovalMarks>
-                    <DesignAwards>
-                        <DesignAward>DesignAward 1</DesignAward>
-                        <DesignAward>DesignAward 2</DesignAward>
-                    </DesignAwards>
-                    <Applications>
-                        <Application>Exterior: Streets: Motorways</Application>
-                        <Application>Interior: Traffic Zones: Corridors</Application>
-                    </Applications>
-                </Marketing>
-                <OperationsAndMaintenance>
-                    <UsefulLifeTimes>
-                        <UsefulLife>L80B50 50000h 25°C</UsefulLife>
-                        <UsefulLife>L80B75 40000h 25°C</UsefulLife>
-                    </UsefulLifeTimes>
-                    <MedianUsefulLifeTimes>
-                        <MedianUsefulLife>L100B50 40000h 20°C</MedianUsefulLife>
-                        <MedianUsefulLife>L80B50 50000h 20°C</MedianUsefulLife>
-                    </MedianUsefulLifeTimes>
-                    <RatedAmbientTemperature>11</RatedAmbientTemperature>
                     <AcousticAbsorptionRates>
                         <AbsorptionRate hertz="12">0.05</AbsorptionRate>
                         <AbsorptionRate hertz="13">0.06</AbsorptionRate>
@@ -275,7 +384,9 @@
                 <Name>
                     <Locale language="en">Variant 1</Locale>
                 </Name>
-                <EmitterReference emitterId="emitter"/>
+                <Geometry>
+                    <EmitterReference emitterId="emitter"/>
+                </Geometry>
             </Variant>
         </Variants>
     </ProductDefinitions>

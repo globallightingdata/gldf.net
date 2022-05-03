@@ -42,9 +42,9 @@ namespace Gldf.Net.Tests.TestData.Equipments
                         }
                     }
                 },
-                LightSources = new[]
+                LightSources = new LightSourceBase[]
                 {
-                    new LightSource
+                    new ChangeableLightSource
                     {
                         Id = "lightSource",
                         Name = new[]
@@ -55,7 +55,8 @@ namespace Gldf.Net.Tests.TestData.Equipments
                                 Text = "LightSource name"
                             }
                         },
-                        LightSourceType = new FixedLightSource()
+                        RatedInputPower = 50,
+                        RatedLuminousFlux = 250
                     }
                 },
                 Equipments = new[]
@@ -63,9 +64,8 @@ namespace Gldf.Net.Tests.TestData.Equipments
                     new Equipment
                     {
                         Id = "equipment",
-                        LightSourceReference = new LightSourceReference {LightSourceId = "lightSource"},
-                        RatedInputPower = 0.1,
-                        RatedLuminousFlux = 1
+                        LightSourceReference = new LightSourceReference { ChangeableLightSourceId = "lightSource" },
+                        RatedInputPower = 0.1
                     }
                 },
                 Emitters = new[]
@@ -75,9 +75,12 @@ namespace Gldf.Net.Tests.TestData.Equipments
                         Id = "emitter",
                         PossibleFittings = new EmitterBase[]
                         {
-                            new LightEmitter
+                            new ChangeableLightEmitter
                             {
-                                PhotometryId = "photometry"
+                                PhotometryReference = new PhotometryReference
+                                {
+                                    PhotometryId = "photometry"
+                                }
                             }
                         }
                     }
@@ -113,9 +116,12 @@ namespace Gldf.Net.Tests.TestData.Equipments
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        EmitterReference = new EmitterReference
+                        Geometry = new Geometry
                         {
-                            EmitterId = "emitter"
+                            Reference = new EmitterReference
+                            {
+                                EmitterId = "emitter"
+                            }
                         }
                     }
                 }

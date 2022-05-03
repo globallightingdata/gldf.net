@@ -5,10 +5,10 @@ namespace Gldf.Net.Domain.Product.Types.Mounting
     public class WallRecessed
     {
         [XmlAttribute("recessedDepth")]
-        public double RecessedDepth { get; set; }
+        public int RecessedDepth { get; set; }
 
         [XmlElement("CircularCutout", typeof(CircularCutout))]
         [XmlElement("RectangularCutout", typeof(RectangularCutout))]
-        public MountingCutout Cutout { get; set; }
+        public MountingCutoutBase Cutout { get; set; }
     }
 }

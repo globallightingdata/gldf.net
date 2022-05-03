@@ -5,6 +5,7 @@ using Gldf.Net.Domain.Global;
 using Gldf.Net.Domain.Head;
 using Gldf.Net.Domain.Product;
 using Gldf.Net.Domain.Product.Types;
+using NUnit.Framework.Internal;
 using System;
 
 namespace Gldf.Net.Tests.TestData.Variants;
@@ -42,18 +43,34 @@ public class VariantMandatoryModel
                     }
                 }
             },
+            LightSources = new LightSourceBase[]
+            {
+                new FixedLightSource
+                {
+                    Id = "fixedLightSource",
+                    Name = new[]
+                    {
+                        new Locale
+                        {
+                            Language = "en",
+                            Text = "FixedLightSource"
+                        }
+                    },
+                    RatedInputPower = 50
+                }
+            },
             Geometries = new Geometry[]
             {
                 new SimpleGeometry
                 {
                     Id = "geometry",
-                    SimpleGeometryType = new SimpleCuboidGeometry
+                    GeometryType = new SimpleCuboidGeometry
                     {
                         Width = 1,
                         Length = 2,
                         Height = 3
                     },
-                    SimpleGeometryEmitterType = new SimpleRectangularEmitter
+                    EmitterType = new SimpleRectangularEmitter
                     {
                         Width = 4,
                         Length = 5
@@ -67,9 +84,17 @@ public class VariantMandatoryModel
                     Id = "emitter",
                     PossibleFittings = new EmitterBase[]
                     {
-                        new LightEmitter
+                        new FixedLightEmitter
                         {
-                            PhotometryId = "photometry"
+                            PhotometryReference = new PhotometryReference
+                            {
+                                PhotometryId = "photometry"
+                            },
+                            LightSourceReference = new FixedLightSourceReference
+                            {
+                                FixedLightSourceId = "fixedLightSource"
+                            },
+                            RatedLuminousFlux = 250
                         }
                     }
                 }
@@ -121,10 +146,13 @@ public class VariantMandatoryModel
                             Text = "Variant 2"
                         }
                     },
-                    EmitterReference = new SimpleGeometryReference
+                    Geometry = new Geometry
                     {
-                        GeometryId = "geometry",
-                        EmitterId = "emitter"
+                        Reference = new SimpleGeometryReference
+                        {
+                            GeometryId = "geometry",
+                            EmitterId = "emitter"
+                        }
                     }
                 }
             }
