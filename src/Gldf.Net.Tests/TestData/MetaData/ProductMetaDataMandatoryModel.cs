@@ -62,7 +62,7 @@ namespace Gldf.Net.Tests.TestData.MetaData
             },
             ProductDefinitions = new ProductDefinitions
             {
-                ProductMetaData = new Domain.Product.ProductMetaData
+                ProductMetaData = new ProductMetaData
                 {
                     ProductNumber = new[]
                     {
