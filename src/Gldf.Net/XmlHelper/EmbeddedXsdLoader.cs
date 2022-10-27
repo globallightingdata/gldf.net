@@ -1,4 +1,4 @@
-﻿using Gldf.Net.Domain.Head.Types;
+﻿using Gldf.Net.Domain.Xml.Head.Types;
 using Gldf.Net.Exceptions;
 using System;
 using System.IO;

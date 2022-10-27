@@ -1,8 +1,10 @@
-﻿namespace Gldf.Net.Container
+﻿using Gldf.Net.Domain.Xml.Definition.Types;
+
+namespace Gldf.Net.Container
 {
     /// <summary>
     ///     By definition the folder of Assets inside the ZIP archive must be the first part of
-    ///     <see cref="Gldf.Net.Domain.Definition.Types.FileContentType" />
+    ///     <see cref="FileContentType" />
     /// </summary>
     public static class AssetFolderNames
     {

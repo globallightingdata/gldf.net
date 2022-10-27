@@ -1,5 +1,5 @@
 using FluentAssertions;
-using Gldf.Net.Domain;
+using Gldf.Net.Domain.Xml;
 using Gldf.Net.Exceptions;
 using Gldf.Net.Tests.TestData;
 using Gldf.Net.Validation;

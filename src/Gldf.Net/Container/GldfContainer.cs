@@ -1,5 +1,5 @@
-﻿using Gldf.Net.Domain;
-using Gldf.Net.Domain.Definition.Types;
+﻿using Gldf.Net.Domain.Xml;
+using Gldf.Net.Domain.Xml.Definition.Types;
 using System;
 using System.ComponentModel;
 

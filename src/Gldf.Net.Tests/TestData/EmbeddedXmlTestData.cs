@@ -1,4 +1,4 @@
-﻿using Gldf.Net.Domain;
+﻿using Gldf.Net.Domain.Xml;
 using Gldf.Net.Tests.TestData.ControlGears;
 using Gldf.Net.Tests.TestData.Descriptive;
 using Gldf.Net.Tests.TestData.Emitters;

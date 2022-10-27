@@ -1,6 +1,6 @@
-﻿using Gldf.Net.Domain;
-using Gldf.Net.Domain.Head;
-using Gldf.Net.Domain.Head.Types;
+﻿using Gldf.Net.Domain.Xml;
+using Gldf.Net.Domain.Xml.Head;
+using Gldf.Net.Domain.Xml.Head.Types;
 using System;
 
 namespace Gldf.Net.Tests.TestData.Simple

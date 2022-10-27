@@ -1,11 +1,11 @@
-﻿using Gldf.Net.Domain;
-using Gldf.Net.Domain.Definition;
-using Gldf.Net.Domain.Definition.Types;
-using Gldf.Net.Domain.Global;
-using Gldf.Net.Domain.Head;
-using Gldf.Net.Domain.Head.Types;
-using Gldf.Net.Domain.Product;
-using Gldf.Net.Domain.Product.Types;
+﻿using Gldf.Net.Domain.Xml;
+using Gldf.Net.Domain.Xml.Definition;
+using Gldf.Net.Domain.Xml.Definition.Types;
+using Gldf.Net.Domain.Xml.Global;
+using Gldf.Net.Domain.Xml.Head;
+using Gldf.Net.Domain.Xml.Head.Types;
+using Gldf.Net.Domain.Xml.Product;
+using Gldf.Net.Domain.Xml.Product.Types;
 using System;
 
 namespace Gldf.Net.Tests.TestData.ControlGears

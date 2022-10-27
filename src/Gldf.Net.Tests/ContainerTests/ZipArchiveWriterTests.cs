@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using Gldf.Net.Container;
-using Gldf.Net.Domain;
+using Gldf.Net.Domain.Xml;
 using Gldf.Net.Tests.TestData;
 using NUnit.Framework;
 using System;

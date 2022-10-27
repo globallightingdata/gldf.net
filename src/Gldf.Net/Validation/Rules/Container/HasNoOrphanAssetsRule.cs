@@ -1,7 +1,7 @@
 ﻿using Gldf.Net.Abstract;
 using Gldf.Net.Container;
-using Gldf.Net.Domain.Definition;
-using Gldf.Net.Domain.Definition.Types;
+using Gldf.Net.Domain.Xml.Definition;
+using Gldf.Net.Domain.Xml.Definition.Types;
 using Gldf.Net.Exceptions;
 using System;
 using System.Collections.Generic;

@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using Gldf.Net.Domain.Head.Types;
 using Gldf.Net.Exceptions;
 using Gldf.Net.XmlHelper;
 using NUnit.Framework;

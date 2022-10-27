@@ -1,4 +1,4 @@
-﻿using Gldf.Net.Domain;
+﻿using Gldf.Net.Domain.Xml;
 
 namespace Gldf.Net.Abstract
 {

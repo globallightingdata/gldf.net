@@ -1,5 +1,5 @@
 ﻿using Gldf.Net.Abstract;
-using Gldf.Net.Domain;
+using Gldf.Net.Domain.Xml;
 using Gldf.Net.Exceptions;
 using Gldf.Net.XmlHelper;
 using System;
@@ -10,8 +10,8 @@ using System.Xml.Serialization;
 namespace Gldf.Net
 {
     /// <summary>
-    ///     Provides functionality to serialize instances of type <see cref="Gldf.Net.Domain.Root" /> into GLDF-XML
-    ///     text and to deserialize GLDF-XML text into instances of type <see cref="Gldf.Net.Domain.Root" />.
+    ///     Provides functionality to serialize instances of type <see cref="Root" /> into GLDF-XML
+    ///     text and to deserialize GLDF-XML text into instances of type <see cref="Root" />.
     ///     This type is threadsafe.
     /// </summary>
     public class GldfXmlSerializer : IGldfXmlSerializer
@@ -22,8 +22,8 @@ namespace Gldf.Net
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="GldfXmlSerializer" /> class that can serialize
-        ///     instances of type <see cref="Gldf.Net.Domain.Root" /> into GLDF-XML text and to deserialize GLDF-XML
-        ///     text into instances of type <see cref="Gldf.Net.Domain.Root" />.
+        ///     instances of type <see cref="Root" /> into GLDF-XML text and to deserialize GLDF-XML
+        ///     text into instances of type <see cref="Root" />.
         /// </summary>
         public GldfXmlSerializer() : this(new XmlWriterSettings { Indent = true })
         {
@@ -31,8 +31,8 @@ namespace Gldf.Net
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="GldfXmlSerializer" /> class that can serialize
-        ///     instances of type <see cref="Gldf.Net.Domain.Root" /> into GLDF-XML text and to deserialize GLDF-XML
-        ///     text into instances of type <see cref="Gldf.Net.Domain.Root" /> This overload also specifies
+        ///     instances of type <see cref="Root" /> into GLDF-XML text and to deserialize GLDF-XML
+        ///     text into instances of type <see cref="Root" /> This overload also specifies
         ///     <see cref="System.Xml.XmlWriterSettings" /> which allows the control of XML indentation, Encoding
         ///     and more.
         /// </summary>
@@ -44,7 +44,7 @@ namespace Gldf.Net
         }
 
         /// <summary>
-        ///     Converts the parameter of type <see cref="Gldf.Net.Domain.Root" /> into a GLDF-XML text.
+        ///     Converts the parameter of type <see cref="Root" /> into a GLDF-XML text.
         /// </summary>
         /// <param name="root">The value to convert.</param>
         /// <returns>The GLDF XML representation of the value.</returns>
@@ -67,7 +67,7 @@ namespace Gldf.Net
         }
 
         /// <summary>
-        ///     Converts the parameter of type <see cref="Gldf.Net.Domain.Root" /> into a GLDF-XML text and writes
+        ///     Converts the parameter of type <see cref="Root" /> into a GLDF-XML text and writes
         ///     it to a file.
         /// </summary>
         /// <param name="root">The value to convert.</param>
@@ -93,11 +93,11 @@ namespace Gldf.Net
         }
 
         /// <summary>
-        ///     Parses the text representing a GLDF-XML into an instance of type <see cref="Gldf.Net.Domain.Root" />
+        ///     Parses the text representing a GLDF-XML into an instance of type <see cref="Root" />
         /// </summary>
         /// <param name="xml"></param>
         /// <returns>
-        ///     Representation of the GLDF-XML text as instance of the type <see cref="Gldf.Net.Domain.Root" />
+        ///     Representation of the GLDF-XML text as instance of the type <see cref="Root" />
         /// </returns>
         /// <exception cref="GldfException">Input is invalid GLDF-XML. See also InnerException.</exception>
         public Root DeserializeFromString(string xml)
@@ -117,11 +117,11 @@ namespace Gldf.Net
         }
 
         /// <summary>
-        ///     Parses the file containing a GLDF-XML into an instance of type <see cref="Gldf.Net.Domain.Root" />
+        ///     Parses the file containing a GLDF-XML into an instance of type <see cref="Root" />
         /// </summary>
         /// <param name="filePath">The file containing the GLDF-XML</param>
         /// <returns>
-        ///     Representation of the GLDF-XML file as instance of the type <see cref="Gldf.Net.Domain.Root" />
+        ///     Representation of the GLDF-XML file as instance of the type <see cref="Root" />
         /// </returns>
         /// <exception cref="GldfException">
         ///     Input is invalid GLDF-XML or the filePath cannot be read from. See also InnerException.

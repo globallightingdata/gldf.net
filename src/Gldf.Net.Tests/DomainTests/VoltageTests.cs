@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Gldf.Net.Domain.Global;
+using Gldf.Net.Domain.Xml.Global;
 using NUnit.Framework;
 
 namespace Gldf.Net.Tests.DomainTests

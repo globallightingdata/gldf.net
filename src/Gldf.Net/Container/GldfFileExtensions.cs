@@ -1,5 +1,5 @@
-﻿using Gldf.Net.Domain.Definition;
-using Gldf.Net.Domain.Definition.Types;
+﻿using Gldf.Net.Domain.Xml.Definition;
+using Gldf.Net.Domain.Xml.Definition.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;
