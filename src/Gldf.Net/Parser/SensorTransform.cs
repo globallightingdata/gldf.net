@@ -13,6 +13,7 @@ namespace Gldf.Net.Parser
         public ParserDto<SensorTyped> Map(ParserDto<GldfFileTyped> filesDto)
         {
             var parserDto = new ParserDto<SensorTyped>(filesDto);
+            if (filesDto.Container.Product.GeneralDefinitions.Sensors?.Any() != true) return parserDto;
             foreach (var sensor in filesDto.Container.Product.GeneralDefinitions.Sensors)
                 parserDto.Items.Add(Map(sensor, filesDto));
             return parserDto;

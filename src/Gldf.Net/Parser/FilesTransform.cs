@@ -3,6 +3,7 @@ using Gldf.Net.Domain.Xml.Definition;
 using Gldf.Net.Parser.State;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace Gldf.Net.Parser
 {
@@ -13,6 +14,7 @@ namespace Gldf.Net.Parser
         public ParserDto<GldfFileTyped> Map(ContainerDto containerDto)
         {
             var parserDto = new ParserDto<GldfFileTyped>(containerDto);
+            if (containerDto.Container.Product.GeneralDefinitions.Files?.Any() != true) return parserDto;
             foreach (var file in containerDto.Container.Product.GeneralDefinitions.Files)
                 parserDto.Items.Add(Map(containerDto, file));
             return parserDto;

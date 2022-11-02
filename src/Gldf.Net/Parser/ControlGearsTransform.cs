@@ -2,6 +2,8 @@ using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Xml.Definition;
 using Gldf.Net.Parser.Extensions;
 using Gldf.Net.Parser.State;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Gldf.Net.Parser
 {
@@ -12,6 +14,7 @@ namespace Gldf.Net.Parser
         public ParserDto<ControlGearTyped> Map(ContainerDto containerDto)
         {
             var parserDto = new ParserDto<ControlGearTyped>(containerDto);
+            if (containerDto.Container.Product.GeneralDefinitions.ControlGears?.Any() != true) return parserDto;
             foreach (var controlGear in containerDto.Container.Product.GeneralDefinitions.ControlGears)
                 parserDto.Items.Add(Map(controlGear));
             return parserDto;

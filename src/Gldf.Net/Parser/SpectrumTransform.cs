@@ -2,6 +2,7 @@ using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Xml.Definition;
 using Gldf.Net.Parser.Extensions;
 using Gldf.Net.Parser.State;
+using System.Linq;
 
 namespace Gldf.Net.Parser
 {
@@ -12,6 +13,7 @@ namespace Gldf.Net.Parser
         public ParserDto<SpectrumTyped> Map(ParserDto<GldfFileTyped> filesDto)
         {
             var parserDto = new ParserDto<SpectrumTyped>(filesDto);
+            if (filesDto.Container.Product.GeneralDefinitions.Spectrums?.Any() != true) return parserDto;
             foreach (var spectrum in filesDto.Container.Product.GeneralDefinitions.Spectrums)
                 parserDto.Items.Add(Map(spectrum, filesDto));
             return parserDto;
