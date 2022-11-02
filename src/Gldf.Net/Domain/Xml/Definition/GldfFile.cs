@@ -1,4 +1,4 @@
-﻿using Gldf.Net.Domain.Xml.Definition.Types;
+using Gldf.Net.Domain.Xml.Definition.Types;
 using System.Xml.Serialization;
 
 namespace Gldf.Net.Domain.Xml.Definition

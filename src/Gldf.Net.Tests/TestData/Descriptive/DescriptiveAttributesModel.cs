@@ -93,7 +93,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        Geometry = new Geometry
+                        Geometry = new GeometryReference
                         {
                             Reference = new EmitterReference
                             {
@@ -212,7 +212,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 2" }
                         },
-                        Geometry = new Geometry
+                        Geometry = new GeometryReference
                         {
                             Reference = new EmitterReference
                             {
@@ -408,7 +408,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 3" }
                         },
-                        Geometry = new Geometry
+                        Geometry = new GeometryReference
                         {
                             Reference = new EmitterReference
                             {
@@ -441,7 +441,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 4" }
                         },
-                        Geometry = new Geometry
+                        Geometry = new GeometryReference
                         {
                             Reference = new EmitterReference
                             {
@@ -474,7 +474,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 5" }
                         },
-                        Geometry = new Geometry
+                        Geometry = new GeometryReference
                         {
                             Reference = new EmitterReference
                             {
@@ -507,7 +507,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 6" }
                         },
-                        Geometry = new Geometry
+                        Geometry = new GeometryReference
                         {
                             Reference = new EmitterReference
                             {
@@ -539,7 +539,7 @@ namespace Gldf.Net.Tests.TestData.Descriptive
                         {
                             new Locale { Language = "en", Text = "Variant 7" }
                         },
-                        Geometry = new Geometry
+                        Geometry = new GeometryReference
                         {
                             Reference = new EmitterReference
                             {

@@ -27,7 +27,7 @@ public class GeneralDefinitionsTests
     {
         var simpleGeometry = new SimpleGeometry();
         var modelGeometry = new ModelGeometry();
-        var definitions = new GeneralDefinitions { Geometries = new Geometry[] { simpleGeometry, modelGeometry } };
+        var definitions = new GeneralDefinitions { Geometries = new GeometryBase[] { simpleGeometry, modelGeometry } };
 
         definitions.GetAsSimpleGeometries().Should().HaveCount(1);
         definitions.GetAsSimpleGeometries().Should().OnlyContain(geo => geo == simpleGeometry);
@@ -38,7 +38,7 @@ public class GeneralDefinitionsTests
     {
         var simpleGeometry = new SimpleGeometry();
         var modelGeometry = new ModelGeometry();
-        var definitions = new GeneralDefinitions { Geometries = new Geometry[] { simpleGeometry, modelGeometry } };
+        var definitions = new GeneralDefinitions { Geometries = new GeometryBase[] { simpleGeometry, modelGeometry } };
 
         definitions.GetAsModelGeometries().Should().HaveCount(1);
         definitions.GetAsModelGeometries().Should().OnlyContain(geo => geo == modelGeometry);

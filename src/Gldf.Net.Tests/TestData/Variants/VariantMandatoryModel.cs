@@ -1,4 +1,4 @@
-﻿using Gldf.Net.Domain.Xml;
+using Gldf.Net.Domain.Xml;
 using Gldf.Net.Domain.Xml.Definition;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using Gldf.Net.Domain.Xml.Global;
@@ -58,7 +58,7 @@ public class VariantMandatoryModel
                     RatedInputPower = 50
                 }
             },
-            Geometries = new Geometry[]
+            Geometries = new GeometryBase[]
             {
                 new SimpleGeometry
                 {
@@ -145,7 +145,7 @@ public class VariantMandatoryModel
                             Text = "Variant 2"
                         }
                     },
-                    Geometry = new Geometry
+                    Geometry = new GeometryReference
                     {
                         Reference = new SimpleGeometryReference
                         {

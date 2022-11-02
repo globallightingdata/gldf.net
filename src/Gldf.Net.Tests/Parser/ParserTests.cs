@@ -8,7 +8,7 @@ namespace Gldf.Net.Tests.Parser;
 [TestFixture]
 public class ParserTests
 {
-    [Test]
+    [Test, Explicit]
     public async Task Test()
     {
         var gldfParser = new GldfParser();

@@ -1,4 +1,4 @@
-﻿using Gldf.Net.Domain.Xml.Definition;
+using Gldf.Net.Domain.Xml.Definition;
 using Gldf.Net.Domain.Xml.Descriptive;
 using Gldf.Net.Domain.Xml.Global;
 using Gldf.Net.Domain.Xml.Product.Types;
@@ -41,7 +41,7 @@ namespace Gldf.Net.Domain.Xml.Product
         public Mountings Mountings { get; set; }
 
         [XmlElement("Geometry")]
-        public Geometry Geometry { get; set; }
+        public GeometryReference Geometry { get; set; }
 
         [XmlArrayItem("ProductSerie")]
         public ProductSerie[] ProductSeries { get; set; }
@@ -55,7 +55,7 @@ namespace Gldf.Net.Domain.Xml.Product
 
         [XmlIgnore]
         public bool SortOrderSpecified { get; set; }
-        
+
         private int _sortOrder;
     }
 }
