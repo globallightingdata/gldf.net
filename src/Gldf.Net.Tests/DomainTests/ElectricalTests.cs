@@ -1,6 +1,4 @@
 ﻿using FluentAssertions;
-using Gldf.Net.Domain.Definition;
-using Gldf.Net.Domain.Definition.Types;
 using Gldf.Net.Domain.Descriptive;
 using Gldf.Net.Domain.Descriptive.Types;
 using NUnit.Framework;

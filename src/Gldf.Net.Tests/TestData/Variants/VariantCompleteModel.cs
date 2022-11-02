@@ -103,7 +103,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                         }
                     }
                 },
-                Geometries = new Geometry[]
+                Geometries = new GeometryBase[]
                 {
                     new SimpleGeometry
                     {
@@ -273,7 +273,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                                 }
                             }
                         },
-                        Geometry = new Geometry
+                        Geometry = new GeometryReference
                         {
                             Reference = new EmitterReference
                             {
@@ -357,7 +357,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                                 }
                             }
                         },
-                        Geometry = new Geometry
+                        Geometry = new GeometryReference
                         {
                             Reference = new SimpleGeometryReference
                             {
@@ -374,7 +374,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                         {
                             new Locale { Language = "en", Text = "Variant 3" }
                         },
-                        Geometry = new Geometry
+                        Geometry = new GeometryReference
                         {
                             Reference = new ModelGeometryReference
                             {
@@ -508,7 +508,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                         {
                             new Locale { Language = "en", Text = "Variant 4" }
                         },
-                        Geometry = new Geometry
+                        Geometry = new GeometryReference
                         {
                             Reference = new GeometryReferences
                             {
@@ -541,7 +541,7 @@ namespace Gldf.Net.Tests.TestData.Variants
                         {
                             new Locale { Language = "en", Text = "Variant 5" }
                         },
-                        Geometry = new Geometry
+                        Geometry = new GeometryReference
                         {
                             Reference = new GeometryReferences
                             {

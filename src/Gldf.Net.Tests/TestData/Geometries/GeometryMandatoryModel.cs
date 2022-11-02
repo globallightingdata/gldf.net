@@ -68,7 +68,7 @@ namespace Gldf.Net.Tests.TestData.Geometries
                         }
                     }
                 },
-                Geometries = new Geometry[]
+                Geometries = new GeometryBase[]
                 {
                     new ModelGeometry
                     {
@@ -124,7 +124,7 @@ namespace Gldf.Net.Tests.TestData.Geometries
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        Geometry = new Geometry
+                        Geometry = new GeometryReference
                         {
                             Reference = new ModelGeometryReference
                             {

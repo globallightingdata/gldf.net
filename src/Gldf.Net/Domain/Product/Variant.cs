@@ -3,7 +3,6 @@ using Gldf.Net.Domain.Descriptive;
 using Gldf.Net.Domain.Global;
 using Gldf.Net.Domain.Product.Types;
 using Gldf.Net.Domain.Product.Types.Mounting;
-using System.Xml;
 using System.Xml.Serialization;
 
 // ReSharper disable InconsistentNaming
@@ -42,7 +41,7 @@ namespace Gldf.Net.Domain.Product
         public Mountings Mountings { get; set; }
 
         [XmlElement("Geometry")]
-        public Geometry Geometry { get; set; }
+        public GeometryReference Geometry { get; set; }
 
         [XmlArrayItem("ProductSerie")]
         public ProductSerie[] ProductSeries { get; set; }

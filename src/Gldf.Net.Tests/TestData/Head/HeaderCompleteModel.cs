@@ -164,7 +164,7 @@ namespace Gldf.Net.Tests.TestData.Head
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        Geometry = new Geometry
+                        Geometry = new GeometryReference
                         {
                             Reference = new EmitterReference
                             {

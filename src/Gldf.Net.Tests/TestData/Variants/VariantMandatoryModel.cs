@@ -5,7 +5,6 @@ using Gldf.Net.Domain.Global;
 using Gldf.Net.Domain.Head;
 using Gldf.Net.Domain.Product;
 using Gldf.Net.Domain.Product.Types;
-using NUnit.Framework.Internal;
 using System;
 
 namespace Gldf.Net.Tests.TestData.Variants;
@@ -59,7 +58,7 @@ public class VariantMandatoryModel
                     RatedInputPower = 50
                 }
             },
-            Geometries = new Geometry[]
+            Geometries = new GeometryBase[]
             {
                 new SimpleGeometry
                 {
@@ -146,7 +145,7 @@ public class VariantMandatoryModel
                             Text = "Variant 2"
                         }
                     },
-                    Geometry = new Geometry
+                    Geometry = new GeometryReference
                     {
                         Reference = new SimpleGeometryReference
                         {

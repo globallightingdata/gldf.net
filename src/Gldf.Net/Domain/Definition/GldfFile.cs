@@ -1,5 +1,4 @@
 ﻿using Gldf.Net.Domain.Definition.Types;
-using System.Runtime.CompilerServices;
 using System.Xml.Serialization;
 
 namespace Gldf.Net.Domain.Definition

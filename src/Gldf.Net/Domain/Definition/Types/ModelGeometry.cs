@@ -2,7 +2,7 @@
 
 namespace Gldf.Net.Domain.Definition.Types
 {
-    public class ModelGeometry : Geometry
+    public class ModelGeometry : GeometryBase
     {
         [XmlAttribute(DataType = "ID", AttributeName = "id")]
         public string Id { get; set; }

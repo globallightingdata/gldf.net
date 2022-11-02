@@ -116,7 +116,7 @@ namespace Gldf.Net.Tests.TestData.Photometries
                         {
                             new Locale { Language = "en", Text = "Variant 1" }
                         },
-                        Geometry = new Geometry
+                        Geometry = new GeometryReference
                         {
                             Reference = new EmitterReference
                             {

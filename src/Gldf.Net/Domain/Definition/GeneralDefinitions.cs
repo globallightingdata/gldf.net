@@ -36,7 +36,7 @@ namespace Gldf.Net.Domain.Definition
         [XmlArray("Geometries")]
         [XmlArrayItem("SimpleGeometry", typeof(SimpleGeometry))]
         [XmlArrayItem("ModelGeometry", typeof(ModelGeometry))]
-        public Geometry[] Geometries { get; set; }
+        public GeometryBase[] Geometries { get; set; }
 
         public ChangeableLightSource[] GetAsChangeableLightSources()
             => LightSources?.OfType<ChangeableLightSource>().ToArray() ?? Array.Empty<ChangeableLightSource>();
