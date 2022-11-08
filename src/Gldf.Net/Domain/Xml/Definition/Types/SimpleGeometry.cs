@@ -4,9 +4,6 @@ namespace Gldf.Net.Domain.Xml.Definition.Types
 {
     public class SimpleGeometry : GeometryBase
     {
-        [XmlAttribute(DataType = "ID", AttributeName = "id")]
-        public string Id { get; set; }
-
         [XmlElement("Cuboid", typeof(SimpleCuboidGeometry))]
         [XmlElement("Cylinder", typeof(SimpleCylinderGeometry))]
         public SimpleGeometryBase GeometryType { get; set; }
