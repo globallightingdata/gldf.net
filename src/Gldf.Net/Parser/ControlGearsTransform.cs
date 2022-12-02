@@ -2,7 +2,6 @@ using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Xml.Definition;
 using Gldf.Net.Parser.Extensions;
 using Gldf.Net.Parser.State;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Gldf.Net.Parser
@@ -25,9 +24,9 @@ namespace Gldf.Net.Parser
             return new ControlGearTyped
             {
                 Id = controlGear.Id,
-                Name = controlGear.Name.ToTypedArray(),
-                Description = controlGear.Description.ToTypedArray(),
-                NominalVoltage = controlGear.NominalVoltage.ToTyped(),
+                Name = controlGear.Name?.ToTypedArray(),
+                Description = controlGear.Description?.ToTypedArray(),
+                NominalVoltage = controlGear.NominalVoltage?.ToTyped(),
                 StandbyPower = controlGear.StandbyPower,
                 ConstantLightOutputStartPower = controlGear.ConstantLightOutputStartPower,
                 ConstantLightOutputEndPower = controlGear.ConstantLightOutputEndPower,
@@ -35,7 +34,7 @@ namespace Gldf.Net.Parser
                 IsDimmable = controlGear.IsDimmable,
                 IsColorControllable = controlGear.IsColorControllable,
                 Interfaces = controlGear.Interfaces,
-                EnergyLabels = controlGear.EnergyLabels.ToTypedArray()
+                EnergyLabels = controlGear.EnergyLabels?.ToTypedArray()
             };
         }
     }

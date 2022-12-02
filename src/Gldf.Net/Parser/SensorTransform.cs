@@ -24,10 +24,10 @@ namespace Gldf.Net.Parser
             return new SensorTyped
             {
                 Id = sensor.Id,
-                SensorFile = files.GetForId(sensor.Id),
+                SensorFile = sensor.SensorFileReference != null ? files.GetFileTyped(sensor.SensorFileReference.FileId) : null,
                 DetectorCharacteristics = sensor.DetectorCharacteristics,
                 DetectionMethods = sensor.DetectionMethods,
-                DetectorTypes = sensor.DetectorTypes.ToArray()
+                DetectorTypes = sensor.DetectorTypes?.ToArray()
             };
         }
     }

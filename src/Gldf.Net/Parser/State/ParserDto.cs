@@ -7,7 +7,6 @@ namespace Gldf.Net.Parser.State
 {
     public class ParserDto<T> where T : TypedBase
     {
-
         public bool LoadFileContent { get; set; }
 
         public GldfContainer Container { get; set; }

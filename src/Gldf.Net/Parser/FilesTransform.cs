@@ -1,5 +1,6 @@
 using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Xml.Definition;
+using Gldf.Net.Domain.Xml.Definition.Types;
 using Gldf.Net.Parser.State;
 using System;
 using System.IO;
@@ -29,7 +30,7 @@ namespace Gldf.Net.Parser
                 Type = file.Type,
                 Language = file.Language,
                 Uri = file.File,
-                FileName = Path.GetFileName(new Uri(file.File).LocalPath),
+                FileName = file.Type == FileType.Url ? Path.GetFileName(new Uri(file.File).LocalPath) : file.File,
                 BinaryContent = containerDto.LoadFileContent ? GetContent(containerDto, file) : null
             };
         }

@@ -12,5 +12,4 @@ namespace Gldf.Net.Domain.Typed.Definition
 
         public DetectorType[] DetectorTypes { get; set; }
     }
-
 }

@@ -1,6 +1,7 @@
 using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Typed.Definition.Types;
 using Gldf.Net.Domain.Xml.Definition;
+using Gldf.Net.Domain.Xml.Definition.Types;
 using Gldf.Net.Parser.Extensions;
 using Gldf.Net.Parser.State;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace Gldf.Net.Parser
             return new PhotometryTyped
             {
                 Id = photometry.Id,
-                PhotometryFile = files.GetForId(photometry.Id),
+                PhotometryFile = files.GetFileTyped((photometry.Content as PhotometryFileReference)?.FileId),
                 DescriptivePhotometry = new DescriptivePhotometryTyped
                 {
                     LuminaireLuminance = photometry.DescriptivePhotometry?.LuminaireLuminance,

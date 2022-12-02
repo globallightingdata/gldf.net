@@ -18,6 +18,6 @@ namespace Gldf.Net.Domain.Typed.Definition
 
         public byte[] BinaryContent { get; set; }
 
-        public string StringContentUtf8 => BinaryContent?.Any() == true ? Encoding.UTF8.GetString(BinaryContent) : null;
+        public string AsStringContentUtf8 => BinaryContent?.Any() == true ? Encoding.UTF8.GetString(BinaryContent) : null;
     }
 }

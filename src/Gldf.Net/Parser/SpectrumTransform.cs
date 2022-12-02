@@ -24,8 +24,8 @@ namespace Gldf.Net.Parser
             return new SpectrumTyped
             {
                 Id = spectrum.Id,
-                SpectrumFile = files.GetForId(spectrum.Id),
-                Intensities = spectrum.Intensities.ToTypedArray()
+                SpectrumFile = spectrum.FileReference != null ? files.GetFileTyped(spectrum.FileReference?.FileId) : null,
+                Intensities = spectrum.Intensities?.ToTypedArray()
             };
         }
     }

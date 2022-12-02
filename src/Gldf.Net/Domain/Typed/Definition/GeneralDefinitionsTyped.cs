@@ -1,5 +1,4 @@
-using Gldf.Net.Domain.Xml.Definition;
-using Gldf.Net.Domain.Xml.Definition.Types;
+using Gldf.Net.Domain.Typed.Definition.Types;
 using System;
 
 namespace Gldf.Net.Domain.Typed.Definition
@@ -14,18 +13,18 @@ namespace Gldf.Net.Domain.Typed.Definition
 
         public SpectrumTyped[] Spectrums { get; set; } = Array.Empty<SpectrumTyped>();
 
-        public ChangeableLightSource[] ChangeableLightSources { get; set; } = Array.Empty<ChangeableLightSource>();
+        public ChangeableLightSourceTyped[] ChangeableLightSources { get; set; } = Array.Empty<ChangeableLightSourceTyped>();
 
-        public FixedLightSource[] FixedLightSources { get; set; } = Array.Empty<FixedLightSource>();
+        public FixedLightSourceTyped[] FixedLightSources { get; set; } = Array.Empty<FixedLightSourceTyped>();
 
-        public ControlGear[] ControlGears { get; set; } = Array.Empty<ControlGear>();
+        public ControlGearTyped[] ControlGears { get; set; } = Array.Empty<ControlGearTyped>();
 
-        public Equipment[] Equipments { get; set; } = Array.Empty<Equipment>();
+        public EquipmentTyped[] Equipments { get; set; } = Array.Empty<EquipmentTyped>();
 
-        public Emitter[] Emitters { get; set; } = Array.Empty<Emitter>();
+        public EmitterTyped[] Emitters { get; set; } = Array.Empty<EmitterTyped>();
 
-        public SimpleGeometry[] SimpleGeometries { get; set; } = Array.Empty<SimpleGeometry>();
+        public SimpleGeometryTyped[] SimpleGeometries { get; set; } = Array.Empty<SimpleGeometryTyped>();
 
-        public ModelGeometry[] ModelGeometries { get; set; } = Array.Empty<ModelGeometry>();
+        public ModelGeometryTyped[] ModelGeometries { get; set; } = Array.Empty<ModelGeometryTyped>();
     }
 }
