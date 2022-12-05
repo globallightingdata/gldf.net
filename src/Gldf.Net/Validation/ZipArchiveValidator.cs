@@ -53,7 +53,7 @@ namespace Gldf.Net.Validation
         {
             static bool IsOfTypeClass(Type type)
                 => typeof(T).IsAssignableFrom(type) && type.IsClass && !type.IsAbstract;
-            return Assembly.GetAssembly(typeof(ZipArchiveValidator))
+            return Assembly.GetAssembly(typeof(ZipArchiveValidator))!
                 .GetTypes().Where(IsOfTypeClass)
                 .Select(type => (T) Activator.CreateInstance(type));
         }

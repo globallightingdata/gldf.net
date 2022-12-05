@@ -1,6 +1,5 @@
 ﻿using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Typed.Head;
-using Gldf.Net.Domain.Xml.Product;
 
 namespace Gldf.Net.Domain.Typed
 {
@@ -10,6 +9,6 @@ namespace Gldf.Net.Domain.Typed
 
         public GeneralDefinitionsTyped GeneralDefinitions { get; set; }
 
-        public ProductDefinitions ProductDefinitions { get; set; }
+        public ProductDefinitionsTyped ProductDefinitions { get; set; }
     }
 }

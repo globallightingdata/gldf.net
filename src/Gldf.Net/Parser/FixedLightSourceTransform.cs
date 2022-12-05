@@ -1,52 +1,46 @@
 using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Xml.Definition.Types;
+using Gldf.Net.Parser.DataFlow;
 using Gldf.Net.Parser.Extensions;
-using Gldf.Net.Parser.State;
-using System;
 using System.Linq;
 
-namespace Gldf.Net.Parser
+namespace Gldf.Net.Parser;
+
+internal class FixedLightSourceTransform : TransformBase
 {
-    internal class FixedLightSourceTransform
+    public static ParserDto Map(ParserDto[] parserDtos)
     {
-        public static FixedLightSourceTransform Instance { get; } = new();
-
-        public ParserDto<FixedLightSourceTyped> Map(Tuple<ParserDto<GldfFileTyped>, ParserDto<PhotometryTyped>, ParserDto<SpectrumTyped>> dtos)
+        return ExecuteSafe(() =>
         {
-            var files = dtos.Item1;
-            var photometries = dtos.Item2;
-            var spectrums = dtos.Item3;
-            var gfldfRoot = dtos.Item1.Container.Product;
-            var result = new ParserDto<FixedLightSourceTyped>(dtos.Item1);
-            var changeableLightSources = gfldfRoot.GeneralDefinitions.LightSources.OfType<FixedLightSource>().ToList();
+            var parserDto = parserDtos[0];
+            var fixedLightSources = parserDto.Container.Product.GeneralDefinitions.LightSources?.OfType<FixedLightSource>().ToList();
+            if (fixedLightSources?.Any() != true) return parserDto;
+            foreach (var changeableLightSource in fixedLightSources)
+                parserDto.GeneralDefinitions.FixedLightSources.Add(Map(changeableLightSource, parserDto.GeneralDefinitions));
+            return parserDto;
+        }, parserDtos[0]);
+    }
 
-            if (!changeableLightSources.Any()) return result;
-            foreach (var changeableLightSource in changeableLightSources)
-                result.Items.Add(Map(changeableLightSource, files, spectrums));
-            return result;
-        }
-
-        private FixedLightSourceTyped Map(FixedLightSource lightSource, ParserDto<GldfFileTyped> files, ParserDto<SpectrumTyped> spectrums)
+    private static FixedLightSourceTyped Map(FixedLightSource lightSource, GeneralDefinitionsTyped definitions)
+    {
+        return new FixedLightSourceTyped
         {
-            return new FixedLightSourceTyped
-            {
-                Id = lightSource.Id,
-                Name = lightSource.Name.ToTypedArray(),
-                Description = lightSource.Description.ToTypedArray(),
-                Manufacturer = lightSource.Manufacturer,
-                Gtin = lightSource.Gtin,
-                RatedInputPower = lightSource.RatedInputPower,
-                RatedInputVoltage = lightSource.RatedInputVoltage.ToTyped(),
-                PowerRange = lightSource.PowerRange.ToTyped(),
-                LightSourcePositionOfUsage = lightSource.LightSourcePositionOfUsage,
-                EnergyLabels = lightSource.EnergyLabels.ToTypedArray(),
-                Spectrum = spectrums.GetTyped(lightSource.SpectrumReference.SpectrumId),
-                ActivePowerTable = lightSource.ActivePowerTable.ToTyped(),
-                ColorInformation = lightSource.ColorInformation.ToTyped(),
-                LightSourceImages = files.GetImagesTyped(lightSource.LightSourceImages),
-                ZhagaStandard = lightSource.ZhagaStandard,
-                Maintenance = lightSource.Maintenance.ToTyped()
-            };
-        }
+            Id = lightSource.Id,
+            Name = lightSource.Name?.ToTypedArray(),
+            Description = lightSource.Description?.ToTypedArray(),
+            Manufacturer = lightSource.Manufacturer,
+            Gtin = lightSource.Gtin,
+            RatedInputPower = lightSource.RatedInputPower,
+            RatedInputVoltage = lightSource.RatedInputVoltage?.ToTyped(),
+            PowerRange = lightSource.PowerRange?.ToTyped(),
+            LightSourcePositionOfUsage = lightSource.LightSourcePositionOfUsage,
+            EnergyLabels = lightSource.EnergyLabels?.ToTypedArray(),
+            Spectrum = definitions.Spectrums.GetTyped(lightSource.SpectrumReference?.SpectrumId),
+            ActivePowerTable = lightSource.ActivePowerTable?.ToTyped(),
+            ColorInformation = lightSource.ColorInformation?.ToTyped(),
+            LightSourceImages = definitions.Files.ToImageTypedArray(lightSource.LightSourceImages),
+            ZhagaStandard = lightSource.ZhagaStandard,
+            Maintenance = lightSource.Maintenance?.ToTyped()
+        };
     }
 }

@@ -1,13 +1,12 @@
 using Gldf.Net.Domain.Typed.Definition;
-using Gldf.Net.Parser.State;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
-namespace Gldf.Net.Parser.Extensions
+namespace Gldf.Net.Parser.Extensions;
+
+public static class PhotometryExtensions
 {
-    public static class PhotometryExtensions
-    {
-        public static PhotometryTyped GetTyped(this ParserDto<PhotometryTyped> dto, string id) =>
-            dto.Items.Single(photometry => photometry.Id.Equals(id, StringComparison.Ordinal));
-    }
+    public static PhotometryTyped GetTyped(this IEnumerable<PhotometryTyped> photometries, string id) =>
+        photometries.FirstOrDefault(photometry => photometry.Id.Equals(id, StringComparison.Ordinal));
 }

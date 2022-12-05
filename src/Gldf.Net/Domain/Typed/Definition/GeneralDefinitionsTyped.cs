@@ -1,30 +1,40 @@
 using Gldf.Net.Domain.Typed.Definition.Types;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Gldf.Net.Domain.Typed.Definition
 {
     public class GeneralDefinitionsTyped
     {
-        public GldfFileTyped[] Files { get; set; } = Array.Empty<GldfFileTyped>();
+        public List<GldfFileTyped> Files { get; set; } = new();
 
-        public SensorTyped[] Sensors { get; set; } = Array.Empty<SensorTyped>();
+        public List<SensorTyped> Sensors { get; set; } = new();
 
-        public PhotometryTyped[] Photometries { get; set; } = Array.Empty<PhotometryTyped>();
+        public List<PhotometryTyped> Photometries { get; set; } = new();
 
-        public SpectrumTyped[] Spectrums { get; set; } = Array.Empty<SpectrumTyped>();
+        public List<SpectrumTyped> Spectrums { get; set; } = new();
 
-        public ChangeableLightSourceTyped[] ChangeableLightSources { get; set; } = Array.Empty<ChangeableLightSourceTyped>();
+        public List<ChangeableLightSourceTyped> ChangeableLightSources { get; set; } = new();
 
-        public FixedLightSourceTyped[] FixedLightSources { get; set; } = Array.Empty<FixedLightSourceTyped>();
+        public List<FixedLightSourceTyped> FixedLightSources { get; set; } = new();
 
-        public ControlGearTyped[] ControlGears { get; set; } = Array.Empty<ControlGearTyped>();
+        public List<ControlGearTyped> ControlGears { get; set; } = new();
 
-        public EquipmentTyped[] Equipments { get; set; } = Array.Empty<EquipmentTyped>();
+        public List<EquipmentTyped> Equipments { get; set; } = new();
 
-        public EmitterTyped[] Emitters { get; set; } = Array.Empty<EmitterTyped>();
+        public List<ChangeableLightEmitterTyped> ChangeableLightEmitters { get; set; } = new();
 
-        public SimpleGeometryTyped[] SimpleGeometries { get; set; } = Array.Empty<SimpleGeometryTyped>();
+        public List<FixedLightEmitterTyped> FixedLightEmitters { get; set; } = new();
 
-        public ModelGeometryTyped[] ModelGeometries { get; set; } = Array.Empty<ModelGeometryTyped>();
+        public List<SensorEmitterTyped> SensorEmitters { get; set; } = new();
+
+        public List<SimpleGeometryTyped> SimpleGeometries { get; set; } = new();
+
+        public List<ModelGeometryTyped> ModelGeometries { get; set; } = new();
+
+        public EmitterBaseTyped GetEmitterById(string id) 
+            => FixedLightEmitters.Union<EmitterBaseTyped>(ChangeableLightEmitters)
+                .FirstOrDefault(emitter => emitter.Id.Equals(id, StringComparison.Ordinal));
     }
 }

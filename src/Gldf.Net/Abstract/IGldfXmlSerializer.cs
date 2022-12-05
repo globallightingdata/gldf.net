@@ -2,7 +2,7 @@
 
 namespace Gldf.Net.Abstract
 {
-    internal interface IGldfXmlSerializer
+    public interface IGldfXmlSerializer
     {
         string SerializeToString(Root root);
         void SerializeToFile(Root root, string filePath);

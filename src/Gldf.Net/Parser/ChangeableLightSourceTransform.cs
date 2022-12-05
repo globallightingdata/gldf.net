@@ -1,64 +1,57 @@
 using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Xml.Definition.Types;
+using Gldf.Net.Parser.DataFlow;
 using Gldf.Net.Parser.Extensions;
-using Gldf.Net.Parser.State;
-using System;
 using System.Linq;
 
-namespace Gldf.Net.Parser
+namespace Gldf.Net.Parser;
+
+internal class ChangeableLightSourceTransform : TransformBase
 {
-    internal class ChangeableLightSourceTransform
+    public static ParserDto Map(ParserDto[] parserDtos)
     {
-        public static ChangeableLightSourceTransform Instance { get; } = new();
-
-        public ParserDto<ChangeableLightSourceTyped> Map(Tuple<ParserDto<GldfFileTyped>, ParserDto<PhotometryTyped>, ParserDto<SpectrumTyped>> dtos)
+        return ExecuteSafe(() =>
         {
-            var files = dtos.Item1;
-            var photometries = dtos.Item2;
-            var spectrums = dtos.Item3;
-            var gfldfRoot = dtos.Item1.Container.Product;
-            var result = new ParserDto<ChangeableLightSourceTyped>(dtos.Item1);
-            var changeableLightSources = gfldfRoot.GeneralDefinitions.LightSources.OfType<ChangeableLightSource>().ToList();
-
-            if (!changeableLightSources.Any()) return result;
+            var parserDto = parserDtos[0];
+            var changeableLightSources = parserDto.Container.Product.GeneralDefinitions.LightSources?.OfType<ChangeableLightSource>().ToList();
+            if (changeableLightSources?.Any() != true) return parserDto;
             foreach (var changeableLightSource in changeableLightSources)
-                result.Items.Add(Map(changeableLightSource, files, photometries, spectrums));
-            return result;
-        }
+                parserDto.GeneralDefinitions.ChangeableLightSources.Add(Map(changeableLightSource, parserDto.GeneralDefinitions));
+            return parserDto;
+        }, parserDtos[0]);
+    }
 
-        private ChangeableLightSourceTyped Map(ChangeableLightSource lightSource, ParserDto<GldfFileTyped> files,
-            ParserDto<PhotometryTyped> photometries, ParserDto<SpectrumTyped> spectrums)
+    private static ChangeableLightSourceTyped Map(ChangeableLightSource lightSource, GeneralDefinitionsTyped definitions)
+    {
+        return new ChangeableLightSourceTyped
         {
-            return new ChangeableLightSourceTyped
-            {
-                Id = lightSource.Id,
-                Name = lightSource.Name.ToTypedArray(),
-                Description = lightSource.Description?.ToTypedArray(),
-                Manufacturer = lightSource.Manufacturer,
-                Gtin = lightSource.Gtin,
-                RatedInputPower = lightSource.RatedInputPower,
-                RatedInputVoltage = lightSource.RatedInputVoltage?.ToTyped(),
-                PowerRange = lightSource.PowerRange?.ToTyped(),
-                LightSourcePositionOfUsage = lightSource.LightSourcePositionOfUsage,
-                EnergyLabels = lightSource.EnergyLabels?.ToTypedArray(),
-                Spectrum = lightSource.SpectrumReference != null ? spectrums?.GetTyped(lightSource.SpectrumReference.SpectrumId) : null,
-                ActivePowerTable = lightSource.ActivePowerTable?.ToTyped(),
-                ColorInformation = lightSource.ColorInformation?.ToTyped(),
-                LightSourceImages = lightSource.LightSourceImages != null ? files?.GetImagesTyped(lightSource.LightSourceImages) : null,
-                Zvei = lightSource.Zvei,
-                Socket = lightSource.Socket,
-                Ilcos = lightSource.Ilcos,
-                RatedLuminousFlux = lightSource.RatedLuminousFlux,
-                RatedLuminousFluxRGB = lightSource.RatedLuminousFluxRGB,
-                Photometry = lightSource.PhotometryReference != null
-                    ? new PhotometryTyped
-                    {
-                        PhotometryFile = photometries.GetTyped(lightSource.PhotometryReference.PhotometryId).PhotometryFile,
-                        DescriptivePhotometry = photometries.GetTyped(lightSource.PhotometryReference.PhotometryId).DescriptivePhotometry
-                    }
-                    : null,
-                Maintenance = lightSource.Maintenance?.ToTyped()
-            };
-        }
+            Id = lightSource.Id,
+            Name = lightSource.Name?.ToTypedArray(),
+            Description = lightSource.Description?.ToTypedArray(),
+            Manufacturer = lightSource.Manufacturer,
+            Gtin = lightSource.Gtin,
+            RatedInputPower = lightSource.RatedInputPower,
+            RatedInputVoltage = lightSource.RatedInputVoltage?.ToTyped(),
+            PowerRange = lightSource.PowerRange?.ToTyped(),
+            LightSourcePositionOfUsage = lightSource.LightSourcePositionOfUsage,
+            EnergyLabels = lightSource.EnergyLabels?.ToTypedArray(),
+            Spectrum = definitions.Spectrums?.GetTyped(lightSource.SpectrumReference?.SpectrumId),
+            ActivePowerTable = lightSource.ActivePowerTable?.ToTyped(),
+            ColorInformation = lightSource.ColorInformation?.ToTyped(),
+            LightSourceImages = definitions.Files?.ToImageTypedArray(lightSource.LightSourceImages),
+            Zvei = lightSource.Zvei,
+            Socket = lightSource.Socket,
+            Ilcos = lightSource.Ilcos,
+            RatedLuminousFlux = lightSource.RatedLuminousFlux,
+            RatedLuminousFluxRGB = lightSource.RatedLuminousFluxRGB,
+            Photometry = lightSource.PhotometryReference != null
+                ? new PhotometryTyped
+                {
+                    PhotometryFile = definitions.Photometries.GetTyped(lightSource.PhotometryReference.PhotometryId)?.PhotometryFile,
+                    DescriptivePhotometry = definitions.Photometries.GetTyped(lightSource.PhotometryReference.PhotometryId)?.DescriptivePhotometry
+                }
+                : null,
+            Maintenance = lightSource.Maintenance?.ToTyped()
+        };
     }
 }

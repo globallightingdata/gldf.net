@@ -2,7 +2,7 @@ namespace Gldf.Net.Domain.Typed.Definition.Types
 {
     public class LightSourceMaintenanceTyped
     {
-        public int Lifetime { get; set; }
+        public int? Lifetime { get; set; }
 
         public Cie97LampTypeTyped Cie97LampType { get; set; }
 

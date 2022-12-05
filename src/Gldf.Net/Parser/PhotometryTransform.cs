@@ -1,33 +1,35 @@
 using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Typed.Definition.Types;
 using Gldf.Net.Domain.Xml.Definition;
-using Gldf.Net.Domain.Xml.Definition.Types;
+using Gldf.Net.Parser.DataFlow;
 using Gldf.Net.Parser.Extensions;
-using Gldf.Net.Parser.State;
+using System.Collections.Generic;
 using System.Linq;
 
-namespace Gldf.Net.Parser
+namespace Gldf.Net.Parser;
+
+internal class PhotometryTransform : TransformBase
 {
-    internal class PhotometryTransform
+    public static ParserDto Map(ParserDto parserDto)
     {
-        public static PhotometryTransform Instance { get; } = new();
-
-        public ParserDto<PhotometryTyped> Map(ParserDto<GldfFileTyped> filesDto)
+        return ExecuteSafe(() =>
         {
-            var parserDto = new ParserDto<PhotometryTyped>(filesDto);
-            if (filesDto.Container.Product.GeneralDefinitions.Photometries?.Any() != true) return parserDto;
-            foreach (var photometry in filesDto.Container.Product.GeneralDefinitions.Photometries)
-                parserDto.Items.Add(Map(photometry, filesDto));
+            var photometries = parserDto.Container.Product.GeneralDefinitions.Photometries;
+            if (photometries?.Any() != true) return parserDto;
+            foreach (var photometry in photometries)
+                parserDto.GeneralDefinitions.Photometries.Add(Map(photometry, parserDto.GeneralDefinitions.Files));
             return parserDto;
-        }
+        }, parserDto);
+    }
 
-        private static PhotometryTyped Map(Photometry photometry, ParserDto<GldfFileTyped> files)
+    private static PhotometryTyped Map(Photometry photometry, IEnumerable<GldfFileTyped> files)
+    {
+        return new PhotometryTyped
         {
-            return new PhotometryTyped
-            {
-                Id = photometry.Id,
-                PhotometryFile = files.GetFileTyped((photometry.Content as PhotometryFileReference)?.FileId),
-                DescriptivePhotometry = new DescriptivePhotometryTyped
+            Id = photometry.Id,
+            PhotometryFile = files.ToFileTyped(photometry.GetAsFileReference()?.FileId),
+            DescriptivePhotometry = photometry.DescriptivePhotometry != null
+                ? new DescriptivePhotometryTyped
                 {
                     LuminaireLuminance = photometry.DescriptivePhotometry?.LuminaireLuminance,
                     LightOutputRatio = photometry.DescriptivePhotometry?.LightOutputRatio,
@@ -44,7 +46,7 @@ namespace Gldf.Net.Parser
                     IesnaLightDistributionDefinition = photometry.DescriptivePhotometry?.IesnaLightDistributionDefinition,
                     LightDistributionBugRating = photometry.DescriptivePhotometry?.LightDistributionBugRating
                 }
-            };
-        }
+                : null
+        };
     }
 }

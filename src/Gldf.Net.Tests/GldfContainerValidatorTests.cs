@@ -30,7 +30,7 @@ namespace Gldf.Net.Tests
         }
 
         [Test]
-        public void Validate_Filepath_Should_Throw_When_FilePathParameter_IsNull()
+        public void ValidateFilepath_ShouldThrow_WhenFilePathParameterIsNull()
         {
             Action act = () => _validator.Validate((string)null);
 
@@ -40,7 +40,7 @@ namespace Gldf.Net.Tests
         }
 
         [Test]
-        public void Validate_Filepath_Should_Return_EmptyHintList()
+        public void ValidateFilepath_ShouldReturnEmptyHintList_WhenMandatoryGldf()
         {
             var gldfWithInvalidRoot = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
             File.WriteAllBytes(_tempFile, gldfWithInvalidRoot);
@@ -49,9 +49,20 @@ namespace Gldf.Net.Tests
 
             hints.Should().BeEmpty();
         }
+        
+        [Test]
+        public void ValidateFilepath_ShouldReturnEmptyHintList_WhenCompleteGldf()
+        {
+            var gldfWithInvalidRoot = EmbeddedGldfTestData.GetGldfWithFilesComplete();
+            File.WriteAllBytes(_tempFile, gldfWithInvalidRoot);
+
+            var hints = _validator.Validate(_tempFile);
+
+            hints.Should().BeEmpty();
+        }
 
         [Test]
-        public void Validate_Filepath_Should_Return_InvalidZipFileError_When_GldfIsInvalid()
+        public void ValidateFilepath_ShouldReturnInvalidZipFileError_WhenGldfIsInvalid()
         {
             File.WriteAllBytes(_tempFile, new byte[1]);
             var message = $"The GLDF container '{_tempFile}' seems not to be a valid ZIP file or can't be accessed";
@@ -69,7 +80,7 @@ namespace Gldf.Net.Tests
         }
 
         [Test]
-        public void Validate_Filepath_Should_Return_RootMissingError_When_ProductXmlEntryIsMissing()
+        public void Validate_ShouldReturnRootMissingError_WhenProductXmlEntryIsMissing()
         {
             ZipFile.Open(_tempFile, ZipArchiveMode.Update).Dispose();
             var message = $"The GLDF container '{_tempFile}' does not contain a product.xml entry.";
@@ -82,7 +93,7 @@ namespace Gldf.Net.Tests
         }
 
         [Test]
-        public void Validate_Filepath_Should_Return_InvalidRootError_When_ProductXmlIsInvalid()
+        public void ValidateFilepath_ShouldReturnInvalidRootError_WhenProductXmlIsInvalid()
         {
             var gldfWithInvalidRoot = EmbeddedGldfTestData.GetGldfWithInvalidRoot();
             File.WriteAllBytes(_tempFile, gldfWithInvalidRoot);
@@ -98,7 +109,7 @@ namespace Gldf.Net.Tests
         }
 
         [Test]
-        public void Validate_Filepath_Should_Return_LargeFileWarning()
+        public void ValidateFilepath_ShouldReturnLargeFileWarning()
         {
             var gldfWithLargeFiles = EmbeddedGldfTestData.GetGldfWithLargeFiles();
             File.WriteAllBytes(_tempFile, gldfWithLargeFiles);
@@ -113,7 +124,7 @@ namespace Gldf.Net.Tests
         }
 
         [Test]
-        public void Validate_Filepath_Should_Return_MissingFiles()
+        public void ValidateFilepath_ShouldReturnMissingFiles()
         {
             var gldfWithLargeFiles = EmbeddedGldfTestData.GetGldfWithMissingFiles();
             File.WriteAllBytes(_tempFile, gldfWithLargeFiles);
@@ -132,7 +143,7 @@ namespace Gldf.Net.Tests
         }
 
         [Test]
-        public void Validate_Filepath_Should_Return_OrphanedFiles()
+        public void ValidateFilepath_ShouldReturnOrphanedFiles()
         {
             var gldfWithLargeFiles = EmbeddedGldfTestData.GetGldfWithOrphanedFiles();
             File.WriteAllBytes(_tempFile, gldfWithLargeFiles);
@@ -147,7 +158,7 @@ namespace Gldf.Net.Tests
         }
 
         [Test]
-        public void Validate_Container_Should_Throw_When_ContainerParameter_IsNull()
+        public void ValidateContainer_ShouldThrow_WhenContainerParameterIsNull()
         {
             Action act = () => _validator.Validate((GldfContainer)null);
 
@@ -157,7 +168,7 @@ namespace Gldf.Net.Tests
         }
 
         [Test]
-        public void Validate_Container_Should_Return_MissingFiles()
+        public void ValidateContainer_ShouldReturnMissingFiles()
         {
             var gldfWithLargeFiles = EmbeddedGldfTestData.GetGldfWithMissingFiles();
             var zipArchiveReader = new ZipArchiveReader();
@@ -178,7 +189,7 @@ namespace Gldf.Net.Tests
         }
 
         [Test]
-        public void Validate_Container_Should_Return_OrphanedFiles()
+        public void ValidateContainer_ShouldReturnOrphanedFiles()
         {
             var gldfWithLargeFiles = EmbeddedGldfTestData.GetGldfWithOrphanedFiles();
             var zipArchiveReader = new ZipArchiveReader();

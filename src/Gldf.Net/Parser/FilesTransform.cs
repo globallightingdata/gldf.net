@@ -1,44 +1,51 @@
 using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Xml.Definition;
 using Gldf.Net.Domain.Xml.Definition.Types;
-using Gldf.Net.Parser.State;
+using Gldf.Net.Parser.DataFlow;
 using System;
 using System.IO;
 using System.Linq;
 
-namespace Gldf.Net.Parser
+namespace Gldf.Net.Parser;
+
+internal class FilesTransform : TransformBase
 {
-    internal class FilesTransform
+    public static ParserDto Map(ParserDto parserDto)
     {
-        public static FilesTransform Instance { get; } = new();
-
-        public ParserDto<GldfFileTyped> Map(ContainerDto containerDto)
+        return ExecuteSafe(() =>
         {
-            var parserDto = new ParserDto<GldfFileTyped>(containerDto);
-            if (containerDto.Container.Product.GeneralDefinitions.Files?.Any() != true) return parserDto;
-            foreach (var file in containerDto.Container.Product.GeneralDefinitions.Files)
-                parserDto.Items.Add(Map(containerDto, file));
+            var gldfFiles = parserDto.Container.Product.GeneralDefinitions.Files;
+            if (gldfFiles?.Any() != true) return parserDto;
+            foreach (var file in gldfFiles)
+                parserDto.GeneralDefinitions.Files.Add(Map(file));
             return parserDto;
-        }
+        }, parserDto);
+    }
 
-        private GldfFileTyped Map(ContainerDto containerDto, GldfFile file)
+    private static GldfFileTyped Map(GldfFile file)
+    {
+        return new GldfFileTyped
         {
-            return new GldfFileTyped
-            {
-                Id = file.Id,
-                ContentType = file.ContentType,
-                Type = file.Type,
-                Language = file.Language,
-                Uri = file.File,
-                FileName = file.Type == FileType.Url ? Path.GetFileName(new Uri(file.File).LocalPath) : file.File,
-                BinaryContent = containerDto.LoadFileContent ? GetContent(containerDto, file) : null
-            };
-        }
+            Id = file.Id,
+            ContentType = file.ContentType,
+            Type = file.Type,
+            Language = file.Language,
+            Uri = file.Type == FileType.Url ? file.File : null,
+            FileName = GetFileName(file)
+        };
+    }
 
-        private byte[] GetContent(ContainerDto parserCache, GldfFile file)
+    private static string GetFileName(GldfFile file)
+    {
+        try
         {
-            // todo Laden der Daten implementieren 
-            return Array.Empty<byte>();
+            return file.Type == FileType.Url 
+                ? Path.GetFileName(new Uri(file.File).LocalPath) 
+                : file.File;
+        }
+        catch
+        {
+            return file.File;
         }
     }
 }

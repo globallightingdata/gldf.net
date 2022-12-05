@@ -20,9 +20,6 @@ namespace Gldf.Net.Domain.Xml.Definition
         [XmlElement("EmergencyRatedLuminousFlux", typeof(EmergencyRatedLuminousFlux))]
         public EmergencyModeOutputBase EmergencyModeOutput { get; set; }
 
-        [XmlIgnore]
-        public bool EmergencyBehaviourSpecified { get; set; }
-
         public EmergencyBallastLumenFactor GetEmergencyModeOutputAsLumenFactor() =>
             EmergencyModeOutput as EmergencyBallastLumenFactor;
 

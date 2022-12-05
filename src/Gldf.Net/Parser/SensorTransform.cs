@@ -1,34 +1,35 @@
 using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Xml.Definition;
+using Gldf.Net.Parser.DataFlow;
 using Gldf.Net.Parser.Extensions;
-using Gldf.Net.Parser.State;
+using System.Collections.Generic;
 using System.Linq;
 
-namespace Gldf.Net.Parser
+namespace Gldf.Net.Parser;
+
+internal class SensorTransform : TransformBase
 {
-    internal class SensorTransform
+    public static ParserDto Map(ParserDto parserDto)
     {
-        public static SensorTransform Instance { get; } = new();
-
-        public ParserDto<SensorTyped> Map(ParserDto<GldfFileTyped> filesDto)
+        return ExecuteSafe(() =>
         {
-            var parserDto = new ParserDto<SensorTyped>(filesDto);
-            if (filesDto.Container.Product.GeneralDefinitions.Sensors?.Any() != true) return parserDto;
-            foreach (var sensor in filesDto.Container.Product.GeneralDefinitions.Sensors)
-                parserDto.Items.Add(Map(sensor, filesDto));
+            var sensors = parserDto.Container.Product.GeneralDefinitions.Sensors;
+            if (sensors?.Any() != true) return parserDto;
+            foreach (var sensor in sensors)
+                parserDto.GeneralDefinitions.Sensors.Add(Map(sensor, parserDto.GeneralDefinitions.Files));
             return parserDto;
-        }
+        }, parserDto);
+    }
 
-        private static SensorTyped Map(Sensor sensor, ParserDto<GldfFileTyped> files)
+    private static SensorTyped Map(Sensor sensor, IEnumerable<GldfFileTyped> files)
+    {
+        return new SensorTyped
         {
-            return new SensorTyped
-            {
-                Id = sensor.Id,
-                SensorFile = sensor.SensorFileReference != null ? files.GetFileTyped(sensor.SensorFileReference.FileId) : null,
-                DetectorCharacteristics = sensor.DetectorCharacteristics,
-                DetectionMethods = sensor.DetectionMethods,
-                DetectorTypes = sensor.DetectorTypes?.ToArray()
-            };
-        }
+            Id = sensor.Id,
+            SensorFile = files.ToFileTyped(sensor.SensorFileReference?.FileId),
+            DetectorCharacteristics = sensor.DetectorCharacteristics,
+            DetectionMethods = sensor.DetectionMethods,
+            DetectorTypes = sensor.DetectorTypes
+        };
     }
 }
