@@ -17,7 +17,7 @@ Features
 - Validate GLDF XML with the GLDF XmlSchema (XSD)
 - Read and write .gldf container files, including all assets and signature file
 - Validate .gldf container files
-- Parse XML/container either into 1:1 POCOs or alternatively with resolved references
+- Parse XML/container either into 1:1 .NET POCOs or alternatively with resolved references
 - No dependencies, small footprint (~400kb)
 - Windows & Unix compatible
 
@@ -218,7 +218,7 @@ foreach (var validationHint in validationResult)
 
 ### Deserialize with resolved references
 
-The `GldfXmlSerializer` and `GldfContainerReader` classes produce an exact 1:1 representation of the GLDF XML in C# (`Root`). Which implies that any references such as Variant ➜ Emitter ➜ Equipment ➜ LightSource ➜ Photometry ➜ File are mapped in the form of Ids, which have to be resolved manually in your application. With the `GldfParser` you have an option to let it resolve during deserialisation for you. And optionally load the GLDF `File` element content as well:
+The `GldfXmlSerializer` and `GldfContainerReader` classes produce an exact 1:1 representation of the GLDF XML in .NET (`Root`). Which implies that any references such as Variant ➜ Emitter ➜ Equipment ➜ LightSource ➜ Photometry ➜ File are mapped in the form of Ids, which have to be resolved manually in your application. With the `GldfParser` you have an option to let it resolve during deserialisation for you. And optionally load the GLDF `File` element content as well:
 
 #### Parse into POCOs with resolved references
 
