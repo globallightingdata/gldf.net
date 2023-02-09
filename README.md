@@ -18,7 +18,7 @@ Features
 - Read and write .gldf container files, including all assets and signature file
 - Validate .gldf container files
 - Parse XML/container either into 1:1 .NET POCOs or alternatively with resolved references
-- No dependencies, small footprint (~400kb)
+- No dependencies, small footprint (~450kb)
 - Windows & Unix compatible
 
 If you would like to read the GLDF L3D format as well, have a look on [GLDF.L3d](https://github.com/globallightingdata/l3d.net)
