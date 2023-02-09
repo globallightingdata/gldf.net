@@ -8,7 +8,7 @@
 
 ## Intro
 
-.NET Standard 2.0 library for the Global Lighting Data Format [GLDF](https://gldf.io)
+.NET 6.0 library for the Global Lighting Data Format [GLDF](https://gldf.io)
 
 Features
 
@@ -17,6 +17,7 @@ Features
 - Validate GLDF XML with the GLDF XmlSchema (XSD)
 - Read and write .gldf container files, including all assets and signature file
 - Validate .gldf container files
+- Parse XML/container either into 1:1 POCOs or alternatively with resolved references
 - No dependencies, small footprint (~400kb)
 - Windows & Unix compatible
 
@@ -215,6 +216,28 @@ foreach (var validationHint in validationResult)
 }
 ```
 
+### Deserialize with resolved references
+
+The `GldfXmlSerializer` and `GldfContainerReader` classes produce an exact 1:1 representation of the GLDF XML in C# (`Root`). Which implies that any references such as Variant ➜ Emitter ➜ Equipment ➜ LightSource ➜ Photometry ➜ File are mapped in the form of Ids, which have to be resolved manually in your application. With the `GldfParser` you have an option to let it resolve during deserialisation for you. And optionally load the GLDF `File` element content as well:
+
+#### Parse into POCOs with resolved references
+
+```CSharp
+var gldfParser = new GldfParser(new ParserSettings
+{
+    LocalFileLoadBehaviour = LocalFileLoadBehaviour.Load,
+    OnlineFileLoadBehaviour = OnlineFileLoadBehaviour.Skip
+});
+
+var rootTyped = gldfParser.ParseFromContainerFile(/* GLDF container filepath */);
+// Or
+var rootTyped = gldfParser.ParseFromXmlFile(/* GLDF XML filepath */)
+// Or
+var rootTyped = gldfParser.ParseFromRoot(/* Root result from i.e. GldfXmlSerializer/GldfContainerReader */)
+// Or
+var rootTyped = gldfParser.ParseFromXml(/* GLDF XML content */)
+```
+
 ---
 
 ### Interfaces
@@ -233,6 +256,9 @@ IGldfContainerReader containerReader = new GldfContainerReader();
 IGldfContainerWriter containerWriter = new GldfContainerWriter();
 // 5) Validate GLDF Container
 IGldfContainerValidator containerValidator = new GldfContainerValidator();
+
+// 6) Parse GLDF with resolved references
+IGldfParser gldfParser = new GldfParser();
 ```
 
 ---
