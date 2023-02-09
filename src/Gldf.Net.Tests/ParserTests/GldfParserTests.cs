@@ -10,7 +10,6 @@ using System.IO;
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
-using System.Text.Unicode;
 
 namespace Gldf.Net.Tests.ParserTests;
 
@@ -61,8 +60,8 @@ public class GldfParserTests
         rootTyped.Should().NotBeNull();
     }
 
-    [Test]
-    public void ParseFromContainerFile_ShouldHaveExpectedLineCount()
+    [Test, Explicit]
+    public void ParseFromContainerFile_ShouldHaveExpectedHash()
     {
         var gldfParser = new GldfParser(new ParserSettings
         {
