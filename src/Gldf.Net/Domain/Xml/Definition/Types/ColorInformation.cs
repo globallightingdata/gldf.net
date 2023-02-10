@@ -12,9 +12,9 @@ namespace Gldf.Net.Domain.Xml.Definition.Types
 
         public Cie1931ColorAppearance Cie1931ColorAppearance { get; set; }
 
-        public MacAdamEllipse InitialColorTolerance { get; set; }
+        public MacAdamEllipse? InitialColorTolerance { get; set; }
 
-        public MacAdamEllipse MaintainedColorTolerance { get; set; }
+        public MacAdamEllipse? MaintainedColorTolerance { get; set; }
 
         public ChromacityCoordinateValues RatedChromacityCoordinateValues { get; set; }
 
@@ -29,6 +29,10 @@ namespace Gldf.Net.Domain.Xml.Definition.Types
         public bool ShouldSerializeColorRenderingIndex() => ColorRenderingIndex != null;
 
         public bool ShouldSerializeCorrelatedColorTemperature() => CorrelatedColorTemperature != null;
+        
+        public bool ShouldSerializeInitialColorTolerance() => InitialColorTolerance != null;
+        
+        public bool ShouldSerializeMaintainedColorTolerance() => MaintainedColorTolerance != null;
 
         public bool ShouldSerializeTlci() => Tlci != null;
 

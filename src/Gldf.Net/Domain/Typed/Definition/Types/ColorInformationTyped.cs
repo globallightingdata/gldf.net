@@ -12,9 +12,9 @@ namespace Gldf.Net.Domain.Typed.Definition.Types
 
         public Cie1931ColorAppearanceTyped Cie1931ColorAppearance { get; set; }
 
-        public MacAdamEllipse InitialColorTolerance { get; set; }
+        public MacAdamEllipse? InitialColorTolerance { get; set; }
 
-        public MacAdamEllipse MaintainedColorTolerance { get; set; }
+        public MacAdamEllipse? MaintainedColorTolerance { get; set; }
 
         public ChromacityCoordinateValuesTyped RatedChromacityCoordinateValues { get; set; }
 

@@ -56,6 +56,20 @@ namespace Gldf.Net.Tests.TestData.LightSources
                             }
                         },
                         RatedInputPower = 50
+                    },
+                    new FixedLightSource
+                    {
+                        Id = "lightSource-2",
+                        Name = new[]
+                        {
+                            new Locale
+                            {
+                                Language = "en",
+                                Text = "LightSource name 2"
+                            }
+                        },
+                        RatedInputPower = 60,
+                        ColorInformation = new ColorInformation()
                     }
                 },
                 Emitters = new[]
