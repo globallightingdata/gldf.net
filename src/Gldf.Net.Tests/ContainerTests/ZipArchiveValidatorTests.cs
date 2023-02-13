@@ -114,7 +114,7 @@ namespace Gldf.Net.Tests.ContainerTests
             File.WriteAllBytes(_tempFile, gldfWithLargeFiles);
             const string message = "Large files found. It is recommended to limit the maximum file " +
                                    "size to 5MB each: doc/5MbTextFile.txt";
-            var expected = new ValidationHint(SeverityType.Warning, message, ErrorType.ToLargeFiles);
+            var expected = new ValidationHint(SeverityType.Warning, message, ErrorType.TooLargeFiles);
 
             var hints = _zipArchiveValidator.Validate(_tempFile).ToList();
 

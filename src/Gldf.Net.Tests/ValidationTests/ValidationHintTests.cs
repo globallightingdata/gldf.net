@@ -31,7 +31,7 @@ namespace Gldf.Net.Tests.ValidationTests
         public void Warning_ShouldReturn_ListWithExpected_Hint()
         {
             const string message = "Message";
-            const ErrorType errorType = ErrorType.ToLargeFiles;
+            const ErrorType errorType = ErrorType.TooLargeFiles;
             var expectedHint = new ValidationHint(SeverityType.Warning, message, errorType);
             var validationHints = ValidationHint.Warning(message, errorType).ToList();
 

@@ -27,14 +27,14 @@ namespace Gldf.Net.Validation.Rules.Zip
                 return toLargeFiles.Any()
                     ? ValidationHint.Warning("Large files found. It is recommended to limit the " +
                                              "maximum file size to 5MB each: " +
-                                             $"{FlattenFileNames(toLargeFiles)}", ErrorType.ToLargeFiles)
+                                             $"{FlattenFileNames(toLargeFiles)}", ErrorType.TooLargeFiles)
                     : ValidationHint.Empty();
             }
             catch (Exception e)
             {
                 return ValidationHint.Warning($"The GLDF container '{filePath}' could not be validated " +
                                               "to have no large Files. " +
-                                              $"Error: {e.FlattenMessage()}", ErrorType.ToLargeFiles);
+                                              $"Error: {e.FlattenMessage()}", ErrorType.TooLargeFiles);
             }
         }
 

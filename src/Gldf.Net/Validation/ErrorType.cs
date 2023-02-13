@@ -8,7 +8,7 @@
         ProductXmlNotFound,
         XmlSchema,
         NonDeserialisableRoot,
-        ToLargeFiles,
+        TooLargeFiles,
         MissingContainerAssets,
         OrphanedContainerAssets
     }
