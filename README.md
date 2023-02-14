@@ -231,11 +231,11 @@ var gldfParser = new GldfParser(new ParserSettings
 
 var rootTyped = gldfParser.ParseFromContainerFile(/* GLDF container filepath */);
 // Or
-var rootTyped = gldfParser.ParseFromXmlFile(/* GLDF XML filepath */)
+var rootTyped = gldfParser.ParseFromXmlFile(/* GLDF XML filepath */);
 // Or
-var rootTyped = gldfParser.ParseFromRoot(/* Root result from i.e. GldfXmlSerializer/GldfContainerReader */)
+var rootTyped = gldfParser.ParseFromRoot(/* Root result from i.e. GldfXmlSerializer/GldfContainerReader */);
 // Or
-var rootTyped = gldfParser.ParseFromXml(/* GLDF XML content */)
+var rootTyped = gldfParser.ParseFromXml(/* GLDF XML content */);
 ```
 
 ---
