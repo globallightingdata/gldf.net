@@ -33,11 +33,12 @@ internal class DataFlowProcessor : IParserProcessor
         var broadcastPhotometries = new BroadcastBlock<ParserDto>(dto => dto);
 
         // Batching Blocks => n→1 (descandants require [1,2,3,..] elements as input. Not greedy so block wait till input is complete
-        var lightSourceBatchBlock = new BatchBlock<ParserDto>(3, new GroupingDataflowBlockOptions { Greedy = false });
-        var equipmentBatchBlock = new BatchBlock<ParserDto>(2, new GroupingDataflowBlockOptions { Greedy = false });
-        var emitterBatchBlock = new BatchBlock<ParserDto>(4, new GroupingDataflowBlockOptions { Greedy = false });
-        var variantBatchBlock = new BatchBlock<ParserDto>(3, new GroupingDataflowBlockOptions { Greedy = false });
-        var luminaireBatchBlock = new BatchBlock<ParserDto>(4, new GroupingDataflowBlockOptions { Greedy = false });
+        var blockOptions = new GroupingDataflowBlockOptions { Greedy = false };
+        var lightSourceBatchBlock = new BatchBlock<ParserDto>(3, blockOptions);
+        var equipmentBatchBlock = new BatchBlock<ParserDto>(2, blockOptions);
+        var emitterBatchBlock = new BatchBlock<ParserDto>(4, blockOptions);
+        var variantBatchBlock = new BatchBlock<ParserDto>(3, blockOptions);
+        var luminaireBatchBlock = new BatchBlock<ParserDto>(4, blockOptions);
 
         // Parallel layer 1: Header + Files + ControlGears + SimpleGeometry
         broadcastContainer.LinkTo(transformHeader);
