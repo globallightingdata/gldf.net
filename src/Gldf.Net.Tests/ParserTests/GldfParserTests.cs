@@ -75,6 +75,6 @@ public class GldfParserTests
         var rootTypeJson = JsonConvert.SerializeObject(rootTyped, Formatting.Indented, jsonSettings);
         Console.WriteLine(rootTypeJson);
         var hashData = MD5.HashData(Encoding.UTF8.GetBytes(rootTypeJson));
-        Convert.ToBase64String(hashData).Should().Be("zwNoQs/8SGjZqA4OZLiwyg==");
+        Convert.ToBase64String(hashData).Should().Be("aicRTdqZ7tTV/od6NB8kfQ==");
     }
 }

@@ -32,7 +32,7 @@ internal class GlobalProductDataTransform : TransformBase
             ProductSeries = productMetaData.ProductSeries?.ToTypedArray(files),
             Pictures = files.ToImageTypedArray(productMetaData.Pictures),
             Maintenance = MapMaintenance(productMetaData.Maintenance),
-            DescriptiveAttributes = null // todo Global DescriptiveAttributes
+            DescriptiveAttributes = productMetaData.DescriptiveAttributes?.ToTyped()
         };
 
     private static LuminaireMaintenanceTyped MapMaintenance(LuminaireMaintenance maintenance)
