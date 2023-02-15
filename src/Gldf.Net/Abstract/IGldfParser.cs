@@ -1,3 +1,4 @@
+using Gldf.Net.Container;
 using Gldf.Net.Domain.Typed;
 using Gldf.Net.Domain.Xml;
 
@@ -10,6 +11,8 @@ public interface IGldfParser
     RootTyped ParseFromXmlFile(string xmlFilePath, IGldfXmlSerializer serializer = null);
 
     RootTyped ParseFromRoot(Root root);
+
+    RootTyped ParseFromContainer(GldfContainer gldfContainer);
 
     RootTyped ParseFromContainerFile(string containerFilePath, IGldfContainerReader reader = null);
 }
