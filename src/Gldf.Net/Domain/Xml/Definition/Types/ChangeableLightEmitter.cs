@@ -5,6 +5,8 @@ namespace Gldf.Net.Domain.Xml.Definition.Types
 {
     public class ChangeableLightEmitter : EmitterBase
     {
+        public PhotometryReference PhotometryReference { get; set; }
+        
         [XmlAttribute("emergencyBehaviour")]
         public EmergencyBehaviour EmergencyBehaviour
         {

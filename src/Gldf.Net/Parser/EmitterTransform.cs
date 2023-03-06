@@ -34,40 +34,40 @@ internal class EmitterTransform : TransformBase
         if (changeableLightEmitter?.Any() == true)
         {
             var changeableEmitterTyped = MapChangeable(emitter.Id, changeableLightEmitter, parserDto.GeneralDefinitions);
-            parserDto.GeneralDefinitions.ChangeableLightEmitters.AddRange(changeableEmitterTyped);
+            parserDto.GeneralDefinitions.Emitter.Add(changeableEmitterTyped);
         }
         if (fixedLightEmitter?.Any() == true)
         {
             var fixedEmitterTyped = MapFixed(emitter.Id, fixedLightEmitter, parserDto.GeneralDefinitions);
-            parserDto.GeneralDefinitions.FixedLightEmitters.AddRange(fixedEmitterTyped);
+            parserDto.GeneralDefinitions.Emitter.Add(fixedEmitterTyped);
         }
         if (sensorEmitter?.Any() == true)
         {
             var sensorEmitterTyped = MapSensor(emitter.Id, sensorEmitter, parserDto.GeneralDefinitions);
-            parserDto.GeneralDefinitions.SensorEmitters.AddRange(sensorEmitterTyped);
+            parserDto.GeneralDefinitions.Emitter.Add(sensorEmitterTyped);
         }
     }
 
-    private static IEnumerable<ChangeableLightEmitterTyped> MapChangeable(string emitterId, IEnumerable<ChangeableLightEmitter> emitters,
-        GeneralDefinitionsTyped definitions)
+    private static EmitterTyped MapChangeable(string emitterId, IEnumerable<ChangeableLightEmitter> emitters,
+        GeneralDefinitionsTyped definitions) => new()
     {
-        return emitters.Select(emitter => new ChangeableLightEmitterTyped
+        Id = emitterId,
+        ChangeableEmitterOptions = emitters.Select(emitter => new ChangeableLightEmitterTyped
         {
-            Id = emitterId,
             Name = emitter.Name?.ToTypedArray(),
             Rotation = emitter.Rotation?.ToTyped(),
             Photometry = definitions.Photometries.GetTyped(emitter.PhotometryReference.PhotometryId),
             EmergencyBehaviour = emitter.EmergencyBehaviourSpecified ? emitter.EmergencyBehaviour : null,
             Equipment = definitions.Equipments.GetTyped(emitter.EquipmentReference.EquipmentId)
-        });
-    }
+        }).ToArray()
+    };
 
-    private static IEnumerable<FixedLightEmitterTyped> MapFixed(string emitterId, IEnumerable<FixedLightEmitter> emitters,
-        GeneralDefinitionsTyped definitions)
+    private static EmitterTyped MapFixed(string emitterId, IEnumerable<FixedLightEmitter> emitters,
+        GeneralDefinitionsTyped definitions) => new()
     {
-        return emitters.Select(emitter => new FixedLightEmitterTyped
+        Id = emitterId,
+        FixedEmitterOptions = emitters.Select(emitter => new FixedLightEmitterTyped
         {
-            Id = emitterId,
             Name = emitter.Name?.ToTypedArray(),
             Rotation = emitter.Rotation?.ToTyped(),
             Photometry = definitions.Photometries.GetTyped(emitter.PhotometryReference.PhotometryId),
@@ -81,19 +81,18 @@ internal class EmitterTransform : TransformBase
                 : null,
             ControlGear = definitions.ControlGears.GetTyped(emitter.ControlGearReference),
             FixedLightSource = definitions.FixedLightSources.GetFixedTyped(emitter.LightSourceReference)
-        });
-    }
+        }).ToArray()
+    };
 
-    private static IEnumerable<SensorEmitterTyped> MapSensor(string emitterId, IEnumerable<SensorEmitter> emitters,
-        GeneralDefinitionsTyped definitions)
+    private static EmitterTyped MapSensor(string emitterId, IEnumerable<SensorEmitter> emitters,
+        GeneralDefinitionsTyped definitions) => new()
     {
-        return emitters.Select(emitter => new SensorEmitterTyped
+        Id = emitterId,
+        SensorEmitterOptions = emitters.Select(emitter => new SensorEmitterTyped
         {
-            Id = emitterId,
             Name = emitter.Name?.ToTypedArray(),
             Rotation = emitter.Rotation?.ToTyped(),
-            Photometry = definitions.Photometries.GetTyped(emitter.PhotometryReference.PhotometryId),
             Sensor = definitions.Sensors.FirstOrDefault(sensor => sensor.Id.Equals(emitter.SensorId, StringComparison.Ordinal))
-        });
-    }
+        }).ToArray()
+    };
 }

@@ -69,12 +69,12 @@ public class GldfParserTests
             OnlineFileLoadBehaviour = OnlineFileLoadBehaviour.Skip
         });
         var rootTyped = gldfParser.ParseFromContainerFile(_tempGldfPath);
-        
+
         // Quick test to identify errors for now, todo replace test assert with meaningful validation
-        var jsonSettings = new JsonSerializerSettings { Converters = new List<JsonConverter> { new StringEnumConverter() }};
+        var jsonSettings = new JsonSerializerSettings { Converters = new List<JsonConverter> { new StringEnumConverter() } };
         var rootTypeJson = JsonConvert.SerializeObject(rootTyped, Formatting.Indented, jsonSettings);
         Console.WriteLine(rootTypeJson);
         var hashData = MD5.HashData(Encoding.UTF8.GetBytes(rootTypeJson));
-        Convert.ToBase64String(hashData).Should().Be("aicRTdqZ7tTV/od6NB8kfQ==");
+        Convert.ToBase64String(hashData).Should().Be("443pd9LVqZ0K34A9GT4Vfg==");
     }
 }

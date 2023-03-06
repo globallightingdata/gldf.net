@@ -14,67 +14,94 @@ public static class GeometryExtensions
         if (geo.Reference is GeometryReferences references)
             return new GeometryTyped
             {
-                SimpleGeometry = MapSingleSimpleGeo(new GeometryReference { Reference = references.SimpleGeometryReference }, definitions),
-                ModelGeometry = MapSingleModelGeo(new GeometryReference { Reference = references.ModelGeometryReference }, definitions)
+                Simple = MapSingleSimpleGeo(new GeometryReference { Reference = references.SimpleGeometryReference }, definitions),
+                Model = MapSingleModelGeo(new GeometryReference { Reference = references.ModelGeometryReference }, definitions)
             };
         return new GeometryTyped
         {
-            EmitterOnlyGeometry = MapEmitterOnly(geo, definitions),
-            SimpleGeometry = MapSingleSimpleGeo(geo, definitions),
-            ModelGeometry = MapSingleModelGeo(geo, definitions)
+            EmitterOnly = MapEmitterOnly(geo, definitions),
+            Simple = MapSingleSimpleGeo(geo, definitions),
+            Model = MapSingleModelGeo(geo, definitions)
         };
     }
 
-    private static EmitterOnlyGeometryTyped MapEmitterOnly(GeometryReference geo, GeneralDefinitionsTyped definitions)
+    private static EmitterTyped MapEmitterOnly(GeometryReference geo, GeneralDefinitionsTyped definitions)
     {
         var emitterReference = geo.GetReferenceAsEmitterReference();
         if (emitterReference == null) return null;
         var emitter = definitions.GetEmitterById(emitterReference.EmitterId);
-        return new EmitterOnlyGeometryTyped
+        return new EmitterTyped
         {
-            ChangeableLightEmitter = emitter as ChangeableLightEmitterTyped,
-            FixedLightEmitter = emitter as FixedLightEmitterTyped
+            Id = emitterReference.EmitterId,
+            ChangeableEmitterOptions = GetChangeableEmitter(emitter),
+            FixedEmitterOptions = GetFixedEmitter(emitter),
+            SensorEmitterOptions = GetSensorEmitter(emitter)
         };
     }
 
-    private static SingleSimpleGeometryTyped MapSingleSimpleGeo(GeometryReference geo, GeneralDefinitionsTyped definitions)
+    private static SimpleGeometryEmitterTyped MapSingleSimpleGeo(GeometryReference geo, GeneralDefinitionsTyped definitions)
     {
         var reference = geo.GetReferenceAsSimpleGeometryReference();
         if (reference == null) return null;
         var emitter = definitions.GetEmitterById(reference.EmitterId);
         var geometry = definitions.SimpleGeometries.FirstOrDefault(simpleGeo => simpleGeo.Id.Equals(reference.GeometryId));
-        return new SingleSimpleGeometryTyped
+        return new SimpleGeometryEmitterTyped
         {
-            ChangeableLightEmitter = emitter as ChangeableLightEmitterTyped,
-            FixedLightEmitter = emitter as FixedLightEmitterTyped,
-            SimpleGeometry = geometry
+            Emitter = new EmitterTyped
+            {
+                Id = reference.EmitterId,
+                ChangeableEmitterOptions = GetChangeableEmitter(emitter),
+                FixedEmitterOptions = GetFixedEmitter(emitter),
+                SensorEmitterOptions = GetSensorEmitter(emitter)
+            },
+            Geometry = geometry
         };
     }
 
-    private static SingleModelGeometryTyped MapSingleModelGeo(GeometryReference geo, GeneralDefinitionsTyped definitions)
+    private static ModelGeometryEmitterTyped MapSingleModelGeo(GeometryReference geo, GeneralDefinitionsTyped definitions)
     {
         var reference = geo.GetReferenceAsModelGeometryReference();
         if (reference == null) return null;
         var geometry = definitions.ModelGeometries.FirstOrDefault(simpleGeo => simpleGeo.Id.Equals(reference.GeometryId));
         var emitterList = MapModelEmitter(reference.EmitterReferences, definitions).ToList();
-        return new SingleModelGeometryTyped
+        return new ModelGeometryEmitterTyped
         {
-            ModelGeometry = geometry,
-            Emitter = emitterList
+            Geometry = geometry,
+            Emitter = emitterList.ToArray()
         };
     }
 
-    private static IEnumerable<EmitterTyped> MapModelEmitter(IEnumerable<GeometryEmitterReference> emitters, GeneralDefinitionsTyped definitions)
+    private static IEnumerable<ModelEmitterTyped> MapModelEmitter(IEnumerable<GeometryEmitterReference> emitters, GeneralDefinitionsTyped definitions)
     {
         return
             from emitterReference in emitters
             let emitter = definitions.GetEmitterById(emitterReference.EmitterId)
-            select new EmitterTyped
+            select new ModelEmitterTyped
             {
-                ChangeableLightEmitter = emitter as ChangeableLightEmitterTyped,
-                FixedLightEmitter = emitter as FixedLightEmitterTyped,
+                Emitter = new EmitterTyped
+                {
+                    Id = emitterReference.EmitterId,
+                    ChangeableEmitterOptions = GetChangeableEmitter(emitter),
+                    FixedEmitterOptions = GetFixedEmitter(emitter),
+                    SensorEmitterOptions = GetSensorEmitter(emitter)
+                },
                 TargetModelType = emitterReference.TargetModelTypeSpecified ? emitterReference.TargetModelType : null,
-                EmitterObjectExtrernalName = emitterReference.EmitterObjectExternalName,
+                EmitterObjectExtrernalName = emitterReference.EmitterObjectExternalName
             };
     }
+
+    private static ChangeableLightEmitterTyped[] GetChangeableEmitter(IEnumerable<EmitterTyped> emitter) =>
+        emitter
+            .Where(e => e.ChangeableEmitterOptions != null)
+            .SelectMany(e => e.ChangeableEmitterOptions).ToArray();
+
+    private static FixedLightEmitterTyped[] GetFixedEmitter(IEnumerable<EmitterTyped> emitter) =>
+        emitter
+            .Where(e => e.FixedEmitterOptions != null)
+            .SelectMany(e => e.FixedEmitterOptions).ToArray();
+
+    private static SensorEmitterTyped[] GetSensorEmitter(IEnumerable<EmitterTyped> emitter) =>
+        emitter
+            .Where(e => e.SensorEmitterOptions != null)
+            .SelectMany(e => e.SensorEmitterOptions).ToArray();
 }

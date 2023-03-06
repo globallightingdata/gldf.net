@@ -7,6 +7,8 @@ namespace Gldf.Net.Domain.Xml.Definition.Types
 {
     public class FixedLightEmitter : EmitterBase
     {
+        public PhotometryReference PhotometryReference { get; set; }
+        
         [XmlAttribute("emergencyBehaviour")]
         public EmergencyBehaviour EmergencyBehaviour
         {
@@ -25,7 +27,7 @@ namespace Gldf.Net.Domain.Xml.Definition.Types
         public int RatedLuminousFlux { get; set; }
 
         public int? RatedLuminousFluxRGB { get; set; }
-        
+
         [XmlElement("EmergencyBallastLumenFactor", typeof(EmergencyBallastLumenFactor))]
         [XmlElement("EmergencyRatedLuminousFlux", typeof(EmergencyRatedLuminousFlux))]
         public EmergencyModeOutputBase EmergencyModeOutput { get; set; }
@@ -34,9 +36,9 @@ namespace Gldf.Net.Domain.Xml.Definition.Types
         public bool EmergencyBehaviourSpecified { get; set; }
 
         private EmergencyBehaviour _emergencyBehaviour;
-        
+
         public bool ShouldSerializeRatedLuminousFluxRGB() => RatedLuminousFluxRGB != null;
-        
+
         public EmergencyBallastLumenFactor GetEmergencyModeOutputAsLumenFactor() =>
             EmergencyModeOutput as EmergencyBallastLumenFactor;
 
