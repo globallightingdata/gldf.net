@@ -14,7 +14,7 @@ public class GldfParser : IGldfParser
 
     public GldfParser(ParserSettings settings = null)
     {
-        _settings = settings;
+        _settings = settings ?? new ParserSettings();
         _processor = new DataFlowProcessor();
     }
 
