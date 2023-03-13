@@ -17,6 +17,6 @@ public static class HyperlinkExtensions
             Language = hyperlink.Language,
             Region = hyperlink.Region,
             CountryCode = hyperlink.CountryCode,
-            PlainText = hyperlink.CountryCode
+            PlainText = hyperlink.PlainText
         };
 }
