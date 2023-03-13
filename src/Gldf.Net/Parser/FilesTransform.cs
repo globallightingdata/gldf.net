@@ -39,8 +39,8 @@ internal class FilesTransform : TransformBase
     {
         try
         {
-            return file.Type == FileType.Url 
-                ? Path.GetFileName(new Uri(file.File).LocalPath) 
+            return file.Type == FileType.Url
+                ? Path.GetFileName(new Uri(file.File).LocalPath)
                 : file.File;
         }
         catch

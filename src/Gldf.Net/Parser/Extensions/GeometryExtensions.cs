@@ -90,18 +90,27 @@ public static class GeometryExtensions
             };
     }
 
-    private static ChangeableLightEmitterTyped[] GetChangeableEmitter(IEnumerable<EmitterTyped> emitter) =>
-        emitter
+    private static ChangeableLightEmitterTyped[] GetChangeableEmitter(IEnumerable<EmitterTyped> emitter)
+    {
+        var emitterTyped = emitter
             .Where(e => e.ChangeableEmitterOptions != null)
             .SelectMany(e => e.ChangeableEmitterOptions).ToArray();
+        return emitterTyped.Any() ? emitterTyped : null;
+    }
 
-    private static FixedLightEmitterTyped[] GetFixedEmitter(IEnumerable<EmitterTyped> emitter) =>
-        emitter
+    private static FixedLightEmitterTyped[] GetFixedEmitter(IEnumerable<EmitterTyped> emitter)
+    {
+        var emitterTyped = emitter
             .Where(e => e.FixedEmitterOptions != null)
             .SelectMany(e => e.FixedEmitterOptions).ToArray();
+        return emitterTyped.Any() ? emitterTyped : null;
+    }
 
-    private static SensorEmitterTyped[] GetSensorEmitter(IEnumerable<EmitterTyped> emitter) =>
-        emitter
+    private static SensorEmitterTyped[] GetSensorEmitter(IEnumerable<EmitterTyped> emitter)
+    {
+        var emitterTyped = emitter
             .Where(e => e.SensorEmitterOptions != null)
             .SelectMany(e => e.SensorEmitterOptions).ToArray();
+        return emitterTyped.Any() ? emitterTyped : null;
+    }
 }
