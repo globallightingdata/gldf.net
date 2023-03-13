@@ -9,7 +9,7 @@
     </Header>
     <GeneralDefinitions>
         <Files>
-            <File id="eulumdat" contentType="ldc/eulumdat" type="url" language="en">https://example.org</File>
+            <File id="eulumdat" contentType="ldc/eulumdat" type="url" language="en">https://example.org/test.ldt</File>
             <File id="ies" contentType="ldc/ies" type="localFileName" language="de">product.ies</File>
             <File id="iesxml" contentType="ldc/iesxml" type="localFileName" language="de">product.iesxml</File>
             <File id="jpg" contentType="image/jpg" type="localFileName" language="de">product.jpg</File>

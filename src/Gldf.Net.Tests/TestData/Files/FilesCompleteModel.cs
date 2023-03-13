@@ -31,7 +31,7 @@ namespace Gldf.Net.Tests.TestData.Files
                         ContentType = FileContentType.LdcEulumdat,
                         Type = FileType.Url,
                         Language = "en",
-                        File = "https://example.org"
+                        File = "https://example.org/test.ldt"
                     },
                     new GldfFile
                     {

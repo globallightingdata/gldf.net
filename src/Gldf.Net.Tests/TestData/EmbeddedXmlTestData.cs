@@ -1,4 +1,5 @@
-﻿using Gldf.Net.Domain.Xml;
+﻿using Gldf.Net.Domain.Typed;
+using Gldf.Net.Domain.Xml;
 using Gldf.Net.Tests.TestData.ControlGears;
 using Gldf.Net.Tests.TestData.Descriptive;
 using Gldf.Net.Tests.TestData.Emitters;
@@ -89,13 +90,17 @@ namespace Gldf.Net.Tests.TestData
         public static string GetHeaderMandatoryXml() => ResourceLoader.LoadEmbeddedXml(HeaderMandatoryXml);
         public static string GetHeaderCompleteXml() => ResourceLoader.LoadEmbeddedXml(HeaderCompleteXml);
         public static Root GetHeaderMandatoryModel() => HeaderMandatoryModel.Root;
+        public static RootTyped GetHeaderMandatoryTyped() => HeaderMandatoryTyped.RootTyped;
         public static Root GetHeaderCompleteModel() => HeaderCompleteModel.Root;
+        public static RootTyped GetHeaderCompleteTyped() => HeaderCompleteTyped.RootTyped;
 
         // GeneralDefinitions => Files
         public static string GetFileMandatoryXml() => ResourceLoader.LoadEmbeddedXml(FilesMandatoryXml);
         public static string GetFileCompleteXml() => ResourceLoader.LoadEmbeddedXml(FilesCompleteXml);
         public static Root GetFileMandatoryModel() => FilesMandatoryModel.Root;
+        public static RootTyped GetFileMandatoryTyped() => FilesMandatoryTyped.RootTyped;
         public static Root GetFileCompleteModel() => FilesCompleteModel.Root;
+        public static RootTyped GetFileCompleteTyped() => FilesCompleteTyped.RootTyped;
 
         // GeneralDefinitions => Sensors
         public static string GetSensorMandatoryXml() => ResourceLoader.LoadEmbeddedXml(SensorsMandatoryXml);

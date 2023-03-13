@@ -56,9 +56,9 @@ internal class EmitterTransform : TransformBase
         {
             Name = emitter.Name?.ToTypedArray(),
             Rotation = emitter.Rotation?.ToTyped(),
-            Photometry = definitions.Photometries.GetTyped(emitter.PhotometryReference.PhotometryId),
+            Photometry = definitions.Photometries.GetTyped(emitter.PhotometryReference?.PhotometryId),
             EmergencyBehaviour = emitter.EmergencyBehaviourSpecified ? emitter.EmergencyBehaviour : null,
-            Equipment = definitions.Equipments.GetTyped(emitter.EquipmentReference.EquipmentId)
+            Equipment = definitions.Equipments.GetTyped(emitter.EquipmentReference?.EquipmentId)
         }).ToArray()
     };
 
@@ -70,7 +70,7 @@ internal class EmitterTransform : TransformBase
         {
             Name = emitter.Name?.ToTypedArray(),
             Rotation = emitter.Rotation?.ToTyped(),
-            Photometry = definitions.Photometries.GetTyped(emitter.PhotometryReference.PhotometryId),
+            Photometry = definitions.Photometries.GetTyped(emitter.PhotometryReference?.PhotometryId),
             EmergencyBehaviour = emitter.EmergencyBehaviourSpecified ? emitter.EmergencyBehaviour : null,
             RatedLuminousFluxRGB = emitter.RatedLuminousFluxRGB,
             RatedLuminousFlux = emitter.RatedLuminousFlux,
