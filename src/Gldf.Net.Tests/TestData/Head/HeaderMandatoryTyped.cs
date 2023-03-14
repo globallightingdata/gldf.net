@@ -16,9 +16,9 @@ public class HeaderMandatoryTyped
     {
         Header = new HeaderTyped
         {
-            Manufacturer = "Manufacturer",
+            Manufacturer = "DIAL",
             CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
-            CreatedWithApplication = "CreatedWithApplication",
+            CreatedWithApplication = "Visual Studio Code",
             FormatVersion = FormatVersionTyped.V100
         },
         GeneralDefinitions = new GeneralDefinitionsTyped

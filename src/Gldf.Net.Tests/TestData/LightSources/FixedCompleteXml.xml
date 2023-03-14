@@ -33,7 +33,7 @@
                     <Locale language="en">Fixed lightsource description</Locale>
                     <Locale language="de">Absolute Lichtquelle Beschreibung</Locale>
                 </Description>
-                <Manufacturer>Manufacturer</Manufacturer>
+                <Manufacturer>DIAL</Manufacturer>
                 <GTIN>12345678</GTIN>
                 <RatedInputPower>1</RatedInputPower>
                 <RatedInputVoltage>

@@ -18,9 +18,9 @@ namespace Gldf.Net.Tests.TestData.Descriptive
         {
             Header = new Header
             {
-                Manufacturer = "Manufacturer",
+                Manufacturer = "DIAL",
                 CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
-                CreatedWithApplication = "CreatedWithApplication"
+                CreatedWithApplication = "Visual Studio Code"
             },
             GeneralDefinitions = new GeneralDefinitions
             {

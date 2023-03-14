@@ -98,7 +98,7 @@ namespace Gldf.Net.Tests.TestData.LightSources
                                 Text = "Absolute Lichtquelle Beschreibung"
                             }
                         },
-                        Manufacturer = "Manufacturer",
+                        Manufacturer = "DIAL",
                         Gtin = "12345678",
                         RatedInputPower = 1,
                         RatedInputVoltage = new Voltage

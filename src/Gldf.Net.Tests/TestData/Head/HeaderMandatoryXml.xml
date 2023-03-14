@@ -2,9 +2,9 @@
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/1.0.0-rc.1/gldf.xsd">
     <Header>
-        <Manufacturer>Manufacturer</Manufacturer>
+        <Manufacturer>DIAL</Manufacturer>
         <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
-        <CreatedWithApplication>CreatedWithApplication</CreatedWithApplication>
+        <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
         <FormatVersion>1.0.0-rc.1</FormatVersion>
     </Header>
     <GeneralDefinitions>

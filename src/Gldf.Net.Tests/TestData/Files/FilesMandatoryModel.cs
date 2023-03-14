@@ -15,7 +15,7 @@ namespace Gldf.Net.Tests.TestData.Files
         {
             Header = new Header
             {
-                Manufacturer = "Manufacturer",
+                Manufacturer = "DIAL",
                 CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
                 CreatedWithApplication = "Visual Studio Code"
             },

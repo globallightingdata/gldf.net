@@ -33,7 +33,7 @@
                     <Locale language="en">Description</Locale>
                     <Locale language="de">Beschreibung</Locale>
                 </Description>
-                <Manufacturer>Manufacturer</Manufacturer>
+                <Manufacturer>DIAL</Manufacturer>
                 <GTIN>12345678</GTIN>
                 <RatedInputPower>1</RatedInputPower>
                 <RatedInputVoltage>

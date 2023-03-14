@@ -18,9 +18,9 @@ public class HeaderCompleteTyped
         Header = new HeaderTyped
         {
             Author = "Author",
-            Manufacturer = "Manufacturer",
+            Manufacturer = "DIAL",
             CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
-            CreatedWithApplication = "CreatedWithApplication",
+            CreatedWithApplication = "Visual Studio Code",
             FormatVersion = FormatVersionTyped.V100,
             DefaultLanguage = "de",
             LicenseKeys = new[]
