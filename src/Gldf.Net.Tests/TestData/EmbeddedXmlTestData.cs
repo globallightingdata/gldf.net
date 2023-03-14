@@ -122,7 +122,9 @@ namespace Gldf.Net.Tests.TestData
         public static string GetSpectrumMandatoryXml() => ResourceLoader.LoadEmbeddedXml(SpectrumMandatoryXml);
         public static string GetSpectrumCompleteXml() => ResourceLoader.LoadEmbeddedXml(SpectrumCompleteXml);
         public static Root GetSpectrumMandatoryModel() => SpectrumMandatoryModel.Root;
+        public static RootTyped GetSpectrumMandatoryTyped() => SpectrumMandatoryTyped.RootTyped;
         public static Root GetSpectrumCompleteModel() => SpectrumCompleteModel.Root;
+        public static RootTyped GetSpectrumCompleteTyped() => SensorsCompleteTyped.RootTyped;
 
         // GeneralDefinitions => LightSources
         public static string GetLightSourceMandatoryXml() => ResourceLoader.LoadEmbeddedXml(LightSourceMandatoryXml);

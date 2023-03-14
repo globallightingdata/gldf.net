@@ -48,5 +48,11 @@ public class ModelParserTests
         new TestCaseData(EmbeddedXmlTestData.GetPhotometryCompleteXml(),
                 EmbeddedXmlTestData.GetPhotometryCompleteTyped())
             { TestName = "Photometry complete property set" },
+        new TestCaseData(EmbeddedXmlTestData.GetSpectrumMandatoryXml(),
+                EmbeddedXmlTestData.GetSpectrumMandatoryTyped())
+            { TestName = "Spectrum mandatory property set" },
+        new TestCaseData(EmbeddedXmlTestData.GetSpectrumCompleteXml(),
+                EmbeddedXmlTestData.GetSpectrumCompleteTyped())
+            { TestName = "Spectrum complete property set" },
     };
 }
