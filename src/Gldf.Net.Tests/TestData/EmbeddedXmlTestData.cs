@@ -114,8 +114,10 @@ namespace Gldf.Net.Tests.TestData
         public static string GetPhotometryMandatoryXml() => ResourceLoader.LoadEmbeddedXml(PhotometryMandatoryXml);
         public static string GetPhotometryCompleteXml() => ResourceLoader.LoadEmbeddedXml(PhotometryCompleteXml);
         public static Root GetPhotometryMandatoryModel() => PhotometryMandatoryModel.Root;
+        public static RootTyped GetPhotometryMandatoryTyped() => PhotometryMandatoryTyped.RootTyped;
         public static Root GetPhotometryCompleteModel() => PhotometryCompleteModel.Root;
-
+        public static RootTyped GetPhotometryCompleteTyped() => PhotometryCompleteTyped.RootTyped;
+        
         // GeneralDefinitions => Spectrums
         public static string GetSpectrumMandatoryXml() => ResourceLoader.LoadEmbeddedXml(SpectrumMandatoryXml);
         public static string GetSpectrumCompleteXml() => ResourceLoader.LoadEmbeddedXml(SpectrumCompleteXml);
