@@ -106,7 +106,9 @@ namespace Gldf.Net.Tests.TestData
         public static string GetSensorMandatoryXml() => ResourceLoader.LoadEmbeddedXml(SensorsMandatoryXml);
         public static string GetSensorCompleteXml() => ResourceLoader.LoadEmbeddedXml(SensorsCompleteXml);
         public static Root GetSensorMandatoryModel() => SensorsMandatoryModel.Root;
+        public static RootTyped GetSensorMandatoryTyped() => SensorsMandatoryTyped.RootTyped;
         public static Root GetSensorCompleteModel() => SensorsCompleteModel.Root;
+        public static RootTyped GetSensorCompleteTyped() => SensorsCompleteTyped.RootTyped;
 
         // GeneralDefinitions => Photometries
         public static string GetPhotometryMandatoryXml() => ResourceLoader.LoadEmbeddedXml(PhotometryMandatoryXml);

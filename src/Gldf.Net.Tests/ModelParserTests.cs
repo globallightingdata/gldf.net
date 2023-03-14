@@ -35,6 +35,12 @@ public class ModelParserTests
             { TestName = "File mandatory property set" },
         new TestCaseData(EmbeddedXmlTestData.GetFileCompleteXml(),
                 EmbeddedXmlTestData.GetFileCompleteTyped())
-            { TestName = "File complete property set" }
+            { TestName = "File complete property set" },
+        new TestCaseData(EmbeddedXmlTestData.GetSensorMandatoryXml(),
+                EmbeddedXmlTestData.GetSensorMandatoryTyped())
+            { TestName = "Sensor mandatory property set" },
+        new TestCaseData(EmbeddedXmlTestData.GetSensorCompleteXml(),
+                EmbeddedXmlTestData.GetSensorCompleteTyped())
+            { TestName = "Sensor complete property set" }
     };
 }
