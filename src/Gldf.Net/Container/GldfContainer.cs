@@ -11,7 +11,7 @@ namespace Gldf.Net.Container
 
         public GldfAssets Assets { get; set; } = new();
 
-        public MetaInformation Signature { get; set; }
+        public MetaInformation MetaInformation { get; set; }
 
         public GldfContainer()
         {
@@ -24,12 +24,12 @@ namespace Gldf.Net.Container
             => Assets = assets ?? throw new ArgumentNullException(nameof(assets));
 
         public GldfContainer(Root root, MetaInformation metaInformation) : this(root)
-            => Signature = metaInformation ?? throw new ArgumentNullException(nameof(metaInformation));
+            => MetaInformation = metaInformation ?? throw new ArgumentNullException(nameof(metaInformation));
 
         public GldfContainer(Root root, GldfAssets assets, MetaInformation metaInformation) : this(root)
         {
             Assets = assets ?? throw new ArgumentNullException(nameof(assets));
-            Signature = metaInformation ?? throw new ArgumentNullException(nameof(metaInformation));
+            MetaInformation = metaInformation ?? throw new ArgumentNullException(nameof(metaInformation));
         }
 
         public void AddAssetFile(FileContentType fileContentType, string fileName, byte[] fileContent)

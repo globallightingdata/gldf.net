@@ -85,7 +85,7 @@ namespace Gldf.Net.Container
             using var stream = signatureEntry.Open();
             using var streamReader = new StreamReader(stream, Encoding);
             var metaInfo = streamReader.ReadToEnd();
-            container.Signature = MetaInfoSerializer.DeserializeFromString(metaInfo);
+            container.MetaInformation = MetaInfoSerializer.DeserializeFromString(metaInfo);
         }
 
         private void AddAssets(ZipArchive zipArchive, GldfContainer container, AssetLoadBehaviour loadBehaviour)

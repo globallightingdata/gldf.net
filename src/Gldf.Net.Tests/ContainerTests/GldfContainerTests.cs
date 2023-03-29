@@ -65,7 +65,7 @@ namespace Gldf.Net.Tests.ContainerTests
 
             gldfContainer.Product.Should().NotBeNull();
             gldfContainer.Assets.All.Should().HaveCount(0);
-            gldfContainer.Signature.Should().BeNull();
+            gldfContainer.MetaInformation.Should().BeNull();
         }
 
         [Test]
@@ -76,7 +76,7 @@ namespace Gldf.Net.Tests.ContainerTests
 
             gldfContainer.Product.Should().BeSameAs(root);
             gldfContainer.Assets.All.Should().HaveCount(0);
-            gldfContainer.Signature.Should().BeNull();
+            gldfContainer.MetaInformation.Should().BeNull();
         }
 
         [Test]
@@ -88,7 +88,7 @@ namespace Gldf.Net.Tests.ContainerTests
 
             gldfContainer.Product.Should().BeSameAs(root);
             gldfContainer.Assets.Should().BeSameAs(assets);
-            gldfContainer.Signature.Should().BeNull();
+            gldfContainer.MetaInformation.Should().BeNull();
         }
 
         [Test]
@@ -100,7 +100,7 @@ namespace Gldf.Net.Tests.ContainerTests
 
             gldfContainer.Product.Should().BeSameAs(root);
             gldfContainer.Assets.All.Should().HaveCount(0);
-            gldfContainer.Signature.Should().BeSameAs(metaInformation);
+            gldfContainer.MetaInformation.Should().BeSameAs(metaInformation);
         }
 
         [Test]
@@ -113,7 +113,7 @@ namespace Gldf.Net.Tests.ContainerTests
 
             gldfContainer.Product.Should().BeSameAs(root);
             gldfContainer.Assets.Should().BeSameAs(assets);
-            gldfContainer.Signature.Should().BeSameAs(metaInformation);
+            gldfContainer.MetaInformation.Should().BeSameAs(metaInformation);
         }
 
         [TestCaseSource(nameof(TestData))]

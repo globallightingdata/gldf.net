@@ -12,6 +12,7 @@ namespace Gldf.Net.Container
             using var zipArchive = ZipFile.Open(filePath, ZipArchiveMode.Create, Encoding);
             AddRootZipEntry(gldfContainer, zipArchive);
             AddAssetZipEntries(zipArchive, gldfContainer);
+            AddMetaInfo(zipArchive, gldfContainer);
         }
 
         public void CreateFromDirectory(string sourceDirectory, string targetFilePath)
@@ -39,6 +40,16 @@ namespace Gldf.Net.Container
             AddAssetsFor(zipArchive, gldfContainer.Assets.Spectrums, AssetFolderNames.Spectrums);
             AddAssetsFor(zipArchive, gldfContainer.Assets.Symbols, AssetFolderNames.Symbols);
             AddAssetsFor(zipArchive, gldfContainer.Assets.Other, AssetFolderNames.Other);
+        }
+
+        private void AddMetaInfo(ZipArchive zipArchive, GldfContainer gldfContainer)
+        {
+            if (gldfContainer.MetaInformation == null) return;
+            var xml = MetaInfoSerializer.SerializeToString(gldfContainer.MetaInformation);
+            var metaInfoEntry = zipArchive.CreateEntry("meta-information.xml", CompressionLevel);
+            using var entryStream = metaInfoEntry.Open();
+            using var streamWriter = new StreamWriter(entryStream, Encoding);
+            streamWriter.Write(xml);
         }
 
         private void AddAssetsFor(ZipArchive zipArchive, IEnumerable<ContainerFile> collection, string folder)

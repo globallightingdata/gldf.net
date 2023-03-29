@@ -135,7 +135,7 @@ namespace Gldf.Net.Tests
 
             var container = _gldfContainerReader.ReadFromFile(_tempFile, settings);
 
-            container.Signature.Should().BeNull();
+            container.MetaInformation.Should().BeNull();
         }
 
         [Test]
@@ -157,7 +157,7 @@ namespace Gldf.Net.Tests
 
             var container = _gldfContainerReader.ReadFromFile(_tempFile);
 
-            container.Signature.Should().BeNull();
+            container.MetaInformation.Should().BeNull();
         }
 
         [Test]
@@ -169,7 +169,7 @@ namespace Gldf.Net.Tests
 
             var container = _gldfContainerReader.ReadFromFile(_tempFile);
 
-            container.Signature.Should().BeEquivalentTo(metaInformation);
+            container.MetaInformation.Should().BeEquivalentTo(metaInformation);
         }
 
         [Test]

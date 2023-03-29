@@ -112,7 +112,7 @@ namespace Gldf.Net.Tests.ContainerTests
 
             var container = _zipArchiveReader.ReadContainer(_tempFile, settings);
 
-            container.Signature.Should().BeNull();
+            container.MetaInformation.Should().BeNull();
         }
 
         [Test]
@@ -134,7 +134,7 @@ namespace Gldf.Net.Tests.ContainerTests
 
             var container = _zipArchiveReader.ReadContainer(_tempFile);
 
-            container.Signature.Should().BeNull();
+            container.MetaInformation.Should().BeNull();
         }
 
         [Test]
@@ -146,7 +146,7 @@ namespace Gldf.Net.Tests.ContainerTests
             File.WriteAllBytes(_tempFile, gldfBytes);
             var container = _zipArchiveReader.ReadContainer(_tempFile);
 
-            container.Signature.Should().BeEquivalentTo(metaInformation);
+            container.MetaInformation.Should().BeEquivalentTo(metaInformation);
         }
 
         [Test]
