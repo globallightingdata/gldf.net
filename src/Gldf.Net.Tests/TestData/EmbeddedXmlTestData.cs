@@ -22,6 +22,7 @@ namespace Gldf.Net.Tests.TestData
 {
     public static class EmbeddedXmlTestData
     {
+        // GLDF
         private const string HeaderMandatoryXml = "TestData.Head.HeaderMandatoryXml.xml";
         private const string HeaderCompleteXml = "TestData.Head.HeaderCompleteXml.xml";
         private const string FilesMandatoryXml = "TestData.Files.FilesMandatoryXml.xml";
@@ -50,6 +51,8 @@ namespace Gldf.Net.Tests.TestData
         private const string DescriptiveAttributesXml = "TestData.Descriptive.DescriptiveAttributesXml.xml";
         private const string RootWithHeaderXml = "TestData.Simple.RootWithHeaderXml.xml";
         private const string RootWithUnintendedXml = "TestData.Simple.RootWithHeaderUnintendedXml.xml";
+        // Meta-Information
+        private const string MetaInformationXml = "TestData.MetaInfo.meta-information.xml";
 
         public static readonly List<TestCaseData> ValidXmlTestCases = new()
         {
@@ -178,5 +181,9 @@ namespace Gldf.Net.Tests.TestData
         public static string GetRootWithHeaderXml() => ResourceLoader.LoadEmbeddedXml(RootWithHeaderXml);
         public static string GetRootWithHeaderUnintendXml() => ResourceLoader.LoadEmbeddedXml(RootWithUnintendedXml);
         public static Root GetRootWithHeaderModel() => RootWithHeaderModel.Root;
+        
+        // Meta-Information
+        public static string GetMetaInformationXml() => ResourceLoader.LoadEmbeddedXml(MetaInformationXml);
+        public static MetaInformation GetMetaInformationModel() => MetaInfo.MetaInfo.MetaInformation;
     }
 }

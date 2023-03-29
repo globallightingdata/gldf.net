@@ -19,7 +19,7 @@ namespace Gldf.Net.Tests.ContainerTests
         {
             void Ctor1() => _ = new GldfContainer(null);
             void Ctor2() => _ = new GldfContainer(null, new GldfAssets());
-            void Ctor3() => _ = new GldfContainer(null, new GldfAssets(), "signature");
+            void Ctor3() => _ = new GldfContainer(null, new GldfAssets(), new MetaInformation());
 
             void Test(Action act) => act.Should()
                 .ThrowExactly<ArgumentNullException>()
@@ -34,7 +34,7 @@ namespace Gldf.Net.Tests.ContainerTests
         public void Ctor_ShouldThrow_When_Assets_IsNull()
         {
             void Ctor1() => _ = new GldfContainer(new Root(), (GldfAssets)null);
-            void Ctor2() => _ = new GldfContainer(new Root(), null, "signature");
+            void Ctor2() => _ = new GldfContainer(new Root(), null, new MetaInformation());
 
             void Test(Action act) => act.Should()
                 .ThrowExactly<ArgumentNullException>()
@@ -47,12 +47,12 @@ namespace Gldf.Net.Tests.ContainerTests
         [Test]
         public void Ctor_ShouldThrow_When_Signature_IsNull()
         {
-            void Ctor1() => _ = new GldfContainer(new Root(), (string)null);
+            void Ctor1() => _ = new GldfContainer(new Root(), (MetaInformation)null);
             void Ctor2() => _ = new GldfContainer(new Root(), new GldfAssets(), null);
 
             void Test(Action act) => act.Should()
                 .ThrowExactly<ArgumentNullException>()
-                .WithMessage("Value cannot be null. (Parameter 'signature')");
+                .WithMessage("Value cannot be null. (Parameter 'metaInformation')");
 
             Test(Ctor1);
             Test(Ctor2);
@@ -65,7 +65,7 @@ namespace Gldf.Net.Tests.ContainerTests
 
             gldfContainer.Product.Should().NotBeNull();
             gldfContainer.Assets.All.Should().HaveCount(0);
-            gldfContainer.Signature.Should().BeEmpty();
+            gldfContainer.Signature.Should().BeNull();
         }
 
         [Test]
@@ -76,7 +76,7 @@ namespace Gldf.Net.Tests.ContainerTests
 
             gldfContainer.Product.Should().BeSameAs(root);
             gldfContainer.Assets.All.Should().HaveCount(0);
-            gldfContainer.Signature.Should().BeEmpty();
+            gldfContainer.Signature.Should().BeNull();
         }
 
         [Test]
@@ -88,19 +88,19 @@ namespace Gldf.Net.Tests.ContainerTests
 
             gldfContainer.Product.Should().BeSameAs(root);
             gldfContainer.Assets.Should().BeSameAs(assets);
-            gldfContainer.Signature.Should().BeEmpty();
+            gldfContainer.Signature.Should().BeNull();
         }
 
         [Test]
         public void Ctor_ShouldSet_RootAndSignature()
         {
             var root = new Root();
-            const string signature = "signature";
-            var gldfContainer = new GldfContainer(root, signature);
+            var metaInformation = new MetaInformation();
+            var gldfContainer = new GldfContainer(root, metaInformation);
 
             gldfContainer.Product.Should().BeSameAs(root);
             gldfContainer.Assets.All.Should().HaveCount(0);
-            gldfContainer.Signature.Should().BeSameAs(signature);
+            gldfContainer.Signature.Should().BeSameAs(metaInformation);
         }
 
         [Test]
@@ -108,12 +108,12 @@ namespace Gldf.Net.Tests.ContainerTests
         {
             var root = new Root();
             var assets = new GldfAssets();
-            const string signature = "signature";
-            var gldfContainer = new GldfContainer(root, assets, signature);
+            var metaInformation = new MetaInformation();
+            var gldfContainer = new GldfContainer(root, assets, metaInformation);
 
             gldfContainer.Product.Should().BeSameAs(root);
             gldfContainer.Assets.Should().BeSameAs(assets);
-            gldfContainer.Signature.Should().BeSameAs(signature);
+            gldfContainer.Signature.Should().BeSameAs(metaInformation);
         }
 
         [TestCaseSource(nameof(TestData))]

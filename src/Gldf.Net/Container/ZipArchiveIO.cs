@@ -9,12 +9,14 @@ namespace Gldf.Net.Container
     internal abstract class ZipArchiveIO
     {
         protected readonly IGldfXmlSerializer GldfXmlSerializer;
+        protected readonly IMetaInfoSerializer MetaInfoSerializer;
         protected readonly CompressionLevel CompressionLevel;
         protected readonly Encoding Encoding;
 
         protected ZipArchiveIO()
         {
             GldfXmlSerializer = new GldfXmlSerializer();
+            MetaInfoSerializer = new MetaInfoSerializer();
             CompressionLevel = CompressionLevel.Optimal;
             Encoding = Encoding.UTF8;
         }

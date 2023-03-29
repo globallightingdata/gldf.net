@@ -135,7 +135,7 @@ namespace Gldf.Net.Tests
 
             var container = _gldfContainerReader.ReadFromFile(_tempFile, settings);
 
-            container.Signature.Should().BeEmpty();
+            container.Signature.Should().BeNull();
         }
 
         [Test]
@@ -157,19 +157,19 @@ namespace Gldf.Net.Tests
 
             var container = _gldfContainerReader.ReadFromFile(_tempFile);
 
-            container.Signature.Should().BeEmpty();
-            container.Signature.Should().NotBeNull();
+            container.Signature.Should().BeNull();
         }
 
         [Test]
         public void ReadFromFile_Should_ReadAndDeserialize_Signature()
         {
             var gldfBytes = EmbeddedGldfTestData.GetGldfWithSignature();
+            var metaInformation = EmbeddedGldfTestData.ExpectedMetaInformation;
             File.WriteAllBytes(_tempFile, gldfBytes);
 
             var container = _gldfContainerReader.ReadFromFile(_tempFile);
 
-            container.Signature.Should().Contain("signature");
+            container.Signature.Should().BeEquivalentTo(metaInformation);
         }
 
         [Test]

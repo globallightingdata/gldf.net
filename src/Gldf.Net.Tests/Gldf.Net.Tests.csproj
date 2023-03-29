@@ -58,11 +58,12 @@
         <EmbeddedResource Include="TestData\Container\GldfWithInvalidRoot.gldf" />
         <EmbeddedResource Include="TestData\Container\GldfWithOrphanedFiles.gldf" />
         <EmbeddedResource Include="TestData\Container\GldfWithMissingFiles.gldf" />
-        <None Remove="TestData\Container\GldfWithFilesComplete.gldf" />
         <EmbeddedResource Include="TestData\Container\GldfWithFilesComplete.gldf" />
+        <EmbeddedResource Include="TestData\MetaInfo\meta-information.xml" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="TestData\Container" />
+      <Folder Include="TestData\MetaInfo" />
     </ItemGroup>
 </Project>

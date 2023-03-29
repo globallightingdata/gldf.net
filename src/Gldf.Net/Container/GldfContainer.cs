@@ -11,25 +11,25 @@ namespace Gldf.Net.Container
 
         public GldfAssets Assets { get; set; } = new();
 
-        public string Signature { get; set; } = string.Empty;
+        public MetaInformation Signature { get; set; }
 
         public GldfContainer()
         {
         }
 
-        public GldfContainer(Root root) 
+        public GldfContainer(Root root)
             => Product = root ?? throw new ArgumentNullException(nameof(root));
 
-        public GldfContainer(Root root, GldfAssets assets) : this(root) 
+        public GldfContainer(Root root, GldfAssets assets) : this(root)
             => Assets = assets ?? throw new ArgumentNullException(nameof(assets));
 
-        public GldfContainer(Root root, string signature) : this(root) 
-            => Signature = signature ?? throw new ArgumentNullException(nameof(signature));
+        public GldfContainer(Root root, MetaInformation metaInformation) : this(root)
+            => Signature = metaInformation ?? throw new ArgumentNullException(nameof(metaInformation));
 
-        public GldfContainer(Root root, GldfAssets assets, string signature) : this(root)
+        public GldfContainer(Root root, GldfAssets assets, MetaInformation metaInformation) : this(root)
         {
             Assets = assets ?? throw new ArgumentNullException(nameof(assets));
-            Signature = signature ?? throw new ArgumentNullException(nameof(signature));
+            Signature = metaInformation ?? throw new ArgumentNullException(nameof(metaInformation));
         }
 
         public void AddAssetFile(FileContentType fileContentType, string fileName, byte[] fileContent)

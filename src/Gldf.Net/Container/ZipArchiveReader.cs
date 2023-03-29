@@ -38,7 +38,7 @@ namespace Gldf.Net.Container
             if (settings.AssetLoadBehaviour != AssetLoadBehaviour.Skip)
                 AddAssets(zipArchive, container, settings.AssetLoadBehaviour);
             if (settings.SignatureLoadBehaviour == SignatureLoadBehaviour.Load)
-                AddSignature(zipArchive, container);
+                AddDeserializedMetaInfo(zipArchive, container);
             return container;
         }
 
@@ -78,13 +78,14 @@ namespace Gldf.Net.Container
             container.Product = deserializedRoot;
         }
 
-        private void AddSignature(ZipArchive zipArchive, GldfContainer container)
+        private void AddDeserializedMetaInfo(ZipArchive zipArchive, GldfContainer container)
         {
-            var signatureEntry = zipArchive.GetEntry("signature");
+            var signatureEntry = zipArchive.GetEntry("meta-information.xml");
             if (signatureEntry == null) return;
             using var stream = signatureEntry.Open();
             using var streamReader = new StreamReader(stream, Encoding);
-            container.Signature = streamReader.ReadToEnd();
+            var metaInfo = streamReader.ReadToEnd();
+            container.Signature = MetaInfoSerializer.DeserializeFromString(metaInfo);
         }
 
         private void AddAssets(ZipArchive zipArchive, GldfContainer container, AssetLoadBehaviour loadBehaviour)

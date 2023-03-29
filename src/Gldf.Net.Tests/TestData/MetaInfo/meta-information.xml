@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MetaInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/meta/1.0.0/meta-information.xsd">
+  <Property name="Acme-Signature">41dad678-14fe-4ea9-a7fe-2a5a22e79aae</Property>
+  <Property name="ExampleLLC-Signature">5437af9d-18c4-485e-b396-1d3d6531fb29</Property>
+</MetaInformation>
