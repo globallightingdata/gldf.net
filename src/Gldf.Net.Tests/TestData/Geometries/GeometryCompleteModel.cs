@@ -7,174 +7,173 @@ using Gldf.Net.Domain.Xml.Product;
 using Gldf.Net.Domain.Xml.Product.Types;
 using System;
 
-namespace Gldf.Net.Tests.TestData.Geometries
+namespace Gldf.Net.Tests.TestData.Geometries;
+
+public class GeometryCompleteModel
 {
-    public class GeometryCompleteModel
+    public static Root Root => new()
     {
-        public static Root Root => new()
+        Header = new Header
         {
-            Header = new Header
+            Manufacturer = "DIAL",
+            CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            CreatedWithApplication = "Visual Studio Code"
+        },
+        GeneralDefinitions = new GeneralDefinitions
+        {
+            Files = new[]
             {
-                Manufacturer = "DIAL",
-                CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
-                CreatedWithApplication = "Visual Studio Code"
+                new GldfFile
+                {
+                    Id = "eulumdat",
+                    ContentType = FileContentType.LdcEulumdat,
+                    Type = FileType.Url,
+                    File = "https://example.org/eulumdat.ldt"
+                },
+                new GldfFile
+                {
+                    Id = "geometryFile",
+                    ContentType = FileContentType.GeoL3d,
+                    Type = FileType.Url,
+                    File = "https://example.org/geometry.l3d"
+                }
             },
-            GeneralDefinitions = new GeneralDefinitions
+            Photometries = new[]
             {
-                Files = new[]
+                new Photometry
                 {
-                    new GldfFile
+                    Id = "photometry",
+                    Content = new PhotometryFileReference
                     {
-                        Id = "eulumdat",
-                        ContentType = FileContentType.LdcEulumdat,
-                        Type = FileType.Url,
-                        File = "https://example.org/eulumdat.ldt"
-                    },
-                    new GldfFile
-                    {
-                        Id = "geometryFile",
-                        ContentType = FileContentType.GeoL3d,
-                        Type = FileType.Url,
-                        File = "https://example.org/geometry.l3d"
+                        FileId = "eulumdat"
                     }
-                },
-                Photometries = new[]
+                }
+            },
+            Emitters = new[]
+            {
+                new Emitter
                 {
-                    new Photometry
+                    Id = "emitter",
+                    PossibleFittings = new EmitterBase[]
                     {
-                        Id = "photometry",
-                        Content = new PhotometryFileReference
+                        new ChangeableLightEmitter
                         {
-                            FileId = "eulumdat"
-                        }
-                    }
-                },
-                Emitters = new[]
-                {
-                    new Emitter
-                    {
-                        Id = "emitter",
-                        PossibleFittings = new EmitterBase[]
-                        {
-                            new ChangeableLightEmitter
+                            PhotometryReference = new PhotometryReference
                             {
-                                PhotometryReference = new PhotometryReference
-                                {
-                                    PhotometryId = "photometry"
-                                }
+                                PhotometryId = "photometry"
                             }
-                        }
-                    }
-                },
-                Geometries = new GeometryBase[]
-                {
-                    new SimpleGeometry
-                    {
-                        Id = "geometry1",
-                        GeometryType = new SimpleCuboidGeometry
-                        {
-                            Width = 1,
-                            Length = 2,
-                            Height = 3
-                        },
-                        EmitterType = new SimpleRectangularEmitter
-                        {
-                            Width = 4,
-                            Length = 5
-                        },
-                        CHeights = new CHeights
-                        {
-                            C0 = 6,
-                            C90 = 7,
-                            C180 = 8,
-                            C270 = 9
-                        }
-                    },
-                    new SimpleGeometry
-                    {
-                        Id = "geometry2",
-                        GeometryType = new SimpleCylinderGeometry
-                        {
-                            Plane = SimpleCylinderPlane.X,
-                            Diameter = 1,
-                            Height = 2
-                        },
-                        EmitterType = new SimpleCircularEmitter
-                        {
-                            Diameter = 3
-                        }
-                    },
-                    new SimpleGeometry
-                    {
-                        Id = "geometry3",
-                        GeometryType = new SimpleCylinderGeometry
-                        {
-                            Plane = SimpleCylinderPlane.Y,
-                            Diameter = 1,
-                            Height = 2
-                        },
-                        EmitterType = new SimpleRectangularEmitter
-                        {
-                            Width = 3,
-                            Length = 4
-                        }
-                    },
-                    new SimpleGeometry
-                    {
-                        Id = "geometry4",
-                        GeometryType = new SimpleCylinderGeometry
-                        {
-                            Plane = SimpleCylinderPlane.Z,
-                            Diameter = 1,
-                            Height = 2
-                        },
-                        EmitterType = new SimpleCircularEmitter
-                        {
-                            Diameter = 3
                         }
                     }
                 }
             },
-            ProductDefinitions = new ProductDefinitions
+            Geometries = new GeometryBase[]
             {
-                ProductMetaData = new ProductMetaData
+                new SimpleGeometry
                 {
-                    ProductNumber = new[]
+                    Id = "geometry1",
+                    GeometryType = new SimpleCuboidGeometry
                     {
-                        new Locale
-                        {
-                            Language = "en",
-                            Text = "Product number"
-                        }
+                        Width = 1,
+                        Length = 2,
+                        Height = 3
                     },
-                    Name = new[]
+                    EmitterType = new SimpleRectangularEmitter
                     {
-                        new Locale
-                        {
-                            Language = "en",
-                            Text = "Product name"
-                        }
+                        Width = 4,
+                        Length = 5
+                    },
+                    CHeights = new CHeights
+                    {
+                        C0 = 6,
+                        C90 = 7,
+                        C180 = 8,
+                        C270 = 9
                     }
                 },
-                Variants = new[]
+                new SimpleGeometry
                 {
-                    new Variant
+                    Id = "geometry2",
+                    GeometryType = new SimpleCylinderGeometry
                     {
-                        Id = "variant-1",
-                        Name = new[]
+                        Plane = SimpleCylinderPlane.X,
+                        Diameter = 1,
+                        Height = 2
+                    },
+                    EmitterType = new SimpleCircularEmitter
+                    {
+                        Diameter = 3
+                    }
+                },
+                new SimpleGeometry
+                {
+                    Id = "geometry3",
+                    GeometryType = new SimpleCylinderGeometry
+                    {
+                        Plane = SimpleCylinderPlane.Y,
+                        Diameter = 1,
+                        Height = 2
+                    },
+                    EmitterType = new SimpleRectangularEmitter
+                    {
+                        Width = 3,
+                        Length = 4
+                    }
+                },
+                new SimpleGeometry
+                {
+                    Id = "geometry4",
+                    GeometryType = new SimpleCylinderGeometry
+                    {
+                        Plane = SimpleCylinderPlane.Z,
+                        Diameter = 1,
+                        Height = 2
+                    },
+                    EmitterType = new SimpleCircularEmitter
+                    {
+                        Diameter = 3
+                    }
+                }
+            }
+        },
+        ProductDefinitions = new ProductDefinitions
+        {
+            ProductMetaData = new ProductMetaData
+            {
+                ProductNumber = new[]
+                {
+                    new Locale
+                    {
+                        Language = "en",
+                        Text = "Product number"
+                    }
+                },
+                Name = new[]
+                {
+                    new Locale
+                    {
+                        Language = "en",
+                        Text = "Product name"
+                    }
+                }
+            },
+            Variants = new[]
+            {
+                new Variant
+                {
+                    Id = "variant-1",
+                    Name = new[]
+                    {
+                        new Locale { Language = "en", Text = "Variant 1" }
+                    },
+                    Geometry = new GeometryReference
+                    {
+                        Reference = new EmitterReference
                         {
-                            new Locale { Language = "en", Text = "Variant 1" }
-                        },
-                        Geometry = new GeometryReference
-                        {
-                            Reference = new EmitterReference
-                            {
-                                EmitterId = "emitter"
-                            }
+                            EmitterId = "emitter"
                         }
                     }
                 }
             }
-        };
-    }
+        }
+    };
 }

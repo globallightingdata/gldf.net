@@ -1,17 +1,16 @@
 ﻿// ReSharper disable InconsistentNaming
 
-namespace Gldf.Net.Domain.Xml.Descriptive.Types.Atex
+namespace Gldf.Net.Domain.Xml.Descriptive.Types.Atex;
+
+public enum AtexGroup
 {
-    public enum AtexGroup
-    {
-        I,
-        II,
-        IIA,
-        IIB,
-        IIC,
-        III,
-        IIIA,
-        IIIB,
-        IIIC
-    }
+    I,
+    II,
+    IIA,
+    IIB,
+    IIC,
+    III,
+    IIIA,
+    IIIB,
+    IIIC
 }

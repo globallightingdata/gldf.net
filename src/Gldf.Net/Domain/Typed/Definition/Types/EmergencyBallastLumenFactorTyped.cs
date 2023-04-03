@@ -1,7 +1,6 @@
-namespace Gldf.Net.Domain.Typed.Definition.Types
+namespace Gldf.Net.Domain.Typed.Definition.Types;
+
+public class EmergencyBallastLumenFactorTyped
 {
-    public class EmergencyBallastLumenFactorTyped
-    {
-        public double Factor { get; set; }
-    }
+    public double Factor { get; set; }
 }

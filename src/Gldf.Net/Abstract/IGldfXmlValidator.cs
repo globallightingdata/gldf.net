@@ -1,12 +1,11 @@
 ﻿using Gldf.Net.Validation;
 using System.Collections.Generic;
 
-namespace Gldf.Net.Abstract
-{
-    public interface IGldfXmlValidator
-    {
-        IEnumerable<ValidationHint> ValidateString(string xml);
+namespace Gldf.Net.Abstract;
 
-        IEnumerable<ValidationHint> ValidateFile(string filePath);
-    }
+public interface IGldfXmlValidator
+{
+    IEnumerable<ValidationHint> ValidateString(string xml);
+
+    IEnumerable<ValidationHint> ValidateFile(string filePath);
 }

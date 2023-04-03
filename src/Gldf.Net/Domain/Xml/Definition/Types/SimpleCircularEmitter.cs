@@ -1,7 +1,6 @@
-﻿namespace Gldf.Net.Domain.Xml.Definition.Types
+﻿namespace Gldf.Net.Domain.Xml.Definition.Types;
+
+public class SimpleCircularEmitter : SimpleGeometryEmitterBase
 {
-    public class SimpleCircularEmitter : SimpleGeometryEmitterBase
-    {
-        public int Diameter { get; set; }
-    }
+    public int Diameter { get; set; }
 }

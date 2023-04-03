@@ -1,9 +1,8 @@
-﻿namespace Gldf.Net.Domain.Xml.Global
-{
-    public class TemperatureRange
-    {
-        public int Lower { get; set; }
+﻿namespace Gldf.Net.Domain.Xml.Global;
 
-        public int Upper { get; set; }
-    }
+public class TemperatureRange
+{
+    public int Lower { get; set; }
+
+    public int Upper { get; set; }
 }

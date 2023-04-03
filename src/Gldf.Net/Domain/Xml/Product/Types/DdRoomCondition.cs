@@ -1,22 +1,21 @@
 ﻿using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Product.Types
+namespace Gldf.Net.Domain.Xml.Product.Types;
+
+public enum DdRoomCondition
 {
-    public enum DdRoomCondition
-    {
-        [XmlEnum("Very Clean")]
-        VeryClean,
+    [XmlEnum("Very Clean")]
+    VeryClean,
 
-        [XmlEnum("Clean")]
-        Clean,
+    [XmlEnum("Clean")]
+    Clean,
 
-        [XmlEnum("Moderate")]
-        Moderate,
+    [XmlEnum("Moderate")]
+    Moderate,
 
-        [XmlEnum("Dirty")]
-        Dirty,
+    [XmlEnum("Dirty")]
+    Dirty,
 
-        [XmlEnum("Very Dirty")]
-        VeryDirty
-    }
+    [XmlEnum("Very Dirty")]
+    VeryDirty
 }

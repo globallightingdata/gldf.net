@@ -3,20 +3,19 @@ using Gldf.Net.Domain.Xml.Definition;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using NUnit.Framework;
 
-namespace Gldf.Net.Tests.DomainTests
+namespace Gldf.Net.Tests.DomainTests;
+
+[TestFixture]
+public class PhotometryTests
 {
-    [TestFixture]
-    public class PhotometryTests
+    [Test]
+    public void GetAsFileReference_Should_Return_Expected()
     {
-        [Test]
-        public void GetAsFileReference_Should_Return_Expected()
-        {
-            var expectedFileReference = new PhotometryFileReference();
-            var photometry = new Photometry {Content = expectedFileReference};
+        var expectedFileReference = new PhotometryFileReference();
+        var photometry = new Photometry {Content = expectedFileReference};
 
-            var fileReference = photometry.GetAsFileReference();
+        var fileReference = photometry.GetAsFileReference();
 
-            fileReference.Should().Be(expectedFileReference);
-        }
+        fileReference.Should().Be(expectedFileReference);
     }
 }

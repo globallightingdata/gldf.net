@@ -1,9 +1,8 @@
-﻿namespace Gldf.Net.Domain.Xml.Descriptive.Types
-{
-    public class ClampingRange
-    {
-        public double Lower { get; set; }
+﻿namespace Gldf.Net.Domain.Xml.Descriptive.Types;
 
-        public double Upper { get; set; }
-    }
+public class ClampingRange
+{
+    public double Lower { get; set; }
+
+    public double Upper { get; set; }
 }

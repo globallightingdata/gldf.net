@@ -1,19 +1,18 @@
 ﻿using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Global
+namespace Gldf.Net.Domain.Xml.Global;
+
+public enum VoltageFrequency
 {
-    public enum VoltageFrequency
-    {
-        [XmlEnum("50")]
-        Hz50,
+    [XmlEnum("50")]
+    Hz50,
 
-        [XmlEnum("60")]
-        Hz60,
+    [XmlEnum("60")]
+    Hz60,
 
-        [XmlEnum("50/60")]
-        Hz5060,
+    [XmlEnum("50/60")]
+    Hz5060,
 
-        [XmlEnum("400")]
-        Hz400
-    }
+    [XmlEnum("400")]
+    Hz400
 }

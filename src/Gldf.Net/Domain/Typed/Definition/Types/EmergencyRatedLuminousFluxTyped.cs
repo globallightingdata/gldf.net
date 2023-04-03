@@ -1,7 +1,6 @@
-namespace Gldf.Net.Domain.Typed.Definition.Types
+namespace Gldf.Net.Domain.Typed.Definition.Types;
+
+public class EmergencyRatedLuminousFluxTyped
 {
-    public class EmergencyRatedLuminousFluxTyped
-    {
-        public int Flux { get; set; }
-    }
+    public int Flux { get; set; }
 }

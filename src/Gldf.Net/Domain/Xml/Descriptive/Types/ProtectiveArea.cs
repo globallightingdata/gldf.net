@@ -1,16 +1,15 @@
 using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Descriptive.Types
+namespace Gldf.Net.Domain.Xml.Descriptive.Types;
+
+public enum ProtectiveArea
 {
-    public enum ProtectiveArea
-    {
-        [XmlEnum("Cleanroom suitable")]
-        CleanroomSuitable,
+    [XmlEnum("Cleanroom suitable")]
+    CleanroomSuitable,
         
-        [XmlEnum("Ball-impact proof")]
-        BallimpactProof,
+    [XmlEnum("Ball-impact proof")]
+    BallimpactProof,
         
-        [XmlEnum("Drive/Roll-over proof")]
-        DriveOrRollOverProof
-    }
+    [XmlEnum("Drive/Roll-over proof")]
+    DriveOrRollOverProof
 }

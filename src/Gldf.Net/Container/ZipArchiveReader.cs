@@ -5,133 +5,173 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 
-namespace Gldf.Net.Container
+namespace Gldf.Net.Container;
+
+internal class ZipArchiveReader : ZipArchiveIO
 {
-    internal class ZipArchiveReader : ZipArchiveIO
+    public bool IsZipArchive(string filePath)
     {
-        public bool IsZipArchive(string filePath)
+        return EvaluateFuncSafe(() =>
         {
-            return EvaluateFuncSafe(() =>
-            {
-                using var _ = ZipFile.OpenRead(filePath);
-                return true;
-            });
-        }
+            using var _ = ZipFile.OpenRead(filePath);
+            return true;
+        });
+    }
+    
+    public bool IsZipArchive(Stream stream)
+    {
+        return EvaluateFuncSafe(() =>
+        {
+            using var _ = new ZipArchive(stream, ZipArchiveMode.Read);
+            return true;
+        });
+    }
 
-        public bool ContainsRootXml(string filePath)
-        {
-            using var zipArchive = ZipFile.OpenRead(filePath);
-            return zipArchive.Entries.Any(entry => entry.FullName == "product.xml");
-        }
+    public bool ContainsRootXml(string filePath)
+    {
+        using var zipArchive = ZipFile.OpenRead(filePath);
+        // todo ignore case for product.xml
+        // todo "product.xml"
+        return zipArchive.Entries.Any(entry => entry.FullName == "product.xml");
+    }
+    
+    public bool ContainsRootXml(Stream zipStream)
+    {
+        using var zipArchive = new ZipArchive(zipStream);
+        return zipArchive.Entries.Any(entry => entry.FullName == "product.xml");
+    }
 
-        public GldfContainer ReadContainer(string filePath)
-        {
-            return ReadContainer(filePath, ContainerLoadSettings.Default);
-        }
+    public GldfContainer ReadContainer(string filePath)
+    {
+        return ReadContainer(filePath, ContainerLoadSettings.Default);
+    }
 
-        public GldfContainer ReadContainer(string filePath, ContainerLoadSettings settings)
-        {
-            var container = new GldfContainer();
-            using var zipArchive = ZipFile.OpenRead(filePath);
-            if (settings.ProductLoadBehaviour == ProductLoadBehaviour.Load)
-                AddDeserializedRoot(container, zipArchive);
-            if (settings.AssetLoadBehaviour != AssetLoadBehaviour.Skip)
-                AddAssets(zipArchive, container, settings.AssetLoadBehaviour);
-            if (settings.SignatureLoadBehaviour == SignatureLoadBehaviour.Load)
-                AddDeserializedMetaInfo(zipArchive, container);
-            return container;
-        }
+    public GldfContainer ReadContainer(string filePath, ContainerLoadSettings settings)
+    {
+        using var zipArchive = ZipFile.OpenRead(filePath);
+        ReadZipContent(zipArchive, settings);
+        return ReadZipContent(zipArchive, settings);
+    }
 
-        public string ReadRootXml(string filePath)
-        {
-            using var zipArchive = ZipFile.OpenRead(filePath);
-            return ReadRootXml(zipArchive);
-        }
+    public GldfContainer ReadContainer(Stream zipStream)
+    {
+        return ReadContainer(zipStream, ContainerLoadSettings.Default);
+    }
 
-        public void ExtractToDirectory(string sourceFilePath, string targetDirectory)
-        {
-            PrepareDirectory(targetDirectory, false);
-            ZipFile.ExtractToDirectory(sourceFilePath, targetDirectory);
-        }
+    public GldfContainer ReadContainer(Stream zipStream, ContainerLoadSettings settings)
+    {
+        using var zipArchive = new ZipArchive(zipStream, ZipArchiveMode.Read);
+        return ReadZipContent(zipArchive, settings);
+    }
 
-        private string ReadRootXml(ZipArchive zipArchive)
-        {
-            var productEntry = zipArchive.GetEntry("product.xml");
-            if (productEntry == null)
-                throw new RootNotFoundException(
-                    $"Required product.xml not found in root of {nameof(GldfContainer)}");
-            using var stream = productEntry.Open();
-            using var streamReader = new StreamReader(stream, Encoding);
-            return streamReader.ReadToEnd();
-        }
+    private GldfContainer ReadZipContent(ZipArchive zipArchive, ContainerLoadSettings settings)
+    {
+        var container = new GldfContainer();
+        if (settings.ProductLoadBehaviour == ProductLoadBehaviour.Load)
+            AddDeserializedRoot(container, zipArchive);
+        if (settings.AssetLoadBehaviour != AssetLoadBehaviour.Skip)
+            AddAssets(zipArchive, container, settings.AssetLoadBehaviour);
+        if (settings.SignatureLoadBehaviour == SignatureLoadBehaviour.Load)
+            AddDeserializedMetaInfo(zipArchive, container);
+        return container;
+    }
 
-        public IEnumerable<string> GetLargeFileNames(string filePath, long minBytes)
-        {
-            using var zipArchive = ZipFile.OpenRead(filePath);
-            return zipArchive.Entries.Where(e => e.Length >= minBytes).Select(e => e.FullName);
-        }
+    public string ReadRootXml(string filePath)
+    {
+        using var zipArchive = ZipFile.OpenRead(filePath);
+        return ReadRootXml(zipArchive);
+    }
 
-        private void AddDeserializedRoot(GldfContainer container, ZipArchive zipArchive)
-        {
-            var rootXml = ReadRootXml(zipArchive);
-            var deserializedRoot = GldfXmlSerializer.DeserializeFromString(rootXml);
-            container.Product = deserializedRoot;
-        }
+    public string ReadRootXml(Stream stream)
+    {
+        using var zipArchive = new ZipArchive(stream);
+        return ReadRootXml(zipArchive);
+    }
 
-        private void AddDeserializedMetaInfo(ZipArchive zipArchive, GldfContainer container)
-        {
-            var signatureEntry = zipArchive.GetEntry("meta-information.xml");
-            if (signatureEntry == null) return;
-            using var stream = signatureEntry.Open();
-            using var streamReader = new StreamReader(stream, Encoding);
-            var metaInfo = streamReader.ReadToEnd();
-            container.MetaInformation = MetaInfoSerializer.DeserializeFromString(metaInfo);
-        }
+    public void ExtractToDirectory(string sourceFilePath, string targetDirectory)
+    {
+        PrepareDirectory(targetDirectory, false);
+        ZipFile.ExtractToDirectory(sourceFilePath, targetDirectory);
+    }
 
-        private void AddAssets(ZipArchive zipArchive, GldfContainer container, AssetLoadBehaviour loadBehaviour)
-        {
-            var fileEntries = zipArchive.Entries.Where(entry => !string.IsNullOrEmpty(entry.Name));
-            foreach (var entry in fileEntries)
-                _ = HandleAssetEntry(container, entry, loadBehaviour);
-        }
+    private string ReadRootXml(ZipArchive zipArchive)
+    {
+        var productEntry = zipArchive.GetEntry("product.xml");
+        if (productEntry == null)
+            throw new RootNotFoundException(
+                $"Required product.xml not found in root of {nameof(GldfContainer)}");
+        using var stream = productEntry.Open();
+        using var streamReader = new StreamReader(stream, Encoding);
+        return streamReader.ReadToEnd();
+    }
 
-        private string HandleAssetEntry(GldfContainer container, ZipArchiveEntry entry, AssetLoadBehaviour behaviour)
-        {
-            var firstPathPart = entry.FullName.Split('/')[0].ToLower();
-            return firstPathPart switch
-            {
-                AssetFolderNames.Geometries => AddFileFromEntry(container.Assets.Geometries, entry, behaviour),
-                AssetFolderNames.Photometries => AddFileFromEntry(container.Assets.Photometries, entry, behaviour),
-                AssetFolderNames.Images => AddFileFromEntry(container.Assets.Images, entry, behaviour),
-                AssetFolderNames.Documents => AddFileFromEntry(container.Assets.Documents, entry, behaviour),
-                AssetFolderNames.Sensors => AddFileFromEntry(container.Assets.Sensors, entry, behaviour),
-                AssetFolderNames.Symbols => AddFileFromEntry(container.Assets.Symbols, entry, behaviour),
-                AssetFolderNames.Spectrums => AddFileFromEntry(container.Assets.Spectrums, entry, behaviour),
-                AssetFolderNames.Other => AddFileFromEntry(container.Assets.Other, entry, behaviour),
-                _ => $"File does not match any asset category: {entry.FullName}"
-            };
-        }
+    public IEnumerable<string> GetLargeFileNames(string filePath, long minBytes)
+    {
+        using var zipArchive = ZipFile.OpenRead(filePath);
+        return zipArchive.Entries.Where(e => e.Length >= minBytes).Select(e => e.FullName);
+    }
 
-        private string AddFileFromEntry(ICollection<ContainerFile> collection, ZipArchiveEntry entry,
-            AssetLoadBehaviour loadBehaviour)
-        {
-            var loadComplete = loadBehaviour == AssetLoadBehaviour.Load;
-            var fileEntryBytes = loadComplete ? entry.GetBytes() : Array.Empty<byte>();
-            var containerFile = new ContainerFile(entry.Name, fileEntryBytes);
-            collection.Add(containerFile);
-            return $"{entry.Name}: {containerFile.Bytes.Length} Bytes";
-        }
+    private void AddDeserializedRoot(GldfContainer container, ZipArchive zipArchive)
+    {
+        var rootXml = ReadRootXml(zipArchive);
+        var deserializedRoot = GldfXmlSerializer.DeserializeFromString(rootXml);
+        container.Product = deserializedRoot;
+    }
 
-        private bool EvaluateFuncSafe(Func<bool> checkFunc)
+    private void AddDeserializedMetaInfo(ZipArchive zipArchive, GldfContainer container)
+    {
+        var signatureEntry = zipArchive.GetEntry("meta-information.xml");
+        if (signatureEntry == null) return;
+        using var stream = signatureEntry.Open();
+        using var streamReader = new StreamReader(stream, Encoding);
+        var metaInfo = streamReader.ReadToEnd();
+        container.MetaInformation = MetaInfoSerializer.DeserializeFromString(metaInfo);
+    }
+
+    private void AddAssets(ZipArchive zipArchive, GldfContainer container, AssetLoadBehaviour loadBehaviour)
+    {
+        var fileEntries = zipArchive.Entries.Where(entry => !string.IsNullOrEmpty(entry.Name));
+        foreach (var entry in fileEntries)
+            _ = HandleAssetEntry(container, entry, loadBehaviour);
+    }
+
+    private string HandleAssetEntry(GldfContainer container, ZipArchiveEntry entry, AssetLoadBehaviour behaviour)
+    {
+        var firstPathPart = entry.FullName.Split('/')[0].ToLower();
+        return firstPathPart switch
         {
-            try
-            {
-                return checkFunc();
-            }
-            catch
-            {
-                return false;
-            }
+            AssetFolderNames.Geometries => AddFileFromEntry(container.Assets.Geometries, entry, behaviour),
+            AssetFolderNames.Photometries => AddFileFromEntry(container.Assets.Photometries, entry, behaviour),
+            AssetFolderNames.Images => AddFileFromEntry(container.Assets.Images, entry, behaviour),
+            AssetFolderNames.Documents => AddFileFromEntry(container.Assets.Documents, entry, behaviour),
+            AssetFolderNames.Sensors => AddFileFromEntry(container.Assets.Sensors, entry, behaviour),
+            AssetFolderNames.Symbols => AddFileFromEntry(container.Assets.Symbols, entry, behaviour),
+            AssetFolderNames.Spectrums => AddFileFromEntry(container.Assets.Spectrums, entry, behaviour),
+            AssetFolderNames.Other => AddFileFromEntry(container.Assets.Other, entry, behaviour),
+            _ => $"File does not match any asset category: {entry.FullName}"
+        };
+    }
+
+    private string AddFileFromEntry(ICollection<ContainerFile> collection, ZipArchiveEntry entry,
+        AssetLoadBehaviour loadBehaviour)
+    {
+        var loadComplete = loadBehaviour == AssetLoadBehaviour.Load;
+        var fileEntryBytes = loadComplete ? entry.GetBytes() : Array.Empty<byte>();
+        var containerFile = new ContainerFile(entry.Name, fileEntryBytes);
+        collection.Add(containerFile);
+        return $"{entry.Name}: {containerFile.Bytes.Length} Bytes";
+    }
+
+    private bool EvaluateFuncSafe(Func<bool> checkFunc)
+    {
+        try
+        {
+            return checkFunc();
+        }
+        catch
+        {
+            return false;
         }
     }
+
 }

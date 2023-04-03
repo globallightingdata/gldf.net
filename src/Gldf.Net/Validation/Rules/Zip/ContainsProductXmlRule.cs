@@ -4,34 +4,33 @@ using Gldf.Net.Exceptions;
 using System;
 using System.Collections.Generic;
 
-namespace Gldf.Net.Validation.Rules.Zip
+namespace Gldf.Net.Validation.Rules.Zip;
+
+internal class ContainsProductXmlRule : IZipArchiveValidationRule
 {
-    internal class ContainsProductXmlRule : IZipArchiveValidationRule
+    public int Priority => 20;
+
+    private readonly ZipArchiveReader _zipArchiveReader;
+
+    public ContainsProductXmlRule()
     {
-        public int Priority => 20;
+        _zipArchiveReader = new ZipArchiveReader();
+    }
 
-        private readonly ZipArchiveReader _zipArchiveReader;
-
-        public ContainsProductXmlRule()
+    public IEnumerable<ValidationHint> Validate(string filePath)
+    {
+        try
         {
-            _zipArchiveReader = new ZipArchiveReader();
+            return _zipArchiveReader.ContainsRootXml(filePath)
+                ? ValidationHint.Empty()
+                : ValidationHint.Error($"The GLDF container '{filePath}' does not contain a " +
+                                       "product.xml entry.", ErrorType.ProductXmlNotFound);
         }
-
-        public IEnumerable<ValidationHint> Validate(string filePath)
+        catch (Exception e)
         {
-            try
-            {
-                return _zipArchiveReader.ContainsRootXml(filePath)
-                    ? ValidationHint.Empty()
-                    : ValidationHint.Error($"The GLDF container '{filePath}' does not contain a " +
-                                           "product.xml entry.", ErrorType.ProductXmlNotFound);
-            }
-            catch (Exception e)
-            {
-                return ValidationHint.Error($"The GLDF container '{filePath}' could not be validated " +
-                                            "to contain a product.xml entry. " +
-                                            $"Error: {e.FlattenMessage()}", ErrorType.ProductXmlNotFound);
-            }
+            return ValidationHint.Error($"The GLDF container '{filePath}' could not be validated " +
+                                        "to contain a product.xml entry. " +
+                                        $"Error: {e.FlattenMessage()}", ErrorType.ProductXmlNotFound);
         }
     }
 }

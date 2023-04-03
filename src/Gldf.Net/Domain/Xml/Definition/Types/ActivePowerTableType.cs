@@ -1,8 +1,7 @@
-﻿namespace Gldf.Net.Domain.Xml.Definition.Types
+﻿namespace Gldf.Net.Domain.Xml.Definition.Types;
+
+public enum ActivePowerTableType
 {
-    public enum ActivePowerTableType
-    {
-        Steps,
-        Continuously
-    }
+    Steps,
+    Continuously
 }

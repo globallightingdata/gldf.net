@@ -1,10 +1,9 @@
-﻿namespace Gldf.Net.Tests.TestHelper
+﻿namespace Gldf.Net.Tests.TestHelper;
+
+public static class AssertionExtensions
 {
-    public static class AssertionExtensions
+    public static XmlStringAssertions ShouldBe(this string xml)
     {
-        public static XmlStringAssertions ShouldBe(this string xml)
-        {
-            return new(xml);
-        }
+        return new(xml);
     }
 }

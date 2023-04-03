@@ -1,6 +1,5 @@
-namespace Gldf.Net.Domain.Typed.Definition.Types.Mounting
+namespace Gldf.Net.Domain.Typed.Definition.Types.Mounting;
+
+public class FreeStandingTyped
 {
-    public class FreeStandingTyped
-    {
-    }
 }

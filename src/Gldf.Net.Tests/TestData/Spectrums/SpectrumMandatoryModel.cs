@@ -7,117 +7,116 @@ using Gldf.Net.Domain.Xml.Product;
 using Gldf.Net.Domain.Xml.Product.Types;
 using System;
 
-namespace Gldf.Net.Tests.TestData.Spectrums
+namespace Gldf.Net.Tests.TestData.Spectrums;
+
+public class SpectrumMandatoryModel
 {
-    public class SpectrumMandatoryModel
+    public static Root Root => new()
     {
-        public static Root Root => new()
+        Header = new Header
         {
-            Header = new Header
+            Manufacturer = "DIAL",
+            CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            CreatedWithApplication = "Visual Studio Code"
+        },
+        GeneralDefinitions = new GeneralDefinitions
+        {
+            Files = new[]
             {
-                Manufacturer = "DIAL",
-                CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
-                CreatedWithApplication = "Visual Studio Code"
+                new GldfFile
+                {
+                    Id = "eulumdat",
+                    ContentType = FileContentType.LdcEulumdat,
+                    Type = FileType.Url,
+                    File = "https://example.org/eulumdat.ldt"
+                },
+                new GldfFile
+                {
+                    Id = "spectrumFile",
+                    ContentType = FileContentType.SpectrumText,
+                    Type = FileType.Url,
+                    File = "https://example.org/spectrum.txt"
+                }
             },
-            GeneralDefinitions = new GeneralDefinitions
+            Photometries = new[]
             {
-                Files = new[]
+                new Photometry
                 {
-                    new GldfFile
+                    Id = "photometry",
+                    Content = new PhotometryFileReference
                     {
-                        Id = "eulumdat",
-                        ContentType = FileContentType.LdcEulumdat,
-                        Type = FileType.Url,
-                        File = "https://example.org/eulumdat.ldt"
-                    },
-                    new GldfFile
-                    {
-                        Id = "spectrumFile",
-                        ContentType = FileContentType.SpectrumText,
-                        Type = FileType.Url,
-                        File = "https://example.org/spectrum.txt"
-                    }
-                },
-                Photometries = new[]
-                {
-                    new Photometry
-                    {
-                        Id = "photometry",
-                        Content = new PhotometryFileReference
-                        {
-                            FileId = "eulumdat"
-                        }
-                    }
-                },
-                Spectrums = new[]
-                {
-                    new Spectrum
-                    {
-                        Id = "spectrum",
-                        FileReference = new SpectrumFileReference
-                        {
-                            FileId = "spectrumFile"
-                        }
-                    }
-                },
-                Emitters = new[]
-                {
-                    new Emitter
-                    {
-                        Id = "emitter",
-                        PossibleFittings = new EmitterBase[]
-                        {
-                            new ChangeableLightEmitter
-                            {
-                                PhotometryReference = new PhotometryReference
-                                {
-                                    PhotometryId = "photometry"
-                                }
-                            }
-                        }
+                        FileId = "eulumdat"
                     }
                 }
             },
-            ProductDefinitions = new ProductDefinitions
+            Spectrums = new[]
             {
-                ProductMetaData = new ProductMetaData
+                new Spectrum
                 {
-                    ProductNumber = new[]
+                    Id = "spectrum",
+                    FileReference = new SpectrumFileReference
                     {
-                        new Locale
-                        {
-                            Language = "en",
-                            Text = "Product number"
-                        }
-                    },
-                    Name = new[]
-                    {
-                        new Locale
-                        {
-                            Language = "en",
-                            Text = "Product name"
-                        }
+                        FileId = "spectrumFile"
                     }
-                },
-                Variants = new[]
+                }
+            },
+            Emitters = new[]
+            {
+                new Emitter
                 {
-                    new Variant
+                    Id = "emitter",
+                    PossibleFittings = new EmitterBase[]
                     {
-                        Id = "variant-1",
-                        Name = new[]
+                        new ChangeableLightEmitter
                         {
-                            new Locale { Language = "en", Text = "Variant 1" }
-                        },
-                        Geometry = new GeometryReference
-                        {
-                            Reference = new EmitterReference
+                            PhotometryReference = new PhotometryReference
                             {
-                                EmitterId = "emitter"
+                                PhotometryId = "photometry"
                             }
                         }
                     }
                 }
             }
-        };
-    }
+        },
+        ProductDefinitions = new ProductDefinitions
+        {
+            ProductMetaData = new ProductMetaData
+            {
+                ProductNumber = new[]
+                {
+                    new Locale
+                    {
+                        Language = "en",
+                        Text = "Product number"
+                    }
+                },
+                Name = new[]
+                {
+                    new Locale
+                    {
+                        Language = "en",
+                        Text = "Product name"
+                    }
+                }
+            },
+            Variants = new[]
+            {
+                new Variant
+                {
+                    Id = "variant-1",
+                    Name = new[]
+                    {
+                        new Locale { Language = "en", Text = "Variant 1" }
+                    },
+                    Geometry = new GeometryReference
+                    {
+                        Reference = new EmitterReference
+                        {
+                            EmitterId = "emitter"
+                        }
+                    }
+                }
+            }
+        }
+    };
 }

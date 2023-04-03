@@ -1,9 +1,8 @@
-namespace Gldf.Net.Domain.Typed.Definition.Types
-{
-    public class SimpleRectangularEmitterTyped
-    {
-        public int Width { get; set; }
+namespace Gldf.Net.Domain.Typed.Definition.Types;
 
-        public int Length { get; set; }
-    }
+public class SimpleRectangularEmitterTyped
+{
+    public int Width { get; set; }
+
+    public int Length { get; set; }
 }

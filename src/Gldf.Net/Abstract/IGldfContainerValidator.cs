@@ -2,12 +2,11 @@
 using Gldf.Net.Validation;
 using System.Collections.Generic;
 
-namespace Gldf.Net.Abstract
-{
-    public interface IGldfContainerValidator
-    {
-        IEnumerable<ValidationHint> Validate(string filePath);
+namespace Gldf.Net.Abstract;
 
-        IEnumerable<ValidationHint> Validate(GldfContainer container);
-    }
+public interface IGldfContainerValidator
+{
+    IEnumerable<ValidationHint> Validate(string filePath);
+
+    IEnumerable<ValidationHint> Validate(GldfContainer container);
 }

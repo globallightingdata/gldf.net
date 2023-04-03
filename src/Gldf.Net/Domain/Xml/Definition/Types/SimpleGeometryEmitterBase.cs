@@ -1,7 +1,5 @@
-﻿namespace Gldf.Net.Domain.Xml.Definition.Types
-{
-    public abstract class SimpleGeometryEmitterBase
-    {
-    }
+﻿namespace Gldf.Net.Domain.Xml.Definition.Types;
 
+public abstract class SimpleGeometryEmitterBase
+{
 }

@@ -1,14 +1,13 @@
 ﻿using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Definition.Types
+namespace Gldf.Net.Domain.Xml.Definition.Types;
+
+public class LightSourcePowerRange
 {
-    public class LightSourcePowerRange
-    {
-        public double Lower { get; set; }
+    public double Lower { get; set; }
 
-        public double Upper { get; set; }
+    public double Upper { get; set; }
 
-        [XmlElement(ElementName = "DefaultLightSourcePower")]
-        public double Default { get; set; }
-    }
+    [XmlElement(ElementName = "DefaultLightSourcePower")]
+    public double Default { get; set; }
 }

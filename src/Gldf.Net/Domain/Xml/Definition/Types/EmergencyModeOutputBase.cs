@@ -1,6 +1,5 @@
-﻿namespace Gldf.Net.Domain.Xml.Definition.Types
+﻿namespace Gldf.Net.Domain.Xml.Definition.Types;
+
+public abstract class EmergencyModeOutputBase
 {
-    public abstract class EmergencyModeOutputBase
-    {
-    }
 }

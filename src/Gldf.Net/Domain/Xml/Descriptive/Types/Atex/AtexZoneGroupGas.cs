@@ -2,17 +2,16 @@
 
 // ReSharper disable InconsistentNaming
 
-namespace Gldf.Net.Domain.Xml.Descriptive.Types.Atex
+namespace Gldf.Net.Domain.Xml.Descriptive.Types.Atex;
+
+public enum AtexZoneGroupGas
 {
-    public enum AtexZoneGroupGas
-    {
-        IIC,
+    IIC,
 
-        [XmlEnum("IIB + H2")]
-        IIBH2,
+    [XmlEnum("IIB + H2")]
+    IIBH2,
 
-        IIB,
+    IIB,
 
-        IIA
-    }
+    IIA
 }

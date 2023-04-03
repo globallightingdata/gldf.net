@@ -1,21 +1,20 @@
 ﻿using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Definition.Types
+namespace Gldf.Net.Domain.Xml.Definition.Types;
+
+public enum DetectionMethod
 {
-    public enum DetectionMethod
-    {
-        [XmlEnum("Passive Infrared")]
-        PassiveInfrared,
+    [XmlEnum("Passive Infrared")]
+    PassiveInfrared,
 
-        [XmlEnum("High Frequency")]
-        HighFrequency,
+    [XmlEnum("High Frequency")]
+    HighFrequency,
 
-        Microwave,
+    Microwave,
 
-        Ultrasonic,
+    Ultrasonic,
 
-        Camera,
+    Camera,
 
-        Other
-    }
+    Other
 }

@@ -1,9 +1,8 @@
-﻿namespace Gldf.Net.Domain.Typed.Global
-{
-    public class LocaleTyped
-    {
-        public string Language { get; set; }
+﻿namespace Gldf.Net.Domain.Typed.Global;
 
-        public string Text { get; set; }
-    }
+public class LocaleTyped
+{
+    public string Language { get; set; }
+
+    public string Text { get; set; }
 }

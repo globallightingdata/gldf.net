@@ -1,10 +1,9 @@
 ﻿using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Definition.Types
+namespace Gldf.Net.Domain.Xml.Definition.Types;
+
+public class SensorFileReference
 {
-    public class SensorFileReference
-    {
-        [XmlAttribute(DataType = "NCName", AttributeName = "fileId")]
-        public string FileId { get; set; }
-    }
+    [XmlAttribute(DataType = "NCName", AttributeName = "fileId")]
+    public string FileId { get; set; }
 }

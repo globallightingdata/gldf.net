@@ -1,9 +1,8 @@
-﻿namespace Gldf.Net.Domain.Xml.Definition.Types
+﻿namespace Gldf.Net.Domain.Xml.Definition.Types;
+
+public enum LevelOfDetail
 {
-    public enum LevelOfDetail
-    {
-        Low,
-        Medium,
-        High
-    }
+    Low,
+    Medium,
+    High
 }

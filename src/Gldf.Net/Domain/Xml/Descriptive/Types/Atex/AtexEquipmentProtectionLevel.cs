@@ -1,14 +1,13 @@
-﻿namespace Gldf.Net.Domain.Xml.Descriptive.Types.Atex
+﻿namespace Gldf.Net.Domain.Xml.Descriptive.Types.Atex;
+
+public enum AtexEquipmentProtectionLevel
 {
-    public enum AtexEquipmentProtectionLevel
-    {
-        Ga,
-        Gb,
-        Gc,
-        Da,
-        Db,
-        Dc,
-        Ma,
-        Mb
-    }
+    Ga,
+    Gb,
+    Gc,
+    Da,
+    Db,
+    Dc,
+    Ma,
+    Mb
 }

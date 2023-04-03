@@ -1,11 +1,10 @@
-namespace Gldf.Net.Domain.Typed.Definition.Types.Mounting
+namespace Gldf.Net.Domain.Typed.Definition.Types.Mounting;
+
+public class WallRecessedTyped
 {
-    public class WallRecessedTyped
-    {
-        public int RecessedDepth { get; set; }
+    public int RecessedDepth { get; set; }
 
-        public CircularCutoutTyped CircularCutout { get; set; }
+    public CircularCutoutTyped CircularCutout { get; set; }
 
-        public RectangularCutoutTyped RectangularCutout { get; set; }
-    }
+    public RectangularCutoutTyped RectangularCutout { get; set; }
 }

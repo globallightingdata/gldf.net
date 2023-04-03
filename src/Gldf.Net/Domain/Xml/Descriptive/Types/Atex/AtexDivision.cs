@@ -1,13 +1,12 @@
 ﻿using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Descriptive.Types.Atex
-{
-    public enum AtexDivision
-    {
-        [XmlEnum("1")]
-        Division1,
+namespace Gldf.Net.Domain.Xml.Descriptive.Types.Atex;
 
-        [XmlEnum("2")]
-        Division2
-    }
+public enum AtexDivision
+{
+    [XmlEnum("1")]
+    Division1,
+
+    [XmlEnum("2")]
+    Division2
 }

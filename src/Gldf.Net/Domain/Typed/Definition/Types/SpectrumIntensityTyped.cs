@@ -1,9 +1,8 @@
-namespace Gldf.Net.Domain.Typed.Definition.Types
-{
-    public class SpectrumIntensityTyped
-    {
-        public int Wavelength { get; set; }
+namespace Gldf.Net.Domain.Typed.Definition.Types;
 
-        public double Intensity { get; set; }
-    }
+public class SpectrumIntensityTyped
+{
+    public int Wavelength { get; set; }
+
+    public double Intensity { get; set; }
 }

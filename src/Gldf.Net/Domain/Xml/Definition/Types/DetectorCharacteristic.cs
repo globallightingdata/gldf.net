@@ -1,9 +1,8 @@
-﻿namespace Gldf.Net.Domain.Xml.Definition.Types
+﻿namespace Gldf.Net.Domain.Xml.Definition.Types;
+
+public enum DetectorCharacteristic
 {
-    public enum DetectorCharacteristic
-    {
-        Round,
-        Square,
-        Other
-    }
+    Round,
+    Square,
+    Other
 }

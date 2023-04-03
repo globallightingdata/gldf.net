@@ -1,9 +1,8 @@
-﻿namespace Gldf.Net.Domain.Xml.Descriptive.Types.Atex
+﻿namespace Gldf.Net.Domain.Xml.Descriptive.Types.Atex;
+
+public enum AtexDivisionGroupDust
 {
-    public enum AtexDivisionGroupDust
-    {
-        E,
-        F,
-        G
-    }
+    E,
+    F,
+    G
 }

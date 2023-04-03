@@ -1,7 +1,6 @@
-namespace Gldf.Net.Domain.Typed.Definition.Types
+namespace Gldf.Net.Domain.Typed.Definition.Types;
+
+public class SimpleCircularEmitterTyped
 {
-    public class SimpleCircularEmitterTyped
-    {
-        public int Diameter { get; set; }
-    }
+    public int Diameter { get; set; }
 }

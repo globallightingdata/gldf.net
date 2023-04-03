@@ -1,6 +1,5 @@
-﻿namespace Gldf.Net.Domain.Xml.Global
+﻿namespace Gldf.Net.Domain.Xml.Global;
+
+public abstract class VoltageValueBase
 {
-    public abstract class VoltageValueBase
-    {
-    }
 }

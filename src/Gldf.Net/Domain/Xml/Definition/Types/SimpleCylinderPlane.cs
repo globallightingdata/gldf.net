@@ -1,9 +1,8 @@
-﻿namespace Gldf.Net.Domain.Xml.Definition.Types
+﻿namespace Gldf.Net.Domain.Xml.Definition.Types;
+
+public enum SimpleCylinderPlane
 {
-    public enum SimpleCylinderPlane
-    {
-        X,
-        Y,
-        Z
-    }
+    X,
+    Y,
+    Z
 }

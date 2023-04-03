@@ -1,52 +1,51 @@
 using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Descriptive.Types
+namespace Gldf.Net.Domain.Xml.Descriptive.Types;
+
+public enum LightDistribution
 {
-    public enum LightDistribution
-    {
-        [XmlEnum("Laterally symmetrical narrow")]
-        LaterallySymmetricalNarrow,
+    [XmlEnum("Laterally symmetrical narrow")]
+    LaterallySymmetricalNarrow,
 
-        [XmlEnum("Laterally symmetrical medium")]
-        LaterallySymmetricalMedium,
+    [XmlEnum("Laterally symmetrical medium")]
+    LaterallySymmetricalMedium,
 
-        [XmlEnum("Laterally symmetrical wide")]
-        LaterallySymmetricalWide,
+    [XmlEnum("Laterally symmetrical wide")]
+    LaterallySymmetricalWide,
 
-        [XmlEnum("Symmetrical in each quadrant")]
-        SymmetricalInEachQuadrant,
+    [XmlEnum("Symmetrical in each quadrant")]
+    SymmetricalInEachQuadrant,
 
-        [XmlEnum("Symmetric about 0-180 plane")]
-        SymmetricAbout0To180Plane,
+    [XmlEnum("Symmetric about 0-180 plane")]
+    SymmetricAbout0To180Plane,
 
-        [XmlEnum("Symmetric about 90-270 plane")]
-        SymmetricAbout90To270Plane,
+    [XmlEnum("Symmetric about 90-270 plane")]
+    SymmetricAbout90To270Plane,
 
-        [XmlEnum("Asymmetrical")]
-        Asymmetrical,
+    [XmlEnum("Asymmetrical")]
+    Asymmetrical,
 
-        [XmlEnum("Asymmetrical flood")]
-        AsymmetricalFlood,
+    [XmlEnum("Asymmetrical flood")]
+    AsymmetricalFlood,
 
-        [XmlEnum("Asymmetrical wide flood")]
-        AsymmetricalWideFlood,
+    [XmlEnum("Asymmetrical wide flood")]
+    AsymmetricalWideFlood,
 
-        [XmlEnum("Diffuse half spherical")]
-        DiffuseHalfSpherical,
+    [XmlEnum("Diffuse half spherical")]
+    DiffuseHalfSpherical,
 
-        [XmlEnum("Diffuse full spherical")]
-        DiffuseFullSpherical,
+    [XmlEnum("Diffuse full spherical")]
+    DiffuseFullSpherical,
 
-        [XmlEnum("Direct")]
-        Direct,
+    [XmlEnum("Direct")]
+    Direct,
 
-        [XmlEnum("Indirect")]
-        Indirect,
+    [XmlEnum("Indirect")]
+    Indirect,
 
-        [XmlEnum("Direct indirect")]
-        DirectIndirect,
+    [XmlEnum("Direct indirect")]
+    DirectIndirect,
 
-        [XmlEnum("Other")]
-        Other
-    }
+    [XmlEnum("Other")]
+    Other
 }

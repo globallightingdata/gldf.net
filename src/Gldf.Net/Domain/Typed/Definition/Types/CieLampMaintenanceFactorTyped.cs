@@ -1,11 +1,10 @@
-namespace Gldf.Net.Domain.Typed.Definition.Types
+namespace Gldf.Net.Domain.Typed.Definition.Types;
+
+public class CieLampMaintenanceFactorTyped
 {
-    public class CieLampMaintenanceFactorTyped
-    {
-        public int BurningTime { get; set; }
+    public int BurningTime { get; set; }
 
-        public double LampLumenMaintenanceFactor { get; set; }
+    public double LampLumenMaintenanceFactor { get; set; }
 
-        public double LampSurvivalFactor { get; set; }
-    }
+    public double LampSurvivalFactor { get; set; }
 }

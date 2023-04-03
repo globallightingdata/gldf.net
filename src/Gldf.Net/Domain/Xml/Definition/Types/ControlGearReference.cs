@@ -1,36 +1,35 @@
 ﻿using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Definition.Types
+namespace Gldf.Net.Domain.Xml.Definition.Types;
+
+public class ControlGearReference
 {
-    public class ControlGearReference
+    private int _controlGearCount;
+    private bool _controlGearCountSpecified;
+
+    [XmlAttribute(DataType = "NCName", AttributeName = "controlGearId")]
+    public string ControlGearId { get; set; }
+
+    [XmlAttribute(AttributeName = "controlGearCount")]
+    public int ControlGearCount
     {
-        private int _controlGearCount;
-        private bool _controlGearCountSpecified;
-
-        [XmlAttribute(DataType = "NCName", AttributeName = "controlGearId")]
-        public string ControlGearId { get; set; }
-
-        [XmlAttribute(AttributeName = "controlGearCount")]
-        public int ControlGearCount
+        get => _controlGearCount;
+        set
         {
-            get => _controlGearCount;
-            set
-            {
-                _controlGearCount = value;
-                ControlGearCountSpecified = value > 0;
-            }
+            _controlGearCount = value;
+            ControlGearCountSpecified = value > 0;
         }
+    }
 
-        [XmlIgnore]
-        public bool ControlGearCountSpecified
+    [XmlIgnore]
+    public bool ControlGearCountSpecified
+    {
+        get => _controlGearCountSpecified;
+        set
         {
-            get => _controlGearCountSpecified;
-            set
-            {
-                _controlGearCountSpecified = value;
-                if (value && _controlGearCount < 1)
-                    _controlGearCount = 1;
-            }
+            _controlGearCountSpecified = value;
+            if (value && _controlGearCount < 1)
+                _controlGearCount = 1;
         }
     }
 }

@@ -1,12 +1,11 @@
 ﻿using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Product
-{
-    public class ProductDefinitions
-    {
-        public ProductMetaData ProductMetaData { get; set; }
+namespace Gldf.Net.Domain.Xml.Product;
 
-        [XmlArrayItem("Variant")]
-        public Variant[] Variants { get; set; }
-    }
+public class ProductDefinitions
+{
+    public ProductMetaData ProductMetaData { get; set; }
+
+    [XmlArrayItem("Variant")]
+    public Variant[] Variants { get; set; }
 }

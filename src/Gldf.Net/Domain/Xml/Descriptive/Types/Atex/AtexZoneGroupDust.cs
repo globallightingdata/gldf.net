@@ -1,13 +1,12 @@
 ﻿// ReSharper disable InconsistentNaming
 
-namespace Gldf.Net.Domain.Xml.Descriptive.Types.Atex
+namespace Gldf.Net.Domain.Xml.Descriptive.Types.Atex;
+
+public enum AtexZoneGroupDust
 {
-    public enum AtexZoneGroupDust
-    {
-        IIIC,
+    IIIC,
 
-        IIIB,
+    IIIB,
 
-        IIIA
-    }
+    IIIA
 }

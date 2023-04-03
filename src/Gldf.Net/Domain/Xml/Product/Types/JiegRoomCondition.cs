@@ -1,16 +1,15 @@
 ﻿using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Product.Types
+namespace Gldf.Net.Domain.Xml.Product.Types;
+
+public enum JiegRoomCondition
 {
-    public enum JiegRoomCondition
-    {
-        [XmlEnum("Clean")]
-        Clean,
+    [XmlEnum("Clean")]
+    Clean,
 
-        [XmlEnum("Normal")]
-        Normal,
+    [XmlEnum("Normal")]
+    Normal,
 
-        [XmlEnum("Dirty")]
-        Dirty
-    }
+    [XmlEnum("Dirty")]
+    Dirty
 }

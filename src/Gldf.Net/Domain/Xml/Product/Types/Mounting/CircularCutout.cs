@@ -1,9 +1,8 @@
-﻿namespace Gldf.Net.Domain.Xml.Product.Types.Mounting
-{
-    public class CircularCutout : MountingCutoutBase
-    {
-        public int Diameter { get; set; }
+﻿namespace Gldf.Net.Domain.Xml.Product.Types.Mounting;
 
-        public int Depth { get; set; }
-    }
+public class CircularCutout : MountingCutoutBase
+{
+    public int Diameter { get; set; }
+
+    public int Depth { get; set; }
 }

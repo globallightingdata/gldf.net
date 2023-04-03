@@ -1,12 +1,11 @@
 ﻿// ReSharper disable InconsistentNaming
 
-namespace Gldf.Net.Domain.Xml.Descriptive.Types.Atex
+namespace Gldf.Net.Domain.Xml.Descriptive.Types.Atex;
+
+public enum AtexDirective
 {
-    public enum AtexDirective
-    {
-        ATEX,
-        IECEx,
-        CEC,
-        NEC
-    }
+    ATEX,
+    IECEx,
+    CEC,
+    NEC
 }

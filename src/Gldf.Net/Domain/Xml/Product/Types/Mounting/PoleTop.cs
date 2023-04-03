@@ -1,23 +1,22 @@
 ﻿using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Product.Types.Mounting
+namespace Gldf.Net.Domain.Xml.Product.Types.Mounting;
+
+public class PoleTop
 {
-    public class PoleTop
+    private int _poleHeight;
+
+    [XmlAttribute("poleHeight")]
+    public int PoleHeight
     {
-        private int _poleHeight;
-
-        [XmlAttribute("poleHeight")]
-        public int PoleHeight
+        get => _poleHeight;
+        set
         {
-            get => _poleHeight;
-            set
-            {
-                _poleHeight = value;
-                PoleHeightSpecified = true;
-            }
+            _poleHeight = value;
+            PoleHeightSpecified = true;
         }
-
-        [XmlIgnore]
-        public bool PoleHeightSpecified { get; set; }
     }
+
+    [XmlIgnore]
+    public bool PoleHeightSpecified { get; set; }
 }

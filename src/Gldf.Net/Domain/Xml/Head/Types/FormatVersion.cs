@@ -1,10 +1,9 @@
 ﻿using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Head.Types
+namespace Gldf.Net.Domain.Xml.Head.Types;
+
+public enum FormatVersion
 {
-    public enum FormatVersion
-    {
-        [XmlEnum("1.0.0-rc.1")]
-        V100
-    }
+    [XmlEnum("1.0.0-rc.1")]
+    V100
 }

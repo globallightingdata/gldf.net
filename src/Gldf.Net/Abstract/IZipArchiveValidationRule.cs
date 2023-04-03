@@ -1,12 +1,11 @@
 ﻿using Gldf.Net.Validation;
 using System.Collections.Generic;
 
-namespace Gldf.Net.Abstract
-{
-    internal interface IZipArchiveValidationRule
-    {
-        public int Priority { get; }
+namespace Gldf.Net.Abstract;
 
-        IEnumerable<ValidationHint> Validate(string filePath);
-    }
+internal interface IZipArchiveValidationRule
+{
+    public int Priority { get; }
+
+    IEnumerable<ValidationHint> Validate(string filePath);
 }

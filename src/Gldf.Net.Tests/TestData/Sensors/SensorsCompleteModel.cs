@@ -8,119 +8,118 @@ using Gldf.Net.Domain.Xml.Product;
 using Gldf.Net.Domain.Xml.Product.Types;
 using System;
 
-namespace Gldf.Net.Tests.TestData.Sensors
+namespace Gldf.Net.Tests.TestData.Sensors;
+
+public class SensorsCompleteModel
 {
-    public class SensorsCompleteModel
+    public static Root Root => new()
     {
-        public static Root Root => new()
+        Header = new Header
         {
-            Header = new Header
+            Manufacturer = "DIAL",
+            CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            CreatedWithApplication = "Visual Studio Code",
+            FormatVersion = FormatVersion.V100
+        },
+        GeneralDefinitions = new GeneralDefinitions
+        {
+            Files = new[]
             {
-                Manufacturer = "DIAL",
-                CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
-                CreatedWithApplication = "Visual Studio Code",
-                FormatVersion = FormatVersion.V100
+                new GldfFile
+                {
+                    Id = "sensorFile",
+                    ContentType = FileContentType.SensorSensLdt,
+                    Type = FileType.Url,
+                    File = "https://example.org/sensor.sensldt"
+                }
             },
-            GeneralDefinitions = new GeneralDefinitions
+            Sensors = new[]
             {
-                Files = new[]
+                new Sensor
                 {
-                    new GldfFile
+                    Id = "sensor",
+                    SensorFileReference = new SensorFileReference
                     {
-                        Id = "sensorFile",
-                        ContentType = FileContentType.SensorSensLdt,
-                        Type = FileType.Url,
-                        File = "https://example.org/sensor.sensldt"
-                    }
-                },
-                Sensors = new[]
-                {
-                    new Sensor
+                        FileId = "sensorFile"
+                    },
+                    DetectorCharacteristics = new[]
                     {
-                        Id = "sensor",
-                        SensorFileReference = new SensorFileReference
-                        {
-                            FileId = "sensorFile"
-                        },
-                        DetectorCharacteristics = new[]
-                        {
-                            DetectorCharacteristic.Round,
-                            DetectorCharacteristic.Square,
-                            DetectorCharacteristic.Other
-                        },
-                        DetectionMethods = new[]
-                        {
-                            DetectionMethod.PassiveInfrared,
-                            DetectionMethod.HighFrequency,
-                            DetectionMethod.Microwave,
-                            DetectionMethod.Ultrasonic,
-                            DetectionMethod.Camera,
-                            DetectionMethod.Other
-                        },
-                        DetectorTypes = new[]
-                        {
-                            DetectorType.MotionDetector,
-                            DetectorType.PresenceDetector,
-                            DetectorType.DaylightDetector,
-                            DetectorType.Other
-                        }
-                    }
-                },
-                Emitters = new[]
-                {
-                    new Emitter
+                        DetectorCharacteristic.Round,
+                        DetectorCharacteristic.Square,
+                        DetectorCharacteristic.Other
+                    },
+                    DetectionMethods = new[]
                     {
-                        Id = "emitter",
-                        PossibleFittings = new EmitterBase[]
-                        {
-                            new SensorEmitter
-                            {
-                                SensorId = "sensor"
-                            }
-                        }
+                        DetectionMethod.PassiveInfrared,
+                        DetectionMethod.HighFrequency,
+                        DetectionMethod.Microwave,
+                        DetectionMethod.Ultrasonic,
+                        DetectionMethod.Camera,
+                        DetectionMethod.Other
+                    },
+                    DetectorTypes = new[]
+                    {
+                        DetectorType.MotionDetector,
+                        DetectorType.PresenceDetector,
+                        DetectorType.DaylightDetector,
+                        DetectorType.Other
                     }
                 }
             },
-            ProductDefinitions = new ProductDefinitions
+            Emitters = new[]
             {
-                ProductMetaData = new ProductMetaData
+                new Emitter
                 {
-                    ProductNumber = new[]
+                    Id = "emitter",
+                    PossibleFittings = new EmitterBase[]
                     {
-                        new Locale
+                        new SensorEmitter
                         {
-                            Language = "en",
-                            Text = "Product number"
-                        }
-                    },
-                    Name = new[]
-                    {
-                        new Locale
-                        {
-                            Language = "en",
-                            Text = "Product name"
-                        }
-                    }
-                },
-                Variants = new[]
-                {
-                    new Variant
-                    {
-                        Id = "variant-1",
-                        Name = new[]
-                        {
-                            new Locale { Language = "en", Text = "Variant 1" }
-                        },
-                        Geometry = new GeometryReference
-                        {
-                            Reference = new EmitterReference
-                            {
-                                EmitterId = "emitter"
-                            }
+                            SensorId = "sensor"
                         }
                     }
                 }
             }
-        };
-    }
+        },
+        ProductDefinitions = new ProductDefinitions
+        {
+            ProductMetaData = new ProductMetaData
+            {
+                ProductNumber = new[]
+                {
+                    new Locale
+                    {
+                        Language = "en",
+                        Text = "Product number"
+                    }
+                },
+                Name = new[]
+                {
+                    new Locale
+                    {
+                        Language = "en",
+                        Text = "Product name"
+                    }
+                }
+            },
+            Variants = new[]
+            {
+                new Variant
+                {
+                    Id = "variant-1",
+                    Name = new[]
+                    {
+                        new Locale { Language = "en", Text = "Variant 1" }
+                    },
+                    Geometry = new GeometryReference
+                    {
+                        Reference = new EmitterReference
+                        {
+                            EmitterId = "emitter"
+                        }
+                    }
+                }
+            }
+        }
+    };
 }

@@ -1,10 +1,9 @@
 ﻿using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Definition.Types
+namespace Gldf.Net.Domain.Xml.Definition.Types;
+
+public class ModelGeometry : GeometryBase
 {
-    public class ModelGeometry : GeometryBase
-    {
-        [XmlElement("GeometryFileReference")]
-        public GeometryFileReference[] GeometryFileReferences { get; set; }
-    }
+    [XmlElement("GeometryFileReference")]
+    public GeometryFileReference[] GeometryFileReferences { get; set; }
 }

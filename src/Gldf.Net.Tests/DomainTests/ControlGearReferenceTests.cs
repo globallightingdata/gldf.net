@@ -2,34 +2,33 @@
 using Gldf.Net.Domain.Xml.Definition.Types;
 using NUnit.Framework;
 
-namespace Gldf.Net.Tests.DomainTests
+namespace Gldf.Net.Tests.DomainTests;
+
+[TestFixture]
+public class ControlGearReferenceTests
 {
-    [TestFixture]
-    public class ControlGearReferenceTests
+    [Test]
+    public void ControlGearCountSpecified_SetTrue_Should_SetCount_To_1()
     {
-        [Test]
-        public void ControlGearCountSpecified_SetTrue_Should_SetCount_To_1()
+        var controlGearReference = new ControlGearReference
         {
-            var controlGearReference = new ControlGearReference
-            {
-                ControlGearCount = 0,
-                ControlGearCountSpecified = true
-            };
+            ControlGearCount = 0,
+            ControlGearCountSpecified = true
+        };
 
-            controlGearReference.ControlGearCount.Should().Be(1);
-        }
+        controlGearReference.ControlGearCount.Should().Be(1);
+    }
 
-        [TestCase(0, false)]
-        [TestCase(1, true)]
-        [TestCase(2, true)]
-        public void ControlGearCount_Set_Should_SetSpecified_AsExpected(int count, bool expected)
+    [TestCase(0, false)]
+    [TestCase(1, true)]
+    [TestCase(2, true)]
+    public void ControlGearCount_Set_Should_SetSpecified_AsExpected(int count, bool expected)
+    {
+        var controlGearReference = new ControlGearReference
         {
-            var controlGearReference = new ControlGearReference
-            {
-                ControlGearCount = count
-            };
+            ControlGearCount = count
+        };
 
-            controlGearReference.ControlGearCountSpecified.Should().Be(expected);
-        }
+        controlGearReference.ControlGearCountSpecified.Should().Be(expected);
     }
 }

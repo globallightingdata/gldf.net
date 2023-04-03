@@ -1,6 +1,5 @@
-﻿namespace Gldf.Net.Domain.Xml.Product.Types.Mounting
+﻿namespace Gldf.Net.Domain.Xml.Product.Types.Mounting;
+
+public class WallSurfaceMounted
 {
-    public class WallSurfaceMounted
-    {
-    }
 }

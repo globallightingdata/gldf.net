@@ -1,7 +1,6 @@
-namespace Gldf.Net.Domain.Typed.Definition.Types
+namespace Gldf.Net.Domain.Typed.Definition.Types;
+
+public class ModelGeometryTyped : TypedBase
 {
-    public class ModelGeometryTyped : TypedBase
-    {
-        public ModelFileTyped[] GeometryFiles { get; set; }
-    }
+    public ModelFileTyped[] GeometryFiles { get; set; }
 }

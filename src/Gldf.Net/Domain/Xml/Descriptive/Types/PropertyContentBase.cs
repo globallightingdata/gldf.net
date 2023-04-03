@@ -1,6 +1,5 @@
-﻿namespace Gldf.Net.Domain.Xml.Descriptive.Types
+﻿namespace Gldf.Net.Domain.Xml.Descriptive.Types;
+
+public abstract class PropertyContentBase
 {
-    public abstract class PropertyContentBase
-    {
-    }
 }

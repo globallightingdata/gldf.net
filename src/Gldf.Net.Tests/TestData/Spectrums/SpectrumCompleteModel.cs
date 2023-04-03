@@ -7,139 +7,138 @@ using Gldf.Net.Domain.Xml.Product;
 using Gldf.Net.Domain.Xml.Product.Types;
 using System;
 
-namespace Gldf.Net.Tests.TestData.Spectrums
+namespace Gldf.Net.Tests.TestData.Spectrums;
+
+public class SpectrumCompleteModel
 {
-    public class SpectrumCompleteModel
+    public static Root Root => new()
     {
-        public static Root Root => new()
+        Header = new Header
         {
-            Header = new Header
+            Manufacturer = "DIAL",
+            CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            CreatedWithApplication = "Visual Studio Code"
+        },
+        GeneralDefinitions = new GeneralDefinitions
+        {
+            Files = new[]
             {
-                Manufacturer = "DIAL",
-                CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
-                CreatedWithApplication = "Visual Studio Code"
+                new GldfFile
+                {
+                    Id = "eulumdat",
+                    ContentType = FileContentType.LdcEulumdat,
+                    Type = FileType.Url,
+                    File = "https://example.org/eulumdat.ldt"
+                },
+                new GldfFile
+                {
+                    Id = "spectrumFile",
+                    ContentType = FileContentType.SpectrumText,
+                    Type = FileType.Url,
+                    File = "https://example.org/spectrum.txt"
+                }
             },
-            GeneralDefinitions = new GeneralDefinitions
+            Photometries = new[]
             {
-                Files = new[]
+                new Photometry
                 {
-                    new GldfFile
+                    Id = "photometry",
+                    Content = new PhotometryFileReference
                     {
-                        Id = "eulumdat",
-                        ContentType = FileContentType.LdcEulumdat,
-                        Type = FileType.Url,
-                        File = "https://example.org/eulumdat.ldt"
-                    },
-                    new GldfFile
+                        FileId = "eulumdat"
+                    }
+                }
+            },
+            Spectrums = new[]
+            {
+                new Spectrum
+                {
+                    Id = "spectrum-1",
+                    FileReference = new SpectrumFileReference
                     {
-                        Id = "spectrumFile",
-                        ContentType = FileContentType.SpectrumText,
-                        Type = FileType.Url,
-                        File = "https://example.org/spectrum.txt"
+                        FileId = "spectrumFile"
                     }
                 },
-                Photometries = new[]
+                new Spectrum
                 {
-                    new Photometry
+                    Id = "spectrum-2",
+                    Intensities = new[]
                     {
-                        Id = "photometry",
-                        Content = new PhotometryFileReference
+                        new SpectrumIntensity
                         {
-                            FileId = "eulumdat"
-                        }
-                    }
-                },
-                Spectrums = new[]
-                {
-                    new Spectrum
-                    {
-                        Id = "spectrum-1",
-                        FileReference = new SpectrumFileReference
+                            Wavelength = 380,
+                            Intensity = 0.1
+                        },
+                        new SpectrumIntensity
                         {
-                            FileId = "spectrumFile"
-                        }
-                    },
-                    new Spectrum
-                    {
-                        Id = "spectrum-2",
-                        Intensities = new[]
+                            Wavelength = 385,
+                            Intensity = 0.2
+                        },
+                        new SpectrumIntensity
                         {
-                            new SpectrumIntensity
-                            {
-                                Wavelength = 380,
-                                Intensity = 0.1
-                            },
-                            new SpectrumIntensity
-                            {
-                                Wavelength = 385,
-                                Intensity = 0.2
-                            },
-                            new SpectrumIntensity
-                            {
-                                Wavelength = 390,
-                                Intensity = 0.3
-                            }
-                        }
-                    }
-                },
-                Emitters = new[]
-                {
-                    new Emitter
-                    {
-                        Id = "emitter",
-                        PossibleFittings = new EmitterBase[]
-                        {
-                            new ChangeableLightEmitter
-                            {
-                                PhotometryReference = new PhotometryReference
-                                {
-                                    PhotometryId = "photometry"
-                                }
-                            }
+                            Wavelength = 390,
+                            Intensity = 0.3
                         }
                     }
                 }
             },
-            ProductDefinitions = new ProductDefinitions
+            Emitters = new[]
             {
-                ProductMetaData = new ProductMetaData
+                new Emitter
                 {
-                    ProductNumber = new[]
+                    Id = "emitter",
+                    PossibleFittings = new EmitterBase[]
                     {
-                        new Locale
+                        new ChangeableLightEmitter
                         {
-                            Language = "en",
-                            Text = "Product number"
-                        }
-                    },
-                    Name = new[]
-                    {
-                        new Locale
-                        {
-                            Language = "en",
-                            Text = "Product name"
-                        }
-                    }
-                },
-                Variants = new[]
-                {
-                    new Variant
-                    {
-                        Id = "variant-1",
-                        Name = new[]
-                        {
-                            new Locale { Language = "en", Text = "Variant 1" }
-                        },
-                        Geometry = new GeometryReference
-                        {
-                            Reference = new EmitterReference
+                            PhotometryReference = new PhotometryReference
                             {
-                                EmitterId = "emitter"
+                                PhotometryId = "photometry"
                             }
                         }
                     }
                 }
             }
-        };
-    }
+        },
+        ProductDefinitions = new ProductDefinitions
+        {
+            ProductMetaData = new ProductMetaData
+            {
+                ProductNumber = new[]
+                {
+                    new Locale
+                    {
+                        Language = "en",
+                        Text = "Product number"
+                    }
+                },
+                Name = new[]
+                {
+                    new Locale
+                    {
+                        Language = "en",
+                        Text = "Product name"
+                    }
+                }
+            },
+            Variants = new[]
+            {
+                new Variant
+                {
+                    Id = "variant-1",
+                    Name = new[]
+                    {
+                        new Locale { Language = "en", Text = "Variant 1" }
+                    },
+                    Geometry = new GeometryReference
+                    {
+                        Reference = new EmitterReference
+                        {
+                            EmitterId = "emitter"
+                        }
+                    }
+                }
+            }
+        }
+    };
 }

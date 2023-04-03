@@ -1,9 +1,8 @@
-﻿namespace Gldf.Net.Validation
+﻿namespace Gldf.Net.Validation;
+
+public enum SeverityType
 {
-    public enum SeverityType
-    {
-        Info,
-        Warning,
-        Error
-    }
+    Info,
+    Warning,
+    Error
 }

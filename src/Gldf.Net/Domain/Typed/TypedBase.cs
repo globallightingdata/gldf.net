@@ -1,7 +1,6 @@
-namespace Gldf.Net.Domain.Typed
+namespace Gldf.Net.Domain.Typed;
+
+public abstract class TypedBase
 {
-    public abstract class TypedBase
-    {
-        public string Id { get; init; } = string.Empty;
-    }
+    public string Id { get; init; } = string.Empty;
 }

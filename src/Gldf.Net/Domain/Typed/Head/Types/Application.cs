@@ -1,10 +1,9 @@
 ﻿// ReSharper disable InconsistentNaming
 
-namespace Gldf.Net.Domain.Typed.Head.Types
+namespace Gldf.Net.Domain.Typed.Head.Types;
+
+public enum ApplicationTyped
 {
-    public enum ApplicationTyped
-    {
-        DIALux,
-        RELUX
-    }
+    DIALux,
+    RELUX
 }

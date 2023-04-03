@@ -1,7 +1,6 @@
-﻿namespace Gldf.Net.Domain.Typed.Head.Types
+﻿namespace Gldf.Net.Domain.Typed.Head.Types;
+
+public enum FormatVersionTyped
 {
-    public enum FormatVersionTyped
-    {
-        V100
-    }
+    V100
 }

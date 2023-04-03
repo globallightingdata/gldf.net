@@ -1,28 +1,27 @@
 using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Descriptive.Types
+namespace Gldf.Net.Domain.Xml.Descriptive.Types;
+
+public enum Adjustability
 {
-    public enum Adjustability
-    {
-        [XmlEnum("Fixed")]
-        Fixed,
+    [XmlEnum("Fixed")]
+    Fixed,
         
-        [XmlEnum("Orientation")]
-        Orientation,
+    [XmlEnum("Orientation")]
+    Orientation,
         
-        [XmlEnum("Turn")]
-        Turn,
+    [XmlEnum("Turn")]
+    Turn,
         
-        [XmlEnum("Tilt")]
-        Tilt,
+    [XmlEnum("Tilt")]
+    Tilt,
         
-        [XmlEnum("Cardanic")]
-        Cardanic,
+    [XmlEnum("Cardanic")]
+    Cardanic,
         
-        [XmlEnum("Height adjustable")]
-        HeightAdjustable,
+    [XmlEnum("Height adjustable")]
+    HeightAdjustable,
         
-        [XmlEnum("User defined")]
-        UserDefined
-    }
+    [XmlEnum("User defined")]
+    UserDefined
 }

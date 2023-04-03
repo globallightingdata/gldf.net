@@ -1,10 +1,9 @@
 ﻿using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Product.Types.Mounting
+namespace Gldf.Net.Domain.Xml.Product.Types.Mounting;
+
+public class Pendant
 {
-    public class Pendant
-    {
-        [XmlAttribute("pendantLength")]
-        public int PendantLength { get; set; }
-    }
+    [XmlAttribute("pendantLength")]
+    public int PendantLength { get; set; }
 }

@@ -1,11 +1,10 @@
-﻿namespace Gldf.Net.Domain.Xml.Product.Types.Mounting
+﻿namespace Gldf.Net.Domain.Xml.Product.Types.Mounting;
+
+public class Ceiling
 {
-    public class Ceiling
-    {
-        public Recessed Recessed { get; set; }
+    public Recessed Recessed { get; set; }
 
-        public SurfaceMounted SurfaceMounted { get; set; }
+    public SurfaceMounted SurfaceMounted { get; set; }
 
-        public Pendant Pendant { get; set; }
-    }
+    public Pendant Pendant { get; set; }
 }

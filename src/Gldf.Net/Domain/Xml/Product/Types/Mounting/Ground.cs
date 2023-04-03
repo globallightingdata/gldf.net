@@ -1,15 +1,14 @@
-﻿namespace Gldf.Net.Domain.Xml.Product.Types.Mounting
+﻿namespace Gldf.Net.Domain.Xml.Product.Types.Mounting;
+
+public class Ground
 {
-    public class Ground
-    {
-        public PoleTop PoleTop { get; set; }
+    public PoleTop PoleTop { get; set; }
 
-        public PoleIntegrated PoleIntegrated { get; set; }
+    public PoleIntegrated PoleIntegrated { get; set; }
 
-        public FreeStanding FreeStanding { get; set; }
+    public FreeStanding FreeStanding { get; set; }
 
-        public SurfaceMounted SurfaceMounted { get; set; }
+    public SurfaceMounted SurfaceMounted { get; set; }
 
-        public Recessed Recessed { get; set; }
-    }
+    public Recessed Recessed { get; set; }
 }

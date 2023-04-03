@@ -2,34 +2,32 @@
 using Gldf.Net.Domain.Xml.Global;
 using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Descriptive
+namespace Gldf.Net.Domain.Xml.Descriptive;
+
+public class Marketing
 {
-    public class Marketing
-    {
-        [XmlArrayItem("ListPrice")]
-        public ListPrice[] ListPrices { get; set; }
+    [XmlArrayItem("ListPrice")]
+    public ListPrice[] ListPrices { get; set; }
 
-        public HousingColor[] HousingColors { get; set; }
+    public HousingColor[] HousingColors { get; set; }
 
-        [XmlArrayItem("Region")]
-        public Region[] Markets { get; set; }
+    [XmlArrayItem("Region")]
+    public Region[] Markets { get; set; }
 
-        [XmlArrayItem("Hyperlink")]
-        public Hyperlink[] Hyperlinks { get; set; }
+    [XmlArrayItem("Hyperlink")]
+    public Hyperlink[] Hyperlinks { get; set; }
 
-        public string Designer { get; set; }
+    public string Designer { get; set; }
 
-        [XmlArrayItem("ApprovalMark")]
-        public string[] ApprovalMarks { get; set; }
+    [XmlArrayItem("ApprovalMark")]
+    public string[] ApprovalMarks { get; set; }
 
-        [XmlArrayItem("DesignAward")]
-        public string[] DesignAwards { get; set; }
+    [XmlArrayItem("DesignAward")]
+    public string[] DesignAwards { get; set; }
 
-        [XmlArrayItem("Label")]
-        public Label[] Labels { get; set; }
+    [XmlArrayItem("Label")]
+    public Label[] Labels { get; set; }
 
-        [XmlArrayItem("Application")]
-        public ApplicationArea[] Applications { get; set; }
-    }
-
+    [XmlArrayItem("Application")]
+    public ApplicationArea[] Applications { get; set; }
 }

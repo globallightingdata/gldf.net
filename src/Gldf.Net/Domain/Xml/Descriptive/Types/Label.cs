@@ -2,50 +2,49 @@
 
 using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Descriptive.Types
+namespace Gldf.Net.Domain.Xml.Descriptive.Types;
+
+public enum Label
 {
-    public enum Label
-    {
-        [XmlEnum("CE")]
-        CE,
+    [XmlEnum("CE")]
+    CE,
         
-        [XmlEnum("GS")]
-        GS,
+    [XmlEnum("GS")]
+    GS,
         
-        [XmlEnum("ENEC")]
-        ENEC,
+    [XmlEnum("ENEC")]
+    ENEC,
         
-        [XmlEnum("CCC")]
-        CCC,
+    [XmlEnum("CCC")]
+    CCC,
         
-        [XmlEnum("VDE")]
-        VDE,
+    [XmlEnum("VDE")]
+    VDE,
         
-        [XmlEnum("EAC")]
-        EAC,
+    [XmlEnum("EAC")]
+    EAC,
         
-        [XmlEnum("D")]
-        D,
+    [XmlEnum("D")]
+    D,
         
-        [XmlEnum("M")]
-        M,
+    [XmlEnum("M")]
+    M,
         
-        [XmlEnum("MM")]
-        MM,
+    [XmlEnum("MM")]
+    MM,
         
-        [XmlEnum("F")]
-        F,
+    [XmlEnum("F")]
+    F,
         
-        [XmlEnum("FF")]
-        FF,
+    [XmlEnum("FF")]
+    FF,
         
-        [XmlEnum("UL")]
-        UL,
+    [XmlEnum("UL")]
+    UL,
         
-        [XmlEnum("Handwarm")]
-        Handwarm,
+    [XmlEnum("Handwarm")]
+    Handwarm,
         
-        [XmlEnum("IFS Food")]
-        IFSFood
-    }
+    [XmlEnum("IFS Food")]
+    IFSFood
 }

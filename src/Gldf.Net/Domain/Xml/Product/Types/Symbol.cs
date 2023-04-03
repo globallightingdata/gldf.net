@@ -1,10 +1,9 @@
 ﻿using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Product.Types
+namespace Gldf.Net.Domain.Xml.Product.Types;
+
+public class Symbol
 {
-    public class Symbol
-    {
-        [XmlAttribute(DataType = "NCName", AttributeName = "fileId")]
-        public string FileId { get; set; }
-    }
+    [XmlAttribute(DataType = "NCName", AttributeName = "fileId")]
+    public string FileId { get; set; }
 }

@@ -1,11 +1,10 @@
 ﻿// ReSharper disable InconsistentNaming
 
-namespace Gldf.Net.Domain.Xml.Descriptive.Types.Atex
+namespace Gldf.Net.Domain.Xml.Descriptive.Types.Atex;
+
+public enum AtexClass
 {
-    public enum AtexClass
-    {
-        I,
-        II,
-        III
-    }
+    I,
+    II,
+    III
 }

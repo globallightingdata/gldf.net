@@ -1,16 +1,15 @@
 ﻿using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Product.Types
+namespace Gldf.Net.Domain.Xml.Product.Types;
+
+public class JiegMaintenanceFactor
 {
-    public class JiegMaintenanceFactor
-    {
-        [XmlAttribute("years")]
-        public int Years { get; set; }
+    [XmlAttribute("years")]
+    public int Years { get; set; }
 
-        [XmlAttribute("roomCondition")]
-        public JiegRoomCondition RoomCondition { get; set; }
+    [XmlAttribute("roomCondition")]
+    public JiegRoomCondition RoomCondition { get; set; }
 
-        [XmlText]
-        public double Factor { get; set; }
-    }
+    [XmlText]
+    public double Factor { get; set; }
 }

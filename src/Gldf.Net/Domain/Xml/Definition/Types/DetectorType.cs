@@ -1,19 +1,18 @@
 ﻿using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Definition.Types
+namespace Gldf.Net.Domain.Xml.Definition.Types;
+
+public enum DetectorType
 {
-    public enum DetectorType
-    {
-        [XmlEnum("Motion Detector")]
-        MotionDetector,
+    [XmlEnum("Motion Detector")]
+    MotionDetector,
 
-        [XmlEnum("Presence Detector")]
-        PresenceDetector,
+    [XmlEnum("Presence Detector")]
+    PresenceDetector,
 
-        [XmlEnum("Daylight Detector")]
-        DaylightDetector,
+    [XmlEnum("Daylight Detector")]
+    DaylightDetector,
 
-        [XmlEnum("Other")]
-        Other
-    }
+    [XmlEnum("Other")]
+    Other
 }

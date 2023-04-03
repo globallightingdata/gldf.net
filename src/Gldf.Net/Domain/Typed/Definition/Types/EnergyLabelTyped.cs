@@ -1,9 +1,8 @@
-﻿namespace Gldf.Net.Domain.Typed.Definition.Types
-{
-    public class EnergyLabelTyped
-    {
-        public string Region { get; set; }
+﻿namespace Gldf.Net.Domain.Typed.Definition.Types;
 
-        public string Label { get; set; }
-    }
+public class EnergyLabelTyped
+{
+    public string Region { get; set; }
+
+    public string Label { get; set; }
 }

@@ -1,10 +1,9 @@
 ﻿using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Global
+namespace Gldf.Net.Domain.Xml.Global;
+
+public class FixedVoltage : VoltageValueBase
 {
-    public class FixedVoltage : VoltageValueBase
-    {
-        [XmlText]
-        public double Value { get; set; }
-    }
+    [XmlText]
+    public double Value { get; set; }
 }

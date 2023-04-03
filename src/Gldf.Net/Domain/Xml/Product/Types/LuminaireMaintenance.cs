@@ -1,20 +1,19 @@
 ﻿using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Product.Types
+namespace Gldf.Net.Domain.Xml.Product.Types;
+
+public class LuminaireMaintenance
 {
-    public class LuminaireMaintenance
-    {
-        public Cie97LuminaireType? Cie97LuminaireType { get; set; }
+    public Cie97LuminaireType? Cie97LuminaireType { get; set; }
 
-        [XmlArray("CieLuminaireMaintenanceFactors"), XmlArrayItem("LuminaireMaintenanceFactor")]
-        public CieMaintenanceFactor[] CieMaintenanceFactors { get; set; }
+    [XmlArray("CieLuminaireMaintenanceFactors"), XmlArrayItem("LuminaireMaintenanceFactor")]
+    public CieMaintenanceFactor[] CieMaintenanceFactors { get; set; }
 
-        [XmlArray("IesLuminaireLightLossFactors"), XmlArrayItem("LuminaireDirtDepreciation")]
-        public IesDirtDepreciation[] IesLightLossFactors { get; set; }
+    [XmlArray("IesLuminaireLightLossFactors"), XmlArrayItem("LuminaireDirtDepreciation")]
+    public IesDirtDepreciation[] IesLightLossFactors { get; set; }
 
-        [XmlArray("JiegMaintenanceFactors"), XmlArrayItem("LuminaireMaintenanceFactor")]
-        public JiegMaintenanceFactor[] JiegMaintenanceFactors { get; set; }
+    [XmlArray("JiegMaintenanceFactors"), XmlArrayItem("LuminaireMaintenanceFactor")]
+    public JiegMaintenanceFactor[] JiegMaintenanceFactors { get; set; }
 
-        public bool ShouldSerializeCie97LuminaireType() => Cie97LuminaireType != null;
-    }
+    public bool ShouldSerializeCie97LuminaireType() => Cie97LuminaireType != null;
 }

@@ -1,28 +1,27 @@
 ﻿using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Product.Types
+namespace Gldf.Net.Domain.Xml.Product.Types;
+
+public class GeometryEmitterReference
 {
-    public class GeometryEmitterReference
+    [XmlAttribute(DataType = "ID", AttributeName = "emitterId")]
+    public string EmitterId { get; set; }
+
+    private TargetModelType _targetModelType;
+
+    [XmlAttribute("targetModelType")]
+    public TargetModelType TargetModelType
     {
-        [XmlAttribute(DataType = "ID", AttributeName = "emitterId")]
-        public string EmitterId { get; set; }
-
-        private TargetModelType _targetModelType;
-
-        [XmlAttribute("targetModelType")]
-        public TargetModelType TargetModelType
+        get => _targetModelType;
+        set
         {
-            get => _targetModelType;
-            set
-            {
-                _targetModelType = value;
-                TargetModelTypeSpecified = true;
-            }
+            _targetModelType = value;
+            TargetModelTypeSpecified = true;
         }
-
-        public string EmitterObjectExternalName { get; set; }
-
-        [XmlIgnore]
-        public bool TargetModelTypeSpecified { get; set; }
     }
+
+    public string EmitterObjectExternalName { get; set; }
+
+    [XmlIgnore]
+    public bool TargetModelTypeSpecified { get; set; }
 }

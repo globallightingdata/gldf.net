@@ -1,50 +1,49 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Gldf.Net.Validation
+namespace Gldf.Net.Validation;
+
+public class ValidationHint
 {
-    public class ValidationHint
+    public SeverityType Severity { get; }
+
+    public string Message { get; }
+
+    public ErrorType ErrorType { get; }
+
+    internal ValidationHint(SeverityType severityType, string message)
     {
-        public SeverityType Severity { get; }
+        Severity = severityType;
+        Message = message;
+        ErrorType = ErrorType.None;
+    }
 
-        public string Message { get; }
+    internal ValidationHint(SeverityType severityType, string message, ErrorType errorType)
+    {
+        Severity = severityType;
+        Message = message;
+        ErrorType = errorType;
+    }
 
-        public ErrorType ErrorType { get; }
+    internal static IEnumerable<ValidationHint> Empty() => Enumerable.Empty<ValidationHint>();
 
-        internal ValidationHint(SeverityType severityType, string message)
-        {
-            Severity = severityType;
-            Message = message;
-            ErrorType = ErrorType.None;
-        }
+    internal static IEnumerable<ValidationHint> Info(string infoMessage) => new[]
+    {
+        new ValidationHint(SeverityType.Info, infoMessage, ErrorType.None)
+    };
 
-        internal ValidationHint(SeverityType severityType, string message, ErrorType errorType)
-        {
-            Severity = severityType;
-            Message = message;
-            ErrorType = errorType;
-        }
+    internal static IEnumerable<ValidationHint> Warning(string warningMessage, ErrorType errorType) => new[]
+    {
+        new ValidationHint(SeverityType.Warning, warningMessage, errorType)
+    };
 
-        internal static IEnumerable<ValidationHint> Empty() => Enumerable.Empty<ValidationHint>();
+    internal static IEnumerable<ValidationHint> Error(string errorMessage, ErrorType errorType) => new[]
+    {
+        new ValidationHint(SeverityType.Error, errorMessage, errorType)
+    };
 
-        internal static IEnumerable<ValidationHint> Info(string infoMessage) => new[]
-        {
-            new ValidationHint(SeverityType.Info, infoMessage, ErrorType.None)
-        };
-
-        internal static IEnumerable<ValidationHint> Warning(string warningMessage, ErrorType errorType) => new[]
-        {
-            new ValidationHint(SeverityType.Warning, warningMessage, errorType)
-        };
-
-        internal static IEnumerable<ValidationHint> Error(string errorMessage, ErrorType errorType) => new[]
-        {
-            new ValidationHint(SeverityType.Error, errorMessage, errorType)
-        };
-
-        public override string ToString()
-        {
-            return $"{nameof(Severity)}: {Severity}, {nameof(ErrorType)}: {ErrorType}, {nameof(Message)}: {Message}";
-        }
+    public override string ToString()
+    {
+        return $"{nameof(Severity)}: {Severity}, {nameof(ErrorType)}: {ErrorType}, {nameof(Message)}: {Message}";
     }
 }

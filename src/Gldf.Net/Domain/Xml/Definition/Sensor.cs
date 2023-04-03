@@ -1,22 +1,21 @@
 ﻿using Gldf.Net.Domain.Xml.Definition.Types;
 using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Definition
+namespace Gldf.Net.Domain.Xml.Definition;
+
+public class Sensor
 {
-    public class Sensor
-    {
-        [XmlAttribute(DataType = "ID", AttributeName = "id")]
-        public string Id { get; set; }
+    [XmlAttribute(DataType = "ID", AttributeName = "id")]
+    public string Id { get; set; }
 
-        public SensorFileReference SensorFileReference { get; set; }
+    public SensorFileReference SensorFileReference { get; set; }
 
-        [XmlArrayItem("DetectorCharacteristic")]
-        public DetectorCharacteristic[] DetectorCharacteristics { get; set; }
+    [XmlArrayItem("DetectorCharacteristic")]
+    public DetectorCharacteristic[] DetectorCharacteristics { get; set; }
 
-        [XmlArrayItem("DetectionMethod")]
-        public DetectionMethod[] DetectionMethods { get; set; }
+    [XmlArrayItem("DetectionMethod")]
+    public DetectionMethod[] DetectionMethods { get; set; }
 
-        [XmlArrayItem("DetectorType")]
-        public DetectorType[] DetectorTypes { get; set; }
-    }
+    [XmlArrayItem("DetectorType")]
+    public DetectorType[] DetectorTypes { get; set; }
 }

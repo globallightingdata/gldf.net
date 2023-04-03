@@ -1,11 +1,10 @@
 ﻿using Gldf.Net.Container;
 
-namespace Gldf.Net.Abstract
-{
-    public interface IGldfContainerWriter
-    {
-        void WriteToFile(string filePath, GldfContainer gldfContainer);
+namespace Gldf.Net.Abstract;
 
-        void CreateFromDirectory(string sourceDirectory, string targetContainerFilePath);
-    }
+public interface IGldfContainerWriter
+{
+    void WriteToFile(string filePath, GldfContainer gldfContainer);
+
+    void CreateFromDirectory(string sourceDirectory, string targetContainerFilePath);
 }

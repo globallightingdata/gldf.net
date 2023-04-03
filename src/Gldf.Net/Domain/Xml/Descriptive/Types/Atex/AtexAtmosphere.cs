@@ -1,8 +1,7 @@
-﻿namespace Gldf.Net.Domain.Xml.Descriptive.Types.Atex
+﻿namespace Gldf.Net.Domain.Xml.Descriptive.Types.Atex;
+
+public enum AtexAtmosphere
 {
-    public enum AtexAtmosphere
-    {
-        G,
-        D
-    }
+    G,
+    D
 }

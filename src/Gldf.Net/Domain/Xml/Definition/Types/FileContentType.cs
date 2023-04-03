@@ -1,55 +1,54 @@
 ﻿using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Definition.Types
+namespace Gldf.Net.Domain.Xml.Definition.Types;
+
+public enum FileContentType
 {
-    public enum FileContentType
-    {
-        [XmlEnum("ldc/eulumdat")]
-        LdcEulumdat,
+    [XmlEnum("ldc/eulumdat")]
+    LdcEulumdat,
 
-        [XmlEnum("ldc/ies")]
-        LdcIes,
+    [XmlEnum("ldc/ies")]
+    LdcIes,
 
-        [XmlEnum("ldc/iesxml")]
-        LdcIesXml,
+    [XmlEnum("ldc/iesxml")]
+    LdcIesXml,
 
-        [XmlEnum("image/png")]
-        ImagePng,
+    [XmlEnum("image/png")]
+    ImagePng,
 
-        [XmlEnum("image/svg")]
-        ImageSvg,
+    [XmlEnum("image/svg")]
+    ImageSvg,
 
-        [XmlEnum("image/jpg")]
-        ImageJpg,
+    [XmlEnum("image/jpg")]
+    ImageJpg,
 
-        [XmlEnum("geo/l3d")]
-        GeoL3d,
+    [XmlEnum("geo/l3d")]
+    GeoL3d,
 
-        [XmlEnum("geo/r3d")]
-        GeoR3d,
+    [XmlEnum("geo/r3d")]
+    GeoR3d,
 
-        [XmlEnum("geo/m3d")]
-        GeoM3d,
+    [XmlEnum("geo/m3d")]
+    GeoM3d,
 
-        [XmlEnum("document/pdf")]
-        DocPdf,
+    [XmlEnum("document/pdf")]
+    DocPdf,
 
-        [XmlEnum("symbol/dxf")]
-        SymbolDxf,
+    [XmlEnum("symbol/dxf")]
+    SymbolDxf,
 
-        [XmlEnum("symbol/svg")]
-        SymbolSvg,
+    [XmlEnum("symbol/svg")]
+    SymbolSvg,
 
-        [XmlEnum("sensor/sensxml")]
-        SensorSensXml,
+    [XmlEnum("sensor/sensxml")]
+    SensorSensXml,
 
-        [XmlEnum("sensor/sensldt")]
-        SensorSensLdt,
+    [XmlEnum("sensor/sensldt")]
+    SensorSensLdt,
 
-        [XmlEnum("spectrum/text")]
-        SpectrumText,
+    [XmlEnum("spectrum/text")]
+    SpectrumText,
 
-        [XmlEnum("other")]
-        Other
-    }
+    [XmlEnum("other")]
+    Other
 }

@@ -1,7 +1,6 @@
-namespace Gldf.Net.Domain.Typed.Definition.Types.Mounting
+namespace Gldf.Net.Domain.Typed.Definition.Types.Mounting;
+
+public class PoleTopTyped
 {
-    public class PoleTopTyped
-    {
-        public int? PoleHeight { get; set; }
-    }
+    public int? PoleHeight { get; set; }
 }

@@ -1,9 +1,8 @@
-﻿namespace Gldf.Net.Domain.Xml.Product.Types
+﻿namespace Gldf.Net.Domain.Xml.Product.Types;
+
+public enum EmergencyBehaviour
 {
-    public enum EmergencyBehaviour
-    {
-        None,
-        Combined,
-        EmergencyOnly
-    }
+    None,
+    Combined,
+    EmergencyOnly
 }

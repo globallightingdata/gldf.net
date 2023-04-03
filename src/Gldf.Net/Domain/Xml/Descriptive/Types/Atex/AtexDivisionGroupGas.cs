@@ -1,10 +1,9 @@
-﻿namespace Gldf.Net.Domain.Xml.Descriptive.Types.Atex
+﻿namespace Gldf.Net.Domain.Xml.Descriptive.Types.Atex;
+
+public enum AtexDivisionGroupGas
 {
-    public enum AtexDivisionGroupGas
-    {
-        A,
-        B,
-        C,
-        D
-    }
+    A,
+    B,
+    C,
+    D
 }

@@ -4,34 +4,33 @@ using Gldf.Net.Exceptions;
 using System;
 using System.Collections.Generic;
 
-namespace Gldf.Net.Validation.Rules.Zip
+namespace Gldf.Net.Validation.Rules.Zip;
+
+internal class IsValidProductXmlRule : IZipArchiveValidationRule
 {
-    internal class IsValidProductXmlRule : IZipArchiveValidationRule
+    public int Priority => 30;
+
+    private readonly ZipArchiveReader _zipArchiveReader;
+    private readonly GldfXmlValidator _xmlValidator;
+
+    public IsValidProductXmlRule()
     {
-        public int Priority => 30;
+        _zipArchiveReader = new ZipArchiveReader();
+        _xmlValidator = new GldfXmlValidator();
+    }
 
-        private readonly ZipArchiveReader _zipArchiveReader;
-        private readonly GldfXmlValidator _xmlValidator;
-
-        public IsValidProductXmlRule()
+    public IEnumerable<ValidationHint> Validate(string filePath)
+    {
+        try
         {
-            _zipArchiveReader = new ZipArchiveReader();
-            _xmlValidator = new GldfXmlValidator();
+            var rootXml = _zipArchiveReader.ReadRootXml(filePath);
+            return _xmlValidator.ValidateString(rootXml);
         }
-
-        public IEnumerable<ValidationHint> Validate(string filePath)
+        catch (Exception e)
         {
-            try
-            {
-                var rootXml = _zipArchiveReader.ReadRootXml(filePath);
-                return _xmlValidator.ValidateString(rootXml);
-            }
-            catch (Exception e)
-            {
-                return ValidationHint.Error($"The product.xml inside the GLDF container '{filePath}' could " +
-                                            "not be validated with the XMLSchema. " +
-                                            $"Error: {e.FlattenMessage()}", ErrorType.XmlSchema);
-            }
+            return ValidationHint.Error($"The product.xml inside the GLDF container '{filePath}' could " +
+                                        "not be validated with the XMLSchema. " +
+                                        $"Error: {e.FlattenMessage()}", ErrorType.XmlSchema);
         }
     }
 }

@@ -1,13 +1,12 @@
 ﻿using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Definition.Types
-{
-    public class EnergyLabel
-    {
-        [XmlAttribute(AttributeName = "region")]
-        public string Region { get; set; }
+namespace Gldf.Net.Domain.Xml.Definition.Types;
 
-        [XmlText]
-        public string Label { get; set; }
-    }
+public class EnergyLabel
+{
+    [XmlAttribute(AttributeName = "region")]
+    public string Region { get; set; }
+
+    [XmlText]
+    public string Label { get; set; }
 }

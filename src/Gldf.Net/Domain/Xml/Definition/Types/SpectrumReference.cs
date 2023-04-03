@@ -1,10 +1,9 @@
 ﻿using System.Xml.Serialization;
 
-namespace Gldf.Net.Domain.Xml.Definition.Types
+namespace Gldf.Net.Domain.Xml.Definition.Types;
+
+public class SpectrumReference
 {
-    public class SpectrumReference
-    {
-        [XmlAttribute(DataType = "NCName", AttributeName = "spectrumId")]
-        public string SpectrumId { get; set; }
-    }
+    [XmlAttribute(DataType = "NCName", AttributeName = "spectrumId")]
+    public string SpectrumId { get; set; }
 }
