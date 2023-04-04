@@ -52,13 +52,13 @@
         <EmbeddedResource Include="TestData\Variants\VariantMandatoryXml.xml" />
         <EmbeddedResource Include="TestData\Container\GldfWithHeaderMandatory.gldf" />
         <EmbeddedResource Include="TestData\Container\GldfWithFiles.gldf" />
-        <EmbeddedResource Include="TestData\Container\GldfWithSignature.gldf" />
         <EmbeddedResource Include="TestData\Container\GldfWithNoFiles.gldf" />
         <EmbeddedResource Include="TestData\Container\GldfWithLargeFiles.gldf" />
         <EmbeddedResource Include="TestData\Container\GldfWithInvalidRoot.gldf" />
         <EmbeddedResource Include="TestData\Container\GldfWithOrphanedFiles.gldf" />
         <EmbeddedResource Include="TestData\Container\GldfWithMissingFiles.gldf" />
         <EmbeddedResource Include="TestData\Container\GldfWithFilesComplete.gldf" />
+        <EmbeddedResource Include="TestData\Container\GldfWithMetaInfo.gldf" />
         <EmbeddedResource Include="TestData\MetaInfo\meta-information.xml" />
     </ItemGroup>
 

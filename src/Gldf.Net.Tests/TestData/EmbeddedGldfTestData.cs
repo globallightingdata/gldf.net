@@ -9,7 +9,7 @@ namespace Gldf.Net.Tests.TestData;
 public static class EmbeddedGldfTestData
 {
     private const string GldfWithHeaderMandatory = "TestData.Container.GldfWithHeaderMandatory.gldf";
-    private const string GldfWithSignature = "TestData.Container.GldfWithSignature.gldf";
+    private const string GldfWithMetaInfo = "TestData.Container.GldfWithMetaInfo.gldf";
     private const string GldfWithFiles = "TestData.Container.GldfWithFiles.gldf";
     private const string GldfWithFilesComplete = "TestData.Container.GldfWithFilesComplete.gldf";
     private const string GldfWithNoFiles = "TestData.Container.GldfWithNoFiles.gldf";
@@ -20,7 +20,7 @@ public static class EmbeddedGldfTestData
 
     public static byte[] GetGldfWithHeaderMandatory() => ResourceLoader.LoadEmbeddedBytes(GldfWithHeaderMandatory);
     public static byte[] GetGldfNoFiles() => ResourceLoader.LoadEmbeddedBytes(GldfWithNoFiles);
-    public static byte[] GetGldfWithSignature() => ResourceLoader.LoadEmbeddedBytes(GldfWithSignature);
+    public static byte[] GetGldfWithMetaInfo() => ResourceLoader.LoadEmbeddedBytes(GldfWithMetaInfo);
     public static byte[] GetGldfWithFiles() => ResourceLoader.LoadEmbeddedBytes(GldfWithFiles);
     public static byte[] GetGldfWithFilesComplete() => ResourceLoader.LoadEmbeddedBytes(GldfWithFilesComplete);
     public static byte[] GetGldfWithLargeFiles() => ResourceLoader.LoadEmbeddedBytes(GldfWithLargeFiles);

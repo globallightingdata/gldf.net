@@ -18,11 +18,11 @@ internal class ZipArchiveReader : ZipArchiveIO
         });
     }
     
-    public bool IsZipArchive(Stream stream)
+    public bool IsZipArchive(Stream stream, bool leaveOpen)
     {
         return EvaluateFuncSafe(() =>
         {
-            using var _ = new ZipArchive(stream, ZipArchiveMode.Read);
+            using var _ = new ZipArchive(stream, ZipArchiveMode.Read, leaveOpen);
             return true;
         });
     }
@@ -35,9 +35,9 @@ internal class ZipArchiveReader : ZipArchiveIO
         return zipArchive.Entries.Any(entry => entry.FullName == "product.xml");
     }
     
-    public bool ContainsRootXml(Stream zipStream)
+    public bool ContainsRootXml(Stream zipStream, bool leaveOpen)
     {
-        using var zipArchive = new ZipArchive(zipStream);
+        using var zipArchive = new ZipArchive(zipStream, ZipArchiveMode.Read, leaveOpen);
         return zipArchive.Entries.Any(entry => entry.FullName == "product.xml");
     }
 
@@ -53,14 +53,14 @@ internal class ZipArchiveReader : ZipArchiveIO
         return ReadZipContent(zipArchive, settings);
     }
 
-    public GldfContainer ReadContainer(Stream zipStream)
+    public GldfContainer ReadContainer(Stream zipStream, bool leaveOpen)
     {
-        return ReadContainer(zipStream, ContainerLoadSettings.Default);
+        return ReadContainer(zipStream, leaveOpen, ContainerLoadSettings.Default);
     }
 
-    public GldfContainer ReadContainer(Stream zipStream, ContainerLoadSettings settings)
+    public GldfContainer ReadContainer(Stream zipStream, bool leaveOpen, ContainerLoadSettings settings)
     {
-        using var zipArchive = new ZipArchive(zipStream, ZipArchiveMode.Read);
+        using var zipArchive = new ZipArchive(zipStream, ZipArchiveMode.Read, leaveOpen);
         return ReadZipContent(zipArchive, settings);
     }
 
@@ -71,7 +71,7 @@ internal class ZipArchiveReader : ZipArchiveIO
             AddDeserializedRoot(container, zipArchive);
         if (settings.AssetLoadBehaviour != AssetLoadBehaviour.Skip)
             AddAssets(zipArchive, container, settings.AssetLoadBehaviour);
-        if (settings.SignatureLoadBehaviour == SignatureLoadBehaviour.Load)
+        if (settings.MetaInfoLoadBehaviour == MetaInfoLoadBehaviour.Load)
             AddDeserializedMetaInfo(zipArchive, container);
         return container;
     }
@@ -82,9 +82,9 @@ internal class ZipArchiveReader : ZipArchiveIO
         return ReadRootXml(zipArchive);
     }
 
-    public string ReadRootXml(Stream stream)
+    public string ReadRootXml(Stream zipStream, bool leaveOpen)
     {
-        using var zipArchive = new ZipArchive(stream);
+        using var zipArchive = new ZipArchive(zipStream, ZipArchiveMode.Read, leaveOpen);
         return ReadRootXml(zipArchive);
     }
 
@@ -110,6 +110,12 @@ internal class ZipArchiveReader : ZipArchiveIO
         using var zipArchive = ZipFile.OpenRead(filePath);
         return zipArchive.Entries.Where(e => e.Length >= minBytes).Select(e => e.FullName);
     }
+    
+    public IEnumerable<string> GetLargeFileNames(Stream zipStream, bool leaveOpen, long minBytes)
+    {
+        using var zipArchive = new ZipArchive(zipStream, ZipArchiveMode.Read, leaveOpen);
+        return zipArchive.Entries.Where(e => e.Length >= minBytes).Select(e => e.FullName);
+    }
 
     private void AddDeserializedRoot(GldfContainer container, ZipArchive zipArchive)
     {
@@ -120,9 +126,9 @@ internal class ZipArchiveReader : ZipArchiveIO
 
     private void AddDeserializedMetaInfo(ZipArchive zipArchive, GldfContainer container)
     {
-        var signatureEntry = zipArchive.GetEntry("meta-information.xml");
-        if (signatureEntry == null) return;
-        using var stream = signatureEntry.Open();
+        var metaInfoEntry = zipArchive.GetEntry("meta-information.xml");
+        if (metaInfoEntry == null) return;
+        using var stream = metaInfoEntry.Open();
         using var streamReader = new StreamReader(stream, Encoding);
         var metaInfo = streamReader.ReadToEnd();
         container.MetaInformation = MetaInfoSerializer.DeserializeFromString(metaInfo);

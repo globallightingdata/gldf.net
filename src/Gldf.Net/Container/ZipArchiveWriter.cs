@@ -15,6 +15,14 @@ internal class ZipArchiveWriter : ZipArchiveIO
         AddMetaInfo(zipArchive, gldfContainer);
     }
 
+    public void Write(Stream stream, bool leaveOpen, GldfContainer gldfContainer)
+    {
+        using var zipArchive = new ZipArchive(stream, ZipArchiveMode.Create, leaveOpen, Encoding);
+        AddRootZipEntry(gldfContainer, zipArchive);
+        AddAssetZipEntries(zipArchive, gldfContainer);
+        AddMetaInfo(zipArchive, gldfContainer);
+    }
+
     public void CreateFromDirectory(string sourceDirectory, string targetFilePath)
     {
         PrepareDirectory(targetFilePath, true);
@@ -62,4 +70,5 @@ internal class ZipArchiveWriter : ZipArchiveIO
             entryStream.Write(file.Bytes, 0, file.Bytes.Length);
         }
     }
+
 }

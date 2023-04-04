@@ -45,7 +45,7 @@ public class GldfContainerTests
     }
 
     [Test]
-    public void Ctor_ShouldThrow_When_Signature_IsNull()
+    public void Ctor_ShouldThrow_When_MetaInfo_IsNull()
     {
         void Ctor1() => _ = new GldfContainer(new Root(), (MetaInformation)null);
         void Ctor2() => _ = new GldfContainer(new Root(), new GldfAssets(), null);
@@ -92,7 +92,7 @@ public class GldfContainerTests
     }
 
     [Test]
-    public void Ctor_ShouldSet_RootAndSignature()
+    public void Ctor_ShouldSet_RootAndMetaInfo()
     {
         var root = new Root();
         var metaInformation = new MetaInformation();
@@ -104,7 +104,7 @@ public class GldfContainerTests
     }
 
     [Test]
-    public void Ctor_ShouldSet_RootSignatureAndAssets()
+    public void Ctor_ShouldSet_RootMetaInfoAndAssets()
     {
         var root = new Root();
         var assets = new GldfAssets();

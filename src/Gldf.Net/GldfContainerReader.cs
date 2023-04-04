@@ -28,16 +28,17 @@ public class GldfContainerReader : IGldfContainerReader
     ///     Reads the GLDF container from file into an instance of <see cref="GldfContainer" />.
     /// </summary>
     /// <param name="filePath">The path on disk of the GLDF container file</param>
-    /// <returns><see cref="GldfContainer" /> with deserialised product.xml, file assets and signature</returns>
-    public GldfContainer ReadFromFile(string filePath) => ReadFromFile(filePath, ContainerLoadSettings.Default);
+    /// <returns><see cref="GldfContainer" /> with deserialised product.xml, file assets and meta-information</returns>
+    public GldfContainer ReadFromFile(string filePath)
+        => ReadFromFile(filePath, ContainerLoadSettings.Default);
 
     /// <summary>
     ///     Reads the GLDF container from file into an instance of <see cref="GldfContainer" />.
-    ///     With specified load behaviour settings for product.xml, file assets and signature.
+    ///     With specified load behaviour settings for product.xml, file assets and meta-information.
     /// </summary>
     /// <param name="filePath">The path on disk of the GLDF container file</param>
-    /// <param name="settings">Load behaviour for product.xml, asset files and signature</param>
-    /// <returns><see cref="GldfContainer" /> with deserialised product.xml, file assets and signature</returns>
+    /// <param name="settings">Load behaviour for product.xml, asset files and meta-information</param>
+    /// <returns><see cref="GldfContainer" /> with deserialised product.xml, file assets and meta-information</returns>
     public GldfContainer ReadFromFile(string filePath, ContainerLoadSettings settings)
     {
         if (filePath == null) throw new ArgumentNullException(nameof(filePath));
@@ -53,15 +54,31 @@ public class GldfContainerReader : IGldfContainerReader
                                              $"'{filePath}'. See inner exception", e);
         }
     }
-    
-    public GldfContainer ReadFromStream(Stream stream, ContainerLoadSettings settings)
+
+    /// <summary>
+    ///     Reads the GLDF container from a stream into an instance of <see cref="GldfContainer" />.
+    /// </summary>
+    /// <param name="zipStream">Stream to read the <see cref="GldfContainer" /> from</param>
+    /// <param name="leaveOpen">To leave the stream open after read, otherwise it will be disposed</param>
+    /// <returns><see cref="GldfContainer" /> with deserialised product.xml, file assets and meta-information</returns>
+    public GldfContainer ReadFromStream(Stream zipStream, bool leaveOpen) =>
+        ReadFromStream(zipStream, leaveOpen, ContainerLoadSettings.Default);
+
+    /// <summary>
+    ///     Reads the GLDF container from a stream into an instance of <see cref="GldfContainer" />.
+    /// </summary>
+    /// <param name="zipStream">Stream of a ZIP archive to read the <see cref="GldfContainer" /> from</param>
+    /// <param name="leaveOpen">To leave the stream open after read, otherwise it will be disposed</param>
+    /// <param name="settings">Load behaviour for product.xml, asset files and meta-information</param>
+    /// <returns><see cref="GldfContainer" /> with deserialised product.xml, file assets and meta-information</returns>
+    public GldfContainer ReadFromStream(Stream zipStream, bool leaveOpen, ContainerLoadSettings settings)
     {
-        if (stream == null) throw new ArgumentNullException(nameof(stream));
+        if (zipStream == null) throw new ArgumentNullException(nameof(zipStream));
         if (settings == null) throw new ArgumentNullException(nameof(settings));
 
         try
         {
-            return _zipArchiveReader.ReadContainer(stream, settings);
+            return _zipArchiveReader.ReadContainer(zipStream, leaveOpen, settings);
         }
         catch (Exception e)
         {

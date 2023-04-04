@@ -2,6 +2,7 @@
 using Gldf.Net.Container;
 using Gldf.Net.Exceptions;
 using System;
+using System.IO;
 
 namespace Gldf.Net;
 
@@ -45,10 +46,32 @@ public class GldfContainerWriter : IGldfContainerWriter
     }
 
     /// <summary>
+    ///     Writes the contents of a <see cref="GldfContainer" /> to a stream.
+    /// </summary>
+    /// <param name="stream">Stream to write the <see cref="GldfContainer" /> to</param>
+    /// <param name="leaveOpen">To leave the stream open after write, otherwise it will be disposed</param>
+    /// <param name="gldfContainer">The <see cref="GldfContainer" /> to wirte to the stream</param>
+    public void WriteToStream(Stream stream, bool leaveOpen, GldfContainer gldfContainer)
+    {
+        if (stream == null) throw new ArgumentNullException(nameof(stream));
+        if (gldfContainer == null) throw new ArgumentNullException(nameof(gldfContainer));
+
+        try
+        {
+            _zipArchiveWriter.Write(stream, leaveOpen, gldfContainer);
+        }
+        catch (Exception e)
+        {
+            throw new GldfContainerException($"Failed to create {nameof(GldfContainer)} stream. " +
+                                             "See inner exception", e);
+        }
+    }
+
+    /// <summary>
     ///     Creates a GLDF container from a directory path and writes it to disk.
     /// </summary>
     /// <param name="sourceDirectory">
-    ///     The source directory with GLDF content (product.xml, assets and signature)
+    ///     The source directory with GLDF content (product.xml, assets and meta-information)
     /// </param>
     /// <param name="targetContainerFilePath">
     ///     The target file path the container will be written to. It should

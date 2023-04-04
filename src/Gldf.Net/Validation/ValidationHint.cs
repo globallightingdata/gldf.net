@@ -11,33 +11,33 @@ public class ValidationHint
 
     public ErrorType ErrorType { get; }
 
-    internal ValidationHint(SeverityType severityType, string message)
+    public ValidationHint(SeverityType severityType, string message)
     {
         Severity = severityType;
         Message = message;
         ErrorType = ErrorType.None;
     }
 
-    internal ValidationHint(SeverityType severityType, string message, ErrorType errorType)
+    public ValidationHint(SeverityType severityType, string message, ErrorType errorType)
     {
         Severity = severityType;
         Message = message;
         ErrorType = errorType;
     }
 
-    internal static IEnumerable<ValidationHint> Empty() => Enumerable.Empty<ValidationHint>();
+    public static IEnumerable<ValidationHint> Empty() => Enumerable.Empty<ValidationHint>();
 
-    internal static IEnumerable<ValidationHint> Info(string infoMessage) => new[]
+    public static IEnumerable<ValidationHint> Info(string infoMessage) => new[]
     {
         new ValidationHint(SeverityType.Info, infoMessage, ErrorType.None)
     };
 
-    internal static IEnumerable<ValidationHint> Warning(string warningMessage, ErrorType errorType) => new[]
+    public static IEnumerable<ValidationHint> Warning(string warningMessage, ErrorType errorType) => new[]
     {
         new ValidationHint(SeverityType.Warning, warningMessage, errorType)
     };
 
-    internal static IEnumerable<ValidationHint> Error(string errorMessage, ErrorType errorType) => new[]
+    public static IEnumerable<ValidationHint> Error(string errorMessage, ErrorType errorType) => new[]
     {
         new ValidationHint(SeverityType.Error, errorMessage, errorType)
     };

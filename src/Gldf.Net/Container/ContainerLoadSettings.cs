@@ -8,7 +8,7 @@ public class ContainerLoadSettings
 
     public AssetLoadBehaviour AssetLoadBehaviour { get; set; }
 
-    public SignatureLoadBehaviour SignatureLoadBehaviour { get; set; }
+    public MetaInfoLoadBehaviour MetaInfoLoadBehaviour { get; set; }
 
     public ContainerLoadSettings()
     {
@@ -18,29 +18,29 @@ public class ContainerLoadSettings
     {
         ProductLoadBehaviour = productLoadBehaviour;
         AssetLoadBehaviour = AssetLoadBehaviour.Load;
-        SignatureLoadBehaviour = SignatureLoadBehaviour.Load;
+        MetaInfoLoadBehaviour = MetaInfoLoadBehaviour.Load;
     }
 
     public ContainerLoadSettings(AssetLoadBehaviour assetLoadBehaviour)
     {
         ProductLoadBehaviour = ProductLoadBehaviour.Load;
         AssetLoadBehaviour = assetLoadBehaviour;
-        SignatureLoadBehaviour = SignatureLoadBehaviour.Load;
+        MetaInfoLoadBehaviour = MetaInfoLoadBehaviour.Load;
     }
 
-    public ContainerLoadSettings(SignatureLoadBehaviour signatureLoadBehaviour)
+    public ContainerLoadSettings(MetaInfoLoadBehaviour metaInfoLoadBehaviour)
     {
         ProductLoadBehaviour = ProductLoadBehaviour.Load;
         AssetLoadBehaviour = AssetLoadBehaviour.Load;
-        SignatureLoadBehaviour = signatureLoadBehaviour;
+        MetaInfoLoadBehaviour = metaInfoLoadBehaviour;
     }
 
     public ContainerLoadSettings(ProductLoadBehaviour productLoadBehaviour, AssetLoadBehaviour assetLoadBehaviour,
-        SignatureLoadBehaviour signatureLoadBehaviour)
+        MetaInfoLoadBehaviour metaInfoLoadBehaviour)
     {
         ProductLoadBehaviour = productLoadBehaviour;
         AssetLoadBehaviour = assetLoadBehaviour;
-        SignatureLoadBehaviour = signatureLoadBehaviour;
+        MetaInfoLoadBehaviour = metaInfoLoadBehaviour;
     }
 }
 
@@ -57,7 +57,7 @@ public enum AssetLoadBehaviour
     Skip
 }
 
-public enum SignatureLoadBehaviour
+public enum MetaInfoLoadBehaviour
 {
     Load,
     Skip

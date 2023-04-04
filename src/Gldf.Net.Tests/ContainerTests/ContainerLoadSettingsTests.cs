@@ -14,7 +14,7 @@ public class ContainerLoadSettingsTests
 
         settings.ProductLoadBehaviour.Should().Be(ProductLoadBehaviour.Load);
         settings.AssetLoadBehaviour.Should().Be(AssetLoadBehaviour.Load);
-        settings.SignatureLoadBehaviour.Should().Be(SignatureLoadBehaviour.Load);
+        settings.MetaInfoLoadBehaviour.Should().Be(MetaInfoLoadBehaviour.Load);
     }
 
     [Test]
@@ -24,7 +24,7 @@ public class ContainerLoadSettingsTests
 
         settings.ProductLoadBehaviour.Should().Be(ProductLoadBehaviour.Skip);
         settings.AssetLoadBehaviour.Should().Be(AssetLoadBehaviour.Load);
-        settings.SignatureLoadBehaviour.Should().Be(SignatureLoadBehaviour.Load);
+        settings.MetaInfoLoadBehaviour.Should().Be(MetaInfoLoadBehaviour.Load);
     }
 
     [Test]
@@ -34,17 +34,17 @@ public class ContainerLoadSettingsTests
 
         settings.ProductLoadBehaviour.Should().Be(ProductLoadBehaviour.Load);
         settings.AssetLoadBehaviour.Should().Be(AssetLoadBehaviour.Skip);
-        settings.SignatureLoadBehaviour.Should().Be(SignatureLoadBehaviour.Load);
+        settings.MetaInfoLoadBehaviour.Should().Be(MetaInfoLoadBehaviour.Load);
     }
 
     [Test]
-    public void Ctor_Should_SetSignatureLoadBehaviour_AsExpected()
+    public void Ctor_Should_SetMetaInfoLoadBehaviour_AsExpected()
     {
-        var settings = new ContainerLoadSettings(SignatureLoadBehaviour.Skip);
+        var settings = new ContainerLoadSettings(MetaInfoLoadBehaviour.Skip);
 
         settings.ProductLoadBehaviour.Should().Be(ProductLoadBehaviour.Load);
         settings.AssetLoadBehaviour.Should().Be(AssetLoadBehaviour.Load);
-        settings.SignatureLoadBehaviour.Should().Be(SignatureLoadBehaviour.Skip);
+        settings.MetaInfoLoadBehaviour.Should().Be(MetaInfoLoadBehaviour.Skip);
     }
 
     [Test, Combinatorial]
@@ -53,13 +53,13 @@ public class ContainerLoadSettingsTests
         ProductLoadBehaviour productLoadBehaviour,
         [Values(AssetLoadBehaviour.Load, AssetLoadBehaviour.Skip, AssetLoadBehaviour.FileNamesOnly)]
         AssetLoadBehaviour assetLoadBehaviour,
-        [Values(SignatureLoadBehaviour.Load, SignatureLoadBehaviour.Skip)]
-        SignatureLoadBehaviour signatureLoadBehaviour)
+        [Values(MetaInfoLoadBehaviour.Load, MetaInfoLoadBehaviour.Skip)]
+        MetaInfoLoadBehaviour metaInfoLoadBehaviour)
     {
-        var settings = new ContainerLoadSettings(productLoadBehaviour, assetLoadBehaviour, signatureLoadBehaviour);
+        var settings = new ContainerLoadSettings(productLoadBehaviour, assetLoadBehaviour, metaInfoLoadBehaviour);
 
         settings.ProductLoadBehaviour.Should().Be(productLoadBehaviour);
         settings.AssetLoadBehaviour.Should().Be(assetLoadBehaviour);
-        settings.SignatureLoadBehaviour.Should().Be(signatureLoadBehaviour);
+        settings.MetaInfoLoadBehaviour.Should().Be(metaInfoLoadBehaviour);
     }
 }

@@ -25,7 +25,7 @@ internal class CanDeserializeProductXmlRule : IZipArchiveValidationRule
             {
                 ProductLoadBehaviour = ProductLoadBehaviour.Load,
                 AssetLoadBehaviour = AssetLoadBehaviour.Skip,
-                SignatureLoadBehaviour = SignatureLoadBehaviour.Skip
+                MetaInfoLoadBehaviour = MetaInfoLoadBehaviour.Skip
             };
             var container = _gldfContainerReader.ReadFromFile(filePath, loadRootOnlySettings);
             return container.Product != null
