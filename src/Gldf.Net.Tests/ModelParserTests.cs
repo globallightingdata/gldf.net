@@ -51,8 +51,28 @@ public class ModelParserTests
         new TestCaseData(EmbeddedXmlTestData.GetSpectrumMandatoryXml(),
                 EmbeddedXmlTestData.GetSpectrumMandatoryTyped())
             { TestName = "Spectrum mandatory property set" },
+        
+        // todo SpectrumComplete
         // new TestCaseData(EmbeddedXmlTestData.GetSpectrumCompleteXml(),
         //         EmbeddedXmlTestData.GetSpectrumCompleteTyped())
         //     { TestName = "Spectrum complete property set" },
+        
+        // todo LightSourceMandatory
+        // todo LightSourceChangeableComplete
+        // todo LightSourceFixedComplete
+        // todo ControlGearMandatory
+        // todo ControlGearComplete
+        // todo EquipmentMandatory
+        // todo EquipmentComplete
+        // todo EquipmentMandatory
+        // todo EquipmentComplete
+        // todo GeometryMandatory
+        // todo GeometryComplete
+        // todo EmitterMandatory
+        // todo EmitterComplete
+        // todo ProductMetaDataMandatory
+        // todo ProductMetaDataComplete
+        // todo VariantMandatory
+        // todo VariantComplete
     };
 }
