@@ -192,11 +192,4 @@ public class MetaInfoSerializerTests
             .WithInnerException<InvalidOperationException>()
             .WithMessage("There is an error in XML document (1, 1).");
     }
-    
-    [Test]
-    public void Test()
-    {
-        var serializeToString = _serializer.SerializeToString(new MetaInformation());
-        Console.WriteLine(serializeToString);
-    }
 }
