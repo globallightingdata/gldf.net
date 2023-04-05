@@ -17,7 +17,7 @@ namespace Gldf.Net.Tests.ParserTests;
 public class GldfParserTests
 {
     private string _tempGldfPath;
-    private static List<TestCaseData> _validXmlTestCases = EmbeddedXmlTestData.ValidXmlTestCases;
+    private static readonly TestCaseData[] ValidXmlTestCases = EmbeddedXmlTestData.ValidXmlTestCases;
 
     [OneTimeSetUp]
     public void OneTimeSetUp()
@@ -61,7 +61,7 @@ public class GldfParserTests
         rootTyped.Should().NotBeNull();
     }
     
-    [Test, TestCaseSource(nameof(_validXmlTestCases))]
+    [Test, TestCaseSource(nameof(ValidXmlTestCases))]
     public void ParseFromXml_ShouldProcessAllXml(string xml)
     {
         var gldfParser = new GldfParser(new ParserSettings

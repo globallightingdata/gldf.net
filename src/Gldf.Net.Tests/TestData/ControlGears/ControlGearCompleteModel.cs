@@ -10,7 +10,7 @@ using System;
 
 namespace Gldf.Net.Tests.TestData.ControlGears;
 
-public class ControlGearCompleteModel
+public static class ControlGearCompleteModel
 {
     public static Root Root => new()
     {

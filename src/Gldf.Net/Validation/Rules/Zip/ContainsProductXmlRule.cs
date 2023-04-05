@@ -10,18 +10,11 @@ internal class ContainsProductXmlRule : IZipArchiveValidationRule
 {
     public int Priority => 20;
 
-    private readonly ZipArchiveReader _zipArchiveReader;
-
-    public ContainsProductXmlRule()
-    {
-        _zipArchiveReader = new ZipArchiveReader();
-    }
-
     public IEnumerable<ValidationHint> Validate(string filePath)
     {
         try
         {
-            return _zipArchiveReader.ContainsRootXml(filePath)
+            return ZipArchiveReader.ContainsRootXml(filePath)
                 ? ValidationHint.Empty()
                 : ValidationHint.Error($"The GLDF container '{filePath}' does not contain a " +
                                        "product.xml entry.", ErrorType.ProductXmlNotFound);

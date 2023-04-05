@@ -40,7 +40,7 @@ public static class GldfFileExtensions
             case FileContentType.Other:
                 return GetBytes(container.Assets.Other, file.File);
             default:
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException(nameof(file.ContentType));
         }
     }
 

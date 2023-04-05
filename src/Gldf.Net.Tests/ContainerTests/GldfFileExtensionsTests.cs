@@ -75,7 +75,7 @@ public class GldfFileExtensionsTests
 
         act.Should()
             .Throw<ArgumentOutOfRangeException>()
-            .WithMessage("Specified argument was out of the range of valid values.");
+            .WithMessage("Specified argument was out of the range of valid values. (Parameter 'ContentType')");
     }
 
     private static IEnumerable<TestCaseData> TestData()

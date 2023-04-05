@@ -54,8 +54,7 @@ public static class EmbeddedXmlTestData
     // Meta-Information
     private const string MetaInformationXml = "TestData.MetaInfo.meta-information.xml";
 
-    public static readonly List<TestCaseData> ValidXmlTestCases = new()
-    {
+    public static readonly TestCaseData[] ValidXmlTestCases = {
         new TestCaseData(GetHeaderMandatoryXml()).SetName("Header Mandatory"),
         new TestCaseData(GetHeaderCompleteXml()).SetName("Header Complete"),
         new TestCaseData(GetFileMandatoryXml()).SetName("File Mandatory"),
@@ -84,8 +83,7 @@ public static class EmbeddedXmlTestData
         new TestCaseData(GetDescriptiveAttributesXml()).SetName("Descriptive Attributes")
     };
 
-    public static readonly List<TestCaseData> InvalidXmlTestCases = new()
-    {
+    public static readonly TestCaseData[] InvalidXmlTestCases = {
         new TestCaseData(GetRootWithHeaderXml()).SetName("Root with Header only")
     };
 

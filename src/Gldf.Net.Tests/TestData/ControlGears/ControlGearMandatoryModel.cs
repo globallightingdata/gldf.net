@@ -10,7 +10,7 @@ using System;
 
 namespace Gldf.Net.Tests.TestData.ControlGears;
 
-public class ControlGearMandatoryModel
+public static class ControlGearMandatoryModel
 {
     public static Root Root => new()
     {

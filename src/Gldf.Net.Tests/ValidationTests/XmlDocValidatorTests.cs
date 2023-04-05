@@ -14,7 +14,7 @@ namespace Gldf.Net.Tests.ValidationTests;
 public class XmlDocValidatorTests
 {
     private XmlDocValidator _validator;
-    private static List<TestCaseData> _validXmlTestCases = EmbeddedXmlTestData.ValidXmlTestCases;
+    private readonly static TestCaseData[] ValidXmlTestCases = EmbeddedXmlTestData.ValidXmlTestCases;
 
     [SetUp]
     public void SetUp()
@@ -22,7 +22,7 @@ public class XmlDocValidatorTests
         _validator = new XmlDocValidator();
     }
 
-    [Test, TestCaseSource(nameof(_validXmlTestCases))]
+    [Test, TestCaseSource(nameof(ValidXmlTestCases))]
     public void ValidateString_ValidTestData_Should_Return_EmptyList(string xml)
     {
         var validationResult = _validator.ValidateString(xml);
@@ -47,7 +47,7 @@ public class XmlDocValidatorTests
 
         act.Should()
             .Throw<GldfException>()
-            .WithMessage("Failed to get FormatVersion. See inner expcetion");
+            .WithMessage("Failed to get FormatVersion. See inner exception");
     }
 
     [Test]

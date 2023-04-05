@@ -27,10 +27,10 @@ public class ValidationHint
 
     public static IEnumerable<ValidationHint> Empty() => Enumerable.Empty<ValidationHint>();
 
-    public static IEnumerable<ValidationHint> Info(string infoMessage) => new[]
+    public static IEnumerable<ValidationHint> Info(string infoMessage)
     {
-        new ValidationHint(SeverityType.Info, infoMessage, ErrorType.None)
-    };
+        yield return new ValidationHint(SeverityType.Info, infoMessage, ErrorType.None);
+    }
 
     public static IEnumerable<ValidationHint> Warning(string warningMessage, ErrorType errorType)
     {

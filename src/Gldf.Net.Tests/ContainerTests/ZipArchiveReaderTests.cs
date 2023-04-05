@@ -374,7 +374,7 @@ public class ZipArchiveReaderTests
         var gldfBytes = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
         File.WriteAllBytes(_tempFile, gldfBytes);
 
-        var isZipArchive = _zipArchiveReader.IsZipArchive(_tempFile);
+        var isZipArchive = ZipArchiveReader.IsZipArchive(_tempFile);
 
         isZipArchive.Should().BeTrue();
     }
@@ -385,7 +385,7 @@ public class ZipArchiveReaderTests
         var gldfBytes = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
         using var memoryStream = new MemoryStream(gldfBytes);
 
-        var isZipArchive = _zipArchiveReader.IsZipArchive(memoryStream, false);
+        var isZipArchive = ZipArchiveReader.IsZipArchive(memoryStream, false);
 
         isZipArchive.Should().BeTrue();
     }
@@ -395,7 +395,7 @@ public class ZipArchiveReaderTests
     {
         File.WriteAllBytes(_tempFile, new byte[1]);
 
-        Action act = () => _zipArchiveReader.IsZipArchive(_tempFile);
+        Action act = () => ZipArchiveReader.IsZipArchive(_tempFile);
 
         act.Should().NotThrow();
     }
@@ -403,7 +403,7 @@ public class ZipArchiveReaderTests
     [Test]
     public void IsZipArchiveStream_Should_NotThrow_When_InvalidZipArchive()
     {
-        Action act = () => _zipArchiveReader.IsZipArchive(Stream.Null, false);
+        Action act = () => ZipArchiveReader.IsZipArchive(Stream.Null, false);
 
         act.Should().NotThrow();
     }
@@ -413,7 +413,7 @@ public class ZipArchiveReaderTests
     {
         File.WriteAllBytes(_tempFile, new byte[1]);
 
-        var isZipArchive = _zipArchiveReader.IsZipArchive(_tempFile);
+        var isZipArchive = ZipArchiveReader.IsZipArchive(_tempFile);
 
         isZipArchive.Should().BeFalse();
     }
@@ -421,7 +421,7 @@ public class ZipArchiveReaderTests
     [Test]
     public void IsZipArchiveStream_Should_Return_False_When_InvalidZipArchive()
     {
-        var isZipArchive = _zipArchiveReader.IsZipArchive(Stream.Null, false);
+        var isZipArchive = ZipArchiveReader.IsZipArchive(Stream.Null, false);
 
         isZipArchive.Should().BeFalse();
     }
@@ -432,7 +432,7 @@ public class ZipArchiveReaderTests
         var gldfBytes = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
         File.WriteAllBytes(_tempFile, gldfBytes);
 
-        var containsRootXml = _zipArchiveReader.ContainsRootXml(_tempFile);
+        var containsRootXml = ZipArchiveReader.ContainsRootXml(_tempFile);
 
         containsRootXml.Should().BeTrue();
     }
@@ -444,7 +444,7 @@ public class ZipArchiveReaderTests
         File.WriteAllBytes(_tempFile, gldfBytes);
         using var memoryStream = new MemoryStream(gldfBytes);
 
-        var containsRootXml = _zipArchiveReader.ContainsRootXml(memoryStream, false);
+        var containsRootXml = ZipArchiveReader.ContainsRootXml(memoryStream, false);
 
         containsRootXml.Should().BeTrue();
     }
@@ -452,7 +452,7 @@ public class ZipArchiveReaderTests
     [Test]
     public void ContainsRootXmlFile_ShouldReturn_False_When_ZipArchive_HasNoProductXml()
     {
-        var containsRootXml = _zipArchiveReader.ContainsRootXml(_tempFile);
+        var containsRootXml = ZipArchiveReader.ContainsRootXml(_tempFile);
 
         containsRootXml.Should().BeFalse();
     }
@@ -462,7 +462,7 @@ public class ZipArchiveReaderTests
     {
         using var memoryStream = new MemoryStream(File.ReadAllBytes(_tempFile));
 
-        var containsRootXml = _zipArchiveReader.ContainsRootXml(memoryStream, true);
+        var containsRootXml = ZipArchiveReader.ContainsRootXml(memoryStream, true);
 
         containsRootXml.Should().BeFalse();
     }
@@ -472,7 +472,7 @@ public class ZipArchiveReaderTests
     {
         File.WriteAllBytes(_tempFile, new byte[1]);
 
-        Action act = () => _zipArchiveReader.ContainsRootXml(_tempFile);
+        Action act = () => ZipArchiveReader.ContainsRootXml(_tempFile);
 
         act.Should().ThrowExactly<InvalidDataException>();
     }
@@ -480,7 +480,7 @@ public class ZipArchiveReaderTests
     [Test]
     public void ContainsRootXmlStream_ShouldThrow_When_ZipArchiveIsInvalid()
     {
-        Action act = () => _zipArchiveReader.ContainsRootXml(Stream.Null, false);
+        Action act = () => ZipArchiveReader.ContainsRootXml(Stream.Null, false);
 
         act.Should().ThrowExactly<InvalidDataException>();
     }
@@ -491,7 +491,7 @@ public class ZipArchiveReaderTests
         var gldfWithLargeFiles = EmbeddedGldfTestData.GetGldfWithLargeFiles();
         File.WriteAllBytes(_tempFile, gldfWithLargeFiles);
 
-        var largeFileNames = _zipArchiveReader.GetLargeFileNames(_tempFile, 5 * 1024 * 1024).ToList();
+        var largeFileNames = ZipArchiveReader.GetLargeFileNames(_tempFile, 5 * 1024 * 1024).ToList();
 
         largeFileNames.Should().Contain("doc/5MbTextFile.txt");
         largeFileNames.Should().NotContain("doc/4MbTextFile.txt");
@@ -503,7 +503,7 @@ public class ZipArchiveReaderTests
         var gldfWithLargeFiles = EmbeddedGldfTestData.GetGldfWithLargeFiles();
         using var stream = new MemoryStream(gldfWithLargeFiles);
 
-        var largeFileNames = _zipArchiveReader.GetLargeFileNames(stream, false, 5 * 1024 * 1024).ToList();
+        var largeFileNames = ZipArchiveReader.GetLargeFileNames(stream, false, 5 * 1024 * 1024).ToList();
 
         largeFileNames.Should().Contain("doc/5MbTextFile.txt");
         largeFileNames.Should().NotContain("doc/4MbTextFile.txt");
@@ -514,7 +514,7 @@ public class ZipArchiveReaderTests
     {
         File.WriteAllBytes(_tempFile, new byte[1]);
 
-        Action act = () => _zipArchiveReader.GetLargeFileNames(_tempFile, 1);
+        Action act = () => ZipArchiveReader.GetLargeFileNames(_tempFile, 1);
 
         act.Should().ThrowExactly<InvalidDataException>();
     }
@@ -522,7 +522,7 @@ public class ZipArchiveReaderTests
     [Test]
     public void GetLargeFileNamesStream_ShouldThrow_WhenInvalidZipFile()
     {
-        Action act = () => _zipArchiveReader.GetLargeFileNames(Stream.Null, false, 1);
+        Action act = () => ZipArchiveReader.GetLargeFileNames(Stream.Null, false, 1);
 
         act.Should().ThrowExactly<InvalidDataException>();
     }
@@ -535,7 +535,7 @@ public class ZipArchiveReaderTests
         var expectedDirectoryFilePaths = EmbeddedGldfTestData.ExpectedDirectoryFilePaths;
         File.WriteAllBytes(_tempFile, gldfWithFiles);
 
-        _zipArchiveReader.ExtractToDirectory(_tempFile, tempSubDirectory);
+        ZipArchiveReader.ExtractToDirectory(_tempFile, tempSubDirectory);
         var options = new EnumerationOptions { RecurseSubdirectories = true };
         var filesInsideDirectory = Directory.EnumerateFiles(tempSubDirectory, "*.*", options).ToList();
         Directory.Delete(tempSubDirectory, true);

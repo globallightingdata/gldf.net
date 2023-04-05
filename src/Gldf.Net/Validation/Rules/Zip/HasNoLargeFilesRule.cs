@@ -12,18 +12,11 @@ internal class HasNoLargeFilesRule : IZipArchiveValidationRule
     public int Priority => 50;
     public const int LimitInBytes = 5 * 1024 * 1024;
 
-    private readonly ZipArchiveReader _zipArchiveReader;
-
-    public HasNoLargeFilesRule()
-    {
-        _zipArchiveReader = new ZipArchiveReader();
-    }
-
     public IEnumerable<ValidationHint> Validate(string filePath)
     {
         try
         {
-            var toLargeFiles = _zipArchiveReader.GetLargeFileNames(filePath, LimitInBytes).ToArray();
+            var toLargeFiles = ZipArchiveReader.GetLargeFileNames(filePath, LimitInBytes).ToArray();
             return toLargeFiles.Any()
                 ? ValidationHint.Warning("Large files found. It is recommended to limit the " +
                                          "maximum file size to 5MB each: " +

@@ -84,7 +84,7 @@ public class GldfContainerWriter : IGldfContainerWriter
 
         try
         {
-            _zipArchiveWriter.CreateFromDirectory(sourceDirectory, targetContainerFilePath);
+            ZipArchiveWriter.CreateFromDirectory(sourceDirectory, targetContainerFilePath);
         }
         catch (Exception e)
         {

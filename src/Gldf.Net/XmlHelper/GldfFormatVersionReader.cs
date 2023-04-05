@@ -18,7 +18,7 @@ internal static class GldfFormatVersionReader
         }
         catch (Exception e)
         {
-            throw new GldfException("Failed to get FormatVersion. See inner expcetion", e);
+            throw new GldfException("Failed to get FormatVersion. See inner exception", e);
         }
     }
 

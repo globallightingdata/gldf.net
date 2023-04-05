@@ -12,7 +12,7 @@ using System;
 
 namespace Gldf.Net.Tests.TestData.Descriptive;
 
-public class DescriptiveAttributesModel
+public static class DescriptiveAttributesModel
 {
     public static Root Root => new()
     {

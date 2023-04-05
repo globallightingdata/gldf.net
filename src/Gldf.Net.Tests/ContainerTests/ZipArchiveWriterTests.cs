@@ -125,7 +125,7 @@ public class ZipArchiveWriterTests
         File.WriteAllBytes(_tempFile1, gldfWithFiles);
         ZipFile.ExtractToDirectory(_tempFile1, tempSubDirectory);
 
-        _zipArchiveWriter.CreateFromDirectory(tempSubDirectory, _tempFile2);
+        ZipArchiveWriter.CreateFromDirectory(tempSubDirectory, _tempFile2);
         var zipArchive = ZipFile.OpenRead(_tempFile2);
         var zipArchiveEntries = zipArchive.Entries;
         zipArchive.Dispose();
