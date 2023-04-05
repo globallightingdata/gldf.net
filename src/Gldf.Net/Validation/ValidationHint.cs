@@ -32,15 +32,15 @@ public class ValidationHint
         new ValidationHint(SeverityType.Info, infoMessage, ErrorType.None)
     };
 
-    public static IEnumerable<ValidationHint> Warning(string warningMessage, ErrorType errorType) => new[]
+    public static IEnumerable<ValidationHint> Warning(string warningMessage, ErrorType errorType)
     {
-        new ValidationHint(SeverityType.Warning, warningMessage, errorType)
-    };
+        yield return new ValidationHint(SeverityType.Warning, warningMessage, errorType);
+    }
 
-    public static IEnumerable<ValidationHint> Error(string errorMessage, ErrorType errorType) => new[]
+    public static IEnumerable<ValidationHint> Error(string errorMessage, ErrorType errorType)
     {
-        new ValidationHint(SeverityType.Error, errorMessage, errorType)
-    };
+        yield return new ValidationHint(SeverityType.Error, errorMessage, errorType);
+    }
 
     public override string ToString()
     {
