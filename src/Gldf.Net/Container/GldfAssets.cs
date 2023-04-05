@@ -21,6 +21,6 @@ public class GldfAssets
 
     public List<ContainerFile> Other { get; } = new();
 
-    public IEnumerable<ContainerFile> All => Photometries.Union(Images).Union(Geometries)
-        .Union(Documents).Union(Symbols).Union(Sensors).Union(Spectrums).Union(Other);
+    public IEnumerable<ContainerFile> All => Photometries.Concat(Images).Concat(Geometries)
+        .Concat(Documents).Concat(Symbols).Concat(Sensors).Concat(Spectrums).Concat(Other);
 }
