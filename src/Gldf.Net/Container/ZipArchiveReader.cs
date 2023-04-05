@@ -49,7 +49,6 @@ internal class ZipArchiveReader : ZipArchiveIO
     public GldfContainer ReadContainer(string filePath, ContainerLoadSettings settings)
     {
         using var zipArchive = ZipFile.OpenRead(filePath);
-        ReadZipContent(zipArchive, settings);
         return ReadZipContent(zipArchive, settings);
     }
 
