@@ -16,8 +16,7 @@ internal class FilesTransform : TransformBase
         {
             var gldfFiles = parserDto.Container.Product.GeneralDefinitions.Files;
             if (gldfFiles?.Any() != true) return parserDto;
-            foreach (var file in gldfFiles)
-                parserDto.GeneralDefinitions.Files.Add(Map(file));
+            parserDto.GeneralDefinitions.Files = gldfFiles.Select(Map).ToList();
             return parserDto;
         }, parserDto);
     }

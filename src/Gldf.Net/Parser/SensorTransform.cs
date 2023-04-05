@@ -15,8 +15,7 @@ internal class SensorTransform : TransformBase
         {
             var sensors = parserDto.Container.Product.GeneralDefinitions.Sensors;
             if (sensors?.Any() != true) return parserDto;
-            foreach (var sensor in sensors)
-                parserDto.GeneralDefinitions.Sensors.Add(Map(sensor, parserDto.GeneralDefinitions.Files));
+            parserDto.GeneralDefinitions.Sensors = sensors.Select(x => Map(x, parserDto.GeneralDefinitions.Files)).ToList();
             return parserDto;
         }, parserDto);
     }

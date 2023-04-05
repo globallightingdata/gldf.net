@@ -92,6 +92,9 @@ internal class DataFlowProcessor : IParserProcessor
         luminaireBatchBlock.LinkTo(transformLuminaire);
 
         broadcastContainer.Post(parserDto);
+
+        broadcastContainer.Complete();
+
         return transformLuminaire.Receive();
     }
 }

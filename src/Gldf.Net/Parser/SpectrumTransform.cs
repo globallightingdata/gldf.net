@@ -15,8 +15,7 @@ internal class SpectrumTransform : TransformBase
         {
             var spectrums = parserDto.Container.Product.GeneralDefinitions.Spectrums;
             if (spectrums?.Any() != true) return parserDto;
-            foreach (var spectrum in spectrums)
-                parserDto.GeneralDefinitions.Spectrums.Add(Map(spectrum, parserDto.GeneralDefinitions.Files));
+            parserDto.GeneralDefinitions.Spectrums = spectrums.Select(x => Map(x, parserDto.GeneralDefinitions.Files)).ToList();
             return parserDto;
         }, parserDto);
     }

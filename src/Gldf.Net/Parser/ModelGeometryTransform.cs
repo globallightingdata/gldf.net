@@ -14,10 +14,9 @@ internal class ModelGeometryTransform : TransformBase
     {
         return ExecuteSafe(() =>
         {
-            var geometries = parserDto.Container.Product.GeneralDefinitions.Geometries?.OfType<ModelGeometry>().ToList();
+            var geometries = parserDto.Container.Product.GeneralDefinitions.Geometries?.OfType<ModelGeometry>().ToArray();
             if (geometries?.Any() != true) return parserDto;
-            foreach (var modelGeometry in geometries)
-                parserDto.GeneralDefinitions.ModelGeometries.Add(Map(modelGeometry, parserDto.GeneralDefinitions.Files));
+            parserDto.GeneralDefinitions.ModelGeometries = geometries.Select(x => Map(x, parserDto.GeneralDefinitions.Files)).ToList();
             return parserDto;
         }, parserDto);
     }
@@ -31,7 +30,7 @@ internal class ModelGeometryTransform : TransformBase
 
     private static IEnumerable<ModelFileTyped> MapFileReferences(IEnumerable<GeometryFileReference> refs, IEnumerable<GldfFileTyped> files)
     {
-        if (refs == null) return null;
+        if (refs == null) return Enumerable.Empty<ModelFileTyped>();
         return from reference in refs
             let gldfFileTyped = files.ToFileTyped(reference.FileId)
             where gldfFileTyped != null

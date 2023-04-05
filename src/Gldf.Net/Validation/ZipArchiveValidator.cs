@@ -38,7 +38,7 @@ internal class ZipArchiveValidator
     {
         try
         {
-            var zipValidationHints = _zipValidationRules.SelectMany(rule => rule.Validate(filePath)).ToList();
+            var zipValidationHints = _zipValidationRules.SelectMany(rule => rule.Validate(filePath)).ToArray();
             return zipValidationHints.Any(hint => hint.Severity == SeverityType.Error) 
                 ? zipValidationHints 
                 : zipValidationHints.Union(ValidateArchieve(filePath));

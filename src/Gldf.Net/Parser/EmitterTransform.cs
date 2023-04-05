@@ -17,7 +17,7 @@ internal class EmitterTransform : TransformBase
         return ExecuteSafe(() =>
         {
             var parserDto = parserDtos[0];
-            var emitters = parserDto.Container.Product.GeneralDefinitions.Emitters?.ToList();
+            var emitters = parserDto.Container.Product.GeneralDefinitions.Emitters?.ToArray();
             if (emitters?.Any() != true) return parserDto;
             foreach (var emitter in emitters)
                 MapEmitter(emitter, parserDto);
@@ -27,9 +27,9 @@ internal class EmitterTransform : TransformBase
 
     private static void MapEmitter(Emitter emitter, ParserDto parserDto)
     {
-        var changeableLightEmitter = emitter.GetChangeableLightEmitters()?.ToList();
-        var fixedLightEmitter = emitter.GetFixedLightEmitters()?.ToList();
-        var sensorEmitter = emitter.GetSensorEmitters()?.ToList();
+        var changeableLightEmitter = emitter.GetChangeableLightEmitters()?.ToArray();
+        var fixedLightEmitter = emitter.GetFixedLightEmitters()?.ToArray();
+        var sensorEmitter = emitter.GetSensorEmitters()?.ToArray();
 
         if (changeableLightEmitter?.Any() == true)
         {

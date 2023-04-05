@@ -63,11 +63,11 @@ public static class GeometryExtensions
         var reference = geo.GetReferenceAsModelGeometryReference();
         if (reference == null) return null;
         var geometry = definitions.ModelGeometries.FirstOrDefault(simpleGeo => simpleGeo.Id.Equals(reference.GeometryId));
-        var emitterList = MapModelEmitter(reference.EmitterReferences, definitions).ToList();
+        var emitterList = MapModelEmitter(reference.EmitterReferences, definitions).ToArray();
         return new ModelGeometryEmitterTyped
         {
             Geometry = geometry,
-            Emitter = emitterList.ToArray()
+            Emitter = emitterList
         };
     }
 

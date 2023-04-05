@@ -13,10 +13,9 @@ internal class EquipmentTransform : TransformBase
         return ExecuteSafe(() =>
         {
             var parserDto = parserDtos[0];
-            var equipments = parserDto.Container.Product.GeneralDefinitions.Equipments?.ToList();
+            var equipments = parserDto.Container.Product.GeneralDefinitions.Equipments?.ToArray();
             if (equipments?.Any() != true) return parserDto;
-            foreach (var equipment in equipments)
-                parserDto.GeneralDefinitions.Equipments.Add(Map(equipment, parserDto.GeneralDefinitions));
+            parserDto.GeneralDefinitions.Equipments = equipments.Select(x => Map(x, parserDto.GeneralDefinitions)).ToList();
             return parserDto;
         }, parserDtos[0]);
     }
