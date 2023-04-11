@@ -1,73 +1,72 @@
-﻿using Gldf.Net.Domain.Xml;
-using Gldf.Net.Domain.Xml.Definition;
+﻿using Gldf.Net.Domain.Typed;
+using Gldf.Net.Domain.Typed.Definition;
+using Gldf.Net.Domain.Typed.Definition.Types;
+using Gldf.Net.Domain.Typed.Global;
+using Gldf.Net.Domain.Typed.Head;
 using Gldf.Net.Domain.Xml.Definition.Types;
-using Gldf.Net.Domain.Xml.Global;
-using Gldf.Net.Domain.Xml.Head;
-using Gldf.Net.Domain.Xml.Product;
-using Gldf.Net.Domain.Xml.Product.Types;
 using System;
 
 namespace Gldf.Net.Tests.TestData.Emitters;
 
-public static class EmitterMandatoryModel
+public static class EmitterMandatoryTyped
 {
-    public static Root Root => new()
+    public static RootTyped RootTyped => new()
     {
-        Header = new Header
+        Header = new HeaderTyped
         {
             Manufacturer = "DIAL",
             CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
             CreatedWithApplication = "Visual Studio Code"
         },
-        GeneralDefinitions = new GeneralDefinitions
+        GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new[]
+            Files = new()
             {
-                new GldfFile
+                new GldfFileTyped
                 {
                     Id = "eulumdat",
                     ContentType = FileContentType.LdcEulumdat,
                     Type = FileType.Url,
-                    File = "https://example.org/eulumdat.ldt"
+                    Uri = "https://example.org/eulumdat.ldt"
                 },
-                new GldfFile
+                new GldfFileTyped
                 {
                     Id = "sensorXml",
                     ContentType = FileContentType.SensorSensXml,
                     Type = FileType.Url,
-                    File = "https://example.org/sens.xml"
+                    Uri = "https://example.org/sens.xml"
                 }
             },
-            Sensors = new[]
+            Sensors = new()
             {
-                new Sensor
+                new SensorTyped
                 {
                     Id = "sensor",
-                    SensorFileReference = new SensorFileReference
+                    SensorFile = new GldfFileTyped
                     {
-                        FileId = "sensorXml"
+                        Id = "sensorXml"
                     }
                 }
             },
-            Photometries = new[]
+            Photometries = new()
             {
-                new Photometry
+                new PhotometryTyped
                 {
                     Id = "photometry",
-                    Content = new PhotometryFileReference
+                    PhotometryFile = new GldfFileTyped
                     {
-                        FileId = "eulumdat"
+                        Id = "eulumdat"
                     }
                 }
             },
-            LightSources = new LightSourceBase[]
+            FixedLightSources = new()
             {
-                new FixedLightSource
+                new FixedLightSourceTyped
                 {
                     Id = "fixedLightSource",
                     Name = new[]
                     {
-                        new Locale
+                        new LocaleTyped
                         {
                             Language = "en",
                             Text = "FixedLightSource"
@@ -76,61 +75,60 @@ public static class EmitterMandatoryModel
                     RatedInputPower = 10
                 }
             },
-            Emitters = new[]
+            Emitter = new()
             {
-                new Emitter
+                new EmitterTyped
                 {
                     Id = "emitter-1",
-                    PossibleFittings = new EmitterBase[]
+                    ChangeableEmitterOptions = new[]
                     {
-                        new ChangeableLightEmitter
+                        new ChangeableLightEmitterTyped
                         {
-                            PhotometryReference = new PhotometryReference
+                            Photometry = new PhotometryTyped
                             {
-                                PhotometryId = "photometry"
+                                Id = "photometry"
                             }
                         }
                     }
                 },
-                new Emitter
+                new EmitterTyped
                 {
                     Id = "emitter-2",
-                    PossibleFittings = new EmitterBase[]
+                    FixedEmitterOptions = new[]
                     {
-                        new FixedLightEmitter
+                        new FixedLightEmitterTyped
                         {
-                            PhotometryReference = new PhotometryReference
+                            Photometry = new PhotometryTyped
                             {
-                                PhotometryId = "photometry"
+                                Id = "photometry"
                             },
-                            LightSourceReference = new FixedLightSourceReference
+                            FixedLightSource = new FixedLightSourceTyped
                             {
-                                FixedLightSourceId = "fixedLightSource"
+                                Id = "fixedLightSource"
                             },
                             RatedLuminousFlux = 50
                         }
                     }
                 },
-                new Emitter
+                new EmitterTyped
                 {
                     Id = "emitter-3",
-                    PossibleFittings = new EmitterBase[]
+                    SensorEmitterOptions = new[]
                     {
-                        new SensorEmitter
+                        new SensorEmitterTyped
                         {
-                            SensorId = "sensor"
                         }
                     }
                 }
             }
         },
-        ProductDefinitions = new ProductDefinitions
+        ProductDefinitions = new ProductDefinitionsTyped
         {
-            ProductMetaData = new ProductMetaData
+            ProductMetaData = new ProductMetaDataTyped
             {
                 ProductNumber = new[]
                 {
-                    new Locale
+                    new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product number"
@@ -138,27 +136,27 @@ public static class EmitterMandatoryModel
                 },
                 Name = new[]
                 {
-                    new Locale
+                    new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product name"
                     }
                 }
             },
-            Variants = new[]
+            Variants = new()
             {
-                new Variant
+                new VariantTyped
                 {
                     Id = "variant-1",
                     Name = new[]
                     {
-                        new Locale { Language = "en", Text = "Variant 1" }
+                        new LocaleTyped { Language = "en", Text = "Variant 1" }
                     },
-                    Geometry = new GeometryReference
+                    Geometry = new GeometryTyped
                     {
-                        Reference = new EmitterReference
+                        EmitterOnly = new EmitterTyped
                         {
-                            EmitterId = "emitter-1"
+                            Id = "emitter-1"
                         }
                     }
                 }

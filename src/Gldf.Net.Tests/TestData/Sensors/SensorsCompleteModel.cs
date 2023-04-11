@@ -10,7 +10,7 @@ using System;
 
 namespace Gldf.Net.Tests.TestData.Sensors;
 
-public class SensorsCompleteModel
+public static class SensorsCompleteModel
 {
     public static Root Root => new()
     {

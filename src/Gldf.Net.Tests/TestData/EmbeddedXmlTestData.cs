@@ -1,4 +1,5 @@
 ﻿using Gldf.Net.Domain.Typed;
+using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Xml;
 using Gldf.Net.Tests.TestData.ControlGears;
 using Gldf.Net.Tests.TestData.Descriptive;
@@ -16,7 +17,6 @@ using Gldf.Net.Tests.TestData.Spectrums;
 using Gldf.Net.Tests.TestData.Variants;
 using Gldf.Net.Tests.TestHelper;
 using NUnit.Framework;
-using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData;
 
@@ -125,51 +125,66 @@ public static class EmbeddedXmlTestData
     public static Root GetSpectrumMandatoryModel() => SpectrumMandatoryModel.Root;
     public static RootTyped GetSpectrumMandatoryTyped() => SpectrumMandatoryTyped.RootTyped;
     public static Root GetSpectrumCompleteModel() => SpectrumCompleteModel.Root;
-    public static RootTyped GetSpectrumCompleteTyped() => SensorsCompleteTyped.RootTyped;
+    public static RootTyped GetSpectrumCompleteTyped() => SpectrumCompleteTyped.RootTyped;
 
     // GeneralDefinitions => LightSources
     public static string GetLightSourceMandatoryXml() => ResourceLoader.LoadEmbeddedXml(LightSourceMandatoryXml);
     public static string GetChangeableCompleteXml() => ResourceLoader.LoadEmbeddedXml(ChangeableCompleteXml);
     public static string GetFixedCompleteXml() => ResourceLoader.LoadEmbeddedXml(FixedCompleteXml);
     public static Root GetLightSourceMandatoryModel() => LightSourceMandatoryModel.Root;
+    public static RootTyped GetLightSourceMandatoryTyped() => LightSourceMandatoryTyped.RootTyped;
     public static Root GetChangeableCompleteModel() => ChangeableCompleteModel.Root;
+    public static RootTyped GetChangeableCompleteTyped() => ChangeableCompleteTyped.RootTyped;
     public static Root GetFixedCompleteModel() => FixedCompleteModel.Root;
+    public static RootTyped GetFixedCompleteTyped() => FixedCompleteTyped.RootTyped;
 
     // GeneralDefinitions => ControlGears
     public static string GetControlGearMandatoryXml() => ResourceLoader.LoadEmbeddedXml(ControlGearMandatoryXml);
     public static string GetControlGearCompleteXml() => ResourceLoader.LoadEmbeddedXml(ControlGearCompleteXml);
     public static Root GetControlGearMandatoryModel() => ControlGearMandatoryModel.Root;
+    public static RootTyped GetControlGearMandatoryTyped() => ControlGearMandatoryTyped.RootTyped;
     public static Root GetControlGearCompleteModel() => ControlGearCompleteModel.Root;
+    public static RootTyped GetControlGearCompleteTyped() => ControlGearCompleteTyped.RootTyped;
 
     // GeneralDefinitions => Equipments
     public static string GetEquipmentMandatoryXml() => ResourceLoader.LoadEmbeddedXml(EquipmentMandatoryXml);
     public static string GetEquipmentCompleteXml() => ResourceLoader.LoadEmbeddedXml(EquipmentCompleteXml);
     public static Root GetEquipmentMandatoryModel() => EquipmentMandatoryModel.Root;
+    public static RootTyped GetEquipmentMandatoryTyped() => EquipmentMandatoryTyped.RootTyped;
     public static Root GetEquipmentCompleteModel() => EquipmentCompleteModel.Root;
+    public static RootTyped GetEquipmentCompleteTyped() => EquipmentCompleteTyped.RootTyped;
 
     // GeneralDefinitions => Emitters
     public static string GetEmitterMandatoryXml() => ResourceLoader.LoadEmbeddedXml(EmitterMandatoryXml);
     public static string GetEmitterCompleteXml() => ResourceLoader.LoadEmbeddedXml(EmitterCompleteXml);
     public static Root GetEmitterMandatoryModel() => EmitterMandatoryModel.Root;
+    public static RootTyped GetEmitterMandatoryTyped() => EmitterMandatoryTyped.RootTyped;
     public static Root GetEmitterCompleteModel() => EmitterCompleteModel.Root;
+    public static RootTyped GetEmitterCompleteTyped() => EmitterCompleteTyped.RootTyped;
 
     // GeneralDefinitions => Geometries
     public static string GetGeometryMandatoryXml() => ResourceLoader.LoadEmbeddedXml(GeometryMandatoryXml);
     public static string GetGeometryCompleteXml() => ResourceLoader.LoadEmbeddedXml(GeometryCompleteXml);
     public static Root GetGeometryMandatoryModel() => GeometryMandatoryModel.Root;
+    public static RootTyped GetGeometryMandatoryTyped() => GeometryMandatoryTyped.RootTyped;
     public static Root GetGeometryCompleteModel() => GeometryCompleteModel.Root;
+    public static RootTyped GetGeometryCompleteTyped() => GeometryCompleteTyped.RootTyped;
 
     // GeneralDefinitions => ProductMetaData
     public static string GetMetaDataMandatoryXml() => ResourceLoader.LoadEmbeddedXml(MetaDataMandatoryXml);
     public static string GetMetaDataCompleteXml() => ResourceLoader.LoadEmbeddedXml(MetaDataCompleteXml);
     public static Root GetMetaDataMandatoryModel() => ProductMetaDataMandatoryModel.Root;
+    public static RootTyped GetMetaDataMandatoryTyped() => ProductMetaDataMandatoryTyped.RootTyped;
     public static Root GetMetaDataCompleteModel() => ProductMetaDataCompleteModel.Root;
+    public static RootTyped GetMetaDataCompleteTyped() => ProductMetaDataCompleteTyped.RootTyped;
 
     // GeneralDefinitions => Emitters
     public static string GetVariantMandatoryXml() => ResourceLoader.LoadEmbeddedXml(VariantMandatoryXml);
     public static string GetVariantCompleteXml() => ResourceLoader.LoadEmbeddedXml(VariantCompleteXml);
     public static Root GetVariantMandatoryModel() => VariantMandatoryModel.Root;
+    public static RootTyped GetVariantMandatoryTyped() => VariantMandatoryTyped.RootTyped;
     public static Root GetVariantCompleteModel() => VariantCompleteModel.Root;
+    public static RootTyped GetVariantCompleteTyped() => VariantCompleteTyped.RootTyped;
 
     // DescriptiveAttributes
     public static string GetDescriptiveAttributesXml() => ResourceLoader.LoadEmbeddedXml(DescriptiveAttributesXml);
@@ -179,7 +194,7 @@ public static class EmbeddedXmlTestData
     public static string GetRootWithHeaderXml() => ResourceLoader.LoadEmbeddedXml(RootWithHeaderXml);
     public static string GetRootWithHeaderUnintendXml() => ResourceLoader.LoadEmbeddedXml(RootWithUnintendedXml);
     public static Root GetRootWithHeaderModel() => RootWithHeaderModel.Root;
-        
+
     // Meta-Information
     public static string GetMetaInformationXml() => ResourceLoader.LoadEmbeddedXml(MetaInformationXml);
     public static MetaInformation GetMetaInformationModel() => MetaInfo.MetaInfo.MetaInformation;

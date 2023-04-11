@@ -9,7 +9,7 @@ using System;
 
 namespace Gldf.Net.Tests.TestData.LightSources;
 
-public class LightSourceMandatoryModel
+public static class LightSourceMandatoryModel
 {
     public static Root Root => new()
     {

@@ -1,55 +1,54 @@
-using Gldf.Net.Domain.Xml;
-using Gldf.Net.Domain.Xml.Definition;
+using Gldf.Net.Domain.Typed;
+using Gldf.Net.Domain.Typed.Definition;
+using Gldf.Net.Domain.Typed.Definition.Types;
+using Gldf.Net.Domain.Typed.Global;
+using Gldf.Net.Domain.Typed.Head;
 using Gldf.Net.Domain.Xml.Definition.Types;
-using Gldf.Net.Domain.Xml.Global;
-using Gldf.Net.Domain.Xml.Head;
-using Gldf.Net.Domain.Xml.Product;
-using Gldf.Net.Domain.Xml.Product.Types;
 using System;
 
 namespace Gldf.Net.Tests.TestData.Variants;
 
-public static class VariantMandatoryModel
+public static class VariantMandatoryTyped
 {
-    public static Root Root => new()
+    public static RootTyped RootTyped => new()
     {
-        Header = new Header
+        Header = new HeaderTyped
         {
             Manufacturer = "DIAL",
             CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
             CreatedWithApplication = "Visual Studio Code"
         },
-        GeneralDefinitions = new GeneralDefinitions
+        GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new[]
+            Files = new()
             {
-                new GldfFile
+                new GldfFileTyped
                 {
                     Id = "eulumdat",
                     ContentType = FileContentType.LdcEulumdat,
                     Type = FileType.Url,
-                    File = "https://example.org/eulumdat.ldt"
+                    Uri = "https://example.org/eulumdat.ldt"
                 }
             },
-            Photometries = new[]
+            Photometries = new()
             {
-                new Photometry
+                new PhotometryTyped
                 {
                     Id = "photometry",
-                    Content = new PhotometryFileReference
+                    PhotometryFile = new GldfFileTyped
                     {
-                        FileId = "eulumdat"
+                        Id = "eulumdat"
                     }
                 }
             },
-            LightSources = new LightSourceBase[]
+            FixedLightSources = new()
             {
-                new FixedLightSource
+                new FixedLightSourceTyped
                 {
                     Id = "fixedLightSource",
                     Name = new[]
                     {
-                        new Locale
+                        new LocaleTyped
                         {
                             Language = "en",
                             Text = "FixedLightSource"
@@ -58,40 +57,40 @@ public static class VariantMandatoryModel
                     RatedInputPower = 50
                 }
             },
-            Geometries = new GeometryBase[]
+            SimpleGeometries = new()
             {
-                new SimpleGeometry
+                new SimpleGeometryTyped
                 {
                     Id = "geometry",
-                    GeometryType = new SimpleCuboidGeometry
+                    CuboidGeometry = new SimpleCuboidGeometryTyped
                     {
                         Width = 1,
                         Length = 2,
                         Height = 3
                     },
-                    EmitterType = new SimpleRectangularEmitter
+                    RectangularEmitter = new SimpleRectangularEmitterTyped
                     {
                         Width = 4,
                         Length = 5
                     }
                 }
             },
-            Emitters = new[]
+            Emitter = new()
             {
-                new Emitter
+                new EmitterTyped
                 {
                     Id = "emitter",
-                    PossibleFittings = new EmitterBase[]
+                    FixedEmitterOptions = new FixedLightEmitterTyped[]
                     {
-                        new FixedLightEmitter
+                        new()
                         {
-                            PhotometryReference = new PhotometryReference
+                            Photometry = new PhotometryTyped
                             {
-                                PhotometryId = "photometry"
+                                Id = "photometry"
                             },
-                            LightSourceReference = new FixedLightSourceReference
+                            FixedLightSource = new FixedLightSourceTyped
                             {
-                                FixedLightSourceId = "fixedLightSource"
+                                Id = "fixedLightSource"
                             },
                             RatedLuminousFlux = 250
                         }
@@ -99,13 +98,13 @@ public static class VariantMandatoryModel
                 }
             }
         },
-        ProductDefinitions = new ProductDefinitions
+        ProductDefinitions = new ProductDefinitionsTyped
         {
-            ProductMetaData = new ProductMetaData
+            ProductMetaData = new ProductMetaDataTyped
             {
                 ProductNumber = new[]
                 {
-                    new Locale
+                    new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product number"
@@ -113,44 +112,50 @@ public static class VariantMandatoryModel
                 },
                 Name = new[]
                 {
-                    new Locale
+                    new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product name"
                     }
                 }
             },
-            Variants = new[]
+            Variants = new()
             {
-                new Variant
+                new VariantTyped
                 {
                     Id = "variant-1",
                     Name = new[]
                     {
-                        new Locale
+                        new LocaleTyped
                         {
                             Language = "en",
                             Text = "Variant 1"
                         }
                     }
                 },
-                new Variant
+                new VariantTyped
                 {
                     Id = "variant-2",
                     Name = new[]
                     {
-                        new Locale
+                        new LocaleTyped
                         {
                             Language = "en",
                             Text = "Variant 2"
                         }
                     },
-                    Geometry = new GeometryReference
+                    Geometry = new GeometryTyped
                     {
-                        Reference = new SimpleGeometryReference
+                        Simple = new SimpleGeometryEmitterTyped()
                         {
-                            GeometryId = "geometry",
-                            EmitterId = "emitter"
+                            Emitter = new EmitterTyped
+                            {
+                                Id = "emitter"
+                            },
+                            Geometry = new SimpleGeometryTyped
+                            {
+                                Id = "geometry"
+                            }
                         }
                     }
                 }

@@ -1,88 +1,87 @@
-﻿using Gldf.Net.Domain.Xml;
-using Gldf.Net.Domain.Xml.Definition;
+﻿using Gldf.Net.Domain.Typed;
+using Gldf.Net.Domain.Typed.Definition;
+using Gldf.Net.Domain.Typed.Definition.Types;
+using Gldf.Net.Domain.Typed.Global;
+using Gldf.Net.Domain.Typed.Head;
 using Gldf.Net.Domain.Xml.Definition.Types;
-using Gldf.Net.Domain.Xml.Global;
-using Gldf.Net.Domain.Xml.Head;
-using Gldf.Net.Domain.Xml.Product;
-using Gldf.Net.Domain.Xml.Product.Types;
 using System;
 
 namespace Gldf.Net.Tests.TestData.Geometries;
 
- public static class GeometryCompleteModel
+public static class GeometryCompleteTyped
 {
-    public static Root Root => new()
+    public static RootTyped RootTyped => new()
     {
-        Header = new Header
+        Header = new HeaderTyped
         {
             Manufacturer = "DIAL",
             CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
             CreatedWithApplication = "Visual Studio Code"
         },
-        GeneralDefinitions = new GeneralDefinitions
+        GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new[]
+            Files = new()
             {
-                new GldfFile
+                new GldfFileTyped
                 {
                     Id = "eulumdat",
                     ContentType = FileContentType.LdcEulumdat,
                     Type = FileType.Url,
-                    File = "https://example.org/eulumdat.ldt"
+                    Uri = "https://example.org/eulumdat.ldt"
                 },
-                new GldfFile
+                new GldfFileTyped
                 {
                     Id = "geometryFile",
                     ContentType = FileContentType.GeoL3d,
                     Type = FileType.Url,
-                    File = "https://example.org/geometry.l3d"
+                    Uri = "https://example.org/geometry.l3d"
                 }
             },
-            Photometries = new[]
+            Photometries = new()
             {
-                new Photometry
+                new PhotometryTyped
                 {
                     Id = "photometry",
-                    Content = new PhotometryFileReference
+                    PhotometryFile = new GldfFileTyped
                     {
-                        FileId = "eulumdat"
+                        Id = "eulumdat"
                     }
                 }
             },
-            Emitters = new[]
+            Emitter = new()
             {
-                new Emitter
+                new EmitterTyped
                 {
                     Id = "emitter",
-                    PossibleFittings = new EmitterBase[]
+                    ChangeableEmitterOptions = new[]
                     {
-                        new ChangeableLightEmitter
+                        new ChangeableLightEmitterTyped
                         {
-                            PhotometryReference = new PhotometryReference
+                            Photometry = new PhotometryTyped
                             {
-                                PhotometryId = "photometry"
+                                Id = "photometry"
                             }
                         }
                     }
                 }
             },
-            Geometries = new GeometryBase[]
+            SimpleGeometries = new()
             {
-                new SimpleGeometry
+                new SimpleGeometryTyped
                 {
                     Id = "geometry1",
-                    GeometryType = new SimpleCuboidGeometry
+                    CuboidGeometry = new SimpleCuboidGeometryTyped
                     {
                         Width = 1,
                         Length = 2,
                         Height = 3
                     },
-                    EmitterType = new SimpleRectangularEmitter
+                    RectangularEmitter = new SimpleRectangularEmitterTyped
                     {
                         Width = 4,
                         Length = 5
                     },
-                    CHeights = new CHeights
+                    CHeights = new CHeightsTyped
                     {
                         C0 = 6,
                         C90 = 7,
@@ -90,58 +89,58 @@ namespace Gldf.Net.Tests.TestData.Geometries;
                         C270 = 9
                     }
                 },
-                new SimpleGeometry
+                new SimpleGeometryTyped
                 {
                     Id = "geometry2",
-                    GeometryType = new SimpleCylinderGeometry
+                    CylinderGeometry = new SimpleCylinderGeometryTyped
                     {
                         Plane = SimpleCylinderPlane.X,
                         Diameter = 1,
                         Height = 2
                     },
-                    EmitterType = new SimpleCircularEmitter
+                    CircularEmitter = new SimpleCircularEmitterTyped
                     {
                         Diameter = 3
                     }
                 },
-                new SimpleGeometry
+                new SimpleGeometryTyped
                 {
                     Id = "geometry3",
-                    GeometryType = new SimpleCylinderGeometry
+                    CylinderGeometry = new SimpleCylinderGeometryTyped
                     {
                         Plane = SimpleCylinderPlane.Y,
                         Diameter = 1,
                         Height = 2
                     },
-                    EmitterType = new SimpleRectangularEmitter
+                    RectangularEmitter = new SimpleRectangularEmitterTyped
                     {
                         Width = 3,
                         Length = 4
                     }
                 },
-                new SimpleGeometry
+                new SimpleGeometryTyped
                 {
                     Id = "geometry4",
-                    GeometryType = new SimpleCylinderGeometry
+                    CylinderGeometry = new SimpleCylinderGeometryTyped
                     {
                         Plane = SimpleCylinderPlane.Z,
                         Diameter = 1,
                         Height = 2
                     },
-                    EmitterType = new SimpleCircularEmitter
+                    CircularEmitter = new SimpleCircularEmitterTyped
                     {
                         Diameter = 3
                     }
                 }
             }
         },
-        ProductDefinitions = new ProductDefinitions
+        ProductDefinitions = new ProductDefinitionsTyped
         {
-            ProductMetaData = new ProductMetaData
+            ProductMetaData = new ProductMetaDataTyped
             {
                 ProductNumber = new[]
                 {
-                    new Locale
+                    new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product number"
@@ -149,27 +148,27 @@ namespace Gldf.Net.Tests.TestData.Geometries;
                 },
                 Name = new[]
                 {
-                    new Locale
+                    new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product name"
                     }
                 }
             },
-            Variants = new[]
+            Variants = new()
             {
-                new Variant
+                new VariantTyped
                 {
                     Id = "variant-1",
                     Name = new[]
                     {
-                        new Locale { Language = "en", Text = "Variant 1" }
+                        new LocaleTyped { Language = "en", Text = "Variant 1" }
                     },
-                    Geometry = new GeometryReference
+                    Geometry = new GeometryTyped
                     {
-                        Reference = new EmitterReference
+                        EmitterOnly = new EmitterTyped
                         {
-                            EmitterId = "emitter"
+                            Id = "emitter"
                         }
                     }
                 }

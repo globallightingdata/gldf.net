@@ -12,7 +12,7 @@ using System;
 
 namespace Gldf.Net.Tests.TestData.MetaData;
 
-public class ProductMetaDataCompleteModel
+public static class ProductMetaDataCompleteModel
 {
     public static Root Root => new()
     {
