@@ -15,7 +15,7 @@ public class GldfXmlValidatorTests
 {
     private GldfXmlValidator _xmlValidator;
     private string _tempFile;
-    private static List<TestCaseData> _validXmlTestCases = EmbeddedXmlTestData.ValidXmlTestCases;
+    private static readonly TestCaseData[] ValidXmlTestCases = EmbeddedXmlTestData.ValidXmlTestCases;
 
     [SetUp]
     public void SetUp()
@@ -40,7 +40,7 @@ public class GldfXmlValidatorTests
             .WithMessage("Value cannot be null. (Parameter 'encoding')");
     }
 
-    [Test, TestCaseSource(nameof(_validXmlTestCases))]
+    [Test, TestCaseSource(nameof(ValidXmlTestCases))]
     public void ValidateString_ValidTestData_Should_Return_EmptyList(string xml)
     {
         var validationResult = _xmlValidator.ValidateString(xml);
@@ -65,7 +65,7 @@ public class GldfXmlValidatorTests
 
         act.Should()
             .ThrowExactly<GldfValidationException>().WithMessage("Failed to validate XML. See inner exception")
-            .WithInnerException<GldfException>().WithMessage("Failed to get FormatVersion. See inner expcetion");
+            .WithInnerException<GldfException>().WithMessage("Failed to get FormatVersion. See inner exception");
     }
 
     [Test]
@@ -108,7 +108,7 @@ public class GldfXmlValidatorTests
         validationResult.Should().BeEmpty();
     }
 
-    [Test, TestCaseSource(nameof(_validXmlTestCases))]
+    [Test, TestCaseSource(nameof(ValidXmlTestCases))]
     public void ValidateFileValidTestData_Should_Return_EmptyList(string xml)
     {
         File.WriteAllText(_tempFile, xml);

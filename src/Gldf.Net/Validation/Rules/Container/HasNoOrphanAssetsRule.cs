@@ -19,7 +19,7 @@ internal class HasNoOrphanAssetsRule : IContainerValidationRule
         {
             var filesWithAssets = container.Product.GeneralDefinitions.Files.Where(file =>
                 file.Type == FileType.LocalFileName).Select(file => GetAsset(file, container.Assets));
-            var orpahnedAssets = container.Assets.All.Except(filesWithAssets).ToList();
+            var orpahnedAssets = container.Assets.All.Except(filesWithAssets).ToArray();
 
             return orpahnedAssets.Any()
                 ? ValidationHint.Warning("The GLDF container contains assets that are not referenced in the " +

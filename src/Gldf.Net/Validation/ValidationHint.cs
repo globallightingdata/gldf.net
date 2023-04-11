@@ -27,20 +27,20 @@ public class ValidationHint
 
     public static IEnumerable<ValidationHint> Empty() => Enumerable.Empty<ValidationHint>();
 
-    public static IEnumerable<ValidationHint> Info(string infoMessage) => new[]
+    public static IEnumerable<ValidationHint> Info(string infoMessage)
     {
-        new ValidationHint(SeverityType.Info, infoMessage, ErrorType.None)
-    };
+        yield return new ValidationHint(SeverityType.Info, infoMessage, ErrorType.None);
+    }
 
-    public static IEnumerable<ValidationHint> Warning(string warningMessage, ErrorType errorType) => new[]
+    public static IEnumerable<ValidationHint> Warning(string warningMessage, ErrorType errorType)
     {
-        new ValidationHint(SeverityType.Warning, warningMessage, errorType)
-    };
+        yield return new ValidationHint(SeverityType.Warning, warningMessage, errorType);
+    }
 
-    public static IEnumerable<ValidationHint> Error(string errorMessage, ErrorType errorType) => new[]
+    public static IEnumerable<ValidationHint> Error(string errorMessage, ErrorType errorType)
     {
-        new ValidationHint(SeverityType.Error, errorMessage, errorType)
-    };
+        yield return new ValidationHint(SeverityType.Error, errorMessage, errorType);
+    }
 
     public override string ToString()
     {

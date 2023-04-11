@@ -14,8 +14,7 @@ internal class ControlGearsTransform : TransformBase
         {
             var controlGears = parserDto.Container.Product.GeneralDefinitions.ControlGears;
             if (controlGears?.Any() != true) return parserDto;
-            foreach (var controlGear in controlGears)
-                parserDto.GeneralDefinitions.ControlGears.Add(Map(controlGear));
+            parserDto.GeneralDefinitions.ControlGears = controlGears.Select(Map).ToList();
             return parserDto;
         }, parserDto);
     }

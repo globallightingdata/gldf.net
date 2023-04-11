@@ -17,7 +17,7 @@ public class SpectrumMandatoryTyped
         Header = new HeaderTyped
         {
             Manufacturer = "DIAL",
-            CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
             CreatedWithApplication = "Visual Studio Code",
             FormatVersion = FormatVersionTyped.V100
         },

@@ -23,7 +23,7 @@ internal class ZipArchiveWriter : ZipArchiveIO
         AddMetaInfo(zipArchive, gldfContainer);
     }
 
-    public void CreateFromDirectory(string sourceDirectory, string targetFilePath)
+    public static void CreateFromDirectory(string sourceDirectory, string targetFilePath)
     {
         PrepareDirectory(targetFilePath, true);
         ZipFile.CreateFromDirectory(sourceDirectory, targetFilePath);

@@ -13,10 +13,10 @@ internal class ChangeableLightSourceTransform : TransformBase
         return ExecuteSafe(() =>
         {
             var parserDto = parserDtos[0];
-            var changeableLightSources = parserDto.Container.Product.GeneralDefinitions.LightSources?.OfType<ChangeableLightSource>().ToList();
+            var changeableLightSources = parserDto.Container.Product.GeneralDefinitions.LightSources?.OfType<ChangeableLightSource>().ToArray();
             if (changeableLightSources?.Any() != true) return parserDto;
-            foreach (var changeableLightSource in changeableLightSources)
-                parserDto.GeneralDefinitions.ChangeableLightSources.Add(Map(changeableLightSource, parserDto.GeneralDefinitions));
+            parserDto.GeneralDefinitions.ChangeableLightSources =
+                changeableLightSources.Select(x => Map(x, parserDto.GeneralDefinitions)).ToList();
             return parserDto;
         }, parserDtos[0]);
     }

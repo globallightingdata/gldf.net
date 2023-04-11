@@ -23,7 +23,8 @@ internal static class EmbeddedXsdLoader
         }
         catch (Exception e)
         {
-            throw new GldfException($"Failed to get embedded XSD for {nameof(FormatVersion)}{version}", e);
+            var errorMessage = $"Failed to get embedded XSD for {nameof(FormatVersion)}{version}";
+            throw new GldfException(errorMessage, e);
         }
     }
 }

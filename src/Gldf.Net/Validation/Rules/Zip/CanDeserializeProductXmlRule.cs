@@ -31,12 +31,12 @@ internal class CanDeserializeProductXmlRule : IZipArchiveValidationRule
             return container.Product != null
                 ? ValidationHint.Empty()
                 : ValidationHint.Error($"The product.xml in GLDF container '{filePath}' could not be " +
-                                       "deserialised.", ErrorType.NonDeserialisableRoot);
+                                       "deserialized.", ErrorType.NonDeserialisableRoot);
         }
         catch (Exception e)
         {
             return ValidationHint.Error($"The product.xml in GLDF container '{filePath}' could " +
-                                        "not be deserialised. Error: " +
+                                        "not be deserialized. Error: " +
                                         $"{e.FlattenMessage()}", ErrorType.NonDeserialisableRoot);
         }
     }

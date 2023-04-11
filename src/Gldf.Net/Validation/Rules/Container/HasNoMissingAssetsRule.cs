@@ -18,7 +18,7 @@ internal class HasNoMissingAssetsRule : IContainerValidationRule
         try
         {
             var filesWithoutAssets = container.Product.GeneralDefinitions.Files.Where(file =>
-                file.Type == FileType.LocalFileName && HasNoAsset(file, container.Assets)).ToList();
+                file.Type == FileType.LocalFileName && HasNoAsset(file, container.Assets)).ToArray();
 
             return filesWithoutAssets.Any()
                 ? ValidationHint.Error("The product.xml contains File definitions that are " +

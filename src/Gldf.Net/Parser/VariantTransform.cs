@@ -15,8 +15,7 @@ internal class VariantTransform : TransformBase
             var parserDto = parserDtos[0];
             var variants = parserDto.Container.Product.ProductDefinitions.Variants;
             if (variants?.Any() != true) return parserDto;
-            foreach (var variant in variants)
-                parserDto.ProductDefinitions.Variants.Add(Map(variant, parserDto.GeneralDefinitions));
+            parserDto.ProductDefinitions.Variants = variants.Select(x => Map(x, parserDto.GeneralDefinitions)).ToList();
             return parserDto;
         }, parserDtos[0]);
     }

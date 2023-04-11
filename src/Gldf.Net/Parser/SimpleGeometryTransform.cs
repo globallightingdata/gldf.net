@@ -14,8 +14,7 @@ internal class SimpleGeometryTransform : TransformBase
         {
             var geometries = parserDto.Container.Product.GeneralDefinitions.Geometries;
             if (geometries?.OfType<SimpleGeometry>().Any() != true) return parserDto;
-            foreach (var simpleGeometry in geometries.OfType<SimpleGeometry>())
-                parserDto.GeneralDefinitions.SimpleGeometries.Add(Map(simpleGeometry));
+            parserDto.GeneralDefinitions.SimpleGeometries = geometries.OfType<SimpleGeometry>().Select(Map).ToList();
             return parserDto;
         }, parserDto);
     }

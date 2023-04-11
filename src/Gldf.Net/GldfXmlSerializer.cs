@@ -62,7 +62,7 @@ public class GldfXmlSerializer : IGldfXmlSerializer
         }
         catch (Exception e)
         {
-            throw new GldfException("Failed to serialise Root to XML", e);
+            throw new GldfException("Failed to serialize Root to XML", e);
         }
     }
 

@@ -24,7 +24,7 @@ internal class HeaderTransform : TransformBase
     {
         headerTyped.Author = header.Author;
         headerTyped.Manufacturer = header.Manufacturer;
-        headerTyped.CreationTimeCode = header.GldfCreationTimeCode;
+        headerTyped.GldfCreationTimeCode = header.GldfCreationTimeCode;
         headerTyped.CreatedWithApplication = header.CreatedWithApplication;
         headerTyped.FormatVersion = MapFormatVersion(header.FormatVersion);
         headerTyped.DefaultLanguage = header.DefaultLanguage;
@@ -48,21 +48,21 @@ internal class HeaderTransform : TransformBase
             Key = key.Key
         }).ToArray();
 
-    private static AddressTyped[] MapContact(IEnumerable<Address> adresses) =>
-        adresses?.Select(adress =>
+    private static AddressTyped[] MapContact(IEnumerable<Address> addresses) =>
+        addresses?.Select(address =>
             new AddressTyped
             {
-                FirstName = adress.FirstName,
-                Name = adress.Name,
-                Street = adress.Street,
-                Number = adress.Number,
-                ZipCode = adress.ZipCode,
-                City = adress.City,
-                Country = adress.Country,
-                Phone = adress.Phone,
-                EMailAddresses = MapEmails(adress.EMailAddresses),
-                Websites = adress.Websites?.ToTypedArray(),
-                AdditionalInfo = adress.AdditionalInfo
+                FirstName = address.FirstName,
+                Name = address.Name,
+                Street = address.Street,
+                Number = address.Number,
+                ZipCode = address.ZipCode,
+                City = address.City,
+                Country = address.Country,
+                Phone = address.Phone,
+                EMailAddresses = MapEmails(address.EMailAddresses),
+                Websites = address.Websites?.ToTypedArray(),
+                AdditionalInfo = address.AdditionalInfo
             }).ToArray();
 
     private static EMailTyped[] MapEmails(IEnumerable<EMail> eMails) =>

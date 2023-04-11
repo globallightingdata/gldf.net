@@ -38,7 +38,7 @@ internal class ZipArchiveValidator
     {
         try
         {
-            var zipValidationHints = _zipValidationRules.SelectMany(rule => rule.Validate(filePath)).ToList();
+            var zipValidationHints = _zipValidationRules.SelectMany(rule => rule.Validate(filePath)).ToArray();
             return zipValidationHints.Any(hint => hint.Severity == SeverityType.Error) 
                 ? zipValidationHints 
                 : zipValidationHints.Union(ValidateArchieve(filePath));
@@ -49,7 +49,7 @@ internal class ZipArchiveValidator
         }
     }
 
-    internal IEnumerable<T> GetValidationRules<T>()
+    internal static IEnumerable<T> GetValidationRules<T>()
     {
         static bool IsOfTypeClass(Type type)
             => typeof(T).IsAssignableFrom(type) && type.IsClass && !type.IsAbstract;
@@ -60,8 +60,7 @@ internal class ZipArchiveValidator
 
     private IEnumerable<ValidationHint> ValidateArchieve(string filePath)
     {
-        const AssetLoadBehaviour assetLoadBehaviour = AssetLoadBehaviour.FileNamesOnly;
-        var containerLoadSettings = new ContainerLoadSettings {AssetLoadBehaviour = assetLoadBehaviour};
+        var containerLoadSettings = new ContainerLoadSettings {AssetLoadBehaviour = AssetLoadBehaviour.FileNamesOnly};
         var gldfContainer = _zipArchiveReader.ReadContainer(filePath, containerLoadSettings);
         return _containerValidationRules.SelectMany(rule => rule.Validate(gldfContainer));
     }

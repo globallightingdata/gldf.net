@@ -30,7 +30,7 @@ public class XmlFormatVersionReaderTests
 
         act.Should()
             .ThrowExactly<GldfException>()
-            .WithMessage("Failed to get FormatVersion. See inner expcetion")
+            .WithMessage("Failed to get FormatVersion. See inner exception")
             .WithInnerException<Exception>()
             .WithMessage("Data at the root level is invalid. Line 1, position 1.");
     }
@@ -44,7 +44,7 @@ public class XmlFormatVersionReaderTests
 
         act.Should()
             .ThrowExactly<GldfException>()
-            .WithMessage("Failed to get FormatVersion. See inner expcetion")
+            .WithMessage("Failed to get FormatVersion. See inner exception")
             .WithInnerExceptionExactly<XmlException>()
             .WithMessage("Path Root/Header/FormatVersion not found");
     }
@@ -58,6 +58,6 @@ public class XmlFormatVersionReaderTests
 
         act.Should()
             .ThrowExactly<GldfException>()
-            .WithMessage("Failed to get FormatVersion. See inner expcetion");
+            .WithMessage("Failed to get FormatVersion. See inner exception");
     }
 }

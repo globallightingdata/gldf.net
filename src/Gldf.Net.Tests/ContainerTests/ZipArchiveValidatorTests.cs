@@ -34,7 +34,7 @@ public class ZipArchiveValidatorTests
     [Test]
     public void GetValidationRules_ZipRules_Should_ReturnExpectedRules()
     {
-        var zipRules = _zipArchiveValidator.GetValidationRules<IZipArchiveValidationRule>().ToList();
+        var zipRules = ZipArchiveValidator.GetValidationRules<IZipArchiveValidationRule>().ToList();
 
         zipRules.Should().HaveCount(5);
         zipRules.Should().Contain(rule => rule.GetType().IsAssignableFrom(typeof(CanDeserializeProductXmlRule)));
@@ -47,7 +47,7 @@ public class ZipArchiveValidatorTests
     [Test]
     public void GetValidationRules_ContainerRules_Should_ReturnExpectedRuleCount()
     {
-        var containerRules = _zipArchiveValidator.GetValidationRules<IContainerValidationRule>().ToList();
+        var containerRules = ZipArchiveValidator.GetValidationRules<IContainerValidationRule>().ToList();
 
         containerRules.Should().HaveCount(2);
         containerRules.Should().Contain(rule => rule.GetType().IsAssignableFrom(typeof(HasNoMissingAssetsRule)));

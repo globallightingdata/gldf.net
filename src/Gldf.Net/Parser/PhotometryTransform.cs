@@ -16,8 +16,8 @@ internal class PhotometryTransform : TransformBase
         {
             var photometries = parserDto.Container.Product.GeneralDefinitions.Photometries;
             if (photometries?.Any() != true) return parserDto;
-            foreach (var photometry in photometries)
-                parserDto.GeneralDefinitions.Photometries.Add(Map(photometry, parserDto.GeneralDefinitions.Files));
+            parserDto.GeneralDefinitions.Photometries =
+                photometries.Select(x => Map(x, parserDto.GeneralDefinitions.Files)).ToList();
             return parserDto;
         }, parserDto);
     }

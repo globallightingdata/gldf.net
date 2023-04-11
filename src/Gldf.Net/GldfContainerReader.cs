@@ -28,7 +28,7 @@ public class GldfContainerReader : IGldfContainerReader
     ///     Reads the GLDF container from file into an instance of <see cref="GldfContainer" />.
     /// </summary>
     /// <param name="filePath">The path on disk of the GLDF container file</param>
-    /// <returns><see cref="GldfContainer" /> with deserialised product.xml, file assets and meta-information</returns>
+    /// <returns><see cref="GldfContainer" /> with deserialized product.xml, file assets and meta-information</returns>
     public GldfContainer ReadFromFile(string filePath)
         => ReadFromFile(filePath, ContainerLoadSettings.Default);
 
@@ -38,7 +38,7 @@ public class GldfContainerReader : IGldfContainerReader
     /// </summary>
     /// <param name="filePath">The path on disk of the GLDF container file</param>
     /// <param name="settings">Load behaviour for product.xml, asset files and meta-information</param>
-    /// <returns><see cref="GldfContainer" /> with deserialised product.xml, file assets and meta-information</returns>
+    /// <returns><see cref="GldfContainer" /> with deserialized product.xml, file assets and meta-information</returns>
     public GldfContainer ReadFromFile(string filePath, ContainerLoadSettings settings)
     {
         if (filePath == null) throw new ArgumentNullException(nameof(filePath));
@@ -60,7 +60,7 @@ public class GldfContainerReader : IGldfContainerReader
     /// </summary>
     /// <param name="zipStream">Stream to read the <see cref="GldfContainer" /> from</param>
     /// <param name="leaveOpen">To leave the stream open after read, otherwise it will be disposed</param>
-    /// <returns><see cref="GldfContainer" /> with deserialised product.xml, file assets and meta-information</returns>
+    /// <returns><see cref="GldfContainer" /> with deserialized product.xml, file assets and meta-information</returns>
     public GldfContainer ReadFromStream(Stream zipStream, bool leaveOpen) =>
         ReadFromStream(zipStream, leaveOpen, ContainerLoadSettings.Default);
 
@@ -70,7 +70,7 @@ public class GldfContainerReader : IGldfContainerReader
     /// <param name="zipStream">Stream of a ZIP archive to read the <see cref="GldfContainer" /> from</param>
     /// <param name="leaveOpen">To leave the stream open after read, otherwise it will be disposed</param>
     /// <param name="settings">Load behaviour for product.xml, asset files and meta-information</param>
-    /// <returns><see cref="GldfContainer" /> with deserialised product.xml, file assets and meta-information</returns>
+    /// <returns><see cref="GldfContainer" /> with deserialized product.xml, file assets and meta-information</returns>
     public GldfContainer ReadFromStream(Stream zipStream, bool leaveOpen, ContainerLoadSettings settings)
     {
         if (zipStream == null) throw new ArgumentNullException(nameof(zipStream));
@@ -99,7 +99,7 @@ public class GldfContainerReader : IGldfContainerReader
 
         try
         {
-            _zipArchiveReader.ExtractToDirectory(sourceContainerFilePath, targetDirectory);
+            ZipArchiveReader.ExtractToDirectory(sourceContainerFilePath, targetDirectory);
         }
         catch (Exception e)
         {

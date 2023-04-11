@@ -9,7 +9,7 @@ using System;
 
 namespace Gldf.Net.Tests.TestData.LightSources;
 
-public class ChangeableCompleteModel
+public static class ChangeableCompleteModel
 {
     public static Root Root => new()
     {

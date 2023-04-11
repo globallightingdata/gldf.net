@@ -62,7 +62,7 @@ public class MetaInfoSerializer : IMetaInfoSerializer
         }
         catch (Exception e)
         {
-            throw new GldfException("Failed to serialise Root to XML", e);
+            throw new GldfException("Failed to serialize Root to XML", e);
         }
     }
 
