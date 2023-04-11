@@ -1,145 +1,147 @@
-﻿using Gldf.Net.Domain.Xml;
-using Gldf.Net.Domain.Xml.Definition;
+﻿using Gldf.Net.Domain.Typed;
+using Gldf.Net.Domain.Typed.Definition;
+using Gldf.Net.Domain.Typed.Definition.Types;
+using Gldf.Net.Domain.Typed.Definition.Types.Mounting;
+using Gldf.Net.Domain.Typed.Global;
+using Gldf.Net.Domain.Typed.Head;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using Gldf.Net.Domain.Xml.Global;
-using Gldf.Net.Domain.Xml.Head;
-using Gldf.Net.Domain.Xml.Product;
 using Gldf.Net.Domain.Xml.Product.Types;
-using Gldf.Net.Domain.Xml.Product.Types.Mounting;
 using System;
 
 namespace Gldf.Net.Tests.TestData.Variants;
 
-public static class VariantCompleteModel
+public static class VariantCompleteTyped
 {
-    public static Root Root => new()
+    public static RootTyped RootTyped => new()
     {
-        Header = new Header
+        Header = new HeaderTyped
         {
             Manufacturer = "DIAL",
-            GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
             CreatedWithApplication = "Visual Studio Code"
         },
-        GeneralDefinitions = new GeneralDefinitions
+        GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new[]
+            Files = new()
             {
-                new GldfFile
+                new GldfFileTyped
                 {
                     Id = "eulumdatFile",
                     ContentType = FileContentType.LdcEulumdat,
                     Type = FileType.Url,
-                    File = "https://example.org/eulumdat.ldt"
+                    Uri = "https://example.org/eulumdat.ldt"
                 },
-                new GldfFile
+                new GldfFileTyped
                 {
                     Id = "geometryFile",
                     ContentType = FileContentType.GeoL3d,
                     Type = FileType.Url,
-                    File = "https://example.org/geo.l3d"
+                    Uri = "https://example.org/geo.l3d"
                 },
-                new GldfFile
+                new GldfFileTyped
                 {
                     Id = "sensorFile",
                     ContentType = FileContentType.SensorSensXml,
                     Type = FileType.Url,
-                    File = "https://example.org/sensor.xml"
+                    Uri = "https://example.org/sensor.xml"
                 },
-                new GldfFile
+                new GldfFileTyped
                 {
                     Id = "pictureFile",
                     ContentType = FileContentType.ImageSvg,
                     Type = FileType.LocalFileName,
-                    File = "picture.svg"
+                    Uri = "picture.svg"
                 }
             },
-            Sensors = new[]
+            Sensors = new()
             {
-                new Sensor
+                new SensorTyped
                 {
                     Id = "sensor",
-                    SensorFileReference = new SensorFileReference
+                    SensorFile = new GldfFileTyped
                     {
-                        FileId = "sensorFile"
+                        Id = "sensorFile"
                     }
                 }
             },
-            Photometries = new[]
+            Photometries = new()
             {
-                new Photometry
+                new PhotometryTyped
                 {
                     Id = "photometry",
-                    Content = new PhotometryFileReference
+                    PhotometryFile = new GldfFileTyped
                     {
-                        FileId = "eulumdatFile"
+                        Id = "eulumdatFile"
                     }
                 }
             },
-            Emitters = new[]
+            Emitter = new()
             {
-                new Emitter
+                new EmitterTyped
                 {
                     Id = "leoEmitter",
-                    PossibleFittings = new EmitterBase[]
+                    ChangeableEmitterOptions = new[]
                     {
-                        new ChangeableLightEmitter
+                        new ChangeableLightEmitterTyped
                         {
-                            PhotometryReference = new PhotometryReference
+                            Photometry = new PhotometryTyped
                             {
-                                PhotometryId = "photometry"
+                                Id = "photometry"
                             }
                         }
                     }
                 },
-                new Emitter
+                new EmitterTyped
                 {
                     Id = "sensorEmitter",
-                    PossibleFittings = new EmitterBase[]
+                    SensorEmitterOptions = new[]
                     {
-                        new SensorEmitter
+                        new SensorEmitterTyped
                         {
-                            SensorId = "sensor"
                         }
                     }
                 }
             },
-            Geometries = new GeometryBase[]
+            SimpleGeometries = new()
             {
-                new SimpleGeometry
+                new SimpleGeometryTyped
                 {
                     Id = "simpleGeometry",
-                    GeometryType = new SimpleCuboidGeometry
+                    CuboidGeometry = new SimpleCuboidGeometryTyped
                     {
                         Width = 1,
                         Length = 2,
                         Height = 3
                     },
-                    EmitterType = new SimpleRectangularEmitter
+                    RectangularEmitter = new SimpleRectangularEmitterTyped
                     {
                         Width = 4,
                         Length = 5
                     }
-                },
-                new ModelGeometry
+                }
+            },
+            ModelGeometries = new()
+            {
+                new ModelGeometryTyped
                 {
                     Id = "geometry",
-                    GeometryFileReferences = new GeometryFileReference[]
+                    GeometryFiles = new ModelFileTyped[]
                     {
                         new()
                         {
-                            FileId = "geometryFile"
                         }
                     }
                 }
             }
         },
-        ProductDefinitions = new ProductDefinitions
+        ProductDefinitions = new ProductDefinitionsTyped
         {
-            ProductMetaData = new ProductMetaData
+            ProductMetaData = new ProductMetaDataTyped
             {
                 ProductNumber = new[]
                 {
-                    new Locale
+                    new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product number"
@@ -147,26 +149,26 @@ public static class VariantCompleteModel
                 },
                 Name = new[]
                 {
-                    new Locale
+                    new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product name"
                     }
                 }
             },
-            Variants = new[]
+            Variants = new()
             {
-                new Variant
+                new VariantTyped
                 {
                     Id = "variant-1",
                     ProductNumber = new[]
                     {
-                        new Locale
+                        new LocaleTyped
                         {
                             Language = "en",
                             Text = "Product number"
                         },
-                        new Locale
+                        new LocaleTyped
                         {
                             Language = "de",
                             Text = "Produktnummer"
@@ -174,12 +176,12 @@ public static class VariantCompleteModel
                     },
                     Name = new[]
                     {
-                        new Locale
+                        new LocaleTyped
                         {
                             Language = "en",
                             Text = "Variant 1"
                         },
-                        new Locale
+                        new LocaleTyped
                         {
                             Language = "de",
                             Text = "Variante 1"
@@ -187,12 +189,12 @@ public static class VariantCompleteModel
                     },
                     Description = new[]
                     {
-                        new Locale
+                        new LocaleTyped
                         {
                             Language = "en",
                             Text = "Variant description"
                         },
-                        new Locale
+                        new LocaleTyped
                         {
                             Language = "de",
                             Text = "Variantenbeschreibung"
@@ -200,72 +202,72 @@ public static class VariantCompleteModel
                     },
                     TenderText = new[]
                     {
-                        new Locale
+                        new LocaleTyped
                         {
                             Language = "en",
                             Text = "Variant tender text"
                         },
-                        new Locale
+                        new LocaleTyped
                         {
                             Language = "de",
                             Text = "Varianten Ausschreibungstext"
                         }
                     },
                     GTIN = "12345678",
-                    Mountings = new Mountings
+                    Mountings = new MountingsTyped
                     {
-                        Ceiling = new Ceiling
+                        Ceiling = new CeilingTyped
                         {
-                            Recessed = new Recessed
+                            Recessed = new RecessedTyped
                             {
                                 RecessedDepth = 1,
-                                Cutout = new CircularCutout
+                                CircularCutout = new CircularCutoutTyped
                                 {
                                     Diameter = 2,
                                     Depth = 3
                                 }
                             },
-                            SurfaceMounted = new SurfaceMounted(),
-                            Pendant = new Pendant
+                            SurfaceMounted = new SurfaceMountedTyped(),
+                            Pendant = new PendantTyped
                             {
                                 PendantLength = 4
                             }
                         },
-                        Wall = new Wall
+                        Wall = new WallTyped
                         {
                             MountingHeight = 5,
-                            Recessed = new WallRecessed
+                            Recessed = new WallRecessedTyped
                             {
                                 RecessedDepth = 6,
-                                Cutout = new RectangularCutout
+                                RectangularCutout = new RectangularCutoutTyped
                                 {
                                     Width = 7,
                                     Length = 8,
                                     Depth = 9
                                 }
                             },
-                            SurfaceMounted = new WallSurfaceMounted()
+                            SurfaceMounted = new WallSurfaceMountedTyped()
                         },
-                        WorkingPlane = new WorkingPlane
+                        WorkingPlane = new WorkingPlaneTyped
                         {
-                            FreeStanding = new FreeStanding()
+                            FreeStanding = new FreeStandingTyped()
                         },
-                        Ground = new Ground
+                        Ground = new GroundTyped
                         {
-                            PoleTop = new PoleTop
+                            PoleTop = new PoleTopTyped
                             {
                                 PoleHeight = 11
                             },
-                            PoleIntegrated = new PoleIntegrated
+                            PoleIntegrated = new PoleIntegratedTyped
                             {
                                 PoleHeight = 12
                             },
-                            FreeStanding = new FreeStanding(),
-                            SurfaceMounted = new SurfaceMounted(),
-                            Recessed = new Recessed
+                            FreeStanding = new FreeStandingTyped(),
+                            SurfaceMounted = new SurfaceMountedTyped(),
+                            Recessed = new RecessedTyped
                             {
                                 RecessedDepth = 13,
-                                Cutout = new CircularCutout
+                                CircularCutout = new CircularCutoutTyped
                                 {
                                     Diameter = 14,
                                     Depth = 15
@@ -273,56 +275,52 @@ public static class VariantCompleteModel
                             }
                         }
                     },
-                    Geometry = new GeometryReference
+                    Geometry = new GeometryTyped
                     {
-                        Reference = new EmitterReference
+                        EmitterOnly = new EmitterTyped
                         {
-                            EmitterId = "leoEmitter"
+                            Id = "leoEmitter"
                         }
                     },
                     Pictures = new[]
                     {
-                        new Image
+                        new ImageFileTyped
                         {
-                            FileId = "pictureFile",
                             ImageType = ImageType.Other
                         },
-                        new Image
+                        new ImageFileTyped
                         {
-                            FileId = "pictureFile",
                             ImageType = ImageType.TechnicalSketch
                         },
-                        new Image
+                        new ImageFileTyped
                         {
-                            FileId = "pictureFile",
                             ImageType = ImageType.ApplicationPicture
                         },
-                        new Image
+                        new ImageFileTyped
                         {
-                            FileId = "pictureFile",
                             ImageType = ImageType.ProductPicture
                         }
                     },
-                    Symbol = new Symbol
+                    Symbol = new GldfFileTyped
                     {
-                        FileId = "pictureFile"
+                        Id = "pictureFile"
                     }
                 },
-                new Variant
+                new VariantTyped
                 {
                     Id = "variant-2",
                     Name = new[]
                     {
-                        new Locale { Language = "en", Text = "Variant 2" }
+                        new LocaleTyped { Language = "en", Text = "Variant 2" }
                     },
-                    Mountings = new Mountings
+                    Mountings = new MountingsTyped
                     {
-                        Ceiling = new Ceiling
+                        Ceiling = new CeilingTyped
                         {
-                            Recessed = new Recessed
+                            Recessed = new RecessedTyped
                             {
                                 RecessedDepth = 16,
-                                Cutout = new RectangularCutout
+                                RectangularCutout = new RectangularCutoutTyped
                                 {
                                     Width = 17,
                                     Length = 18,
@@ -330,25 +328,25 @@ public static class VariantCompleteModel
                                 }
                             }
                         },
-                        Wall = new Wall
+                        Wall = new WallTyped
                         {
                             MountingHeight = 21,
-                            Recessed = new WallRecessed
+                            Recessed = new WallRecessedTyped
                             {
                                 RecessedDepth = 22,
-                                Cutout = new CircularCutout
+                                CircularCutout = new CircularCutoutTyped
                                 {
                                     Diameter = 23,
                                     Depth = 24
                                 }
                             }
                         },
-                        Ground = new Ground
+                        Ground = new GroundTyped
                         {
-                            Recessed = new Recessed
+                            Recessed = new RecessedTyped
                             {
                                 RecessedDepth = 25,
-                                Cutout = new RectangularCutout
+                                RectangularCutout = new RectangularCutoutTyped
                                 {
                                     Width = 26,
                                     Length = 27,
@@ -357,73 +355,105 @@ public static class VariantCompleteModel
                             }
                         }
                     },
-                    Geometry = new GeometryReference
+                    Geometry = new GeometryTyped
                     {
-                        Reference = new SimpleGeometryReference
+                        Simple = new SimpleGeometryEmitterTyped
                         {
-                            GeometryId = "simpleGeometry",
-                            EmitterId = "leoEmitter"
+                            Geometry = new SimpleGeometryTyped
+                            {
+                                Id = "simpleGeometry"
+                            },
+                            Emitter = new EmitterTyped
+                            {
+                                Id = "leoEmitter"
+                            }
                         }
                     }
                 },
-                new Variant
+                new VariantTyped
                 {
                     Id = "variant-3",
                     SortOrder = 3,
                     Name = new[]
                     {
-                        new Locale { Language = "en", Text = "Variant 3" }
+                        new LocaleTyped { Language = "en", Text = "Variant 3" }
                     },
-                    Geometry = new GeometryReference
+                    Geometry = new GeometryTyped
                     {
-                        Reference = new ModelGeometryReference
+                        Model = new ModelGeometryEmitterTyped
                         {
-                            GeometryId = "geometry",
-                            EmitterReferences = new[]
+                            Geometry = new ModelGeometryTyped
                             {
-                                new GeometryEmitterReference
+                                Id = "geometry"
+                            },
+                            Emitter = new ModelEmitterTyped[]
+                            {
+                                new()
                                 {
-                                    EmitterId = "leoEmitter",
-                                    EmitterObjectExternalName = "leo1"
+                                    Emitter = new EmitterTyped
+                                    {
+                                        Id = "leoEmitter"
+                                    },
+                                    EmitterObjectExtrernalName = "leo1"
                                 },
-                                new GeometryEmitterReference
+                                new()
                                 {
-                                    EmitterId = "leoEmitter",
-                                    TargetModelType = TargetModelType.L3d,
-                                    EmitterObjectExternalName = "leo1"
+                                    Emitter = new EmitterTyped
+                                    {
+                                        Id = "leoEmitter"
+                                    },
+                                    EmitterObjectExtrernalName = "leo1",
+                                    TargetModelType = TargetModelType.L3d
                                 },
-                                new GeometryEmitterReference
+                                new()
                                 {
-                                    EmitterId = "leoEmitter",
-                                    TargetModelType = TargetModelType.M3d,
-                                    EmitterObjectExternalName = "leo1"
+                                    Emitter = new EmitterTyped
+                                    {
+                                        Id = "leoEmitter"
+                                    },
+                                    EmitterObjectExtrernalName = "leo1",
+                                    TargetModelType = TargetModelType.M3d
                                 },
-                                new GeometryEmitterReference
+                                new()
                                 {
-                                    EmitterId = "leoEmitter",
-                                    TargetModelType = TargetModelType.R3d,
-                                    EmitterObjectExternalName = "leo1"
+                                    Emitter = new EmitterTyped
+                                    {
+                                        Id = "leoEmitter"
+                                    },
+                                    EmitterObjectExtrernalName = "leo1",
+                                    TargetModelType = TargetModelType.R3d
                                 },
-                                new GeometryEmitterReference
+                                new()
                                 {
-                                    EmitterId = "sensorEmitter",
-                                    EmitterObjectExternalName = "sensor"
+                                    Emitter = new EmitterTyped
+                                    {
+                                        SensorEmitterOptions = new SensorEmitterTyped[]
+                                        {
+                                            new()
+                                            {
+                                                Sensor = new SensorTyped
+                                                {
+                                                    Id = "sensorEmitter"
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
                     },
                     ProductSeries = new[]
                     {
-                        new ProductSerie
+                        new ProductSerieTyped
                         {
                             Name = new[]
                             {
-                                new Locale
+                                new LocaleTyped
                                 {
                                     Language = "en",
                                     Text = "Variant name 1"
                                 },
-                                new Locale
+                                new LocaleTyped
                                 {
                                     Language = "de",
                                     Text = "Variantenname 1"
@@ -431,12 +461,12 @@ public static class VariantCompleteModel
                             },
                             Description = new[]
                             {
-                                new Locale
+                                new LocaleTyped
                                 {
                                     Language = "en",
                                     Text = "Variant description"
                                 },
-                                new Locale
+                                new LocaleTyped
                                 {
                                     Language = "de",
                                     Text = "Variantenbeschreibung"
@@ -444,35 +474,31 @@ public static class VariantCompleteModel
                             },
                             Pictures = new[]
                             {
-                                new Image
+                                new ImageFileTyped
                                 {
-                                    FileId = "pictureFile",
                                     ImageType = ImageType.TechnicalSketch
                                 },
-                                new Image
+                                new ImageFileTyped
                                 {
-                                    FileId = "pictureFile",
                                     ImageType = ImageType.ApplicationPicture
                                 },
-                                new Image
+                                new ImageFileTyped
                                 {
-                                    FileId = "pictureFile",
                                     ImageType = ImageType.ProductPicture
                                 },
-                                new Image
+                                new ImageFileTyped
                                 {
-                                    FileId = "pictureFile",
                                     ImageType = ImageType.Other
                                 }
                             },
                             Hyperlinks = new[]
                             {
-                                new Hyperlink
+                                new HyperlinkTyped
                                 {
                                     Href = "href1",
                                     PlainText = "Hyperlink 1"
                                 },
-                                new Hyperlink
+                                new HyperlinkTyped
                                 {
                                     Href = "href2",
                                     Region = "region",
@@ -482,16 +508,16 @@ public static class VariantCompleteModel
                                 }
                             }
                         },
-                        new ProductSerie
+                        new ProductSerieTyped
                         {
                             Name = new[]
                             {
-                                new Locale
+                                new LocaleTyped
                                 {
                                     Language = "en",
                                     Text = "Variant name 2"
                                 },
-                                new Locale
+                                new LocaleTyped
                                 {
                                     Language = "de",
                                     Text = "Variantenname 2"
@@ -500,65 +526,80 @@ public static class VariantCompleteModel
                         }
                     }
                 },
-                new Variant
+                new VariantTyped
                 {
                     Id = "variant-4",
                     SortOrder = 4,
                     Name = new[]
                     {
-                        new Locale { Language = "en", Text = "Variant 4" }
+                        new LocaleTyped { Language = "en", Text = "Variant 4" }
                     },
-                    Geometry = new GeometryReference
+                    Geometry = new GeometryTyped
                     {
-                        Reference = new GeometryReferences
+                        Simple = new SimpleGeometryEmitterTyped()
                         {
-                            SimpleGeometryReference = new SimpleGeometryReference
+                            Geometry = new SimpleGeometryTyped
                             {
-                                GeometryId = "simpleGeometry",
-                                EmitterId = "leoEmitter"
+                                Id = "simpleGeometry"
                             },
-                            ModelGeometryReference = new ModelGeometryReference
+                            Emitter = new EmitterTyped
                             {
-                                GeometryId = "geometry",
-                                EmitterReferences = new[]
+                                Id = "leoEmitter"
+                            }
+                        },
+                        Model = new ModelGeometryEmitterTyped
+                        {
+                            Geometry = new ModelGeometryTyped
+                            {
+                                Id = "geometry"
+                            },
+                            Emitter = new ModelEmitterTyped[]
+                            {
+                                new()
                                 {
-                                    new GeometryEmitterReference
+                                    TargetModelType = TargetModelType.L3d,
+                                    EmitterObjectExtrernalName = "Leo",
+                                    Emitter = new EmitterTyped
                                     {
-                                        EmitterId = "leoEmitter",
-                                        TargetModelType = TargetModelType.L3d,
-                                        EmitterObjectExternalName = "Leo"
+                                        Id = "leoEmitter"
                                     }
                                 }
                             }
                         }
                     }
                 },
-                new Variant
+                new VariantTyped
                 {
                     Id = "variant-5",
                     SortOrder = 5,
                     Name = new[]
                     {
-                        new Locale { Language = "en", Text = "Variant 5" }
+                        new LocaleTyped { Language = "en", Text = "Variant 5" }
                     },
-                    Geometry = new GeometryReference
+                    Geometry = new GeometryTyped
                     {
-                        Reference = new GeometryReferences
+                        Simple = new SimpleGeometryEmitterTyped
                         {
-                            SimpleGeometryReference = new SimpleGeometryReference
+                            Emitter = new EmitterTyped
                             {
-                                GeometryId = "simpleGeometry",
-                                EmitterId = "leoEmitter"
+                                Id = "leoEmitter"
+                            }
+                        },
+                        Model = new ModelGeometryEmitterTyped
+                        {
+                            Geometry = new ModelGeometryTyped
+                            {
+                                Id = "geometry"
                             },
-                            ModelGeometryReference = new ModelGeometryReference
+                            Emitter = new ModelEmitterTyped[]
                             {
-                                GeometryId = "geometry",
-                                EmitterReferences = new[]
+                                new()
                                 {
-                                    new GeometryEmitterReference
+                                    TargetModelType = TargetModelType.L3d,
+                                    EmitterObjectExtrernalName = "Leo",
+                                    Emitter = new EmitterTyped
                                     {
-                                        EmitterId = "leoEmitter",
-                                        EmitterObjectExternalName = "Leo"
+                                        Id = "leoEmitter"
                                     }
                                 }
                             }

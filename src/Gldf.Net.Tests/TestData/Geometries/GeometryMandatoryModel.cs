@@ -10,7 +10,7 @@ using System;
 
 namespace Gldf.Net.Tests.TestData.Geometries;
 
-public class GeometryMandatoryModel
+public static class GeometryMandatoryModel
 {
     public static Root Root => new()
     {

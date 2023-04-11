@@ -51,28 +51,53 @@ public class ModelParserTests
         new TestCaseData(EmbeddedXmlTestData.GetSpectrumMandatoryXml(),
                 EmbeddedXmlTestData.GetSpectrumMandatoryTyped())
             { TestName = "Spectrum mandatory property set" },
-        
-        // todo SpectrumComplete
-        // new TestCaseData(EmbeddedXmlTestData.GetSpectrumCompleteXml(),
-        //         EmbeddedXmlTestData.GetSpectrumCompleteTyped())
-        //     { TestName = "Spectrum complete property set" },
-        
-        // todo LightSourceMandatory
-        // todo LightSourceChangeableComplete
-        // todo LightSourceFixedComplete
-        // todo ControlGearMandatory
-        // todo ControlGearComplete
-        // todo EquipmentMandatory
-        // todo EquipmentComplete
-        // todo EquipmentMandatory
-        // todo EquipmentComplete
-        // todo GeometryMandatory
-        // todo GeometryComplete
-        // todo EmitterMandatory
-        // todo EmitterComplete
-        // todo ProductMetaDataMandatory
-        // todo ProductMetaDataComplete
-        // todo VariantMandatory
-        // todo VariantComplete
+        new TestCaseData(EmbeddedXmlTestData.GetSpectrumCompleteXml(),
+                EmbeddedXmlTestData.GetSpectrumCompleteTyped())
+            { TestName = "Spectrum complete property set" },
+        new TestCaseData(EmbeddedXmlTestData.GetLightSourceMandatoryXml(),
+                EmbeddedXmlTestData.GetLightSourceMandatoryTyped())
+            { TestName = "LightSource mandatory property set" },
+        new TestCaseData(EmbeddedXmlTestData.GetChangeableCompleteXml(),
+                EmbeddedXmlTestData.GetChangeableCompleteTyped())
+            { TestName = "Changeable complete property set" },
+        new TestCaseData(EmbeddedXmlTestData.GetFixedCompleteXml(),
+                EmbeddedXmlTestData.GetFixedCompleteTyped())
+            { TestName = "Fixed complete property set" },
+        new TestCaseData(EmbeddedXmlTestData.GetControlGearMandatoryXml(),
+                EmbeddedXmlTestData.GetControlGearMandatoryTyped())
+            { TestName = "ControlGear mandatory property set" },
+        new TestCaseData(EmbeddedXmlTestData.GetControlGearCompleteXml(),
+                EmbeddedXmlTestData.GetControlGearCompleteTyped())
+            { TestName = "ControlGear complete property set" },
+        new TestCaseData(EmbeddedXmlTestData.GetEquipmentMandatoryXml(),
+                EmbeddedXmlTestData.GetEquipmentMandatoryTyped())
+            { TestName = "Equipment mandatory property set" },
+        new TestCaseData(EmbeddedXmlTestData.GetEquipmentCompleteXml(),
+                EmbeddedXmlTestData.GetEquipmentCompleteTyped())
+            { TestName = "Equipment complete property set" },
+        new TestCaseData(EmbeddedXmlTestData.GetGeometryMandatoryXml(),
+                EmbeddedXmlTestData.GetGeometryMandatoryTyped())
+            { TestName = "Geometry mandatory property set" },
+        new TestCaseData(EmbeddedXmlTestData.GetGeometryCompleteXml(),
+                EmbeddedXmlTestData.GetGeometryCompleteTyped())
+            { TestName = "Geometry complete property set" },
+        new TestCaseData(EmbeddedXmlTestData.GetEmitterMandatoryXml(),
+                EmbeddedXmlTestData.GetEmitterMandatoryTyped())
+            { TestName = "Emitter mandatory property set" },
+        new TestCaseData(EmbeddedXmlTestData.GetEmitterCompleteXml(),
+                EmbeddedXmlTestData.GetEmitterCompleteTyped())
+            { TestName = "Emitter complete property set" },
+        new TestCaseData(EmbeddedXmlTestData.GetMetaDataMandatoryXml(),
+                EmbeddedXmlTestData.GetMetaDataMandatoryTyped())
+            { TestName = "MetaData mandatory property set" },
+        new TestCaseData(EmbeddedXmlTestData.GetMetaDataCompleteXml(),
+                EmbeddedXmlTestData.GetMetaDataCompleteTyped())
+            { TestName = "MetaData complete property set" },
+        new TestCaseData(EmbeddedXmlTestData.GetVariantMandatoryXml(),
+                EmbeddedXmlTestData.GetVariantMandatoryTyped())
+            { TestName = "Variant mandatory property set" },
+        new TestCaseData(EmbeddedXmlTestData.GetVariantCompleteXml(),
+                EmbeddedXmlTestData.GetVariantCompleteTyped())
+            { TestName = "Variant complete property set" },
     };
 }

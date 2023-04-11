@@ -1,55 +1,54 @@
-﻿using Gldf.Net.Domain.Xml;
-using Gldf.Net.Domain.Xml.Definition;
+﻿using Gldf.Net.Domain.Typed;
+using Gldf.Net.Domain.Typed.Definition;
+using Gldf.Net.Domain.Typed.Definition.Types;
+using Gldf.Net.Domain.Typed.Global;
+using Gldf.Net.Domain.Typed.Head;
 using Gldf.Net.Domain.Xml.Definition.Types;
-using Gldf.Net.Domain.Xml.Global;
-using Gldf.Net.Domain.Xml.Head;
-using Gldf.Net.Domain.Xml.Product;
-using Gldf.Net.Domain.Xml.Product.Types;
 using System;
 
 namespace Gldf.Net.Tests.TestData.Equipments;
 
-public static class EquipmentMandatoryModel
+public static class EquipmentMandatoryTyped
 {
-    public static Root Root => new()
+    public static RootTyped RootTyped => new()
     {
-        Header = new Header
+        Header = new HeaderTyped
         {
             Manufacturer = "DIAL",
-            GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
             CreatedWithApplication = "Visual Studio Code"
         },
-        GeneralDefinitions = new GeneralDefinitions
+        GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new[]
+            Files = new()
             {
-                new GldfFile
+                new GldfFileTyped
                 {
                     Id = "eulumdat",
                     ContentType = FileContentType.LdcEulumdat,
                     Type = FileType.Url,
-                    File = "https://example.org/eulumdat.ldt"
+                    Uri = "https://example.org/eulumdat.ldt"
                 }
             },
-            Photometries = new[]
+            Photometries = new()
             {
-                new Photometry
+                new PhotometryTyped
                 {
                     Id = "photometry",
-                    Content = new PhotometryFileReference
+                    PhotometryFile = new GldfFileTyped
                     {
-                        FileId = "eulumdat"
+                        Id = "eulumdat"
                     }
                 }
             },
-            LightSources = new LightSourceBase[]
+            ChangeableLightSources = new()
             {
-                new ChangeableLightSource
+                new ChangeableLightSourceTyped
                 {
                     Id = "lightSource",
                     Name = new[]
                     {
-                        new Locale
+                        new LocaleTyped
                         {
                             Language = "en",
                             Text = "LightSource name"
@@ -59,40 +58,43 @@ public static class EquipmentMandatoryModel
                     RatedLuminousFlux = 250
                 }
             },
-            Equipments = new[]
+            Equipments = new()
             {
-                new Equipment
+                new EquipmentTyped
                 {
                     Id = "equipment",
-                    LightSourceReference = new LightSourceReference { ChangeableLightSourceId = "lightSource" },
+                    ChangeableLightSource = new ChangeableLightSourceTyped
+                    {
+                        Id = "lightSource"
+                    },
                     RatedInputPower = 0.1
                 }
             },
-            Emitters = new[]
+            Emitter = new()
             {
-                new Emitter
+                new EmitterTyped
                 {
                     Id = "emitter",
-                    PossibleFittings = new EmitterBase[]
+                    ChangeableEmitterOptions = new[]
                     {
-                        new ChangeableLightEmitter
+                        new ChangeableLightEmitterTyped
                         {
-                            PhotometryReference = new PhotometryReference
+                            Photometry = new PhotometryTyped
                             {
-                                PhotometryId = "photometry"
+                                Id = "photometry"
                             }
                         }
                     }
                 }
             }
         },
-        ProductDefinitions = new ProductDefinitions
+        ProductDefinitions = new ProductDefinitionsTyped
         {
-            ProductMetaData = new ProductMetaData
+            ProductMetaData = new ProductMetaDataTyped
             {
                 ProductNumber = new[]
                 {
-                    new Locale
+                    new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product number"
@@ -100,27 +102,31 @@ public static class EquipmentMandatoryModel
                 },
                 Name = new[]
                 {
-                    new Locale
+                    new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product name"
                     }
                 }
             },
-            Variants = new[]
+            Variants = new()
             {
-                new Variant
+                new VariantTyped
                 {
                     Id = "variant-1",
                     Name = new[]
                     {
-                        new Locale { Language = "en", Text = "Variant 1" }
-                    },
-                    Geometry = new GeometryReference
-                    {
-                        Reference = new EmitterReference
+                        new LocaleTyped
                         {
-                            EmitterId = "emitter"
+                            Language = "en",
+                            Text = "Variant 1"
+                        }
+                    },
+                    Geometry = new GeometryTyped
+                    {
+                        EmitterOnly = new EmitterTyped
+                        {
+                            Id = "emitter"
                         }
                     }
                 }

@@ -9,7 +9,7 @@ using System;
 
 namespace Gldf.Net.Tests.TestData.Spectrums;
 
-public class SpectrumCompleteModel
+public static class SpectrumCompleteModel
 {
     public static Root Root => new()
     {

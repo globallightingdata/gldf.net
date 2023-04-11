@@ -22,15 +22,18 @@ internal class HeaderTransform : TransformBase
 
     private static void MapHeader(HeaderTyped headerTyped, Header header)
     {
-        headerTyped.Author = header.Author;
         headerTyped.Manufacturer = header.Manufacturer;
-        headerTyped.GldfCreationTimeCode = header.GldfCreationTimeCode;
-        headerTyped.CreatedWithApplication = header.CreatedWithApplication;
         headerTyped.FormatVersion = MapFormatVersion(header.FormatVersion);
+        headerTyped.CreatedWithApplication = header.CreatedWithApplication;
+        headerTyped.GldfCreationTimeCode = header.GldfCreationTimeCode;
+        headerTyped.UniqueGldfId = header.UniqueGldfId;
+        headerTyped.ProductDataTimeCode = header.ProductDataTimeCode;
         headerTyped.DefaultLanguage = header.DefaultLanguage;
+        headerTyped.ManufacturerLogo = MapManufacturerLogo(header.ManufacturerLogo);
         headerTyped.LicenseKeys = MapLicenseKeys(header.LicenseKeys);
         headerTyped.ReluxMemberId = header.ReluxMemberId;
         headerTyped.DIALuxMemberId = header.DIALuxMemberId;
+        headerTyped.Author = header.Author;
         headerTyped.Contact = MapContact(header.Contact);
     }
 
@@ -47,6 +50,14 @@ internal class HeaderTransform : TransformBase
             Application = key.Application,
             Key = key.Key
         }).ToArray();
+
+    private static ManufacturerLogoTyped MapManufacturerLogo(ManufacturerLogo manufacturerLogo) =>
+        manufacturerLogo != null
+            ? new ManufacturerLogoTyped
+            {
+                FileId = manufacturerLogo.FileId
+            }
+            : null;
 
     private static AddressTyped[] MapContact(IEnumerable<Address> addresses) =>
         addresses?.Select(address =>

@@ -1,55 +1,54 @@
-﻿using Gldf.Net.Domain.Xml;
-using Gldf.Net.Domain.Xml.Definition;
+﻿using Gldf.Net.Domain.Typed;
+using Gldf.Net.Domain.Typed.Definition;
+using Gldf.Net.Domain.Typed.Global;
+using Gldf.Net.Domain.Typed.Head;
 using Gldf.Net.Domain.Xml.Definition.Types;
-using Gldf.Net.Domain.Xml.Global;
-using Gldf.Net.Domain.Xml.Head;
-using Gldf.Net.Domain.Xml.Product;
-using Gldf.Net.Domain.Xml.Product.Types;
 using System;
+using Gldf.Net.Domain.Typed.Definition.Types;
 
 namespace Gldf.Net.Tests.TestData.Equipments;
 
-public static class EquipmentCompleteModel
+public static class EquipmentCompleteTyped
 {
-    public static Root Root => new()
+    public static RootTyped RootTyped => new()
     {
-        Header = new Header
+        Header = new HeaderTyped
         {
             Manufacturer = "DIAL",
-            GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
             CreatedWithApplication = "Visual Studio Code"
         },
-        GeneralDefinitions = new GeneralDefinitions
+        GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new[]
+            Files = new()
             {
-                new GldfFile
+                new GldfFileTyped
                 {
                     Id = "eulumdat",
                     ContentType = FileContentType.LdcEulumdat,
                     Type = FileType.Url,
-                    File = "https://example.org/eulumdat.ldt"
+                    Uri = "https://example.org/eulumdat.ldt"
                 }
             },
-            Photometries = new[]
+            Photometries = new()
             {
-                new Photometry
+                new PhotometryTyped
                 {
                     Id = "photometry",
-                    Content = new PhotometryFileReference
+                    PhotometryFile = new GldfFileTyped
                     {
-                        FileId = "eulumdat"
+                        Id = "eulumdat"
                     }
                 }
             },
-            LightSources = new LightSourceBase[]
+            ChangeableLightSources = new()
             {
-                new ChangeableLightSource
+                new ChangeableLightSourceTyped
                 {
                     Id = "lightSource",
                     Name = new[]
                     {
-                        new Locale
+                        new LocaleTyped
                         {
                             Language = "en",
                             Text = "LightSource name"
@@ -59,14 +58,14 @@ public static class EquipmentCompleteModel
                     RatedLuminousFlux = 250
                 }
             },
-            ControlGears = new[]
+            ControlGears = new()
             {
-                new ControlGear
+                new ControlGearTyped
                 {
                     Id = "controlGear",
                     Name = new[]
                     {
-                        new Locale
+                        new LocaleTyped
                         {
                             Language = "en",
                             Text = "ControlGear name"
@@ -74,7 +73,7 @@ public static class EquipmentCompleteModel
                     },
                     Description = new[]
                     {
-                        new Locale
+                        new LocaleTyped
                         {
                             Language = "en",
                             Text = "ControlGear description"
@@ -82,79 +81,88 @@ public static class EquipmentCompleteModel
                     }
                 }
             },
-            Equipments = new[]
+            Equipments = new()
             {
-                new Equipment
+                new EquipmentTyped
                 {
                     Id = "equipment-1",
-                    LightSourceReference = new LightSourceReference { ChangeableLightSourceId = "lightSource" },
-                    ControlGearReference = new ControlGearReference
+                    ChangeableLightSource = new()
                     {
-                        ControlGearCount = 2,
-                        ControlGearId = "controlGear"
+                        Id = "lightSource"
                     },
+                    ControlGear = new ControlGearTyped
+                    {
+                        Id = "controlGear"
+                    },
+                    ControlGearCount = 2,
                     RatedInputPower = 0.1,
-                    EmergencyModeOutput = new EmergencyBallastLumenFactor { Factor = 0.2 }
+                    EmergencyBallastLumenFactor = new EmergencyBallastLumenFactorTyped { Factor = 0.2 }
                 },
-                new Equipment
+                new EquipmentTyped
                 {
                     Id = "equipment-2",
-                    LightSourceReference = new LightSourceReference { ChangeableLightSourceId = "lightSource" },
-                    ControlGearReference = new ControlGearReference
+                    ChangeableLightSource = new ChangeableLightSourceTyped
                     {
-                        ControlGearId = "controlGear"
+                        Id = "lightSource"
+                    },
+                    ControlGear = new ControlGearTyped
+                    {
+                        Id = "controlGear"
                     },
                     RatedInputPower = 0.1,
-                    EmergencyModeOutput = new EmergencyRatedLuminousFlux { Flux = 2 }
+                    EmergencyRatedLuminousFlux = new EmergencyRatedLuminousFluxTyped
+                    {
+                        Flux = 2
+                    }
                 }
             },
-            Emitters = new[]
+            Emitter = new()
             {
-                new Emitter
+                new EmitterTyped
                 {
                     Id = "emitter-1",
-                    PossibleFittings = new EmitterBase[]
+                    ChangeableEmitterOptions = new[]
                     {
-                        new ChangeableLightEmitter
+                        new ChangeableLightEmitterTyped
                         {
-                            PhotometryReference = new PhotometryReference
+                            Photometry = new PhotometryTyped
                             {
-                                PhotometryId = "photometry"
+                                Id = "photometry"
                             },
-                            EquipmentReference = new EquipmentReference
+                            Equipment = new EquipmentTyped
                             {
-                                EquipmentId = "equipment-1"
+                                Id = "equipment-1"
                             }
                         }
                     }
                 },
-                new Emitter
+                new EmitterTyped
                 {
                     Id = "emitter-2",
-                    PossibleFittings = new EmitterBase[]
+                    ChangeableEmitterOptions = new[]
                     {
-                        new ChangeableLightEmitter
+                        new ChangeableLightEmitterTyped
                         {
-                            PhotometryReference = new PhotometryReference
+                            Photometry = new PhotometryTyped
                             {
-                                PhotometryId = "photometry"
+                                Id = "photometry"
                             },
-                            EquipmentReference = new EquipmentReference
+                            Equipment = new EquipmentTyped
                             {
-                                EquipmentId = "equipment-2"
+                                Id = "equipment-2"
                             }
                         }
                     }
                 }
             }
         },
-        ProductDefinitions = new ProductDefinitions
+        ProductDefinitions = new ProductDefinitionsTyped
         {
-            ProductMetaData = new ProductMetaData
+            ProductMetaData = new ProductMetaDataTyped
             {
                 ProductNumber = new[]
                 {
-                    new Locale
+                    new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product number"
@@ -162,27 +170,27 @@ public static class EquipmentCompleteModel
                 },
                 Name = new[]
                 {
-                    new Locale
+                    new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product name"
                     }
                 }
             },
-            Variants = new[]
+            Variants = new()
             {
-                new Variant
+                new VariantTyped
                 {
                     Id = "variant-1",
                     Name = new[]
                     {
-                        new Locale { Language = "en", Text = "Variant 1" }
+                        new LocaleTyped { Language = "en", Text = "Variant 1" }
                     },
-                    Geometry = new GeometryReference
+                    Geometry = new GeometryTyped
                     {
-                        Reference = new EmitterReference
+                        EmitterOnly = new EmitterTyped
                         {
-                            EmitterId = "emitter-1"
+                            Id = "emitter-1"
                         }
                     }
                 }

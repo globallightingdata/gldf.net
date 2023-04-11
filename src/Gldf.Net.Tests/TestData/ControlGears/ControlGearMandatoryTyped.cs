@@ -6,72 +6,81 @@ using Gldf.Net.Domain.Typed.Head;
 using Gldf.Net.Domain.Typed.Head.Types;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using System;
-using System.Collections.Generic;
 
-namespace Gldf.Net.Tests.TestData.Files;
+namespace Gldf.Net.Tests.TestData.ControlGears;
 
-public class FilesMandatoryTyped
+public static class ControlGearMandatoryTyped
 {
     public static RootTyped RootTyped => new()
     {
         Header = new HeaderTyped
         {
             Manufacturer = "DIAL",
-            GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
             CreatedWithApplication = "Visual Studio Code",
-            FormatVersion = new FormatVersionTyped
-            {
-                Major = 1,
-                Minor = 0,
-                PreRelease = 2
-            }
+            FormatVersion = FormatVersionTyped.V100
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new List<GldfFileTyped>
+            Files = new()
             {
-                new()
+                new GldfFileTyped
                 {
                     Id = "eulumdat",
                     ContentType = FileContentType.LdcEulumdat,
                     Type = FileType.Url,
-                    FileName = "eulumdat.ldt",
-                    Uri = "https://example.org/eulumdat.ldt"
+                    Uri = "https://example.org/eulumdat.ldt",
+                    FileName = "eulumdat.ldt"
                 }
             },
-            Photometries = new List<PhotometryTyped>
+            Photometries = new()
             {
-                new()
+                new PhotometryTyped
                 {
                     Id = "photometry",
                     PhotometryFile = new GldfFileTyped
                     {
                         Id = "eulumdat",
+                        FileName = "eulumdat.ldt",
                         ContentType = FileContentType.LdcEulumdat,
                         Type = FileType.Url,
-                        FileName = "eulumdat.ldt",
                         Uri = "https://example.org/eulumdat.ldt"
                     }
                 }
             },
-            Emitter = new List<EmitterTyped>
+            ControlGears = new()
             {
-                new()
+                new ControlGearTyped
+                {
+                    Id = "controlGear",
+                    Name = new[]
+                    {
+                        new LocaleTyped
+                        {
+                            Language = "en",
+                            Text = "ControlGear name"
+                        }
+                    }
+                }
+            },
+            Emitter = new()
+            {
+                new EmitterTyped
                 {
                     Id = "emitter",
-                    ChangeableEmitterOptions = new[]
+                    ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
                     {
-                        new ChangeableLightEmitterTyped
+                        new()
                         {
                             Photometry = new PhotometryTyped
                             {
                                 Id = "photometry",
                                 PhotometryFile = new GldfFileTyped
                                 {
+                                    FileName = "eulumdat.ldt",
                                     Id = "eulumdat",
                                     ContentType = FileContentType.LdcEulumdat,
                                     Type = FileType.Url,
-                                    FileName = "eulumdat.ldt",
                                     Uri = "https://example.org/eulumdat.ldt"
                                 }
                             }
@@ -84,7 +93,6 @@ public class FilesMandatoryTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
-                UniqueProductId = "Product 1",
                 ProductNumber = new[]
                 {
                     new LocaleTyped
@@ -102,35 +110,23 @@ public class FilesMandatoryTyped
                     }
                 }
             },
-            Variants = new List<VariantTyped>
+            Variants = new()
             {
-                new()
+                new VariantTyped
                 {
                     Id = "variant-1",
-                    ProductNumber = new[]
-                    {
-                        new LocaleTyped
-                        {
-                            Language = "en",
-                            Text = "Product number"
-                        }
-                    },
                     Name = new[]
                     {
-                        new LocaleTyped
-                        {
-                            Language = "en",
-                            Text = "Variant 1"
-                        }
+                        new LocaleTyped { Language = "en", Text = "Variant 1" }
                     },
                     Geometry = new GeometryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
                             Id = "emitter",
-                            ChangeableEmitterOptions = new[]
+                            ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
                             {
-                                new ChangeableLightEmitterTyped
+                                new()
                                 {
                                     Photometry = new PhotometryTyped
                                     {
@@ -138,14 +134,22 @@ public class FilesMandatoryTyped
                                         PhotometryFile = new GldfFileTyped
                                         {
                                             Id = "eulumdat",
+                                            FileName = "eulumdat.ldt",
                                             ContentType = FileContentType.LdcEulumdat,
                                             Type = FileType.Url,
-                                            FileName = "eulumdat.ldt",
                                             Uri = "https://example.org/eulumdat.ldt"
                                         }
                                     }
                                 }
                             }
+                        }
+                    },
+                    ProductNumber = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product number"
                         }
                     }
                 }

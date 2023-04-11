@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.Sensors;
 
-public class SensorsCompleteTyped
+public static class SensorsCompleteTyped
 {
     public static RootTyped RootTyped => new()
     {

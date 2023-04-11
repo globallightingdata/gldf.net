@@ -1,51 +1,39 @@
-﻿using Gldf.Net.Domain.Typed;
-using Gldf.Net.Domain.Typed.Definition;
-using Gldf.Net.Domain.Typed.Definition.Types;
-using Gldf.Net.Domain.Typed.Global;
-using Gldf.Net.Domain.Typed.Head;
-using Gldf.Net.Domain.Typed.Head.Types;
-using Gldf.Net.Domain.Xml.Definition;
-using Gldf.Net.Domain.Xml.Definition.Types;
+﻿using Gldf.Net.Domain.Xml.Definition.Types;
 using System;
-using System.Collections.Generic;
+using Gldf.Net.Domain.Typed;
+using Gldf.Net.Domain.Typed.Head;
+using Gldf.Net.Domain.Typed.Definition;
+using Gldf.Net.Domain.Typed.Global;
+using Gldf.Net.Domain.Typed.Definition.Types;
 
-namespace Gldf.Net.Tests.TestData.Spectrums;
+namespace Gldf.Net.Tests.TestData.LightSources;
 
-public static class SpectrumCompleteTyped
+public static class LightSourceMandatoryTyped
 {
     public static RootTyped RootTyped => new()
     {
         Header = new HeaderTyped
         {
             Manufacturer = "DIAL",
-            GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
-            CreatedWithApplication = "Visual Studio Code",
-            FormatVersion = FormatVersionTyped.V100
+            CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            CreatedWithApplication = "Visual Studio Code"
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new List<GldfFileTyped>
+            Files = new()
             {
-                new()
+                new GldfFileTyped
                 {
                     Id = "eulumdat",
                     ContentType = FileContentType.LdcEulumdat,
                     Type = FileType.Url,
                     FileName = "eulumdat.ldt",
                     Uri = "https://example.org/eulumdat.ldt"
-                },
-                new()
-                {
-                    Id = "spectrumFile",
-                    ContentType = FileContentType.SpectrumText,
-                    Type = FileType.Url,
-                    FileName = "spectrum.txt",
-                    Uri = "https://example.org/spectrum.txt"
                 }
             },
-            Photometries = new List<PhotometryTyped>
+            Photometries = new()
             {
-                new()
+                new PhotometryTyped
                 {
                     Id = "photometry",
                     PhotometryFile = new GldfFileTyped
@@ -58,51 +46,44 @@ public static class SpectrumCompleteTyped
                     }
                 }
             },
-            Spectrums = new List<SpectrumTyped>
+            FixedLightSources = new()
             {
-                new()
+                new FixedLightSourceTyped
                 {
-                    Id = "spectrum-1",
-                    SpectrumFile = new GldfFileTyped
+                    Id = "lightSource",
+                    Name = new[]
                     {
-                        Id = "spectrumFile",
-                        ContentType = FileContentType.SpectrumText,
-                        FileName = "spectrum.txt",
-                        Type = FileType.Url,
-                        Uri = "https://example.org/spectrum.txt"
-                    }
-                },
-                new()
-                {
-                    Id = "spectrum-2",
-                    Intensities = new[]
-                    {
-                        new SpectrumIntensityTyped
+                        new LocaleTyped
                         {
-                            Wavelength = 380,
-                            Intensity = 0.1
-                        },
-                        new SpectrumIntensityTyped
-                        {
-                            Wavelength = 385,
-                            Intensity = 0.2
-                        },
-                        new SpectrumIntensityTyped
-                        {
-                            Wavelength = 390,
-                            Intensity = 0.3
+                            Language = "en",
+                            Text = "LightSource name"
                         }
-                    }
+                    },
+                    RatedInputPower = 50
+                },
+                new FixedLightSourceTyped
+                {
+                    Id = "lightSource-2",
+                    Name = new[]
+                    {
+                        new LocaleTyped
+                        {
+                            Language = "en",
+                            Text = "LightSource name 2"
+                        }
+                    },
+                    RatedInputPower = 60,
+                    ColorInformation = new ColorInformationTyped()
                 }
             },
-            Emitter = new List<EmitterTyped>
+            Emitter = new()
             {
-                new()
+                new EmitterTyped
                 {
                     Id = "emitter",
-                    ChangeableEmitterOptions = new[]
+                    FixedEmitterOptions = new[]
                     {
-                        new ChangeableLightEmitterTyped
+                        new FixedLightEmitterTyped
                         {
                             Photometry = new PhotometryTyped
                             {
@@ -115,7 +96,21 @@ public static class SpectrumCompleteTyped
                                     FileName = "eulumdat.ldt",
                                     Uri = "https://example.org/eulumdat.ldt"
                                 }
-                            }
+                            },
+                            FixedLightSource = new FixedLightSourceTyped
+                            {
+                                Id = "lightSource",
+                                Name = new LocaleTyped[]
+                                {
+                                    new()
+                                    {
+                                        Language = "en",
+                                        Text = "LightSource name"
+                                    }
+                                },
+                                RatedInputPower = 50
+                            },
+                            RatedLuminousFlux = 250
                         }
                     }
                 }
@@ -142,50 +137,59 @@ public static class SpectrumCompleteTyped
                     }
                 }
             },
-            Variants = new List<VariantTyped>
+            Variants = new()
             {
-                new()
+                new VariantTyped
                 {
                     Id = "variant-1",
-                    ProductNumber = new[]
-                    {
-                        new LocaleTyped
-                        {
-                            Language = "en",
-                            Text = "Product number"
-                        }
-                    },
                     Name = new[]
                     {
-                        new LocaleTyped
-                        {
-                            Language = "en",
-                            Text = "Variant 1"
-                        }
+                        new LocaleTyped { Language = "en", Text = "Variant 1" }
                     },
                     Geometry = new GeometryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
                             Id = "emitter",
-                            ChangeableEmitterOptions = new[]
+                            FixedEmitterOptions = new FixedLightEmitterTyped[]
                             {
-                                new ChangeableLightEmitterTyped
+                                new()
                                 {
+                                    FixedLightSource = new FixedLightSourceTyped
+                                    {
+                                        Id = "lightSource",
+                                        Name = new LocaleTyped[]
+                                        {
+                                            new()
+                                            {
+                                                Language = "en",
+                                                Text = "LightSource name"
+                                            }
+                                        },
+                                        RatedInputPower = 50
+                                    },
                                     Photometry = new PhotometryTyped
                                     {
                                         Id = "photometry",
                                         PhotometryFile = new GldfFileTyped
                                         {
                                             Id = "eulumdat",
-                                            ContentType = FileContentType.LdcEulumdat,
-                                            Type = FileType.Url,
                                             FileName = "eulumdat.ldt",
+                                            Type = FileType.Url,
                                             Uri = "https://example.org/eulumdat.ldt"
                                         }
-                                    }
+                                    },
+                                    RatedLuminousFlux = 250
                                 }
                             }
+                        }
+                    },
+                    ProductNumber = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product number"
                         }
                     }
                 }
