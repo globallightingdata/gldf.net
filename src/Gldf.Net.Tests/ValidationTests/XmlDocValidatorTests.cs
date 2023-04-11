@@ -14,7 +14,7 @@ namespace Gldf.Net.Tests.ValidationTests;
 public class XmlDocValidatorTests
 {
     private XmlDocValidator _validator;
-    private readonly static TestCaseData[] ValidXmlTestCases = EmbeddedXmlTestData.ValidXmlTestCases;
+    private static readonly TestCaseData[] ValidXmlTestCases = EmbeddedXmlTestData.ValidXmlTestCases;
 
     [SetUp]
     public void SetUp()

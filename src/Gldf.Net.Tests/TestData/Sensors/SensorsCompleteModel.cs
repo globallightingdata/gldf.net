@@ -19,12 +19,8 @@ public static class SensorsCompleteModel
             Manufacturer = "DIAL",
             GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
             CreatedWithApplication = "Visual Studio Code",
-            FormatVersion = new FormatVersion
-            {
-                Major = 1, 
-                Minor = 0, 
-                PreRelease = 2
-            }
+            FormatVersion = new FormatVersion { Major = 1, Minor = 0, PreRelease = 2, PreReleaseSpecified = true },
+            UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E"
         },
         GeneralDefinitions = new GeneralDefinitions
         {
@@ -80,7 +76,10 @@ public static class SensorsCompleteModel
                     {
                         new SensorEmitter
                         {
-                            SensorId = "sensor"
+                            SensorReference = new SensorReference
+                            {
+                                SensorId = "sensor"
+                            }
                         }
                     }
                 }
@@ -90,6 +89,7 @@ public static class SensorsCompleteModel
         {
             ProductMetaData = new ProductMetaData
             {
+                UniqueProductId = "Product 1",
                 ProductNumber = new[]
                 {
                     new Locale

@@ -3,8 +3,10 @@ using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Typed.Definition.Types;
 using Gldf.Net.Domain.Typed.Global;
 using Gldf.Net.Domain.Typed.Head;
+using Gldf.Net.Domain.Typed.Head.Types;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using System;
+using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.Geometries;
 
@@ -15,21 +17,27 @@ public static class GeometryCompleteTyped
         Header = new HeaderTyped
         {
             Manufacturer = "DIAL",
-            CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
-            CreatedWithApplication = "Visual Studio Code"
+            GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            CreatedWithApplication = "Visual Studio Code",
+            FormatVersion = new FormatVersionTyped()
+            {
+                Major = 1,
+                Minor = 0,
+                PreRelease = 2
+            }
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new()
+            Files = new List<GldfFileTyped>
             {
-                new GldfFileTyped
+                new()
                 {
                     Id = "eulumdat",
                     ContentType = FileContentType.LdcEulumdat,
                     Type = FileType.Url,
                     Uri = "https://example.org/eulumdat.ldt"
                 },
-                new GldfFileTyped
+                new()
                 {
                     Id = "geometryFile",
                     ContentType = FileContentType.GeoL3d,
@@ -37,9 +45,9 @@ public static class GeometryCompleteTyped
                     Uri = "https://example.org/geometry.l3d"
                 }
             },
-            Photometries = new()
+            Photometries = new List<PhotometryTyped>
             {
-                new PhotometryTyped
+                new()
                 {
                     Id = "photometry",
                     PhotometryFile = new GldfFileTyped
@@ -48,9 +56,9 @@ public static class GeometryCompleteTyped
                     }
                 }
             },
-            Emitter = new()
+            Emitter = new List<EmitterTyped>
             {
-                new EmitterTyped
+                new()
                 {
                     Id = "emitter",
                     ChangeableEmitterOptions = new[]
@@ -65,9 +73,9 @@ public static class GeometryCompleteTyped
                     }
                 }
             },
-            SimpleGeometries = new()
+            SimpleGeometries = new List<SimpleGeometryTyped>
             {
-                new SimpleGeometryTyped
+                new()
                 {
                     Id = "geometry1",
                     CuboidGeometry = new SimpleCuboidGeometryTyped
@@ -89,7 +97,7 @@ public static class GeometryCompleteTyped
                         C270 = 9
                     }
                 },
-                new SimpleGeometryTyped
+                new()
                 {
                     Id = "geometry2",
                     CylinderGeometry = new SimpleCylinderGeometryTyped
@@ -103,7 +111,7 @@ public static class GeometryCompleteTyped
                         Diameter = 3
                     }
                 },
-                new SimpleGeometryTyped
+                new()
                 {
                     Id = "geometry3",
                     CylinderGeometry = new SimpleCylinderGeometryTyped
@@ -118,7 +126,7 @@ public static class GeometryCompleteTyped
                         Length = 4
                     }
                 },
-                new SimpleGeometryTyped
+                new()
                 {
                     Id = "geometry4",
                     CylinderGeometry = new SimpleCylinderGeometryTyped
@@ -138,6 +146,7 @@ public static class GeometryCompleteTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
+                UniqueProductId = "Product 1",
                 ProductNumber = new[]
                 {
                     new LocaleTyped
@@ -155,9 +164,9 @@ public static class GeometryCompleteTyped
                     }
                 }
             },
-            Variants = new()
+            Variants = new List<VariantTyped>
             {
-                new VariantTyped
+                new()
                 {
                     Id = "variant-1",
                     Name = new[]

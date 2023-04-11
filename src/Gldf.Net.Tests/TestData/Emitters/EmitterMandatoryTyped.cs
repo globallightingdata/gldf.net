@@ -3,8 +3,10 @@ using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Typed.Definition.Types;
 using Gldf.Net.Domain.Typed.Global;
 using Gldf.Net.Domain.Typed.Head;
+using Gldf.Net.Domain.Typed.Head.Types;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using System;
+using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.Emitters;
 
@@ -15,21 +17,23 @@ public static class EmitterMandatoryTyped
         Header = new HeaderTyped
         {
             Manufacturer = "DIAL",
-            CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
-            CreatedWithApplication = "Visual Studio Code"
+            GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            CreatedWithApplication = "Visual Studio Code",
+            FormatVersion = new FormatVersionTyped { Major = 1, Minor = 0, PreRelease = 2 },
+            UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E"
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new()
+            Files = new List<GldfFileTyped>
             {
-                new GldfFileTyped
+                new()
                 {
                     Id = "eulumdat",
                     ContentType = FileContentType.LdcEulumdat,
                     Type = FileType.Url,
                     Uri = "https://example.org/eulumdat.ldt"
                 },
-                new GldfFileTyped
+                new()
                 {
                     Id = "sensorXml",
                     ContentType = FileContentType.SensorSensXml,
@@ -37,9 +41,9 @@ public static class EmitterMandatoryTyped
                     Uri = "https://example.org/sens.xml"
                 }
             },
-            Sensors = new()
+            Sensors = new List<SensorTyped>
             {
-                new SensorTyped
+                new()
                 {
                     Id = "sensor",
                     SensorFile = new GldfFileTyped
@@ -48,9 +52,9 @@ public static class EmitterMandatoryTyped
                     }
                 }
             },
-            Photometries = new()
+            Photometries = new List<PhotometryTyped>
             {
-                new PhotometryTyped
+                new()
                 {
                     Id = "photometry",
                     PhotometryFile = new GldfFileTyped
@@ -59,9 +63,9 @@ public static class EmitterMandatoryTyped
                     }
                 }
             },
-            FixedLightSources = new()
+            FixedLightSources = new List<FixedLightSourceTyped>
             {
-                new FixedLightSourceTyped
+                new()
                 {
                     Id = "fixedLightSource",
                     Name = new[]
@@ -75,9 +79,9 @@ public static class EmitterMandatoryTyped
                     RatedInputPower = 10
                 }
             },
-            Emitter = new()
+            Emitter = new List<EmitterTyped>
             {
-                new EmitterTyped
+                new()
                 {
                     Id = "emitter-1",
                     ChangeableEmitterOptions = new[]
@@ -91,7 +95,7 @@ public static class EmitterMandatoryTyped
                         }
                     }
                 },
-                new EmitterTyped
+                new()
                 {
                     Id = "emitter-2",
                     FixedEmitterOptions = new[]
@@ -110,14 +114,12 @@ public static class EmitterMandatoryTyped
                         }
                     }
                 },
-                new EmitterTyped
+                new()
                 {
                     Id = "emitter-3",
                     SensorEmitterOptions = new[]
                     {
-                        new SensorEmitterTyped
-                        {
-                        }
+                        new SensorEmitterTyped()
                     }
                 }
             }
@@ -126,6 +128,7 @@ public static class EmitterMandatoryTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
+                UniqueProductId = "Product 1",
                 ProductNumber = new[]
                 {
                     new LocaleTyped
@@ -143,9 +146,9 @@ public static class EmitterMandatoryTyped
                     }
                 }
             },
-            Variants = new()
+            Variants = new List<VariantTyped>
             {
-                new VariantTyped
+                new()
                 {
                     Id = "variant-1",
                     Name = new[]

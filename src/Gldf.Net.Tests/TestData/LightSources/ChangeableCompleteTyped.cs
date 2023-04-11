@@ -6,6 +6,8 @@ using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Typed.Head;
 using Gldf.Net.Domain.Typed.Global;
 using Gldf.Net.Domain.Typed.Definition.Types;
+using Gldf.Net.Domain.Typed.Head.Types;
+using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.LightSources;
 
@@ -16,14 +18,16 @@ public static class ChangeableCompleteTyped
         Header = new HeaderTyped
         {
             Manufacturer = "DIAL",
-            CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
-            CreatedWithApplication = "Visual Studio Code"
+            GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            CreatedWithApplication = "Visual Studio Code",
+            FormatVersion = new FormatVersionTyped { Major = 1, Minor = 0, PreRelease = 2 },
+            UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E"
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new()
+            Files = new List<GldfFileTyped>
             {
-                new GldfFileTyped
+                new()
                 {
                     Id = "eulumdat",
                     ContentType = FileContentType.LdcEulumdat,
@@ -31,7 +35,7 @@ public static class ChangeableCompleteTyped
                     FileName = "eulumdat.ldt",
                     Uri = "https://example.org/eulumdat.ldt"
                 },
-                new GldfFileTyped
+                new()
                 {
                     Id = "spectrumFile",
                     ContentType = FileContentType.SpectrumText,
@@ -39,7 +43,7 @@ public static class ChangeableCompleteTyped
                     FileName = "spectrum.txt",
                     Uri = "https://example.org/spectrum.txt"
                 },
-                new GldfFileTyped
+                new()
                 {
                     Id = "image",
                     ContentType = FileContentType.ImageJpg,
@@ -48,9 +52,9 @@ public static class ChangeableCompleteTyped
                     Uri = "https://example.org/image.jpg"
                 }
             },
-            Photometries = new()
+            Photometries = new List<PhotometryTyped>
             {
-                new PhotometryTyped
+                new()
                 {
                     Id = "photometry",
                     PhotometryFile = new GldfFileTyped
@@ -63,9 +67,9 @@ public static class ChangeableCompleteTyped
                     }
                 }
             },
-            Spectrums = new()
+            Spectrums = new List<SpectrumTyped>
             {
-                new SpectrumTyped
+                new()
                 {
                     Id = "spectrum",
                     SpectrumFile = new GldfFileTyped
@@ -78,9 +82,9 @@ public static class ChangeableCompleteTyped
                     }
                 }
             },
-            ChangeableLightSources = new()
+            ChangeableLightSources = new List<ChangeableLightSourceTyped>
             {
-                new ChangeableLightSourceTyped
+                new()
                 {
                     Id = "lightSource-1",
                     Name = new[]
@@ -230,7 +234,7 @@ public static class ChangeableCompleteTyped
                         }
                     }
                 },
-                new ChangeableLightSourceTyped
+                new()
                 {
                     Id = "lightSource-2",
                     Name = new[]
@@ -270,7 +274,7 @@ public static class ChangeableCompleteTyped
                         }
                     }
                 },
-                new ChangeableLightSourceTyped
+                new()
                 {
                     Id = "lightSource-3",
                     Name = new[]
@@ -299,9 +303,9 @@ public static class ChangeableCompleteTyped
                     }
                 }
             },
-            Emitter = new()
+            Emitter = new List<EmitterTyped>
             {
-                new EmitterTyped
+                new()
                 {
                     Id = "emitter",
                     ChangeableEmitterOptions = new[]
@@ -329,6 +333,7 @@ public static class ChangeableCompleteTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
+                UniqueProductId = "Product 1",
                 ProductNumber = new[]
                 {
                     new LocaleTyped
@@ -346,9 +351,9 @@ public static class ChangeableCompleteTyped
                     }
                 }
             },
-            Variants = new()
+            Variants = new List<VariantTyped>
             {
-                new VariantTyped
+                new()
                 {
                     Id = "variant-1",
                     Name = new[]

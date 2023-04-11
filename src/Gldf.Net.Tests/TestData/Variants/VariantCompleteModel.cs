@@ -3,6 +3,7 @@ using Gldf.Net.Domain.Xml.Definition;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using Gldf.Net.Domain.Xml.Global;
 using Gldf.Net.Domain.Xml.Head;
+using Gldf.Net.Domain.Xml.Head.Types;
 using Gldf.Net.Domain.Xml.Product;
 using Gldf.Net.Domain.Xml.Product.Types;
 using Gldf.Net.Domain.Xml.Product.Types.Mounting;
@@ -18,7 +19,9 @@ public static class VariantCompleteModel
         {
             Manufacturer = "DIAL",
             GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
-            CreatedWithApplication = "Visual Studio Code"
+            CreatedWithApplication = "Visual Studio Code",
+            FormatVersion = new FormatVersion { Major = 1, Minor = 0, PreRelease = 2, PreReleaseSpecified = true },
+            UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E"
         },
         GeneralDefinitions = new GeneralDefinitions
         {
@@ -98,7 +101,10 @@ public static class VariantCompleteModel
                     {
                         new SensorEmitter
                         {
-                            SensorId = "sensor"
+                            SensorReference = new SensorReference
+                            {
+                                SensorId = "sensor"
+                            }
                         }
                     }
                 }
@@ -137,6 +143,7 @@ public static class VariantCompleteModel
         {
             ProductMetaData = new ProductMetaData
             {
+                UniqueProductId = "Product 1",
                 ProductNumber = new[]
                 {
                     new Locale
@@ -416,6 +423,7 @@ public static class VariantCompleteModel
                     {
                         new ProductSerie
                         {
+                            Id = "serie-1",
                             Name = new[]
                             {
                                 new Locale
@@ -484,6 +492,7 @@ public static class VariantCompleteModel
                         },
                         new ProductSerie
                         {
+                            Id = "serie-2",
                             Name = new[]
                             {
                                 new Locale

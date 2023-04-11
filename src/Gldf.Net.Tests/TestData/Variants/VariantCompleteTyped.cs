@@ -4,10 +4,12 @@ using Gldf.Net.Domain.Typed.Definition.Types;
 using Gldf.Net.Domain.Typed.Definition.Types.Mounting;
 using Gldf.Net.Domain.Typed.Global;
 using Gldf.Net.Domain.Typed.Head;
+using Gldf.Net.Domain.Typed.Head.Types;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using Gldf.Net.Domain.Xml.Global;
 using Gldf.Net.Domain.Xml.Product.Types;
 using System;
+using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.Variants;
 
@@ -18,35 +20,37 @@ public static class VariantCompleteTyped
         Header = new HeaderTyped
         {
             Manufacturer = "DIAL",
-            CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
-            CreatedWithApplication = "Visual Studio Code"
+            GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            CreatedWithApplication = "Visual Studio Code",
+            FormatVersion = new FormatVersionTyped { Major = 1, Minor = 0, PreRelease = 2 },
+            UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E"
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new()
+            Files = new List<GldfFileTyped>
             {
-                new GldfFileTyped
+                new()
                 {
                     Id = "eulumdatFile",
                     ContentType = FileContentType.LdcEulumdat,
                     Type = FileType.Url,
                     Uri = "https://example.org/eulumdat.ldt"
                 },
-                new GldfFileTyped
+                new()
                 {
                     Id = "geometryFile",
                     ContentType = FileContentType.GeoL3d,
                     Type = FileType.Url,
                     Uri = "https://example.org/geo.l3d"
                 },
-                new GldfFileTyped
+                new()
                 {
                     Id = "sensorFile",
                     ContentType = FileContentType.SensorSensXml,
                     Type = FileType.Url,
                     Uri = "https://example.org/sensor.xml"
                 },
-                new GldfFileTyped
+                new()
                 {
                     Id = "pictureFile",
                     ContentType = FileContentType.ImageSvg,
@@ -54,9 +58,9 @@ public static class VariantCompleteTyped
                     Uri = "picture.svg"
                 }
             },
-            Sensors = new()
+            Sensors = new List<SensorTyped>
             {
-                new SensorTyped
+                new()
                 {
                     Id = "sensor",
                     SensorFile = new GldfFileTyped
@@ -65,9 +69,9 @@ public static class VariantCompleteTyped
                     }
                 }
             },
-            Photometries = new()
+            Photometries = new List<PhotometryTyped>
             {
-                new PhotometryTyped
+                new()
                 {
                     Id = "photometry",
                     PhotometryFile = new GldfFileTyped
@@ -76,9 +80,9 @@ public static class VariantCompleteTyped
                     }
                 }
             },
-            Emitter = new()
+            Emitter = new List<EmitterTyped>
             {
-                new EmitterTyped
+                new()
                 {
                     Id = "leoEmitter",
                     ChangeableEmitterOptions = new[]
@@ -92,20 +96,18 @@ public static class VariantCompleteTyped
                         }
                     }
                 },
-                new EmitterTyped
+                new()
                 {
                     Id = "sensorEmitter",
                     SensorEmitterOptions = new[]
                     {
-                        new SensorEmitterTyped
-                        {
-                        }
+                        new SensorEmitterTyped()
                     }
                 }
             },
-            SimpleGeometries = new()
+            SimpleGeometries = new List<SimpleGeometryTyped>
             {
-                new SimpleGeometryTyped
+                new()
                 {
                     Id = "simpleGeometry",
                     CuboidGeometry = new SimpleCuboidGeometryTyped
@@ -121,16 +123,14 @@ public static class VariantCompleteTyped
                     }
                 }
             },
-            ModelGeometries = new()
+            ModelGeometries = new List<ModelGeometryTyped>
             {
-                new ModelGeometryTyped
+                new()
                 {
                     Id = "geometry",
                     GeometryFiles = new ModelFileTyped[]
                     {
                         new()
-                        {
-                        }
                     }
                 }
             }
@@ -139,6 +139,7 @@ public static class VariantCompleteTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
+                UniqueProductId = "Product 1",
                 ProductNumber = new[]
                 {
                     new LocaleTyped
@@ -156,9 +157,9 @@ public static class VariantCompleteTyped
                     }
                 }
             },
-            Variants = new()
+            Variants = new List<VariantTyped>
             {
-                new VariantTyped
+                new()
                 {
                     Id = "variant-1",
                     ProductNumber = new[]
@@ -306,7 +307,7 @@ public static class VariantCompleteTyped
                         Id = "pictureFile"
                     }
                 },
-                new VariantTyped
+                new()
                 {
                     Id = "variant-2",
                     Name = new[]
@@ -370,7 +371,7 @@ public static class VariantCompleteTyped
                         }
                     }
                 },
-                new VariantTyped
+                new()
                 {
                     Id = "variant-3",
                     SortOrder = 3,
@@ -526,7 +527,7 @@ public static class VariantCompleteTyped
                         }
                     }
                 },
-                new VariantTyped
+                new()
                 {
                     Id = "variant-4",
                     SortOrder = 4,
@@ -536,7 +537,7 @@ public static class VariantCompleteTyped
                     },
                     Geometry = new GeometryTyped
                     {
-                        Simple = new SimpleGeometryEmitterTyped()
+                        Simple = new SimpleGeometryEmitterTyped
                         {
                             Geometry = new SimpleGeometryTyped
                             {
@@ -568,7 +569,7 @@ public static class VariantCompleteTyped
                         }
                     }
                 },
-                new VariantTyped
+                new()
                 {
                     Id = "variant-5",
                     SortOrder = 5,

@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/1.0.0-rc.1/gldf.xsd">
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/1.0.0-rc.2/gldf.xsd">
     <Header>
         <Manufacturer>DIAL</Manufacturer>
-        <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
+        <FormatVersion major="1" minor="0" pre-release="2" />
         <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
-        <FormatVersion>1.0.0-rc.1</FormatVersion>
+        <GldfCreationTimeCode>2021-03-29T14:30:00Z</GldfCreationTimeCode>
+        <UniqueGldfId>3BE556FF-9061-4592-AEB1-1BC9D507280E</UniqueGldfId>
     </Header>
     <GeneralDefinitions>
         <Files>
@@ -27,6 +28,7 @@
     </GeneralDefinitions>
     <ProductDefinitions>
         <ProductMetaData>
+            <UniqueProductId>Product 1</UniqueProductId>
             <ProductNumber>
                 <Locale language="en">Product number</Locale>
                 <Locale language="de">Produktnummer</Locale>
@@ -44,7 +46,7 @@
                 <Locale language="de">Produkt Auschreibungstext</Locale>
             </TenderText>
             <ProductSeries>
-                <ProductSerie>
+                <ProductSerie id="serie-1">
                     <Name>
                         <Locale language="en">Product series name</Locale>
                         <Locale language="de">Produktserienname</Locale>

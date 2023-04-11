@@ -27,7 +27,7 @@ internal class HeaderTransform : TransformBase
         headerTyped.CreatedWithApplication = header.CreatedWithApplication;
         headerTyped.GldfCreationTimeCode = header.GldfCreationTimeCode;
         headerTyped.UniqueGldfId = header.UniqueGldfId;
-        headerTyped.ProductDataTimeCode = header.ProductDataTimeCode;
+        headerTyped.ProductDataTimeCode = header.ProductDataTimeCodeSpecified ? header.ProductDataTimeCode : null;
         headerTyped.DefaultLanguage = header.DefaultLanguage;
         headerTyped.ManufacturerLogo = MapManufacturerLogo(header.ManufacturerLogo);
         headerTyped.LicenseKeys = MapLicenseKeys(header.LicenseKeys);
@@ -41,7 +41,7 @@ internal class HeaderTransform : TransformBase
     {
         Major = formatVersion.Major,
         Minor = formatVersion.Minor,
-        PreRelease = formatVersion.PreRelease
+        PreRelease = formatVersion.PreReleaseSpecified ? formatVersion.PreRelease : null
     };
 
     private static LicenseKeyTyped[] MapLicenseKeys(IEnumerable<LicenseKey> licenseKeys) =>

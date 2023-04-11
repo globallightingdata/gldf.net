@@ -5,7 +5,6 @@ using Gldf.Net.Domain.Typed.Global;
 using Gldf.Net.Domain.Typed.Head;
 using Gldf.Net.Domain.Typed.Head.Types;
 using Gldf.Net.Domain.Xml.Definition.Types;
-using Gldf.Net.Domain.Xml.Head.Types;
 using System;
 using System.Collections.Generic;
 
@@ -17,27 +16,38 @@ public class HeaderCompleteTyped
     {
         Header = new HeaderTyped
         {
-            Author = "Author",
             Manufacturer = "DIAL",
-            GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            FormatVersion = new FormatVersionTyped
+            {
+                Major = 1,
+                Minor = 0,
+                PreRelease = 2
+            },
             CreatedWithApplication = "Visual Studio Code",
-            FormatVersion = FormatVersionTyped.V100,
+            GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E",
+            ProductDataTimeCode = new DateTime(2019, 10, 29, 6, 20, 30, DateTimeKind.Utc),
             DefaultLanguage = "de",
+            ManufacturerLogo = new ManufacturerLogoTyped
+            {
+                FileId = "manufLogo"
+            },
             LicenseKeys = new[]
             {
                 new LicenseKeyTyped
                 {
-                    Application = Application.DIALux,
+                    Application = "DIALux",
                     Key = "Key 1"
                 },
                 new LicenseKeyTyped
                 {
-                    Application = Application.RELUX,
+                    Application = "RELUX",
                     Key = "Key 2"
                 }
             },
             ReluxMemberId = "ReluxMemberId",
             DIALuxMemberId = "DIALuxMemberId",
+            Author = "Author",
             Contact = new[]
             {
                 new AddressTyped
@@ -100,6 +110,14 @@ public class HeaderCompleteTyped
             {
                 new()
                 {
+                    Id = "manufLogo",
+                    ContentType = FileContentType.ImagePng,
+                    Type = FileType.Url,
+                    FileName = "logo.png",
+                    Uri = "https://example.org/logo.png"
+                },
+                new()
+                {
                     Id = "eulumdat",
                     ContentType = FileContentType.LdcEulumdat,
                     Type = FileType.Url,
@@ -152,6 +170,7 @@ public class HeaderCompleteTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
+                UniqueProductId = "Product 1",
                 ProductNumber = new[]
                 {
                     new LocaleTyped

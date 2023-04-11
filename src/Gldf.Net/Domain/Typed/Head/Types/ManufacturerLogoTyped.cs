@@ -1,9 +1,7 @@
-﻿using System.Xml.Serialization;
-
-namespace Gldf.Net.Domain.Typed.Head.Types;
+﻿namespace Gldf.Net.Domain.Typed.Head.Types;
 
 public class ManufacturerLogoTyped
 {
-    [XmlAttribute(AttributeName = "fileId")]
+    // Map manufacturer logo to file when required
     public string FileId { get; set; }
 }

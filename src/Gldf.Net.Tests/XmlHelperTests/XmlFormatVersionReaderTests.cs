@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using Gldf.Net.Domain.Xml.Head.Types;
 using Gldf.Net.Exceptions;
 using Gldf.Net.XmlHelper;
 using NUnit.Framework;
@@ -10,15 +11,27 @@ namespace Gldf.Net.Tests.XmlHelperTests;
 [TestFixture]
 public class XmlFormatVersionReaderTests
 {
+
     [Test]
-    public void GetFormatVersion_Should_BeExpected()
+    public void GetFormatVersion_ShouldBeExpected_WhenPreReleaseIsSet()
     {
-        const string expected = "1.0.0-rc.1";
-        const string xml = $"<Root><Header><FormatVersion>{expected}</FormatVersion></Header></Root>";
+        var expected = new FormatVersion { Major = 1, Minor = 2, PreRelease = 3 };
+        const string xml = $"<Root><Header><FormatVersion major='1' minor='2' pre-release='3' /></Header></Root>";
 
         var formatVersion = GldfFormatVersionReader.GetFormatVersion(xml);
 
-        formatVersion.Should().Be(expected);
+        formatVersion.Should().BeEquivalentTo(expected);
+    }
+
+    [Test]
+    public void GetFormatVersion_ShouldBeExpected_WhenPreReleaseIsNull()
+    {
+        var expected = new FormatVersion { Major = 1, Minor = 2, PreReleaseSpecified = false };
+        const string xml = $"<Root><Header><FormatVersion major='1' minor='2' /></Header></Root>";
+
+        var formatVersion = GldfFormatVersionReader.GetFormatVersion(xml);
+
+        formatVersion.Should().BeEquivalentTo(expected);
     }
 
     [Test]

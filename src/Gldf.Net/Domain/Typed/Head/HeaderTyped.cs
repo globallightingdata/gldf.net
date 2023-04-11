@@ -17,7 +17,7 @@ public class HeaderTyped
 
     public string UniqueGldfId { get; set; }
 
-    public DateTime ProductDataTimeCode { get; set; }
+    public DateTime? ProductDataTimeCode { get; set; }
 
     public string DefaultLanguage { get; set; }
 

@@ -19,11 +19,11 @@ public class EmbeddedXsdLoaderTests
     {
         var formatVersion = new FormatVersion { Major = 1, Minor = 0, PreRelease = 2 };
         using var httpClient = new HttpClient();
-        var xsdUrl = new Root().SchemaLocation;
-        var githubXsd = await httpClient.GetStringAsync(xsdUrl);
+        var xsdSchemaLocation = new Root().SchemaLocation;
+        var xsdSchema = await httpClient.GetStringAsync(xsdSchemaLocation);
         var embeddedXsd = EmbeddedXsdLoader.LoadXsd(formatVersion);
 
-        embeddedXsd.ShouldBe().EquivalentTo(githubXsd);
+        embeddedXsd.ShouldBe().EquivalentTo(xsdSchema);
     }
 
     [Test]

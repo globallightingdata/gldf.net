@@ -12,7 +12,7 @@ public class Emitter
 
     [XmlElement("ChangeableLightEmitter", typeof(ChangeableLightEmitter))]
     [XmlElement("FixedLightEmitter", typeof(FixedLightEmitter))]
-    [XmlElement("Sensor", typeof(SensorEmitter))]
+    [XmlElement("SensorEmitter", typeof(SensorEmitter))]
     public EmitterBase[] PossibleFittings { get; set; }
 
     public IEnumerable<ChangeableLightEmitter> GetChangeableLightEmitters() => PossibleFittings?.OfType<ChangeableLightEmitter>();

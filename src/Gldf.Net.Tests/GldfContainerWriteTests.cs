@@ -160,7 +160,13 @@ public class GldfContainerWriteTests
     [Test]
     public void WriteToStream_ShouldThrow_When_Stream_IsInvalid()
     {
-        var act = () => _gldfContainerWriter.WriteToStream(Stream.Null, false, new GldfContainer());
+        var act = () =>
+        {
+            var containerToWrite = new GldfContainer { Product = new Root() };
+            var memoryStream = new MemoryStream();
+            memoryStream.Dispose();
+            _gldfContainerWriter.WriteToStream(memoryStream, false, containerToWrite);
+        };
 
         act.Should()
             .ThrowExactly<GldfContainerException>()

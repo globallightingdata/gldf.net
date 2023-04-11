@@ -3,6 +3,7 @@ using Gldf.Net.Domain.Xml.Definition;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using Gldf.Net.Domain.Xml.Global;
 using Gldf.Net.Domain.Xml.Head;
+using Gldf.Net.Domain.Xml.Head.Types;
 using Gldf.Net.Domain.Xml.Product;
 using Gldf.Net.Domain.Xml.Product.Types;
 using System;
@@ -17,7 +18,9 @@ public static class EmitterCompleteModel
         {
             Manufacturer = "DIAL",
             GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
-            CreatedWithApplication = "Visual Studio Code"
+            CreatedWithApplication = "Visual Studio Code",
+            FormatVersion = new FormatVersion { Major = 1, Minor = 0, PreRelease = 2, PreReleaseSpecified = true },
+            UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E"
         },
         GeneralDefinitions = new GeneralDefinitions
         {
@@ -167,7 +170,6 @@ public static class EmitterCompleteModel
                     {
                         new SensorEmitter
                         {
-                            SensorId = "sensor",
                             Name = new[]
                             {
                                 new Locale
@@ -187,11 +189,18 @@ public static class EmitterCompleteModel
                                 Y = 11.2,
                                 Z = 12.3,
                                 G0 = 13.4
+                            },
+                            SensorReference = new SensorReference
+                            {
+                                SensorId = "sensor"
                             }
                         },
                         new SensorEmitter
                         {
-                            SensorId = "sensor"
+                            SensorReference = new SensorReference
+                            {
+                                SensorId = "sensor"
+                            }
                         }
                     }
                 }
@@ -201,6 +210,7 @@ public static class EmitterCompleteModel
         {
             ProductMetaData = new ProductMetaData
             {
+                UniqueProductId = "Product 1",
                 ProductNumber = new[]
                 {
                     new Locale

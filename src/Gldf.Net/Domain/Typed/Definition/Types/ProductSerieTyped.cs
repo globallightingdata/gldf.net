@@ -4,6 +4,8 @@ namespace Gldf.Net.Domain.Typed.Definition.Types;
 
 public class ProductSerieTyped
 {
+    public string Id { get; set; }
+    
     public LocaleTyped[] Name { get; set; }
 
     public LocaleTyped[] Description { get; set; }

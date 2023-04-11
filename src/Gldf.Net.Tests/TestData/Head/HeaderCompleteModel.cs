@@ -16,32 +16,33 @@ public class HeaderCompleteModel
     {
         Header = new Header
         {
-            Author = "Author",
             Manufacturer = "DIAL",
-            GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            FormatVersion = new FormatVersion { Major = 1, Minor = 0, PreRelease = 2, PreReleaseSpecified = true },
             CreatedWithApplication = "Visual Studio Code",
-            FormatVersion = new FormatVersion
-            {
-                Major = 1,
-                Minor = 0,
-                PreRelease = 2
-            },
+            GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E",
+            ProductDataTimeCode = new DateTime(2019, 10, 29, 6, 20, 30, DateTimeKind.Utc),
             DefaultLanguage = "de",
+            ManufacturerLogo = new ManufacturerLogo
+            {
+                FileId = "manufLogo"
+            },
             LicenseKeys = new[]
             {
                 new LicenseKey
                 {
-                    Application = Application.DIALux,
+                    Application = "DIALux",
                     Key = "Key 1"
                 },
                 new LicenseKey
                 {
-                    Application = Application.RELUX,
+                    Application = "RELUX",
                     Key = "Key 2"
                 }
             },
             ReluxMemberId = "ReluxMemberId",
             DIALuxMemberId = "DIALuxMemberId",
+            Author = "Author",
             Contact = new[]
             {
                 new Address
@@ -104,6 +105,13 @@ public class HeaderCompleteModel
             {
                 new GldfFile
                 {
+                    Id = "manufLogo",
+                    ContentType = FileContentType.ImagePng,
+                    Type = FileType.Url,
+                    File = "https://example.org/logo.png"
+                },
+                new GldfFile
+                {
                     Id = "eulumdat",
                     ContentType = FileContentType.LdcEulumdat,
                     Type = FileType.Url,
@@ -143,6 +151,7 @@ public class HeaderCompleteModel
         {
             ProductMetaData = new ProductMetaData
             {
+                UniqueProductId = "Product 1",
                 ProductNumber = new[]
                 {
                     new Locale

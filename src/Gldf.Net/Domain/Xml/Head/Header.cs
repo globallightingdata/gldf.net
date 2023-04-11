@@ -1,5 +1,6 @@
 ﻿using Gldf.Net.Domain.Xml.Head.Types;
 using System;
+using System.Xml.Serialization;
 
 // ReSharper disable InconsistentNaming
 
@@ -17,12 +18,20 @@ public class Header
 
     public string UniqueGldfId { get; set; }
 
-    public DateTime ProductDataTimeCode { get; set; }
+    public DateTime ProductDataTimeCode
+    {
+        get => _productDataTimeCode;
+        set
+        {
+            _productDataTimeCode = value;
+            ProductDataTimeCodeSpecified = value != DateTime.MinValue;
+        }
+    }
 
     public string DefaultLanguage { get; set; }
 
     public ManufacturerLogo ManufacturerLogo { get; set; }
-    
+
     public LicenseKey[] LicenseKeys { get; set; }
 
     public string ReluxMemberId { get; set; }
@@ -30,6 +39,11 @@ public class Header
     public string DIALuxMemberId { get; set; }
 
     public string Author { get; set; }
-    
+
     public Address[] Contact { get; set; }
+
+    [XmlIgnore]
+    public bool ProductDataTimeCodeSpecified { get; set; }
+
+    private DateTime _productDataTimeCode;
 }

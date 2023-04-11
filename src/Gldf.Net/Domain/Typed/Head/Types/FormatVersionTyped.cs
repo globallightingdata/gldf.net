@@ -8,5 +8,5 @@ public class FormatVersionTyped
 
     public int? PreRelease { get; set; }
 
-    public override string ToString() => $"v{Major}.{Minor}-rc{PreRelease}";
+    public override string ToString() => $"v{Major}.{Minor}" + (PreRelease != null ? $"-rc{PreRelease}" : string.Empty);
 }

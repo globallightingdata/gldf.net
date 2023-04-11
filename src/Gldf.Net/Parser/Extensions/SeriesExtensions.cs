@@ -14,6 +14,7 @@ public static class SeriesExtensions
     private static ProductSerieTyped MapSerie(ProductSerie serie, IEnumerable<GldfFileTyped> files) =>
         new()
         {
+            Id = serie.Id,
             Name = serie.Name?.ToTypedArray(),
             Description = serie.Description?.ToTypedArray(),
             Pictures = files.ToImageTypedArray(serie.Pictures),

@@ -1,5 +1,4 @@
 ﻿using Gldf.Net.Domain.Typed;
-using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Xml;
 using Gldf.Net.Tests.TestData.ControlGears;
 using Gldf.Net.Tests.TestData.Descriptive;

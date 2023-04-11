@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/1.0.0-rc.1/gldf.xsd">
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/1.0.0-rc.2/gldf.xsd">
     <Header>
         <Manufacturer>DIAL</Manufacturer>
-        <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
+        <FormatVersion major="1" minor="0" pre-release="2" />
         <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
-        <FormatVersion>1.0.0-rc.1</FormatVersion>
+        <GldfCreationTimeCode>2021-03-29T14:30:00Z</GldfCreationTimeCode>
+        <UniqueGldfId>3BE556FF-9061-4592-AEB1-1BC9D507280E</UniqueGldfId>
     </Header>
     <GeneralDefinitions>
         <Files>
@@ -31,7 +32,9 @@
                 </ChangeableLightEmitter>
             </Emitter>
             <Emitter id="sensorEmitter">
-                <Sensor sensorId="sensor"/>
+                <SensorEmitter>
+                    <SensorReference sensorId="sensor"/>
+                </SensorEmitter>
             </Emitter>
         </Emitters>
         <Geometries>
@@ -53,6 +56,7 @@
     </GeneralDefinitions>
     <ProductDefinitions>
         <ProductMetaData>
+            <UniqueProductId>Product 1</UniqueProductId>
             <ProductNumber>
                 <Locale language="en">Product number</Locale>
             </ProductNumber>
@@ -187,7 +191,7 @@
                     </ModelGeometryReference>
                 </Geometry>
                 <ProductSeries>
-                    <ProductSerie>
+                    <ProductSerie id="serie-1">
                         <Name>
                             <Locale language="en">Variant name 1</Locale>
                             <Locale language="de">Variantenname 1</Locale>
@@ -207,7 +211,7 @@
                             <Hyperlink href="href2" language="en" region="region" countryCode="de">Hyperlink 2</Hyperlink>
                         </Hyperlinks>
                     </ProductSerie>
-                    <ProductSerie>
+                    <ProductSerie  id="serie-2">
                         <Name>
                             <Locale language="en">Variant name 2</Locale>
                             <Locale language="de">Variantenname 2</Locale>

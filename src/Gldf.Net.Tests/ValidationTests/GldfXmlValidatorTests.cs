@@ -5,7 +5,6 @@ using Gldf.Net.Tests.TestData;
 using Gldf.Net.Validation;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.IO;
 
 namespace Gldf.Net.Tests.ValidationTests;

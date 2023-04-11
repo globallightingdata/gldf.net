@@ -5,6 +5,9 @@ namespace Gldf.Net.Domain.Xml.Product.Types;
 
 public class ProductSerie
 {
+    [XmlAttribute("id", DataType = "ID")]
+    public string Id { get; set; }
+    
     [XmlArrayItem("Locale")]
     public Locale[] Name { get; set; }
 

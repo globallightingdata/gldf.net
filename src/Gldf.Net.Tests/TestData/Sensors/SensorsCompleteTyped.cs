@@ -19,7 +19,8 @@ public static class SensorsCompleteTyped
             Manufacturer = "DIAL",
             GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
             CreatedWithApplication = "Visual Studio Code",
-            FormatVersion = FormatVersionTyped.V100
+            FormatVersion = new FormatVersionTyped { Major = 1, Minor = 0, PreRelease = 2 },
+            UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E"
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
@@ -123,6 +124,7 @@ public static class SensorsCompleteTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
+                UniqueProductId = "Product 1",
                 ProductNumber = new[]
                 {
                     new LocaleTyped

@@ -4,7 +4,6 @@ using Gldf.Net.Domain.Xml.Definition;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using Gldf.Net.Parser.DataFlow;
 using Gldf.Net.Parser.Extensions;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -92,7 +91,7 @@ internal class EmitterTransform : TransformBase
         {
             Name = emitter.Name?.ToTypedArray(),
             Rotation = emitter.Rotation?.ToTyped(),
-            Sensor = definitions.Sensors.FirstOrDefault(sensor => sensor.Id.Equals(emitter.SensorId, StringComparison.Ordinal))
+            Sensor = definitions.Sensors.GetTyped(emitter.SensorReference)
         }).ToArray()
     };
 }

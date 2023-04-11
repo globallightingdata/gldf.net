@@ -2,8 +2,5 @@
 
 public static class AssertionExtensions
 {
-    public static XmlStringAssertions ShouldBe(this string xml)
-    {
-        return new(xml);
-    }
+    public static XmlStringAssertions ShouldBe(this string xml) => new(xml);
 }

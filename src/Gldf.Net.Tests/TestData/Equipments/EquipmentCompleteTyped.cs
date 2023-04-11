@@ -5,6 +5,8 @@ using Gldf.Net.Domain.Typed.Head;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using System;
 using Gldf.Net.Domain.Typed.Definition.Types;
+using Gldf.Net.Domain.Typed.Head.Types;
+using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.Equipments;
 
@@ -15,14 +17,16 @@ public static class EquipmentCompleteTyped
         Header = new HeaderTyped
         {
             Manufacturer = "DIAL",
-            CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
-            CreatedWithApplication = "Visual Studio Code"
+            GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            CreatedWithApplication = "Visual Studio Code",
+            FormatVersion = new FormatVersionTyped { Major = 1, Minor = 0, PreRelease = 2 },
+            UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E"
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new()
+            Files = new List<GldfFileTyped>
             {
-                new GldfFileTyped
+                new()
                 {
                     Id = "eulumdat",
                     ContentType = FileContentType.LdcEulumdat,
@@ -30,9 +34,9 @@ public static class EquipmentCompleteTyped
                     Uri = "https://example.org/eulumdat.ldt"
                 }
             },
-            Photometries = new()
+            Photometries = new List<PhotometryTyped>
             {
-                new PhotometryTyped
+                new()
                 {
                     Id = "photometry",
                     PhotometryFile = new GldfFileTyped
@@ -41,9 +45,9 @@ public static class EquipmentCompleteTyped
                     }
                 }
             },
-            ChangeableLightSources = new()
+            ChangeableLightSources = new List<ChangeableLightSourceTyped>
             {
-                new ChangeableLightSourceTyped
+                new()
                 {
                     Id = "lightSource",
                     Name = new[]
@@ -58,9 +62,9 @@ public static class EquipmentCompleteTyped
                     RatedLuminousFlux = 250
                 }
             },
-            ControlGears = new()
+            ControlGears = new List<ControlGearTyped>
             {
-                new ControlGearTyped
+                new()
                 {
                     Id = "controlGear",
                     Name = new[]
@@ -81,12 +85,12 @@ public static class EquipmentCompleteTyped
                     }
                 }
             },
-            Equipments = new()
+            Equipments = new List<EquipmentTyped>
             {
-                new EquipmentTyped
+                new()
                 {
                     Id = "equipment-1",
-                    ChangeableLightSource = new()
+                    ChangeableLightSource = new ChangeableLightSourceTyped
                     {
                         Id = "lightSource"
                     },
@@ -98,7 +102,7 @@ public static class EquipmentCompleteTyped
                     RatedInputPower = 0.1,
                     EmergencyBallastLumenFactor = new EmergencyBallastLumenFactorTyped { Factor = 0.2 }
                 },
-                new EquipmentTyped
+                new()
                 {
                     Id = "equipment-2",
                     ChangeableLightSource = new ChangeableLightSourceTyped
@@ -116,9 +120,9 @@ public static class EquipmentCompleteTyped
                     }
                 }
             },
-            Emitter = new()
+            Emitter = new List<EmitterTyped>
             {
-                new EmitterTyped
+                new()
                 {
                     Id = "emitter-1",
                     ChangeableEmitterOptions = new[]
@@ -136,7 +140,7 @@ public static class EquipmentCompleteTyped
                         }
                     }
                 },
-                new EmitterTyped
+                new()
                 {
                     Id = "emitter-2",
                     ChangeableEmitterOptions = new[]
@@ -160,6 +164,7 @@ public static class EquipmentCompleteTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
+                UniqueProductId = "Product 1",
                 ProductNumber = new[]
                 {
                     new LocaleTyped
@@ -177,9 +182,9 @@ public static class EquipmentCompleteTyped
                     }
                 }
             },
-            Variants = new()
+            Variants = new List<VariantTyped>
             {
-                new VariantTyped
+                new()
                 {
                     Id = "variant-1",
                     Name = new[]

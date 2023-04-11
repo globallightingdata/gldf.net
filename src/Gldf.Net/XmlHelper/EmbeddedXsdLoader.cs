@@ -13,7 +13,7 @@ internal static class EmbeddedXsdLoader
     {
         try
         {
-            var preRealeaseString = version.PreRelease == null ? string.Empty : $"-rc{version.PreRelease}";
+            var preRealeaseString = version.PreReleaseSpecified ? $"-rc{version.PreRelease}" : string.Empty;
             var versionString = $"v{version.Major}{version.Minor}{preRealeaseString}";
             var xsdResourceName = $"Gldf.Net.Xsd.{versionString}.xsd";
             var currentAssembly = Assembly.GetAssembly(typeof(GldfXmlSerializer));
