@@ -1,4 +1,5 @@
-﻿using Gldf.Net.Exceptions;
+﻿using Gldf.Net.Domain.Xml.Head.Types;
+using Gldf.Net.Exceptions;
 using System;
 using System.IO;
 using System.Xml;
@@ -9,12 +10,20 @@ namespace Gldf.Net.XmlHelper;
 
 internal static class GldfFormatVersionReader
 {
-    public static string GetFormatVersion(string xml)
+    public static FormatVersion GetFormatVersion(string xml)
     {
         try
         {
             var formatElement = GetFormatElement(xml);
-            return formatElement!.Value;
+            var hasMajor = int.TryParse(formatElement.Attribute("major")?.Value, out var major);
+            var hasMinor = int.TryParse(formatElement.Attribute("minor")?.Value, out var minor);
+            var hasPreRelease = int.TryParse(formatElement.Attribute("pre-release")?.Value, out var preRelease);
+            return (hasMajor, hasMinor, hasPreRelease) switch
+            {
+                (true, true, true) => new FormatVersion { Major = major, Minor = minor, PreRelease = preRelease },
+                (true, true, false) => new FormatVersion { Major = major, Minor = minor },
+                _ => throw new Exception("FormatVersion attributes not set. At lease major and minor (:int) required")
+            };
         }
         catch (Exception e)
         {

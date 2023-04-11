@@ -27,8 +27,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="Xsd\gldf.xsd" />
-        <EmbeddedResource Include="Xsd\V100.xsd" />
+        <EmbeddedResource Include="Xsd\v10-rc2.xsd" />
         <None Include=".\..\..\img\logo.png">
             <Pack>true</Pack>
             <PackagePath>\</PackagePath>

@@ -17,10 +17,11 @@ public class EmbeddedXsdLoaderTests
     [Test]
     public async Task LoadXsd_Should_BeEquivalentTo_XsdStoredOnGldfIo()
     {
+        var formatVersion = new FormatVersion { Major = 1, Minor = 0, PreRelease = 2 };
         using var httpClient = new HttpClient();
         var xsdUrl = new Root().SchemaLocation;
         var githubXsd = await httpClient.GetStringAsync(xsdUrl);
-        var embeddedXsd = EmbeddedXsdLoader.LoadXsd(FormatVersion.V100);
+        var embeddedXsd = EmbeddedXsdLoader.LoadXsd(formatVersion);
 
         embeddedXsd.ShouldBe().EquivalentTo(githubXsd);
     }
@@ -28,7 +29,7 @@ public class EmbeddedXsdLoaderTests
     [Test]
     public void LoadXsd_Should_Throw_When_UnknownFormatVersion()
     {
-        var invalidFormatVersion = (FormatVersion)int.MaxValue;
+        var invalidFormatVersion = new FormatVersion { Major = -1, Minor = -2, PreRelease = -3 };
 
         Action act = () => EmbeddedXsdLoader.LoadXsd(invalidFormatVersion);
 

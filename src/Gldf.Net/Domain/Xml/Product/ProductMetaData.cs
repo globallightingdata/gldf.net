@@ -7,6 +7,8 @@ namespace Gldf.Net.Domain.Xml.Product;
 
 public class ProductMetaData
 {
+    public string UniqueProductId { get; set; }
+    
     [XmlArrayItem("Locale")]
     public Locale[] ProductNumber { get; set; }
 

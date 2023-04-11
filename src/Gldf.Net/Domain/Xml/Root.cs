@@ -10,7 +10,7 @@ public class Root
     [XmlAttribute(AttributeName = SchemaAttributeName, Namespace = SchemaAttributePrefixNamespace)]
     public string SchemaLocation
     {
-        get => "https://gldf.io/xsd/gldf/1.0.0-rc.1/gldf.xsd";
+        get => "https://gldf.io/xsd/gldf/1.0.0-rc.2/gldf.xsd";
         set => _ = value;
     }
 

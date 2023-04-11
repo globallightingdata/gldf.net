@@ -4,11 +4,11 @@ public class ContainerLoadSettings
 {
     public static ContainerLoadSettings Default => new();
 
-    public ProductLoadBehaviour ProductLoadBehaviour { get; set; }
+    public ProductLoadBehaviour ProductLoadBehaviour { get; init; }
 
-    public AssetLoadBehaviour AssetLoadBehaviour { get; set; }
+    public AssetLoadBehaviour AssetLoadBehaviour { get; init; }
 
-    public MetaInfoLoadBehaviour MetaInfoLoadBehaviour { get; set; }
+    public MetaInfoLoadBehaviour MetaInfoLoadBehaviour { get; init; }
 
     public ContainerLoadSettings()
     {

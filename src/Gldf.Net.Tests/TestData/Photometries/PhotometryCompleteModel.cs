@@ -16,7 +16,7 @@ public class PhotometryCompleteModel
         Header = new Header
         {
             Manufacturer = "DIAL",
-            CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
             CreatedWithApplication = "Visual Studio Code"
         },
         GeneralDefinitions = new GeneralDefinitions

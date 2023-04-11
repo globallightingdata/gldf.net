@@ -4,7 +4,6 @@ using Gldf.Net.Domain.Xml.Head;
 using Gldf.Net.Domain.Xml.Head.Types;
 using Gldf.Net.Parser.DataFlow;
 using Gldf.Net.Parser.Extensions;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,7 +24,7 @@ internal class HeaderTransform : TransformBase
     {
         headerTyped.Author = header.Author;
         headerTyped.Manufacturer = header.Manufacturer;
-        headerTyped.CreationTimeCode = header.CreationTimeCode;
+        headerTyped.CreationTimeCode = header.GldfCreationTimeCode;
         headerTyped.CreatedWithApplication = header.CreatedWithApplication;
         headerTyped.FormatVersion = MapFormatVersion(header.FormatVersion);
         headerTyped.DefaultLanguage = header.DefaultLanguage;
@@ -35,12 +34,12 @@ internal class HeaderTransform : TransformBase
         headerTyped.Contact = MapContact(header.Contact);
     }
 
-    private static FormatVersionTyped MapFormatVersion(FormatVersion formatVersion) =>
-        formatVersion switch
-        {
-            FormatVersion.V100 => FormatVersionTyped.V100,
-            _ => throw new ArgumentOutOfRangeException(nameof(formatVersion), formatVersion, null)
-        };
+    private static FormatVersionTyped MapFormatVersion(FormatVersion formatVersion) => new()
+    {
+        Major = formatVersion.Major,
+        Minor = formatVersion.Minor,
+        PreRelease = formatVersion.PreRelease
+    };
 
     private static LicenseKeyTyped[] MapLicenseKeys(IEnumerable<LicenseKey> licenseKeys) =>
         licenseKeys?.Select(key => new LicenseKeyTyped

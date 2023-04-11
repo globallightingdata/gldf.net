@@ -25,6 +25,7 @@ internal class GlobalProductDataTransform : TransformBase
     private static ProductMetaDataTyped MapProduct(ProductMetaData productMetaData, ICollection<GldfFileTyped> files) =>
         new()
         {
+            UniqueProductId = productMetaData.UniqueProductId,
             ProductNumber = productMetaData.ProductNumber?.ToTypedArray(),
             Name = productMetaData.Name?.ToTypedArray(),
             Description = productMetaData.Description?.ToTypedArray(),

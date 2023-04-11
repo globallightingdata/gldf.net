@@ -13,16 +13,17 @@ internal static class EmbeddedXsdLoader
     {
         try
         {
-            var xsdResourceName = $"Gldf.Net.Xsd.{version}.xsd";
+            var preRealeaseString = version.PreRelease == null ? string.Empty : $"-rc{version.PreRelease}";
+            var versionString = $"v{version.Major}{version.Minor}{preRealeaseString}";
+            var xsdResourceName = $"Gldf.Net.Xsd.{versionString}.xsd";
             var currentAssembly = Assembly.GetAssembly(typeof(GldfXmlSerializer));
-            using var xsdResource = currentAssembly.GetManifestResourceStream(xsdResourceName);
+            using var xsdResource = currentAssembly!.GetManifestResourceStream(xsdResourceName);
             using var reader = new StreamReader(xsdResource!, Encoding.UTF8);
             return reader.ReadToEnd();
         }
         catch (Exception e)
         {
-            var errorMessage = $"Failed to get embedded XSD for {nameof(FormatVersion)}{version.ToString()}";
-            throw new GldfException(errorMessage, e);
+            throw new GldfException($"Failed to get embedded XSD for {nameof(FormatVersion)}{version}", e);
         }
     }
 }

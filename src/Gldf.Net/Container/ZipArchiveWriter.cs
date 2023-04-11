@@ -31,6 +31,7 @@ internal class ZipArchiveWriter : ZipArchiveIO
 
     private void AddRootZipEntry(GldfContainer gldfContainer, ZipArchive zipArchive)
     {
+        if (gldfContainer.Product == null) return; // todo Unit tests
         var xml = GldfXmlSerializer.SerializeToString(gldfContainer.Product);
         var productEntry = zipArchive.CreateEntry("product.xml", CompressionLevel);
         using var entryStream = productEntry.Open();

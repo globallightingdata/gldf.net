@@ -18,9 +18,14 @@ public class HeaderCompleteModel
         {
             Author = "Author",
             Manufacturer = "DIAL",
-            CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
             CreatedWithApplication = "Visual Studio Code",
-            FormatVersion = FormatVersion.V100,
+            FormatVersion = new FormatVersion
+            {
+                Major = 1,
+                Minor = 0,
+                PreRelease = 2
+            },
             DefaultLanguage = "de",
             LicenseKeys = new[]
             {

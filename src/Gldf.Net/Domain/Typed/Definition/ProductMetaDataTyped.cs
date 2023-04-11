@@ -5,6 +5,8 @@ namespace Gldf.Net.Domain.Typed.Definition;
 
 public class ProductMetaDataTyped
 {
+    public string UniqueProductId { get; set; }
+    
     public LocaleTyped[] ProductNumber { get; set; }
 
     public LocaleTyped[] Name { get; set; }

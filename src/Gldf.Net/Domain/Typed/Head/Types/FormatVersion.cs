@@ -1,6 +1,12 @@
 ﻿namespace Gldf.Net.Domain.Typed.Head.Types;
 
-public enum FormatVersionTyped
+public class FormatVersionTyped
 {
-    V100
+    public int Major { get; set; }
+
+    public int Minor { get; set; }
+
+    public int? PreRelease { get; set; }
+
+    public override string ToString() => $"v{Major}.{Minor}-rc{PreRelease}";
 }
