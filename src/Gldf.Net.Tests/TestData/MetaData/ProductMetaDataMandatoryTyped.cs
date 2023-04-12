@@ -31,7 +31,8 @@ public static class ProductMetaDataMandatoryTyped
                     Id = "eulumdat",
                     ContentType = FileContentType.LdcEulumdat,
                     Type = FileType.Url,
-                    Uri = "https://example.org/eulumdat.ldt"
+                    Uri = "https://example.org/eulumdat.ldt",
+                    FileName = "eulumdat.ldt"
                 }
             },
             Photometries = new List<PhotometryTyped>
@@ -41,7 +42,11 @@ public static class ProductMetaDataMandatoryTyped
                     Id = "photometry",
                     PhotometryFile = new GldfFileTyped
                     {
-                        Id = "eulumdat"
+                        Id = "eulumdat",
+                        ContentType = FileContentType.LdcEulumdat,
+                        Type = FileType.Url,
+                        Uri = "https://example.org/eulumdat.ldt",
+                        FileName = "eulumdat.ldt"
                     }
                 }
             },
@@ -56,7 +61,15 @@ public static class ProductMetaDataMandatoryTyped
                         {
                             Photometry = new PhotometryTyped
                             {
-                                Id = "photometry"
+                                Id = "photometry",
+                                PhotometryFile = new GldfFileTyped
+                                {
+                                    Id = "eulumdat",
+                                    ContentType = FileContentType.LdcEulumdat,
+                                    Type = FileType.Url,
+                                    Uri = "https://example.org/eulumdat.ldt",
+                                    FileName = "eulumdat.ldt"
+                                }
                             }
                         }
                     }
@@ -108,7 +121,38 @@ public static class ProductMetaDataMandatoryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
-                            Id = "emitter"
+                            Id = "emitter",
+                            ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
+                            {
+                                new()
+                                {
+                                    Photometry = new PhotometryTyped
+                                    {
+                                        Id = "photometry",
+                                        PhotometryFile = new GldfFileTyped
+                                        {
+                                            Id = "eulumdat",
+                                            ContentType = FileContentType.LdcEulumdat,
+                                            Type = FileType.Url,
+                                            Uri = "https://example.org/eulumdat.ldt",
+                                            FileName = "eulumdat.ldt"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    ProductNumber = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product number"
+                        },
+                        new()
+                        {
+                            Language = "de",
+                            Text = "Produktnummer"
                         }
                     }
                 }

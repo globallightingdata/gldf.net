@@ -33,14 +33,16 @@ public static class ProductMetaDataCompleteTyped
                     Id = "eulumdat",
                     ContentType = FileContentType.LdcEulumdat,
                     Type = FileType.Url,
-                    Uri = "https://example.org/eulumdat.ldt"
+                    Uri = "https://example.org/eulumdat.ldt",
+                    FileName = "eulumdat.ldt"
                 },
                 new()
                 {
                     Id = "image",
                     ContentType = FileContentType.ImagePng,
                     Type = FileType.Url,
-                    Uri = "https://example.org/image.png"
+                    Uri = "https://example.org/image.png",
+                    FileName = "image.png"
                 }
             },
             Photometries = new List<PhotometryTyped>
@@ -50,7 +52,11 @@ public static class ProductMetaDataCompleteTyped
                     Id = "photometry",
                     PhotometryFile = new GldfFileTyped
                     {
-                        Id = "eulumdat"
+                        Id = "eulumdat",
+                        ContentType = FileContentType.LdcEulumdat,
+                        Type = FileType.Url,
+                        Uri = "https://example.org/eulumdat.ldt",
+                        FileName = "eulumdat.ldt"
                     }
                 }
             },
@@ -65,7 +71,15 @@ public static class ProductMetaDataCompleteTyped
                         {
                             Photometry = new PhotometryTyped
                             {
-                                Id = "photometry"
+                                Id = "photometry",
+                                PhotometryFile = new GldfFileTyped
+                                {
+                                    Id = "eulumdat",
+                                    ContentType = FileContentType.LdcEulumdat,
+                                    Type = FileType.Url,
+                                    Uri = "https://example.org/eulumdat.ldt",
+                                    FileName = "eulumdat.ldt"
+                                }
                             }
                         }
                     }
@@ -133,6 +147,7 @@ public static class ProductMetaDataCompleteTyped
                 {
                     new ProductSerieTyped
                     {
+                        Id = "serie-1",
                         Name = new[]
                         {
                             new LocaleTyped
@@ -163,19 +178,35 @@ public static class ProductMetaDataCompleteTyped
                         {
                             new ImageFileTyped
                             {
-                                ImageType = ImageType.ProductPicture
+                                FileName = "image.png",
+                                Uri = "https://example.org/image.png",
+                                ImageType = ImageType.ProductPicture,
+                                ContentType = FileContentType.ImagePng,
+                                Type = FileType.Url
                             },
                             new ImageFileTyped
                             {
-                                ImageType = ImageType.ApplicationPicture
+                                FileName = "image.png",
+                                ImageType = ImageType.ApplicationPicture,
+                                Uri = "https://example.org/image.png",
+                                ContentType = FileContentType.ImagePng,
+                                Type = FileType.Url
                             },
                             new ImageFileTyped
                             {
-                                ImageType = ImageType.TechnicalSketch
+                                FileName = "image.png",
+                                ImageType = ImageType.TechnicalSketch,
+                                Uri = "https://example.org/image.png",
+                                ContentType = FileContentType.ImagePng,
+                                Type = FileType.Url
                             },
                             new ImageFileTyped
                             {
-                                ImageType = ImageType.Other
+                                FileName = "image.png",
+                                ImageType = ImageType.Other,
+                                Uri = "https://example.org/image.png",
+                                ContentType = FileContentType.ImagePng,
+                                Type = FileType.Url
                             }
                         },
                         Hyperlinks = new[]
@@ -195,7 +226,11 @@ public static class ProductMetaDataCompleteTyped
                 {
                     new ImageFileTyped
                     {
-                        ImageType = ImageType.Other
+                        ImageType = ImageType.Other,
+                        FileName = "image.png",
+                        ContentType = FileContentType.ImagePng,
+                        Type = FileType.Url,
+                        Uri = "https://example.org/image.png"
                     }
                 },
                 Maintenance = new LuminaireMaintenanceTyped
@@ -294,11 +329,158 @@ public static class ProductMetaDataCompleteTyped
                     {
                         new LocaleTyped { Language = "en", Text = "Variant 1" }
                     },
+                    ProductNumber = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product number"
+                        },
+                        new()
+                        {
+                            Language = "de",
+                            Text = "Produktnummer"
+                        }
+                    },
+                    Description = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product description"
+                        },
+                        new()
+                        {
+                            Language = "de",
+                            Text = "Produktbeschreibung"
+                        }
+                    },
+                    TenderText = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product tendertext"
+                        },
+                        new()
+                        {
+                            Language = "de",
+                            Text = "Produkt Auschreibungstext"
+                        }
+                    },
                     Geometry = new GeometryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
-                            Id = "emitter"
+                            Id = "emitter",
+                            ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
+                            {
+                                new()
+                                {
+                                    Photometry = new PhotometryTyped
+                                    {
+                                        Id = "photometry",
+                                        PhotometryFile = new GldfFileTyped
+                                        {
+                                            Id = "eulumdat",
+                                            ContentType = FileContentType.LdcEulumdat,
+                                            Type = FileType.Url,
+                                            Uri = "https://example.org/eulumdat.ldt",
+                                            FileName = "eulumdat.ldt"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    ProductSeries = new ProductSerieTyped[]
+                    {
+                        new()
+                        {
+                            Id = "serie-1",
+                            Description = new LocaleTyped[]
+                            {
+                                new()
+                                {
+                                    Language = "en",
+                                    Text = "Product series description"
+                                },
+                                new()
+                                {
+                                    Language = "de",
+                                    Text = "Produktserienbeschreibung"
+                                }
+                            },
+                            Hyperlinks = new HyperlinkTyped[]
+                            {
+                                new()
+                                {
+                                    CountryCode = "gb",
+                                    Href = "https://example.org",
+                                    Language = "en",
+                                    PlainText = "Hyperlink PlainText",
+                                    Region = "eu"
+                                }
+                            },
+                            Name = new LocaleTyped[]
+                            {
+                                new()
+                                {
+                                    Language = "en",
+                                    Text = "Product series name"
+                                },
+                                new()
+                                {
+                                    Language = "de",
+                                    Text = "Produktserienname"
+                                }
+                            },
+                            Pictures = new[]
+                            {
+                                new ImageFileTyped
+                                {
+                                    FileName = "image.png",
+                                    Uri = "https://example.org/image.png",
+                                    ImageType = ImageType.ProductPicture,
+                                    ContentType = FileContentType.ImagePng,
+                                    Type = FileType.Url
+                                },
+                                new ImageFileTyped
+                                {
+                                    FileName = "image.png",
+                                    ImageType = ImageType.ApplicationPicture,
+                                    Uri = "https://example.org/image.png",
+                                    ContentType = FileContentType.ImagePng,
+                                    Type = FileType.Url
+                                },
+                                new ImageFileTyped
+                                {
+                                    FileName = "image.png",
+                                    ImageType = ImageType.TechnicalSketch,
+                                    Uri = "https://example.org/image.png",
+                                    ContentType = FileContentType.ImagePng,
+                                    Type = FileType.Url
+                                },
+                                new ImageFileTyped
+                                {
+                                    FileName = "image.png",
+                                    ImageType = ImageType.Other,
+                                    Uri = "https://example.org/image.png",
+                                    ContentType = FileContentType.ImagePng,
+                                    Type = FileType.Url
+                                }
+                            }
+                        }
+                    },
+                    Pictures = new ImageFileTyped[]
+                    {
+                        new()
+                        {
+                            ImageType = ImageType.Other,
+                            FileName = "image.png",
+                            ContentType = FileContentType.ImagePng,
+                            Type = FileType.Url,
+                            Uri = "https://example.org/image.png"
                         }
                     }
                 }

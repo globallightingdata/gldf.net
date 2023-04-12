@@ -31,7 +31,8 @@ public static class VariantMandatoryTyped
                     Id = "eulumdat",
                     ContentType = FileContentType.LdcEulumdat,
                     Type = FileType.Url,
-                    Uri = "https://example.org/eulumdat.ldt"
+                    Uri = "https://example.org/eulumdat.ldt",
+                    FileName = "eulumdat.ldt"
                 }
             },
             Photometries = new List<PhotometryTyped>
@@ -41,7 +42,11 @@ public static class VariantMandatoryTyped
                     Id = "photometry",
                     PhotometryFile = new GldfFileTyped
                     {
-                        Id = "eulumdat"
+                        Id = "eulumdat",
+                        ContentType = FileContentType.LdcEulumdat,
+                        Type = FileType.Url,
+                        Uri = "https://example.org/eulumdat.ldt",
+                        FileName = "eulumdat.ldt"
                     }
                 }
             },
@@ -90,11 +95,28 @@ public static class VariantMandatoryTyped
                         {
                             Photometry = new PhotometryTyped
                             {
-                                Id = "photometry"
+                                Id = "photometry",
+                                PhotometryFile = new GldfFileTyped
+                                {
+                                    Id = "eulumdat",
+                                    ContentType = FileContentType.LdcEulumdat,
+                                    Type = FileType.Url,
+                                    Uri = "https://example.org/eulumdat.ldt",
+                                    FileName = "eulumdat.ldt"
+                                }
                             },
                             FixedLightSource = new FixedLightSourceTyped
                             {
-                                Id = "fixedLightSource"
+                                Id = "fixedLightSource",
+                                Name = new LocaleTyped[]
+                                {
+                                    new()
+                                    {
+                                        Language = "en",
+                                        Text = "FixedLightSource"
+                                    }
+                                },
+                                RatedInputPower = 50
                             },
                             RatedLuminousFlux = 250
                         }
@@ -136,6 +158,14 @@ public static class VariantMandatoryTyped
                             Language = "en",
                             Text = "Variant 1"
                         }
+                    },
+                    ProductNumber = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product number"
+                        }
                     }
                 },
                 new()
@@ -149,17 +179,68 @@ public static class VariantMandatoryTyped
                             Text = "Variant 2"
                         }
                     },
+                    ProductNumber = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product number"
+                        }
+                    },
                     Geometry = new GeometryTyped
                     {
                         Simple = new SimpleGeometryEmitterTyped
                         {
                             Emitter = new EmitterTyped
                             {
-                                Id = "emitter"
+                                Id = "emitter",
+                                FixedEmitterOptions = new FixedLightEmitterTyped[]
+                                {
+                                    new()
+                                    {
+                                        Photometry = new PhotometryTyped
+                                        {
+                                            Id = "photometry",
+                                            PhotometryFile = new GldfFileTyped
+                                            {
+                                                Id = "eulumdat",
+                                                ContentType = FileContentType.LdcEulumdat,
+                                                Type = FileType.Url,
+                                                Uri = "https://example.org/eulumdat.ldt",
+                                                FileName = "eulumdat.ldt"
+                                            }
+                                        },
+                                        FixedLightSource = new FixedLightSourceTyped
+                                        {
+                                            Id = "fixedLightSource",
+                                            Name = new LocaleTyped[]
+                                            {
+                                                new()
+                                                {
+                                                    Language = "en",
+                                                    Text = "FixedLightSource"
+                                                }
+                                            },
+                                            RatedInputPower = 50
+                                        },
+                                        RatedLuminousFlux = 250
+                                    }
+                                }
                             },
                             Geometry = new SimpleGeometryTyped
                             {
-                                Id = "geometry"
+                                Id = "geometry",
+                                CuboidGeometry = new SimpleCuboidGeometryTyped
+                                {
+                                    Width = 1,
+                                    Length = 2,
+                                    Height = 3
+                                },
+                                RectangularEmitter = new SimpleRectangularEmitterTyped
+                                {
+                                    Width = 4,
+                                    Length = 5
+                                }
                             }
                         }
                     }

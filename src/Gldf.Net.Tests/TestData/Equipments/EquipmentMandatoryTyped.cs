@@ -31,7 +31,8 @@ public static class EquipmentMandatoryTyped
                     Id = "eulumdat",
                     ContentType = FileContentType.LdcEulumdat,
                     Type = FileType.Url,
-                    Uri = "https://example.org/eulumdat.ldt"
+                    Uri = "https://example.org/eulumdat.ldt",
+                    FileName = "eulumdat.ldt"
                 }
             },
             Photometries = new List<PhotometryTyped>
@@ -41,7 +42,11 @@ public static class EquipmentMandatoryTyped
                     Id = "photometry",
                     PhotometryFile = new GldfFileTyped
                     {
-                        Id = "eulumdat"
+                        Id = "eulumdat",
+                        ContentType = FileContentType.LdcEulumdat,
+                        Type = FileType.Url,
+                        Uri = "https://example.org/eulumdat.ldt",
+                        FileName = "eulumdat.ldt"
                     }
                 }
             },
@@ -69,7 +74,17 @@ public static class EquipmentMandatoryTyped
                     Id = "equipment",
                     ChangeableLightSource = new ChangeableLightSourceTyped
                     {
-                        Id = "lightSource"
+                        Id = "lightSource",
+                        RatedLuminousFlux = 250,
+                        RatedInputPower = 50,
+                        Name = new LocaleTyped[]
+                        {
+                            new()
+                            {
+                                Language = "en",
+                                Text = "LightSource name"
+                            }
+                        }
                     },
                     RatedInputPower = 0.1
                 }
@@ -85,7 +100,15 @@ public static class EquipmentMandatoryTyped
                         {
                             Photometry = new PhotometryTyped
                             {
-                                Id = "photometry"
+                                Id = "photometry",
+                                PhotometryFile = new GldfFileTyped
+                                {
+                                    Id = "eulumdat",
+                                    ContentType = FileContentType.LdcEulumdat,
+                                    Type = FileType.Url,
+                                    Uri = "https://example.org/eulumdat.ldt",
+                                    FileName = "eulumdat.ldt"
+                                }
                             }
                         }
                     }
@@ -131,7 +154,33 @@ public static class EquipmentMandatoryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
-                            Id = "emitter"
+                            Id = "emitter",
+                            ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
+                            {
+                                new()
+                                {
+                                    Photometry = new PhotometryTyped
+                                    {
+                                        Id = "photometry",
+                                        PhotometryFile = new GldfFileTyped
+                                        {
+                                            Id = "eulumdat",
+                                            ContentType = FileContentType.LdcEulumdat,
+                                            Type = FileType.Url,
+                                            Uri = "https://example.org/eulumdat.ldt",
+                                            FileName = "eulumdat.ldt"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    ProductNumber = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product number"
                         }
                     }
                 }

@@ -31,14 +31,16 @@ public static class GeometryMandatoryTyped
                     Id = "eulumdat",
                     ContentType = FileContentType.LdcEulumdat,
                     Type = FileType.Url,
-                    Uri = "https://example.org/eulumdat.ldt"
+                    Uri = "https://example.org/eulumdat.ldt",
+                    FileName = "eulumdat.ldt"
                 },
                 new()
                 {
                     Id = "geometryFile",
                     ContentType = FileContentType.GeoL3d,
                     Type = FileType.Url,
-                    Uri = "https://example.org/geometry.l3d"
+                    Uri = "https://example.org/geometry.l3d",
+                    FileName = "geometry.l3d"
                 }
             },
             Photometries = new List<PhotometryTyped>
@@ -48,7 +50,11 @@ public static class GeometryMandatoryTyped
                     Id = "photometry",
                     PhotometryFile = new GldfFileTyped
                     {
-                        Id = "eulumdat"
+                        Id = "eulumdat",
+                        ContentType = FileContentType.LdcEulumdat,
+                        Type = FileType.Url,
+                        Uri = "https://example.org/eulumdat.ldt",
+                        FileName = "eulumdat.ldt"
                     }
                 }
             },
@@ -63,7 +69,15 @@ public static class GeometryMandatoryTyped
                         {
                             Photometry = new PhotometryTyped
                             {
-                                Id = "photometry"
+                                Id = "photometry",
+                                PhotometryFile = new GldfFileTyped
+                                {
+                                    Id = "eulumdat",
+                                    ContentType = FileContentType.LdcEulumdat,
+                                    Type = FileType.Url,
+                                    Uri = "https://example.org/eulumdat.ldt",
+                                    FileName = "eulumdat.ldt"
+                                }
                             }
                         }
                     }
@@ -76,9 +90,27 @@ public static class GeometryMandatoryTyped
                     Id = "geometry",
                     GeometryFiles = new ModelFileTyped[]
                     {
-                        new(),
-                        new(),
                         new()
+                        {
+                            ContentType = FileContentType.GeoL3d,
+                            Type = FileType.Url,
+                            Uri = "https://example.org/geometry.l3d",
+                            FileName = "geometry.l3d"
+                        },
+                        new()
+                        {
+                            ContentType = FileContentType.GeoL3d,
+                            Type = FileType.Url,
+                            Uri = "https://example.org/geometry.l3d",
+                            FileName = "geometry.l3d"
+                        },
+                        new()
+                        {
+                            ContentType = FileContentType.GeoL3d,
+                            Type = FileType.Url,
+                            Uri = "https://example.org/geometry.l3d",
+                            FileName = "geometry.l3d"
+                        }
                     }
                 }
             }
@@ -114,13 +146,45 @@ public static class GeometryMandatoryTyped
                     {
                         new LocaleTyped { Language = "en", Text = "Variant 1" }
                     },
+                    ProductNumber = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product number"
+                        }
+                    },
                     Geometry = new GeometryTyped
                     {
                         Model = new ModelGeometryEmitterTyped
                         {
                             Geometry = new ModelGeometryTyped
                             {
-                                Id = "geometry"
+                                Id = "geometry",
+                                GeometryFiles = new ModelFileTyped[]
+                                {
+                                    new()
+                                    {
+                                        ContentType = FileContentType.GeoL3d,
+                                        Type = FileType.Url,
+                                        Uri = "https://example.org/geometry.l3d",
+                                        FileName = "geometry.l3d"
+                                    },
+                                    new()
+                                    {
+                                        ContentType = FileContentType.GeoL3d,
+                                        Type = FileType.Url,
+                                        Uri = "https://example.org/geometry.l3d",
+                                        FileName = "geometry.l3d"
+                                    },
+                                    new()
+                                    {
+                                        ContentType = FileContentType.GeoL3d,
+                                        Type = FileType.Url,
+                                        Uri = "https://example.org/geometry.l3d",
+                                        FileName = "geometry.l3d"
+                                    }
+                                }
                             },
                             Emitter = new[]
                             {
@@ -128,7 +192,25 @@ public static class GeometryMandatoryTyped
                                 {
                                     Emitter = new EmitterTyped
                                     {
-                                        Id = "emitter"
+                                        Id = "emitter",
+                                        ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
+                                        {
+                                            new()
+                                            {
+                                                Photometry = new PhotometryTyped
+                                                {
+                                                    Id = "photometry",
+                                                    PhotometryFile = new GldfFileTyped
+                                                    {
+                                                        Id = "eulumdat",
+                                                        ContentType = FileContentType.LdcEulumdat,
+                                                        Type = FileType.Url,
+                                                        Uri = "https://example.org/eulumdat.ldt",
+                                                        FileName = "eulumdat.ldt"
+                                                    }
+                                                }
+                                            }
+                                        }
                                     },
                                     EmitterObjectExtrernalName = "Leo"
                                 }

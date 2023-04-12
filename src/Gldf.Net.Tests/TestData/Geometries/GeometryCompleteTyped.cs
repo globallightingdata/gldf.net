@@ -24,7 +24,8 @@ public static class GeometryCompleteTyped
                 Major = 1,
                 Minor = 0,
                 PreRelease = 2
-            }
+            },
+            UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E"
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
@@ -35,14 +36,16 @@ public static class GeometryCompleteTyped
                     Id = "eulumdat",
                     ContentType = FileContentType.LdcEulumdat,
                     Type = FileType.Url,
-                    Uri = "https://example.org/eulumdat.ldt"
+                    Uri = "https://example.org/eulumdat.ldt",
+                    FileName = "eulumdat.ldt"
                 },
                 new()
                 {
                     Id = "geometryFile",
                     ContentType = FileContentType.GeoL3d,
                     Type = FileType.Url,
-                    Uri = "https://example.org/geometry.l3d"
+                    Uri = "https://example.org/geometry.l3d",
+                    FileName = "geometry.l3d"
                 }
             },
             Photometries = new List<PhotometryTyped>
@@ -52,7 +55,11 @@ public static class GeometryCompleteTyped
                     Id = "photometry",
                     PhotometryFile = new GldfFileTyped
                     {
-                        Id = "eulumdat"
+                        Id = "eulumdat",
+                        ContentType = FileContentType.LdcEulumdat,
+                        Type = FileType.Url,
+                        Uri = "https://example.org/eulumdat.ldt",
+                        FileName = "eulumdat.ldt"
                     }
                 }
             },
@@ -67,7 +74,15 @@ public static class GeometryCompleteTyped
                         {
                             Photometry = new PhotometryTyped
                             {
-                                Id = "photometry"
+                                Id = "photometry",
+                                PhotometryFile = new GldfFileTyped
+                                {
+                                    Id = "eulumdat",
+                                    ContentType = FileContentType.LdcEulumdat,
+                                    Type = FileType.Url,
+                                    Uri = "https://example.org/eulumdat.ldt",
+                                    FileName = "eulumdat.ldt"
+                                }
                             }
                         }
                     }
@@ -173,11 +188,37 @@ public static class GeometryCompleteTyped
                     {
                         new LocaleTyped { Language = "en", Text = "Variant 1" }
                     },
+                    ProductNumber = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product number"
+                        }
+                    },
                     Geometry = new GeometryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
-                            Id = "emitter"
+                            Id = "emitter",
+                            ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
+                            {
+                                new()
+                                {
+                                    Photometry = new PhotometryTyped
+                                    {
+                                        Id = "photometry",
+                                        PhotometryFile = new GldfFileTyped
+                                        {
+                                            Id = "eulumdat",
+                                            ContentType = FileContentType.LdcEulumdat,
+                                            Type = FileType.Url,
+                                            Uri = "https://example.org/eulumdat.ldt",
+                                            FileName = "eulumdat.ldt"
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }

@@ -31,14 +31,16 @@ public static class EmitterMandatoryTyped
                     Id = "eulumdat",
                     ContentType = FileContentType.LdcEulumdat,
                     Type = FileType.Url,
-                    Uri = "https://example.org/eulumdat.ldt"
+                    Uri = "https://example.org/eulumdat.ldt",
+                    FileName = "eulumdat.ldt"
                 },
                 new()
                 {
                     Id = "sensorXml",
                     ContentType = FileContentType.SensorSensXml,
                     Type = FileType.Url,
-                    Uri = "https://example.org/sens.xml"
+                    Uri = "https://example.org/sens.xml",
+                    FileName = "sens.xml"
                 }
             },
             Sensors = new List<SensorTyped>
@@ -48,7 +50,11 @@ public static class EmitterMandatoryTyped
                     Id = "sensor",
                     SensorFile = new GldfFileTyped
                     {
-                        Id = "sensorXml"
+                        Id = "sensorXml",
+                        ContentType = FileContentType.SensorSensXml,
+                        Type = FileType.Url,
+                        Uri = "https://example.org/sens.xml",
+                        FileName = "sens.xml"
                     }
                 }
             },
@@ -59,7 +65,11 @@ public static class EmitterMandatoryTyped
                     Id = "photometry",
                     PhotometryFile = new GldfFileTyped
                     {
-                        Id = "eulumdat"
+                        Id = "eulumdat",
+                        ContentType = FileContentType.LdcEulumdat,
+                        Type = FileType.Url,
+                        Uri = "https://example.org/eulumdat.ldt",
+                        FileName = "eulumdat.ldt"
                     }
                 }
             },
@@ -90,7 +100,15 @@ public static class EmitterMandatoryTyped
                         {
                             Photometry = new PhotometryTyped
                             {
-                                Id = "photometry"
+                                Id = "photometry",
+                                PhotometryFile = new GldfFileTyped
+                                {
+                                    Id = "eulumdat",
+                                    ContentType = FileContentType.LdcEulumdat,
+                                    Type = FileType.Url,
+                                    Uri = "https://example.org/eulumdat.ldt",
+                                    FileName = "eulumdat.ldt"
+                                }
                             }
                         }
                     }
@@ -104,11 +122,28 @@ public static class EmitterMandatoryTyped
                         {
                             Photometry = new PhotometryTyped
                             {
-                                Id = "photometry"
+                                Id = "photometry",
+                                PhotometryFile = new GldfFileTyped
+                                {
+                                    Id = "eulumdat",
+                                    ContentType = FileContentType.LdcEulumdat,
+                                    Type = FileType.Url,
+                                    Uri = "https://example.org/eulumdat.ldt",
+                                    FileName = "eulumdat.ldt"
+                                }
                             },
                             FixedLightSource = new FixedLightSourceTyped
                             {
-                                Id = "fixedLightSource"
+                                Id = "fixedLightSource",
+                                Name = new LocaleTyped[]
+                                {
+                                    new()
+                                    {
+                                        Language = "en",
+                                        Text = "FixedLightSource"
+                                    }
+                                },
+                                RatedInputPower = 10
                             },
                             RatedLuminousFlux = 50
                         }
@@ -119,7 +154,21 @@ public static class EmitterMandatoryTyped
                     Id = "emitter-3",
                     SensorEmitterOptions = new[]
                     {
-                        new SensorEmitterTyped()
+                        new SensorEmitterTyped
+                        {
+                            Sensor = new SensorTyped
+                            {
+                                Id = "sensor",
+                                SensorFile = new GldfFileTyped
+                                {
+                                    Id = "sensorXml",
+                                    ContentType = FileContentType.SensorSensXml,
+                                    Type = FileType.Url,
+                                    Uri = "https://example.org/sens.xml",
+                                    FileName = "sens.xml"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -159,7 +208,33 @@ public static class EmitterMandatoryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
-                            Id = "emitter-1"
+                            Id = "emitter-1",
+                            ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
+                            {
+                                new()
+                                {
+                                    Photometry = new PhotometryTyped
+                                    {
+                                        Id = "photometry",
+                                        PhotometryFile = new GldfFileTyped
+                                        {
+                                            Id = "eulumdat",
+                                            ContentType = FileContentType.LdcEulumdat,
+                                            Type = FileType.Url,
+                                            Uri = "https://example.org/eulumdat.ldt",
+                                            FileName = "eulumdat.ldt"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    ProductNumber = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product number"
                         }
                     }
                 }

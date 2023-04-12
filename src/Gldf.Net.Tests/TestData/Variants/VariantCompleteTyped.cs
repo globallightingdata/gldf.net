@@ -34,28 +34,31 @@ public static class VariantCompleteTyped
                     Id = "eulumdatFile",
                     ContentType = FileContentType.LdcEulumdat,
                     Type = FileType.Url,
-                    Uri = "https://example.org/eulumdat.ldt"
+                    Uri = "https://example.org/eulumdat.ldt",
+                    FileName = "eulumdat.ldt"
                 },
                 new()
                 {
                     Id = "geometryFile",
                     ContentType = FileContentType.GeoL3d,
                     Type = FileType.Url,
-                    Uri = "https://example.org/geo.l3d"
+                    Uri = "https://example.org/geo.l3d",
+                    FileName = "geo.l3d"
                 },
                 new()
                 {
                     Id = "sensorFile",
                     ContentType = FileContentType.SensorSensXml,
                     Type = FileType.Url,
-                    Uri = "https://example.org/sensor.xml"
+                    Uri = "https://example.org/sensor.xml",
+                    FileName = "sensor.xml"
                 },
                 new()
                 {
                     Id = "pictureFile",
                     ContentType = FileContentType.ImageSvg,
                     Type = FileType.LocalFileName,
-                    Uri = "picture.svg"
+                    FileName = "picture.svg"
                 }
             },
             Sensors = new List<SensorTyped>
@@ -65,7 +68,11 @@ public static class VariantCompleteTyped
                     Id = "sensor",
                     SensorFile = new GldfFileTyped
                     {
-                        Id = "sensorFile"
+                        Id = "sensorFile",
+                        ContentType = FileContentType.SensorSensXml,
+                        Type = FileType.Url,
+                        Uri = "https://example.org/sensor.xml",
+                        FileName = "sensor.xml"
                     }
                 }
             },
@@ -76,7 +83,11 @@ public static class VariantCompleteTyped
                     Id = "photometry",
                     PhotometryFile = new GldfFileTyped
                     {
-                        Id = "eulumdatFile"
+                        Id = "eulumdatFile",
+                        ContentType = FileContentType.LdcEulumdat,
+                        Type = FileType.Url,
+                        Uri = "https://example.org/eulumdat.ldt",
+                        FileName = "eulumdat.ldt"
                     }
                 }
             },
@@ -91,7 +102,15 @@ public static class VariantCompleteTyped
                         {
                             Photometry = new PhotometryTyped
                             {
-                                Id = "photometry"
+                                Id = "photometry",
+                                PhotometryFile = new GldfFileTyped
+                                {
+                                    Id = "eulumdatFile",
+                                    ContentType = FileContentType.LdcEulumdat,
+                                    Type = FileType.Url,
+                                    Uri = "https://example.org/eulumdat.ldt",
+                                    FileName = "eulumdat.ldt"
+                                }
                             }
                         }
                     }
@@ -101,7 +120,21 @@ public static class VariantCompleteTyped
                     Id = "sensorEmitter",
                     SensorEmitterOptions = new[]
                     {
-                        new SensorEmitterTyped()
+                        new SensorEmitterTyped
+                        {
+                            Sensor = new SensorTyped
+                            {
+                                Id = "sensor",
+                                SensorFile = new GldfFileTyped
+                                {
+                                    Id = "sensorFile",
+                                    ContentType = FileContentType.SensorSensXml,
+                                    Type = FileType.Url,
+                                    Uri = "https://example.org/sensor.xml",
+                                    FileName = "sensor.xml"
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -131,6 +164,12 @@ public static class VariantCompleteTyped
                     GeometryFiles = new ModelFileTyped[]
                     {
                         new()
+                        {
+                            ContentType = FileContentType.GeoL3d,
+                            Type = FileType.Url,
+                            Uri = "https://example.org/geo.l3d",
+                            FileName = "geo.l3d"
+                        }
                     }
                 }
             }
@@ -239,13 +278,7 @@ public static class VariantCompleteTyped
                             MountingHeight = 5,
                             Recessed = new WallRecessedTyped
                             {
-                                RecessedDepth = 6,
-                                RectangularCutout = new RectangularCutoutTyped
-                                {
-                                    Width = 7,
-                                    Length = 8,
-                                    Depth = 9
-                                }
+                                RecessedDepth = 6
                             },
                             SurfaceMounted = new WallSurfaceMountedTyped()
                         },
@@ -280,31 +313,60 @@ public static class VariantCompleteTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
-                            Id = "leoEmitter"
+                            Id = "leoEmitter",
+                            ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
+                            {
+                                new()
+                                {
+                                    Photometry = new PhotometryTyped
+                                    {
+                                        Id = "photometry",
+                                        PhotometryFile = new GldfFileTyped
+                                        {
+                                            Id = "eulumdatFile",
+                                            ContentType = FileContentType.LdcEulumdat,
+                                            Type = FileType.Url,
+                                            Uri = "https://example.org/eulumdat.ldt",
+                                            FileName = "eulumdat.ldt"
+                                        }
+                                    }
+                                }
+                            }
                         }
                     },
                     Pictures = new[]
                     {
                         new ImageFileTyped
                         {
-                            ImageType = ImageType.Other
+                            FileName = "picture.svg",
+                            ImageType = ImageType.Other,
+                            ContentType = FileContentType.ImageSvg
                         },
                         new ImageFileTyped
                         {
-                            ImageType = ImageType.TechnicalSketch
+                            FileName = "picture.svg",
+                            ImageType = ImageType.TechnicalSketch,
+                            ContentType = FileContentType.ImageSvg
                         },
                         new ImageFileTyped
                         {
-                            ImageType = ImageType.ApplicationPicture
+                            FileName = "picture.svg",
+                            ImageType = ImageType.ApplicationPicture,
+                            ContentType = FileContentType.ImageSvg
                         },
                         new ImageFileTyped
                         {
-                            ImageType = ImageType.ProductPicture
+                            FileName = "picture.svg",
+                            ImageType = ImageType.ProductPicture,
+                            ContentType = FileContentType.ImageSvg
                         }
                     },
                     Symbol = new GldfFileTyped
                     {
-                        Id = "pictureFile"
+                        Id = "pictureFile",
+                        ContentType = FileContentType.ImageSvg,
+                        Type = FileType.LocalFileName,
+                        FileName = "picture.svg"
                     }
                 },
                 new()
@@ -313,6 +375,14 @@ public static class VariantCompleteTyped
                     Name = new[]
                     {
                         new LocaleTyped { Language = "en", Text = "Variant 2" }
+                    },
+                    ProductNumber = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product number"
+                        }
                     },
                     Mountings = new MountingsTyped
                     {
@@ -362,11 +432,40 @@ public static class VariantCompleteTyped
                         {
                             Geometry = new SimpleGeometryTyped
                             {
-                                Id = "simpleGeometry"
+                                Id = "simpleGeometry",
+                                CuboidGeometry = new SimpleCuboidGeometryTyped
+                                {
+                                    Width = 1,
+                                    Length = 2,
+                                    Height = 3
+                                },
+                                RectangularEmitter = new SimpleRectangularEmitterTyped
+                                {
+                                    Width = 4,
+                                    Length = 5
+                                }
                             },
                             Emitter = new EmitterTyped
                             {
-                                Id = "leoEmitter"
+                                Id = "leoEmitter",
+                                ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
+                                {
+                                    new()
+                                    {
+                                        Photometry = new PhotometryTyped
+                                        {
+                                            Id = "photometry",
+                                            PhotometryFile = new GldfFileTyped
+                                            {
+                                                Id = "eulumdatFile",
+                                                ContentType = FileContentType.LdcEulumdat,
+                                                Type = FileType.Url,
+                                                Uri = "https://example.org/eulumdat.ldt",
+                                                FileName = "eulumdat.ldt"
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -379,13 +478,31 @@ public static class VariantCompleteTyped
                     {
                         new LocaleTyped { Language = "en", Text = "Variant 3" }
                     },
+                    ProductNumber = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product number"
+                        }
+                    },
                     Geometry = new GeometryTyped
                     {
                         Model = new ModelGeometryEmitterTyped
                         {
                             Geometry = new ModelGeometryTyped
                             {
-                                Id = "geometry"
+                                Id = "geometry",
+                                GeometryFiles = new ModelFileTyped[]
+                                {
+                                    new()
+                                    {
+                                        ContentType = FileContentType.GeoL3d,
+                                        Type = FileType.Url,
+                                        Uri = "https://example.org/geo.l3d",
+                                        FileName = "geo.l3d"
+                                    }
+                                }
                             },
                             Emitter = new ModelEmitterTyped[]
                             {
@@ -393,7 +510,25 @@ public static class VariantCompleteTyped
                                 {
                                     Emitter = new EmitterTyped
                                     {
-                                        Id = "leoEmitter"
+                                        Id = "leoEmitter",
+                                        ChangeableEmitterOptions = new[]
+                                        {
+                                            new ChangeableLightEmitterTyped
+                                            {
+                                                Photometry = new PhotometryTyped
+                                                {
+                                                    Id = "photometry",
+                                                    PhotometryFile = new GldfFileTyped
+                                                    {
+                                                        Id = "eulumdatFile",
+                                                        ContentType = FileContentType.LdcEulumdat,
+                                                        Type = FileType.Url,
+                                                        Uri = "https://example.org/eulumdat.ldt",
+                                                        FileName = "eulumdat.ldt"
+                                                    }
+                                                }
+                                            }
+                                        }
                                     },
                                     EmitterObjectExtrernalName = "leo1"
                                 },
@@ -401,7 +536,25 @@ public static class VariantCompleteTyped
                                 {
                                     Emitter = new EmitterTyped
                                     {
-                                        Id = "leoEmitter"
+                                        Id = "leoEmitter",
+                                        ChangeableEmitterOptions = new[]
+                                        {
+                                            new ChangeableLightEmitterTyped
+                                            {
+                                                Photometry = new PhotometryTyped
+                                                {
+                                                    Id = "photometry",
+                                                    PhotometryFile = new GldfFileTyped
+                                                    {
+                                                        Id = "eulumdatFile",
+                                                        ContentType = FileContentType.LdcEulumdat,
+                                                        Type = FileType.Url,
+                                                        Uri = "https://example.org/eulumdat.ldt",
+                                                        FileName = "eulumdat.ldt"
+                                                    }
+                                                }
+                                            }
+                                        }
                                     },
                                     EmitterObjectExtrernalName = "leo1",
                                     TargetModelType = TargetModelType.L3d
@@ -410,7 +563,25 @@ public static class VariantCompleteTyped
                                 {
                                     Emitter = new EmitterTyped
                                     {
-                                        Id = "leoEmitter"
+                                        Id = "leoEmitter",
+                                        ChangeableEmitterOptions = new[]
+                                        {
+                                            new ChangeableLightEmitterTyped
+                                            {
+                                                Photometry = new PhotometryTyped
+                                                {
+                                                    Id = "photometry",
+                                                    PhotometryFile = new GldfFileTyped
+                                                    {
+                                                        Id = "eulumdatFile",
+                                                        ContentType = FileContentType.LdcEulumdat,
+                                                        Type = FileType.Url,
+                                                        Uri = "https://example.org/eulumdat.ldt",
+                                                        FileName = "eulumdat.ldt"
+                                                    }
+                                                }
+                                            }
+                                        }
                                     },
                                     EmitterObjectExtrernalName = "leo1",
                                     TargetModelType = TargetModelType.M3d
@@ -419,7 +590,25 @@ public static class VariantCompleteTyped
                                 {
                                     Emitter = new EmitterTyped
                                     {
-                                        Id = "leoEmitter"
+                                        Id = "leoEmitter",
+                                        ChangeableEmitterOptions = new[]
+                                        {
+                                            new ChangeableLightEmitterTyped
+                                            {
+                                                Photometry = new PhotometryTyped
+                                                {
+                                                    Id = "photometry",
+                                                    PhotometryFile = new GldfFileTyped
+                                                    {
+                                                        Id = "eulumdatFile",
+                                                        ContentType = FileContentType.LdcEulumdat,
+                                                        Type = FileType.Url,
+                                                        Uri = "https://example.org/eulumdat.ldt",
+                                                        FileName = "eulumdat.ldt"
+                                                    }
+                                                }
+                                            }
+                                        }
                                     },
                                     EmitterObjectExtrernalName = "leo1",
                                     TargetModelType = TargetModelType.R3d
@@ -428,17 +617,27 @@ public static class VariantCompleteTyped
                                 {
                                     Emitter = new EmitterTyped
                                     {
+                                        Id = "sensorEmitter",
                                         SensorEmitterOptions = new SensorEmitterTyped[]
                                         {
                                             new()
                                             {
                                                 Sensor = new SensorTyped
                                                 {
-                                                    Id = "sensorEmitter"
+                                                    Id = "sensor",
+                                                    SensorFile = new GldfFileTyped
+                                                    {
+                                                        Id = "sensorFile",
+                                                        ContentType = FileContentType.SensorSensXml,
+                                                        Type = FileType.Url,
+                                                        Uri = "https://example.org/sensor.xml",
+                                                        FileName = "sensor.xml"
+                                                    }
                                                 }
                                             }
                                         }
-                                    }
+                                    },
+                                    EmitterObjectExtrernalName = "sensor",
                                 }
                             }
                         }
@@ -447,6 +646,7 @@ public static class VariantCompleteTyped
                     {
                         new ProductSerieTyped
                         {
+                            Id = "serie-1",
                             Name = new[]
                             {
                                 new LocaleTyped
@@ -477,18 +677,26 @@ public static class VariantCompleteTyped
                             {
                                 new ImageFileTyped
                                 {
+                                    FileName = "picture.svg",
+                                    ContentType = FileContentType.ImageSvg,
                                     ImageType = ImageType.TechnicalSketch
                                 },
                                 new ImageFileTyped
                                 {
+                                    FileName = "picture.svg",
+                                    ContentType = FileContentType.ImageSvg,
                                     ImageType = ImageType.ApplicationPicture
                                 },
                                 new ImageFileTyped
                                 {
+                                    FileName = "picture.svg",
+                                    ContentType = FileContentType.ImageSvg,
                                     ImageType = ImageType.ProductPicture
                                 },
                                 new ImageFileTyped
                                 {
+                                    FileName = "picture.svg",
+                                    ContentType = FileContentType.ImageSvg,
                                     ImageType = ImageType.Other
                                 }
                             },
@@ -511,6 +719,7 @@ public static class VariantCompleteTyped
                         },
                         new ProductSerieTyped
                         {
+                            Id = "serie-2",
                             Name = new[]
                             {
                                 new LocaleTyped
@@ -535,24 +744,71 @@ public static class VariantCompleteTyped
                     {
                         new LocaleTyped { Language = "en", Text = "Variant 4" }
                     },
+                    ProductNumber = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product number"
+                        }
+                    },
                     Geometry = new GeometryTyped
                     {
                         Simple = new SimpleGeometryEmitterTyped
                         {
                             Geometry = new SimpleGeometryTyped
                             {
-                                Id = "simpleGeometry"
+                                Id = "simpleGeometry",
+                                CuboidGeometry = new SimpleCuboidGeometryTyped
+                                {
+                                    Width = 1,
+                                    Length = 2,
+                                    Height = 3
+                                },
+                                RectangularEmitter = new SimpleRectangularEmitterTyped
+                                {
+                                    Width = 4,
+                                    Length = 5
+                                }
                             },
                             Emitter = new EmitterTyped
                             {
-                                Id = "leoEmitter"
+                                Id = "leoEmitter",
+                                ChangeableEmitterOptions = new[]
+                                {
+                                    new ChangeableLightEmitterTyped
+                                    {
+                                        Photometry = new PhotometryTyped
+                                        {
+                                            Id = "photometry",
+                                            PhotometryFile = new GldfFileTyped
+                                            {
+                                                Id = "eulumdatFile",
+                                                ContentType = FileContentType.LdcEulumdat,
+                                                Type = FileType.Url,
+                                                Uri = "https://example.org/eulumdat.ldt",
+                                                FileName = "eulumdat.ldt"
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         },
                         Model = new ModelGeometryEmitterTyped
                         {
                             Geometry = new ModelGeometryTyped
                             {
-                                Id = "geometry"
+                                Id = "geometry",
+                                GeometryFiles = new ModelFileTyped[]
+                                {
+                                    new()
+                                    {
+                                        ContentType = FileContentType.GeoL3d,
+                                        Type = FileType.Url,
+                                        Uri = "https://example.org/geo.l3d",
+                                        FileName = "geo.l3d"
+                                    }
+                                }
                             },
                             Emitter = new ModelEmitterTyped[]
                             {
@@ -562,7 +818,25 @@ public static class VariantCompleteTyped
                                     EmitterObjectExtrernalName = "Leo",
                                     Emitter = new EmitterTyped
                                     {
-                                        Id = "leoEmitter"
+                                        Id = "leoEmitter",
+                                        ChangeableEmitterOptions = new[]
+                                        {
+                                            new ChangeableLightEmitterTyped
+                                            {
+                                                Photometry = new PhotometryTyped
+                                                {
+                                                    Id = "photometry",
+                                                    PhotometryFile = new GldfFileTyped
+                                                    {
+                                                        Id = "eulumdatFile",
+                                                        ContentType = FileContentType.LdcEulumdat,
+                                                        Type = FileType.Url,
+                                                        Uri = "https://example.org/eulumdat.ldt",
+                                                        FileName = "eulumdat.ldt"
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -577,30 +851,98 @@ public static class VariantCompleteTyped
                     {
                         new LocaleTyped { Language = "en", Text = "Variant 5" }
                     },
+                    ProductNumber = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product number"
+                        }
+                    },
                     Geometry = new GeometryTyped
                     {
                         Simple = new SimpleGeometryEmitterTyped
                         {
                             Emitter = new EmitterTyped
                             {
-                                Id = "leoEmitter"
-                            }
+                                Id = "leoEmitter",
+                                ChangeableEmitterOptions = new[]
+                                {
+                                    new ChangeableLightEmitterTyped
+                                    {
+                                        Photometry = new PhotometryTyped
+                                        {
+                                            Id = "photometry",
+                                            PhotometryFile = new GldfFileTyped
+                                            {
+                                                Id = "eulumdatFile",
+                                                ContentType = FileContentType.LdcEulumdat,
+                                                Type = FileType.Url,
+                                                Uri = "https://example.org/eulumdat.ldt",
+                                                FileName = "eulumdat.ldt"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            Geometry = new SimpleGeometryTyped
+                            {
+                                Id = "simpleGeometry",
+                                CuboidGeometry = new SimpleCuboidGeometryTyped
+                                {
+                                    Width = 1,
+                                    Length = 2,
+                                    Height = 3
+                                },
+                                RectangularEmitter = new SimpleRectangularEmitterTyped
+                                {
+                                    Width = 4,
+                                    Length = 5
+                                }
+                            },
                         },
                         Model = new ModelGeometryEmitterTyped
                         {
                             Geometry = new ModelGeometryTyped
                             {
-                                Id = "geometry"
+                                Id = "geometry",
+                                GeometryFiles = new ModelFileTyped[]
+                                {
+                                    new()
+                                    {
+                                        ContentType = FileContentType.GeoL3d,
+                                        Type = FileType.Url,
+                                        Uri = "https://example.org/geo.l3d",
+                                        FileName = "geo.l3d"
+                                    }
+                                }
                             },
                             Emitter = new ModelEmitterTyped[]
                             {
                                 new()
                                 {
-                                    TargetModelType = TargetModelType.L3d,
                                     EmitterObjectExtrernalName = "Leo",
                                     Emitter = new EmitterTyped
                                     {
-                                        Id = "leoEmitter"
+                                        Id = "leoEmitter",
+                                        ChangeableEmitterOptions = new[]
+                                        {
+                                            new ChangeableLightEmitterTyped
+                                            {
+                                                Photometry = new PhotometryTyped
+                                                {
+                                                    Id = "photometry",
+                                                    PhotometryFile = new GldfFileTyped
+                                                    {
+                                                        Id = "eulumdatFile",
+                                                        ContentType = FileContentType.LdcEulumdat,
+                                                        Type = FileType.Url,
+                                                        Uri = "https://example.org/eulumdat.ldt",
+                                                        FileName = "eulumdat.ldt"
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }

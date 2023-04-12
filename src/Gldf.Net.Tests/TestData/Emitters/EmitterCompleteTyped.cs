@@ -32,14 +32,16 @@ public static class EmitterCompleteTyped
                     Id = "eulumdat",
                     ContentType = FileContentType.LdcEulumdat,
                     Type = FileType.Url,
-                    Uri = "https://example.org/eulumdat.ldt"
+                    Uri = "https://example.org/eulumdat.ldt",
+                    FileName = "eulumdat.ldt"
                 },
                 new()
                 {
                     Id = "sensorFile",
                     ContentType = FileContentType.SensorSensXml,
                     Type = FileType.Url,
-                    Uri = "https://example.org/sensor.xml"
+                    Uri = "https://example.org/sensor.xml",
+                    FileName = "sensor.xml"
                 }
             },
             Sensors = new List<SensorTyped>
@@ -49,7 +51,11 @@ public static class EmitterCompleteTyped
                     Id = "sensor",
                     SensorFile = new GldfFileTyped
                     {
-                        Id = "sensorFile"
+                        Id = "sensorFile",
+                        ContentType = FileContentType.SensorSensXml,
+                        Type = FileType.Url,
+                        Uri = "https://example.org/sensor.xml",
+                        FileName = "sensor.xml"
                     }
                 }
             },
@@ -60,7 +66,11 @@ public static class EmitterCompleteTyped
                     Id = "photometry",
                     PhotometryFile = new GldfFileTyped
                     {
-                        Id = "eulumdat"
+                        Id = "eulumdat",
+                        ContentType = FileContentType.LdcEulumdat,
+                        Type = FileType.Url,
+                        Uri = "https://example.org/eulumdat.ldt",
+                        FileName = "eulumdat.ldt"
                     }
                 }
             },
@@ -88,19 +98,30 @@ public static class EmitterCompleteTyped
                     Id = "equipment",
                     ChangeableLightSource = new ChangeableLightSourceTyped
                     {
-                        Id = "lightSource"
+                        Id = "lightSource",
+                        Name = new LocaleTyped[]
+                        {
+                            new()
+                            {
+                                Language = "en",
+                                Text = "LightSource name"
+                            }
+                        },
+                        RatedLuminousFlux = 250,
+                        RatedInputPower = 50
                     },
                     RatedInputPower = 10
                 }
             },
             Emitter = new List<EmitterTyped>
             {
+
                 new()
                 {
                     Id = "emitter-1",
-                    ChangeableEmitterOptions = new[]
+                    ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
                     {
-                        new ChangeableLightEmitterTyped
+                        new()
                         {
                             Name = new[]
                             {
@@ -117,7 +138,15 @@ public static class EmitterCompleteTyped
                             },
                             Photometry = new PhotometryTyped
                             {
-                                Id = "photometry"
+                                Id = "photometry",
+                                PhotometryFile = new GldfFileTyped
+                                {
+                                    Id = "eulumdat",
+                                    ContentType = FileContentType.LdcEulumdat,
+                                    Type = FileType.Url,
+                                    Uri = "https://example.org/eulumdat.ldt",
+                                    FileName = "eulumdat.ldt"
+                                }
                             },
                             Rotation = new RotationTyped
                             {
@@ -127,39 +156,86 @@ public static class EmitterCompleteTyped
                                 G0 = 4
                             }
                         },
-                        new ChangeableLightEmitterTyped
+                        new()
                         {
                             Photometry = new PhotometryTyped
                             {
-                                Id = "photometry"
+                                Id = "photometry",
+                                PhotometryFile = new GldfFileTyped
+                                {
+                                    Id = "eulumdat",
+                                    ContentType = FileContentType.LdcEulumdat,
+                                    Type = FileType.Url,
+                                    Uri = "https://example.org/eulumdat.ldt",
+                                    FileName = "eulumdat.ldt"
+                                }
                             },
                             Equipment = new EquipmentTyped
                             {
-                                Id = "equipment"
+                                Id = "equipment",
+                                ChangeableLightSource = new ChangeableLightSourceTyped
+                                {
+                                    Id = "lightSource",
+                                    Name = new LocaleTyped[]
+                                    {
+                                        new()
+                                        {
+                                            Language = "en",
+                                            Text = "LightSource name"
+                                        }
+                                    },
+                                    RatedInputPower = 50.0,
+                                    RatedLuminousFlux = 250
+                                },
+                                RatedInputPower = 10
                             }
                         },
-                        new ChangeableLightEmitterTyped
+                        new()
                         {
                             EmergencyBehaviour = EmergencyBehaviour.None,
                             Photometry = new PhotometryTyped
                             {
-                                Id = "photometry"
+                                Id = "photometry",
+                                PhotometryFile = new GldfFileTyped
+                                {
+                                    Id = "eulumdat",
+                                    ContentType = FileContentType.LdcEulumdat,
+                                    Type = FileType.Url,
+                                    Uri = "https://example.org/eulumdat.ldt",
+                                    FileName = "eulumdat.ldt"
+                                }
                             }
                         },
-                        new ChangeableLightEmitterTyped
+                        new()
                         {
                             EmergencyBehaviour = EmergencyBehaviour.Combined,
                             Photometry = new PhotometryTyped
                             {
-                                Id = "photometry"
+                                Id = "photometry",
+                                PhotometryFile = new GldfFileTyped
+                                {
+                                    Id = "eulumdat",
+                                    ContentType = FileContentType.LdcEulumdat,
+                                    Type = FileType.Url,
+                                    Uri = "https://example.org/eulumdat.ldt",
+                                    FileName = "eulumdat.ldt"
+                                }
                             }
                         },
-                        new ChangeableLightEmitterTyped
+                        new()
                         {
                             EmergencyBehaviour = EmergencyBehaviour.EmergencyOnly,
                             Photometry = new PhotometryTyped
                             {
-                                Id = "photometry"
+                                Id = "photometry",
+                                PhotometryFile = new GldfFileTyped
+                                {
+                                    Id = "eulumdat",
+                                    ContentType = FileContentType.LdcEulumdat,
+                                    Type = FileType.Url,
+                                    Uri = "https://example.org/eulumdat.ldt",
+                                    FileName = "eulumdat.ldt"
+                                }
                             }
                         }
                     }
@@ -167,9 +243,9 @@ public static class EmitterCompleteTyped
                 new()
                 {
                     Id = "emitter-2",
-                    SensorEmitterOptions = new[]
+                    SensorEmitterOptions = new SensorEmitterTyped[]
                     {
-                        new SensorEmitterTyped
+                        new()
                         {
                             Name = new[]
                             {
@@ -190,10 +266,36 @@ public static class EmitterCompleteTyped
                                 Y = 11.2,
                                 Z = 12.3,
                                 G0 = 13.4
+                            },
+                            Sensor = new SensorTyped
+                            {
+                                Id = "sensor",
+                                SensorFile = new GldfFileTyped
+                                {
+                                    Id = "sensorFile",
+                                    ContentType = FileContentType.SensorSensXml,
+                                    Type = FileType.Url,
+                                    Uri = "https://example.org/sensor.xml",
+                                    FileName = "sensor.xml"
+                                }
                             }
                         },
-                        new SensorEmitterTyped()
-                    }
+                        new()
+                        {
+                            Sensor = new SensorTyped
+                            {
+                                Id = "sensor",
+                                SensorFile = new GldfFileTyped
+                                {
+                                    Id = "sensorFile",
+                                    ContentType = FileContentType.SensorSensXml,
+                                    Type = FileType.Url,
+                                    Uri = "https://example.org/sensor.xml",
+                                    FileName = "sensor.xml"
+                                }
+                            }
+                        }
+                    },
                 }
             }
         },
@@ -228,11 +330,139 @@ public static class EmitterCompleteTyped
                     {
                         new LocaleTyped { Language = "en", Text = "Variant 1" }
                     },
+                    ProductNumber = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product number"
+                        }
+                    },
                     Geometry = new GeometryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
-                            Id = "emitter-1"
+                            Id = "emitter-1",
+                            ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
+                            {
+                                new()
+                                {
+                                    Name = new LocaleTyped[]
+                                    {
+                                        new()
+                                        {
+                                            Language = "en",
+                                            Text = "Display name"
+                                        },
+                                        new()
+                                        {
+                                            Language = "de",
+                                            Text = "Anzeigename"
+                                        }
+                                    },
+                                    Photometry = new PhotometryTyped
+                                    {
+                                        Id = "photometry",
+                                        PhotometryFile = new GldfFileTyped
+                                        {
+                                            Id = "eulumdat",
+                                            FileName = "eulumdat.ldt",
+                                            ContentType = FileContentType.LdcEulumdat,
+                                            Type = FileType.Url,
+                                            Uri = "https://example.org/eulumdat.ldt"
+                                        }
+                                    },
+                                    Rotation = new RotationTyped
+                                    {
+                                        G0 = 4.0,
+                                        X = 1.0,
+                                        Y = 2.0,
+                                        Z = 3.0
+                                    }
+                                },
+                                new()
+                                {
+                                    Equipment = new EquipmentTyped
+                                    {
+                                        Id = "equipment",
+                                        ChangeableLightSource = new ChangeableLightSourceTyped
+                                        {
+                                            Id = "lightSource",
+                                            Name = new LocaleTyped[]
+                                            {
+                                                new()
+                                                {
+                                                    Language = "en",
+                                                    Text = "LightSource name"
+                                                }
+                                            },
+                                            RatedInputPower = 50,
+                                            RatedLuminousFlux = 250
+                                        },
+                                        RatedInputPower = 10
+                                    },
+                                    Photometry = new PhotometryTyped
+                                    {
+                                        Id = "photometry",
+                                        PhotometryFile = new GldfFileTyped
+                                        {
+                                            Id = "eulumdat",
+                                            FileName = "eulumdat.ldt",
+                                            ContentType = FileContentType.LdcEulumdat,
+                                            Type = FileType.Url,
+                                            Uri = "https://example.org/eulumdat.ldt"
+                                        }
+                                    }
+                                },
+                                new()
+                                {
+                                    EmergencyBehaviour = EmergencyBehaviour.None,
+                                    Photometry = new PhotometryTyped
+                                    {
+                                        Id = "photometry",
+                                        PhotometryFile = new GldfFileTyped
+                                        {
+                                            Id = "eulumdat",
+                                            FileName = "eulumdat.ldt",
+                                            ContentType = FileContentType.LdcEulumdat,
+                                            Type = FileType.Url,
+                                            Uri = "https://example.org/eulumdat.ldt"
+                                        }
+                                    }
+                                },
+                                new()
+                                {
+                                    EmergencyBehaviour = EmergencyBehaviour.Combined,
+                                    Photometry = new PhotometryTyped
+                                    {
+                                        Id = "photometry",
+                                        PhotometryFile = new GldfFileTyped
+                                        {
+                                            Id = "eulumdat",
+                                            FileName = "eulumdat.ldt",
+                                            ContentType = FileContentType.LdcEulumdat,
+                                            Type = FileType.Url,
+                                            Uri = "https://example.org/eulumdat.ldt"
+                                        }
+                                    }
+                                },
+                                new()
+                                {
+                                    EmergencyBehaviour = EmergencyBehaviour.EmergencyOnly,
+                                    Photometry = new PhotometryTyped
+                                    {
+                                        Id = "photometry",
+                                        PhotometryFile = new GldfFileTyped
+                                        {
+                                            Id = "eulumdat",
+                                            FileName = "eulumdat.ldt",
+                                            ContentType = FileContentType.LdcEulumdat,
+                                            Type = FileType.Url,
+                                            Uri = "https://example.org/eulumdat.ldt"
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }

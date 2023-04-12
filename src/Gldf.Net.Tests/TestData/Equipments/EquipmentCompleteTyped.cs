@@ -31,7 +31,8 @@ public static class EquipmentCompleteTyped
                     Id = "eulumdat",
                     ContentType = FileContentType.LdcEulumdat,
                     Type = FileType.Url,
-                    Uri = "https://example.org/eulumdat.ldt"
+                    Uri = "https://example.org/eulumdat.ldt",
+                    FileName = "eulumdat.ldt"
                 }
             },
             Photometries = new List<PhotometryTyped>
@@ -41,7 +42,11 @@ public static class EquipmentCompleteTyped
                     Id = "photometry",
                     PhotometryFile = new GldfFileTyped
                     {
-                        Id = "eulumdat"
+                        Id = "eulumdat",
+                        ContentType = FileContentType.LdcEulumdat,
+                        Type = FileType.Url,
+                        Uri = "https://example.org/eulumdat.ldt",
+                        FileName = "eulumdat.ldt"
                     }
                 }
             },
@@ -92,11 +97,37 @@ public static class EquipmentCompleteTyped
                     Id = "equipment-1",
                     ChangeableLightSource = new ChangeableLightSourceTyped
                     {
-                        Id = "lightSource"
+                        Id = "lightSource",
+                        RatedLuminousFlux = 250,
+                        Name = new LocaleTyped[]
+                        {
+                            new()
+                            {
+                                Language = "en",
+                                Text = "LightSource name"
+                            }
+                        },
+                        RatedInputPower = 50
                     },
                     ControlGear = new ControlGearTyped
                     {
-                        Id = "controlGear"
+                        Id = "controlGear",
+                        Name = new LocaleTyped[]
+                        {
+                            new()
+                            {
+                                Language = "en",
+                                Text = "ControlGear name"
+                            }
+                        },
+                        Description = new LocaleTyped[]
+                        {
+                            new()
+                            {
+                                Language = "en",
+                                Text = "ControlGear description"
+                            }
+                        }
                     },
                     ControlGearCount = 2,
                     RatedInputPower = 0.1,
@@ -107,11 +138,37 @@ public static class EquipmentCompleteTyped
                     Id = "equipment-2",
                     ChangeableLightSource = new ChangeableLightSourceTyped
                     {
-                        Id = "lightSource"
+                        Id = "lightSource",
+                        RatedLuminousFlux = 250,
+                        RatedInputPower = 50,
+                        Name = new LocaleTyped[]
+                        {
+                            new()
+                            {
+                                Language = "en",
+                                Text = "LightSource name"
+                            }
+                        }
                     },
                     ControlGear = new ControlGearTyped
                     {
-                        Id = "controlGear"
+                        Id = "controlGear",
+                        Name = new LocaleTyped[]
+                        {
+                            new()
+                            {
+                                Language = "en",
+                                Text = "ControlGear name"
+                            }
+                        },
+                        Description = new LocaleTyped[]
+                        {
+                            new()
+                            {
+                                Language = "en",
+                                Text = "ControlGear description"
+                            }
+                        }
                     },
                     RatedInputPower = 0.1,
                     EmergencyRatedLuminousFlux = new EmergencyRatedLuminousFluxTyped
@@ -131,11 +188,56 @@ public static class EquipmentCompleteTyped
                         {
                             Photometry = new PhotometryTyped
                             {
-                                Id = "photometry"
+                                Id = "photometry",
+                                PhotometryFile = new GldfFileTyped
+                                {
+                                    Id = "eulumdat",
+                                    ContentType = FileContentType.LdcEulumdat,
+                                    Type = FileType.Url,
+                                    Uri = "https://example.org/eulumdat.ldt",
+                                    FileName = "eulumdat.ldt"
+                                }
                             },
                             Equipment = new EquipmentTyped
                             {
-                                Id = "equipment-1"
+                                Id = "equipment-1",
+                                ChangeableLightSource = new ChangeableLightSourceTyped
+                                {
+                                    Id = "lightSource",
+                                    RatedLuminousFlux = 250,
+                                    Name = new LocaleTyped[]
+                                    {
+                                        new()
+                                        {
+                                            Language = "en",
+                                            Text = "LightSource name"
+                                        }
+                                    },
+                                    RatedInputPower = 50
+                                },
+                                ControlGear = new ControlGearTyped
+                                {
+                                    Id = "controlGear",
+                                    Name = new LocaleTyped[]
+                                    {
+                                        new()
+                                        {
+                                            Language = "en",
+                                            Text = "ControlGear name"
+                                        }
+                                    },
+                                    Description = new LocaleTyped[]
+                                    {
+                                        new()
+                                        {
+                                            Language = "en",
+                                            Text = "ControlGear description"
+                                        }
+                                    }
+                                },
+                                ControlGearCount = 2,
+                                RatedInputPower = 0.1,
+                                EmergencyBallastLumenFactor = new EmergencyBallastLumenFactorTyped { Factor = 0.2 }
                             }
                         }
                     }
@@ -149,11 +251,58 @@ public static class EquipmentCompleteTyped
                         {
                             Photometry = new PhotometryTyped
                             {
-                                Id = "photometry"
+                                Id = "photometry",
+                                PhotometryFile = new GldfFileTyped
+                                {
+                                    Id = "eulumdat",
+                                    ContentType = FileContentType.LdcEulumdat,
+                                    Type = FileType.Url,
+                                    Uri = "https://example.org/eulumdat.ldt",
+                                    FileName = "eulumdat.ldt"
+                                }
                             },
                             Equipment = new EquipmentTyped
                             {
-                                Id = "equipment-2"
+                                Id = "equipment-2",
+                                ChangeableLightSource = new ChangeableLightSourceTyped
+                                {
+                                    Id = "lightSource",
+                                    RatedLuminousFlux = 250,
+                                    RatedInputPower = 50,
+                                    Name = new LocaleTyped[]
+                                    {
+                                        new()
+                                        {
+                                            Language = "en",
+                                            Text = "LightSource name"
+                                        }
+                                    }
+                                },
+                                ControlGear = new ControlGearTyped
+                                {
+                                    Id = "controlGear",
+                                    Name = new LocaleTyped[]
+                                    {
+                                        new()
+                                        {
+                                            Language = "en",
+                                            Text = "ControlGear name"
+                                        }
+                                    },
+                                    Description = new LocaleTyped[]
+                                    {
+                                        new()
+                                        {
+                                            Language = "en",
+                                            Text = "ControlGear description"
+                                        }
+                                    }
+                                },
+                                RatedInputPower = 0.1,
+                                EmergencyRatedLuminousFlux = new EmergencyRatedLuminousFluxTyped
+                                {
+                                    Flux = 2
+                                }
                             }
                         }
                     }
@@ -191,11 +340,81 @@ public static class EquipmentCompleteTyped
                     {
                         new LocaleTyped { Language = "en", Text = "Variant 1" }
                     },
+                    ProductNumber = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product number"
+                        }
+                    },
                     Geometry = new GeometryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
-                            Id = "emitter-1"
+                            Id = "emitter-1",
+                            ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
+                            {
+                                new()
+                                {
+                                    Photometry = new PhotometryTyped
+                                    {
+                                        Id = "photometry",
+                                        PhotometryFile = new GldfFileTyped
+                                        {
+                                            Id = "eulumdat",
+                                            ContentType = FileContentType.LdcEulumdat,
+                                            FileName = "eulumdat.ldt",
+                                            Type = FileType.Url,
+                                            Uri = "https://example.org/eulumdat.ldt"
+                                        }
+                                    },
+                                    Equipment = new EquipmentTyped
+                                    {
+                                        Id = "equipment-1",
+                                        ChangeableLightSource = new ChangeableLightSourceTyped
+                                        {
+                                            Id = "lightSource",
+                                            Name = new LocaleTyped[]
+                                            {
+                                                new()
+                                                {
+                                                    Language = "en",
+                                                    Text = "LightSource name"
+                                                }
+                                            },
+                                            RatedLuminousFlux = 250,
+                                            RatedInputPower = 50
+                                        },
+                                        ControlGear = new ControlGearTyped
+                                        {
+                                            Id = "controlGear",
+                                            Name = new LocaleTyped[]
+                                            {
+                                                new()
+                                                {
+                                                    Language = "en",
+                                                    Text = "ControlGear name"
+                                                }
+                                            },
+                                            Description = new LocaleTyped[]
+                                            {
+                                                new()
+                                                {
+                                                    Language = "en",
+                                                    Text = "ControlGear description"
+                                                }
+                                            }
+                                        },
+                                        ControlGearCount = 2,
+                                        RatedInputPower = 0.1,
+                                        EmergencyBallastLumenFactor = new EmergencyBallastLumenFactorTyped
+                                        {
+                                            Factor = 0.2
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }

@@ -25,7 +25,8 @@ public static class ControlGearCompleteTyped
                 Major = 1, 
                 Minor = 0, 
                 PreRelease = 2
-            }
+            },
+            UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E"
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
