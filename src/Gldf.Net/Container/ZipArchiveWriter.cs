@@ -33,7 +33,7 @@ internal class ZipArchiveWriter : ZipArchiveIO
     {
         if (gldfContainer.Product == null) return; // todo Unit tests
         var xml = GldfXmlSerializer.SerializeToString(gldfContainer.Product);
-        var productEntry = zipArchive.CreateEntry("product.xml", CompressionLevel);
+        var productEntry = zipArchive.CreateEntry(GldfStaticNames.Files.Product, CompressionLevel);
         using var entryStream = productEntry.Open();
         using var streamWriter = new StreamWriter(entryStream, Encoding);
         streamWriter.Write(xml);
@@ -41,21 +41,21 @@ internal class ZipArchiveWriter : ZipArchiveIO
 
     private void AddAssetZipEntries(ZipArchive zipArchive, GldfContainer gldfContainer)
     {
-        AddAssetsFor(zipArchive, gldfContainer.Assets.Photometries, AssetFolderNames.Photometries);
-        AddAssetsFor(zipArchive, gldfContainer.Assets.Geometries, AssetFolderNames.Geometries);
-        AddAssetsFor(zipArchive, gldfContainer.Assets.Images, AssetFolderNames.Images);
-        AddAssetsFor(zipArchive, gldfContainer.Assets.Documents, AssetFolderNames.Documents);
-        AddAssetsFor(zipArchive, gldfContainer.Assets.Sensors, AssetFolderNames.Sensors);
-        AddAssetsFor(zipArchive, gldfContainer.Assets.Spectrums, AssetFolderNames.Spectrums);
-        AddAssetsFor(zipArchive, gldfContainer.Assets.Symbols, AssetFolderNames.Symbols);
-        AddAssetsFor(zipArchive, gldfContainer.Assets.Other, AssetFolderNames.Other);
+        AddAssetsFor(zipArchive, gldfContainer.Assets.Photometries, GldfStaticNames.Folder.Photometries);
+        AddAssetsFor(zipArchive, gldfContainer.Assets.Geometries, GldfStaticNames.Folder.Geometries);
+        AddAssetsFor(zipArchive, gldfContainer.Assets.Images, GldfStaticNames.Folder.Images);
+        AddAssetsFor(zipArchive, gldfContainer.Assets.Documents, GldfStaticNames.Folder.Documents);
+        AddAssetsFor(zipArchive, gldfContainer.Assets.Sensors, GldfStaticNames.Folder.Sensors);
+        AddAssetsFor(zipArchive, gldfContainer.Assets.Spectrums, GldfStaticNames.Folder.Spectrums);
+        AddAssetsFor(zipArchive, gldfContainer.Assets.Symbols, GldfStaticNames.Folder.Symbols);
+        AddAssetsFor(zipArchive, gldfContainer.Assets.Other, GldfStaticNames.Folder.Other);
     }
 
     private void AddMetaInfo(ZipArchive zipArchive, GldfContainer gldfContainer)
     {
         if (gldfContainer.MetaInformation == null) return;
         var xml = MetaInfoSerializer.SerializeToString(gldfContainer.MetaInformation);
-        var metaInfoEntry = zipArchive.CreateEntry("meta-information.xml", CompressionLevel);
+        var metaInfoEntry = zipArchive.CreateEntry(GldfStaticNames.Files.MetaInfo, CompressionLevel);
         using var entryStream = metaInfoEntry.Open();
         using var streamWriter = new StreamWriter(entryStream, Encoding);
         streamWriter.Write(xml);
@@ -71,5 +71,4 @@ internal class ZipArchiveWriter : ZipArchiveIO
             entryStream.Write(file.Bytes, 0, file.Bytes.Length);
         }
     }
-
 }

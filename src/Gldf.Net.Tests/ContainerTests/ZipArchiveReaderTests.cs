@@ -449,6 +449,37 @@ public class ZipArchiveReaderTests
         containsRootXml.Should().BeTrue();
     }
 
+    [TestCase("product.xml")]
+    [TestCase("Product.xml")]
+    [TestCase("PRODUCT.XML")]
+    public void ContainsRootXmlFile_ShouldIgnoreCase(string fileName)
+    {
+        {
+            using var stream = new FileStream(_tempFile, FileMode.Create);
+            using var zipArchive = new ZipArchive(stream, ZipArchiveMode.Create);
+            zipArchive.CreateEntry(fileName);
+        }
+
+        var containsRootXml = ZipArchiveReader.ContainsRootXml(_tempFile);
+
+        containsRootXml.Should().BeTrue();
+    }
+
+    [TestCase("product.xml")]
+    [TestCase("Product.xml")]
+    [TestCase("PRODUCT.XML")]
+    public void ContainsRootXmlStream_ShouldIgnoreCase(string fileName)
+    {
+        using var stream = new MemoryStream();
+        using var zipArchive = new ZipArchive(stream, ZipArchiveMode.Create, true);
+        zipArchive.CreateEntry(fileName);
+        zipArchive.Dispose();
+
+        var containsRootXml = ZipArchiveReader.ContainsRootXml(stream, false);
+
+        containsRootXml.Should().BeTrue();
+    }
+
     [Test]
     public void ContainsRootXmlFile_ShouldReturn_False_When_ZipArchive_HasNoProductXml()
     {
