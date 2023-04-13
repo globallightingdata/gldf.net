@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using System.Text;
 
 namespace Gldf.Net.Container;
 
@@ -35,8 +36,7 @@ internal class ZipArchiveWriter : ZipArchiveIO
         var xml = GldfXmlSerializer.SerializeToString(gldfContainer.Product);
         var productEntry = zipArchive.CreateEntry(GldfStaticNames.Files.Product, CompressionLevel);
         using var entryStream = productEntry.Open();
-        using var streamWriter = new StreamWriter(entryStream, Encoding);
-        streamWriter.Write(xml);
+        entryStream.Write(Encoding.UTF8.GetBytes(xml));
     }
 
     private void AddAssetZipEntries(ZipArchive zipArchive, GldfContainer gldfContainer)
@@ -57,8 +57,7 @@ internal class ZipArchiveWriter : ZipArchiveIO
         var xml = MetaInfoSerializer.SerializeToString(gldfContainer.MetaInformation);
         var metaInfoEntry = zipArchive.CreateEntry(GldfStaticNames.Files.MetaInfo, CompressionLevel);
         using var entryStream = metaInfoEntry.Open();
-        using var streamWriter = new StreamWriter(entryStream, Encoding);
-        streamWriter.Write(xml);
+        entryStream.Write(Encoding.UTF8.GetBytes(xml));
     }
 
     private void AddAssetsFor(ZipArchive zipArchive, IEnumerable<ContainerFile> collection, string folder)
@@ -68,7 +67,7 @@ internal class ZipArchiveWriter : ZipArchiveIO
             var zipEntryName = $"{folder}/{file.FileName}";
             var zipFileEntry = zipArchive.CreateEntry(zipEntryName, CompressionLevel);
             using var entryStream = zipFileEntry.Open();
-            entryStream.Write(file.Bytes, 0, file.Bytes.Length);
+            entryStream.Write(file.Bytes);
         }
     }
 }
