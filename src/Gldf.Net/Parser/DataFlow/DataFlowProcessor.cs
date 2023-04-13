@@ -92,7 +92,6 @@ internal class DataFlowProcessor : IParserProcessor
         luminaireBatchBlock.LinkTo(transformLuminaire);
 
         broadcastContainer.Post(parserDto);
-        // todo Testen, ob ein Complete Seiteneffekte hat
         broadcastContainer.Complete();
         return transformLuminaire.Receive();
     }
