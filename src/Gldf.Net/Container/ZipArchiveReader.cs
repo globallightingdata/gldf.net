@@ -35,10 +35,10 @@ internal class ZipArchiveReader : ZipArchiveIO
         return ContainsProductXmlEntry(zipArchive);
     }
 
-    public GldfContainer ReadContainer(string filePath) => 
+    public GldfContainer ReadContainer(string filePath) =>
         ReadContainer(filePath, ContainerLoadSettings.Default);
 
-    public GldfContainer ReadContainer(Stream zipStream, bool leaveOpen) => 
+    public GldfContainer ReadContainer(Stream zipStream, bool leaveOpen) =>
         ReadContainer(zipStream, leaveOpen, ContainerLoadSettings.Default);
 
     public GldfContainer ReadContainer(string filePath, ContainerLoadSettings settings)
@@ -131,34 +131,30 @@ internal class ZipArchiveReader : ZipArchiveIO
     {
         var fileEntries = zipArchive.Entries.Where(entry => !string.IsNullOrEmpty(entry.Name));
         foreach (var entry in fileEntries)
-            _ = HandleAssetEntry(container, entry, loadBehaviour);
+            HandleAssetEntry(container, entry, loadBehaviour);
     }
 
-    private static string HandleAssetEntry(GldfContainer container, ZipArchiveEntry entry, AssetLoadBehaviour behaviour)
+    private static void HandleAssetEntry(GldfContainer container, ZipArchiveEntry entry, AssetLoadBehaviour behaviour)
     {
-        var firstPathPart = entry.FullName.Split('/')[0].ToLower();
-        return firstPathPart switch
-        {
-            GldfStaticNames.Folder.Geometries => AddFileFromEntry(container.Assets.Geometries, entry, behaviour),
-            GldfStaticNames.Folder.Photometries => AddFileFromEntry(container.Assets.Photometries, entry, behaviour),
-            GldfStaticNames.Folder.Images => AddFileFromEntry(container.Assets.Images, entry, behaviour),
-            GldfStaticNames.Folder.Documents => AddFileFromEntry(container.Assets.Documents, entry, behaviour),
-            GldfStaticNames.Folder.Sensors => AddFileFromEntry(container.Assets.Sensors, entry, behaviour),
-            GldfStaticNames.Folder.Symbols => AddFileFromEntry(container.Assets.Symbols, entry, behaviour),
-            GldfStaticNames.Folder.Spectrums => AddFileFromEntry(container.Assets.Spectrums, entry, behaviour),
-            GldfStaticNames.Folder.Other => AddFileFromEntry(container.Assets.Other, entry, behaviour),
-            _ => $"File does not match any asset category: {entry.FullName}"
-        };
+        var name = entry.FullName;
+        bool IsFolder(string fullName, string value) => fullName.StartsWith($"{value}/", StringComparison.OrdinalIgnoreCase);
+        if (IsFolder(name, GldfStaticNames.Folder.Geometries)) AddFile(container.Assets.Geometries, entry, behaviour);
+        if (IsFolder(name, GldfStaticNames.Folder.Photometries)) AddFile(container.Assets.Photometries, entry, behaviour);
+        if (IsFolder(name, GldfStaticNames.Folder.Images)) AddFile(container.Assets.Images, entry, behaviour);
+        if (IsFolder(name, GldfStaticNames.Folder.Documents)) AddFile(container.Assets.Documents, entry, behaviour);
+        if (IsFolder(name, GldfStaticNames.Folder.Sensors)) AddFile(container.Assets.Sensors, entry, behaviour);
+        if (IsFolder(name, GldfStaticNames.Folder.Symbols)) AddFile(container.Assets.Symbols, entry, behaviour);
+        if (IsFolder(name, GldfStaticNames.Folder.Spectrums)) AddFile(container.Assets.Spectrums, entry, behaviour);
+        if (IsFolder(name, GldfStaticNames.Folder.Other)) AddFile(container.Assets.Other, entry, behaviour);
     }
 
-    private static string AddFileFromEntry(ICollection<ContainerFile> collection, ZipArchiveEntry entry,
+    private static void AddFile(ICollection<ContainerFile> collection, ZipArchiveEntry entry,
         AssetLoadBehaviour loadBehaviour)
     {
         var loadComplete = loadBehaviour == AssetLoadBehaviour.Load;
         var fileEntryBytes = loadComplete ? entry.GetBytes() : Array.Empty<byte>();
         var containerFile = new ContainerFile(entry.Name, fileEntryBytes);
         collection.Add(containerFile);
-        return $"{entry.Name}: {containerFile.Bytes.Length} Bytes";
     }
 
     private static bool EvaluateFuncSafe(Func<bool> checkFunc)
