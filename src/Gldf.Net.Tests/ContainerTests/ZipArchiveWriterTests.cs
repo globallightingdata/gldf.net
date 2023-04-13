@@ -103,7 +103,7 @@ public class ZipArchiveWriterTests
         var firstEntryName = zipArchive.Entries.First().Name;
 
         containerEntryCount.Should().Be(1);
-        firstEntryName.Should().Be("product.xml");
+        firstEntryName.Should().Be(GldfStaticNames.Files.Product);
     }
 
     [Test]

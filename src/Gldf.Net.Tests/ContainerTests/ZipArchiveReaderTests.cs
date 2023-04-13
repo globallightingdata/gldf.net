@@ -343,7 +343,7 @@ public class ZipArchiveReaderTests
         var gldfBytes = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
         File.WriteAllBytes(_tempFile, gldfBytes);
         using var zipFile = ZipFile.OpenRead(_tempFile);
-        using var entryStream = zipFile.GetEntry("product.xml")!.Open();
+        using var entryStream = zipFile.GetEntry(GldfStaticNames.Files.Product)!.Open();
         using var streamReader = new StreamReader(entryStream, Encoding.UTF8);
         var expectedXml = streamReader.ReadToEnd();
 
@@ -358,7 +358,7 @@ public class ZipArchiveReaderTests
         var gldfBytes = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
         File.WriteAllBytes(_tempFile, gldfBytes);
         using var zipFile = ZipFile.OpenRead(_tempFile);
-        using var entryStream = zipFile.GetEntry("product.xml")!.Open();
+        using var entryStream = zipFile.GetEntry(GldfStaticNames.Files.Product)!.Open();
         using var streamReader = new StreamReader(entryStream, Encoding.UTF8);
         var expectedXml = streamReader.ReadToEnd();
         using var memoryStream = new MemoryStream(gldfBytes);

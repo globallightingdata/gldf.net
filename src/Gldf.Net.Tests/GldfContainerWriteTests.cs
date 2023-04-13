@@ -119,7 +119,7 @@ public class GldfContainerWriteTests
         var firstEntryName = zipArchive.Entries.First().Name;
 
         archiveEntryCount.Should().Be(1);
-        firstEntryName.Should().Be("product.xml");
+        firstEntryName.Should().Be(GldfStaticNames.Files.Product);
     }
 
     [Test]
@@ -134,7 +134,7 @@ public class GldfContainerWriteTests
         var firstEntryName = zipArchive.Entries.First().Name;
 
         archiveEntryCount.Should().Be(1);
-        firstEntryName.Should().Be("product.xml");
+        firstEntryName.Should().Be(GldfStaticNames.Files.Product);
     }
 
     [Test]

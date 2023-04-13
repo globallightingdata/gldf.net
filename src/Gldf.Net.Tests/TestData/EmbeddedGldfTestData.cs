@@ -1,4 +1,5 @@
-﻿using Gldf.Net.Domain.Xml;
+﻿using Gldf.Net.Container;
+using Gldf.Net.Domain.Xml;
 using Gldf.Net.Domain.Xml.MetaInfo;
 using Gldf.Net.Tests.TestHelper;
 using System.Collections.Generic;
@@ -30,18 +31,18 @@ public static class EmbeddedGldfTestData
 
     public static IEnumerable<string> ExpectedZipEntryNames => new[]
     {
-        "product.xml",
-        "document/document.docx",
-        "geo/geometry.l3d",
-        "geo/geometry.r3d",
-        "image/image.jpg",
-        "image/image.png",
-        "ldc/lvk.ies",
-        "ldc/lvk.ldt",
-        "other/project.c4d",
-        "sensor/sensor.xml",
-        "spectrum/spectrum.txt",
-        "symbol/symbol.svg"
+        GldfStaticNames.Files.Product,
+        $"{GldfStaticNames.Folder.Documents}/document.docx",
+        $"{GldfStaticNames.Folder.Geometries}/geometry.l3d",
+        $"{GldfStaticNames.Folder.Geometries}/geometry.r3d",
+        $"{GldfStaticNames.Folder.Images}/image.jpg",
+        $"{GldfStaticNames.Folder.Images}/image.png",
+        $"{GldfStaticNames.Folder.Photometries}/lvk.ies",
+        $"{GldfStaticNames.Folder.Photometries}/lvk.ldt",
+        $"{GldfStaticNames.Folder.Other}/project.c4d",
+        $"{GldfStaticNames.Folder.Sensors}/sensor.xml",
+        $"{GldfStaticNames.Folder.Spectrums}/spectrum.txt",
+        $"{GldfStaticNames.Folder.Symbols}/symbol.svg"
     };
 
     public static MetaInformation ExpectedMetaInformation => new()
@@ -64,17 +65,17 @@ public static class EmbeddedGldfTestData
 
     public static List<string> ExpectedDirectoryFilePaths => new()
     {
-        $"*{Path.DirectorySeparatorChar}product.xml",
-        $"*{Path.DirectorySeparatorChar}document{Path.DirectorySeparatorChar}document.docx",
-        $"*{Path.DirectorySeparatorChar}geo{Path.DirectorySeparatorChar}geometry.l3d",
-        $"*{Path.DirectorySeparatorChar}geo{Path.DirectorySeparatorChar}geometry.r3d",
-        $"*{Path.DirectorySeparatorChar}image{Path.DirectorySeparatorChar}image.jpg",
-        $"*{Path.DirectorySeparatorChar}image{Path.DirectorySeparatorChar}image.png",
-        $"*{Path.DirectorySeparatorChar}ldc{Path.DirectorySeparatorChar}lvk.ies",
-        $"*{Path.DirectorySeparatorChar}ldc{Path.DirectorySeparatorChar}lvk.ldt",
-        $"*{Path.DirectorySeparatorChar}other{Path.DirectorySeparatorChar}project.c4d",
-        $"*{Path.DirectorySeparatorChar}sensor{Path.DirectorySeparatorChar}sensor.xml",
-        $"*{Path.DirectorySeparatorChar}spectrum{Path.DirectorySeparatorChar}spectrum.txt",
-        $"*{Path.DirectorySeparatorChar}symbol{Path.DirectorySeparatorChar}symbol.svg"
+        $"*{Path.DirectorySeparatorChar}{GldfStaticNames.Files.Product}",
+        $"*{Path.DirectorySeparatorChar}{GldfStaticNames.Folder.Documents}{Path.DirectorySeparatorChar}document.docx",
+        $"*{Path.DirectorySeparatorChar}{GldfStaticNames.Folder.Geometries}{Path.DirectorySeparatorChar}geometry.l3d",
+        $"*{Path.DirectorySeparatorChar}{GldfStaticNames.Folder.Geometries}{Path.DirectorySeparatorChar}geometry.r3d",
+        $"*{Path.DirectorySeparatorChar}{GldfStaticNames.Folder.Images}{Path.DirectorySeparatorChar}image.jpg",
+        $"*{Path.DirectorySeparatorChar}{GldfStaticNames.Folder.Images}{Path.DirectorySeparatorChar}image.png",
+        $"*{Path.DirectorySeparatorChar}{GldfStaticNames.Folder.Photometries}{Path.DirectorySeparatorChar}lvk.ies",
+        $"*{Path.DirectorySeparatorChar}{GldfStaticNames.Folder.Photometries}{Path.DirectorySeparatorChar}lvk.ldt",
+        $"*{Path.DirectorySeparatorChar}{GldfStaticNames.Folder.Other}{Path.DirectorySeparatorChar}project.c4d",
+        $"*{Path.DirectorySeparatorChar}{GldfStaticNames.Folder.Sensors}{Path.DirectorySeparatorChar}sensor.xml",
+        $"*{Path.DirectorySeparatorChar}{GldfStaticNames.Folder.Spectrums}{Path.DirectorySeparatorChar}spectrum.txt",
+        $"*{Path.DirectorySeparatorChar}{GldfStaticNames.Folder.Symbols}{Path.DirectorySeparatorChar}symbol.svg"
     };
 }
