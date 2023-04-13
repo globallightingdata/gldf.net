@@ -22,7 +22,7 @@ internal static class GldfFormatVersionReader
             {
                 (true, true, true) => new FormatVersion { Major = major, Minor = minor, PreRelease = preRelease },
                 (true, true, false) => new FormatVersion { Major = major, Minor = minor },
-                _ => throw new Exception("FormatVersion attributes not set. At lease major and minor (:int) required")
+                _ => throw new Exception("FormatVersion attributes not set. At least major and minor (:int) required")
             };
         }
         catch (Exception e)
