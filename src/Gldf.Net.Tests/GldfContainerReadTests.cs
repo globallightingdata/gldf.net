@@ -74,33 +74,22 @@ public class GldfContainerReadTests
     }
 
     [Test]
-    public void ReadFromFile_EmptyContainer_ShouldThrow_When_Missing_ProductXml()
+    public void ReadFromFile_EmptyContainer_ShouldReturnNull()
     {
         ZipFile.Open(_tempFile, ZipArchiveMode.Update).Dispose();
 
-        Action act = () => _gldfContainerReader.ReadFromFile(_tempFile);
+        var gldfContainer = _gldfContainerReader.ReadFromFile(_tempFile);
 
-        act.Should()
-            .Throw<GldfContainerException>()
-            .WithMessage("Failed to read GldfContainer from*")
-            .WithInnerException<RootNotFoundException>()
-            .WithMessage($"Required product.xml not found in root of {nameof(GldfContainer)}");
+        gldfContainer.Product.Should().BeNull();
     }
     
     [Test]
-    public void ReadFromStream_EmptyContainer_ShouldThrow_When_Missing_ProductXml()
+    public void ReadFromStream_EmptyContainer_ShouldReturnNull()
     {
-        var act = () =>
-        {
-            using var stream = new MemoryStream(File.ReadAllBytes(_tempFile));
-            _gldfContainerReader.ReadFromStream(stream, false);
-        };
+        using var stream = new MemoryStream(File.ReadAllBytes(_tempFile));
+        var gldfContainer = _gldfContainerReader.ReadFromStream(stream, false);
 
-        act.Should()
-            .Throw<GldfContainerException>()
-            .WithMessage("Failed to read GldfContainer from*")
-            .WithInnerException<RootNotFoundException>()
-            .WithMessage($"Required product.xml not found in root of {nameof(GldfContainer)}");
+        gldfContainer.Product.Should().BeNull();
     }
 
     [Test]

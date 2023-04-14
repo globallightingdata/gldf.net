@@ -32,27 +32,19 @@ public class ZipArchiveReaderTests
     }
 
     [Test]
-    public void ReadContainerFile_EmptyContainer_ShouldThrow_BecauseOf_Missing_ProductXml()
+    public void ReadContainerFile_EmptyContainer_ShouldReturnNull()
     {
-        Action act = () => _zipArchiveReader.ReadContainer(_tempFile);
-
-        act.Should()
-            .Throw<RootNotFoundException>()
-            .WithMessage($"Required product.xml not found in root of {nameof(GldfContainer)}");
+        var gldfContainer = _zipArchiveReader.ReadContainer(_tempFile);
+        gldfContainer.Product.Should().BeNull();
     }
 
     [Test]
-    public void ReadContainerStream_EmptyContainer_ShouldThrow_BecauseOf_Missing_ProductXml()
+    public void ReadContainerStream_EmptyContainer_ShouldReturnNull()
     {
-        var act = () =>
-        {
-            using var fileStream = new FileStream(_tempFile, FileMode.Open);
-            _zipArchiveReader.ReadContainer(fileStream, false);
-        };
+        using var fileStream = new FileStream(_tempFile, FileMode.Open);
+        var gldfContainer = _zipArchiveReader.ReadContainer(fileStream, false);
 
-        act.Should()
-            .Throw<RootNotFoundException>()
-            .WithMessage($"Required product.xml not found in root of {nameof(GldfContainer)}");
+        gldfContainer.Product.Should().BeNull();
     }
 
     [Test]

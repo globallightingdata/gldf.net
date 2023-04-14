@@ -1,5 +1,4 @@
-﻿using Gldf.Net.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
@@ -85,8 +84,8 @@ internal class ZipArchiveReader : ZipArchiveIO
 
     private string ReadRootXml(ZipArchive zipArchive)
     {
-        var productEntry = zipArchive.GetEntry(GldfStaticNames.Files.Product) ?? throw new RootNotFoundException(
-            $"Required product.xml not found in root of {nameof(GldfContainer)}");
+        var productEntry = zipArchive.GetEntry(GldfStaticNames.Files.Product);
+        if (productEntry is null) return null; // todo Unit test ReadRootXml (product.xml is missing) 
         using var stream = productEntry.Open();
         using var streamReader = new StreamReader(stream, Encoding);
         return streamReader.ReadToEnd();
@@ -113,8 +112,9 @@ internal class ZipArchiveReader : ZipArchiveIO
     private void AddDeserializedRoot(GldfContainer container, ZipArchive zipArchive)
     {
         var rootXml = ReadRootXml(zipArchive);
-        var deserializedRoot = GldfXmlSerializer.DeserializeFromString(rootXml);
-        container.Product = deserializedRoot;
+        container.Product = rootXml != null
+            ? GldfXmlSerializer.DeserializeFromString(rootXml)
+            : null;
     }
 
     private void AddDeserializedMetaInfo(ZipArchive zipArchive, GldfContainer container)

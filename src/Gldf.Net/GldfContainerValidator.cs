@@ -3,6 +3,7 @@ using Gldf.Net.Container;
 using Gldf.Net.Validation;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Gldf.Net;
 
@@ -32,6 +33,18 @@ public class GldfContainerValidator : IGldfContainerValidator
     }
 
     /// <summary>
+    ///     Validates a GLDF container stream.
+    /// </summary>
+    /// <param name="stream">Stream containing the GLDF container to validate</param>
+    /// <param name="leaveOpen">True, if the stream should be left open after validation, otherwise false</param>
+    /// <returns>An IEnumerable of <see cref="ValidationHint" /> with possible warnings and errors</returns>
+    public IEnumerable<ValidationHint> Validate(Stream stream, bool leaveOpen)
+    {
+        // todo implement GldfContainerValidator.Validate(Stream stream, bool leaveOpen)
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
     ///     Validates a <see cref="GldfContainer" />.
     /// </summary>
     /// <param name="container">A <see cref="GldfContainer" /> instance to validate</param>
@@ -41,4 +54,5 @@ public class GldfContainerValidator : IGldfContainerValidator
         if (container == null) throw new ArgumentNullException(nameof(container));
         return _zipArchiveValidator.Validate(container);
     }
+
 }
