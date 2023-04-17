@@ -21,10 +21,11 @@ internal abstract class ZipArchiveIO
         Encoding = Encoding.UTF8;
     }
 
-    protected ZipArchiveIO(IGldfXmlSerializer gldfXmlSerializer, CompressionLevel compressionLevel,
-        Encoding encoding)
+    protected ZipArchiveIO(IGldfXmlSerializer gldfXmlSerializer, IMetaInfoSerializer metaInfoSerializer,
+        CompressionLevel compressionLevel, Encoding encoding)
     {
         GldfXmlSerializer = gldfXmlSerializer;
+        MetaInfoSerializer = metaInfoSerializer;
         CompressionLevel = compressionLevel;
         Encoding = encoding;
     }
