@@ -1,15 +1,10 @@
 using FluentAssertions;
 using Gldf.Net.Parser;
 using Gldf.Net.Tests.TestData;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace Gldf.Net.Tests.ParserTests;
 
@@ -71,23 +66,5 @@ public class GldfParserTests
         });
         var rootTyped = gldfParser.ParseFromXml(xml);
         rootTyped.Should().NotBeNull();
-    }
-
-    [Test, Explicit]
-    public void ParseFromContainerFile_ShouldHaveExpectedHash()
-    {
-        var gldfParser = new GldfParser(new ParserSettings
-        {
-            LocalFileLoadBehaviour = LocalFileLoadBehaviour.Skip,
-            OnlineFileLoadBehaviour = OnlineFileLoadBehaviour.Skip
-        });
-        var rootTyped = gldfParser.ParseFromContainerFile(_tempGldfPath);
-
-        // Quick test to identify errors for now, todo replace test assert with meaningful validation
-        var jsonSettings = new JsonSerializerSettings { Converters = new List<JsonConverter> { new StringEnumConverter() } };
-        var rootTypeJson = JsonConvert.SerializeObject(rootTyped, Formatting.Indented, jsonSettings);
-        Console.WriteLine(rootTypeJson);
-        var hashData = MD5.HashData(Encoding.UTF8.GetBytes(rootTypeJson));
-        Convert.ToBase64String(hashData).Should().Be("443pd9LVqZ0K34A9GT4Vfg==");
     }
 }
