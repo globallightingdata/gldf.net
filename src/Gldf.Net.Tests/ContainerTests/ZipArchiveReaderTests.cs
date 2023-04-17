@@ -344,6 +344,17 @@ public class ZipArchiveReaderTests
     }
 
     [Test]
+    public void ReadRootXmlFile_ShouldReturnNull_WhenProductIsNull()
+    {
+        var gldfBytes = EmbeddedGldfTestData.GetGldfWithMissingProduct();
+        File.WriteAllBytes(_tempFile, gldfBytes);
+
+        var rootXml = _zipArchiveReader.ReadRootXml(_tempFile);
+
+        rootXml.Should().BeNull();
+    }
+
+    [Test]
     public void ReadRootXmlStream_ShouldReturn_ExpectedXml()
     {
         var gldfBytes = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
@@ -357,6 +368,18 @@ public class ZipArchiveReaderTests
         var rootXml = _zipArchiveReader.ReadRootXml(memoryStream, false);
 
         rootXml.Should().BeEquivalentTo(expectedXml);
+    }
+
+    [Test]
+    public void ReadRootXmlStream_ShouldReturnNull_WhenProductMissing()
+    {
+        var gldfBytes = EmbeddedGldfTestData.GetGldfWithMissingProduct();
+        File.WriteAllBytes(_tempFile, gldfBytes);
+        using var memoryStream = new MemoryStream(gldfBytes);
+
+        var rootXml = _zipArchiveReader.ReadRootXml(memoryStream, false);
+
+        rootXml.Should().BeNull();
     }
 
     [Test]

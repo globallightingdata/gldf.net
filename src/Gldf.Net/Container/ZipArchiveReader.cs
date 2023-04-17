@@ -85,7 +85,7 @@ internal class ZipArchiveReader : ZipArchiveIO
     private string ReadRootXml(ZipArchive zipArchive)
     {
         var productEntry = zipArchive.GetEntry(GldfStaticNames.Files.Product);
-        if (productEntry is null) return null; // todo Unit test ReadRootXml (product.xml is missing) 
+        if (productEntry is null) return null;
         using var stream = productEntry.Open();
         using var streamReader = new StreamReader(stream, Encoding);
         return streamReader.ReadToEnd();

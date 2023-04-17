@@ -51,6 +51,7 @@
         <EmbeddedResource Include="TestData\Variants\VariantCompleteXml.xml" />
         <EmbeddedResource Include="TestData\Variants\VariantMandatoryXml.xml" />
         <EmbeddedResource Include="TestData\Container\GldfWithHeaderMandatory.gldf" />
+        <EmbeddedResource Include="TestData\Container\GldfWithMissingProduct.gldf" />
         <EmbeddedResource Include="TestData\Container\GldfWithFiles.gldf" />
         <EmbeddedResource Include="TestData\Container\GldfWithNoFiles.gldf" />
         <EmbeddedResource Include="TestData\Container\GldfWithLargeFiles.gldf" />

@@ -10,6 +10,7 @@ namespace Gldf.Net.Tests.TestData;
 public static class EmbeddedGldfTestData
 {
     private const string GldfWithHeaderMandatory = "TestData.Container.GldfWithHeaderMandatory.gldf";
+    private const string GldfWithMissingProduct = "TestData.Container.GldfWithMissingProduct.gldf";
     private const string GldfWithMetaInfo = "TestData.Container.GldfWithMetaInfo.gldf";
     private const string GldfWithFiles = "TestData.Container.GldfWithFiles.gldf";
     private const string GldfWithFilesComplete = "TestData.Container.GldfWithFilesComplete.gldf";
@@ -20,6 +21,7 @@ public static class EmbeddedGldfTestData
     private const string GldfWithMissingFiles = "TestData.Container.GldfWithMissingFiles.gldf";
 
     public static byte[] GetGldfWithHeaderMandatory() => ResourceLoader.LoadEmbeddedBytes(GldfWithHeaderMandatory);
+    public static byte[] GetGldfWithMissingProduct() => ResourceLoader.LoadEmbeddedBytes(GldfWithMissingProduct);
     public static byte[] GetGldfNoFiles() => ResourceLoader.LoadEmbeddedBytes(GldfWithNoFiles);
     public static byte[] GetGldfWithMetaInfo() => ResourceLoader.LoadEmbeddedBytes(GldfWithMetaInfo);
     public static byte[] GetGldfWithFiles() => ResourceLoader.LoadEmbeddedBytes(GldfWithFiles);
