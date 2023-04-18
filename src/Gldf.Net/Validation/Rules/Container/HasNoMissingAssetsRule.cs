@@ -11,8 +11,6 @@ namespace Gldf.Net.Validation.Rules.Container;
 
 internal class HasNoMissingAssetsRule : IContainerValidationRule
 {
-    public int Priority => 100;
-
     public IEnumerable<ValidationHint> Validate(GldfContainer container)
     {
         try

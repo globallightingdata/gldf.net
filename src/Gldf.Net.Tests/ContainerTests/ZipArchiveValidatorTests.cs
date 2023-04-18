@@ -1,10 +1,7 @@
 ﻿using FluentAssertions;
-using Gldf.Net.Abstract;
 using Gldf.Net.Container;
 using Gldf.Net.Tests.TestData;
 using Gldf.Net.Validation;
-using Gldf.Net.Validation.Rules.Container;
-using Gldf.Net.Validation.Rules.Zip;
 using NUnit.Framework;
 using System.IO;
 using System.IO.Compression;
@@ -29,29 +26,6 @@ public class ZipArchiveValidatorTests
     public void TearDown()
     {
         File.Delete(_tempFile);
-    }
-
-    [Test]
-    public void GetValidationRules_ZipRules_Should_ReturnExpectedRules()
-    {
-        var zipRules = ZipArchiveValidator.GetValidationRules<IZipArchiveValidationRule>().ToList();
-
-        zipRules.Should().HaveCount(5);
-        zipRules.Should().Contain(rule => rule.GetType().IsAssignableFrom(typeof(CanDeserializeProductXmlRule)));
-        zipRules.Should().Contain(rule => rule.GetType().IsAssignableFrom(typeof(ContainsProductXmlRule)));
-        zipRules.Should().Contain(rule => rule.GetType().IsAssignableFrom(typeof(HasNoLargeFilesRule)));
-        zipRules.Should().Contain(rule => rule.GetType().IsAssignableFrom(typeof(IsValidProductXmlRule)));
-        zipRules.Should().Contain(rule => rule.GetType().IsAssignableFrom(typeof(IsValidZipArchiveRule)));
-    }
-
-    [Test]
-    public void GetValidationRules_ContainerRules_Should_ReturnExpectedRuleCount()
-    {
-        var containerRules = ZipArchiveValidator.GetValidationRules<IContainerValidationRule>().ToList();
-
-        containerRules.Should().HaveCount(2);
-        containerRules.Should().Contain(rule => rule.GetType().IsAssignableFrom(typeof(HasNoMissingAssetsRule)));
-        containerRules.Should().Contain(rule => rule.GetType().IsAssignableFrom(typeof(HasNoOrphanAssetsRule)));
     }
 
     [Test]

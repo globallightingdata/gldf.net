@@ -6,7 +6,5 @@ namespace Gldf.Net.Abstract;
 
 public interface IContainerValidationRule
 {
-    public int Priority { get; }
-
     IEnumerable<ValidationHint> Validate(GldfContainer container);
 }

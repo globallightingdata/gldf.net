@@ -11,8 +11,6 @@ namespace Gldf.Net.Validation.Rules.Container;
 
 internal class HasNoOrphanAssetsRule : IContainerValidationRule
 {
-    public int Priority => 110;
-
     public IEnumerable<ValidationHint> Validate(GldfContainer container)
     {
         try

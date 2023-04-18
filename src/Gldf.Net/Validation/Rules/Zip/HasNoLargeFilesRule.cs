@@ -3,13 +3,13 @@ using Gldf.Net.Container;
 using Gldf.Net.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace Gldf.Net.Validation.Rules.Zip;
 
 internal class HasNoLargeFilesRule : IZipArchiveValidationRule
 {
-    public int Priority => 50;
     public const int LimitInBytes = 5 * 1024 * 1024;
 
     public IEnumerable<ValidationHint> Validate(string filePath)
@@ -26,6 +26,25 @@ internal class HasNoLargeFilesRule : IZipArchiveValidationRule
         catch (Exception e)
         {
             return ValidationHint.Warning($"The GLDF container '{filePath}' could not be validated " +
+                                          "to have no large Files. " +
+                                          $"Error: {e.FlattenMessage()}", ErrorType.TooLargeFiles);
+        }
+    }
+
+    public IEnumerable<ValidationHint> Validate(Stream stream, bool leaveOpen)
+    {
+        try
+        {
+            var toLargeFiles = ZipArchiveReader.GetLargeFileNames(stream, leaveOpen, LimitInBytes).ToArray();
+            return toLargeFiles.Any()
+                ? ValidationHint.Warning("Large files found. It is recommended to limit the " +
+                                         "maximum file size to 5MB each: " +
+                                         $"{FlattenFileNames(toLargeFiles)}", ErrorType.TooLargeFiles)
+                : ValidationHint.Empty();
+        }
+        catch (Exception e)
+        {
+            return ValidationHint.Warning("The GLDF container could not be validated " +
                                           "to have no large Files. " +
                                           $"Error: {e.FlattenMessage()}", ErrorType.TooLargeFiles);
         }

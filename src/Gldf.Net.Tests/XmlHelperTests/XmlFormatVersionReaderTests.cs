@@ -16,7 +16,7 @@ public class XmlFormatVersionReaderTests
     public void GetFormatVersion_ShouldBeExpected_WhenPreReleaseIsSet()
     {
         var expected = new FormatVersion { Major = 1, Minor = 2, PreRelease = 3 };
-        const string xml = $"<Root><Header><FormatVersion major='1' minor='2' pre-release='3' /></Header></Root>";
+        const string xml = "<Root><Header><FormatVersion major='1' minor='2' pre-release='3' /></Header></Root>";
 
         var formatVersion = GldfFormatVersionReader.GetFormatVersion(xml);
 
@@ -27,7 +27,7 @@ public class XmlFormatVersionReaderTests
     public void GetFormatVersion_ShouldBeExpected_WhenPreReleaseIsNull()
     {
         var expected = new FormatVersion { Major = 1, Minor = 2, PreReleaseSpecified = false };
-        const string xml = $"<Root><Header><FormatVersion major='1' minor='2' /></Header></Root>";
+        const string xml = "<Root><Header><FormatVersion major='1' minor='2' /></Header></Root>";
 
         var formatVersion = GldfFormatVersionReader.GetFormatVersion(xml);
 
