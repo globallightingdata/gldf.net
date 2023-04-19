@@ -45,7 +45,7 @@ internal class XmlDocValidator
     // ReSharper disable once UnusedParameter.Local (Ignore xmlFormatVersion for now)
     private XmlSchemaSet CreateSchemaSet(FormatVersion formatVersion)
     {
-        var embeddedXsd = EmbeddedXsdLoader.LoadXsd(formatVersion);
+        var embeddedXsd = GldfEmbeddedXsdLoader.LoadXsd(formatVersion);
         using var xsdStringReader = new StringReader(embeddedXsd);
         using var schemaDoc = XmlReader.Create(xsdStringReader);
         var schemaSet = new XmlSchemaSet();

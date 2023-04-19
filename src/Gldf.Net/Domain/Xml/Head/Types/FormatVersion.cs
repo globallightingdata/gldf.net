@@ -26,5 +26,24 @@ public class FormatVersion
     [XmlIgnore]
     public bool PreReleaseSpecified { get; set; }
 
-    public override string ToString() => $"v{Major}.{Minor}-rc{PreRelease}";
+    public FormatVersion()
+    {
+    }
+
+    public FormatVersion(int major, int minor)
+    {
+        Major = major;
+        Minor = minor;
+    }
+
+    public FormatVersion(int major, int minor, int preRelease)
+    {
+        Major = major;
+        Minor = minor;
+        PreRelease = preRelease;
+    }
+
+    public override string ToString() => PreReleaseSpecified 
+        ? $"v{Major}.{Minor}-rc{PreRelease}" 
+        : $"v{Major}.{Minor}";
 }

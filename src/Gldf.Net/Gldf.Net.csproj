@@ -27,7 +27,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <EmbeddedResource Include="Xsd\v10-rc2.xsd" />
+        <EmbeddedResource Include="Xsd\v0.9-rc9.xsd" />
+        <EmbeddedResource Include="Xsd\v1.0-rc1.xsd" />
+        <EmbeddedResource Include="Xsd\v1.0-rc2.xsd" />
         <None Include=".\..\..\img\logo.png">
             <Pack>true</Pack>
             <PackagePath>\</PackagePath>
