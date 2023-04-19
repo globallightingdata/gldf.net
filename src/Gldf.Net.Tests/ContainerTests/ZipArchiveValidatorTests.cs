@@ -44,7 +44,7 @@ public class ZipArchiveValidatorTests
     {
         File.WriteAllBytes(_tempFile, new byte[1]);
         var message = $"The GLDF container '{_tempFile}' seems not to be a valid ZIP file or can't be accessed";
-        var expected = new ValidationHint(SeverityType.Error, message, ErrorType.InvalidZipFile);
+        var expected = new ValidationHint(SeverityType.Error, message, ErrorType.InvalidZip);
 
         var hints = _zipArchiveValidator.Validate(_tempFile).ToList();
 
@@ -120,7 +120,7 @@ public class ZipArchiveValidatorTests
     {
         var gldfWithLargeFiles = EmbeddedGldfTestData.GetGldfWithOrphanedFiles();
         File.WriteAllBytes(_tempFile, gldfWithLargeFiles);
-        const string message = "The GLDF container contains assets that are not referenced in the product.xml. " +
+        const string message = "The GLDF container contains assets that are not referenced in the Product. " +
                                "They should be deleted: orphan.txt";
         var expected = new ValidationHint(SeverityType.Warning, message, ErrorType.OrphanedContainerAssets);
 
@@ -159,7 +159,7 @@ public class ZipArchiveValidatorTests
         File.WriteAllBytes(_tempFile, gldfWithLargeFiles);
         var container = zipArchiveReader.ReadContainer(_tempFile);
         const string message = "The GLDF container contains assets that are not referenced in " +
-                               "the product.xml. They should be deleted: orphan.txt";
+                               "the Product. They should be deleted: orphan.txt";
         var expected = new ValidationHint(SeverityType.Warning, message, ErrorType.OrphanedContainerAssets);
 
         var hints = _zipArchiveValidator.Validate(container).ToList();

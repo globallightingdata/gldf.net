@@ -13,8 +13,9 @@ internal class HasNoMissingAssetsRule : IContainerValidationRule
 {
     public IEnumerable<ValidationHint> Validate(GldfContainer container)
     {
-        try
+        return ValidateSafe(() =>
         {
+            if (container.Product?.GeneralDefinitions?.Files == null) return ValidationHint.Empty();
             var filesWithoutAssets = container.Product.GeneralDefinitions.Files.Where(file =>
                 file.Type == FileType.LocalFileName && HasNoAsset(file, container.Assets)).ToArray();
 
@@ -23,20 +24,11 @@ internal class HasNoMissingAssetsRule : IContainerValidationRule
                                        "missing in the GLDF container: " +
                                        $"{FlattenFileNames(filesWithoutAssets)}", ErrorType.MissingContainerAssets)
                 : ValidationHint.Empty();
-        }
-        catch (Exception e)
-        {
-            return ValidationHint.Warning("The GLDF container could not be validate to have no missing files. " +
-                                          $"Error: {e.FlattenMessage()}", ErrorType.MissingContainerAssets);
-        }
+        });
     }
 
-    private static bool HasNoAsset(GldfFile file, GldfAssets assets)
-    {
-        static bool AssetNotExists(IEnumerable<ContainerFile> assets, GldfFile file) =>
-            assets.All(asset => asset.FileName != file.File);
-
-        return file.ContentType switch
+    private static bool HasNoAsset(GldfFile file, GldfAssets assets) =>
+        file.ContentType switch
         {
             FileContentType.LdcEulumdat => AssetNotExists(assets.Photometries, file),
             FileContentType.LdcIes => AssetNotExists(assets.Photometries, file),
@@ -56,13 +48,26 @@ internal class HasNoMissingAssetsRule : IContainerValidationRule
             FileContentType.Other => AssetNotExists(assets.Other, file),
             _ => throw new ArgumentOutOfRangeException(nameof(file.ContentType))
         };
-    }
 
-    private static string FlattenFileNames(IEnumerable<GldfFile> filesWithoutAssets)
-    {
-        return filesWithoutAssets.Aggregate(string.Empty, (result, file)
+    private static bool AssetNotExists(IEnumerable<ContainerFile> assets, GldfFile file) =>
+        assets.All(asset => asset.FileName != file.File);
+
+    private static string FlattenFileNames(IEnumerable<GldfFile> filesWithoutAssets) =>
+        filesWithoutAssets.Aggregate(string.Empty, (result, file)
             => result == string.Empty
                 ? $"{file.File} ({file.ContentType})"
                 : $"{result}, {file.File} ({file.ContentType})");
+
+    private static IEnumerable<ValidationHint> ValidateSafe(Func<IEnumerable<ValidationHint>> func)
+    {
+        try
+        {
+            return func();
+        }
+        catch (Exception e)
+        {
+            return ValidationHint.Warning("The GLDF container could not be validate to have no missing files. " +
+                                          $"Error: {e.FlattenMessage()}", ErrorType.MissingContainerAssets);
+        }
     }
 }

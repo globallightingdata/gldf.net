@@ -9,36 +9,27 @@ namespace Gldf.Net.Validation.Rules.Zip;
 
 internal class ContainsProductXmlRule : IZipArchiveValidationRule
 {
-    public IEnumerable<ValidationHint> Validate(string filePath)
-    {
-        try
-        {
-            return ZipArchiveReader.ContainsRootXml(filePath)
-                ? ValidationHint.Empty()
-                : ValidationHint.Error($"The GLDF container '{filePath}' does not contain a " +
-                                       "product.xml entry.", ErrorType.ProductXmlNotFound);
-        }
-        catch (Exception e)
-        {
-            return ValidationHint.Error($"The GLDF container '{filePath}' could not be validated " +
-                                        "to contain a product.xml entry. " +
-                                        $"Error: {e.FlattenMessage()}", ErrorType.ProductXmlNotFound);
-        }
-    }
+    public IEnumerable<ValidationHint> Validate(string filePath) =>
+        ValidateSafe(() => ZipArchiveReader.ContainsRootXml(filePath)
+            ? ValidationHint.Empty()
+            : ValidationHint.Error($"The GLDF container '{filePath}' does not contain a " +
+                                   "product.xml entry.", ErrorType.ProductXmlNotFound));
 
-    public IEnumerable<ValidationHint> Validate(Stream stream, bool leaveOpen)
+    public IEnumerable<ValidationHint> Validate(Stream stream, bool leaveOpen) =>
+        ValidateSafe(() => ZipArchiveReader.ContainsRootXml(stream, leaveOpen)
+            ? ValidationHint.Empty()
+            : ValidationHint.Error("The GLDF container does not contain a " +
+                                   "product.xml entry.", ErrorType.ProductXmlNotFound));
+
+    private static IEnumerable<ValidationHint> ValidateSafe(Func<IEnumerable<ValidationHint>> func)
     {
         try
         {
-            return ZipArchiveReader.ContainsRootXml(stream, leaveOpen)
-                ? ValidationHint.Empty()
-                : ValidationHint.Error("The GLDF container does not contain a " +
-                                       "product.xml entry.", ErrorType.ProductXmlNotFound);
+            return func();
         }
         catch (Exception e)
         {
-            return ValidationHint.Error("The GLDF container could not be validated " +
-                                        "to contain a product.xml entry. " +
+            return ValidationHint.Error($"The GLDF container could not be validated to contain a product.xml entry. " +
                                         $"Error: {e.FlattenMessage()}", ErrorType.ProductXmlNotFound);
         }
     }

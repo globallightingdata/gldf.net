@@ -12,9 +12,8 @@ internal class HasNoLargeFilesRule : IZipArchiveValidationRule
 {
     public const int LimitInBytes = 5 * 1024 * 1024;
 
-    public IEnumerable<ValidationHint> Validate(string filePath)
-    {
-        try
+    public IEnumerable<ValidationHint> Validate(string filePath) =>
+        ValidateSafe(() =>
         {
             var toLargeFiles = ZipArchiveReader.GetLargeFileNames(filePath, LimitInBytes).ToArray();
             return toLargeFiles.Any()
@@ -22,18 +21,10 @@ internal class HasNoLargeFilesRule : IZipArchiveValidationRule
                                          "maximum file size to 5MB each: " +
                                          $"{FlattenFileNames(toLargeFiles)}", ErrorType.TooLargeFiles)
                 : ValidationHint.Empty();
-        }
-        catch (Exception e)
-        {
-            return ValidationHint.Warning($"The GLDF container '{filePath}' could not be validated " +
-                                          "to have no large Files. " +
-                                          $"Error: {e.FlattenMessage()}", ErrorType.TooLargeFiles);
-        }
-    }
+        });
 
-    public IEnumerable<ValidationHint> Validate(Stream stream, bool leaveOpen)
-    {
-        try
+    public IEnumerable<ValidationHint> Validate(Stream stream, bool leaveOpen) =>
+        ValidateSafe(() =>
         {
             var toLargeFiles = ZipArchiveReader.GetLargeFileNames(stream, leaveOpen, LimitInBytes).ToArray();
             return toLargeFiles.Any()
@@ -41,18 +32,22 @@ internal class HasNoLargeFilesRule : IZipArchiveValidationRule
                                          "maximum file size to 5MB each: " +
                                          $"{FlattenFileNames(toLargeFiles)}", ErrorType.TooLargeFiles)
                 : ValidationHint.Empty();
+        });
+
+    private static string FlattenFileNames(IEnumerable<string> filesWithoutAssets) =>
+        filesWithoutAssets.Aggregate(string.Empty, (result, fileName)
+            => result == string.Empty ? $"{fileName}" : $"{result}, {fileName}");
+
+    private static IEnumerable<ValidationHint> ValidateSafe(Func<IEnumerable<ValidationHint>> func)
+    {
+        try
+        {
+            return func();
         }
         catch (Exception e)
         {
-            return ValidationHint.Warning("The GLDF container could not be validated " +
-                                          "to have no large Files. " +
+            return ValidationHint.Warning($"The GLDF container could not be validated to have no large Files. " +
                                           $"Error: {e.FlattenMessage()}", ErrorType.TooLargeFiles);
         }
-    }
-
-    private static string FlattenFileNames(IEnumerable<string> filesWithoutAssets)
-    {
-        return filesWithoutAssets.Aggregate(string.Empty, (result, fileName)
-            => result == string.Empty ? $"{fileName}" : $"{result}, {fileName}");
     }
 }

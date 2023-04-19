@@ -18,31 +18,34 @@ internal class IsValidProductXmlRule : IZipArchiveValidationRule
         _xmlValidator = new GldfXmlValidator();
     }
 
-    public IEnumerable<ValidationHint> Validate(string filePath)
-    {
-        try
+    public IEnumerable<ValidationHint> Validate(string filePath) =>
+        ValidateSafe(() =>
         {
             var rootXml = _zipArchiveReader.ReadRootXml(filePath);
-            return _xmlValidator.ValidateString(rootXml);
-        }
-        catch (Exception e)
+            return ValidateXml(rootXml);
+        });
+
+    public IEnumerable<ValidationHint> Validate(Stream stream, bool leaveOpen) =>
+        ValidateSafe(() =>
         {
-            return ValidationHint.Error($"The product.xml inside the GLDF container '{filePath}' could " +
-                                        "not be validated with the XMLSchema. " +
-                                        $"Error: {e.FlattenMessage()}", ErrorType.XmlSchema);
-        }
-    }
-    
-    public IEnumerable<ValidationHint> Validate(Stream stream, bool leaveOpen)
+            var rootXml = _zipArchiveReader.ReadRootXml(stream, leaveOpen);
+            return ValidateXml(rootXml);
+        });
+
+    private IEnumerable<ValidationHint> ValidateXml(string rootXml) =>
+        rootXml == null
+            ? ValidationHint.Error("The product.xml inside the GLDF container is missing", ErrorType.XmlSchema)
+            : _xmlValidator.ValidateString(rootXml);
+
+    private static IEnumerable<ValidationHint> ValidateSafe(Func<IEnumerable<ValidationHint>> func)
     {
         try
         {
-            var rootXml = _zipArchiveReader.ReadRootXml(stream, leaveOpen);
-            return _xmlValidator.ValidateString(rootXml);
+            return func();
         }
         catch (Exception e)
         {
-            return ValidationHint.Error("The product.xml inside the GLDF container stream could " +
+            return ValidationHint.Error("The product.xml inside the GLDF container could " +
                                         "not be validated with the XMLSchema. " +
                                         $"Error: {e.FlattenMessage()}", ErrorType.XmlSchema);
         }

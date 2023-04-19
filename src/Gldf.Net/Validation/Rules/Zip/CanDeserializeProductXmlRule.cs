@@ -23,38 +23,29 @@ internal class CanDeserializeProductXmlRule : IZipArchiveValidationRule
         };
     }
 
-    public IEnumerable<ValidationHint> Validate(string filePath)
-    {
-        try
-        {
-            var container = _gldfContainerReader.ReadFromFile(filePath, _loadRootOnlySettings);
-            return container.Product != null
+    public IEnumerable<ValidationHint> Validate(string filePath) =>
+        ValidateSafe(() =>
+            _gldfContainerReader.ReadFromFile(filePath, _loadRootOnlySettings).Product != null
                 ? ValidationHint.Empty()
                 : ValidationHint.Error($"The product.xml in GLDF container '{filePath}' could not be " +
-                                       "deserialized.", ErrorType.NonDeserialisableRoot);
-        }
-        catch (Exception e)
-        {
-            return ValidationHint.Error($"The product.xml in GLDF container '{filePath}' could " +
-                                        "not be deserialized. Error: " +
-                                        $"{e.FlattenMessage()}", ErrorType.NonDeserialisableRoot);
-        }
-    }
+                                       "deserialized.", ErrorType.NonDeserialisableRoot));
 
-    public IEnumerable<ValidationHint> Validate(Stream stream, bool leaveOpen)
+    public IEnumerable<ValidationHint> Validate(Stream stream, bool leaveOpen) =>
+        ValidateSafe(() =>
+            _gldfContainerReader.ReadFromStream(stream, leaveOpen, _loadRootOnlySettings).Product != null
+                ? ValidationHint.Empty()
+                : ValidationHint.Error("The product.xml in GLDF container could not be " +
+                                       "deserialized.", ErrorType.NonDeserialisableRoot));
+
+    private static IEnumerable<ValidationHint> ValidateSafe(Func<IEnumerable<ValidationHint>> func)
     {
         try
         {
-            var container = _gldfContainerReader.ReadFromStream(stream, leaveOpen, _loadRootOnlySettings);
-            return container.Product != null
-                ? ValidationHint.Empty()
-                : ValidationHint.Error("The product.xml in GLDF container could not be " +
-                                       "deserialized.", ErrorType.NonDeserialisableRoot);
+            return func();
         }
         catch (Exception e)
         {
-            return ValidationHint.Error("The product.xml in GLDF container could " +
-                                        "not be deserialized. Error: " +
+            return ValidationHint.Error($"The product.xml in GLDF container could not be deserialized. Error: " +
                                         $"{e.FlattenMessage()}", ErrorType.NonDeserialisableRoot);
         }
     }

@@ -4,7 +4,7 @@ public enum ErrorType
 {
     None,
     GenericError,
-    InvalidZipFile,
+    InvalidZip,
     ProductXmlNotFound,
     XmlSchema,
     NonDeserialisableRoot,
