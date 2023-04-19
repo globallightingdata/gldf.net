@@ -8,7 +8,7 @@ using System.Xml.XPath;
 
 namespace Gldf.Net.XmlHelper;
 
-internal static class GldfFormatVersionReader
+public static class GldfFormatVersionReader
 {
     public static FormatVersion GetFormatVersion(string xml)
     {
@@ -22,7 +22,7 @@ internal static class GldfFormatVersionReader
             {
                 (true, true, true) => new FormatVersion { Major = major, Minor = minor, PreRelease = preRelease },
                 (true, true, false) => new FormatVersion { Major = major, Minor = minor },
-                _ => throw new Exception("FormatVersion attributes not set. At least major and minor (:int) required")
+                _ => throw new XmlException("FormatVersion attributes missing. At least major and minor (:int) required")
             };
         }
         catch (Exception e)

@@ -24,7 +24,7 @@ public class XmlFormatVersionReaderTests
     }
 
     [Test]
-    public void GetFormatVersion_ShouldBeExpected_WhenPreReleaseIsNull()
+    public void GetFormatVersion_ShouldBeExpected_WhenPreReleaseIsMissing()
     {
         var expected = new FormatVersion { Major = 1, Minor = 2, PreReleaseSpecified = false };
         const string xml = "<Root><Header><FormatVersion major='1' minor='2' /></Header></Root>";
@@ -35,7 +35,7 @@ public class XmlFormatVersionReaderTests
     }
 
     [Test]
-    public void GetFormatVersion_Should_Throw_When_InvalidXml()
+    public void GetFormatVersion_ShouldThrow_WhenInvalidXml()
     {
         const string xml = "notValidXml";
 
@@ -49,7 +49,7 @@ public class XmlFormatVersionReaderTests
     }
 
     [Test]
-    public void GetFormatVersion_Should_Throw_When_MissingFormatElement()
+    public void GetFormatVersion_ShouldThrow_WhenMissingFormatElement()
     {
         const string xml = "<Root><Header></Header></Root>";
 
@@ -62,15 +62,19 @@ public class XmlFormatVersionReaderTests
             .WithMessage("Path Root/Header/FormatVersion not found");
     }
 
-    [Test]
-    public void GetFormatVersion_Should_Throw_When_InvalidVersion()
+    [TestCase("<Root><Header><FormatVersion major='1' /></Header></Root>")]
+    [TestCase("<Root><Header><FormatVersion major='1' pre-release='1' /></Header></Root>")]
+    [TestCase("<Root><Header><FormatVersion minor='1' /></Header></Root>")]
+    [TestCase("<Root><Header><FormatVersion minor='1' pre-release='1' /></Header></Root>")]
+    [TestCase("<Root><Header><FormatVersion pre-release='1' /></Header></Root>")]
+    public void GetFormatVersion_ShouldThrow_WhenInvalidVersion(string xml)
     {
-        const string xml = "<Root><Header></Header></Root>";
-
         Action act = () => GldfFormatVersionReader.GetFormatVersion(xml);
 
         act.Should()
             .ThrowExactly<GldfException>()
-            .WithMessage("Failed to get FormatVersion. See inner exception");
+            .WithMessage("Failed to get FormatVersion. See inner exception")
+            .WithInnerExceptionExactly<XmlException>()
+            .WithMessage("FormatVersion attributes missing*");
     }
 }
