@@ -1,5 +1,5 @@
 ﻿using Gldf.Net.Container;
-using Gldf.Net.Validation;
+using Gldf.Net.Validation.Model;
 using System.Collections.Generic;
 using System.IO;
 

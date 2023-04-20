@@ -1,4 +1,5 @@
 ﻿using Gldf.Net.Domain.Xml.Head.Types;
+using Gldf.Net.Validation.Model;
 using Gldf.Net.XmlHelper;
 using System;
 using System.Collections.Generic;

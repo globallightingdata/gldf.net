@@ -1,4 +1,4 @@
-﻿using Gldf.Net.Validation;
+﻿using Gldf.Net.Validation.Model;
 using System.Collections.Generic;
 
 namespace Gldf.Net.Abstract;

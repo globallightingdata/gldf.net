@@ -2,7 +2,7 @@ using FluentAssertions;
 using Gldf.Net.Domain.Xml;
 using Gldf.Net.Exceptions;
 using Gldf.Net.Tests.TestData;
-using Gldf.Net.Validation;
+using Gldf.Net.Validation.Model;
 using NUnit.Framework;
 using System;
 using System.IO;

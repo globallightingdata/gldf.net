@@ -1,4 +1,4 @@
-﻿namespace Gldf.Net.Validation;
+﻿namespace Gldf.Net.Validation.Model;
 
 public enum SeverityType
 {

@@ -1,6 +1,7 @@
 ﻿using Gldf.Net.Abstract;
 using Gldf.Net.Exceptions;
 using Gldf.Net.Validation;
+using Gldf.Net.Validation.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;

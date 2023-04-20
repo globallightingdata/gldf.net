@@ -1,7 +1,7 @@
 using FluentAssertions;
 using Gldf.Net.Container;
 using Gldf.Net.Tests.TestData;
-using Gldf.Net.Validation;
+using Gldf.Net.Validation.Model;
 using NUnit.Framework;
 using System;
 using System.IO;

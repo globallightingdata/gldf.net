@@ -1,5 +1,6 @@
 ﻿using Gldf.Net.Abstract;
 using Gldf.Net.Container;
+using Gldf.Net.Validation.Model;
 using Gldf.Net.Validation.Rules.Container;
 using Gldf.Net.Validation.Rules.Zip;
 using System;

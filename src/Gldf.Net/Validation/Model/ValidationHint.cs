@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Gldf.Net.Validation;
+namespace Gldf.Net.Validation.Model;
 
 public class ValidationHint
 {

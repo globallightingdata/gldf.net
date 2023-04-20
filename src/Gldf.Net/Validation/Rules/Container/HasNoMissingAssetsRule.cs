@@ -3,6 +3,7 @@ using Gldf.Net.Container;
 using Gldf.Net.Domain.Xml.Definition;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using Gldf.Net.Exceptions;
+using Gldf.Net.Validation.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

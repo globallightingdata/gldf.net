@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Gldf.Net.Validation;
+using Gldf.Net.Validation.Model;
 using NUnit.Framework;
 using System.Linq;
 
