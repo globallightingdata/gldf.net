@@ -6,8 +6,6 @@ namespace Gldf.Net.Domain.Typed.Definition;
 
 public class EquipmentTyped : TypedBase
 {
-    public int? ChangeableLightSourceCount { get; set; }
-        
     public ChangeableLightSourceTyped ChangeableLightSource { get; set; }
         
     public int? LightSourceCount { get; set; }

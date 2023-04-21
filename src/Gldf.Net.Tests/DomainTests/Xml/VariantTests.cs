@@ -2,7 +2,7 @@
 using Gldf.Net.Domain.Xml.Product;
 using NUnit.Framework;
 
-namespace Gldf.Net.Tests.DomainTests;
+namespace Gldf.Net.Tests.DomainTests.Xml;
 
 public class VariantTests
 {

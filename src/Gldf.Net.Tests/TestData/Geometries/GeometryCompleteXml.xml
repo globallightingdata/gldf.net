@@ -3,7 +3,7 @@
       xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/1.0.0-rc.2/gldf.xsd">
     <Header>
         <Manufacturer>DIAL</Manufacturer>
-        <FormatVersion major="1" minor="0" pre-release="2" />
+        <FormatVersion major="1" minor="0" pre-release="2"/>
         <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
         <GldfCreationTimeCode>2021-03-29T14:30:00Z</GldfCreationTimeCode>
         <UniqueGldfId>3BE556FF-9061-4592-AEB1-1BC9D507280E</UniqueGldfId>
@@ -11,7 +11,7 @@
     <GeneralDefinitions>
         <Files>
             <File id="eulumdat" contentType="ldc/eulumdat" type="url">https://example.org/eulumdat.ldt</File>
-            <File id="geometryFile" contentType="geo/l3d" type="url">https://example.org/geometry.l3d</File>
+            <File id="geometryFile" contentType="geo/l3d" type="url" language="en">https://example.org/geometry.l3d</File>
         </Files>
         <Photometries>
             <Photometry id="photometry">
@@ -71,6 +71,9 @@
                     <Diameter>3</Diameter>
                 </CircularEmitter>
             </SimpleGeometry>
+            <ModelGeometry id="geometry5">
+                <GeometryFileReference fileId="geometryFile" levelOfDetail="Low"/>
+            </ModelGeometry>
         </Geometries>
     </GeneralDefinitions>
     <ProductDefinitions>

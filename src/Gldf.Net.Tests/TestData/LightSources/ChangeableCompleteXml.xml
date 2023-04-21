@@ -12,7 +12,7 @@
         <Files>
             <File id="eulumdat" contentType="ldc/eulumdat" type="url">https://example.org/eulumdat.ldt</File>
             <File id="spectrumFile" contentType="spectrum/text" type="url">https://example.org/spectrum.txt</File>
-            <File id="image" contentType="image/jpg" type="url">https://example.org/image.jpg</File>
+            <File id="image" contentType="image/jpg" type="url" language="en">https://example.org/image.jpg</File>
         </Files>
         <Photometries>
             <Photometry id="photometry">
@@ -137,7 +137,20 @@
                     <LedMaintenanceFactor hours="22">23.24</LedMaintenanceFactor>
                 </LightSourceMaintenance>
             </ChangeableLightSource>
+            <ChangeableLightSource id="lightSource-4">
+                <Name>
+                    <Locale language="en">LightSource4</Locale>
+                </Name>
+                <RatedInputPower>21</RatedInputPower>
+                <RatedLuminousFlux>22</RatedLuminousFlux>
+            </ChangeableLightSource>
         </LightSources>
+        <Equipments>
+            <Equipment id="equipment">
+                <LightSourceReference changeableLightSourceId="lightSource-4" lightSourceCount="2" />
+                <RatedInputPower>23</RatedInputPower>
+            </Equipment>
+        </Equipments>
         <Emitters>
             <Emitter id="emitter">
                 <ChangeableLightEmitter>

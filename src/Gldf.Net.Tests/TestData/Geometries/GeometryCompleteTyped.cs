@@ -45,7 +45,8 @@ public static class GeometryCompleteTyped
                     ContentType = FileContentType.GeoL3d,
                     Type = FileType.Url,
                     Uri = "https://example.org/geometry.l3d",
-                    FileName = "geometry.l3d"
+                    FileName = "geometry.l3d",
+                    Language = "en"
                 }
             },
             Photometries = new List<PhotometryTyped>
@@ -153,6 +154,24 @@ public static class GeometryCompleteTyped
                     CircularEmitter = new SimpleCircularEmitterTyped
                     {
                         Diameter = 3
+                    }
+                }
+            },
+            ModelGeometries = new List<ModelGeometryTyped>
+            {
+                new()
+                {
+                    Id = "geometry5",
+                    GeometryFiles = new []
+                    {
+                        new ModelFileTyped
+                        {
+                            ContentType = FileContentType.GeoL3d,
+                            Type = FileType.Url,
+                            Uri = "https://example.org/geometry.l3d",
+                            FileName = "geometry.l3d",
+                            Language = "en"
+                        }
                     }
                 }
             }

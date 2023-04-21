@@ -45,7 +45,8 @@ public static class ChangeableCompleteModel
                     Id = "image",
                     ContentType = FileContentType.ImageJpg,
                     Type = FileType.Url,
-                    File = "https://example.org/image.jpg"
+                    File = "https://example.org/image.jpg",
+                    Language = "en"
                 }
             },
             Photometries = new[]
@@ -281,6 +282,33 @@ public static class ChangeableCompleteModel
                             Factor = 23.24
                         }
                     }
+                },
+                new ChangeableLightSource
+                {
+                    Id = "lightSource-4",
+                    Name = new[]
+                    {
+                        new Locale
+                        {
+                            Language = "en",
+                            Text = "LightSource4"
+                        }
+                    },
+                    RatedInputPower = 21,
+                    RatedLuminousFlux = 22
+                }
+            },
+            Equipments = new []
+            {
+                new Equipment
+                {
+                    Id = "equipment",
+                    LightSourceReference = new LightSourceReference
+                    {
+                        ChangeableLightSourceId = "lightSource-4",
+                        LightSourceCount = 2
+                    },
+                    RatedInputPower = 23,
                 }
             },
             Emitters = new[]

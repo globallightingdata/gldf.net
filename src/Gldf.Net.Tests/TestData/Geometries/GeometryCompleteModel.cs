@@ -38,7 +38,8 @@ public static class GeometryCompleteModel
                     Id = "geometryFile",
                     ContentType = FileContentType.GeoL3d,
                     Type = FileType.Url,
-                    File = "https://example.org/geometry.l3d"
+                    File = "https://example.org/geometry.l3d",
+                    Language = "en"
                 }
             },
             Photometries = new[]
@@ -134,6 +135,19 @@ public static class GeometryCompleteModel
                     EmitterType = new SimpleCircularEmitter
                     {
                         Diameter = 3
+                    }
+                },
+                new ModelGeometry
+                {
+                    Id = "geometry5",
+                    GeometryFileReferences = new []
+                    {
+                        new GeometryFileReference
+                        {
+                            FileId = "geometryFile",
+                            LevelOfDetail = LevelOfDetail.Low,
+                            LevelOfDetailSpecified = true
+                        }
                     }
                 }
             }

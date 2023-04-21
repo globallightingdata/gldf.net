@@ -1,12 +1,12 @@
-﻿using Gldf.Net.Domain.Xml.Definition.Types;
+﻿using Gldf.Net.Domain.Typed;
+using Gldf.Net.Domain.Typed.Definition;
+using Gldf.Net.Domain.Typed.Definition.Types;
+using Gldf.Net.Domain.Typed.Global;
+using Gldf.Net.Domain.Typed.Head;
+using Gldf.Net.Domain.Typed.Head.Types;
+using Gldf.Net.Domain.Xml.Definition.Types;
 using Gldf.Net.Domain.Xml.Global;
 using System;
-using Gldf.Net.Domain.Typed;
-using Gldf.Net.Domain.Typed.Definition;
-using Gldf.Net.Domain.Typed.Head;
-using Gldf.Net.Domain.Typed.Global;
-using Gldf.Net.Domain.Typed.Definition.Types;
-using Gldf.Net.Domain.Typed.Head.Types;
 using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.LightSources;
@@ -49,7 +49,8 @@ public static class ChangeableCompleteTyped
                     ContentType = FileContentType.ImageJpg,
                     Type = FileType.Url,
                     FileName = "image.jpg",
-                    Uri = "https://example.org/image.jpg"
+                    Uri = "https://example.org/image.jpg",
+                    Language = "en"
                 }
             },
             Photometries = new List<PhotometryTyped>
@@ -207,7 +208,8 @@ public static class ChangeableCompleteTyped
                             Type = FileType.Url,
                             FileName = "image.jpg",
                             ImageType = ImageType.ProductPicture,
-                            Uri = "https://example.org/image.jpg"
+                            Uri = "https://example.org/image.jpg",
+                            Language = "en"
                         }
                     },
                     Zvei = "ZVEI",
@@ -301,6 +303,43 @@ public static class ChangeableCompleteTyped
                             Factor = 23.24
                         }
                     }
+                },
+                new()
+                {
+                    Id = "lightSource-4",
+                    Name = new[]
+                    {
+                        new LocaleTyped
+                        {
+                            Language = "en",
+                            Text = "LightSource4"
+                        }
+                    },
+                    RatedInputPower = 21,
+                    RatedLuminousFlux = 22
+                }
+            },
+            Equipments = new List<EquipmentTyped>
+            {
+                new()
+                {
+                    Id = "equipment",
+                    ChangeableLightSource = new ChangeableLightSourceTyped
+                    {
+                        Id = "lightSource-4",
+                        Name = new[]
+                        {
+                            new LocaleTyped
+                            {
+                                Language = "en",
+                                Text = "LightSource4"
+                            }
+                        },
+                        RatedInputPower = 21,
+                        RatedLuminousFlux = 22
+                    },
+                    LightSourceCount = 2,
+                    RatedInputPower = 23
                 }
             },
             Emitter = new List<EmitterTyped>

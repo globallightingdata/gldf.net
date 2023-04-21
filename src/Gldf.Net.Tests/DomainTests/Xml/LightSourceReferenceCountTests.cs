@@ -2,7 +2,7 @@
 using Gldf.Net.Domain.Xml.Definition.Types;
 using NUnit.Framework;
 
-namespace Gldf.Net.Tests.DomainTests;
+namespace Gldf.Net.Tests.DomainTests.Xml;
 
 [TestFixture]
 public class LightSourceReferenceCountTests
