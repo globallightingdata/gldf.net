@@ -1,6 +1,7 @@
 ﻿using Gldf.Net.Abstract;
 using Gldf.Net.Domain.Xml;
 using Gldf.Net.Exceptions;
+using Gldf.Net.Extensions;
 using Gldf.Net.XmlHelper;
 using System;
 using System.IO;
@@ -93,6 +94,30 @@ public class GldfXmlSerializer : IGldfXmlSerializer
     }
 
     /// <summary>
+    ///     Converts the parameter of type <see cref="Root" /> into a GLDF-XML text and writes
+    ///     it to a file.
+    /// </summary>
+    /// <param name="root">The value to convert.</param>
+    /// <param name="stream"></param>
+    /// <exception cref="GldfException">
+    ///     Input is invalid or the filePath cannot be written to. See also InnerException.
+    /// </exception>
+    public void SerializeToStream(Root root, Stream stream)
+    {
+        if (root == null) throw new ArgumentNullException(nameof(root));
+
+        try
+        {
+            using var xmlWriter = XmlWriter.Create(stream, _settings);
+            _xmlSerializer.Serialize(xmlWriter, root, _xmlNamespaces);
+        }
+        catch (Exception e)
+        {
+            throw new GldfException("Failed to serialize Root to Disk", e);
+        }
+    }
+
+    /// <summary>
     ///     Parses the text representing a GLDF-XML into an instance of type <see cref="Root" />
     /// </summary>
     /// <param name="xml"></param>
@@ -139,6 +164,35 @@ public class GldfXmlSerializer : IGldfXmlSerializer
         catch (Exception e)
         {
             throw new GldfException($"Failed to deserialize Root from filepath '{filePath}'", e);
+        }
+    }
+
+    /// <summary>
+    ///     Parses the file containing a GLDF-XML into an instance of type <see cref="Root" />
+    /// </summary>
+    /// <param name="stream">The stream containing the GLDF-XML</param>
+    /// <returns>
+    ///     Representation of the GLDF-XML file as instance of the type <see cref="Root" />
+    /// </returns>
+    /// <exception cref="GldfException">
+    ///     Input is invalid GLDF-XML or the filePath cannot be read from. See also InnerException.
+    /// </exception>
+    public Root DeserializeFromStream(Stream stream)
+    {
+        if (stream == null) throw new ArgumentNullException(nameof(stream));
+
+        try
+        {
+            var deserializedXml = _xmlSerializer.Deserialize(stream);
+            return (Root)deserializedXml;
+        }
+        catch (Exception e)
+        {
+            throw new GldfException("Failed to deserialize Root from stream. See inner exception", e);
+        }
+        finally
+        {
+            if (_settings.CloseOutput) stream.DisposeSafe();
         }
     }
 }

@@ -36,7 +36,7 @@ internal class IsValidProductXmlRule : IZipArchiveValidationRule
     private IEnumerable<ValidationHint> ValidateXml(string rootXml) =>
         rootXml == null
             ? ValidationHint.Error("The product.xml inside the GLDF container is missing", ErrorType.XmlSchema)
-            : _xmlValidator.ValidateString(rootXml);
+            : _xmlValidator.ValidateXml(rootXml);
 
     private static IEnumerable<ValidationHint> ValidateSafe(Func<IEnumerable<ValidationHint>> func)
     {

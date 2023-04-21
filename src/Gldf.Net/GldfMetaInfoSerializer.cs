@@ -93,6 +93,31 @@ public class MetaInfoSerializer : IMetaInfoSerializer
     }
 
     /// <summary>
+    ///     Converts the parameter of type <see cref="Root" /> into a GLDF-XML text and writes
+    ///     it to a file.
+    /// </summary>
+    /// <param name="metaInformation"></param>
+    /// <param name="stream"></param>
+    /// <exception cref="GldfException">
+    ///     Input is invalid or the filePath cannot be written to. See also InnerException.
+    /// </exception>
+    public void SerializeToStream(MetaInformation metaInformation, Stream stream)
+    {
+        if (metaInformation == null) throw new ArgumentNullException(nameof(metaInformation));
+        if (stream == null) throw new ArgumentNullException(nameof(stream));
+
+        try
+        {
+            using var xmlWriter = XmlWriter.Create(stream, _settings);
+            _xmlSerializer.Serialize(xmlWriter, metaInformation, _xmlNamespaces);
+        }
+        catch (Exception e)
+        {
+            throw new GldfException("Failed to serialize Root to Disk", e);
+        }
+    }
+
+    /// <summary>
     ///     Parses the text representing a GLDF-XML into an instance of type <see cref="Root" />
     /// </summary>
     /// <param name="xml"></param>
@@ -139,6 +164,32 @@ public class MetaInfoSerializer : IMetaInfoSerializer
         catch (Exception e)
         {
             throw new GldfException($"Failed to deserialize Root from filepath '{filePath}'", e);
+        }
+    }
+
+    /// <summary>
+    ///     Parses the file containing a GLDF-XML into an instance of type <see cref="Root" />
+    /// </summary>
+    /// <param name="stream"></param>
+    /// <returns>
+    ///     Representation of the GLDF-XML file as instance of the type <see cref="Root" />
+    /// </returns>
+    /// <exception cref="GldfException">
+    ///     Input is invalid GLDF-XML or the filePath cannot be read from. See also InnerException.
+    /// </exception>
+    public MetaInformation DeserializeFromStream(Stream stream)
+    {
+        if (stream == null) throw new ArgumentNullException(nameof(stream));
+
+        try
+        {
+            using var streamIn = new StreamReader(stream, _settings.Encoding);
+            var deserializedXml = _xmlSerializer.Deserialize(streamIn);
+            return (MetaInformation)deserializedXml;
+        }
+        catch (Exception e)
+        {
+            throw new GldfException("Failed to deserialize Root from stream", e);
         }
     }
 }

@@ -14,19 +14,13 @@ namespace Gldf.Net.Tests.ValidationTests;
 [TestFixture]
 public class XmlDocValidatorTests
 {
-    private XmlDocValidator _validator;
-    private static readonly TestCaseData[] ValidXmlTestCases = EmbeddedXmlTestData.ValidXmlTestCases;
+    private readonly GldfXmlSchemaValidator _xmlValidator = new();
+    private static TestCaseData[] _validXmlTestCases = EmbeddedXmlTestData.ValidXmlTestCases;
 
-    [SetUp]
-    public void SetUp()
-    {
-        _validator = new XmlDocValidator();
-    }
-
-    [Test, TestCaseSource(nameof(ValidXmlTestCases))]
+    [Test, TestCaseSource(nameof(_validXmlTestCases))]
     public void ValidateString_ValidTestData_Should_Return_EmptyList(string xml)
     {
-        var validationResult = _validator.ValidateString(xml);
+        var validationResult = _xmlValidator.ValidateString(xml);
 
         validationResult.Should().BeEmpty();
     }
@@ -34,7 +28,7 @@ public class XmlDocValidatorTests
     [Test]
     public void ValidateString_WithNull_Should_Throw_ArgumentNullException()
     {
-        Action act = () => _validator.ValidateString(null);
+        Action act = () => _xmlValidator.ValidateString(null);
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
@@ -44,7 +38,7 @@ public class XmlDocValidatorTests
     [Test]
     public void ValidateString_WithEmptyXml_Should_Throw_GldfException()
     {
-        Action act = () => _validator.ValidateString(string.Empty);
+        Action act = () => _xmlValidator.ValidateString(string.Empty);
 
         act.Should()
             .Throw<GldfException>()
@@ -57,7 +51,7 @@ public class XmlDocValidatorTests
         const string invalidXml = "<";
         const string expectedMessage = "Data at the root level is invalid. Line 1, position 1.";
         var expectedHint = new ValidationHint(SeverityType.Error, expectedMessage, ErrorType.XmlSchema);
-        var validator = new XmlDocValidatorTestClass();
+        var validator = new GldfXmlSchemaValidatorTestClass();
 
         var validationResult = validator.CallValidateWithSchemaSet(invalidXml);
 
@@ -72,7 +66,7 @@ public class XmlDocValidatorTests
                                "List of possible elements expected: 'GeneralDefinitions'.";
         var expectedHint = new ValidationHint(SeverityType.Error, expectedMmessage, ErrorType.XmlSchema);
 
-        var validationResult = _validator.ValidateString(xml);
+        var validationResult = _xmlValidator.ValidateString(xml);
 
         validationResult.Should().ContainEquivalentOf(expectedHint);
     }
@@ -84,7 +78,7 @@ public class XmlDocValidatorTests
         var xmlWithXsd = EmbeddedXmlTestData.GetHeaderMandatoryXml();
         var xmlWithoutXsd = xmlWithXsd.Replace(xsdLocationString, string.Empty);
 
-        var validationResult = _validator.ValidateString(xmlWithoutXsd);
+        var validationResult = _xmlValidator.ValidateString(xmlWithoutXsd);
 
         xmlWithoutXsd.ToLower().Should().NotContain("xsd");
         validationResult.Should().BeEmpty();
@@ -98,18 +92,18 @@ public class XmlDocValidatorTests
         var xmlWithCurrentXsd = EmbeddedXmlTestData.GetHeaderMandatoryXml();
         var xmlWithWrongXsd = xmlWithCurrentXsd.Replace(currentXsd, wrongXsd);
 
-        var validationResult = _validator.ValidateString(xmlWithWrongXsd);
+        var validationResult = _xmlValidator.ValidateString(xmlWithWrongXsd);
 
         xmlWithWrongXsd.Should().NotBeEquivalentTo(xmlWithCurrentXsd);
         validationResult.Should().BeEmpty();
     }
 }
 
-internal class XmlDocValidatorTestClass : XmlDocValidator
+internal class GldfXmlSchemaValidatorTestClass : GldfXmlSchemaValidator
 {
     public IEnumerable<ValidationHint> CallValidateWithSchemaSet(string xml)
     {
         using var stringReader = new StringReader(xml);
-        return ValidateWithSchemaSet(stringReader, null);
+        return Validate(stringReader, null);
     }
 }
