@@ -79,15 +79,8 @@ public class GldfXmlValidator : IGldfXmlValidator
     public IEnumerable<ValidationHint> ValidateXmlStream(Stream xmlStream, bool leaveOpen) =>
         ValidateSafe(() =>
         {
-            try
-            {
-                using var streamReader = new StreamReader(xmlStream, Encoding);
-                return _gldfXmlValidator.ValidateXml(streamReader.ReadToEnd());
-            }
-            finally
-            {
-                if (!leaveOpen) xmlStream.DisposeSafe();
-            }
+            using var streamReader = new StreamReader(xmlStream, Encoding, leaveOpen: leaveOpen);
+            return _gldfXmlValidator.ValidateXml(streamReader.ReadToEnd());
         });
 
     /// <summary>
