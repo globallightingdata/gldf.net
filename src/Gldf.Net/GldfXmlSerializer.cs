@@ -50,7 +50,7 @@ public class GldfXmlSerializer : IGldfXmlSerializer
     /// <param name="root">The value to convert.</param>
     /// <returns>The GLDF XML representation of the value.</returns>
     /// <exception cref="GldfException">Input is invalid. See also InnerException.</exception>
-    public string SerializeToString(Root root)
+    public string SerializeToXml(Root root)
     {
         if (root == null) throw new ArgumentNullException(nameof(root));
 
@@ -76,7 +76,7 @@ public class GldfXmlSerializer : IGldfXmlSerializer
     /// <exception cref="GldfException">
     ///     Input is invalid or the filePath cannot be written to. See also InnerException.
     /// </exception>
-    public void SerializeToFile(Root root, string filePath)
+    public void SerializeToXmlFile(Root root, string filePath)
     {
         if (root == null) throw new ArgumentNullException(nameof(root));
         if (filePath == null) throw new ArgumentNullException(nameof(filePath));
@@ -98,17 +98,17 @@ public class GldfXmlSerializer : IGldfXmlSerializer
     ///     it to a file.
     /// </summary>
     /// <param name="root">The value to convert.</param>
-    /// <param name="stream"></param>
+    /// <param name="xmlStream"></param>
     /// <exception cref="GldfException">
     ///     Input is invalid or the filePath cannot be written to. See also InnerException.
     /// </exception>
-    public void SerializeToStream(Root root, Stream stream)
+    public void SerializeToXmlStream(Root root, Stream xmlStream)
     {
         if (root == null) throw new ArgumentNullException(nameof(root));
 
         try
         {
-            using var xmlWriter = XmlWriter.Create(stream, _settings);
+            using var xmlWriter = XmlWriter.Create(xmlStream, _settings);
             _xmlSerializer.Serialize(xmlWriter, root, _xmlNamespaces);
         }
         catch (Exception e)
@@ -125,7 +125,7 @@ public class GldfXmlSerializer : IGldfXmlSerializer
     ///     Representation of the GLDF-XML text as instance of the type <see cref="Root" />
     /// </returns>
     /// <exception cref="GldfException">Input is invalid GLDF-XML. See also InnerException.</exception>
-    public Root DeserializeFromString(string xml)
+    public Root DeserializeFromXml(string xml)
     {
         if (xml == null) throw new ArgumentNullException(nameof(xml));
 
@@ -144,46 +144,46 @@ public class GldfXmlSerializer : IGldfXmlSerializer
     /// <summary>
     ///     Parses the file containing a GLDF-XML into an instance of type <see cref="Root" />
     /// </summary>
-    /// <param name="filePath">The file containing the GLDF-XML</param>
+    /// <param name="xmlFilePath">The file containing the GLDF-XML</param>
     /// <returns>
     ///     Representation of the GLDF-XML file as instance of the type <see cref="Root" />
     /// </returns>
     /// <exception cref="GldfException">
     ///     Input is invalid GLDF-XML or the filePath cannot be read from. See also InnerException.
     /// </exception>
-    public Root DeserializeFromFile(string filePath)
+    public Root DeserializeFromXmlFile(string xmlFilePath)
     {
-        if (filePath == null) throw new ArgumentNullException(nameof(filePath));
+        if (xmlFilePath == null) throw new ArgumentNullException(nameof(xmlFilePath));
 
         try
         {
-            using var streamIn = new StreamReader(filePath, _settings.Encoding);
+            using var streamIn = new StreamReader(xmlFilePath, _settings.Encoding);
             var deserializedXml = _xmlSerializer.Deserialize(streamIn);
             return (Root)deserializedXml;
         }
         catch (Exception e)
         {
-            throw new GldfException($"Failed to deserialize Root from filepath '{filePath}'", e);
+            throw new GldfException($"Failed to deserialize Root from filepath '{xmlFilePath}'", e);
         }
     }
 
     /// <summary>
     ///     Parses the file containing a GLDF-XML into an instance of type <see cref="Root" />
     /// </summary>
-    /// <param name="stream">The stream containing the GLDF-XML</param>
+    /// <param name="xmlStream">The stream containing the GLDF-XML</param>
     /// <returns>
     ///     Representation of the GLDF-XML file as instance of the type <see cref="Root" />
     /// </returns>
     /// <exception cref="GldfException">
     ///     Input is invalid GLDF-XML or the filePath cannot be read from. See also InnerException.
     /// </exception>
-    public Root DeserializeFromStream(Stream stream)
+    public Root DeserializeFromXmlStream(Stream xmlStream)
     {
-        if (stream == null) throw new ArgumentNullException(nameof(stream));
+        if (xmlStream == null) throw new ArgumentNullException(nameof(xmlStream));
 
         try
         {
-            var deserializedXml = _xmlSerializer.Deserialize(stream);
+            var deserializedXml = _xmlSerializer.Deserialize(xmlStream);
             return (Root)deserializedXml;
         }
         catch (Exception e)
@@ -192,7 +192,7 @@ public class GldfXmlSerializer : IGldfXmlSerializer
         }
         finally
         {
-            if (_settings.CloseOutput) stream.DisposeSafe();
+            if (_settings.CloseOutput) xmlStream.DisposeSafe();
         }
     }
 }

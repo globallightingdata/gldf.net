@@ -12,19 +12,17 @@ namespace Gldf.Net.Validation;
 
 internal class GldfXmlSchemaValidator
 {
-    public IEnumerable<ValidationHint> ValidateString(string xml)
+    public IEnumerable<ValidationHint> ValidateXml(string xml)
     {
         using var stringReader = new StringReader(xml);
         var schemaSet = GetSchema(xml);
         return Validate(stringReader, schemaSet);
     }
 
-    public IEnumerable<ValidationHint> ValidateFile(string xmlFilePath)
+    public IEnumerable<ValidationHint> ValidateXmlFile(string xmlFilePath)
     {
-        using var streamReader = new StreamReader(xmlFilePath);
-        var xml = streamReader.ReadToEnd();
-        var schemaSet = GetSchema(xml);
-        return Validate(streamReader, schemaSet);
+        var xml = File.ReadAllText(xmlFilePath);
+        return ValidateXml(xml);
     }
 
     protected static IEnumerable<ValidationHint> Validate(TextReader reader, XmlSchemaSet schema)
@@ -48,14 +46,14 @@ internal class GldfXmlSchemaValidator
 
     private static XmlSchemaSet GetSchema(string xml)
     {
-        var xmlFormatVersion = GldfFormatVersionReader.GetFormatVersion(xml);
-        var schemaSet = CreateSchemaSet(xmlFormatVersion);
+        var formatVersion = GldfFormatVersionReader.Get(xml);
+        var schemaSet = CreateSchemaSet(formatVersion);
         return schemaSet;
     }
 
     private static XmlSchemaSet CreateSchemaSet(FormatVersion formatVersion)
     {
-        var embeddedXsd = GldfEmbeddedXsdLoader.LoadXsd(formatVersion);
+        var embeddedXsd = GldfEmbeddedXsdLoader.Load(formatVersion);
         using var xsdStringReader = new StringReader(embeddedXsd);
         using var schemaDoc = XmlReader.Create(xsdStringReader);
         var schemaSet = new XmlSchemaSet();

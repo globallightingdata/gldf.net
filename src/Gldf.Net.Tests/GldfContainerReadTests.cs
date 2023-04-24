@@ -32,17 +32,17 @@ public class GldfContainerReadTests
     [Test]
     public void ReadFromFile_ShouldThrow_When_FilePathParameter_IsNull()
     {
-        Action act = () => _gldfContainerReader.ReadFromFile(null);
+        Action act = () => _gldfContainerReader.ReadFromGldfFile(null);
 
         act.Should()
             .Throw<ArgumentNullException>()
-            .WithMessage("Value cannot be null. (Parameter 'filePath')");
+            .WithMessage("Value cannot be null. (Parameter 'gldfFilePath')");
     }
     
     [Test]
     public void ReadFromStream_ShouldThrow_When_FilePathParameter_IsNull()
     {
-        Action act = () => _gldfContainerReader.ReadFromStream(null, false);
+        Action act = () => _gldfContainerReader.ReadFromGldfStream(null, false);
 
         act.Should()
             .Throw<ArgumentNullException>()
@@ -52,7 +52,7 @@ public class GldfContainerReadTests
     [Test]
     public void ReadFromFile_ShouldThrow_When_SettingsParameter_IsNull()
     {
-        Action act = () => _gldfContainerReader.ReadFromFile("", null);
+        Action act = () => _gldfContainerReader.ReadFromGldfFile("", null);
 
         act.Should()
             .Throw<ArgumentNullException>()
@@ -65,7 +65,7 @@ public class GldfContainerReadTests
         var act = () =>
         {
             using var memoryStream = new MemoryStream(File.ReadAllBytes(_tempFile));
-            _gldfContainerReader.ReadFromStream(memoryStream, false, null);
+            _gldfContainerReader.ReadFromGldfStream(memoryStream, false, null);
         };
 
         act.Should()
@@ -78,7 +78,7 @@ public class GldfContainerReadTests
     {
         ZipFile.Open(_tempFile, ZipArchiveMode.Update).Dispose();
 
-        var gldfContainer = _gldfContainerReader.ReadFromFile(_tempFile);
+        var gldfContainer = _gldfContainerReader.ReadFromGldfFile(_tempFile);
 
         gldfContainer.Product.Should().BeNull();
     }
@@ -87,7 +87,7 @@ public class GldfContainerReadTests
     public void ReadFromStream_EmptyContainer_ShouldReturnNull()
     {
         using var stream = new MemoryStream(File.ReadAllBytes(_tempFile));
-        var gldfContainer = _gldfContainerReader.ReadFromStream(stream, false);
+        var gldfContainer = _gldfContainerReader.ReadFromGldfStream(stream, false);
 
         gldfContainer.Product.Should().BeNull();
     }
@@ -97,7 +97,7 @@ public class GldfContainerReadTests
     {
         File.WriteAllBytes(_tempFile, new byte[10]);
 
-        Action act = () => _gldfContainerReader.ReadFromFile(_tempFile);
+        Action act = () => _gldfContainerReader.ReadFromGldfFile(_tempFile);
 
         act.Should()
             .Throw<GldfContainerException>()
@@ -108,7 +108,7 @@ public class GldfContainerReadTests
     [Test]
     public void ReadFromStream_InvalidContainer_ShouldThrow_UnreadableContainerException()
     {
-        Action act = () => _gldfContainerReader.ReadFromStream(new MemoryStream(), false);
+        Action act = () => _gldfContainerReader.ReadFromGldfStream(new MemoryStream(), false);
 
         act.Should()
             .Throw<GldfContainerException>()
@@ -123,7 +123,7 @@ public class GldfContainerReadTests
         var gldfBytes = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
         File.WriteAllBytes(_tempFile, gldfBytes);
 
-        var container = _gldfContainerReader.ReadFromFile(_tempFile);
+        var container = _gldfContainerReader.ReadFromGldfFile(_tempFile);
 
         container.Product.Should().BeEquivalentTo(expectedModel);
     }
@@ -135,7 +135,7 @@ public class GldfContainerReadTests
         var gldfBytes = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
         using var stream = new MemoryStream(gldfBytes);
 
-        var container = _gldfContainerReader.ReadFromStream(stream, false);
+        var container = _gldfContainerReader.ReadFromGldfStream(stream, false);
 
         container.Product.Should().BeEquivalentTo(expectedModel);
     }
@@ -147,7 +147,7 @@ public class GldfContainerReadTests
         var gldfBytesWithHeader = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
         File.WriteAllBytes(_tempFile, gldfBytesWithHeader);
 
-        var container = _gldfContainerReader.ReadFromFile(_tempFile, settings);
+        var container = _gldfContainerReader.ReadFromGldfFile(_tempFile, settings);
 
         container.Product.Should().BeNull();
     }
@@ -159,7 +159,7 @@ public class GldfContainerReadTests
         var gldfBytesWithHeader = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
         using var stream = new MemoryStream(gldfBytesWithHeader);
 
-        var container = _gldfContainerReader.ReadFromStream(stream, false, settings);
+        var container = _gldfContainerReader.ReadFromGldfStream(stream, false, settings);
 
         container.Product.Should().BeNull();
     }
@@ -171,7 +171,7 @@ public class GldfContainerReadTests
         var gldfBytesWithHeader = EmbeddedGldfTestData.GetGldfWithFiles();
         File.WriteAllBytes(_tempFile, gldfBytesWithHeader);
 
-        var container = _gldfContainerReader.ReadFromFile(_tempFile, settings);
+        var container = _gldfContainerReader.ReadFromGldfFile(_tempFile, settings);
 
         container.Assets.All.Should().BeEmpty();
     }
@@ -183,7 +183,7 @@ public class GldfContainerReadTests
         var gldfBytesWithHeader = EmbeddedGldfTestData.GetGldfWithFiles();
         using var stream = new MemoryStream(gldfBytesWithHeader);
 
-        var container = _gldfContainerReader.ReadFromStream(stream, false, settings);
+        var container = _gldfContainerReader.ReadFromGldfStream(stream, false, settings);
         
         container.Assets.All.Should().BeEmpty();
     }
@@ -195,7 +195,7 @@ public class GldfContainerReadTests
         var gldfBytesWithHeader = EmbeddedGldfTestData.GetGldfWithFiles();
         File.WriteAllBytes(_tempFile, gldfBytesWithHeader);
 
-        var container = _gldfContainerReader.ReadFromFile(_tempFile, settings);
+        var container = _gldfContainerReader.ReadFromGldfFile(_tempFile, settings);
 
         container.Assets.All.Should().OnlyContain(f => !string.IsNullOrWhiteSpace(f.FileName));
         container.Assets.All.Should().NotContain(f => f.Bytes.Length > 0);
@@ -208,7 +208,7 @@ public class GldfContainerReadTests
         var gldfBytesWithHeader = EmbeddedGldfTestData.GetGldfWithFiles();
         using var stream = new MemoryStream(gldfBytesWithHeader);
 
-        var container = _gldfContainerReader.ReadFromStream(stream, false, settings);
+        var container = _gldfContainerReader.ReadFromGldfStream(stream, false, settings);
 
         container.Assets.All.Should().OnlyContain(f => !string.IsNullOrWhiteSpace(f.FileName));
         container.Assets.All.Should().NotContain(f => f.Bytes.Length > 0);
@@ -221,7 +221,7 @@ public class GldfContainerReadTests
         var gldfWithMetaInfo = EmbeddedGldfTestData.GetGldfWithMetaInfo();
         File.WriteAllBytes(_tempFile, gldfWithMetaInfo);
 
-        var container = _gldfContainerReader.ReadFromFile(_tempFile, settings);
+        var container = _gldfContainerReader.ReadFromGldfFile(_tempFile, settings);
 
         container.MetaInformation.Should().BeNull();
     }
@@ -233,7 +233,7 @@ public class GldfContainerReadTests
         var gldfWithMetaInfo = EmbeddedGldfTestData.GetGldfWithMetaInfo();
         using var stream = new MemoryStream(gldfWithMetaInfo);
 
-        var container = _gldfContainerReader.ReadFromStream(stream, false, settings);
+        var container = _gldfContainerReader.ReadFromGldfStream(stream, false, settings);
 
         container.MetaInformation.Should().BeNull();
     }
@@ -244,7 +244,7 @@ public class GldfContainerReadTests
         var gldfBytes = EmbeddedGldfTestData.GetGldfNoFiles();
         File.WriteAllBytes(_tempFile, gldfBytes);
 
-        var container = _gldfContainerReader.ReadFromFile(_tempFile);
+        var container = _gldfContainerReader.ReadFromGldfFile(_tempFile);
 
         container.Assets.All.Should().BeEmpty();
     }
@@ -255,7 +255,7 @@ public class GldfContainerReadTests
         var gldfBytes = EmbeddedGldfTestData.GetGldfNoFiles();
         using var stream = new MemoryStream(gldfBytes);
 
-        var container = _gldfContainerReader.ReadFromStream(stream, false);
+        var container = _gldfContainerReader.ReadFromGldfStream(stream, false);
 
         container.Assets.All.Should().BeEmpty();
     }
@@ -267,7 +267,7 @@ public class GldfContainerReadTests
         var settings = new ContainerLoadSettings(MetaInfoLoadBehaviour.Load);
         File.WriteAllBytes(_tempFile, gldfBytes);
 
-        var container = _gldfContainerReader.ReadFromFile(_tempFile, settings);
+        var container = _gldfContainerReader.ReadFromGldfFile(_tempFile, settings);
 
         container.MetaInformation.Should().BeNull();
     }
@@ -279,7 +279,7 @@ public class GldfContainerReadTests
         var settings = new ContainerLoadSettings(MetaInfoLoadBehaviour.Load);
         using var stream = new MemoryStream(gldfBytes);
 
-        var container = _gldfContainerReader.ReadFromStream(stream, false, settings);
+        var container = _gldfContainerReader.ReadFromGldfStream(stream, false, settings);
 
         container.MetaInformation.Should().BeNull();
     }
@@ -291,7 +291,7 @@ public class GldfContainerReadTests
         var metaInformation = EmbeddedGldfTestData.ExpectedMetaInformation;
         File.WriteAllBytes(_tempFile, gldfBytes);
 
-        var container = _gldfContainerReader.ReadFromFile(_tempFile);
+        var container = _gldfContainerReader.ReadFromGldfFile(_tempFile);
 
         container.MetaInformation.Should().BeEquivalentTo(metaInformation);
     }
@@ -303,7 +303,7 @@ public class GldfContainerReadTests
         var metaInformation = EmbeddedGldfTestData.ExpectedMetaInformation;
         using var stream = new MemoryStream(gldfBytes);
 
-        var container = _gldfContainerReader.ReadFromStream(stream, false);
+        var container = _gldfContainerReader.ReadFromGldfStream(stream, false);
 
         container.MetaInformation.Should().BeEquivalentTo(metaInformation);
     }
@@ -314,7 +314,7 @@ public class GldfContainerReadTests
         var gldfBytes = EmbeddedGldfTestData.GetGldfWithFiles();
         File.WriteAllBytes(_tempFile, gldfBytes);
 
-        var container = _gldfContainerReader.ReadFromFile(_tempFile);
+        var container = _gldfContainerReader.ReadFromGldfFile(_tempFile);
 
         container.Assets.All.Should().HaveCount(11);
         container.Assets.Geometries.Should().ContainEquivalentOf(new ContainerFile("geometry.l3d", new byte[1]));
@@ -336,7 +336,7 @@ public class GldfContainerReadTests
         var gldfBytes = EmbeddedGldfTestData.GetGldfWithFiles();
         using var stream = new MemoryStream(gldfBytes);
 
-        var container = _gldfContainerReader.ReadFromStream(stream, false);
+        var container = _gldfContainerReader.ReadFromGldfStream(stream, false);
 
         container.Assets.All.Should().HaveCount(11);
         container.Assets.Geometries.Should().ContainEquivalentOf(new ContainerFile("geometry.l3d", new byte[1]));
@@ -358,7 +358,7 @@ public class GldfContainerReadTests
         var gldfBytes = EmbeddedGldfTestData.GetGldfWithFiles();
         File.WriteAllBytes(_tempFile, gldfBytes);
 
-        var container = _gldfContainerReader.ReadFromFile(_tempFile);
+        var container = _gldfContainerReader.ReadFromGldfFile(_tempFile);
 
         container.Assets.All.Should().NotContain(file => file.FileName == "other.txt");
         container.Assets.All.Should().NotContainNulls();
@@ -370,7 +370,7 @@ public class GldfContainerReadTests
         var gldfBytes = EmbeddedGldfTestData.GetGldfWithFiles();
         using var stream = new MemoryStream(gldfBytes);
 
-        var container = _gldfContainerReader.ReadFromStream(stream, false);
+        var container = _gldfContainerReader.ReadFromGldfStream(stream, false);
 
         container.Assets.All.Should().NotContain(file => file.FileName == "other.txt");
         container.Assets.All.Should().NotContainNulls();

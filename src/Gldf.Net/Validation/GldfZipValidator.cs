@@ -14,16 +14,15 @@ internal class GldfZipValidator
     {
         new IsValidZipArchiveRule(),
         new ContainsProductXmlRule(),
-        new IsValidProductXmlRule(),
         new CanDeserializeProductXmlRule(),
         new HasNoLargeFilesRule()
     };
 
-    public IEnumerable<ValidationHint> Validate(string filePath) => ValidateSafe(() =>
-        ZipValidationRules.SelectMany(rule => rule.Validate(filePath)));
+    public IEnumerable<ValidationHint> ValidateGldfFile(string gldfFilePath) => ValidateSafe(() =>
+        ZipValidationRules.SelectMany(rule => rule.ValidateGldfFile(gldfFilePath)));
 
-    public IEnumerable<ValidationHint> Validate(Stream stream) =>
-        ValidateSafe(() => ZipValidationRules.SelectMany(rule => rule.Validate(stream, true)));
+    public IEnumerable<ValidationHint> ValidateGldfStream(Stream zipStream) =>
+        ValidateSafe(() => ZipValidationRules.SelectMany(rule => rule.ValidateGldfStream(zipStream, true)));
 
     private static IEnumerable<ValidationHint> ValidateSafe(Func<IEnumerable<ValidationHint>> func)
     {

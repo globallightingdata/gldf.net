@@ -38,7 +38,7 @@ public class GldfParserTests
             HttpClient = new HttpClient { Timeout = TimeSpan.FromMilliseconds(10) }
         });
 
-        var rootTyped = gldfParser.ParseFromContainerFile(_tempGldfPath);
+        var rootTyped = gldfParser.ParseFromGldfFile(_tempGldfPath);
         rootTyped.Should().NotBeNull();
     }
 

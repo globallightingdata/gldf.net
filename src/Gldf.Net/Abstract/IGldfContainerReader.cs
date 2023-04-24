@@ -5,13 +5,13 @@ namespace Gldf.Net.Abstract;
 
 public interface IGldfContainerReader
 {
-    GldfContainer ReadFromFile(string filePath);
+    GldfContainer ReadFromGldfFile(string gldfFilePath);
 
-    GldfContainer ReadFromFile(string filePath, ContainerLoadSettings settings);
+    GldfContainer ReadFromGldfFile(string gldfFilePath, ContainerLoadSettings settings);
 
-    public GldfContainer ReadFromStream(Stream zipStream, bool leaveOpen);
+    public GldfContainer ReadFromGldfStream(Stream zipStream, bool leaveOpen);
     
-    public GldfContainer ReadFromStream(Stream zipStream, bool leaveOpen, ContainerLoadSettings settings);
+    public GldfContainer ReadFromGldfStream(Stream zipStream, bool leaveOpen, ContainerLoadSettings settings);
 
-    void ExtractToDirectory(string sourceContainerFilePath, string targetDirectory);
+    void ExtractToDirectory(string sourceGldfFilePath, string targetDirectory);
 }

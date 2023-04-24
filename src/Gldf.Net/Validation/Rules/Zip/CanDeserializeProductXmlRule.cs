@@ -24,16 +24,16 @@ internal class CanDeserializeProductXmlRule : IZipArchiveValidationRule
         };
     }
 
-    public IEnumerable<ValidationHint> Validate(string filePath) =>
+    public IEnumerable<ValidationHint> ValidateGldfFile(string gldfFilePath) =>
         ValidateSafe(() =>
-            _gldfContainerReader.ReadFromFile(filePath, _loadRootOnlySettings).Product != null
+            _gldfContainerReader.ReadFromGldfFile(gldfFilePath, _loadRootOnlySettings).Product != null
                 ? ValidationHint.Empty()
-                : ValidationHint.Error($"The product.xml in GLDF container '{filePath}' could not be " +
+                : ValidationHint.Error($"The product.xml in GLDF container '{gldfFilePath}' could not be " +
                                        "deserialized.", ErrorType.NonDeserialisableRoot));
 
-    public IEnumerable<ValidationHint> Validate(Stream stream, bool leaveOpen) =>
+    public IEnumerable<ValidationHint> ValidateGldfStream(Stream zipStream, bool leaveOpen) =>
         ValidateSafe(() =>
-            _gldfContainerReader.ReadFromStream(stream, leaveOpen, _loadRootOnlySettings).Product != null
+            _gldfContainerReader.ReadFromGldfStream(zipStream, leaveOpen, _loadRootOnlySettings).Product != null
                 ? ValidationHint.Empty()
                 : ValidationHint.Error("The product.xml in GLDF container could not be " +
                                        "deserialized.", ErrorType.NonDeserialisableRoot));

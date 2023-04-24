@@ -18,7 +18,7 @@ public class XmlFormatVersionReaderTests
         var expected = new FormatVersion { Major = 1, Minor = 2, PreRelease = 3 };
         const string xml = "<Root><Header><FormatVersion major='1' minor='2' pre-release='3' /></Header></Root>";
 
-        var formatVersion = GldfFormatVersionReader.GetFormatVersion(xml);
+        var formatVersion = GldfFormatVersionReader.Get(xml);
 
         formatVersion.Should().BeEquivalentTo(expected);
     }
@@ -29,7 +29,7 @@ public class XmlFormatVersionReaderTests
         var expected = new FormatVersion { Major = 1, Minor = 2, PreReleaseSpecified = false };
         const string xml = "<Root><Header><FormatVersion major='1' minor='2' /></Header></Root>";
 
-        var formatVersion = GldfFormatVersionReader.GetFormatVersion(xml);
+        var formatVersion = GldfFormatVersionReader.Get(xml);
 
         formatVersion.Should().BeEquivalentTo(expected);
     }
@@ -39,7 +39,7 @@ public class XmlFormatVersionReaderTests
     {
         const string xml = "notValidXml";
 
-        Action act = () => GldfFormatVersionReader.GetFormatVersion(xml);
+        Action act = () => GldfFormatVersionReader.Get(xml);
 
         act.Should()
             .ThrowExactly<GldfException>()
@@ -53,7 +53,7 @@ public class XmlFormatVersionReaderTests
     {
         const string xml = "<Root><Header></Header></Root>";
 
-        Action act = () => GldfFormatVersionReader.GetFormatVersion(xml);
+        Action act = () => GldfFormatVersionReader.Get(xml);
 
         act.Should()
             .ThrowExactly<GldfException>()
@@ -69,7 +69,7 @@ public class XmlFormatVersionReaderTests
     [TestCase("<Root><Header><FormatVersion pre-release='1' /></Header></Root>")]
     public void GetFormatVersion_ShouldThrow_WhenInvalidVersion(string xml)
     {
-        Action act = () => GldfFormatVersionReader.GetFormatVersion(xml);
+        Action act = () => GldfFormatVersionReader.Get(xml);
 
         act.Should()
             .ThrowExactly<GldfException>()

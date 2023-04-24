@@ -18,17 +18,16 @@ public class XmlDocValidatorTests
     private static TestCaseData[] _validXmlTestCases = EmbeddedXmlTestData.ValidXmlTestCases;
 
     [Test, TestCaseSource(nameof(_validXmlTestCases))]
-    public void ValidateString_ValidTestData_Should_Return_EmptyList(string xml)
+    public void ValidateString_ShouldReturnEmptyList_WhenValidTestData(string xml)
     {
-        var validationResult = _xmlValidator.ValidateString(xml);
-
+        var validationResult = _xmlValidator.ValidateXml(xml);
         validationResult.Should().BeEmpty();
     }
 
     [Test]
-    public void ValidateString_WithNull_Should_Throw_ArgumentNullException()
+    public void ValidateString_ShouldThrowArgumentNullException_WhenNull()
     {
-        Action act = () => _xmlValidator.ValidateString(null);
+        Action act = () => _xmlValidator.ValidateXml(null);
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
@@ -36,9 +35,9 @@ public class XmlDocValidatorTests
     }
 
     [Test]
-    public void ValidateString_WithEmptyXml_Should_Throw_GldfException()
+    public void ValidateString_ShouldThrowGldfException_WhenEmptyString()
     {
-        Action act = () => _xmlValidator.ValidateString(string.Empty);
+        Action act = () => _xmlValidator.ValidateXml(string.Empty);
 
         act.Should()
             .Throw<GldfException>()
@@ -46,7 +45,7 @@ public class XmlDocValidatorTests
     }
 
     [Test]
-    public void ValidateString_WithInvalidXml_Should_Return_ExpectedHint()
+    public void ValidateString_ShouldReturnExpectedHint_WhenInvalidXml()
     {
         const string invalidXml = "<";
         const string expectedMessage = "Data at the root level is invalid. Line 1, position 1.";
@@ -59,43 +58,97 @@ public class XmlDocValidatorTests
     }
 
     [Test]
-    public void ValidateString_WithMissingGeneralDefinition_Should_Return_ExpectedHint()
+    public void ValidateString_ShouldReturnExpectedHint_WhenMissingGeneralDefinition()
     {
         var xml = EmbeddedXmlTestData.GetRootWithHeaderXml();
         var expectedMmessage = "The element 'Root' has incomplete content. " +
                                "List of possible elements expected: 'GeneralDefinitions'.";
         var expectedHint = new ValidationHint(SeverityType.Error, expectedMmessage, ErrorType.XmlSchema);
 
-        var validationResult = _xmlValidator.ValidateString(xml);
+        var validationResult = _xmlValidator.ValidateXml(xml);
 
         validationResult.Should().ContainEquivalentOf(expectedHint);
     }
 
     [Test]
-    public void ValidateString_WithoutXsd_Should_Validate_WithoutError()
+    public void ValidateString_ShouldValidate_WhenMissingXsd()
     {
         var xsdLocationString = $@"xsi:noNamespaceSchemaLocation=""{new Root().SchemaLocation}""";
         var xmlWithXsd = EmbeddedXmlTestData.GetHeaderMandatoryXml();
         var xmlWithoutXsd = xmlWithXsd.Replace(xsdLocationString, string.Empty);
 
-        var validationResult = _xmlValidator.ValidateString(xmlWithoutXsd);
+        var validationResult = _xmlValidator.ValidateXml(xmlWithoutXsd);
 
         xmlWithoutXsd.ToLower().Should().NotContain("xsd");
         validationResult.Should().BeEmpty();
     }
 
     [Test]
-    public void ValidateString_ValidContent_ButWrongXsd_Should_Ignore_And_ValidateWithEmbeddedXsd()
+    public void ValidateString_ShouldIgnoreInvalidXsd()
     {
-        const string wrongXsd = "https://raw.githubusercontent.com/globallightingdata/l3d/master/xsd/l3d.xsd";
+        const string wrongXsd = "https://gldf.io/xsd/l3d/l3d.xsd";
         var currentXsd = new Root().SchemaLocation;
         var xmlWithCurrentXsd = EmbeddedXmlTestData.GetHeaderMandatoryXml();
         var xmlWithWrongXsd = xmlWithCurrentXsd.Replace(currentXsd, wrongXsd);
 
-        var validationResult = _xmlValidator.ValidateString(xmlWithWrongXsd);
+        var validationResult = _xmlValidator.ValidateXml(xmlWithWrongXsd);
 
         xmlWithWrongXsd.Should().NotBeEquivalentTo(xmlWithCurrentXsd);
         validationResult.Should().BeEmpty();
+    }
+
+    [Test, TestCaseSource(nameof(_validXmlTestCases))]
+    public void ValidateFile_ShouldReturnEmptyList_WhenValidTestData(string xml)
+    {
+        var tempFileName = Path.GetTempFileName();
+        try
+        {
+            File.WriteAllText(tempFileName, xml);
+            var validationResult = _xmlValidator.ValidateXmlFile(tempFileName);
+            validationResult.Should().BeEmpty();
+        }
+        finally
+        {
+            File.Delete(tempFileName);
+        }
+    }
+
+    [Test]
+    public void ValidateFile_ShouldThrow_WhenPathIsNull()
+    {
+        Action act = () => _xmlValidator.ValidateXmlFile(null);
+
+        act.Should()
+            .Throw<ArgumentNullException>()
+            .WithMessage("Value cannot be null. (Parameter 'path')");
+    }
+
+    [Test]
+    public void ValidateFile_ShouldThrow_WhenPathIsEmpty()
+    {
+        Action act = () => _xmlValidator.ValidateXmlFile(string.Empty);
+
+        act.Should()
+            .Throw<ArgumentException>()
+            .WithMessage("Empty path name is not legal. (Parameter 'path')");
+    }
+
+    [Test]
+    public void ValidateFile_ShouldThrow_WhenPathIsInvalid()
+    {
+        var tempFileName = Path.GetTempFileName();
+        try
+        {
+            var act = () => _xmlValidator.ValidateXmlFile(tempFileName);
+
+            act.Should()
+                .Throw<GldfException>()
+                .WithMessage("Failed to get FormatVersion*");
+        }
+        finally
+        {
+            File.Delete(tempFileName);
+        }
     }
 }
 

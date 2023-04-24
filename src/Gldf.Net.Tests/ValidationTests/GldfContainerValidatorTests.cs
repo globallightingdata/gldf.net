@@ -43,7 +43,7 @@ public class GldfContainerValidatorTests
                                "(SymbolDxf), file.svg (SymbolSvg), file.doc (Other)";
         var expected = new ValidationHint(SeverityType.Error, message, ErrorType.MissingContainerAssets);
 
-        var hints = _validator.Validate(gldfContainer).ToList();
+        var hints = _validator.ValidateGldf(gldfContainer).ToList();
 
         hints.Should().HaveCount(1);
         hints.Should().ContainEquivalentOf(expected);
@@ -60,7 +60,7 @@ public class GldfContainerValidatorTests
                                "the Product. They should be deleted: orphan.txt";
         var expected = new ValidationHint(SeverityType.Warning, message, ErrorType.OrphanedContainerAssets);
 
-        var hints = _validator.Validate(container).ToList();
+        var hints = _validator.ValidateGldf(container).ToList();
 
         hints.Should().HaveCount(1);
         hints.Should().ContainEquivalentOf(expected);
@@ -72,7 +72,7 @@ public class GldfContainerValidatorTests
         File.WriteAllBytes(_tempFile, new byte[1]);
         var message = $"The GLDF container '{_tempFile}' seems not to be a valid ZIP file or can't be accessed";
         var expected = new ValidationHint(SeverityType.Error, message, ErrorType.InvalidZip);
-        var hints = _validator.Validate(_tempFile).ToList();
+        var hints = _validator.ValidateGldfFile(_tempFile).ToList();
         hints.Should().ContainEquivalentOf(expected);
     }
 
@@ -81,7 +81,7 @@ public class GldfContainerValidatorTests
     {
         var gldfWithInvalidRoot = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
         File.WriteAllBytes(_tempFile, gldfWithInvalidRoot);
-        var hints = _validator.Validate(_tempFile);
+        var hints = _validator.ValidateGldfFile(_tempFile);
         hints.Should().BeEmpty();
     }
 
@@ -90,7 +90,7 @@ public class GldfContainerValidatorTests
     {
         var gldfWithInvalidRoot = EmbeddedGldfTestData.GetGldfWithFilesComplete();
         File.WriteAllBytes(_tempFile, gldfWithInvalidRoot);
-        var hints = _validator.Validate(_tempFile);
+        var hints = _validator.ValidateGldfFile(_tempFile);
         hints.Should().BeEmpty();
     }
 
@@ -102,7 +102,7 @@ public class GldfContainerValidatorTests
         const string message = "Failed to read XML";
         var expected = new ValidationHint(SeverityType.Error, message, ErrorType.GenericError);
 
-        var hints = _validator.Validate(_tempFile).ToList();
+        var hints = _validator.ValidateGldfFile(_tempFile).ToList();
 
         hints.Should().HaveCount(1);
         hints.Should().ContainEquivalentOf(expected);
@@ -121,7 +121,7 @@ public class GldfContainerValidatorTests
                                "(SymbolDxf), file.svg (SymbolSvg), file.doc (Other)";
         var expected = ValidationHint.Error(message, ErrorType.MissingContainerAssets);
 
-        var hints = _validator.Validate(_tempFile).ToList();
+        var hints = _validator.ValidateGldfFile(_tempFile).ToList();
 
         hints.Should().BeEquivalentTo(expected);
     }
@@ -135,7 +135,7 @@ public class GldfContainerValidatorTests
                                "They should be deleted: orphan.txt";
         var expected = ValidationHint.Warning(message, ErrorType.OrphanedContainerAssets);
 
-        var hints = _validator.Validate(_tempFile).ToList();
+        var hints = _validator.ValidateGldfFile(_tempFile).ToList();
 
         hints.Should().BeEquivalentTo(expected);
     }
@@ -144,7 +144,7 @@ public class GldfContainerValidatorTests
     public void ValidateContainer_ShouldReturnExpected_WhenContainerIsNull()
     {
         var expected = ValidationHint.Error("The GLDF is null", ErrorType.GenericError);
-        var validationHints = _validator.Validate((GldfContainer)null).ToList();
+        var validationHints = _validator.ValidateGldf(null).ToList();
         validationHints.Should().BeEquivalentTo(expected);
     }
 }

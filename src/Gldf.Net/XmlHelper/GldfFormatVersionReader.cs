@@ -10,7 +10,7 @@ namespace Gldf.Net.XmlHelper;
 
 public static class GldfFormatVersionReader
 {
-    public static FormatVersion GetFormatVersion(string xml)
+    public static FormatVersion Get(string xml)
     {
         try
         {

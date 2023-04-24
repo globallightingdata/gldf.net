@@ -36,7 +36,7 @@ public class GldfEmbeddedXsdLoaderTests
     {
         foreach (var knownVersion in GldfEmbeddedXsdLoader.KnownVersions)
         {
-            var xsd = GldfEmbeddedXsdLoader.LoadXsd(knownVersion);
+            var xsd = GldfEmbeddedXsdLoader.Load(knownVersion);
             const string expectedXsdRow = @"<?xml version=""1.0"" encoding=""UTF-8""?>";
             xsd.Should().StartWith(expectedXsdRow);
         }
@@ -49,7 +49,7 @@ public class GldfEmbeddedXsdLoaderTests
         using var httpClient = new HttpClient();
         var xsdSchemaLocation = new Root().SchemaLocation;
         var xsdSchema = await httpClient.GetStringAsync(xsdSchemaLocation);
-        var embeddedXsd = GldfEmbeddedXsdLoader.LoadXsd(formatVersion);
+        var embeddedXsd = GldfEmbeddedXsdLoader.Load(formatVersion);
 
         embeddedXsd.ShouldBe().EquivalentTo(xsdSchema);
     }
@@ -58,7 +58,7 @@ public class GldfEmbeddedXsdLoaderTests
     public void LoadXsd_ShouldThrow_WhenUnknownFormatVersion()
     {
         var invalidFormatVersion = new FormatVersion { Major = -1, Minor = -2, PreRelease = -3 };
-        Action act = () => GldfEmbeddedXsdLoader.LoadXsd(invalidFormatVersion);
+        Action act = () => GldfEmbeddedXsdLoader.Load(invalidFormatVersion);
         act.Should().Throw<GldfException>().WithMessage("Failed to get embedded XSD*");
     }
 }

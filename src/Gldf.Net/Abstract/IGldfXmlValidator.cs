@@ -10,9 +10,9 @@ public interface IGldfXmlValidator
 
     IEnumerable<ValidationHint> ValidateXmlFile(string xmlFilePath);
 
-    IEnumerable<ValidationHint> ValidateXmlStream(Stream stream, bool leaveOpen);
+    IEnumerable<ValidationHint> ValidateXmlStream(Stream xmlStream, bool leaveOpen);
 
-    IEnumerable<ValidationHint> ValidateGldfFile(string filePath);
+    IEnumerable<ValidationHint> ValidateGldfFile(string gldfFilePath);
 
-    IEnumerable<ValidationHint> ValidateGldfStream(Stream stream, bool leaveOpen);
+    IEnumerable<ValidationHint> ValidateGldfStream(Stream zipStream, bool leaveOpen);
 }

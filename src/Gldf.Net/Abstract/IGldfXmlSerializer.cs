@@ -5,11 +5,11 @@ namespace Gldf.Net.Abstract;
 
 public interface IGldfXmlSerializer
 {
-    string SerializeToString(Root root);
-    void SerializeToFile(Root root, string filePath);
-    void SerializeToStream(Root root, Stream stream);
+    string SerializeToXml(Root root);
+    void SerializeToXmlFile(Root root, string filePath);
+    void SerializeToXmlStream(Root root, Stream xmlStream);
 
-    Root DeserializeFromString(string xml);
-    Root DeserializeFromFile(string filePath);
-    Root DeserializeFromStream(Stream stream);
+    Root DeserializeFromXml(string xml);
+    Root DeserializeFromXmlFile(string xmlFilePath);
+    Root DeserializeFromXmlStream(Stream xmlStream);
 }

@@ -12,13 +12,13 @@ namespace Gldf.Net.Validation.Rules.Container;
 
 internal class HasNoOrphanAssetsRule : IContainerValidationRule
 {
-    public IEnumerable<ValidationHint> Validate(GldfContainer container) =>
+    public IEnumerable<ValidationHint> ValidateGldf(GldfContainer gldf) =>
         ValidateSafe(() =>
         {
-            if (container.Product?.GeneralDefinitions?.Files == null) return ValidationHint.Empty();
-            var filesWithAssets = container.Product.GeneralDefinitions.Files.Where(file =>
-                file.Type == FileType.LocalFileName).Select(file => GetAsset(file, container.Assets));
-            var orpahnedAssets = container.Assets.All.Except(filesWithAssets).ToArray();
+            if (gldf.Product?.GeneralDefinitions?.Files == null) return ValidationHint.Empty();
+            var filesWithAssets = gldf.Product.GeneralDefinitions.Files.Where(file =>
+                file.Type == FileType.LocalFileName).Select(file => GetAsset(file, gldf.Assets));
+            var orpahnedAssets = gldf.Assets.All.Except(filesWithAssets).ToArray();
 
             return orpahnedAssets.Any()
                 ? ValidationHint.Warning("The GLDF container contains assets that are not referenced in the " +

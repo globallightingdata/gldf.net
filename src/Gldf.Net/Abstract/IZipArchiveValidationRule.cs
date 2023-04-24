@@ -6,7 +6,7 @@ namespace Gldf.Net.Abstract;
 
 internal interface IZipArchiveValidationRule
 {
-    IEnumerable<ValidationHint> Validate(string filePath);
+    IEnumerable<ValidationHint> ValidateGldfFile(string gldfFilePath);
 
-    IEnumerable<ValidationHint> Validate(Stream stream, bool leaveOpen);
+    IEnumerable<ValidationHint> ValidateGldfStream(Stream zipStream, bool leaveOpen);
 }

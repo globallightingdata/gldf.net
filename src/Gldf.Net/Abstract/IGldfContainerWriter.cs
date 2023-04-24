@@ -5,9 +5,9 @@ namespace Gldf.Net.Abstract;
 
 public interface IGldfContainerWriter
 {
-    void WriteToFile(string filePath, GldfContainer gldfContainer);
+    void WriteToGldfFile(string gldfFilePath, GldfContainer gldf);
 
-    void WriteToStream(Stream stream, bool leaveOpen, GldfContainer gldfContainer);
+    void WriteToGldfStream(Stream zipStream, bool leaveOpen, GldfContainer gldf);
 
     void CreateFromDirectory(string sourceDirectory, string targetContainerFilePath);
 }

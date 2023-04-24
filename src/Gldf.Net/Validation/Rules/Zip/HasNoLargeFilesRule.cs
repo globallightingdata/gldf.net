@@ -13,10 +13,10 @@ internal class HasNoLargeFilesRule : IZipArchiveValidationRule
 {
     public const int LimitInBytes = 5 * 1024 * 1024;
 
-    public IEnumerable<ValidationHint> Validate(string filePath) =>
+    public IEnumerable<ValidationHint> ValidateGldfFile(string gldfFilePath) =>
         ValidateSafe(() =>
         {
-            var toLargeFiles = ZipArchiveReader.GetLargeFileNames(filePath, LimitInBytes).ToArray();
+            var toLargeFiles = ZipArchiveReader.GetLargeFileNames(gldfFilePath, LimitInBytes).ToArray();
             return toLargeFiles.Any()
                 ? ValidationHint.Warning("Large files found. It is recommended to limit the " +
                                          "maximum file size to 5MB each: " +
@@ -24,10 +24,10 @@ internal class HasNoLargeFilesRule : IZipArchiveValidationRule
                 : ValidationHint.Empty();
         });
 
-    public IEnumerable<ValidationHint> Validate(Stream stream, bool leaveOpen) =>
+    public IEnumerable<ValidationHint> ValidateGldfStream(Stream zipStream, bool leaveOpen) =>
         ValidateSafe(() =>
         {
-            var toLargeFiles = ZipArchiveReader.GetLargeFileNames(stream, leaveOpen, LimitInBytes).ToArray();
+            var toLargeFiles = ZipArchiveReader.GetLargeFileNames(zipStream, leaveOpen, LimitInBytes).ToArray();
             return toLargeFiles.Any()
                 ? ValidationHint.Warning("Large files found. It is recommended to limit the " +
                                          "maximum file size to 5MB each: " +

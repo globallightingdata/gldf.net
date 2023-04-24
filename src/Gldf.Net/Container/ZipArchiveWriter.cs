@@ -33,7 +33,7 @@ internal class ZipArchiveWriter : ZipArchiveIO
     private void AddRootZipEntry(GldfContainer gldfContainer, ZipArchive zipArchive)
     {
         if (gldfContainer.Product == null) return; // todo Unit tests
-        var xml = GldfXmlSerializer.SerializeToString(gldfContainer.Product);
+        var xml = GldfXmlSerializer.SerializeToXml(gldfContainer.Product);
         var productEntry = zipArchive.CreateEntry(GldfStaticNames.Files.Product, CompressionLevel);
         using var entryStream = productEntry.Open();
         entryStream.Write(Encoding.UTF8.GetBytes(xml));
@@ -54,7 +54,7 @@ internal class ZipArchiveWriter : ZipArchiveIO
     private void AddMetaInfo(ZipArchive zipArchive, GldfContainer gldfContainer)
     {
         if (gldfContainer.MetaInformation == null) return;
-        var xml = MetaInfoSerializer.SerializeToString(gldfContainer.MetaInformation);
+        var xml = MetaInfoSerializer.SerializeToXml(gldfContainer.MetaInformation);
         var metaInfoEntry = zipArchive.CreateEntry(GldfStaticNames.Files.MetaInfo, CompressionLevel);
         using var entryStream = metaInfoEntry.Open();
         entryStream.Write(Encoding.UTF8.GetBytes(xml));

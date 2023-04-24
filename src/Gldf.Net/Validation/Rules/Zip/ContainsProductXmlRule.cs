@@ -10,14 +10,14 @@ namespace Gldf.Net.Validation.Rules.Zip;
 
 internal class ContainsProductXmlRule : IZipArchiveValidationRule
 {
-    public IEnumerable<ValidationHint> Validate(string filePath) =>
-        ValidateSafe(() => ZipArchiveReader.ContainsRootXml(filePath)
+    public IEnumerable<ValidationHint> ValidateGldfFile(string gldfFilePath) =>
+        ValidateSafe(() => ZipArchiveReader.ContainsRootXml(gldfFilePath)
             ? ValidationHint.Empty()
-            : ValidationHint.Error($"The GLDF container '{filePath}' does not contain a " +
+            : ValidationHint.Error($"The GLDF container '{gldfFilePath}' does not contain a " +
                                    "product.xml entry.", ErrorType.ProductXmlNotFound));
 
-    public IEnumerable<ValidationHint> Validate(Stream stream, bool leaveOpen) =>
-        ValidateSafe(() => ZipArchiveReader.ContainsRootXml(stream, leaveOpen)
+    public IEnumerable<ValidationHint> ValidateGldfStream(Stream zipStream, bool leaveOpen) =>
+        ValidateSafe(() => ZipArchiveReader.ContainsRootXml(zipStream, leaveOpen)
             ? ValidationHint.Empty()
             : ValidationHint.Error("The GLDF container does not contain a " +
                                    "product.xml entry.", ErrorType.ProductXmlNotFound));

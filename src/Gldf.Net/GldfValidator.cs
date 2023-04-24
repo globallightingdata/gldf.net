@@ -23,32 +23,32 @@ public class GldfValidator : IGldfValidator
         _containerValidator = new GldfContainerValidator();
     }
 
-    public IEnumerable<ValidationHint> Validate(GldfContainer container)
+    public IEnumerable<ValidationHint> ValidateGldf(GldfContainer gldf)
     {
-        return _containerValidator.Validate(container);
+        return _containerValidator.ValidateGldf(gldf);
     }
 
-    public IEnumerable<ValidationHint> Validate(string filePath, ValidationFlags flags) =>
+    public IEnumerable<ValidationHint> ValidateGldfFile(string gldfFilePath, ValidationFlags flags) =>
         ValidateSafe(() =>
         {
             // Schema
             var result = new List<ValidationHint>();
             if (flags.HasFlag(ValidationFlags.Schema))
-                result.AddRange(_schemaValidator.ValidateGldfFile(filePath));
+                result.AddRange(_schemaValidator.ValidateGldfFile(gldfFilePath));
 
             // Zip
             if (flags.HasFlag(ValidationFlags.Zip))
-                result.AddRange(_zipValidator.Validate(filePath));
+                result.AddRange(_zipValidator.ValidateGldfFile(gldfFilePath));
 
             // Container only, if no errors yet
             var hasErrors = result.Any(hint => hint.Severity == SeverityType.Error);
             var validateContainer = flags.HasFlag(ValidationFlags.Container);
             return !hasErrors && validateContainer
-                ? result.Union(_containerValidator.Validate(filePath))
+                ? result.Union(_containerValidator.ValidateGldfFile(gldfFilePath))
                 : result;
         });
 
-    public IEnumerable<ValidationHint> Validate(Stream stream, bool leaveOpen, ValidationFlags flags) =>
+    public IEnumerable<ValidationHint> ValidateGldfStream(Stream zipStream, bool leaveOpen, ValidationFlags flags) =>
         ValidateSafe(() =>
         {
             try
@@ -56,22 +56,22 @@ public class GldfValidator : IGldfValidator
                 // Schema
                 var result = new List<ValidationHint>();
                 if (flags.HasFlag(ValidationFlags.Schema))
-                    result.AddRange(_schemaValidator.ValidateXmlStream(stream, true));
+                    result.AddRange(_schemaValidator.ValidateXmlStream(zipStream, true));
 
                 // Zip
                 if (flags.HasFlag(ValidationFlags.Zip))
-                    result.AddRange(_zipValidator.Validate(stream));
+                    result.AddRange(_zipValidator.ValidateGldfStream(zipStream));
 
                 // Container only, if no errors yet
                 var hasErrors = result.Any(hint => hint.Severity == SeverityType.Error);
                 var validateContainer = flags.HasFlag(ValidationFlags.Container);
                 return !hasErrors && validateContainer
-                    ? result.Union(_containerValidator.Validate(stream, true))
+                    ? result.Union(_containerValidator.ValidateGldfStream(zipStream, true))
                     : result;
             }
             finally
             {
-                if (!leaveOpen) stream.DisposeSafe();
+                if (!leaveOpen) zipStream.DisposeSafe();
             }
         });
 

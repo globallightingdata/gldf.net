@@ -46,18 +46,18 @@ public class MetaInfoSerializer : IMetaInfoSerializer
     /// <summary>
     ///     Converts the parameter of type <see cref="Root" /> into a GLDF-XML text.
     /// </summary>
-    /// <param name="metaInformation">The value to convert.</param>
+    /// <param name="metaInfo">The value to convert.</param>
     /// <returns>The GLDF XML representation of the value.</returns>
     /// <exception cref="GldfException">Input is invalid. See also InnerException.</exception>
-    public string SerializeToString(MetaInformation metaInformation)
+    public string SerializeToXml(MetaInformation metaInfo)
     {
-        if (metaInformation == null) throw new ArgumentNullException(nameof(metaInformation));
+        if (metaInfo == null) throw new ArgumentNullException(nameof(metaInfo));
 
         try
         {
             using var stringWriter = new XmlStringWriter(_settings.Encoding);
             using var xmlWriter = XmlWriter.Create(stringWriter, _settings);
-            _xmlSerializer.Serialize(xmlWriter, metaInformation, _xmlNamespaces);
+            _xmlSerializer.Serialize(xmlWriter, metaInfo, _xmlNamespaces);
             return stringWriter.ToString();
         }
         catch (Exception e)
@@ -70,21 +70,21 @@ public class MetaInfoSerializer : IMetaInfoSerializer
     ///     Converts the parameter of type <see cref="Root" /> into a GLDF-XML text and writes
     ///     it to a file.
     /// </summary>
-    /// <param name="metaInformation"></param>
-    /// <param name="filePath">The path of the file to write to</param>
+    /// <param name="metaInfo"></param>
+    /// <param name="xmlFilePath">The path of the file to write to</param>
     /// <exception cref="GldfException">
     ///     Input is invalid or the filePath cannot be written to. See also InnerException.
     /// </exception>
-    public void SerializeToFile(MetaInformation metaInformation, string filePath)
+    public void SerializeToXmlFile(MetaInformation metaInfo, string xmlFilePath)
     {
-        if (metaInformation == null) throw new ArgumentNullException(nameof(metaInformation));
-        if (filePath == null) throw new ArgumentNullException(nameof(filePath));
+        if (metaInfo == null) throw new ArgumentNullException(nameof(metaInfo));
+        if (xmlFilePath == null) throw new ArgumentNullException(nameof(xmlFilePath));
 
         try
         {
-            using var streamWriter = new StreamWriter(filePath, false, _settings.Encoding);
+            using var streamWriter = new StreamWriter(xmlFilePath, false, _settings.Encoding);
             using var xmlWriter = XmlWriter.Create(streamWriter, _settings);
-            _xmlSerializer.Serialize(xmlWriter, metaInformation, _xmlNamespaces);
+            _xmlSerializer.Serialize(xmlWriter, metaInfo, _xmlNamespaces);
         }
         catch (Exception e)
         {
@@ -96,20 +96,20 @@ public class MetaInfoSerializer : IMetaInfoSerializer
     ///     Converts the parameter of type <see cref="Root" /> into a GLDF-XML text and writes
     ///     it to a file.
     /// </summary>
-    /// <param name="metaInformation"></param>
-    /// <param name="stream"></param>
+    /// <param name="metaInfo"></param>
+    /// <param name="xmlStream"></param>
     /// <exception cref="GldfException">
     ///     Input is invalid or the filePath cannot be written to. See also InnerException.
     /// </exception>
-    public void SerializeToStream(MetaInformation metaInformation, Stream stream)
+    public void SerializeToXmlStream(MetaInformation metaInfo, Stream xmlStream)
     {
-        if (metaInformation == null) throw new ArgumentNullException(nameof(metaInformation));
-        if (stream == null) throw new ArgumentNullException(nameof(stream));
+        if (metaInfo == null) throw new ArgumentNullException(nameof(metaInfo));
+        if (xmlStream == null) throw new ArgumentNullException(nameof(xmlStream));
 
         try
         {
-            using var xmlWriter = XmlWriter.Create(stream, _settings);
-            _xmlSerializer.Serialize(xmlWriter, metaInformation, _xmlNamespaces);
+            using var xmlWriter = XmlWriter.Create(xmlStream, _settings);
+            _xmlSerializer.Serialize(xmlWriter, metaInfo, _xmlNamespaces);
         }
         catch (Exception e)
         {
@@ -125,7 +125,7 @@ public class MetaInfoSerializer : IMetaInfoSerializer
     ///     Representation of the GLDF-XML text as instance of the type <see cref="Root" />
     /// </returns>
     /// <exception cref="GldfException">Input is invalid GLDF-XML. See also InnerException.</exception>
-    public MetaInformation DeserializeFromString(string xml)
+    public MetaInformation DeserializeFromXml(string xml)
     {
         if (xml == null) throw new ArgumentNullException(nameof(xml));
 
@@ -144,46 +144,46 @@ public class MetaInfoSerializer : IMetaInfoSerializer
     /// <summary>
     ///     Parses the file containing a GLDF-XML into an instance of type <see cref="Root" />
     /// </summary>
-    /// <param name="filePath">The file containing the GLDF-XML</param>
+    /// <param name="xmlFilePath">The file containing the GLDF-XML</param>
     /// <returns>
     ///     Representation of the GLDF-XML file as instance of the type <see cref="Root" />
     /// </returns>
     /// <exception cref="GldfException">
     ///     Input is invalid GLDF-XML or the filePath cannot be read from. See also InnerException.
     /// </exception>
-    public MetaInformation DeserializeFromFile(string filePath)
+    public MetaInformation DeserializeFromXmlFile(string xmlFilePath)
     {
-        if (filePath == null) throw new ArgumentNullException(nameof(filePath));
+        if (xmlFilePath == null) throw new ArgumentNullException(nameof(xmlFilePath));
 
         try
         {
-            using var streamIn = new StreamReader(filePath, _settings.Encoding);
+            using var streamIn = new StreamReader(xmlFilePath, _settings.Encoding);
             var deserializedXml = _xmlSerializer.Deserialize(streamIn);
             return (MetaInformation)deserializedXml;
         }
         catch (Exception e)
         {
-            throw new GldfException($"Failed to deserialize Root from filepath '{filePath}'", e);
+            throw new GldfException($"Failed to deserialize Root from filepath '{xmlFilePath}'", e);
         }
     }
 
     /// <summary>
     ///     Parses the file containing a GLDF-XML into an instance of type <see cref="Root" />
     /// </summary>
-    /// <param name="stream"></param>
+    /// <param name="xmlStream"></param>
     /// <returns>
     ///     Representation of the GLDF-XML file as instance of the type <see cref="Root" />
     /// </returns>
     /// <exception cref="GldfException">
     ///     Input is invalid GLDF-XML or the filePath cannot be read from. See also InnerException.
     /// </exception>
-    public MetaInformation DeserializeFromStream(Stream stream)
+    public MetaInformation DeserializeFromXmlStream(Stream xmlStream)
     {
-        if (stream == null) throw new ArgumentNullException(nameof(stream));
+        if (xmlStream == null) throw new ArgumentNullException(nameof(xmlStream));
 
         try
         {
-            using var streamIn = new StreamReader(stream, _settings.Encoding);
+            using var streamIn = new StreamReader(xmlStream, _settings.Encoding);
             var deserializedXml = _xmlSerializer.Deserialize(streamIn);
             return (MetaInformation)deserializedXml;
         }

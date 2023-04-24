@@ -41,7 +41,7 @@ public class GldfContainerWriteTests
         var tempPath = Path.Combine(tempSubDirectory, tempFileName);
         var gldfContainer = new GldfContainer(new Root());
 
-        _gldfContainerWriter.WriteToFile(tempPath, gldfContainer);
+        _gldfContainerWriter.WriteToGldfFile(tempPath, gldfContainer);
         var containerExists = File.Exists(tempPath);
         Directory.Delete(tempSubDirectory, true);
 
@@ -68,7 +68,7 @@ public class GldfContainerWriteTests
         gldfContainer.Assets.Symbols.Add(new ContainerFile("symbol.svg", new byte[10]));
         gldfContainer.Assets.Other.Add(new ContainerFile("project.c4d", new byte[11]));
 
-        _gldfContainerWriter.WriteToFile(_tempFile1, gldfContainer);
+        _gldfContainerWriter.WriteToGldfFile(_tempFile1, gldfContainer);
         File.WriteAllBytes(_tempFile2, expectedBytes);
 
         var loadedWrittenArchive = zipArchiveReader.ReadContainer(_tempFile1);
@@ -98,7 +98,7 @@ public class GldfContainerWriteTests
         gldfContainer.Assets.Symbols.Add(new ContainerFile("symbol.svg", new byte[10]));
         gldfContainer.Assets.Other.Add(new ContainerFile("project.c4d", new byte[11]));
 
-        _gldfContainerWriter.WriteToStream(memoryStream, true, gldfContainer);
+        _gldfContainerWriter.WriteToGldfStream(memoryStream, true, gldfContainer);
         File.WriteAllBytes(_tempFile1, memoryStream.ToArray());
         File.WriteAllBytes(_tempFile2, expectedBytes);
 
@@ -112,7 +112,7 @@ public class GldfContainerWriteTests
     public void WriteToFile_Should_OnlyCreate_ProductEntry_WhenNoAssets()
     {
         var gldfContainer = new GldfContainer(new Root());
-        _gldfContainerWriter.WriteToFile(_tempFile1, gldfContainer);
+        _gldfContainerWriter.WriteToGldfFile(_tempFile1, gldfContainer);
         using var zipArchive = ZipFile.Open(_tempFile1, ZipArchiveMode.Read);
 
         var archiveEntryCount = zipArchive.Entries.Count;
@@ -127,7 +127,7 @@ public class GldfContainerWriteTests
     {
         var gldfContainer = new GldfContainer(new Root());
         var memoryStream = new MemoryStream();
-        _gldfContainerWriter.WriteToStream(memoryStream, true, gldfContainer);
+        _gldfContainerWriter.WriteToGldfStream(memoryStream, true, gldfContainer);
         using var zipArchive = new ZipArchive(memoryStream);
 
         var archiveEntryCount = zipArchive.Entries.Count;
@@ -140,21 +140,21 @@ public class GldfContainerWriteTests
     [Test]
     public void WriteToFile_ShouldThrow_When_FilePath_IsNull()
     {
-        var act = () => _gldfContainerWriter.WriteToFile(null, new GldfContainer());
+        var act = () => _gldfContainerWriter.WriteToGldfFile(null, new GldfContainer());
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
-            .WithMessage("Value cannot be null. (Parameter 'filePath')");
+            .WithMessage("Value cannot be null. (Parameter 'gldfFilePath')");
     }
 
     [Test]
     public void WriteToStream_ShouldThrow_When_Stream_IsNull()
     {
-        var act = () => _gldfContainerWriter.WriteToStream(null, false, new GldfContainer());
+        var act = () => _gldfContainerWriter.WriteToGldfStream(null, false, new GldfContainer());
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
-            .WithMessage("Value cannot be null. (Parameter 'stream')");
+            .WithMessage("Value cannot be null. (Parameter 'zipStream')");
     }
 
     [Test]
@@ -165,7 +165,7 @@ public class GldfContainerWriteTests
             var containerToWrite = new GldfContainer { Product = new Root() };
             var memoryStream = new MemoryStream();
             memoryStream.Dispose();
-            _gldfContainerWriter.WriteToStream(memoryStream, false, containerToWrite);
+            _gldfContainerWriter.WriteToGldfStream(memoryStream, false, containerToWrite);
         };
 
         act.Should()
@@ -176,27 +176,27 @@ public class GldfContainerWriteTests
     [Test]
     public void WriteToFile_ShouldThrow_When_Container_IsNull()
     {
-        var act = () => _gldfContainerWriter.WriteToFile("", null);
+        var act = () => _gldfContainerWriter.WriteToGldfFile("", null);
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
-            .WithMessage("Value cannot be null. (Parameter 'gldfContainer')");
+            .WithMessage("Value cannot be null. (Parameter 'gldf')");
     }
 
     [Test]
     public void WriteToStream_ShouldThrow_When_Container_IsNull()
     {
-        var act = () => _gldfContainerWriter.WriteToStream(Stream.Null, false, null);
+        var act = () => _gldfContainerWriter.WriteToGldfStream(Stream.Null, false, null);
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
-            .WithMessage("Value cannot be null. (Parameter 'gldfContainer')");
+            .WithMessage("Value cannot be null. (Parameter 'gldf')");
     }
 
     [Test]
     public void WriteToFile_ShouldThrow_When_FilePath_IsInvalid()
     {
-        var act = () => _gldfContainerWriter.WriteToFile("", new GldfContainer());
+        var act = () => _gldfContainerWriter.WriteToGldfFile("", new GldfContainer());
 
         act.Should()
             .ThrowExactly<GldfContainerException>()

@@ -46,7 +46,7 @@ public class GldfXmlSerializerTests
     [Test]
     public void SerializeToString_ShouldThrow_When_Root_IsNull()
     {
-        Action act = () => _serializer.SerializeToString(null);
+        Action act = () => _serializer.SerializeToXml(null);
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
@@ -59,7 +59,7 @@ public class GldfXmlSerializerTests
         var root = EmbeddedXmlTestData.GetRootWithHeaderModel();
         var expectedXml = EmbeddedXmlTestData.GetRootWithHeaderXml();
 
-        var xml = _serializer.SerializeToString(root);
+        var xml = _serializer.SerializeToXml(root);
 
         xml.ShouldBe().EquivalentTo(expectedXml);
     }
@@ -70,7 +70,7 @@ public class GldfXmlSerializerTests
         var root = EmbeddedXmlTestData.GetRootWithHeaderModel();
         var expectedXml = EmbeddedXmlTestData.GetRootWithHeaderUnintendXml();
 
-        var xml = _serializerWithSettings.SerializeToString(root);
+        var xml = _serializerWithSettings.SerializeToXml(root);
 
         xml.ShouldBe().EquivalentTo(expectedXml);
     }
@@ -78,7 +78,7 @@ public class GldfXmlSerializerTests
     [Test]
     public void SerializeToString_InvalidObject_Should_Throw_GldfException()
     {
-        Action act = () => _serializer.SerializeToString(new InvalidRoot());
+        Action act = () => _serializer.SerializeToXml(new InvalidRoot());
 
         act.Should().Throw<GldfException>();
     }
@@ -86,7 +86,7 @@ public class GldfXmlSerializerTests
     [Test]
     public void SerializeToFile_ShouldThrow_When_Root_IsNull()
     {
-        Action act = () => _serializer.SerializeToFile(null, "");
+        Action act = () => _serializer.SerializeToXmlFile(null, "");
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
@@ -96,7 +96,7 @@ public class GldfXmlSerializerTests
     [Test]
     public void SerializeToFile_ShouldThrow_When_FilePath_IsNull()
     {
-        Action act = () => _serializer.SerializeToFile(new Root(), null);
+        Action act = () => _serializer.SerializeToXmlFile(new Root(), null);
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
@@ -109,7 +109,7 @@ public class GldfXmlSerializerTests
         var root = EmbeddedXmlTestData.GetRootWithHeaderModel();
         var expectedXml = EmbeddedXmlTestData.GetRootWithHeaderXml();
 
-        _serializer.SerializeToFile(root, _tempFile);
+        _serializer.SerializeToXmlFile(root, _tempFile);
         var xml = File.ReadAllText(_tempFile);
 
         xml.ShouldBe().EquivalentTo(expectedXml);
@@ -121,7 +121,7 @@ public class GldfXmlSerializerTests
         var root = EmbeddedXmlTestData.GetRootWithHeaderModel();
         var expectedXml = EmbeddedXmlTestData.GetRootWithHeaderUnintendXml();
 
-        _serializerWithSettings.SerializeToFile(root, _tempFile);
+        _serializerWithSettings.SerializeToXmlFile(root, _tempFile);
         var xml = File.ReadAllText(_tempFile);
 
         xml.ShouldBe().EquivalentTo(expectedXml);
@@ -130,7 +130,7 @@ public class GldfXmlSerializerTests
     [Test]
     public void SerializeToFile_InvalidObject_Should_Throw_GldfException()
     {
-        Action act = () => _serializer.SerializeToFile(new InvalidRoot(), "/");
+        Action act = () => _serializer.SerializeToXmlFile(new InvalidRoot(), "/");
 
         act.Should().Throw<GldfException>();
     }
@@ -140,7 +140,7 @@ public class GldfXmlSerializerTests
     [Test]
     public void DeserializeFromString_ShouldThrow_When_XmlString_IsNull()
     {
-        Action act = () => _serializer.DeserializeFromString(null);
+        Action act = () => _serializer.DeserializeFromXml(null);
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
@@ -153,7 +153,7 @@ public class GldfXmlSerializerTests
         var xml = EmbeddedXmlTestData.GetRootWithHeaderXml();
         var expectedRoot = EmbeddedXmlTestData.GetRootWithHeaderModel();
 
-        var root = _serializer.DeserializeFromString(xml);
+        var root = _serializer.DeserializeFromXml(xml);
 
         root.Should().BeEquivalentTo(expectedRoot);
     }
@@ -163,7 +163,7 @@ public class GldfXmlSerializerTests
     {
         const string invalidXml = "<";
 
-        Action act = () => _serializer.DeserializeFromString(invalidXml);
+        Action act = () => _serializer.DeserializeFromXml(invalidXml);
 
         act.Should()
             .Throw<GldfException>()
@@ -175,11 +175,11 @@ public class GldfXmlSerializerTests
     [Test]
     public void DeserializeFromFile_ShouldThrow_When_FilePath_IsNull()
     {
-        Action act = () => _serializer.DeserializeFromFile(null);
+        Action act = () => _serializer.DeserializeFromXmlFile(null);
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
-            .WithMessage("Value cannot be null. (Parameter 'filePath')");
+            .WithMessage("Value cannot be null. (Parameter 'xmlFilePath')");
     }
 
     [Test]
@@ -189,7 +189,7 @@ public class GldfXmlSerializerTests
         var expectedRoot = EmbeddedXmlTestData.GetRootWithHeaderModel();
         File.WriteAllText(_tempFile, xml);
 
-        var root = _serializer.DeserializeFromFile(_tempFile);
+        var root = _serializer.DeserializeFromXmlFile(_tempFile);
 
         root.Should().BeEquivalentTo(expectedRoot);
     }
@@ -200,7 +200,7 @@ public class GldfXmlSerializerTests
         const string invalidXml = "<";
         File.WriteAllText(_tempFile, invalidXml);
 
-        Action act = () => _serializer.DeserializeFromFile(_tempFile);
+        Action act = () => _serializer.DeserializeFromXmlFile(_tempFile);
 
         act.Should()
             .Throw<GldfException>()

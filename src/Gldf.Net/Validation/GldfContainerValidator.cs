@@ -24,32 +24,32 @@ internal class GldfContainerValidator
         _zipArchiveReader = new ZipArchiveReader();
     }
 
-    public IEnumerable<ValidationHint> Validate(GldfContainer container) => ValidateSafe(() => container == null 
+    public IEnumerable<ValidationHint> ValidateGldf(GldfContainer gldf) => ValidateSafe(() => gldf == null 
         ? ValidationHint.Error("The GLDF is null", ErrorType.GenericError) 
-        : ContainerValidationRules.SelectMany(rule => rule.Validate(container)));
+        : ContainerValidationRules.SelectMany(rule => rule.ValidateGldf(gldf)));
 
-    public IEnumerable<ValidationHint> Validate(string filePath) =>
+    public IEnumerable<ValidationHint> ValidateGldfFile(string gldfFilePath) =>
         ValidateSafe(() =>
         {
-            if (!ZipArchiveReader.IsZipArchive(filePath))
-                return ValidationHint.Error($"The GLDF container '{filePath}' seems not to be a " +
+            if (!ZipArchiveReader.IsZipArchive(gldfFilePath))
+                return ValidationHint.Error($"The GLDF container '{gldfFilePath}' seems not to be a " +
                                             "valid ZIP file or can't be accessed", ErrorType.InvalidZip);
 
             var containerLoadSettings = new ContainerLoadSettings { AssetLoadBehaviour = AssetLoadBehaviour.FileNamesOnly };
-            var gldfContainer = _zipArchiveReader.ReadContainer(filePath, containerLoadSettings);
-            return ContainerValidationRules.SelectMany(rule => rule.Validate(gldfContainer));
+            var gldfContainer = _zipArchiveReader.ReadContainer(gldfFilePath, containerLoadSettings);
+            return ContainerValidationRules.SelectMany(rule => rule.ValidateGldf(gldfContainer));
         });
 
-    public IEnumerable<ValidationHint> Validate(Stream stream, bool leaveOpen) =>
+    public IEnumerable<ValidationHint> ValidateGldfStream(Stream zipStream, bool leaveOpen) =>
         ValidateSafe(() =>
         {
-            if (!ZipArchiveReader.IsZipArchive(stream, true))
+            if (!ZipArchiveReader.IsZipArchive(zipStream, true))
                 return ValidationHint.Error("The GLDF container seems not to be a " +
                                             "valid ZIP file or can't be accessed", ErrorType.InvalidZip);
 
             var containerLoadSettings = new ContainerLoadSettings { AssetLoadBehaviour = AssetLoadBehaviour.FileNamesOnly };
-            var gldfContainer = _zipArchiveReader.ReadContainer(stream, leaveOpen, containerLoadSettings);
-            return ContainerValidationRules.SelectMany(rule => rule.Validate(gldfContainer));
+            var gldfContainer = _zipArchiveReader.ReadContainer(zipStream, leaveOpen, containerLoadSettings);
+            return ContainerValidationRules.SelectMany(rule => rule.ValidateGldf(gldfContainer));
         });
 
     private static IEnumerable<ValidationHint> ValidateSafe(Func<IEnumerable<ValidationHint>> func)

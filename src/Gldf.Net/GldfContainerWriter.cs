@@ -27,38 +27,38 @@ public class GldfContainerWriter : IGldfContainerWriter
     /// <summary>
     ///     Writes the contents of a <see cref="GldfContainer" /> to a file on disk.
     /// </summary>
-    /// <param name="filePath">Path on disk to write the <see cref="GldfContainer" /> to</param>
-    /// <param name="gldfContainer">The <see cref="GldfContainer" /> to wirte to disk</param>
-    public void WriteToFile(string filePath, GldfContainer gldfContainer)
+    /// <param name="gldfFilePath">Path on disk to write the <see cref="GldfContainer" /> to</param>
+    /// <param name="gldf">The <see cref="GldfContainer" /> to wirte to disk</param>
+    public void WriteToGldfFile(string gldfFilePath, GldfContainer gldf)
     {
-        if (filePath == null) throw new ArgumentNullException(nameof(filePath));
-        if (gldfContainer == null) throw new ArgumentNullException(nameof(gldfContainer));
+        if (gldfFilePath == null) throw new ArgumentNullException(nameof(gldfFilePath));
+        if (gldf == null) throw new ArgumentNullException(nameof(gldf));
 
         try
         {
-            _zipArchiveWriter.Write(filePath, gldfContainer);
+            _zipArchiveWriter.Write(gldfFilePath, gldf);
         }
         catch (Exception e)
         {
             throw new GldfContainerException($"Failed to create {nameof(GldfContainer)} in " +
-                                             $"'{filePath}'. See inner exception", e);
+                                             $"'{gldfFilePath}'. See inner exception", e);
         }
     }
 
     /// <summary>
     ///     Writes the contents of a <see cref="GldfContainer" /> to a stream.
     /// </summary>
-    /// <param name="stream">Stream to write the <see cref="GldfContainer" /> to</param>
+    /// <param name="zipStream">Stream to write the <see cref="GldfContainer" /> to</param>
     /// <param name="leaveOpen">To leave the stream open after write, otherwise it will be disposed</param>
-    /// <param name="gldfContainer">The <see cref="GldfContainer" /> to wirte to the stream</param>
-    public void WriteToStream(Stream stream, bool leaveOpen, GldfContainer gldfContainer)
+    /// <param name="gldf">The <see cref="GldfContainer" /> to wirte to the stream</param>
+    public void WriteToGldfStream(Stream zipStream, bool leaveOpen, GldfContainer gldf)
     {
-        if (stream == null) throw new ArgumentNullException(nameof(stream));
-        if (gldfContainer == null) throw new ArgumentNullException(nameof(gldfContainer));
+        if (zipStream == null) throw new ArgumentNullException(nameof(zipStream));
+        if (gldf == null) throw new ArgumentNullException(nameof(gldf));
 
         try
         {
-            _zipArchiveWriter.Write(stream, leaveOpen, gldfContainer);
+            _zipArchiveWriter.Write(zipStream, leaveOpen, gldf);
         }
         catch (Exception e)
         {

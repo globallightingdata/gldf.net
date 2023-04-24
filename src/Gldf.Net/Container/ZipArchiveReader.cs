@@ -113,7 +113,7 @@ internal class ZipArchiveReader : ZipArchiveIO
     {
         var rootXml = ReadRootXml(zipArchive);
         container.Product = rootXml != null
-            ? GldfXmlSerializer.DeserializeFromString(rootXml)
+            ? GldfXmlSerializer.DeserializeFromXml(rootXml)
             : null;
     }
 
@@ -124,7 +124,7 @@ internal class ZipArchiveReader : ZipArchiveIO
         using var stream = metaInfoEntry.Open();
         using var streamReader = new StreamReader(stream, Encoding);
         var metaInfo = streamReader.ReadToEnd();
-        container.MetaInformation = MetaInfoSerializer.DeserializeFromString(metaInfo);
+        container.MetaInformation = MetaInfoSerializer.DeserializeFromXml(metaInfo);
     }
 
     private static void AddAssets(ZipArchive zipArchive, GldfContainer container, AssetLoadBehaviour loadBehaviour)

@@ -12,13 +12,13 @@ namespace Gldf.Net.Validation.Rules.Container;
 
 internal class HasNoMissingAssetsRule : IContainerValidationRule
 {
-    public IEnumerable<ValidationHint> Validate(GldfContainer container)
+    public IEnumerable<ValidationHint> ValidateGldf(GldfContainer gldf)
     {
         return ValidateSafe(() =>
         {
-            if (container.Product?.GeneralDefinitions?.Files == null) return ValidationHint.Empty();
-            var filesWithoutAssets = container.Product.GeneralDefinitions.Files.Where(file =>
-                file.Type == FileType.LocalFileName && HasNoAsset(file, container.Assets)).ToArray();
+            if (gldf.Product?.GeneralDefinitions?.Files == null) return ValidationHint.Empty();
+            var filesWithoutAssets = gldf.Product.GeneralDefinitions.Files.Where(file =>
+                file.Type == FileType.LocalFileName && HasNoAsset(file, gldf.Assets)).ToArray();
 
             return filesWithoutAssets.Any()
                 ? ValidationHint.Error("The product.xml contains File definitions that are " +

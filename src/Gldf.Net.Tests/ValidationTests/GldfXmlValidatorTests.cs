@@ -5,6 +5,7 @@ using Gldf.Net.Validation.Model;
 using NUnit.Framework;
 using System;
 using System.IO;
+using System.Text;
 
 namespace Gldf.Net.Tests.ValidationTests;
 
@@ -38,16 +39,9 @@ public class GldfXmlValidatorTests
             .WithMessage("Value cannot be null. (Parameter 'encoding')");
     }
 
-    [Test, TestCaseSource(nameof(ValidXmlTestCases))]
-    public void ValidateXml_ShouldReturnEmptyList_WhendDataIsValid(string xml)
-    {
-        var validationResult = _xmlValidator.ValidateXml(xml);
-        validationResult.Should().BeEmpty();
-    }
-
     [TestCase(null)]
     [TestCase("")]
-    public void ValidateXml_ShouldReturnExpected_WhenXmlIsInvalid(string xml)
+    public void ValidateXml_ShouldReturnExpected_WhenXmlIsNullOrEmpty(string xml)
     {
         var expected = ValidationHint.Error("Failed to validate XML Schema*", ErrorType.XmlSchema);
         var hints = _xmlValidator.ValidateXml(xml);
@@ -58,7 +52,7 @@ public class GldfXmlValidatorTests
     }
 
     [Test]
-    public void ValidateXml_WithMissingGeneralDefinition_Should_Return_ExpectedHint()
+    public void ValidateXml_ShouldReturnXmlSchemaHint_WhenXmlIncomplete()
     {
         var xml = EmbeddedXmlTestData.GetRootWithHeaderXml();
         var expectedMmessage = "The element 'Root' has incomplete content. " +
@@ -71,10 +65,11 @@ public class GldfXmlValidatorTests
     }
 
     [Test]
-    public void ValidateXml_WithoutXsd_Should_Validate_WithoutError()
+    public void ValidateXml_ShouldReturnEmptyList_WhenNoXsdSet()
     {
         var xsdLocationString = $@"xsi:noNamespaceSchemaLocation=""{new Root().SchemaLocation}""";
         var xmlWithXsd = EmbeddedXmlTestData.GetHeaderMandatoryXml();
+        xmlWithXsd.Should().Contain(xsdLocationString);
         var xmlWithoutXsd = xmlWithXsd.Replace(xsdLocationString, string.Empty);
 
         var validationResult = _xmlValidator.ValidateXml(xmlWithoutXsd);
@@ -84,11 +79,12 @@ public class GldfXmlValidatorTests
     }
 
     [Test]
-    public void ValidateXml_ShouldValidateWithEmbeddedXsd()
+    public void ValidateXml_ShouldReturnEmptyList_WhenXmlIsValid_AndXsdIsInvalid()
     {
-        const string wrongXsd = "https://raw.githubusercontent.com/globallightingdata/l3d/master/xsd/l3d.xsd";
+        const string wrongXsd = "https://gldf.io/xsd/l3d/l3d.xsd";
         var currentXsd = new Root().SchemaLocation;
         var xmlWithCurrentXsd = EmbeddedXmlTestData.GetHeaderMandatoryXml();
+        xmlWithCurrentXsd.Should().Contain(currentXsd);
         var xmlWithWrongXsd = xmlWithCurrentXsd.Replace(currentXsd, wrongXsd);
 
         var validationResult = _xmlValidator.ValidateXml(xmlWithWrongXsd);
@@ -98,17 +94,15 @@ public class GldfXmlValidatorTests
     }
 
     [Test, TestCaseSource(nameof(ValidXmlTestCases))]
-    public void ValidateFile_ShouldReturnEmptyList_WhenValidData(string xml)
+    public void ValidateXml_ShouldReturnEmptyList_WhendXmlIsValid(string xml)
     {
-        File.WriteAllText(_tempFile, xml);
-        var validationResult = _xmlValidator.ValidateXmlFile(_tempFile);
-
+        var validationResult = _xmlValidator.ValidateXml(xml);
         validationResult.Should().BeEmpty();
     }
 
     [TestCase("")]
     [TestCase(null)]
-    public void ValidateFile_ShouldReturnExpected_WhenInvalidFile(string filepath)
+    public void ValidateFile_ShouldReturnExpected_WhenFileIsInvalid(string filepath)
     {
         var expected = ValidationHint.Error("Failed to validate XML Schema*", ErrorType.XmlSchema);
         var hints = _xmlValidator.ValidateXmlFile(filepath);
@@ -126,13 +120,13 @@ public class GldfXmlValidatorTests
                                "List of possible elements expected: 'GeneralDefinitions'.";
         var expectedHint = new ValidationHint(SeverityType.Error, expectedMmessage, ErrorType.XmlSchema);
         File.WriteAllText(_tempFile, xml);
-        
+
         var validationResult = _xmlValidator.ValidateXmlFile(_tempFile);
         validationResult.Should().ContainEquivalentOf(expectedHint);
     }
 
     [Test]
-    public void ValidateFileWithoutXsd_Should_Validate_WithoutError()
+    public void ValidateFile_ShouldReturnEmptyList_WhenNoXsdSet()
     {
         var xsdLocationString = $@"xsi:noNamespaceSchemaLocation=""{new Root().SchemaLocation}""";
         var xmlWithXsd = EmbeddedXmlTestData.GetHeaderMandatoryXml();
@@ -146,9 +140,9 @@ public class GldfXmlValidatorTests
     }
 
     [Test]
-    public void ValidateFileValidContent_ButWrongXsd_Should_Ignore_And_ValidateWithEmbeddedXsd()
+    public void ValidateFile_ShouldReturnEmptyList_WhenXmlIsValid_AndXsdIsInvalid()
     {
-        const string wrongXsd = "https://raw.githubusercontent.com/globallightingdata/l3d/master/xsd/l3d.xsd";
+        const string wrongXsd = "https://gldf.io/xsd/l3d/l3d.xsd";
         var currentXsd = new Root().SchemaLocation;
         var xmlWithCurrentXsd = EmbeddedXmlTestData.GetHeaderMandatoryXml();
         var xmlWithWrongXsd = xmlWithCurrentXsd.Replace(currentXsd, wrongXsd);
@@ -157,6 +151,44 @@ public class GldfXmlValidatorTests
         var validationResult = _xmlValidator.ValidateXmlFile(_tempFile);
 
         xmlWithWrongXsd.Should().NotBeEquivalentTo(xmlWithCurrentXsd);
+        validationResult.Should().BeEmpty();
+    }
+
+    [Test, TestCaseSource(nameof(ValidXmlTestCases))]
+    public void ValidateFile_ShouldReturnEmptyList_WhenDataIsValid(string xml)
+    {
+        File.WriteAllText(_tempFile, xml);
+        var validationResult = _xmlValidator.ValidateXmlFile(_tempFile);
+
+        validationResult.Should().BeEmpty();
+    }
+
+    [Test, TestCaseSource(nameof(ValidXmlTestCases))]
+    public void ValidateXmlStream_ShouldReturnEmptyList_WhenDataIsValid(string xml)
+    {
+        using var memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(xml));
+        var validationResult = _xmlValidator.ValidateXmlStream(memoryStream, false);
+
+        validationResult.Should().BeEmpty();
+    }
+
+    [Test]
+    public void ValidateGldfFile_ShouldReturnEmptyList_WhenDataIsValid()
+    {
+        var gldf = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
+        File.WriteAllBytes(_tempFile, gldf);
+        var validationResult = _xmlValidator.ValidateGldfFile(_tempFile);
+
+        validationResult.Should().BeEmpty();
+    }
+
+    [Test]
+    public void ValidateGldfStream_ShouldReturnEmptyList_WhenDataIsValid()
+    {
+        var gldf = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
+        using var memoryStream = new MemoryStream(gldf);
+        var validationResult = _xmlValidator.ValidateGldfStream(memoryStream, false);
+
         validationResult.Should().BeEmpty();
     }
 }

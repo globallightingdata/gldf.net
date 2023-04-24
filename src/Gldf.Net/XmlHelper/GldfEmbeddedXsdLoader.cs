@@ -18,7 +18,7 @@ public static class GldfEmbeddedXsdLoader
         new(1, 0, 2)
     };
 
-    public static string LoadXsd(FormatVersion version)
+    public static string Load(FormatVersion version)
     {
         try
         {

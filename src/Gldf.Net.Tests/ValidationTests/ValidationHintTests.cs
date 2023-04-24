@@ -12,7 +12,6 @@ public class ValidationHintTests
     public void Empty_ShouldReturn_EmptyListOfHints()
     {
         var validationHints = ValidationHint.Empty();
-
         validationHints.Should().BeEmpty();
     }
 

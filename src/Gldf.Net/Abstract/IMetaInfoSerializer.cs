@@ -5,11 +5,11 @@ namespace Gldf.Net.Abstract;
 
 public interface IMetaInfoSerializer
 {
-    string SerializeToString(MetaInformation metaInformation);
-    void SerializeToFile(MetaInformation metaInformation, string filePath);
-    void SerializeToStream(MetaInformation metaInformation, Stream stream);
+    string SerializeToXml(MetaInformation metaInfo);
+    void SerializeToXmlFile(MetaInformation metaInfo, string xmlFilePath);
+    void SerializeToXmlStream(MetaInformation metaInfo, Stream xmlStream);
 
-    MetaInformation DeserializeFromString(string xml);
-    MetaInformation DeserializeFromFile(string filePath);
-    MetaInformation DeserializeFromStream(Stream stream);
+    MetaInformation DeserializeFromXml(string xml);
+    MetaInformation DeserializeFromXmlFile(string xmlFilePath);
+    MetaInformation DeserializeFromXmlStream(Stream xmlStream);
 }

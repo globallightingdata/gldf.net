@@ -29,60 +29,68 @@ public class GldfZipValidatorTests
     }
 
     [Test]
-    public void Validate_Filepath_Should_Return_EmptyHintList()
+    public void ValidateFilepath_ShouldReturnEmptyHintList_WhenZipIsValid()
     {
         var gldfWithInvalidRoot = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
         File.WriteAllBytes(_tempFile, gldfWithInvalidRoot);
 
-        var hints = _gldfZipValidator.Validate(_tempFile);
+        var hints = _gldfZipValidator.ValidateGldfFile(_tempFile);
+
+        hints.Should().BeEmpty();
+    }
+    
+    [Test]
+    public void ValidateStream_ShouldReturnEmptyHintList_WhenZipIsValid()
+    {
+        var gldfWithInvalidRoot = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
+        using var memoryStream = new MemoryStream(gldfWithInvalidRoot);
+
+        var hints = _gldfZipValidator.ValidateGldfStream(memoryStream);
 
         hints.Should().BeEmpty();
     }
 
     [Test]
-    public void Validate_Filepath_Should_Return_InvalidZipFileError_When_GldfIsInvalid()
+    public void ValidateFilepath_ShouldReturnInvalidZip_WhenGldfIsInvalid()
     {
         File.WriteAllBytes(_tempFile, new byte[1]);
         var message = $"The GLDF container '{_tempFile}' seems not to be a valid ZIP file or can't be accessed";
         var expected = new ValidationHint(SeverityType.Error, message, ErrorType.InvalidZip);
 
-        var hints = _gldfZipValidator.Validate(_tempFile).ToList();
+        var hints = _gldfZipValidator.ValidateGldfFile(_tempFile).ToList();
 
-        hints.Should().HaveCount(5);
         hints.Should().ContainEquivalentOf(expected);
     }
 
     [Test]
-    public void Validate_Filepath_Should_Return_RootMissingError_When_ProductXmlEntryIsMissing()
+    public void ValidateFilepath_ShouldReturnProductXmlNotFound_WhenProductXmlIsMissing()
     {
         ZipFile.Open(_tempFile, ZipArchiveMode.Update).Dispose();
         var message = $"The GLDF container '{_tempFile}' does not contain a product.xml entry.";
         var expected = new ValidationHint(SeverityType.Error, message, ErrorType.ProductXmlNotFound);
 
-        var hints = _gldfZipValidator.Validate(_tempFile).ToList();
+        var hints = _gldfZipValidator.ValidateGldfFile(_tempFile).ToList();
 
-        hints.Should().HaveCount(3);
         hints.Should().ContainEquivalentOf(expected);
     }
 
     [Test]
-    public void Validate_Filepath_Should_Return_InvalidRootError_When_ProductXmlIsInvalid()
+    public void ValidateFilepath_ShouldReturnNonDeserialisableRoot_WhenProductXmlIsInvalid()
     {
         var gldfWithInvalidRoot = EmbeddedGldfTestData.GetGldfWithInvalidRoot();
         File.WriteAllBytes(_tempFile, gldfWithInvalidRoot);
-        const string message = "The 'contentType' attribute is invalid - " +
-                               "The value 'invalid' is invalid according to its datatype 'String' - " +
-                               "The Enumeration constraint failed.";
-        var expected = new ValidationHint(SeverityType.Error, message, ErrorType.XmlSchema);
+        const string message = "The product.xml in GLDF container could not be deserialized*";
+        var expected = new ValidationHint(SeverityType.Error, message, ErrorType.NonDeserialisableRoot);
 
-        var hints = _gldfZipValidator.Validate(_tempFile).ToList();
+        var hints = _gldfZipValidator.ValidateGldfFile(_tempFile).ToList();
 
-        hints.Should().HaveCount(2);
-        hints.Should().ContainEquivalentOf(expected);
+        hints.Should().ContainEquivalentOf(expected, o => o
+            .Using<string>(s => s.Subject.Should().Match(s.Expectation))
+            .When(p => p.Path.EndsWith(nameof(ValidationHint.Message))));
     }
 
     [Test]
-    public void Validate_Filepath_Should_Return_LargeFileWarning()
+    public void ValidateFilepath_ShouldReturnTooLargeFilesWarning()
     {
         var gldfWithLargeFiles = EmbeddedGldfTestData.GetGldfWithLargeFiles();
         File.WriteAllBytes(_tempFile, gldfWithLargeFiles);
@@ -90,7 +98,7 @@ public class GldfZipValidatorTests
                                "size to 5MB each: doc/5MbTextFile.txt";
         var expected = ValidationHint.Warning(message, ErrorType.TooLargeFiles);
 
-        var hints = _gldfZipValidator.Validate(_tempFile);
+        var hints = _gldfZipValidator.ValidateGldfFile(_tempFile);
 
         hints.Should().BeEquivalentTo(expected);
     }

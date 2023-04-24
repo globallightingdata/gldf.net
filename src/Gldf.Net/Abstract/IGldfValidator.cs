@@ -7,9 +7,9 @@ namespace Gldf.Net.Abstract;
 
 public interface IGldfValidator
 {
-    IEnumerable<ValidationHint> Validate(GldfContainer container);
+    IEnumerable<ValidationHint> ValidateGldf(GldfContainer gldf);
     
-    IEnumerable<ValidationHint> Validate(string filePath, ValidationFlags flags);
+    IEnumerable<ValidationHint> ValidateGldfFile(string gldfFilePath, ValidationFlags flags);
     
-    IEnumerable<ValidationHint> Validate(Stream stream, bool leaveOpen, ValidationFlags flags);
+    IEnumerable<ValidationHint> ValidateGldfStream(Stream zipStream, bool leaveOpen, ValidationFlags flags);
 }

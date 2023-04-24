@@ -11,13 +11,13 @@ public interface IGldfParser
 
     RootTyped ParseFromXmlFile(string xmlFilePath, IGldfXmlSerializer serializer = null);
 
-    RootTyped ParseFromXmlStream(Stream stream, bool leaveOpen, IGldfXmlSerializer serializer = null);
+    RootTyped ParseFromXmlStream(Stream xmlStream, bool leaveOpen, IGldfXmlSerializer serializer = null);
 
     RootTyped ParseFromRoot(Root root);
 
-    RootTyped ParseFromContainer(GldfContainer gldfContainer);
+    RootTyped ParseFromGldf(GldfContainer gldf);
 
-    RootTyped ParseFromContainerFile(string containerFilePath, IGldfContainerReader reader = null);
+    RootTyped ParseFromGldfFile(string gldfFilePath, IGldfContainerReader reader = null);
 
-    RootTyped ParseFromContainerStream(Stream stream, bool leaveOpen, IGldfContainerReader reader = null);
+    RootTyped ParseFromGldfStream(Stream zipStream, bool leaveOpen, IGldfContainerReader reader = null);
 }

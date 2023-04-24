@@ -14,7 +14,7 @@ public class ModelSerializationTests
     public void SerializeModel_ShouldReturnExpectedXml(Root model, string expectedXml)
     {
         var gldfSerializer = new GldfXmlSerializer();
-        var serializedXml = gldfSerializer.SerializeToString(model);
+        var serializedXml = gldfSerializer.SerializeToXml(model);
         expectedXml.ShouldBe().EquivalentTo(serializedXml);
     }
         
@@ -22,7 +22,7 @@ public class ModelSerializationTests
     public void DeserializeXml_ShouldReturnExpectedModel(Root expectedModel, string xml)
     {
         var gldfSerializer = new GldfXmlSerializer();
-        var serializedXml = gldfSerializer.DeserializeFromString(xml);
+        var serializedXml = gldfSerializer.DeserializeFromXml(xml);
         expectedModel.Should().BeEquivalentTo(serializedXml);
     }
 
@@ -30,8 +30,8 @@ public class ModelSerializationTests
     public void SerializeAndDeserializeModel_ShouldBeSameAsOrigin(Root model, string _)
     {
         var gldfSerializer = new GldfXmlSerializer();
-        var xml = gldfSerializer.SerializeToString(model);
-        var resultModel = gldfSerializer.DeserializeFromString(xml);
+        var xml = gldfSerializer.SerializeToXml(model);
+        var resultModel = gldfSerializer.DeserializeFromXml(xml);
         resultModel.Should().BeEquivalentTo(model);
     }
 

@@ -1,6 +1,7 @@
 ﻿using Gldf.Net.Abstract;
 using Gldf.Net.Container;
 using Gldf.Net.Exceptions;
+using Gldf.Net.Extensions;
 using Gldf.Net.Validation;
 using Gldf.Net.Validation.Model;
 using System;
@@ -52,7 +53,7 @@ public class GldfXmlValidator : IGldfXmlValidator
     /// <param name="xml">The GLDF XML string to validate</param>
     /// <returns>An IEnumerable of <see cref="ValidationHint" /> with possible warnings and errors</returns>
     public IEnumerable<ValidationHint> ValidateXml(string xml) =>
-        ValidateSafe(() => _gldfXmlValidator.ValidateString(xml));
+        ValidateSafe(() => _gldfXmlValidator.ValidateXml(xml));
 
     /// <summary>
     ///     Validates the GLDF XML file on disk with the XmlSchema definition matching the specified FormatVersion
@@ -65,48 +66,55 @@ public class GldfXmlValidator : IGldfXmlValidator
         {
             using var streamReader = new StreamReader(xmlFilePath, Encoding, true);
             var xml = streamReader.ReadToEnd();
-            return _gldfXmlValidator.ValidateString(xml);
+            return _gldfXmlValidator.ValidateXml(xml);
         });
 
     /// <summary>
     ///     Validates the GLDF XML file on disk with the XmlSchema definition matching the specified FormatVersion
     ///     in the Header of the XML.
     /// </summary>
-    /// <param name="stream"></param>
+    /// <param name="xmlStream"></param>
     /// <param name="leaveOpen"></param>
     /// <returns>An IEnumerable of <see cref="ValidationHint" /> with possible warnings and errors</returns>
-    public IEnumerable<ValidationHint> ValidateXmlStream(Stream stream, bool leaveOpen) =>
+    public IEnumerable<ValidationHint> ValidateXmlStream(Stream xmlStream, bool leaveOpen) =>
         ValidateSafe(() =>
         {
-            var xml = _zipArchiveReader.ReadRootXml(stream, leaveOpen);
-            return _gldfXmlValidator.ValidateString(xml);
+            try
+            {
+                using var streamReader = new StreamReader(xmlStream, Encoding);
+                return _gldfXmlValidator.ValidateXml(streamReader.ReadToEnd());
+            }
+            finally
+            {
+                if (!leaveOpen) xmlStream.DisposeSafe();
+            }
         });
 
     /// <summary>
     ///     Validates the GLDF XML file on disk with the XmlSchema definition matching the specified FormatVersion
     ///     in the Header of the XML.
     /// </summary>
-    /// <param name="filePath">The path to the GLDF XML file</param>
+    /// <param name="gldfFilePath">The path to the GLDF XML file</param>
     /// <returns>An IEnumerable of <see cref="ValidationHint" /> with possible warnings and errors</returns>
-    public IEnumerable<ValidationHint> ValidateGldfFile(string filePath) =>
+    public IEnumerable<ValidationHint> ValidateGldfFile(string gldfFilePath) =>
         ValidateSafe(() =>
         {
-            var xml = _zipArchiveReader.ReadRootXml(filePath);
-            return _gldfXmlValidator.ValidateString(xml);
+            var xml = _zipArchiveReader.ReadRootXml(gldfFilePath);
+            return _gldfXmlValidator.ValidateXml(xml);
         });
 
     /// <summary>
     ///     Validates the GLDF XML file on disk with the XmlSchema definition matching the specified FormatVersion
     ///     in the Header of the XML.
     /// </summary>
-    /// <param name="stream">The stream to the GLDF XML file</param>
+    /// <param name="zipStream">The stream to the GLDF XML file</param>
     /// <param name="leaveOpen">true to leave te stream open, otherwise false</param>
     /// <returns>An IEnumerable of <see cref="ValidationHint" /> with possible warnings and errors</returns>
-    public IEnumerable<ValidationHint> ValidateGldfStream(Stream stream, bool leaveOpen) =>
+    public IEnumerable<ValidationHint> ValidateGldfStream(Stream zipStream, bool leaveOpen) =>
         ValidateSafe(() =>
         {
-            var xml = _zipArchiveReader.ReadRootXml(stream, leaveOpen);
-            return _gldfXmlValidator.ValidateString(xml);
+            var xml = _zipArchiveReader.ReadRootXml(zipStream, leaveOpen);
+            return _gldfXmlValidator.ValidateXml(xml);
         });
 
     private static IEnumerable<ValidationHint> ValidateSafe(Func<IEnumerable<ValidationHint>> func)

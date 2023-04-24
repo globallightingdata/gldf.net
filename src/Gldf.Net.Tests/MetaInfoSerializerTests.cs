@@ -46,11 +46,11 @@ public class MetaInfoSerializerTests
     [Test]
     public void SerializeToString_ShouldThrow_WhenMetaInformationIsNull()
     {
-        Action act = () => _serializer.SerializeToString(null);
+        Action act = () => _serializer.SerializeToXml(null);
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
-            .WithMessage("Value cannot be null. (Parameter 'metaInformation')");
+            .WithMessage("Value cannot be null. (Parameter 'metaInfo')");
     }
 
     [Test]
@@ -59,7 +59,7 @@ public class MetaInfoSerializerTests
         var expectedXml = EmbeddedXmlTestData.GetMetaInformationXml();
         var metaInformation = EmbeddedXmlTestData.GetMetaInformationModel();
 
-        var xml = _serializer.SerializeToString(metaInformation);
+        var xml = _serializer.SerializeToXml(metaInformation);
 
         xml.ShouldBe().EquivalentTo(expectedXml);
     }
@@ -70,7 +70,7 @@ public class MetaInfoSerializerTests
         var expectedXml = EmbeddedXmlTestData.GetMetaInformationXml();
         var metaInformation = EmbeddedXmlTestData.GetMetaInformationModel();
 
-        var xml = _serializerWithSettings.SerializeToString(metaInformation);
+        var xml = _serializerWithSettings.SerializeToXml(metaInformation);
 
         xml.ShouldBe().EquivalentTo(expectedXml);
     }
@@ -78,21 +78,21 @@ public class MetaInfoSerializerTests
     [Test]
     public void SerializeToFile_ShouldThrow_WhenMetaInformationIsNull()
     {
-        var act = () => _serializer.SerializeToFile(null, "");
+        var act = () => _serializer.SerializeToXmlFile(null, "");
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
-            .WithMessage("Value cannot be null. (Parameter 'metaInformation')");
+            .WithMessage("Value cannot be null. (Parameter 'metaInfo')");
     }
 
     [Test]
     public void SerializeToFile_ShouldThrow_WhenFilePathIsNull()
     {
-        var act = () => _serializer.SerializeToFile(new MetaInformation(), null);
+        var act = () => _serializer.SerializeToXmlFile(new MetaInformation(), null);
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
-            .WithMessage("Value cannot be null. (Parameter 'filePath')");
+            .WithMessage("Value cannot be null. (Parameter 'xmlFilePath')");
     }
 
     [Test]
@@ -101,7 +101,7 @@ public class MetaInfoSerializerTests
         var expectedXml = EmbeddedXmlTestData.GetMetaInformationXml();
         var metaInformation = EmbeddedXmlTestData.GetMetaInformationModel();
 
-        _serializer.SerializeToFile(metaInformation, _tempFile);
+        _serializer.SerializeToXmlFile(metaInformation, _tempFile);
         var xml = File.ReadAllText(_tempFile);
 
         xml.ShouldBe().EquivalentTo(expectedXml);
@@ -113,7 +113,7 @@ public class MetaInfoSerializerTests
         var expectedXml = EmbeddedXmlTestData.GetMetaInformationXml();
         var metaInformation = EmbeddedXmlTestData.GetMetaInformationModel();
 
-        _serializerWithSettings.SerializeToFile(metaInformation, _tempFile);
+        _serializerWithSettings.SerializeToXmlFile(metaInformation, _tempFile);
         var xml = File.ReadAllText(_tempFile);
 
         xml.ShouldBe().EquivalentTo(expectedXml);
@@ -124,7 +124,7 @@ public class MetaInfoSerializerTests
     [Test]
     public void DeserializeFromString_ShouldThrow_WhenXmlStringIsNull()
     {
-        Action act = () => _serializer.DeserializeFromString(null);
+        Action act = () => _serializer.DeserializeFromXml(null);
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
@@ -137,7 +137,7 @@ public class MetaInfoSerializerTests
         var xml = EmbeddedXmlTestData.GetMetaInformationXml();
         var expectedMetaInformation = EmbeddedXmlTestData.GetMetaInformationModel();
 
-        var root = _serializer.DeserializeFromString(xml);
+        var root = _serializer.DeserializeFromXml(xml);
 
         root.Should().BeEquivalentTo(expectedMetaInformation);
     }
@@ -147,7 +147,7 @@ public class MetaInfoSerializerTests
     {
         const string invalidXml = "<";
 
-        Action act = () => _serializer.DeserializeFromString(invalidXml);
+        Action act = () => _serializer.DeserializeFromXml(invalidXml);
 
         act.Should()
             .Throw<GldfException>()
@@ -159,11 +159,11 @@ public class MetaInfoSerializerTests
     [Test]
     public void DeserializeFromFile_ShouldThrow_WhenFilePathIsNull()
     {
-        Action act = () => _serializer.DeserializeFromFile(null);
+        Action act = () => _serializer.DeserializeFromXmlFile(null);
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
-            .WithMessage("Value cannot be null. (Parameter 'filePath')");
+            .WithMessage("Value cannot be null. (Parameter 'xmlFilePath')");
     }
 
     [Test]
@@ -173,7 +173,7 @@ public class MetaInfoSerializerTests
         var expectedMetaInformation = EmbeddedXmlTestData.GetMetaInformationModel();
         File.WriteAllText(_tempFile, xml);
 
-        var root = _serializer.DeserializeFromFile(_tempFile);
+        var root = _serializer.DeserializeFromXmlFile(_tempFile);
 
         root.Should().BeEquivalentTo(expectedMetaInformation);
     }
@@ -184,7 +184,7 @@ public class MetaInfoSerializerTests
         const string invalidXml = "<";
         File.WriteAllText(_tempFile, invalidXml);
 
-        Action act = () => _serializer.DeserializeFromFile(_tempFile);
+        Action act = () => _serializer.DeserializeFromXmlFile(_tempFile);
 
         act.Should()
             .Throw<GldfException>()
