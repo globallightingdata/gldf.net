@@ -23,10 +23,8 @@ public class GldfValidator : IGldfValidator
         _containerValidator = new GldfContainerValidator();
     }
 
-    public IEnumerable<ValidationHint> ValidateGldf(GldfContainer gldf)
-    {
-        return _containerValidator.ValidateGldf(gldf);
-    }
+    public IEnumerable<ValidationHint> ValidateGldf(GldfContainer gldf) => 
+        _containerValidator.ValidateGldf(gldf);
 
     public IEnumerable<ValidationHint> ValidateGldfFile(string gldfFilePath, ValidationFlags flags) =>
         ValidateSafe(() =>
@@ -56,7 +54,7 @@ public class GldfValidator : IGldfValidator
                 // Schema
                 var result = new List<ValidationHint>();
                 if (flags.HasFlag(ValidationFlags.Schema))
-                    result.AddRange(_schemaValidator.ValidateXmlStream(zipStream, true));
+                    result.AddRange(_schemaValidator.ValidateGldfStream(zipStream, true));
 
                 // Zip
                 if (flags.HasFlag(ValidationFlags.Zip))
