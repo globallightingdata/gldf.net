@@ -76,7 +76,7 @@ public class MetaInfoSerializerTests
     }
 
     [Test]
-    public void SerializeToFile_ShouldThrow_WhenMetaInformationIsNull()
+    public void SerializeToXmlFile_ShouldThrow_WhenMetaInformationIsNull()
     {
         var act = () => _serializer.SerializeToXmlFile(null, "");
 
@@ -86,7 +86,7 @@ public class MetaInfoSerializerTests
     }
 
     [Test]
-    public void SerializeToFile_ShouldThrow_WhenFilePathIsNull()
+    public void SerializeToXmlFile_ShouldThrow_WhenFilePathIsNull()
     {
         var act = () => _serializer.SerializeToXmlFile(new MetaInformation(), null);
 
@@ -96,7 +96,7 @@ public class MetaInfoSerializerTests
     }
 
     [Test]
-    public void SerializeToFile_ShouldSaveExpectedXml()
+    public void SerializeToXmlFile_ShouldSaveExpectedXml()
     {
         var expectedXml = EmbeddedXmlTestData.GetMetaInformationXml();
         var metaInformation = EmbeddedXmlTestData.GetMetaInformationModel();
@@ -108,7 +108,7 @@ public class MetaInfoSerializerTests
     }
 
     [Test]
-    public void SerializeToFile_WithSettings_ShouldSaveExpectedXml()
+    public void SerializeToXmlFile_WithSettings_ShouldSaveExpectedXml()
     {
         var expectedXml = EmbeddedXmlTestData.GetMetaInformationXml();
         var metaInformation = EmbeddedXmlTestData.GetMetaInformationModel();
@@ -122,7 +122,7 @@ public class MetaInfoSerializerTests
     /************* Deserialize *************/
 
     [Test]
-    public void DeserializeFromString_ShouldThrow_WhenXmlStringIsNull()
+    public void DeserializeFromXml_ShouldThrow_WhenXmlStringIsNull()
     {
         Action act = () => _serializer.DeserializeFromXml(null);
 
@@ -132,7 +132,7 @@ public class MetaInfoSerializerTests
     }
 
     [Test]
-    public void DeserializeFromString_ShouldReturnExpectedRoot()
+    public void DeserializeFromXml_ShouldReturnExpectedRoot()
     {
         var xml = EmbeddedXmlTestData.GetMetaInformationXml();
         var expectedMetaInformation = EmbeddedXmlTestData.GetMetaInformationModel();
@@ -143,7 +143,7 @@ public class MetaInfoSerializerTests
     }
 
     [Test]
-    public void DeserializeFromString_ShouldThrow_WhenInvalidXml()
+    public void DeserializeFromXml_ShouldThrow_WhenInvalidXml()
     {
         const string invalidXml = "<";
 

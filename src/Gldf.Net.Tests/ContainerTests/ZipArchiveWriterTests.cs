@@ -33,7 +33,19 @@ public class ZipArchiveWriterTests
     }
 
     [Test]
-    public void Write_ShouldCreateArchive_InSubDirectory_When_SubDirectoryNotExists()
+    public void Write_ShouldCreateEmptyContainer()
+    {
+        var gldfContainer = new GldfContainer();
+        
+        _zipArchiveWriter.Write(_tempFile1, gldfContainer);
+        using var zipArchive = ZipFile.Open(_tempFile1, ZipArchiveMode.Read);
+        var entries = zipArchive.Entries;
+        
+        entries.Should().HaveCount(0);
+    }
+
+    [Test]
+    public void Write_ShouldCreateArchiveInSubDirectory_WhenSubDirectoryNotExists()
     {
         var tempFileName = $"{Guid.NewGuid()}.gldf";
         var tempSubDirectory = Path.Combine(Path.GetTempPath(), $"gldf-{DateTime.Now.Ticks}");
@@ -48,7 +60,7 @@ public class ZipArchiveWriterTests
     }
 
     [Test]
-    public void Write_ShouldOverwrite_Container_When_AlreadyExists()
+    public void Write_ShouldOverwriteContainer_WhenAlreadyExists()
     {
         var gldfContainer1 = new GldfContainer(new Root { SchemaLocation = "Old" });
         var gldfContainer2 = new GldfContainer(new Root { SchemaLocation = "New" });
@@ -64,7 +76,7 @@ public class ZipArchiveWriterTests
     }
 
     [Test]
-    public void Write_ShouldCreate_SameGldfArchive_AsExpected()
+    public void Write_ShouldCreateSameGldfArchive_AsExpected()
     {
         var rootWithHeaderModel = EmbeddedXmlTestData.GetRootWithHeaderModel();
         var gldfContainer = new GldfContainer(rootWithHeaderModel);
@@ -93,7 +105,7 @@ public class ZipArchiveWriterTests
     }
 
     [Test]
-    public void Write_Should_OnlyCreate_ProductEntry_When_NoAssets()
+    public void Write_ShouldCreateProductEntry()
     {
         var gldfContainer = new GldfContainer(new Root());
 
@@ -107,9 +119,21 @@ public class ZipArchiveWriterTests
     }
 
     [Test]
-    public void Write_ShouldThrow_ArgumentNullException_When_PathIsNull()
+    public void Write_ShouldCreateMetaInfo()
     {
-        Action act = () => _zipArchiveWriter.Write(null, new GldfContainer());
+        var gldfContainer = new GldfContainer(new Root(), new MetaInformation());
+        
+        _zipArchiveWriter.Write(_tempFile1, gldfContainer);
+        using var zipArchive = ZipFile.Open(_tempFile1, ZipArchiveMode.Read);
+        var entries = zipArchive.Entries;
+        
+        entries.Should().Contain(e => e.Name == GldfStaticNames.Files.MetaInfo);
+    }
+
+    [Test]
+    public void Write_ShouldThrowArgumentNullException_WhenPathIsNull()
+    {
+        var act = () => _zipArchiveWriter.Write(null, new GldfContainer());
 
         act.Should()
             .Throw<ArgumentNullException>()
@@ -117,7 +141,7 @@ public class ZipArchiveWriterTests
     }
 
     [Test]
-    public void CreateFromDirectory_ShouldCreate_GldfContainer_WithExpectedContent()
+    public void CreateFromDirectory_ShouldCreateGldfWithExpectedContent()
     {
         var tempSubDirectory = Path.Combine(Path.GetTempPath(), $"gldf-{DateTime.Now.Ticks}");
         var gldfWithFiles = EmbeddedGldfTestData.GetGldfWithFiles();

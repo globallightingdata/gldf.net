@@ -32,7 +32,7 @@ internal class ZipArchiveWriter : ZipArchiveIO
 
     private void AddRootZipEntry(GldfContainer gldfContainer, ZipArchive zipArchive)
     {
-        if (gldfContainer.Product == null) return; // todo Unit tests
+        if (gldfContainer.Product == null) return;
         var xml = GldfXmlSerializer.SerializeToXml(gldfContainer.Product);
         var productEntry = zipArchive.CreateEntry(GldfStaticNames.Files.Product, CompressionLevel);
         using var entryStream = productEntry.Open();
