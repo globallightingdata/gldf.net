@@ -39,7 +39,7 @@ dotnet add package GLDF.Net
 
 ---
 
-### XML Serialization
+### GLDF XML Serialization
 
 #### Serialize GLDF domain DTOs to XML string
 
@@ -105,7 +105,7 @@ IGldfXmlSerializer serializer = new GldfXmlSerializer(settings);
 
 ---
 
-### XML validation
+### GLDF XML validation
 
 #### Validate XML string with GLDF XmlSchema
 
@@ -168,7 +168,7 @@ gldfXmlValidator.ValidateFile(filePath);
 
 ---
 
-### Container read/write
+### GLDF container read/write
 
 #### Create a .gldf container file
 
@@ -252,7 +252,7 @@ containerWriter.CreateFromDirectory(sourceDirectory, targetFile);
 
 ---
 
-### Container Validation
+### GLF container validation
 
 #### Validate a GLDF container
 
@@ -303,7 +303,9 @@ using Stream stream = new FileStream(filePath, FileMode.Open);
 var result = validator.ValidateGldfStream(stream, leaveOpen:false, ValidationFlags.All);
 ```
 
-### Deserialize with resolved references
+---
+
+### Deserialize GLDF with resolved references
 
 The `GldfXmlSerializer` and `GldfContainerReader` classes produce an exact 1:1 representation of the GLDF XML in .NET (`Root`). Which implies that any references such as Variant ➜ Emitter ➜ Equipment ➜ LightSource ➜ Photometry ➜ File are mapped in the form of Ids, which have to be resolved manually in your application. With the `GldfParser` you have an option to let it resolve during deserialisation for you. And optionally load the GLDF `File` element content as well:
 
@@ -336,6 +338,8 @@ var rootTyped = gldfParser.ParseFromGldfStream(/* GLDF container stream */);
 ---
 
 ### Meta-Information XML Serialization
+
+See [gldf.io](https://gldf.io/docs/container/meta-information) to learn more about meta-information.xml
 
 #### Serialize Meta-Information DTO to XML string
 
@@ -392,7 +396,7 @@ MetaInformation metaInformation = serializer.DeserializeFromXmlStream(stream);
 
 ### Interfaces
 
-There are also Interfaces you can use:
+In summary, you can use the following interfaces
 
 ```CSharp
 // 1) Serialize GLDF XML
