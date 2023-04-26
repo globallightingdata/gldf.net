@@ -19,8 +19,8 @@ internal abstract class ZipArchiveIO
 
     protected ZipArchiveIO(Encoding encoding)
     {
-        GldfXmlSerializer = new GldfXmlSerializer(new XmlWriterSettings { Encoding = encoding });
-        MetaInfoSerializer = new MetaInfoSerializer(new XmlWriterSettings { Encoding = encoding });
+        GldfXmlSerializer = new GldfXmlSerializer(new XmlWriterSettings { Encoding = encoding, Indent = true });
+        MetaInfoSerializer = new MetaInfoSerializer(new XmlWriterSettings { Encoding = encoding, Indent = true });
         CompressionLevel = CompressionLevel.Optimal;
     }
 
