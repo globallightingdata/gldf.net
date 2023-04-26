@@ -8,10 +8,11 @@ namespace Gldf.Net.Tests.Extensions;
 [TestFixture]
 public class DisposableExtensionsTests
 {
-    [Test]
-    public void DisposeSafe_ShouldDispose_AndNotThrow()
+    [TestCase(true)]
+    [TestCase(false)]
+    public void DisposeSafe_ShouldDispose_AndNotThrow(bool failOnDispose)
     {
-        var testDisposable = new TestDisposable();
+        var testDisposable = new TestDisposable(failOnDispose);
         var act = new Action(() => testDisposable.DisposeSafe());
         
         act.Should().NotThrow();
@@ -20,12 +21,19 @@ public class DisposableExtensionsTests
 
     public class TestDisposable : IDisposable
     {
+        private readonly bool _failOnDispose;
+
+        public TestDisposable(bool failOnDispose)
+        {
+            _failOnDispose = failOnDispose;
+        }
+
         public bool IsDispased { get; set; }
         
         public void Dispose()
         {
             IsDispased = true;
-            throw new NotImplementedException();
+            if(_failOnDispose) throw new Exception();
         }
     }
 }
