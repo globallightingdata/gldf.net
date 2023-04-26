@@ -2,6 +2,7 @@
 using System.IO;
 using System.IO.Compression;
 using System.Text;
+using System.Xml;
 
 namespace Gldf.Net.Container;
 
@@ -11,23 +12,16 @@ internal abstract class ZipArchiveIO
     protected readonly IGldfXmlSerializer GldfXmlSerializer;
     protected readonly IMetaInfoSerializer MetaInfoSerializer;
     protected readonly CompressionLevel CompressionLevel;
-    protected readonly Encoding Encoding;
 
-    protected ZipArchiveIO()
+    protected ZipArchiveIO() : this(Encoding.UTF8)
     {
-        GldfXmlSerializer = new GldfXmlSerializer();
-        MetaInfoSerializer = new MetaInfoSerializer();
-        CompressionLevel = CompressionLevel.Optimal;
-        Encoding = Encoding.UTF8;
     }
 
-    protected ZipArchiveIO(IGldfXmlSerializer gldfXmlSerializer, IMetaInfoSerializer metaInfoSerializer,
-        CompressionLevel compressionLevel, Encoding encoding)
+    protected ZipArchiveIO(Encoding encoding)
     {
-        GldfXmlSerializer = gldfXmlSerializer;
-        MetaInfoSerializer = metaInfoSerializer;
-        CompressionLevel = compressionLevel;
-        Encoding = encoding;
+        GldfXmlSerializer = new GldfXmlSerializer(new XmlWriterSettings { Encoding = encoding });
+        MetaInfoSerializer = new MetaInfoSerializer(new XmlWriterSettings { Encoding = encoding });
+        CompressionLevel = CompressionLevel.Optimal;
     }
 
     protected static void PrepareDirectory(string filePath, bool deleteContainerIfExists)

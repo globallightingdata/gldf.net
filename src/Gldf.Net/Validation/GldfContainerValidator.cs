@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace Gldf.Net.Validation;
 
@@ -19,9 +20,13 @@ internal class GldfContainerValidator
         new HasNoOrphanAssetsRule()
     };
 
-    public GldfContainerValidator()
+    public GldfContainerValidator() : this(Encoding.UTF8)
     {
-        _zipArchiveReader = new ZipArchiveReader();
+    }
+
+    public GldfContainerValidator(Encoding encoding)
+    {
+        _zipArchiveReader = new ZipArchiveReader(encoding);
     }
 
     public IEnumerable<ValidationHint> ValidateGldf(GldfContainer gldf) => ValidateSafe(() => gldf == null 

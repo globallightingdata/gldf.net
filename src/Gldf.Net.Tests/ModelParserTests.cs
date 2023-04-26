@@ -13,11 +13,7 @@ public class ModelParserTests
     [TestCaseSource(nameof(TestCaseData))]
     public void ParseXml_ShouldBeExpected(string xml, RootTyped expected)
     {
-        var gldfParser = new GldfParser(new ParserSettings
-        {
-            LocalFileLoadBehaviour = LocalFileLoadBehaviour.Skip,
-            OnlineFileLoadBehaviour = OnlineFileLoadBehaviour.Skip
-        });
+        var gldfParser = new GldfParser(new ParserSettings(LocalFileLoadBehaviour.Skip));
         var rootTyped = gldfParser.ParseFromXml(xml);
         AssertionOptions.FormattingOptions.MaxDepth = 10;
         AssertionOptions.FormattingOptions.MaxLines = 1000;

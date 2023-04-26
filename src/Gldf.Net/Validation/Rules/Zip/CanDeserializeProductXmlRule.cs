@@ -5,6 +5,7 @@ using Gldf.Net.Validation.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace Gldf.Net.Validation.Rules.Zip;
 
@@ -13,9 +14,9 @@ internal class CanDeserializeProductXmlRule : IZipArchiveValidationRule
     private readonly GldfContainerReader _gldfContainerReader;
     private readonly ContainerLoadSettings _loadRootOnlySettings;
 
-    public CanDeserializeProductXmlRule()
+    public CanDeserializeProductXmlRule(Encoding encoding)
     {
-        _gldfContainerReader = new GldfContainerReader();
+        _gldfContainerReader = new GldfContainerReader(encoding);
         _loadRootOnlySettings = new ContainerLoadSettings
         {
             ProductLoadBehaviour = ProductLoadBehaviour.Load,

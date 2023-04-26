@@ -38,6 +38,7 @@
         <EmbeddedResource Include="TestData\LightSources\ChangeableCompleteXml.xml" />
         <EmbeddedResource Include="TestData\LightSources\FixedCompleteXml.xml" />
         <EmbeddedResource Include="TestData\LightSources\LightSourceMandatoryXml.xml" />
+        <EmbeddedResource Include="TestData\Other\GeneralsEmptyXml.xml" />
         <EmbeddedResource Include="TestData\Photometries\PhotometryCompleteXml.xml" />
         <EmbeddedResource Include="TestData\Photometries\PhotometryMandatoryXml.xml" />
         <EmbeddedResource Include="TestData\MetaData\ProductMetaDataCompleteXml.xml" />

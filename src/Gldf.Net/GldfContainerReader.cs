@@ -3,6 +3,7 @@ using Gldf.Net.Container;
 using Gldf.Net.Exceptions;
 using System;
 using System.IO;
+using System.Text;
 
 namespace Gldf.Net;
 
@@ -19,9 +20,13 @@ public class GldfContainerReader : IGldfContainerReader
     ///     Initializes a new instance of the <see cref="GldfContainerReader" /> class that can read
     ///     instances of type <see cref="GldfContainer" />.
     /// </summary>
-    public GldfContainerReader()
+    public GldfContainerReader() : this(Encoding.UTF8)
     {
-        _zipArchiveReader = new ZipArchiveReader();
+    }
+    
+    public GldfContainerReader(Encoding encoding)
+    {
+        _zipArchiveReader = new ZipArchiveReader(encoding);
     }
 
     /// <summary>

@@ -10,7 +10,7 @@ internal class ZipArchiveWriter : ZipArchiveIO
     public void Write(string filePath, GldfContainer gldfContainer)
     {
         PrepareDirectory(filePath, true);
-        using var zipArchive = ZipFile.Open(filePath, ZipArchiveMode.Create, Encoding);
+        using var zipArchive = ZipFile.Open(filePath, ZipArchiveMode.Create, GldfXmlSerializer.Encoding);
         AddRootZipEntry(gldfContainer, zipArchive);
         AddAssetZipEntries(zipArchive, gldfContainer);
         AddMetaInfo(zipArchive, gldfContainer);
@@ -18,7 +18,7 @@ internal class ZipArchiveWriter : ZipArchiveIO
 
     public void Write(Stream stream, bool leaveOpen, GldfContainer gldfContainer)
     {
-        using var zipArchive = new ZipArchive(stream, ZipArchiveMode.Create, leaveOpen, Encoding);
+        using var zipArchive = new ZipArchive(stream, ZipArchiveMode.Create, leaveOpen, GldfXmlSerializer.Encoding);
         AddRootZipEntry(gldfContainer, zipArchive);
         AddAssetZipEntries(zipArchive, gldfContainer);
         AddMetaInfo(zipArchive, gldfContainer);

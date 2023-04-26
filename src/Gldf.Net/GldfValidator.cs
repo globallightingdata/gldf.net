@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace Gldf.Net;
 
@@ -16,14 +17,18 @@ public class GldfValidator : IGldfValidator
     private readonly GldfZipValidator _zipValidator;
     private readonly GldfContainerValidator _containerValidator;
 
-    public GldfValidator()
+    public GldfValidator() : this(Encoding.UTF8)
     {
-        _schemaValidator = new GldfXmlValidator();
-        _zipValidator = new GldfZipValidator();
-        _containerValidator = new GldfContainerValidator();
     }
 
-    public IEnumerable<ValidationHint> ValidateGldf(GldfContainer gldf) => 
+    public GldfValidator(Encoding encoding)
+    {
+        _schemaValidator = new GldfXmlValidator(encoding);
+        _zipValidator = new GldfZipValidator(encoding);
+        _containerValidator = new GldfContainerValidator(encoding);
+    }
+
+    public IEnumerable<ValidationHint> ValidateGldf(GldfContainer gldf) =>
         _containerValidator.ValidateGldf(gldf);
 
     public IEnumerable<ValidationHint> ValidateGldfFile(string gldfFilePath, ValidationFlags flags) =>

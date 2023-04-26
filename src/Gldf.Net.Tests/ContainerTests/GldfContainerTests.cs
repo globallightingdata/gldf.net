@@ -15,7 +15,7 @@ public class GldfContainerTests
     public delegate List<ContainerFile> ListSelector(GldfContainer container);
 
     [Test]
-    public void Ctor_ShouldThrow_When_Root_IsNull()
+    public void Ctor_ShouldThrow_WhenRoot_IsNull()
     {
         void Ctor1() => _ = new GldfContainer(null);
         void Ctor2() => _ = new GldfContainer(null, new GldfAssets());
@@ -31,7 +31,7 @@ public class GldfContainerTests
     }
 
     [Test]
-    public void Ctor_ShouldThrow_When_Assets_IsNull()
+    public void Ctor_ShouldThrow_WhenAssets_IsNull()
     {
         void Ctor1() => _ = new GldfContainer(new Root(), (GldfAssets)null);
         void Ctor2() => _ = new GldfContainer(new Root(), null, new MetaInformation());
@@ -45,7 +45,7 @@ public class GldfContainerTests
     }
 
     [Test]
-    public void Ctor_ShouldThrow_When_MetaInfo_IsNull()
+    public void Ctor_ShouldThrow_WhenMetaInfo_IsNull()
     {
         void Ctor1() => _ = new GldfContainer(new Root(), (MetaInformation)null);
         void Ctor2() => _ = new GldfContainer(new Root(), new GldfAssets(), null);
@@ -129,28 +129,28 @@ public class GldfContainerTests
     }
 
     [TestCaseSource(nameof(TestData))]
-    public void AddAssetFile_ShouldThrow_When_FileName_IsNull(ListSelector _, FileContentType type)
+    public void AddAssetFile_ShouldThrow_WhenFileName_IsNull(ListSelector _, FileContentType type)
     {
         var gldfContainer = new GldfContainer();
-        Action act = () => gldfContainer.AddAssetFile(type, null, new byte[1]);
+        var act = () => gldfContainer.AddAssetFile(type, null, new byte[1]);
 
         act.Should().Throw<ArgumentNullException>();
     }
 
     [TestCaseSource(nameof(TestData))]
-    public void AddAssetFile_ShouldThrow_When_FileContent_IsNull(ListSelector _, FileContentType type)
+    public void AddAssetFile_ShouldThrow_WhenFileContent_IsNull(ListSelector _, FileContentType type)
     {
         var gldfContainer = new GldfContainer();
-        Action act = () => gldfContainer.AddAssetFile(type, "fileName", null);
+        var act = () => gldfContainer.AddAssetFile(type, "fileName", null);
 
         act.Should().Throw<ArgumentNullException>();
     }
 
     [Test]
-    public void AddAssetFile_ShouldThrow_When_InvalidFileContentType()
+    public void AddAssetFile_ShouldThrow_WhenInvalidFileContentType()
     {
         var gldfContainer = new GldfContainer();
-        Action act = () => gldfContainer.AddAssetFile((FileContentType)int.MaxValue, "fileName", null);
+        var act = () => gldfContainer.AddAssetFile((FileContentType)int.MaxValue, "fileName", null);
 
         act.Should()
             .ThrowExactly<InvalidEnumArgumentException>()

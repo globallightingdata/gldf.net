@@ -5,6 +5,7 @@ using Gldf.Net.Extensions;
 using Gldf.Net.XmlHelper;
 using System;
 using System.IO;
+using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -17,6 +18,8 @@ namespace Gldf.Net;
 /// </summary>
 public class GldfXmlSerializer : IGldfXmlSerializer
 {
+    public Encoding Encoding => _settings.Encoding;
+    
     private readonly XmlSerializer _xmlSerializer;
     private readonly XmlSerializerNamespaces _xmlNamespaces;
     private readonly XmlWriterSettings _settings;
@@ -56,10 +59,10 @@ public class GldfXmlSerializer : IGldfXmlSerializer
 
         try
         {
-            using var stringWriter = new XmlStringWriter(_settings.Encoding);
-            using var xmlWriter = XmlWriter.Create(stringWriter, _settings);
+            var stringBuilder = new StringBuilder();
+            using var xmlWriter = XmlWriter.Create(stringBuilder, _settings);
             _xmlSerializer.Serialize(xmlWriter, root, _xmlNamespaces);
-            return stringWriter.ToString();
+            return stringBuilder.ToString();
         }
         catch (Exception e)
         {

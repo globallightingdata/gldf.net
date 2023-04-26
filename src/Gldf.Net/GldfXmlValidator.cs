@@ -41,8 +41,8 @@ public class GldfXmlValidator : IGldfXmlValidator
     public GldfXmlValidator(Encoding encoding)
     {
         Encoding = encoding ?? throw new ArgumentNullException(nameof(encoding));
-        _gldfXmlValidator = new GldfXmlSchemaValidator();
-        _zipArchiveReader = new ZipArchiveReader();
+        _gldfXmlValidator = new GldfXmlSchemaValidator(encoding);
+        _zipArchiveReader = new ZipArchiveReader(encoding);
     }
 
     /// <summary>

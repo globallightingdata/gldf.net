@@ -3,11 +3,20 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Text;
 
 namespace Gldf.Net.Container;
 
 internal class ZipArchiveReader : ZipArchiveIO
 {
+    public ZipArchiveReader() : base(Encoding.UTF8)
+    {
+    }
+
+    public ZipArchiveReader(Encoding encoding) : base(encoding)
+    {
+    }
+
     public static bool IsZipArchive(string filePath) =>
         EvaluateFuncSafe(() =>
         {
@@ -87,7 +96,7 @@ internal class ZipArchiveReader : ZipArchiveIO
         var productEntry = zipArchive.GetEntry(GldfStaticNames.Files.Product);
         if (productEntry is null) return null;
         using var stream = productEntry.Open();
-        using var streamReader = new StreamReader(stream, Encoding);
+        using var streamReader = new StreamReader(stream, GldfXmlSerializer.Encoding);
         return streamReader.ReadToEnd();
     }
 
@@ -122,9 +131,7 @@ internal class ZipArchiveReader : ZipArchiveIO
         var metaInfoEntry = zipArchive.GetEntry(GldfStaticNames.Files.MetaInfo);
         if (metaInfoEntry == null) return;
         using var stream = metaInfoEntry.Open();
-        using var streamReader = new StreamReader(stream, Encoding);
-        var metaInfo = streamReader.ReadToEnd();
-        container.MetaInformation = MetaInfoSerializer.DeserializeFromXml(metaInfo);
+        container.MetaInformation = MetaInfoSerializer.DeserializeFromXmlStream(stream);
     }
 
     private static void AddAssets(ZipArchive zipArchive, GldfContainer container, AssetLoadBehaviour loadBehaviour)
@@ -139,13 +146,13 @@ internal class ZipArchiveReader : ZipArchiveIO
         var name = entry.FullName;
         bool IsFolder(string fullName, string value) => fullName.StartsWith($"{value}/", StringComparison.OrdinalIgnoreCase);
         if (IsFolder(name, GldfStaticNames.Folder.Geometries)) AddFile(container.Assets.Geometries, entry, behaviour);
-        if (IsFolder(name, GldfStaticNames.Folder.Photometries)) AddFile(container.Assets.Photometries, entry, behaviour);
-        if (IsFolder(name, GldfStaticNames.Folder.Images)) AddFile(container.Assets.Images, entry, behaviour);
-        if (IsFolder(name, GldfStaticNames.Folder.Documents)) AddFile(container.Assets.Documents, entry, behaviour);
-        if (IsFolder(name, GldfStaticNames.Folder.Sensors)) AddFile(container.Assets.Sensors, entry, behaviour);
-        if (IsFolder(name, GldfStaticNames.Folder.Symbols)) AddFile(container.Assets.Symbols, entry, behaviour);
-        if (IsFolder(name, GldfStaticNames.Folder.Spectrums)) AddFile(container.Assets.Spectrums, entry, behaviour);
-        if (IsFolder(name, GldfStaticNames.Folder.Other)) AddFile(container.Assets.Other, entry, behaviour);
+        else if (IsFolder(name, GldfStaticNames.Folder.Photometries)) AddFile(container.Assets.Photometries, entry, behaviour);
+        else if (IsFolder(name, GldfStaticNames.Folder.Images)) AddFile(container.Assets.Images, entry, behaviour);
+        else if (IsFolder(name, GldfStaticNames.Folder.Documents)) AddFile(container.Assets.Documents, entry, behaviour);
+        else if (IsFolder(name, GldfStaticNames.Folder.Sensors)) AddFile(container.Assets.Sensors, entry, behaviour);
+        else if (IsFolder(name, GldfStaticNames.Folder.Symbols)) AddFile(container.Assets.Symbols, entry, behaviour);
+        else if (IsFolder(name, GldfStaticNames.Folder.Spectrums)) AddFile(container.Assets.Spectrums, entry, behaviour);
+        else if (IsFolder(name, GldfStaticNames.Folder.Other)) AddFile(container.Assets.Other, entry, behaviour);
     }
 
     private static void AddFile(ICollection<ContainerFile> collection, ZipArchiveEntry entry,

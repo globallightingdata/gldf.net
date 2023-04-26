@@ -31,12 +31,9 @@ public class GldfParserTests
     [Test]
     public void ParseFromContainerFile_ShouldReturnNotNull()
     {
-        var gldfParser = new GldfParser(new ParserSettings
-        {
-            LocalFileLoadBehaviour = LocalFileLoadBehaviour.Load,
-            OnlineFileLoadBehaviour = OnlineFileLoadBehaviour.Load,
-            HttpClient = new HttpClient { Timeout = TimeSpan.FromMilliseconds(10) }
-        });
+        using var client = new HttpClient { Timeout = TimeSpan.FromMilliseconds(10) };
+        var settings = new ParserSettings(LocalFileLoadBehaviour.Load, OnlineFileLoadBehaviour.Load, client);
+        var gldfParser = new GldfParser(settings);
 
         var rootTyped = gldfParser.ParseFromGldfFile(_tempGldfPath);
         rootTyped.Should().NotBeNull();
@@ -46,11 +43,9 @@ public class GldfParserTests
     public void ParseFromXml_ShouldReturnNotNull()
     {
         var gldf = EmbeddedXmlTestData.GetChangeableCompleteXml();
-        var gldfParser = new GldfParser(new ParserSettings
-        {
-            LocalFileLoadBehaviour = LocalFileLoadBehaviour.Load,
-            OnlineFileLoadBehaviour = OnlineFileLoadBehaviour.Load
-        });
+        using var client = new HttpClient();
+        var settings = new ParserSettings(LocalFileLoadBehaviour.Load, OnlineFileLoadBehaviour.Load, client);
+        var gldfParser = new GldfParser(settings);
 
         var rootTyped = gldfParser.ParseFromXml(gldf);
         rootTyped.Should().NotBeNull();
@@ -59,11 +54,8 @@ public class GldfParserTests
     [Test, TestCaseSource(nameof(ValidXmlTestCases))]
     public void ParseFromXml_ShouldProcessAllXml(string xml)
     {
-        var gldfParser = new GldfParser(new ParserSettings
-        {
-            LocalFileLoadBehaviour = LocalFileLoadBehaviour.Skip,
-            OnlineFileLoadBehaviour = OnlineFileLoadBehaviour.Skip
-        });
+        var settings = new ParserSettings(LocalFileLoadBehaviour.Skip);
+        var gldfParser = new GldfParser(settings);
         var rootTyped = gldfParser.ParseFromXml(xml);
         rootTyped.Should().NotBeNull();
     }

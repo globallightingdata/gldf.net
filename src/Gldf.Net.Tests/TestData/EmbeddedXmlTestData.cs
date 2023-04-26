@@ -9,6 +9,7 @@ using Gldf.Net.Tests.TestData.Geometries;
 using Gldf.Net.Tests.TestData.Head;
 using Gldf.Net.Tests.TestData.LightSources;
 using Gldf.Net.Tests.TestData.MetaData;
+using Gldf.Net.Tests.TestData.Other;
 using Gldf.Net.Tests.TestData.Photometries;
 using Gldf.Net.Tests.TestData.Sensors;
 using Gldf.Net.Tests.TestData.Simple;
@@ -50,10 +51,14 @@ public static class EmbeddedXmlTestData
     private const string DescriptiveAttributesXml = "TestData.Descriptive.DescriptiveAttributesXml.xml";
     private const string RootWithHeaderXml = "TestData.Simple.RootWithHeaderXml.xml";
     private const string RootWithUnintendedXml = "TestData.Simple.RootWithHeaderUnintendedXml.xml";
+
+    private const string GeneralsEmptyXml = "TestData.Other.GeneralsEmptyXml.xml";
+
     // Meta-Information
     private const string MetaInformationXml = "TestData.MetaInfo.meta-information.xml";
 
-    public static readonly TestCaseData[] ValidXmlTestCases = {
+    public static readonly TestCaseData[] ValidXmlTestCases =
+    {
         new TestCaseData(GetHeaderMandatoryXml()).SetName("Header Mandatory"),
         new TestCaseData(GetHeaderCompleteXml()).SetName("Header Complete"),
         new TestCaseData(GetFileMandatoryXml()).SetName("File Mandatory"),
@@ -79,10 +84,12 @@ public static class EmbeddedXmlTestData
         new TestCaseData(GetMetaDataCompleteXml()).SetName("MetaData Complete"),
         new TestCaseData(GetVariantMandatoryXml()).SetName("Variant Mandatory"),
         new TestCaseData(GetVariantCompleteXml()).SetName("Variant Complete"),
-        new TestCaseData(GetDescriptiveAttributesXml()).SetName("Descriptive Attributes")
+        new TestCaseData(GetDescriptiveAttributesXml()).SetName("Descriptive Attributes"),
+        new TestCaseData(GetGeneralsEmptyXml()).SetName("GeneralDefinitions empty")
     };
 
-    public static readonly TestCaseData[] InvalidXmlTestCases = {
+    public static readonly TestCaseData[] InvalidXmlTestCases =
+    {
         new TestCaseData(GetRootWithHeaderXml()).SetName("Root with Header only")
     };
 
@@ -117,7 +124,7 @@ public static class EmbeddedXmlTestData
     public static RootTyped GetPhotometryMandatoryTyped() => PhotometryMandatoryTyped.RootTyped;
     public static Root GetPhotometryCompleteModel() => PhotometryCompleteModel.Root;
     public static RootTyped GetPhotometryCompleteTyped() => PhotometryCompleteTyped.RootTyped;
-        
+
     // GeneralDefinitions => Spectrums
     public static string GetSpectrumMandatoryXml() => ResourceLoader.LoadEmbeddedXml(SpectrumMandatoryXml);
     public static string GetSpectrumCompleteXml() => ResourceLoader.LoadEmbeddedXml(SpectrumCompleteXml);
@@ -188,6 +195,11 @@ public static class EmbeddedXmlTestData
     // DescriptiveAttributes
     public static string GetDescriptiveAttributesXml() => ResourceLoader.LoadEmbeddedXml(DescriptiveAttributesXml);
     public static Root GetDescriptiveAttributesModel() => DescriptiveAttributesModel.Root;
+
+    // Other
+    public static string GetGeneralsEmptyXml() => ResourceLoader.LoadEmbeddedXml(GeneralsEmptyXml);
+    public static Root GetGeneralsEmptyModel() => GeneralsEmptyModel.Root;
+    public static RootTyped GetGeneralsEmptyTyped() => GeneralsEmptyTyped.RootTyped;
 
     // Simple
     public static string GetRootWithHeaderXml() => ResourceLoader.LoadEmbeddedXml(RootWithHeaderXml);

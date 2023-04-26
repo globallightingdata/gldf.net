@@ -4,6 +4,7 @@ using Gldf.Net.XmlHelper;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
@@ -12,6 +13,17 @@ namespace Gldf.Net.Validation;
 
 internal class GldfXmlSchemaValidator
 {
+    private readonly Encoding _encoding;
+
+    public GldfXmlSchemaValidator() : this(Encoding.UTF8)
+    {
+    }
+
+    public GldfXmlSchemaValidator(Encoding encoding)
+    {
+        _encoding = encoding;
+    }
+
     public IEnumerable<ValidationHint> ValidateXml(string xml)
     {
         using var stringReader = new StringReader(xml);
@@ -21,13 +33,14 @@ internal class GldfXmlSchemaValidator
 
     public IEnumerable<ValidationHint> ValidateXmlFile(string xmlFilePath)
     {
-        var xml = File.ReadAllText(xmlFilePath);
+        var xml = File.ReadAllText(xmlFilePath, _encoding);
         return ValidateXml(xml);
     }
 
     protected static IEnumerable<ValidationHint> Validate(TextReader reader, XmlSchemaSet schema)
     {
         var resultList = new List<ValidationHint>();
+
         void SchemaErrorHandler(object _, ValidationEventArgs e)
             => resultList.Add(new ValidationHint(MapSeverityType(e.Severity), e.Message, ErrorType.XmlSchema));
 

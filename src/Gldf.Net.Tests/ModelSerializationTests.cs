@@ -114,6 +114,9 @@ public class ModelSerializationTests
             {TestName = "Variant complete property set"},
         new TestCaseData(EmbeddedXmlTestData.GetDescriptiveAttributesModel(),
                 EmbeddedXmlTestData.GetDescriptiveAttributesXml())
-            {TestName = "DescriptiveAttributes"}
+            {TestName = "DescriptiveAttributes"},
+        new TestCaseData(EmbeddedXmlTestData.GetGeneralsEmptyModel(),
+                EmbeddedXmlTestData.GetGeneralsEmptyXml())
+            {TestName = "GeneralDefinitions empty set"}
     };
 }

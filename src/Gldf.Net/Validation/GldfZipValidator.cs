@@ -5,24 +5,34 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace Gldf.Net.Validation;
 
 internal class GldfZipValidator
 {
-    private static readonly List<IZipArchiveValidationRule> ZipValidationRules = new()
+    private readonly List<IZipArchiveValidationRule> _zipValidationRules;
+
+    public GldfZipValidator() : this(Encoding.UTF8)
     {
-        new IsValidZipArchiveRule(),
-        new ContainsProductXmlRule(),
-        new CanDeserializeProductXmlRule(),
-        new HasNoLargeFilesRule()
-    };
+    }
+
+    public GldfZipValidator(Encoding encoding)
+    {
+        _zipValidationRules = new List<IZipArchiveValidationRule>
+        {
+            new IsValidZipArchiveRule(),
+            new ContainsProductXmlRule(),
+            new CanDeserializeProductXmlRule(encoding),
+            new HasNoLargeFilesRule()
+        };
+    }
 
     public IEnumerable<ValidationHint> ValidateGldfFile(string gldfFilePath) => ValidateSafe(() =>
-        ZipValidationRules.SelectMany(rule => rule.ValidateGldfFile(gldfFilePath)));
+        _zipValidationRules.SelectMany(rule => rule.ValidateGldfFile(gldfFilePath)));
 
     public IEnumerable<ValidationHint> ValidateGldfStream(Stream zipStream) =>
-        ValidateSafe(() => ZipValidationRules.SelectMany(rule => rule.ValidateGldfStream(zipStream, true)));
+        ValidateSafe(() => _zipValidationRules.SelectMany(rule => rule.ValidateGldfStream(zipStream, true)));
 
     private static IEnumerable<ValidationHint> ValidateSafe(Func<IEnumerable<ValidationHint>> func)
     {
