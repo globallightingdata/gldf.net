@@ -5,27 +5,27 @@ using System.Xml;
 namespace Gldf.Net;
 
 /// <summary>
-///     Provides functionality to serialize instances of type <see cref="Root" /> into GLDF-XML
-///     text and to deserialize GLDF-XML text into instances of type <see cref="Root" />.
+///     Provides functionality to serialize instances of type <see cref="MetaInformation" /> into XML
+///     text and to deserialize XML text into instances of type <see cref="MetaInformation" />.
 ///     This type is threadsafe.
 /// </summary>
 public class MetaInfoSerializer : XmlSerializerBase<MetaInformation>, IMetaInfoSerializer
 {
     /// <summary>
-    ///     Initializes a new instance of the <see cref="GldfXmlSerializer" /> class that can serialize
-    ///     instances of type <see cref="Root" /> into GLDF-XML text and to deserialize GLDF-XML
-    ///     text into instances of type <see cref="Root" />.
+    ///     Initializes a new instance of the <see cref="MetaInfoSerializer" /> class that can serialize
+    ///     instances of type <see cref="MetaInformation" /> into XML text and to deserialize XML
+    ///     text into instances of type <see cref="MetaInformation" />.
     /// </summary>
     public MetaInfoSerializer()
     {
     }
 
     /// <summary>
-    ///     Initializes a new instance of the <see cref="GldfXmlSerializer" /> class that can serialize
-    ///     instances of type <see cref="Root" /> into GLDF-XML text and to deserialize GLDF-XML
-    ///     text into instances of type <see cref="Root" /> This overload also specifies
-    ///     <see cref="System.Xml.XmlWriterSettings" /> which allows the control of XML indentation, Encoding
-    ///     and more.
+    ///     Initializes a new instance of the <see cref="MetaInfoSerializer" /> class that can serialize
+    ///     instances of type <see cref="MetaInformation" /> into XML text and to deserialize XML
+    ///     text into instances of type <see cref="MetaInformation" />. This overload also specifies
+    ///     <see cref="System.Xml.XmlWriterSettings" /> and <see cref="System.Xml.XmlReaderSettings" /> which allow the
+    ///     control of XML indentation, Encoding and more.
     /// </summary>
     public MetaInfoSerializer(XmlWriterSettings writerSettings, XmlReaderSettings readerSettings) : base(writerSettings, readerSettings)
     {

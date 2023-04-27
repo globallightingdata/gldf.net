@@ -27,6 +27,7 @@ public class GldfContainerWriter : IGldfContainerWriter
     /// <summary>
     ///     Writes the contents of a <see cref="GldfContainer" /> to a file on disk.
     /// </summary>
+    /// <exception cref="ArgumentNullException">If the filepath or GLDF is null.</exception>
     /// <param name="gldfFilePath">Path on disk to write the <see cref="GldfContainer" /> to</param>
     /// <param name="gldf">The <see cref="GldfContainer" /> to wirte to disk</param>
     public void WriteToGldfFile(string gldfFilePath, GldfContainer gldf)
@@ -48,6 +49,7 @@ public class GldfContainerWriter : IGldfContainerWriter
     /// <summary>
     ///     Writes the contents of a <see cref="GldfContainer" /> to a stream.
     /// </summary>
+    /// <exception cref="ArgumentNullException">If the stream or GLDF is null</exception>
     /// <param name="zipStream">Stream to write the <see cref="GldfContainer" /> to</param>
     /// <param name="leaveOpen">To leave the stream open after write, otherwise it will be disposed</param>
     /// <param name="gldf">The <see cref="GldfContainer" /> to wirte to the stream</param>
@@ -70,12 +72,12 @@ public class GldfContainerWriter : IGldfContainerWriter
     /// <summary>
     ///     Creates a GLDF container from a directory path and writes it to disk.
     /// </summary>
+    /// <exception cref="ArgumentNullException">If the source or target path is null</exception>
     /// <param name="sourceDirectory">
     ///     The source directory with GLDF content (product.xml, assets and meta-information)
     /// </param>
     /// <param name="targetContainerFilePath">
-    ///     The target file path the container will be written to. It should
-    ///     end with .gldf
+    ///     The target file path the container will be written to. It should end with .gldf
     /// </param>
     public void CreateFromDirectory(string sourceDirectory, string targetContainerFilePath)
     {

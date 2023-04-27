@@ -8,9 +8,8 @@ using System.Text;
 namespace Gldf.Net;
 
 /// <summary>
-///     Provides functionality to read GLDF container files into instances of type
-///     <see cref="GldfContainer" />. As well as to extract them to a directory path.
-///     This type is threadsafe.
+///     Provides functionality to read GLDF container files into instances of type <see cref="GldfContainer" />.
+///     As well as to extract them to a directory path. This type is threadsafe.
 /// </summary>
 public class GldfContainerReader : IGldfContainerReader
 {
@@ -18,12 +17,17 @@ public class GldfContainerReader : IGldfContainerReader
 
     /// <summary>
     ///     Initializes a new instance of the <see cref="GldfContainerReader" /> class that can read
-    ///     instances of type <see cref="GldfContainer" />.
+    ///     instances of type <see cref="GldfContainer" />. With default UTF-8 encoding.
     /// </summary>
     public GldfContainerReader() : this(Encoding.UTF8)
     {
     }
-    
+
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="GldfContainerReader" /> class that can read
+    ///     instances of type <see cref="GldfContainer" />.
+    /// </summary>
+    /// <param name="encoding">The encoding to read files with</param>
     public GldfContainerReader(Encoding encoding)
     {
         _zipArchiveReader = new ZipArchiveReader(encoding);
@@ -41,6 +45,7 @@ public class GldfContainerReader : IGldfContainerReader
     ///     Reads the GLDF container from file into an instance of <see cref="GldfContainer" />.
     ///     With specified load behaviour settings for product.xml, file assets and meta-information.
     /// </summary>
+    /// <exception cref="ArgumentNullException">If filepath or settings is null.</exception>
     /// <param name="gldfFilePath">The path on disk of the GLDF container file</param>
     /// <param name="settings">Load behaviour for product.xml, asset files and meta-information</param>
     /// <returns><see cref="GldfContainer" /> with deserialized product.xml, file assets and meta-information</returns>
@@ -72,6 +77,7 @@ public class GldfContainerReader : IGldfContainerReader
     /// <summary>
     ///     Reads the GLDF container from a stream into an instance of <see cref="GldfContainer" />.
     /// </summary>
+    /// <exception cref="ArgumentNullException">If the stream or setting is null.</exception>
     /// <param name="zipStream">Stream of a ZIP archive to read the <see cref="GldfContainer" /> from</param>
     /// <param name="leaveOpen">To leave the stream open after read, otherwise it will be disposed</param>
     /// <param name="settings">Load behaviour for product.xml, asset files and meta-information</param>
@@ -95,6 +101,7 @@ public class GldfContainerReader : IGldfContainerReader
     /// <summary>
     ///     Extracts the content of a GLDF container file to disk
     /// </summary>
+    /// <exception cref="ArgumentNullException">If the source or target filepath is null.</exception>
     /// <param name="sourceGldfFilePath">Filepath to the GLDF container file</param>
     /// <param name="targetDirectory">The target directory the content wil be extracted to</param>
     public void ExtractToDirectory(string sourceGldfFilePath, string targetDirectory)

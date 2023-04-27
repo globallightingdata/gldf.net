@@ -37,7 +37,8 @@ public class GldfXmlValidator : IGldfXmlValidator
     ///     Initializes a new instance of the <see cref="GldfXmlValidator" /> class that can validate GLDF XML as
     ///     string, file, stream or GLDF. Overload with Encoding parameter that is used when reading files.
     /// </summary>
-    /// <param name="encoding">Encoding for reading GLDF XML files</param>
+    /// <exception cref="ArgumentNullException">If the Encoding is null.</exception>
+    /// <param name="encoding">Encoding for reading XML from files and streams</param>
     public GldfXmlValidator(Encoding encoding)
     {
         Encoding = encoding ?? throw new ArgumentNullException(nameof(encoding));
@@ -46,7 +47,8 @@ public class GldfXmlValidator : IGldfXmlValidator
     }
 
     /// <summary>
-    ///     Validates the GLDF XML with the XmlSchema definition matching the specified FormatVersion in the Header
+    ///     Validates the GLDF XML with the XmlSchema definition matching the specified
+    ///     <see cref="Gldf.Net.Domain.Xml.Head.Types.FormatVersion" /> in the Header
     ///     of the XML.
     /// </summary>
     /// <param name="xml">The GLDF XML string to validate</param>
@@ -55,8 +57,8 @@ public class GldfXmlValidator : IGldfXmlValidator
         ValidateSafe(() => _gldfXmlValidator.ValidateXml(xml));
 
     /// <summary>
-    ///     Validates the GLDF XML file on disk with the XmlSchema definition matching the specified FormatVersion
-    ///     in the Header of the XML.
+    ///     Validates the GLDF XML file on disk with the XmlSchema definition matching the specified
+    ///     <see cref="Gldf.Net.Domain.Xml.Head.Types.FormatVersion" /> in the Header of the XML.
     /// </summary>
     /// <param name="xmlFilePath">The path to the GLDF XML file</param>
     /// <returns>An IEnumerable of <see cref="ValidationHint" /> with possible warnings and errors</returns>
@@ -69,11 +71,11 @@ public class GldfXmlValidator : IGldfXmlValidator
         });
 
     /// <summary>
-    ///     Validates the GLDF XML file on disk with the XmlSchema definition matching the specified FormatVersion
-    ///     in the Header of the XML.
+    ///     Validates the GLDF XML stream with the XmlSchema definition matching the specified
+    ///     <see cref="Gldf.Net.Domain.Xml.Head.Types.FormatVersion" /> in the Header of the XML.
     /// </summary>
-    /// <param name="xmlStream"></param>
-    /// <param name="leaveOpen"></param>
+    /// <param name="xmlStream">The stream to validate</param>
+    /// <param name="leaveOpen">Whether to close the stream after serialization.</param>
     /// <returns>An IEnumerable of <see cref="ValidationHint" /> with possible warnings and errors</returns>
     public IEnumerable<ValidationHint> ValidateXmlStream(Stream xmlStream, bool leaveOpen) =>
         ValidateSafe(() =>
@@ -83,8 +85,8 @@ public class GldfXmlValidator : IGldfXmlValidator
         });
 
     /// <summary>
-    ///     Validates the GLDF XML file on disk with the XmlSchema definition matching the specified FormatVersion
-    ///     in the Header of the XML.
+    ///     Validates the GLDF container file on disk with the XmlSchema definition matching the specified
+    ///     <see cref="Gldf.Net.Domain.Xml.Head.Types.FormatVersion" /> in the Header of the XML.
     /// </summary>
     /// <param name="gldfFilePath">The path to the GLDF XML file</param>
     /// <returns>An IEnumerable of <see cref="ValidationHint" /> with possible warnings and errors</returns>
@@ -96,11 +98,11 @@ public class GldfXmlValidator : IGldfXmlValidator
         });
 
     /// <summary>
-    ///     Validates the GLDF XML file on disk with the XmlSchema definition matching the specified FormatVersion
-    ///     in the Header of the XML.
+    ///     Validates the GLDF container stream with the XmlSchema definition matching the specified
+    ///     <see cref="Gldf.Net.Domain.Xml.Head.Types.FormatVersion" /> in the Header of the XML.
     /// </summary>
-    /// <param name="zipStream">The stream to the GLDF XML file</param>
-    /// <param name="leaveOpen">true to leave te stream open, otherwise false</param>
+    /// <param name="zipStream">The stream to the GLDF container file</param>
+    /// <param name="leaveOpen">Whether to close the stream after serialization.</param>
     /// <returns>An IEnumerable of <see cref="ValidationHint" /> with possible warnings and errors</returns>
     public IEnumerable<ValidationHint> ValidateGldfStream(Stream zipStream, bool leaveOpen) =>
         ValidateSafe(() =>
