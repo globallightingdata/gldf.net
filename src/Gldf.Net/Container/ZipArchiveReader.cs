@@ -131,7 +131,7 @@ internal class ZipArchiveReader : ZipArchiveIO
         var metaInfoEntry = zipArchive.GetEntry(GldfStaticNames.Files.MetaInfo);
         if (metaInfoEntry == null) return;
         using var stream = metaInfoEntry.Open();
-        container.MetaInformation = MetaInfoSerializer.DeserializeFromXmlStream(stream);
+        container.MetaInformation = MetaInfoSerializer.DeserializeFromXmlStream(stream, false);
     }
 
     private static void AddAssets(ZipArchive zipArchive, GldfContainer container, AssetLoadBehaviour loadBehaviour)

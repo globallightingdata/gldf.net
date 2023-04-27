@@ -5,7 +5,6 @@ using Gldf.Net.Domain.Xml;
 using Gldf.Net.Parser;
 using Gldf.Net.Parser.DataFlow;
 using System.IO;
-using System.Xml;
 
 namespace Gldf.Net;
 
@@ -13,35 +12,37 @@ public class GldfParser : IGldfParser
 {
     private readonly ParserSettings _settings;
     private readonly IParserProcessor _processor;
+    private readonly GldfXmlSerializer _xmlSerializer;
+    private readonly GldfContainerReader _containerReader;
 
     public GldfParser(ParserSettings settings = null)
     {
         _settings = settings ?? new ParserSettings();
+        _xmlSerializer = new GldfXmlSerializer();
+        _containerReader = new GldfContainerReader();
         _processor = new DataFlowProcessor();
     }
 
-    public RootTyped ParseFromXml(string xml, IGldfXmlSerializer serializer = null)
+    public RootTyped ParseFromXml(string xml)
     {
-        var gldfXmlSerializer = serializer ?? new GldfXmlSerializer();
-        var root = gldfXmlSerializer.DeserializeFromXml(xml);
+        var root = _xmlSerializer.DeserializeFromXml(xml);
         var gldfContainer = new GldfContainer(root);
         var parserDto = new ParserDto(gldfContainer, _settings);
         return _processor.Process(parserDto);
     }
 
-    public RootTyped ParseFromXmlFile(string xmlFilePath, IGldfXmlSerializer serializer = null)
+    public RootTyped ParseFromXmlFile(string xmlFilePath)
     {
-        var gldfXmlSerializer = serializer ?? new GldfXmlSerializer();
-        var root = gldfXmlSerializer.DeserializeFromXmlFile(xmlFilePath);
+        var root = _xmlSerializer.DeserializeFromXmlFile(xmlFilePath);
         var gldfContainer = new GldfContainer(root);
         var parserDto = new ParserDto(gldfContainer, _settings);
         return _processor.Process(parserDto);
     }
-    
-    public RootTyped ParseFromXmlStream(Stream xmlStream, bool leaveOpen, IGldfXmlSerializer serializer = null)
+
+    public RootTyped ParseFromXmlStream(Stream xmlStream, bool leaveOpen)
     {
-        var gldfXmlSerializer = serializer ?? new GldfXmlSerializer(new XmlWriterSettings { CloseOutput = !leaveOpen });
-        var root = gldfXmlSerializer.DeserializeFromXmlStream(xmlStream);
+        var gldfXmlSerializer = new GldfXmlSerializer();
+        var root = gldfXmlSerializer.DeserializeFromXmlStream(xmlStream, leaveOpen);
         var gldfContainer = new GldfContainer(root);
         var parserDto = new ParserDto(gldfContainer, _settings);
         return _processor.Process(parserDto);
@@ -59,19 +60,17 @@ public class GldfParser : IGldfParser
         var parserDto = new ParserDto(gldf, _settings);
         return _processor.Process(parserDto);
     }
-    
-    public RootTyped ParseFromGldfFile(string gldfFilePath, IGldfContainerReader reader = null)
+
+    public RootTyped ParseFromGldfFile(string gldfFilePath)
     {
-        var containerReader = reader ?? new GldfContainerReader();
-        var gldfContainer = containerReader.ReadFromGldfFile(gldfFilePath, new ContainerLoadSettings());
+        var gldfContainer = _containerReader.ReadFromGldfFile(gldfFilePath, new ContainerLoadSettings());
         var parserDto = new ParserDto(gldfContainer, _settings);
         return _processor.Process(parserDto);
     }
-    
-    public RootTyped ParseFromGldfStream(Stream zipStream, bool leaveOpen, IGldfContainerReader reader = null)
+
+    public RootTyped ParseFromGldfStream(Stream zipStream, bool leaveOpen)
     {
-        var containerReader = reader ?? new GldfContainerReader();
-        var gldfContainer = containerReader.ReadFromGldfStream(zipStream, leaveOpen, new ContainerLoadSettings());
+        var gldfContainer = _containerReader.ReadFromGldfStream(zipStream, leaveOpen, new ContainerLoadSettings());
         var parserDto = new ParserDto(gldfContainer, _settings);
         return _processor.Process(parserDto);
     }

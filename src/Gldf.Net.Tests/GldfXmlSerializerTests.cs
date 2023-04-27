@@ -21,9 +21,10 @@ public class GldfXmlSerializerTests
     [SetUp]
     public void SetUp()
     {
-        var settings = new XmlWriterSettings { Indent = false, Encoding = Encoding.UTF32 };
+        var writerSettings = new XmlWriterSettings { Indent = false, Encoding = Encoding.UTF32 };
+        var readerSettings = new XmlReaderSettings { IgnoreWhitespace = true };
         _serializer = new GldfXmlSerializer();
-        _serializerWithSettings = new GldfXmlSerializer(settings);
+        _serializerWithSettings = new GldfXmlSerializer(writerSettings, readerSettings);
         _tempFile = Path.GetTempFileName();
     }
 
@@ -34,13 +35,23 @@ public class GldfXmlSerializerTests
     }
 
     [Test]
-    public void Ctor_ShouldThrow_WhenSettingsIsNull()
+    public void Ctor_ShouldThrow_WhenWriterSettingIsNull()
     {
-        Action act = () => _ = new GldfXmlSerializer(null);
+        Action act = () => _ = new GldfXmlSerializer(null, new XmlReaderSettings());
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
-            .WithMessage("Value cannot be null. (Parameter 'settings')");
+            .WithMessage("Value cannot be null. (Parameter 'writerSettings')");
+    }
+    
+    [Test]
+    public void Ctor_ShouldThrow_WhenReaderWriterSettingIsNull()
+    {
+        Action act = () => _ = new GldfXmlSerializer(new XmlWriterSettings(), null);
+
+        act.Should()
+            .ThrowExactly<ArgumentNullException>()
+            .WithMessage("Value cannot be null. (Parameter 'readerSettings')");
     }
 
     [Test]
@@ -50,7 +61,7 @@ public class GldfXmlSerializerTests
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
-            .WithMessage("Value cannot be null. (Parameter 'root')");
+            .WithMessage("Value cannot be null. (Parameter 'value')");
     }
 
     [Test]
@@ -102,7 +113,7 @@ public class GldfXmlSerializerTests
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
-            .WithMessage("Value cannot be null. (Parameter 'root')");
+            .WithMessage("Value cannot be null. (Parameter 'value')");
     }
 
     [Test]
@@ -112,7 +123,7 @@ public class GldfXmlSerializerTests
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
-            .WithMessage("Value cannot be null. (Parameter 'filePath')");
+            .WithMessage("Value cannot be null. (Parameter 'xmlFilePath')");
     }
 
     [Test]
@@ -154,7 +165,7 @@ public class GldfXmlSerializerTests
         var expectedXml = EmbeddedXmlTestData.GetHeaderMandatoryXml();
         using var memoryStream = new MemoryStream();
 
-        _serializer.SerializeToXmlStream(root, memoryStream);
+        _serializer.SerializeToXmlStream(root, memoryStream, true);
 
         memoryStream.ToUTF8String().ShouldBe().EquivalentTo(expectedXml);
     }
@@ -165,12 +176,25 @@ public class GldfXmlSerializerTests
         var act = () =>
         {
             using var memoryStream = new MemoryStream();
-            _serializer.SerializeToXmlStream(null, memoryStream);
+            _serializer.SerializeToXmlStream(null, memoryStream, false);
         };
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
-            .WithMessage("Value cannot be null. (Parameter 'root')");
+            .WithMessage("Value cannot be null. (Parameter 'value')");
+    }
+    
+    [TestCase(true)]
+    [TestCase(false)]
+    public void SerializeToXmlStream_ShouldReturnExcpectedStreamState(bool leaveOpen)
+    {
+        var root = EmbeddedXmlTestData.GetHeaderMandatoryModel();
+        using var memoryStream = new MemoryStream();
+
+        _serializer.SerializeToXmlStream(root, memoryStream, leaveOpen);
+
+        memoryStream.CanRead.Should().Be(leaveOpen);
+        memoryStream.CanWrite.Should().Be(leaveOpen);
     }
 
     [Test]
@@ -179,7 +203,7 @@ public class GldfXmlSerializerTests
         var act = () =>
         {
             using var memoryStream = new MemoryStream();
-            _serializer.SerializeToXmlStream(new InvalidRoot(), memoryStream);
+            _serializer.SerializeToXmlStream(new InvalidRoot(), memoryStream, false);
         };
 
         act.Should().Throw<GldfException>();
@@ -217,7 +241,7 @@ public class GldfXmlSerializerTests
 
         act.Should()
             .Throw<GldfException>()
-            .WithMessage("Failed to read XML")
+            .WithMessage("Failed to deserialize Root from XML")
             .WithInnerException<InvalidOperationException>()
             .WithMessage("There is an error in XML document (1, 1).");
     }
@@ -257,6 +281,19 @@ public class GldfXmlSerializerTests
             .WithMessage($"Failed to deserialize Root from filepath '{_tempFile}'")
             .WithInnerException<InvalidOperationException>()
             .WithMessage("There is an error in XML document (1, 1).");
+    }
+    
+    [TestCase(true)]
+    [TestCase(false)]
+    public void DeserializeFromXmlStream_ShouldReturnExpectedStreamState(bool leaveOpen)
+    {
+        var xml = EmbeddedXmlTestData.GetHeaderMandatoryXml();
+        using var memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(xml));
+
+        _serializer.DeserializeFromXmlStream(memoryStream, leaveOpen);
+
+        memoryStream.CanRead.Should().Be(leaveOpen);
+        memoryStream.CanWrite.Should().Be(leaveOpen);
     }
 
     private class InvalidRoot : Root

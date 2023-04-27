@@ -17,7 +17,7 @@
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
         <PackageIcon>logo.png</PackageIcon>
-        <!-- <EmbedAllSources>true</EmbedAllSources> -->
+        <EmbedAllSources>true</EmbedAllSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 

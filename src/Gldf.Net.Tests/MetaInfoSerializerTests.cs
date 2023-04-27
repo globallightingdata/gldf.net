@@ -21,9 +21,10 @@ public class MetaInfoSerializerTests
     [SetUp]
     public void SetUp()
     {
-        var settings = new XmlWriterSettings { Indent = false, Encoding = Encoding.UTF32 };
+        var writerSettings = new XmlWriterSettings { Indent = false, Encoding = Encoding.UTF32 };
+        var readerSettings = new XmlReaderSettings { IgnoreWhitespace = true };
         _serializer = new MetaInfoSerializer();
-        _serializerWithSettings = new MetaInfoSerializer(settings);
+        _serializerWithSettings = new MetaInfoSerializer(writerSettings, readerSettings);
         _tempFile = Path.GetTempFileName();
     }
 
@@ -34,13 +35,23 @@ public class MetaInfoSerializerTests
     }
 
     [Test]
-    public void Ctor_ShouldThrow_WhenSettingsIsNull()
+    public void Ctor_ShouldThrow_WhenWriterSettingIsNull()
     {
-        Action act = () => _ = new GldfXmlSerializer(null);
+        Action act = () => _ = new MetaInfoSerializer(null, new XmlReaderSettings());
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
-            .WithMessage("Value cannot be null. (Parameter 'settings')");
+            .WithMessage("Value cannot be null. (Parameter 'writerSettings')");
+    }
+    
+    [Test]
+    public void Ctor_ShouldThrow_WhenReaderWriterSettingIsNull()
+    {
+        Action act = () => _ = new MetaInfoSerializer(new XmlWriterSettings(), null);
+
+        act.Should()
+            .ThrowExactly<ArgumentNullException>()
+            .WithMessage("Value cannot be null. (Parameter 'readerSettings')");
     }
 
     [Test]
@@ -50,7 +61,7 @@ public class MetaInfoSerializerTests
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
-            .WithMessage("Value cannot be null. (Parameter 'metaInfo')");
+            .WithMessage("Value cannot be null. (Parameter 'value')");
     }
 
     [Test]
@@ -82,7 +93,7 @@ public class MetaInfoSerializerTests
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
-            .WithMessage("Value cannot be null. (Parameter 'metaInfo')");
+            .WithMessage("Value cannot be null. (Parameter 'value')");
     }
 
     [Test]
@@ -151,7 +162,7 @@ public class MetaInfoSerializerTests
 
         act.Should()
             .Throw<GldfException>()
-            .WithMessage("Failed to read XML")
+            .WithMessage("Failed to deserialize MetaInformation from XML")
             .WithInnerException<InvalidOperationException>()
             .WithMessage("There is an error in XML document (1, 1).");
     }
@@ -188,7 +199,7 @@ public class MetaInfoSerializerTests
 
         act.Should()
             .Throw<GldfException>()
-            .WithMessage($"Failed to deserialize Root from filepath '{_tempFile}'")
+            .WithMessage($"Failed to deserialize MetaInformation from filepath '{_tempFile}'")
             .WithInnerException<InvalidOperationException>()
             .WithMessage("There is an error in XML document (1, 1).");
     }

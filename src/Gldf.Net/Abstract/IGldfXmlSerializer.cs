@@ -8,11 +8,11 @@ public interface IGldfXmlSerializer
 {
     Encoding Encoding { get; }
     
-    string SerializeToXml(Root root);
-    void SerializeToXmlFile(Root root, string filePath);
-    void SerializeToXmlStream(Root root, Stream xmlStream);
+    string SerializeToXml(Root value);
+    void SerializeToXmlFile(Root value, string xmlFilePath);
+    void SerializeToXmlStream(Root value, Stream xmlStream, bool leaveOpen);
 
     Root DeserializeFromXml(string xml);
     Root DeserializeFromXmlFile(string xmlFilePath);
-    Root DeserializeFromXmlStream(Stream xmlStream);
+    Root DeserializeFromXmlStream(Stream xmlStream, bool leaveOpen);
 }

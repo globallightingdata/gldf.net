@@ -99,7 +99,7 @@ public class GldfContainerValidatorTests
     {
         var gldfWithInvalidRoot = EmbeddedGldfTestData.GetGldfWithInvalidRoot();
         File.WriteAllBytes(_tempFile, gldfWithInvalidRoot);
-        const string message = "Failed to read XML";
+        const string message = "Failed to deserialize Root from XML";
         var expected = new ValidationHint(SeverityType.Error, message, ErrorType.GenericError);
 
         var hints = _validator.ValidateGldfFile(_tempFile).ToList();
