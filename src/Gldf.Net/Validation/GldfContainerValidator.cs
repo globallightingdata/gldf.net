@@ -50,7 +50,7 @@ internal class GldfContainerValidator
         {
             if (!ZipArchiveReader.IsZipArchive(zipStream, true))
                 return ValidationHint.Error("The GLDF container seems not to be a " +
-                                            "valid ZIP file or can't be accessed", ErrorType.InvalidZip);
+                                            "valid ZIP archive or can't be accessed", ErrorType.InvalidZip);
 
             var containerLoadSettings = new ContainerLoadSettings { AssetLoadBehaviour = AssetLoadBehaviour.FileNamesOnly };
             var gldfContainer = _zipArchiveReader.ReadContainer(zipStream, leaveOpen, containerLoadSettings);
