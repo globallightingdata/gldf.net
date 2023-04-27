@@ -2,6 +2,7 @@
 using Gldf.Net.Domain.Xml;
 using Gldf.Net.Domain.Xml.MetaInfo;
 using Gldf.Net.Tests.TestHelper;
+using NUnit.Framework;
 using System.Collections.Generic;
 using System.IO;
 
@@ -45,6 +46,14 @@ public static class EmbeddedGldfTestData
         $"{GldfStaticNames.Folder.Sensors}/sensor.xml",
         $"{GldfStaticNames.Folder.Spectrums}/spectrum.txt",
         $"{GldfStaticNames.Folder.Symbols}/symbol.svg"
+    };
+
+    public static readonly TestCaseData[] ValidGldfTestCases =
+    {
+        new TestCaseData(GetGldfWithHeaderMandatory()).SetName("Header Mandatory"),
+        new TestCaseData(GetGldfNoFiles()).SetName("No files"),
+        new TestCaseData(GetGldfWithMetaInfo()).SetName("With MetaInfo"),
+        new TestCaseData(GetGldfWithFilesComplete()).SetName("With files complete"),
     };
 
     public static MetaInformation ExpectedMetaInformation => new()

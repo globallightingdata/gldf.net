@@ -43,7 +43,7 @@ public class GldfXmlSerializerTests
             .ThrowExactly<ArgumentNullException>()
             .WithMessage("Value cannot be null. (Parameter 'writerSettings')");
     }
-    
+
     [Test]
     public void Ctor_ShouldThrow_WhenReaderWriterSettingIsNull()
     {
@@ -184,6 +184,20 @@ public class GldfXmlSerializerTests
             .WithMessage("Value cannot be null. (Parameter 'value')");
     }
     
+    [Test]
+    public void SerializeToXmlStream_ShouldThrow_WhenStreamIsNull()
+    {
+        var act = () =>
+        {
+            using var memoryStream = new MemoryStream();
+            _serializer.SerializeToXmlStream(new Root(), null, false);
+        };
+
+        act.Should()
+            .ThrowExactly<ArgumentNullException>()
+            .WithMessage("Value cannot be null. (Parameter 'xmlStream')");
+    }
+
     [TestCase(true)]
     [TestCase(false)]
     public void SerializeToXmlStream_ShouldReturnExcpectedStreamState(bool leaveOpen)
@@ -222,7 +236,7 @@ public class GldfXmlSerializerTests
     }
 
     [Test]
-    public void DeserializeFromXml_Should_Return_ExpectedRoot()
+    public void DeserializeFromXml_ShouldReturnExpectedRoot()
     {
         var xml = EmbeddedXmlTestData.GetRootWithHeaderXml();
         var expectedRoot = EmbeddedXmlTestData.GetRootWithHeaderModel();
@@ -233,7 +247,7 @@ public class GldfXmlSerializerTests
     }
 
     [Test]
-    public void DeserializeFromXml_InvalidXml_Should_Throw()
+    public void DeserializeFromXml_ShouldThrow_WhenInvalidXml()
     {
         const string invalidXml = "<";
 
@@ -247,7 +261,7 @@ public class GldfXmlSerializerTests
     }
 
     [Test]
-    public void DeserializeFromFile_ShouldThrow_When_FilePath_IsNull()
+    public void DeserializeFromFile_ShouldThrow_WhenFilePathIsNull()
     {
         Action act = () => _serializer.DeserializeFromXmlFile(null);
 
@@ -257,7 +271,7 @@ public class GldfXmlSerializerTests
     }
 
     [Test]
-    public void DerserializeFromFile_Should_Return_ExpectedRoot()
+    public void DerserializeFromFile_ShouldReturnExpectedRoot()
     {
         var xml = EmbeddedXmlTestData.GetRootWithHeaderXml();
         var expectedRoot = EmbeddedXmlTestData.GetRootWithHeaderModel();
@@ -269,7 +283,7 @@ public class GldfXmlSerializerTests
     }
 
     [Test]
-    public void DerserializeFromFile_InvalidXml_Should_Throw()
+    public void DerserializeFromFile_ShouldThrow_WhenInvalidXml()
     {
         const string invalidXml = "<";
         File.WriteAllText(_tempFile, invalidXml);
@@ -282,7 +296,46 @@ public class GldfXmlSerializerTests
             .WithInnerException<InvalidOperationException>()
             .WithMessage("There is an error in XML document (1, 1).");
     }
-    
+
+    [Test]
+    public void DeserializeFromXmlStream_ShouldThrow_WhenFilePathIsNull()
+    {
+        Action act = () => _serializer.DeserializeFromXmlStream(null, false);
+
+        act.Should()
+            .ThrowExactly<ArgumentNullException>()
+            .WithMessage("Value cannot be null. (Parameter 'xmlStream')");
+    }
+
+    [Test]
+    public void DeserializeFromXmlStream_ShouldReturnExpectedRoot()
+    {
+        var xml = EmbeddedXmlTestData.GetRootWithHeaderXml();
+        var expectedRoot = EmbeddedXmlTestData.GetRootWithHeaderModel();
+        using var memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(xml));
+
+        var root = _serializer.DeserializeFromXmlStream(memoryStream, false);
+
+        root.Should().BeEquivalentTo(expectedRoot);
+    }
+
+    [Test]
+    public void DeserializeFromXmlStream_ShouldThrow_WhenInvalidXml()
+    {
+        var act = () =>
+        {
+            const string invalidXml = "<";
+            using var memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(invalidXml));
+            _serializer.DeserializeFromXmlStream(memoryStream, false);
+        };
+
+        act.Should()
+            .Throw<GldfException>()
+            .WithMessage("Failed to deserialize Root from stream")
+            .WithInnerException<InvalidOperationException>()
+            .WithMessage("There is an error in XML document (1, 1).");
+    }
+
     [TestCase(true)]
     [TestCase(false)]
     public void DeserializeFromXmlStream_ShouldReturnExpectedStreamState(bool leaveOpen)
