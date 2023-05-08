@@ -1,11 +1,10 @@
 ﻿using FluentAssertions;
 using Gldf.Net.Domain.Xml;
 using Gldf.Net.Domain.Xml.Head.Types;
-using Gldf.Net.Exceptions;
 using Gldf.Net.Tests.TestHelper;
 using Gldf.Net.XmlHelper;
 using NUnit.Framework;
-using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
@@ -42,23 +41,36 @@ public class GldfEmbeddedXsdLoaderTests
         }
     }
 
-    [Test]
-    public async Task LoadXsd_ShouldBeEquivalentTo_XsdStoredOnGldfIo()
+    [Test, TestCaseSource(nameof(ExpectedXsdTestData))]
+    public void LoadXsd_ShouldLoadExpectedXsds(FormatVersion version, string expectedXsdVersion)
     {
-        var formatVersion = new FormatVersion { Major = 1, Minor = 0, PreRelease = 2 };
+        var xsd = GldfEmbeddedXsdLoader.Load(version);
+        xsd.Should().Contain(expectedXsdVersion);
+    }
+
+    [Test]
+    public async Task LoadXsd_ShouldBeEquivalentTo_NewestVersionOnline_WhenLoadMaxVersion()
+    {
         using var httpClient = new HttpClient();
+        var newestEmbeddedVersion = GldfEmbeddedXsdLoader.KnownVersions.Max();
+        var newestEmbeddedXsd = GldfEmbeddedXsdLoader.Load(newestEmbeddedVersion);
         var xsdSchemaLocation = new Root().SchemaLocation;
-        var xsdSchema = await httpClient.GetStringAsync(xsdSchemaLocation);
-        var embeddedXsd = GldfEmbeddedXsdLoader.Load(formatVersion);
-
-        embeddedXsd.ShouldBe().EquivalentTo(xsdSchema);
+        var xsdSchemaOnline = await httpClient.GetStringAsync(xsdSchemaLocation);
+        newestEmbeddedXsd.ShouldBe().EquivalentTo(xsdSchemaOnline);
     }
 
     [Test]
-    public void LoadXsd_ShouldThrow_WhenUnknownFormatVersion()
+    public void LoadXsd_ShouldLoadNewest_WhenUnknownFormatVersion()
     {
-        var invalidFormatVersion = new FormatVersion { Major = -1, Minor = -2, PreRelease = -3 };
-        Action act = () => GldfEmbeddedXsdLoader.Load(invalidFormatVersion);
-        act.Should().Throw<GldfException>().WithMessage("Failed to get embedded XSD*");
+        var invalidFormatVersion = new FormatVersion(-1, -2, -3);
+        var xsd = GldfEmbeddedXsdLoader.Load(invalidFormatVersion);
+        xsd.Should().Contain(@"version=""1.0.0-rc.2""");
     }
+
+    private static IEnumerable<TestCaseData> ExpectedXsdTestData => new[]
+    {
+        new TestCaseData(new FormatVersion(0, 9, 9), @"version=""0.9-beta.9"""),
+        new TestCaseData(new FormatVersion(1, 0, 1), @"version=""1.0.0-rc.1"""),
+        new TestCaseData(new FormatVersion(1, 0, 2), @"version=""1.0.0-rc.2""")
+    };
 }

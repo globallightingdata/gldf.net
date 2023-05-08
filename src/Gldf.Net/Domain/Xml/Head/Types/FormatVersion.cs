@@ -1,8 +1,9 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.Xml.Serialization;
 
 namespace Gldf.Net.Domain.Xml.Head.Types;
 
-public class FormatVersion
+public class FormatVersion : IComparable<FormatVersion>
 {
     private int _preRelease;
 
@@ -43,7 +44,24 @@ public class FormatVersion
         PreRelease = preRelease;
     }
 
-    public override string ToString() => PreReleaseSpecified 
-        ? $"v{Major}.{Minor}-rc{PreRelease}" 
+    public override string ToString() => PreReleaseSpecified
+        ? $"v{Major}.{Minor}-rc{PreRelease}"
         : $"v{Major}.{Minor}";
+
+    public int CompareTo(FormatVersion other)
+    {
+        if (ReferenceEquals(this, other)) return 0;
+        if (ReferenceEquals(null, other)) return 1;
+        var majorComparison = Major.CompareTo(other.Major);
+        if (majorComparison != 0) return majorComparison;
+        var minorComparison = Minor.CompareTo(other.Minor);
+        if (minorComparison != 0) return minorComparison;
+        return (PreReleaseSpecified, other.PreReleaseSpecified) switch
+        {
+            (false, false) => 0,
+            (true, false) => -1,
+            (false, true) => 1,
+            _ => PreRelease.CompareTo(other.PreRelease)
+        };
+    }
 }

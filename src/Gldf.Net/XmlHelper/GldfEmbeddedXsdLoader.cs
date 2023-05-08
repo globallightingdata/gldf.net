@@ -22,8 +22,10 @@ public static class GldfEmbeddedXsdLoader
     {
         try
         {
-            ThrowOnUnknownVersion(version);
-            return ReadResourceFromAssembly(version);
+            var schemaVersionToLoad = KnownVersions.Any(toCompare => toCompare.CompareTo(version) == 0)
+                ? version
+                : KnownVersions.Max();
+            return ReadResourceFromAssembly(schemaVersionToLoad);
         }
         catch (Exception e)
         {
@@ -39,16 +41,5 @@ public static class GldfEmbeddedXsdLoader
         using var xsdResource = currentAssembly!.GetManifestResourceStream(xsdResourceName);
         using var reader = new StreamReader(xsdResource!, Encoding.UTF8);
         return reader.ReadToEnd();
-    }
-
-    private static void ThrowOnUnknownVersion(FormatVersion version)
-    {
-        if (!KnownVersions.Any(toCompare =>
-                toCompare.Major == version.Major &&
-                toCompare.Minor == version.Minor &&
-                toCompare.PreRelease == version.PreRelease &&
-                toCompare.PreReleaseSpecified == version.PreReleaseSpecified
-            ))
-            throw new ArgumentException($"Unknown {nameof(FormatVersion)}");
     }
 }

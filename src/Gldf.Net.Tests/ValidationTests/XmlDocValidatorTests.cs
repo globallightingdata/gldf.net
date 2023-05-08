@@ -61,8 +61,8 @@ public class XmlDocValidatorTests
     public void ValidateString_ShouldReturnExpectedHint_WhenMissingGeneralDefinition()
     {
         var xml = EmbeddedXmlTestData.GetRootWithHeaderXml();
-        var expectedMmessage = "The element 'Root' has incomplete content. " +
-                               "List of possible elements expected: 'GeneralDefinitions'.";
+        const string expectedMmessage = "The element 'Root' has incomplete content. " +
+                                        "List of possible elements expected: 'GeneralDefinitions'.";
         var expectedHint = new ValidationHint(SeverityType.Error, expectedMmessage, ErrorType.XmlSchema);
 
         var validationResult = _xmlValidator.ValidateXml(xml);

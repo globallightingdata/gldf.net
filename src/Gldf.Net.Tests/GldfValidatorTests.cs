@@ -1,11 +1,8 @@
 using FluentAssertions;
-using Gldf.Net.Container;
-using Gldf.Net.Parser;
 using Gldf.Net.Tests.TestData;
 using Gldf.Net.Validation.Model;
 using NUnit.Framework;
 using System.IO;
-using System.Text;
 
 namespace Gldf.Net.Tests;
 
