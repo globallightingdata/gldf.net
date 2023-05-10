@@ -186,7 +186,7 @@ public static class FixedCompleteTyped
                             Z = 0.3
                         },
                         InitialColorTolerance = MacAdamEllipse.SDCM3,
-                        MaintainedColorTolerance = MacAdamEllipse.SDCM3,
+                        MaintainedColorTolerance = MacAdamEllipse.SDCM4,
                         RatedChromacityCoordinateValues = new ChromacityCoordinateValuesTyped
                         {
                             X = 0.4,
@@ -399,7 +399,7 @@ public static class FixedCompleteTyped
                                         Rg = 7
                                     },
                                     InitialColorTolerance = MacAdamEllipse.SDCM3,
-                                    MaintainedColorTolerance = MacAdamEllipse.SDCM3,
+                                    MaintainedColorTolerance = MacAdamEllipse.SDCM4,
                                     MelanopicFactor = 0.8,
                                     RatedChromacityCoordinateValues = new ChromacityCoordinateValuesTyped
                                     {
@@ -583,7 +583,7 @@ public static class FixedCompleteTyped
                                         Rg = 7
                                     },
                                     InitialColorTolerance = MacAdamEllipse.SDCM3,
-                                    MaintainedColorTolerance = MacAdamEllipse.SDCM3,
+                                    MaintainedColorTolerance = MacAdamEllipse.SDCM4,
                                     MelanopicFactor = 0.8,
                                     RatedChromacityCoordinateValues = new ChromacityCoordinateValuesTyped
                                     {
@@ -803,7 +803,7 @@ public static class FixedCompleteTyped
                                         Rg = 7
                                     },
                                     InitialColorTolerance = MacAdamEllipse.SDCM3,
-                                    MaintainedColorTolerance = MacAdamEllipse.SDCM3,
+                                    MaintainedColorTolerance = MacAdamEllipse.SDCM4,
                                     MelanopicFactor = 0.8,
                                     RatedChromacityCoordinateValues = new ChromacityCoordinateValuesTyped
                                     {

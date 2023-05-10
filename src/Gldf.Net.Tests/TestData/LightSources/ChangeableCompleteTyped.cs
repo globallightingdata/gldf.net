@@ -186,7 +186,7 @@ public static class ChangeableCompleteTyped
                             Z = 0.3
                         },
                         InitialColorTolerance = MacAdamEllipse.SDCM3,
-                        MaintainedColorTolerance = MacAdamEllipse.SDCM3,
+                        MaintainedColorTolerance = MacAdamEllipse.SDCM4,
                         RatedChromacityCoordinateValues = new ChromacityCoordinateValuesTyped
                         {
                             X = 0.4,

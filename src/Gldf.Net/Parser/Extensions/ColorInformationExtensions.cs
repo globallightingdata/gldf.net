@@ -26,7 +26,7 @@ public static class ColorInformationExtensions
                 }
                 : null,
             InitialColorTolerance = colorInformation.InitialColorTolerance,
-            MaintainedColorTolerance = colorInformation.InitialColorTolerance,
+            MaintainedColorTolerance = colorInformation.MaintainedColorTolerance,
             RatedChromacityCoordinateValues = colorInformation.RatedChromacityCoordinateValues != null
                 ? new ChromacityCoordinateValuesTyped
                 {
