@@ -278,7 +278,13 @@ public static class VariantCompleteTyped
                             MountingHeight = 5,
                             Recessed = new WallRecessedTyped
                             {
-                                RecessedDepth = 6
+                                RecessedDepth = 6,
+                                RectangularCutout = new RectangularCutoutTyped
+                                {
+                                    Width = 7,
+                                    Length = 8,
+                                    Depth = 9
+                                }
                             },
                             SurfaceMounted = new WallSurfaceMountedTyped()
                         },

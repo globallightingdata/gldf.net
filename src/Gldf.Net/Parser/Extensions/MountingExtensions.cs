@@ -61,7 +61,14 @@ public static class MountingExtensions
                             Depth = circularCutout.Depth
                         }
                         : null,
-                    RectangularCutout = null
+                    RectangularCutout = wall.Recessed.Cutout is RectangularCutout rectangularCutout
+                        ? new RectangularCutoutTyped
+                        {
+                            Width = rectangularCutout.Width,
+                            Length = rectangularCutout.Length,
+                            Depth = rectangularCutout.Depth
+                        }
+                        : null
                 }
                 : null,
             SurfaceMounted = wall.SurfaceMounted != null
