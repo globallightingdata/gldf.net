@@ -72,7 +72,8 @@
                 </CircularEmitter>
             </SimpleGeometry>
             <ModelGeometry id="geometry5">
-                <GeometryFileReference fileId="geometryFile" levelOfDetail="Low"/>
+                <GeometryFileReference fileId="geometryFile" />
+                <GeometryFileReference fileId="geometryFile" levelOfDetail="Medium"/>
             </ModelGeometry>
         </Geometries>
     </GeneralDefinitions>

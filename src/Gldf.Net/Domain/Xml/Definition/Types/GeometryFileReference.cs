@@ -7,7 +7,7 @@ public class GeometryFileReference
     [XmlAttribute(DataType = "NCName", AttributeName = "fileId")]
     public string FileId { get; set; }
 
-    [XmlAttribute(AttributeName = "LevelOfDetail")]
+    [XmlAttribute(AttributeName = "levelOfDetail")]
     public LevelOfDetail LevelOfDetail
     {
         get => _levelOfDetail;

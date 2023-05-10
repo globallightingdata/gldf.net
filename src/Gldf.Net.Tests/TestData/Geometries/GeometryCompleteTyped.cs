@@ -171,6 +171,15 @@ public static class GeometryCompleteTyped
                             Uri = "https://example.org/geometry.l3d",
                             FileName = "geometry.l3d",
                             Language = "en"
+                        },
+                        new ModelFileTyped
+                        {
+                            ContentType = FileContentType.GeoL3d,
+                            Type = FileType.Url,
+                            Uri = "https://example.org/geometry.l3d",
+                            FileName = "geometry.l3d",
+                            Language = "en",
+                            LevelOfDetail = LevelOfDetail.Medium
                         }
                     }
                 }

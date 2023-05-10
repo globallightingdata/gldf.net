@@ -95,21 +95,24 @@ public static class GeometryMandatoryTyped
                             ContentType = FileContentType.GeoL3d,
                             Type = FileType.Url,
                             Uri = "https://example.org/geometry.l3d",
-                            FileName = "geometry.l3d"
+                            FileName = "geometry.l3d",
+                            LevelOfDetail = LevelOfDetail.Low
                         },
                         new()
                         {
                             ContentType = FileContentType.GeoL3d,
                             Type = FileType.Url,
                             Uri = "https://example.org/geometry.l3d",
-                            FileName = "geometry.l3d"
+                            FileName = "geometry.l3d",
+                            LevelOfDetail = LevelOfDetail.Medium
                         },
                         new()
                         {
                             ContentType = FileContentType.GeoL3d,
                             Type = FileType.Url,
                             Uri = "https://example.org/geometry.l3d",
-                            FileName = "geometry.l3d"
+                            FileName = "geometry.l3d",
+                            LevelOfDetail = LevelOfDetail.High
                         }
                     }
                 }
@@ -168,21 +171,24 @@ public static class GeometryMandatoryTyped
                                         ContentType = FileContentType.GeoL3d,
                                         Type = FileType.Url,
                                         Uri = "https://example.org/geometry.l3d",
-                                        FileName = "geometry.l3d"
+                                        FileName = "geometry.l3d",
+                                        LevelOfDetail = LevelOfDetail.Low 
                                     },
                                     new()
                                     {
                                         ContentType = FileContentType.GeoL3d,
                                         Type = FileType.Url,
                                         Uri = "https://example.org/geometry.l3d",
-                                        FileName = "geometry.l3d"
+                                        FileName = "geometry.l3d",
+                                        LevelOfDetail = LevelOfDetail.Medium
                                     },
                                     new()
                                     {
                                         ContentType = FileContentType.GeoL3d,
                                         Type = FileType.Url,
                                         Uri = "https://example.org/geometry.l3d",
-                                        FileName = "geometry.l3d"
+                                        FileName = "geometry.l3d",
+                                        LevelOfDetail = LevelOfDetail.High
                                     }
                                 }
                             },

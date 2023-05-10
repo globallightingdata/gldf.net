@@ -145,7 +145,11 @@ public static class GeometryCompleteModel
                         new GeometryFileReference
                         {
                             FileId = "geometryFile",
-                            LevelOfDetail = LevelOfDetail.Low,
+                        },
+                        new GeometryFileReference
+                        {
+                            FileId = "geometryFile",
+                            LevelOfDetail = LevelOfDetail.Medium,
                             LevelOfDetailSpecified = true
                         }
                     }
