@@ -27,8 +27,14 @@ internal class GldfXmlSchemaValidator
     public IEnumerable<ValidationHint> ValidateXml(string xml)
     {
         using var stringReader = new StringReader(xml);
-        var schemaSet = GetSchema(xml);
-        return Validate(stringReader, schemaSet);
+        var xmlSchema = GetEmbeddedXmlSchema(xml);
+        return Validate(stringReader, xmlSchema);
+    }
+
+    public IEnumerable<ValidationHint> ValidateXml(string xml, XmlSchemaSet xmlSchema)
+    {
+        using var stringReader = new StringReader(xml);
+        return Validate(stringReader, xmlSchema);
     }
 
     public IEnumerable<ValidationHint> ValidateXmlFile(string xmlFilePath)
@@ -37,7 +43,48 @@ internal class GldfXmlSchemaValidator
         return ValidateXml(xml);
     }
 
-    protected static IEnumerable<ValidationHint> Validate(TextReader reader, XmlSchemaSet schema)
+    public IEnumerable<ValidationHint> ValidateXmlFile(string xmlFilePath, XmlSchemaSet xmlSchema)
+    {
+        var xml = File.ReadAllText(xmlFilePath, _encoding);
+        return ValidateXml(xml, xmlSchema);
+    }
+
+    public IEnumerable<ValidationHint> ValidateXmlStream(Stream stream, bool leaveOpen)
+    {
+        using var streamReader = new StreamReader(stream, _encoding, leaveOpen: leaveOpen);
+        var xml = streamReader.ReadToEnd();
+        return ValidateXml(xml);
+    }
+
+    public IEnumerable<ValidationHint> ValidateXmlStream(Stream stream, bool leaveOpen, XmlSchemaSet xmlSchema)
+    {
+        using var streamReader = new StreamReader(stream, _encoding, leaveOpen: leaveOpen);
+        var xml = streamReader.ReadToEnd();
+        return ValidateXml(xml, xmlSchema);
+    }
+
+    public IEnumerable<ValidationHint> ValidateXmlStream(string xmlFilePath, XmlSchemaSet xmlSchemaSet)
+    {
+        var xml = File.ReadAllText(xmlFilePath, _encoding);
+        return ValidateXml(xml, xmlSchemaSet);
+    }
+
+    public static XmlSchemaSet GetEmbeddedXmlSchema(string xml) =>
+        GetEmbeddedXmlSchema(GldfFormatVersionReader.Get(xml));
+
+    public static XmlSchemaSet GetEmbeddedXmlSchema(FormatVersion formatVersion) =>
+        CreateXmlSchema(GldfEmbeddedXsdLoader.Load(formatVersion));
+
+    public static XmlSchemaSet CreateXmlSchema(string xsd)
+    {
+        using var xsdStringReader = new StringReader(xsd);
+        using var schemaDoc = XmlReader.Create(xsdStringReader);
+        var schemaSet = new XmlSchemaSet();
+        schemaSet.Add(string.Empty, schemaDoc);
+        return schemaSet;
+    }
+
+    protected static IEnumerable<ValidationHint> Validate(TextReader reader, XmlSchemaSet xmlSchema)
     {
         var resultList = new List<ValidationHint>();
 
@@ -47,7 +94,7 @@ internal class GldfXmlSchemaValidator
         try
         {
             var xmlDoc = XDocument.Load(reader);
-            xmlDoc.Validate(schema, SchemaErrorHandler);
+            xmlDoc.Validate(xmlSchema, SchemaErrorHandler);
         }
         catch (Exception e)
         {
@@ -55,23 +102,6 @@ internal class GldfXmlSchemaValidator
             resultList.Add(validationHint);
         }
         return resultList;
-    }
-
-    private static XmlSchemaSet GetSchema(string xml)
-    {
-        var formatVersion = GldfFormatVersionReader.Get(xml);
-        var schemaSet = CreateSchemaSet(formatVersion);
-        return schemaSet;
-    }
-
-    private static XmlSchemaSet CreateSchemaSet(FormatVersion formatVersion)
-    {
-        var embeddedXsd = GldfEmbeddedXsdLoader.Load(formatVersion);
-        using var xsdStringReader = new StringReader(embeddedXsd);
-        using var schemaDoc = XmlReader.Create(xsdStringReader);
-        var schemaSet = new XmlSchemaSet();
-        schemaSet.Add(string.Empty, schemaDoc);
-        return schemaSet;
     }
 
     private static SeverityType MapSeverityType(XmlSeverityType xmlSeverityType) =>

@@ -1,31 +1,89 @@
 using FluentAssertions;
 using Gldf.Net.Domain.Xml;
+using Gldf.Net.Domain.Xml.Head.Types;
 using Gldf.Net.Exceptions;
 using Gldf.Net.Tests.TestData;
 using Gldf.Net.Validation;
 using Gldf.Net.Validation.Model;
+using Gldf.Net.XmlHelper;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Xml.Schema;
 
 namespace Gldf.Net.Tests.ValidationTests;
 
 [TestFixture]
-public class XmlDocValidatorTests
+public class GldfXmlSchemaValidatorTests
 {
     private readonly GldfXmlSchemaValidator _xmlValidator = new();
     private static TestCaseData[] _validXmlTestCases = EmbeddedXmlTestData.ValidXmlTestCases;
 
     [Test, TestCaseSource(nameof(_validXmlTestCases))]
-    public void ValidateString_ShouldReturnEmptyList_WhenValidTestData(string xml)
+    public void ValidateXml_ShouldReturnEmptyList_WhenValidTestData(string xml)
     {
         var validationResult = _xmlValidator.ValidateXml(xml);
         validationResult.Should().BeEmpty();
     }
 
     [Test]
-    public void ValidateString_ShouldThrowArgumentNullException_WhenNull()
+    public void GetEmbeddedXmlSchema_ShouldReturnExpectedSchema_WhenGldfXmlParameter()
+    {
+        const string xml = @"<Root><Header><FormatVersion major=""0"" minor=""9"" pre-release=""9"" /></Header></Root>";
+        var xmlSchema = GldfXmlSchemaValidator.GetEmbeddedXmlSchema(xml);
+        xmlSchema.Schemas().Count.Should().Be(1);
+        foreach (var generatedSchema in xmlSchema.Schemas())
+        {
+            using var stringWriter = new StringWriter();
+            generatedSchema.As<XmlSchema>().Write(stringWriter);
+            stringWriter.ToString().Should().Contain(@"xs:schema version=""0.9-beta.9""");
+        }
+    }
+    
+    [Test]
+    public void GetEmbeddedXmlSchema_ShouldReturnExpectedSchema_WhenFormatVersionParameter()
+    {
+        var xmlSchema = GldfXmlSchemaValidator.GetEmbeddedXmlSchema(new FormatVersion(1, 0, 1));
+        xmlSchema.Schemas().Count.Should().Be(1);
+        foreach (var generatedSchema in xmlSchema.Schemas())
+        {
+            using var stringWriter = new StringWriter();
+            generatedSchema.As<XmlSchema>().Write(stringWriter);
+            stringWriter.ToString().Should().Contain(@"xs:schema version=""1.0.0-rc.1""");
+        }
+    }
+    
+    [Test]
+    public void GetEmbeddedXmlSchema_ShouldReturnLatestSchema_WhenVersionIsUnknown()
+    {
+        var xmlSchema = GldfXmlSchemaValidator.GetEmbeddedXmlSchema(new FormatVersion(int.MaxValue, 0));
+        xmlSchema.Schemas().Count.Should().Be(1);
+        foreach (var generatedSchema in xmlSchema.Schemas())
+        {
+            using var stringWriter = new StringWriter();
+            generatedSchema.As<XmlSchema>().Write(stringWriter);
+            stringWriter.ToString().Should().Contain(@"xs:schema version=""1.0.0-rc.2""");
+        }
+    }
+    
+    [Test]
+    public void CreateXmlSchema_ShouldCreateSchemaAsExpected()
+    {
+        var xsd = GldfEmbeddedXsdLoader.Load(new FormatVersion(1, 0, 2));
+        var xmlSchema = GldfXmlSchemaValidator.CreateXmlSchema(xsd);
+        xmlSchema.Schemas().Count.Should().Be(1);
+        foreach (var generatedSchema in xmlSchema.Schemas())
+        {
+            using var stringWriter = new StringWriter();
+            generatedSchema.As<XmlSchema>().Write(stringWriter);
+            stringWriter.ToString().Should().Contain(@"xs:schema version=""1.0.0-rc.2""");
+        }
+    }
+
+    [Test]
+    public void ValidateXml_ShouldThrowArgumentNullException_WhenNull()
     {
         Action act = () => _xmlValidator.ValidateXml(null);
 
@@ -35,7 +93,7 @@ public class XmlDocValidatorTests
     }
 
     [Test]
-    public void ValidateString_ShouldThrowGldfException_WhenEmptyString()
+    public void ValidateXml_ShouldThrowGldfException_WhenEmptyString()
     {
         Action act = () => _xmlValidator.ValidateXml(string.Empty);
 
@@ -45,7 +103,7 @@ public class XmlDocValidatorTests
     }
 
     [Test]
-    public void ValidateString_ShouldReturnExpectedHint_WhenInvalidXml()
+    public void ValidateXml_ShouldReturnExpectedHint_WhenInvalidXml()
     {
         const string invalidXml = "<";
         const string expectedMessage = "Data at the root level is invalid. Line 1, position 1.";
@@ -58,7 +116,7 @@ public class XmlDocValidatorTests
     }
 
     [Test]
-    public void ValidateString_ShouldReturnExpectedHint_WhenMissingGeneralDefinition()
+    public void ValidateXml_ShouldReturnExpectedHint_WhenMissingGeneralDefinition()
     {
         var xml = EmbeddedXmlTestData.GetRootWithHeaderXml();
         const string expectedMmessage = "The element 'Root' has incomplete content. " +
@@ -71,7 +129,7 @@ public class XmlDocValidatorTests
     }
 
     [Test]
-    public void ValidateString_ShouldValidate_WhenMissingXsd()
+    public void ValidateXml_ShouldValidate_WhenMissingXsd()
     {
         var xsdLocationString = $@"xsi:noNamespaceSchemaLocation=""{new Root().SchemaLocation}""";
         var xmlWithXsd = EmbeddedXmlTestData.GetHeaderMandatoryXml();
@@ -84,7 +142,7 @@ public class XmlDocValidatorTests
     }
 
     [Test]
-    public void ValidateString_ShouldIgnoreInvalidXsd()
+    public void ValidateXml_ShouldIgnoreInvalidXsd()
     {
         const string wrongXsd = "https://gldf.io/xsd/l3d/l3d.xsd";
         var currentXsd = new Root().SchemaLocation;
@@ -98,7 +156,7 @@ public class XmlDocValidatorTests
     }
 
     [Test, TestCaseSource(nameof(_validXmlTestCases))]
-    public void ValidateFile_ShouldReturnEmptyList_WhenValidTestData(string xml)
+    public void ValidateXmlFile_ShouldReturnEmptyList_WhenValidTestData(string xml)
     {
         var tempFileName = Path.GetTempFileName();
         try
@@ -114,7 +172,7 @@ public class XmlDocValidatorTests
     }
 
     [Test]
-    public void ValidateFile_ShouldThrow_WhenPathIsNull()
+    public void ValidateXmlFile_ShouldThrow_WhenPathIsNull()
     {
         Action act = () => _xmlValidator.ValidateXmlFile(null);
 
@@ -124,7 +182,7 @@ public class XmlDocValidatorTests
     }
 
     [Test]
-    public void ValidateFile_ShouldThrow_WhenPathIsEmpty()
+    public void ValidateXmlFile_ShouldThrow_WhenPathIsEmpty()
     {
         Action act = () => _xmlValidator.ValidateXmlFile(string.Empty);
 
@@ -134,7 +192,7 @@ public class XmlDocValidatorTests
     }
 
     [Test]
-    public void ValidateFile_ShouldThrow_WhenPathIsInvalid()
+    public void ValidateXmlFile_ShouldThrow_WhenPathIsInvalid()
     {
         var tempFileName = Path.GetTempFileName();
         try
@@ -149,6 +207,24 @@ public class XmlDocValidatorTests
         {
             File.Delete(tempFileName);
         }
+    }
+
+    [Test, TestCaseSource(nameof(_validXmlTestCases))]
+    public void ValidateXmlStream_ShouldReturnEmptyList_WhenValidTestData(string xml)
+    {
+        using var memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(xml));
+        var validationResult = _xmlValidator.ValidateXmlStream(memoryStream, false);
+        validationResult.Should().BeEmpty();
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    public void ValidateXmlStream_ShouldLeaveStreamInExpectedState(bool leaveOpen)
+    {
+        var xml = EmbeddedXmlTestData.GetHeaderMandatoryXml();
+        using var memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(xml));
+        _ = _xmlValidator.ValidateXmlStream(memoryStream, leaveOpen);
+        memoryStream.CanRead.Should().Be(leaveOpen);
     }
 }
 
