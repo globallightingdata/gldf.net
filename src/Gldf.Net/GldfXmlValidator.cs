@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Xml.Schema;
 
 namespace Gldf.Net;
 
@@ -16,7 +17,6 @@ namespace Gldf.Net;
 /// </summary>
 public class GldfXmlValidator : IGldfXmlValidator
 {
-
     /// <summary>
     ///     Encoding beeing used reading GLDF XML. The default is UTF-8
     /// </summary>
@@ -42,8 +42,24 @@ public class GldfXmlValidator : IGldfXmlValidator
     public GldfXmlValidator(Encoding encoding)
     {
         Encoding = encoding ?? throw new ArgumentNullException(nameof(encoding));
-        _gldfXmlValidator = new GldfXmlSchemaValidator(encoding);
-        _zipArchiveReader = new ZipArchiveReader(encoding);
+        _gldfXmlValidator = new GldfXmlSchemaValidator(Encoding);
+        _zipArchiveReader = new ZipArchiveReader(Encoding);
+    }
+
+    public GldfXmlValidator(XmlSchemaSet xmlSchema)
+    {
+        Encoding = Encoding.UTF8;
+        if(xmlSchema is null) throw new ArgumentNullException(nameof(xmlSchema));
+        _gldfXmlValidator = new GldfXmlSchemaValidator(Encoding, xmlSchema);
+        _zipArchiveReader = new ZipArchiveReader(Encoding);
+    }
+    
+    public GldfXmlValidator(Encoding encoding, XmlSchemaSet xmlSchema)
+    {
+        Encoding = encoding ?? throw new ArgumentNullException(nameof(encoding));
+        if(xmlSchema is null) throw new ArgumentNullException(nameof(xmlSchema));
+        _gldfXmlValidator = new GldfXmlSchemaValidator(Encoding, xmlSchema);
+        _zipArchiveReader = new ZipArchiveReader(Encoding);
     }
 
     /// <summary>
@@ -63,12 +79,7 @@ public class GldfXmlValidator : IGldfXmlValidator
     /// <param name="xmlFilePath">The path to the GLDF XML file</param>
     /// <returns>An IEnumerable of <see cref="ValidationHint" /> with possible warnings and errors</returns>
     public IEnumerable<ValidationHint> ValidateXmlFile(string xmlFilePath) =>
-        ValidateSafe(() =>
-        {
-            using var streamReader = new StreamReader(xmlFilePath, Encoding, true);
-            var xml = streamReader.ReadToEnd();
-            return _gldfXmlValidator.ValidateXml(xml);
-        });
+        ValidateSafe(() => _gldfXmlValidator.ValidateXmlFile(xmlFilePath));
 
     /// <summary>
     ///     Validates the GLDF XML stream with the XmlSchema definition matching the specified
@@ -78,11 +89,7 @@ public class GldfXmlValidator : IGldfXmlValidator
     /// <param name="leaveOpen">Whether to close the stream after serialization.</param>
     /// <returns>An IEnumerable of <see cref="ValidationHint" /> with possible warnings and errors</returns>
     public IEnumerable<ValidationHint> ValidateXmlStream(Stream xmlStream, bool leaveOpen) =>
-        ValidateSafe(() =>
-        {
-            using var streamReader = new StreamReader(xmlStream, Encoding, leaveOpen: leaveOpen);
-            return _gldfXmlValidator.ValidateXml(streamReader.ReadToEnd());
-        });
+        ValidateSafe(() => _gldfXmlValidator.ValidateXmlStream(xmlStream, leaveOpen));
 
     /// <summary>
     ///     Validates the GLDF container file on disk with the XmlSchema definition matching the specified

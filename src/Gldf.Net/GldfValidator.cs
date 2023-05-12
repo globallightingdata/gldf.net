@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Xml.Schema;
 
 namespace Gldf.Net;
 
@@ -28,7 +29,7 @@ public class GldfValidator : IGldfValidator
     public GldfValidator() : this(Encoding.UTF8)
     {
     }
-
+    
     /// <summary>
     ///     Initializes a new instance of the <see cref="GldfValidator" /> class that can validate GLDF XML as
     ///     string, file or stream. Overload with Encoding parameter that is used when reading files.
@@ -39,6 +40,36 @@ public class GldfValidator : IGldfValidator
     {
         if (encoding is null) throw new ArgumentNullException(nameof(encoding));
         _schemaValidator = new GldfXmlValidator(encoding);
+        _zipValidator = new GldfZipValidator(encoding);
+        _containerValidator = new GldfContainerValidator(encoding);
+    }
+
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="GldfValidator" /> class that can validate GLDF XML as
+    ///     string, file or stream. Overload with Encoding parameter that is used when reading files.
+    /// </summary>
+    /// <exception cref="ArgumentNullException">If the Encoding is null.</exception>
+    /// <param name="xmlSchema">The Xml schema which should be used for XSD validation</param>
+    public GldfValidator(XmlSchemaSet xmlSchema)
+    {
+        if (xmlSchema is null) throw new ArgumentNullException(nameof(xmlSchema));
+        _schemaValidator = new GldfXmlValidator(Encoding.UTF8, xmlSchema);
+        _zipValidator = new GldfZipValidator(Encoding.UTF8);
+        _containerValidator = new GldfContainerValidator(Encoding.UTF8);
+    }
+
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="GldfValidator" /> class that can validate GLDF XML as
+    ///     string, file or stream. Overload with Encoding parameter that is used when reading files.
+    /// </summary>
+    /// <exception cref="ArgumentNullException">If the Encoding is null.</exception>
+    /// <param name="encoding">Encoding for reading XML</param>
+    /// <param name="xmlSchema">The Xml schema which should be used for XSD validation</param>
+    public GldfValidator(Encoding encoding, XmlSchemaSet xmlSchema)
+    {
+        if (encoding is null) throw new ArgumentNullException(nameof(encoding));
+        if (xmlSchema is null) throw new ArgumentNullException(nameof(xmlSchema));
+        _schemaValidator = new GldfXmlValidator(encoding, xmlSchema);
         _zipValidator = new GldfZipValidator(encoding);
         _containerValidator = new GldfContainerValidator(encoding);
     }

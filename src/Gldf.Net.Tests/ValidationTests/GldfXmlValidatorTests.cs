@@ -1,11 +1,14 @@
 using FluentAssertions;
 using Gldf.Net.Domain.Xml;
+using Gldf.Net.Domain.Xml.Head.Types;
 using Gldf.Net.Tests.TestData;
 using Gldf.Net.Validation.Model;
+using Gldf.Net.XmlHelper;
 using NUnit.Framework;
 using System;
 using System.IO;
 using System.Text;
+using System.Xml.Schema;
 
 namespace Gldf.Net.Tests.ValidationTests;
 
@@ -32,11 +35,33 @@ public class GldfXmlValidatorTests
     [Test]
     public void Ctor_ShouldThrow_WhenEncodingIsNull()
     {
-        Action act = () => _ = new GldfXmlValidator(null);
+        Action act = () => _ = new GldfXmlValidator((Encoding)null);
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
             .WithMessage("Value cannot be null. (Parameter 'encoding')");
+    }
+
+    [Test]
+    public void Ctor_ShouldThrow_WhenXmlSchemaSetEncodingIsNull()
+    {
+        Action act = () => _ = new GldfXmlValidator((XmlSchemaSet)null);
+
+        act.Should()
+            .ThrowExactly<ArgumentNullException>()
+            .WithMessage("Value cannot be null. (Parameter 'xmlSchema')");
+    }
+
+    [Test]
+    public void Ctor_ShouldThrow_WhenEncodingIsNull_AndOrXmlSchemaSetIsNull()
+    {
+        void Test(Action test, string expectedMessage) => test.Should()
+            .ThrowExactly<ArgumentNullException>()
+            .WithMessage(expectedMessage);
+
+        Test(() => _ = new GldfXmlValidator(null, null), "Value cannot be null. (Parameter 'encoding')");
+        Test(() => _ = new GldfXmlValidator(null, new XmlSchemaSet()), "Value cannot be null. (Parameter 'encoding')");
+        Test(() => _ = new GldfXmlValidator(Encoding.UTF8, null), "Value cannot be null. (Parameter 'xmlSchema')");
     }
 
     [TestCase(null)]
@@ -55,7 +80,7 @@ public class GldfXmlValidatorTests
     public void ValidateXml_ShouldReturnXmlSchemaHint_WhenXmlIncomplete()
     {
         var xml = EmbeddedXmlTestData.GetRootWithHeaderXml();
-        var expectedMmessage = "The element 'Root' has incomplete content. " +
+        const string expectedMmessage = "The element 'Root' has incomplete content. " +
                                "List of possible elements expected: 'GeneralDefinitions'.";
         var expectedHint = new ValidationHint(SeverityType.Error, expectedMmessage, ErrorType.XmlSchema);
 
@@ -98,6 +123,26 @@ public class GldfXmlValidatorTests
     {
         var validationResult = _xmlValidator.ValidateXml(xml);
         validationResult.Should().BeEmpty();
+    }
+
+    [Test, TestCaseSource(nameof(ValidXmlTestCases))]
+    public void ValidateXml_ShouldReturnEmptyList_WhendXmlIsValid_AndSchemaSetProvided(string xml)
+    {
+        var xsd = GldfEmbeddedXsdLoader.Load(new FormatVersion(1, 0, 2));
+        var xmlSchema = GldfXmlSchemaFactory.CreateXmlSchema(xsd);
+        var xmlValidator = new GldfXmlValidator(xmlSchema);
+        var validationResult = xmlValidator.ValidateXml(xml);
+        validationResult.Should().BeEmpty();
+    }
+
+    [Test, TestCaseSource(nameof(ValidXmlTestCases))]
+    public void ValidateXml_ShouldReturnSchemaError_WhendXmlAndSchemaDoNotMatch(string xml)
+    {
+        var xsd = GldfEmbeddedXsdLoader.Load(new FormatVersion(0, 9, 9));
+        var xmlSchema = GldfXmlSchemaFactory.CreateXmlSchema(xsd);
+        var xmlValidator = new GldfXmlValidator(xmlSchema);
+        var validationResult = xmlValidator.ValidateXml(xml);
+        validationResult.Should().Contain(vh => vh.ErrorType == ErrorType.XmlSchema);
     }
 
     [TestCase("")]
@@ -164,12 +209,59 @@ public class GldfXmlValidatorTests
     }
 
     [Test, TestCaseSource(nameof(ValidXmlTestCases))]
+    public void ValidateFile_ShouldReturnEmptyList_WhenDataIsValid_AndXmlSchemaIsProvided(string xml)
+    {
+        var xsd = GldfEmbeddedXsdLoader.Load(new FormatVersion(1, 0, 2));
+        var xmlSchema = GldfXmlSchemaFactory.CreateXmlSchema(xsd);
+        File.WriteAllText(_tempFile, xml);
+        var xmlValidator = new GldfXmlValidator(xmlSchema);
+        var validationResult = xmlValidator.ValidateXmlFile(_tempFile);
+
+        validationResult.Should().BeEmpty();
+    }
+
+    [Test, TestCaseSource(nameof(ValidXmlTestCases))]
+    public void ValidateFile_ShouldReturnSchemaError_WhenDataAndXmlSchemaDoNotMatch(string xml)
+    {
+        var xsd = GldfEmbeddedXsdLoader.Load(new FormatVersion(0, 9, 9));
+        var xmlSchema = GldfXmlSchemaFactory.CreateXmlSchema(xsd);
+        var xmlValidator = new GldfXmlValidator(xmlSchema);
+        File.WriteAllText(_tempFile, xml);
+        var validationResult = xmlValidator.ValidateXmlFile(_tempFile);
+
+        validationResult.Should().Contain(vh => vh.ErrorType == ErrorType.XmlSchema);
+    }
+
+    [Test, TestCaseSource(nameof(ValidXmlTestCases))]
     public void ValidateXmlStream_ShouldReturnEmptyList_WhenDataIsValid(string xml)
     {
         using var memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(xml));
         var validationResult = _xmlValidator.ValidateXmlStream(memoryStream, false);
 
         validationResult.Should().BeEmpty();
+    }
+
+    [Test, TestCaseSource(nameof(ValidXmlTestCases))]
+    public void ValidateXmlStream_ShouldReturnEmptyList_WhenDataIsValid_AndXmlSchemaIsProvided(string xml)
+    {
+        var xsd = GldfEmbeddedXsdLoader.Load(new FormatVersion(1, 0, 2));
+        var xmlSchema = GldfXmlSchemaFactory.CreateXmlSchema(xsd);
+        var xmlValidator = new GldfXmlValidator(xmlSchema);
+        using var memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(xml));
+        var validationResult = xmlValidator.ValidateXmlStream(memoryStream, false);
+
+        validationResult.Should().BeEmpty();
+    }
+
+    [Test, TestCaseSource(nameof(ValidXmlTestCases))]
+    public void ValidateXmlStream_ShouldReturnSchemaError_WhendXmlAndSchemaDoNotMatch(string xml)
+    {
+        var xsd = GldfEmbeddedXsdLoader.Load(new FormatVersion(0, 9, 9));
+        var xmlSchema = GldfXmlSchemaFactory.CreateXmlSchema(xsd);
+        var xmlValidator = new GldfXmlValidator(xmlSchema);
+        using var memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(xml));
+        var validationResult = xmlValidator.ValidateXmlStream(memoryStream, false);
+        validationResult.Should().Contain(vh => vh.ErrorType == ErrorType.XmlSchema);
     }
 
     [Test]

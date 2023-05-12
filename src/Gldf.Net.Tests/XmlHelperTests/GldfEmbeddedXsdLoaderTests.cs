@@ -33,6 +33,7 @@ public class GldfEmbeddedXsdLoaderTests
     [Test]
     public void LoadXsd_ShouldLoadAllKnownVersions()
     {
+        GldfEmbeddedXsdLoader.KnownVersions.Should().HaveCount(3);
         foreach (var knownVersion in GldfEmbeddedXsdLoader.KnownVersions)
         {
             var xsd = GldfEmbeddedXsdLoader.Load(knownVersion);

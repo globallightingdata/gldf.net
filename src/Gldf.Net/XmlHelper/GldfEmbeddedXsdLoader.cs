@@ -1,6 +1,4 @@
 ﻿using Gldf.Net.Domain.Xml.Head.Types;
-using Gldf.Net.Exceptions;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,18 +18,10 @@ public static class GldfEmbeddedXsdLoader
 
     public static string Load(FormatVersion version)
     {
-        try
-        {
-            var schemaVersionToLoad = KnownVersions.Any(toCompare => toCompare.CompareTo(version) == 0)
-                ? version
-                : KnownVersions.Max();
-            return ReadResourceFromAssembly(schemaVersionToLoad);
-        }
-        catch (Exception e)
-        {
-            var errorMessage = $"Failed to get embedded XSD for {nameof(FormatVersion)}{version}";
-            throw new GldfException(errorMessage, e);
-        }
+        var schemaVersionToLoad = KnownVersions.Any(toCompare => toCompare.CompareTo(version) == 0)
+            ? version
+            : KnownVersions.Max();
+        return ReadResourceFromAssembly(schemaVersionToLoad);
     }
 
     private static string ReadResourceFromAssembly(FormatVersion version)
