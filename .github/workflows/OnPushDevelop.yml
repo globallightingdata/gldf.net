@@ -28,7 +28,7 @@ jobs:
       run: dotnet test --no-build --verbosity normal ./src/Gldf.Net.Tests/Gldf.Net.Tests.csproj
     - name: publish on nuget.org
       id: publish_nuget
-      uses: alirezanet/publish-nuget@v3.0.5
+      uses: alirezanet/publish-nuget@v3.1.0
       with:
         PROJECT_FILE_PATH: ./src/Gldf.Net/Gldf.Net.csproj
         PACKAGE_NAME: GLDF.Net
