@@ -64,13 +64,13 @@ internal class ZipArchiveReader : ZipArchiveIO
     public string ReadRootXml(string filePath)
     {
         using var zipArchive = ZipFile.OpenRead(filePath);
-        return ReadRootXml(zipArchive);
+        return ReadXml(zipArchive, GldfStaticNames.Files.Product);
     }
 
     public string ReadRootXml(Stream zipStream, bool leaveOpen)
     {
         using var zipArchive = new ZipArchive(zipStream, ZipArchiveMode.Read, leaveOpen);
-        return ReadRootXml(zipArchive);
+        return ReadXml(zipArchive, GldfStaticNames.Files.Product);
     }
 
     public static void ExtractToDirectory(string sourceFilePath, string targetDirectory)
@@ -83,21 +83,12 @@ internal class ZipArchiveReader : ZipArchiveIO
     {
         var container = new GldfContainer();
         if (settings.ProductLoadBehaviour == ProductLoadBehaviour.Load)
-            AddDeserializedRoot(container, zipArchive);
-        if (settings.AssetLoadBehaviour != AssetLoadBehaviour.Skip)
-            AddAssets(zipArchive, container, settings.AssetLoadBehaviour);
+            AddDeserializedRoot(zipArchive, container);
         if (settings.MetaInfoLoadBehaviour == MetaInfoLoadBehaviour.Load)
             AddDeserializedMetaInfo(zipArchive, container);
+        if (settings.AssetLoadBehaviour != AssetLoadBehaviour.Skip)
+            AddAssets(zipArchive, container, settings.AssetLoadBehaviour);
         return container;
-    }
-
-    private string ReadRootXml(ZipArchive zipArchive)
-    {
-        var productEntry = zipArchive.GetEntry(GldfStaticNames.Files.Product);
-        if (productEntry is null) return null;
-        using var stream = productEntry.Open();
-        using var streamReader = new StreamReader(stream, GldfXmlSerializer.Encoding);
-        return streamReader.ReadToEnd();
     }
 
     public static IEnumerable<string> GetLargeFileNames(string filePath, long minBytes)
@@ -118,20 +109,25 @@ internal class ZipArchiveReader : ZipArchiveIO
             GldfStaticNames.Files.Product, StringComparison.OrdinalIgnoreCase));
     }
 
-    private void AddDeserializedRoot(GldfContainer container, ZipArchive zipArchive)
+    private void AddDeserializedRoot(ZipArchive zipArchive, GldfContainer gldfContainer)
     {
-        var rootXml = ReadRootXml(zipArchive);
-        container.Product = rootXml != null
-            ? GldfXmlSerializer.DeserializeFromXml(rootXml)
-            : null;
+        var rootXml = ReadXml(zipArchive, GldfStaticNames.Files.Product);
+        gldfContainer.Product = rootXml != null ? GldfXmlSerializer.DeserializeFromXml(rootXml) : null;
     }
 
-    private void AddDeserializedMetaInfo(ZipArchive zipArchive, GldfContainer container)
+    private void AddDeserializedMetaInfo(ZipArchive zipArchive, GldfContainer gldfContainer)
     {
-        var metaInfoEntry = zipArchive.GetEntry(GldfStaticNames.Files.MetaInfo);
-        if (metaInfoEntry == null) return;
-        using var stream = metaInfoEntry.Open();
-        container.MetaInformation = MetaInfoSerializer.DeserializeFromXmlStream(stream, false);
+        var xml = ReadXml(zipArchive, GldfStaticNames.Files.MetaInfo);
+        gldfContainer.MetaInformation = xml != null ? MetaInfoSerializer.DeserializeFromXml(xml) : null;
+    }
+
+    private string ReadXml(ZipArchive zipArchive, string fileName)
+    {
+        var zipEntry = zipArchive.GetEntry(fileName);
+        if (zipEntry is null) return null;
+        using var stream = zipEntry.Open();
+        using var streamReader = new StreamReader(stream, GldfXmlSerializer.Encoding);
+        return streamReader.ReadToEnd();
     }
 
     private static void AddAssets(ZipArchive zipArchive, GldfContainer container, AssetLoadBehaviour loadBehaviour)
