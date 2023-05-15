@@ -64,13 +64,13 @@ internal class ZipArchiveReader : ZipArchiveIO
     public string ReadRootXml(string filePath)
     {
         using var zipArchive = ZipFile.OpenRead(filePath);
-        return ReadXml(zipArchive, GldfStaticNames.Files.Product);
+        return ReadXml(zipArchive, GldfStaticNames.Files.Product, GldfXmlSerializer.Encoding);
     }
 
     public string ReadRootXml(Stream zipStream, bool leaveOpen)
     {
         using var zipArchive = new ZipArchive(zipStream, ZipArchiveMode.Read, leaveOpen);
-        return ReadXml(zipArchive, GldfStaticNames.Files.Product);
+        return ReadXml(zipArchive, GldfStaticNames.Files.Product, GldfXmlSerializer.Encoding);
     }
 
     public static void ExtractToDirectory(string sourceFilePath, string targetDirectory)
@@ -111,22 +111,22 @@ internal class ZipArchiveReader : ZipArchiveIO
 
     private void AddDeserializedRoot(ZipArchive zipArchive, GldfContainer gldfContainer)
     {
-        var rootXml = ReadXml(zipArchive, GldfStaticNames.Files.Product);
+        var rootXml = ReadXml(zipArchive, GldfStaticNames.Files.Product, GldfXmlSerializer.Encoding);
         gldfContainer.Product = rootXml != null ? GldfXmlSerializer.DeserializeFromXml(rootXml) : null;
     }
 
     private void AddDeserializedMetaInfo(ZipArchive zipArchive, GldfContainer gldfContainer)
     {
-        var xml = ReadXml(zipArchive, GldfStaticNames.Files.MetaInfo);
+        var xml = ReadXml(zipArchive, GldfStaticNames.Files.MetaInfo, MetaInfoSerializer.Encoding);
         gldfContainer.MetaInformation = xml != null ? MetaInfoSerializer.DeserializeFromXml(xml) : null;
     }
 
-    private string ReadXml(ZipArchive zipArchive, string fileName)
+    private string ReadXml(ZipArchive zipArchive, string fileName, Encoding encoding)
     {
         var zipEntry = zipArchive.GetEntry(fileName);
         if (zipEntry is null) return null;
         using var stream = zipEntry.Open();
-        using var streamReader = new StreamReader(stream, GldfXmlSerializer.Encoding);
+        using var streamReader = new StreamReader(stream, encoding);
         return streamReader.ReadToEnd();
     }
 
