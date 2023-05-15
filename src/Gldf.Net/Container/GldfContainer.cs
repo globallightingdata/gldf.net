@@ -1,5 +1,6 @@
 ﻿using Gldf.Net.Domain.Xml;
 using Gldf.Net.Domain.Xml.Definition.Types;
+using Gldf.Net.Extensions;
 using System;
 using System.ComponentModel;
 
@@ -35,47 +36,10 @@ public class GldfContainer
     public void AddAssetFile(FileContentType fileContentType, string fileName, byte[] fileContent)
     {
         if (!Enum.IsDefined(typeof(FileContentType), fileContentType))
-            throw new InvalidEnumArgumentException(nameof(fileContentType), (int)fileContentType,
-                typeof(FileContentType));
+            throw new InvalidEnumArgumentException(nameof(fileContentType), (int)fileContentType, typeof(FileContentType));
         if (fileName == null) throw new ArgumentNullException(nameof(fileName));
         if (fileContent == null) throw new ArgumentNullException(nameof(fileContent));
-
-        switch (fileContentType)
-        {
-            case FileContentType.LdcEulumdat:
-            case FileContentType.LdcIes:
-            case FileContentType.LdcIesXml:
-                Assets.Photometries.Add(new ContainerFile(fileName, fileContent));
-                break;
-            case FileContentType.ImagePng:
-            case FileContentType.ImageSvg:
-            case FileContentType.ImageJpg:
-                Assets.Images.Add(new ContainerFile(fileName, fileContent));
-                break;
-            case FileContentType.GeoL3d:
-            case FileContentType.GeoR3d:
-            case FileContentType.GeoM3d:
-                Assets.Geometries.Add(new ContainerFile(fileName, fileContent));
-                break;
-            case FileContentType.DocPdf:
-                Assets.Documents.Add(new ContainerFile(fileName, fileContent));
-                break;
-            case FileContentType.SymbolDxf:
-            case FileContentType.SymbolSvg:
-                Assets.Symbols.Add(new ContainerFile(fileName, fileContent));
-                break;
-            case FileContentType.SensorSensXml:
-            case FileContentType.SensorSensLdt:
-                Assets.Sensors.Add(new ContainerFile(fileName, fileContent));
-                break;
-            case FileContentType.SpectrumText:
-                Assets.Spectrums.Add(new ContainerFile(fileName, fileContent));
-                break;
-            case FileContentType.Other:
-                Assets.Other.Add(new ContainerFile(fileName, fileContent));
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(fileContentType), fileContentType, null);
-        }
+        var assetCollection = this.GetAssetCollection(fileContentType);
+        assetCollection.Add(new ContainerFile(fileName, fileContent));
     }
 }

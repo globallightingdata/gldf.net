@@ -1,6 +1,7 @@
 using Gldf.Net.Container;
 using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Xml.Definition.Types;
+using Gldf.Net.Extensions;
 using Gldf.Net.Parser.DataFlow;
 using System;
 using System.Collections.Generic;
@@ -41,43 +42,8 @@ internal class FilesLoadTransform : TransformBase
     {
         try
         {
-            switch (file.ContentType)
-            {
-                case FileContentType.LdcEulumdat:
-                case FileContentType.LdcIes:
-                case FileContentType.LdcIesXml:
-                    file.BinaryContent = LoadLocalContent(file, parserDto.Container.Assets.Photometries);
-                    break;
-                case FileContentType.ImagePng:
-                case FileContentType.ImageSvg:
-                case FileContentType.ImageJpg:
-                    file.BinaryContent = LoadLocalContent(file, parserDto.Container.Assets.Images);
-                    break;
-                case FileContentType.GeoL3d:
-                case FileContentType.GeoR3d:
-                case FileContentType.GeoM3d:
-                    file.BinaryContent = LoadLocalContent(file, parserDto.Container.Assets.Geometries);
-                    break;
-                case FileContentType.DocPdf:
-                    file.BinaryContent = LoadLocalContent(file, parserDto.Container.Assets.Documents);
-                    break;
-                case FileContentType.SymbolDxf:
-                case FileContentType.SymbolSvg:
-                    file.BinaryContent = LoadLocalContent(file, parserDto.Container.Assets.Symbols);
-                    break;
-                case FileContentType.SensorSensXml:
-                case FileContentType.SensorSensLdt:
-                    file.BinaryContent = LoadLocalContent(file, parserDto.Container.Assets.Sensors);
-                    break;
-                case FileContentType.SpectrumText:
-                    file.BinaryContent = LoadLocalContent(file, parserDto.Container.Assets.Spectrums);
-                    break;
-                case FileContentType.Other:
-                    file.BinaryContent = LoadLocalContent(file, parserDto.Container.Assets.Other);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(file.ContentType));
-            }
+            var collection = parserDto.Container.GetAssetCollection(file.ContentType);
+            file.BinaryContent = LoadLocalContent(file, collection);
         }
         catch
         {
