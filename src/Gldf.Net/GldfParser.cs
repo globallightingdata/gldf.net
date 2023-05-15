@@ -66,8 +66,7 @@ public class GldfParser : IGldfParser
     /// <returns>Parsed GLDF with resolved object references</returns>
     public RootTyped ParseFromXmlStream(Stream xmlStream, bool leaveOpen)
     {
-        var gldfXmlSerializer = new GldfXmlSerializer();
-        var root = gldfXmlSerializer.DeserializeFromXmlStream(xmlStream, leaveOpen);
+        var root = _xmlSerializer.DeserializeFromXmlStream(xmlStream, leaveOpen);
         var gldfContainer = new GldfContainer(root);
         var parserDto = new ParserDto(gldfContainer, _settings);
         return _processor.Process(parserDto);
