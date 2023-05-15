@@ -8,7 +8,7 @@ namespace Gldf.Net.XmlHelper;
 public static class GldfXmlSchemaFactory
 {
     public static XmlSchemaSet GetEmbeddedXmlSchema(string xml) =>
-        GetEmbeddedXmlSchema(GldfFormatVersionReader.Get(xml));
+        GetEmbeddedXmlSchema(GldfFormatVersionReader.GetFromXml(xml));
 
     public static XmlSchemaSet GetEmbeddedXmlSchema(FormatVersion formatVersion) =>
         CreateXmlSchema(GldfEmbeddedXsdLoader.Load(formatVersion));

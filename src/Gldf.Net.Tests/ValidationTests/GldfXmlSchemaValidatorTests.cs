@@ -58,7 +58,7 @@ public class GldfXmlSchemaValidatorTests
 
         act.Should()
             .Throw<GldfException>()
-            .WithMessage("Failed to get FormatVersion. See inner exception");
+            .WithMessage("Failed to get FormatVersion from XML. See inner exception");
     }
 
     [Test]

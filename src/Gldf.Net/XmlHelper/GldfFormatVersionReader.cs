@@ -1,7 +1,9 @@
-﻿using Gldf.Net.Domain.Xml.Head.Types;
+﻿using Gldf.Net.Container;
+using Gldf.Net.Domain.Xml.Head.Types;
 using Gldf.Net.Exceptions;
 using System;
 using System.IO;
+using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
@@ -10,7 +12,7 @@ namespace Gldf.Net.XmlHelper;
 
 public static class GldfFormatVersionReader
 {
-    public static FormatVersion Get(string xml)
+    public static FormatVersion GetFromXml(string xml)
     {
         try
         {
@@ -27,7 +29,55 @@ public static class GldfFormatVersionReader
         }
         catch (Exception e)
         {
-            throw new GldfException("Failed to get FormatVersion. See inner exception", e);
+            throw new GldfException("Failed to get FormatVersion from XML. See inner exception", e);
+        }
+    }
+
+    public static FormatVersion GetFromXmlFile(string xmlFilePath) =>
+        GetFromXmlFile(xmlFilePath, Encoding.UTF8);
+
+    public static FormatVersion GetFromXmlFile(string xmlFilePath, Encoding encoding)
+    {
+        try
+        {
+            var xml = File.ReadAllText(xmlFilePath, encoding);
+            return GetFromXml(xml);
+        }
+        catch (Exception e)
+        {
+            throw new GldfException("Failed to get FormatVersion from XML file. See inner exception", e);
+        }
+    }
+
+    public static FormatVersion GetFromGldfFile(string gldfFilePath) =>
+        GetFromGldfFile(gldfFilePath, Encoding.UTF8);
+
+    public static FormatVersion GetFromGldfFile(string gldfFilePath, Encoding encoding)
+    {
+        try
+        {
+            var xml = new ZipArchiveReader(encoding).ReadRootXml(gldfFilePath);
+            return GetFromXml(xml);
+        }
+        catch (Exception e)
+        {
+            throw new GldfException("Failed to get FormatVersion from GLDF file. See inner exception", e);
+        }
+    }
+
+    public static FormatVersion GetFromGldfStream(Stream gldfStream, bool leaveOpen) =>
+        GetFromGldfStream(gldfStream, leaveOpen, Encoding.UTF8);
+
+    public static FormatVersion GetFromGldfStream(Stream gldfStream, bool leaveOpen, Encoding encoding)
+    {
+        try
+        {
+            var xml = new ZipArchiveReader(encoding).ReadRootXml(gldfStream, leaveOpen);
+            return GetFromXml(xml);
+        }
+        catch (Exception e)
+        {
+            throw new GldfException("Failed to get FormatVersion from GLDF stream. See inner exception", e);
         }
     }
 
