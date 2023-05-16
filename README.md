@@ -410,6 +410,23 @@ using var stream = File.OpenRead(@"c:\path\product.gldf");
 var formatVersion = GldfFormatVersionReader.GetFromGldfStream(stream, leaveOpen: false);
 ```
 
+#### Get all embedded XSD versions
+
+```CSharp
+foreach (var knownVersion in GldfEmbeddedXsdLoader.KnownVersions)
+    Console.WriteLine(
+        $"{knownVersion.Major}." +
+        $"{knownVersion.Minor}." +
+        $"{(knownVersion.PreReleaseSpecified ? knownVersion.PreRelease : string.Empty)}");
+```
+
+#### Load embedded GLDF XSD in specific version
+``````CSharp
+// On unknown versions, the latest embedded will be loaded
+var formatVersion = new FormatVersion(1, 0, 2);
+string xsd = GldfEmbeddedXsdLoader.Load(formatVersion);
+``````
+
 ---
 
 ### Interfaces
