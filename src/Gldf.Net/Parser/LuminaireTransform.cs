@@ -1,6 +1,7 @@
 using Gldf.Net.Domain.Typed;
 using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Parser.DataFlow;
+using Gldf.Net.Parser.Extensions.Descriptive;
 
 namespace Gldf.Net.Parser;
 
@@ -22,7 +23,7 @@ internal class LuminaireTransform : TransformBase
         foreach (var variant in parserDto.ProductDefinitions.Variants)
         {
             UpdateVariant(variant, parserDto.ProductDefinitions.ProductMetaData);
-            UpdateDescriptiveAttributes(variant.DescriptiveAttributes, parserDto.ProductDefinitions.ProductMetaData.DescriptiveAttributes);
+            UpdateDescriptiveAttributes(variant, parserDto.ProductDefinitions.ProductMetaData);
         }
         return parserDto;
     }
@@ -37,8 +38,31 @@ internal class LuminaireTransform : TransformBase
         variant.Pictures ??= product.Pictures;
     }
 
-    private static void UpdateDescriptiveAttributes(DescriptiveAttributesTyped variant, DescriptiveAttributesTyped product)
+    private static void UpdateDescriptiveAttributes(VariantTyped variant, ProductMetaDataTyped product)
     {
-        // todo Update DescriptiveAttributes
+        if (product.DescriptiveAttributes == null)
+        {
+            return;
+        }
+        if (variant.DescriptiveAttributes == null && product.DescriptiveAttributes != null)
+        {
+            variant.DescriptiveAttributes = product.DescriptiveAttributes;
+            return;
+        }
+        UpdateMarketing(variant.DescriptiveAttributes, product.DescriptiveAttributes);
+    }
+
+    private static void UpdateMarketing(DescriptiveAttributesTyped variantDescriptive, DescriptiveAttributesTyped productDescriptive)
+    {
+        if (productDescriptive.Marketing == null)
+        {
+            return;
+        }
+        if (variantDescriptive.Marketing is null)
+        {
+            variantDescriptive.Marketing = productDescriptive.Marketing;
+            return;
+        }
+        variantDescriptive.Marketing.Update(productDescriptive.Marketing);
     }
 }

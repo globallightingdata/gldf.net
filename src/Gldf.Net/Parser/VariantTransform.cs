@@ -2,6 +2,7 @@ using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Xml.Product;
 using Gldf.Net.Parser.DataFlow;
 using Gldf.Net.Parser.Extensions;
+using Gldf.Net.Parser.Extensions.Descriptive;
 using System.Linq;
 
 namespace Gldf.Net.Parser;

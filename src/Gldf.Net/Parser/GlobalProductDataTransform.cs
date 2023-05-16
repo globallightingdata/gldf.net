@@ -4,6 +4,7 @@ using Gldf.Net.Domain.Xml.Product;
 using Gldf.Net.Domain.Xml.Product.Types;
 using Gldf.Net.Parser.DataFlow;
 using Gldf.Net.Parser.Extensions;
+using Gldf.Net.Parser.Extensions.Descriptive;
 using System.Collections.Generic;
 using System.Linq;
 

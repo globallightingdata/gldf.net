@@ -1,3 +1,5 @@
+using Gldf.Net.Domain.Typed.Descriptive;
+
 namespace Gldf.Net.Domain.Typed.Definition;
 
 public class DescriptiveAttributesTyped
@@ -8,7 +10,7 @@ public class DescriptiveAttributesTyped
 
     // public Emergency Emergency { get; set; }
 
-    // public Marketing Marketing { get; set; }
+    public MarketingTyped Marketing { get; set; }
 
     // public OperationsAndMaintenance OperationsAndMaintenance { get; set; }
 

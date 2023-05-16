@@ -1,10 +1,12 @@
 ﻿using Gldf.Net.Domain.Typed;
 using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Typed.Definition.Types;
+using Gldf.Net.Domain.Typed.Descriptive;
 using Gldf.Net.Domain.Typed.Global;
 using Gldf.Net.Domain.Typed.Head;
 using Gldf.Net.Domain.Typed.Head.Types;
 using Gldf.Net.Domain.Xml.Definition.Types;
+using Gldf.Net.Domain.Xml.Descriptive.Types;
 using Gldf.Net.Domain.Xml.Global;
 using Gldf.Net.Domain.Xml.Product.Types;
 using System;
@@ -318,7 +320,94 @@ public static class ProductMetaDataCompleteTyped
                         }
                     }
                 },
-                DescriptiveAttributes = new DescriptiveAttributesTyped()
+                DescriptiveAttributes = new DescriptiveAttributesTyped
+                {
+                    Marketing = new MarketingTyped
+                    {
+                        Applications = new[]
+                        {
+                            ApplicationArea.InteriorTrafficZones,
+                            ApplicationArea.InteriorTrafficZonesCorridors,
+                            ApplicationArea.InteriorTrafficZonesStaircases,
+                            ApplicationArea.InteriorTrafficZonesLoadingZones,
+                            ApplicationArea.InteriorTrafficZonesCoveLightingCornices,
+                            ApplicationArea.InteriorGeneralAreasInterior,
+                            ApplicationArea.InteriorGeneralAreasInteriorBreakRooms,
+                            ApplicationArea.InteriorGeneralAreasInteriorReceptionAreas,
+                            ApplicationArea.InteriorOffice,
+                            ApplicationArea.InteriorOfficeOfficeDesks,
+                            ApplicationArea.InteriorOfficeGroupOffices,
+                            ApplicationArea.InteriorOfficeDiscussions,
+                            ApplicationArea.InteriorOfficeArchives,
+                            ApplicationArea.InteriorIndustryCraft,
+                            ApplicationArea.InteriorIndustryCraftIndustrialWorkshops,
+                            ApplicationArea.InteriorIndustryCraftWarehouses,
+                            ApplicationArea.InteriorIndustryCraftColdStorageFacilities,
+                            ApplicationArea.InteriorIndustryCraftKitchens,
+                            ApplicationArea.InteriorIndustryCraftAssemblyWorkStations,
+                            ApplicationArea.InteriorIndustryCraftMachineIllumination,
+                            ApplicationArea.InteriorIndustryCraftControlWorkStations,
+                            ApplicationArea.InteriorIndustryCraftLaboratories,
+                            ApplicationArea.InteriorIndustryCraftHangars,
+                            ApplicationArea.InteriorShopLighting,
+                            ApplicationArea.InteriorShopLightingRetail,
+                            ApplicationArea.InteriorShopLightingFood,
+                            ApplicationArea.InteriorShopLightingClothing,
+                            ApplicationArea.InteriorShopLightingDisplayWindows,
+                            ApplicationArea.InteriorShopLightingHalls,
+                            ApplicationArea.InteriorShopLightingGreatHalls,
+                            ApplicationArea.InteriorShopLightingMirrors,
+                            ApplicationArea.InteriorPublicAreas,
+                            ApplicationArea.InteriorPublicAreasRestaurants,
+                            ApplicationArea.InteriorPublicAreasTheatres,
+                            ApplicationArea.InteriorPublicAreasRailwayStations,
+                            ApplicationArea.InteriorPublicAreasMuseums,
+                            ApplicationArea.InteriorPublicAreasFairs,
+                            ApplicationArea.InteriorPublicAreasPrisons,
+                            ApplicationArea.InteriorPublicAreasCanteens,
+                            ApplicationArea.InteriorEmergencyLighting,
+                            ApplicationArea.InteriorEmergencyLightingEmergencyLighting,
+                            ApplicationArea.InteriorEmergencyLightingSignalLighting,
+                            ApplicationArea.InteriorEducationalFacilities,
+                            ApplicationArea.InteriorEducationalFacilitiesClassrooms,
+                            ApplicationArea.InteriorEducationalFacilitiesLibraries,
+                            ApplicationArea.InteriorEducationalFacilitiesLounges,
+                            ApplicationArea.InteriorEducationalFacilitiesSportsHalls,
+                            ApplicationArea.InteriorPrivateAreas,
+                            ApplicationArea.InteriorPrivateAreasLivingAreas,
+                            ApplicationArea.InteriorPrivateAreasBaths,
+                            ApplicationArea.InteriorPrivateAreasKitchens,
+                            ApplicationArea.InteriorHospitalsandCarePlaces,
+                            ApplicationArea.InteriorHospitalsandCarePlacesHospitalWards,
+                            ApplicationArea.InteriorHospitalsandCarePlacesPatientRooms,
+                            ApplicationArea.InteriorHospitalsandCarePlacesCleanRoomAreas,
+                            ApplicationArea.InteriorHospitalsandCarePlacesExaminationRooms,
+                            ApplicationArea.InteriorHospitalsandCarePlacesCirculationAreas,
+                            ApplicationArea.ExteriorGeneralAreasExterior,
+                            ApplicationArea.ExteriorGeneralAreasPlaces,
+                            ApplicationArea.ExteriorGeneralAreasParks,
+                            ApplicationArea.ExteriorGeneralAreasUnderpasses,
+                            ApplicationArea.ExteriorGeneralAreasOutdoorStairs,
+                            ApplicationArea.ExteriorGeneralAreasPlatformRoofs,
+                            ApplicationArea.ExteriorGeneralAreasParkingSpacesIndoor,
+                            ApplicationArea.ExteriorGeneralAreasOutdoorParkings,
+                            ApplicationArea.ExteriorGeneralAreasPools,
+                            ApplicationArea.ExteriorGeneralAreasFountains,
+                            ApplicationArea.ExteriorStreets,
+                            ApplicationArea.ExteriorStreetsMotorways,
+                            ApplicationArea.ExteriorStreetsAccessRoads,
+                            ApplicationArea.ExteriorStreetsResidentialAreas,
+                            ApplicationArea.ExteriorStreetsBicyclePaths,
+                            ApplicationArea.ExteriorStreetsFootpaths,
+                            ApplicationArea.ExteriorStreetsPetrolGasStations,
+                            ApplicationArea.ExteriorStreetsTunnels,
+                            ApplicationArea.ExteriorSportsFields,
+                            ApplicationArea.ExteriorSportsFieldsSpotlightings,
+                            ApplicationArea.ExteriorOther,
+                            ApplicationArea.ExteriorOtherFacades
+                        }
+                    }
+                }
             },
             Variants = new List<VariantTyped>
             {
@@ -481,6 +570,691 @@ public static class ProductMetaDataCompleteTyped
                             ContentType = FileContentType.ImagePng,
                             Type = FileType.Url,
                             Uri = "https://example.org/image.png"
+                        }
+                    },
+                    DescriptiveAttributes = new DescriptiveAttributesTyped
+                    {
+                        Marketing = new MarketingTyped
+                        {
+                            Applications = new[]
+                            {
+                                ApplicationArea.InteriorTrafficZones,
+                                ApplicationArea.InteriorTrafficZonesCorridors,
+                                ApplicationArea.InteriorTrafficZonesStaircases,
+                                ApplicationArea.InteriorTrafficZonesLoadingZones,
+                                ApplicationArea.InteriorTrafficZonesCoveLightingCornices,
+                                ApplicationArea.InteriorGeneralAreasInterior,
+                                ApplicationArea.InteriorGeneralAreasInteriorBreakRooms,
+                                ApplicationArea.InteriorGeneralAreasInteriorReceptionAreas,
+                                ApplicationArea.InteriorOffice,
+                                ApplicationArea.InteriorOfficeOfficeDesks,
+                                ApplicationArea.InteriorOfficeGroupOffices,
+                                ApplicationArea.InteriorOfficeDiscussions,
+                                ApplicationArea.InteriorOfficeArchives,
+                                ApplicationArea.InteriorIndustryCraft,
+                                ApplicationArea.InteriorIndustryCraftIndustrialWorkshops,
+                                ApplicationArea.InteriorIndustryCraftWarehouses,
+                                ApplicationArea.InteriorIndustryCraftColdStorageFacilities,
+                                ApplicationArea.InteriorIndustryCraftKitchens,
+                                ApplicationArea.InteriorIndustryCraftAssemblyWorkStations,
+                                ApplicationArea.InteriorIndustryCraftMachineIllumination,
+                                ApplicationArea.InteriorIndustryCraftControlWorkStations,
+                                ApplicationArea.InteriorIndustryCraftLaboratories,
+                                ApplicationArea.InteriorIndustryCraftHangars,
+                                ApplicationArea.InteriorShopLighting,
+                                ApplicationArea.InteriorShopLightingRetail,
+                                ApplicationArea.InteriorShopLightingFood,
+                                ApplicationArea.InteriorShopLightingClothing,
+                                ApplicationArea.InteriorShopLightingDisplayWindows,
+                                ApplicationArea.InteriorShopLightingHalls,
+                                ApplicationArea.InteriorShopLightingGreatHalls,
+                                ApplicationArea.InteriorShopLightingMirrors,
+                                ApplicationArea.InteriorPublicAreas,
+                                ApplicationArea.InteriorPublicAreasRestaurants,
+                                ApplicationArea.InteriorPublicAreasTheatres,
+                                ApplicationArea.InteriorPublicAreasRailwayStations,
+                                ApplicationArea.InteriorPublicAreasMuseums,
+                                ApplicationArea.InteriorPublicAreasFairs,
+                                ApplicationArea.InteriorPublicAreasPrisons,
+                                ApplicationArea.InteriorPublicAreasCanteens,
+                                ApplicationArea.InteriorEmergencyLighting,
+                                ApplicationArea.InteriorEmergencyLightingEmergencyLighting,
+                                ApplicationArea.InteriorEmergencyLightingSignalLighting,
+                                ApplicationArea.InteriorEducationalFacilities,
+                                ApplicationArea.InteriorEducationalFacilitiesClassrooms,
+                                ApplicationArea.InteriorEducationalFacilitiesLibraries,
+                                ApplicationArea.InteriorEducationalFacilitiesLounges,
+                                ApplicationArea.InteriorEducationalFacilitiesSportsHalls,
+                                ApplicationArea.InteriorPrivateAreas,
+                                ApplicationArea.InteriorPrivateAreasLivingAreas,
+                                ApplicationArea.InteriorPrivateAreasBaths,
+                                ApplicationArea.InteriorPrivateAreasKitchens,
+                                ApplicationArea.InteriorHospitalsandCarePlaces,
+                                ApplicationArea.InteriorHospitalsandCarePlacesHospitalWards,
+                                ApplicationArea.InteriorHospitalsandCarePlacesPatientRooms,
+                                ApplicationArea.InteriorHospitalsandCarePlacesCleanRoomAreas,
+                                ApplicationArea.InteriorHospitalsandCarePlacesExaminationRooms,
+                                ApplicationArea.InteriorHospitalsandCarePlacesCirculationAreas,
+                                ApplicationArea.ExteriorGeneralAreasExterior,
+                                ApplicationArea.ExteriorGeneralAreasPlaces,
+                                ApplicationArea.ExteriorGeneralAreasParks,
+                                ApplicationArea.ExteriorGeneralAreasUnderpasses,
+                                ApplicationArea.ExteriorGeneralAreasOutdoorStairs,
+                                ApplicationArea.ExteriorGeneralAreasPlatformRoofs,
+                                ApplicationArea.ExteriorGeneralAreasParkingSpacesIndoor,
+                                ApplicationArea.ExteriorGeneralAreasOutdoorParkings,
+                                ApplicationArea.ExteriorGeneralAreasPools,
+                                ApplicationArea.ExteriorGeneralAreasFountains,
+                                ApplicationArea.ExteriorStreets,
+                                ApplicationArea.ExteriorStreetsMotorways,
+                                ApplicationArea.ExteriorStreetsAccessRoads,
+                                ApplicationArea.ExteriorStreetsResidentialAreas,
+                                ApplicationArea.ExteriorStreetsBicyclePaths,
+                                ApplicationArea.ExteriorStreetsFootpaths,
+                                ApplicationArea.ExteriorStreetsPetrolGasStations,
+                                ApplicationArea.ExteriorStreetsTunnels,
+                                ApplicationArea.ExteriorSportsFields,
+                                ApplicationArea.ExteriorSportsFieldsSpotlightings,
+                                ApplicationArea.ExteriorOther,
+                                ApplicationArea.ExteriorOtherFacades
+                            }
+                        }
+                    }
+                },
+                new()
+                {
+                    Id = "variant-2",
+                    Name = new[]
+                    {
+                        new LocaleTyped { Language = "en", Text = "Variant 2" }
+                    },
+                    ProductNumber = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product number"
+                        },
+                        new()
+                        {
+                            Language = "de",
+                            Text = "Produktnummer"
+                        }
+                    },
+                    Description = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product description"
+                        },
+                        new()
+                        {
+                            Language = "de",
+                            Text = "Produktbeschreibung"
+                        }
+                    },
+                    TenderText = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product tendertext"
+                        },
+                        new()
+                        {
+                            Language = "de",
+                            Text = "Produkt Auschreibungstext"
+                        }
+                    },
+                    ProductSeries = new ProductSerieTyped[]
+                    {
+                        new()
+                        {
+                            Id = "serie-1",
+                            Description = new LocaleTyped[]
+                            {
+                                new()
+                                {
+                                    Language = "en",
+                                    Text = "Product series description"
+                                },
+                                new()
+                                {
+                                    Language = "de",
+                                    Text = "Produktserienbeschreibung"
+                                }
+                            },
+                            Hyperlinks = new HyperlinkTyped[]
+                            {
+                                new()
+                                {
+                                    CountryCode = "gb",
+                                    Href = "https://example.org",
+                                    Language = "en",
+                                    PlainText = "Hyperlink PlainText",
+                                    Region = "eu"
+                                }
+                            },
+                            Name = new LocaleTyped[]
+                            {
+                                new()
+                                {
+                                    Language = "en",
+                                    Text = "Product series name"
+                                },
+                                new()
+                                {
+                                    Language = "de",
+                                    Text = "Produktserienname"
+                                }
+                            },
+                            Pictures = new[]
+                            {
+                                new ImageFileTyped
+                                {
+                                    FileName = "image.png",
+                                    Uri = "https://example.org/image.png",
+                                    ImageType = ImageType.ProductPicture,
+                                    ContentType = FileContentType.ImagePng,
+                                    Type = FileType.Url
+                                },
+                                new ImageFileTyped
+                                {
+                                    FileName = "image.png",
+                                    ImageType = ImageType.ApplicationPicture,
+                                    Uri = "https://example.org/image.png",
+                                    ContentType = FileContentType.ImagePng,
+                                    Type = FileType.Url
+                                },
+                                new ImageFileTyped
+                                {
+                                    FileName = "image.png",
+                                    ImageType = ImageType.TechnicalSketch,
+                                    Uri = "https://example.org/image.png",
+                                    ContentType = FileContentType.ImagePng,
+                                    Type = FileType.Url
+                                },
+                                new ImageFileTyped
+                                {
+                                    FileName = "image.png",
+                                    ImageType = ImageType.Other,
+                                    Uri = "https://example.org/image.png",
+                                    ContentType = FileContentType.ImagePng,
+                                    Type = FileType.Url
+                                }
+                            }
+                        }
+                    },
+                    Pictures = new ImageFileTyped[]
+                    {
+                        new()
+                        {
+                            ImageType = ImageType.Other,
+                            FileName = "image.png",
+                            ContentType = FileContentType.ImagePng,
+                            Type = FileType.Url,
+                            Uri = "https://example.org/image.png"
+                        }
+                    },
+                    DescriptiveAttributes = new DescriptiveAttributesTyped
+                    {
+                        Marketing = new MarketingTyped
+                        {
+                            Applications = new[]
+                            {
+                                ApplicationArea.ExteriorGeneralAreasParks
+                            }
+                        }
+                    }
+                },
+                new()
+                {
+                    Id = "variant-3",
+                    Name = new[]
+                    {
+                        new LocaleTyped { Language = "en", Text = "Variant 3" }
+                    },
+                    ProductNumber = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product number"
+                        },
+                        new()
+                        {
+                            Language = "de",
+                            Text = "Produktnummer"
+                        }
+                    },
+                    Description = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product description"
+                        },
+                        new()
+                        {
+                            Language = "de",
+                            Text = "Produktbeschreibung"
+                        }
+                    },
+                    TenderText = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product tendertext"
+                        },
+                        new()
+                        {
+                            Language = "de",
+                            Text = "Produkt Auschreibungstext"
+                        }
+                    },
+                    ProductSeries = new ProductSerieTyped[]
+                    {
+                        new()
+                        {
+                            Id = "serie-1",
+                            Description = new LocaleTyped[]
+                            {
+                                new()
+                                {
+                                    Language = "en",
+                                    Text = "Product series description"
+                                },
+                                new()
+                                {
+                                    Language = "de",
+                                    Text = "Produktserienbeschreibung"
+                                }
+                            },
+                            Hyperlinks = new HyperlinkTyped[]
+                            {
+                                new()
+                                {
+                                    CountryCode = "gb",
+                                    Href = "https://example.org",
+                                    Language = "en",
+                                    PlainText = "Hyperlink PlainText",
+                                    Region = "eu"
+                                }
+                            },
+                            Name = new LocaleTyped[]
+                            {
+                                new()
+                                {
+                                    Language = "en",
+                                    Text = "Product series name"
+                                },
+                                new()
+                                {
+                                    Language = "de",
+                                    Text = "Produktserienname"
+                                }
+                            },
+                            Pictures = new[]
+                            {
+                                new ImageFileTyped
+                                {
+                                    FileName = "image.png",
+                                    Uri = "https://example.org/image.png",
+                                    ImageType = ImageType.ProductPicture,
+                                    ContentType = FileContentType.ImagePng,
+                                    Type = FileType.Url
+                                },
+                                new ImageFileTyped
+                                {
+                                    FileName = "image.png",
+                                    ImageType = ImageType.ApplicationPicture,
+                                    Uri = "https://example.org/image.png",
+                                    ContentType = FileContentType.ImagePng,
+                                    Type = FileType.Url
+                                },
+                                new ImageFileTyped
+                                {
+                                    FileName = "image.png",
+                                    ImageType = ImageType.TechnicalSketch,
+                                    Uri = "https://example.org/image.png",
+                                    ContentType = FileContentType.ImagePng,
+                                    Type = FileType.Url
+                                },
+                                new ImageFileTyped
+                                {
+                                    FileName = "image.png",
+                                    ImageType = ImageType.Other,
+                                    Uri = "https://example.org/image.png",
+                                    ContentType = FileContentType.ImagePng,
+                                    Type = FileType.Url
+                                }
+                            }
+                        }
+                    },
+                    Pictures = new ImageFileTyped[]
+                    {
+                        new()
+                        {
+                            ImageType = ImageType.Other,
+                            FileName = "image.png",
+                            ContentType = FileContentType.ImagePng,
+                            Type = FileType.Url,
+                            Uri = "https://example.org/image.png"
+                        }
+                    },
+                    DescriptiveAttributes = new DescriptiveAttributesTyped
+                    {
+                        Marketing = new MarketingTyped
+                        {
+                            Applications = new[]
+                            {
+                                ApplicationArea.InteriorTrafficZones,
+                                ApplicationArea.InteriorTrafficZonesCorridors,
+                                ApplicationArea.InteriorTrafficZonesStaircases,
+                                ApplicationArea.InteriorTrafficZonesLoadingZones,
+                                ApplicationArea.InteriorTrafficZonesCoveLightingCornices,
+                                ApplicationArea.InteriorGeneralAreasInterior,
+                                ApplicationArea.InteriorGeneralAreasInteriorBreakRooms,
+                                ApplicationArea.InteriorGeneralAreasInteriorReceptionAreas,
+                                ApplicationArea.InteriorOffice,
+                                ApplicationArea.InteriorOfficeOfficeDesks,
+                                ApplicationArea.InteriorOfficeGroupOffices,
+                                ApplicationArea.InteriorOfficeDiscussions,
+                                ApplicationArea.InteriorOfficeArchives,
+                                ApplicationArea.InteriorIndustryCraft,
+                                ApplicationArea.InteriorIndustryCraftIndustrialWorkshops,
+                                ApplicationArea.InteriorIndustryCraftWarehouses,
+                                ApplicationArea.InteriorIndustryCraftColdStorageFacilities,
+                                ApplicationArea.InteriorIndustryCraftKitchens,
+                                ApplicationArea.InteriorIndustryCraftAssemblyWorkStations,
+                                ApplicationArea.InteriorIndustryCraftMachineIllumination,
+                                ApplicationArea.InteriorIndustryCraftControlWorkStations,
+                                ApplicationArea.InteriorIndustryCraftLaboratories,
+                                ApplicationArea.InteriorIndustryCraftHangars,
+                                ApplicationArea.InteriorShopLighting,
+                                ApplicationArea.InteriorShopLightingRetail,
+                                ApplicationArea.InteriorShopLightingFood,
+                                ApplicationArea.InteriorShopLightingClothing,
+                                ApplicationArea.InteriorShopLightingDisplayWindows,
+                                ApplicationArea.InteriorShopLightingHalls,
+                                ApplicationArea.InteriorShopLightingGreatHalls,
+                                ApplicationArea.InteriorShopLightingMirrors,
+                                ApplicationArea.InteriorPublicAreas,
+                                ApplicationArea.InteriorPublicAreasRestaurants,
+                                ApplicationArea.InteriorPublicAreasTheatres,
+                                ApplicationArea.InteriorPublicAreasRailwayStations,
+                                ApplicationArea.InteriorPublicAreasMuseums,
+                                ApplicationArea.InteriorPublicAreasFairs,
+                                ApplicationArea.InteriorPublicAreasPrisons,
+                                ApplicationArea.InteriorPublicAreasCanteens,
+                                ApplicationArea.InteriorEmergencyLighting,
+                                ApplicationArea.InteriorEmergencyLightingEmergencyLighting,
+                                ApplicationArea.InteriorEmergencyLightingSignalLighting,
+                                ApplicationArea.InteriorEducationalFacilities,
+                                ApplicationArea.InteriorEducationalFacilitiesClassrooms,
+                                ApplicationArea.InteriorEducationalFacilitiesLibraries,
+                                ApplicationArea.InteriorEducationalFacilitiesLounges,
+                                ApplicationArea.InteriorEducationalFacilitiesSportsHalls,
+                                ApplicationArea.InteriorPrivateAreas,
+                                ApplicationArea.InteriorPrivateAreasLivingAreas,
+                                ApplicationArea.InteriorPrivateAreasBaths,
+                                ApplicationArea.InteriorPrivateAreasKitchens,
+                                ApplicationArea.InteriorHospitalsandCarePlaces,
+                                ApplicationArea.InteriorHospitalsandCarePlacesHospitalWards,
+                                ApplicationArea.InteriorHospitalsandCarePlacesPatientRooms,
+                                ApplicationArea.InteriorHospitalsandCarePlacesCleanRoomAreas,
+                                ApplicationArea.InteriorHospitalsandCarePlacesExaminationRooms,
+                                ApplicationArea.InteriorHospitalsandCarePlacesCirculationAreas,
+                                ApplicationArea.ExteriorGeneralAreasExterior,
+                                ApplicationArea.ExteriorGeneralAreasPlaces,
+                                ApplicationArea.ExteriorGeneralAreasParks,
+                                ApplicationArea.ExteriorGeneralAreasUnderpasses,
+                                ApplicationArea.ExteriorGeneralAreasOutdoorStairs,
+                                ApplicationArea.ExteriorGeneralAreasPlatformRoofs,
+                                ApplicationArea.ExteriorGeneralAreasParkingSpacesIndoor,
+                                ApplicationArea.ExteriorGeneralAreasOutdoorParkings,
+                                ApplicationArea.ExteriorGeneralAreasPools,
+                                ApplicationArea.ExteriorGeneralAreasFountains,
+                                ApplicationArea.ExteriorStreets,
+                                ApplicationArea.ExteriorStreetsMotorways,
+                                ApplicationArea.ExteriorStreetsAccessRoads,
+                                ApplicationArea.ExteriorStreetsResidentialAreas,
+                                ApplicationArea.ExteriorStreetsBicyclePaths,
+                                ApplicationArea.ExteriorStreetsFootpaths,
+                                ApplicationArea.ExteriorStreetsPetrolGasStations,
+                                ApplicationArea.ExteriorStreetsTunnels,
+                                ApplicationArea.ExteriorSportsFields,
+                                ApplicationArea.ExteriorSportsFieldsSpotlightings,
+                                ApplicationArea.ExteriorOther,
+                                ApplicationArea.ExteriorOtherFacades
+                            }
+                        }
+                    }
+                },
+                new()
+                {
+                    Id = "variant-4",
+                    Name = new[]
+                    {
+                        new LocaleTyped { Language = "en", Text = "Variant 4" }
+                    },
+                    ProductNumber = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product number"
+                        },
+                        new()
+                        {
+                            Language = "de",
+                            Text = "Produktnummer"
+                        }
+                    },
+                    Description = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product description"
+                        },
+                        new()
+                        {
+                            Language = "de",
+                            Text = "Produktbeschreibung"
+                        }
+                    },
+                    TenderText = new LocaleTyped[]
+                    {
+                        new()
+                        {
+                            Language = "en",
+                            Text = "Product tendertext"
+                        },
+                        new()
+                        {
+                            Language = "de",
+                            Text = "Produkt Auschreibungstext"
+                        }
+                    },
+                    ProductSeries = new ProductSerieTyped[]
+                    {
+                        new()
+                        {
+                            Id = "serie-1",
+                            Description = new LocaleTyped[]
+                            {
+                                new()
+                                {
+                                    Language = "en",
+                                    Text = "Product series description"
+                                },
+                                new()
+                                {
+                                    Language = "de",
+                                    Text = "Produktserienbeschreibung"
+                                }
+                            },
+                            Hyperlinks = new HyperlinkTyped[]
+                            {
+                                new()
+                                {
+                                    CountryCode = "gb",
+                                    Href = "https://example.org",
+                                    Language = "en",
+                                    PlainText = "Hyperlink PlainText",
+                                    Region = "eu"
+                                }
+                            },
+                            Name = new LocaleTyped[]
+                            {
+                                new()
+                                {
+                                    Language = "en",
+                                    Text = "Product series name"
+                                },
+                                new()
+                                {
+                                    Language = "de",
+                                    Text = "Produktserienname"
+                                }
+                            },
+                            Pictures = new[]
+                            {
+                                new ImageFileTyped
+                                {
+                                    FileName = "image.png",
+                                    Uri = "https://example.org/image.png",
+                                    ImageType = ImageType.ProductPicture,
+                                    ContentType = FileContentType.ImagePng,
+                                    Type = FileType.Url
+                                },
+                                new ImageFileTyped
+                                {
+                                    FileName = "image.png",
+                                    ImageType = ImageType.ApplicationPicture,
+                                    Uri = "https://example.org/image.png",
+                                    ContentType = FileContentType.ImagePng,
+                                    Type = FileType.Url
+                                },
+                                new ImageFileTyped
+                                {
+                                    FileName = "image.png",
+                                    ImageType = ImageType.TechnicalSketch,
+                                    Uri = "https://example.org/image.png",
+                                    ContentType = FileContentType.ImagePng,
+                                    Type = FileType.Url
+                                },
+                                new ImageFileTyped
+                                {
+                                    FileName = "image.png",
+                                    ImageType = ImageType.Other,
+                                    Uri = "https://example.org/image.png",
+                                    ContentType = FileContentType.ImagePng,
+                                    Type = FileType.Url
+                                }
+                            }
+                        }
+                    },
+                    Pictures = new ImageFileTyped[]
+                    {
+                        new()
+                        {
+                            ImageType = ImageType.Other,
+                            FileName = "image.png",
+                            ContentType = FileContentType.ImagePng,
+                            Type = FileType.Url,
+                            Uri = "https://example.org/image.png"
+                        }
+                    },
+                    DescriptiveAttributes = new DescriptiveAttributesTyped
+                    {
+                        Marketing = new MarketingTyped
+                        {
+                            Applications = new[]
+                            {
+                                ApplicationArea.InteriorTrafficZones,
+                                ApplicationArea.InteriorTrafficZonesCorridors,
+                                ApplicationArea.InteriorTrafficZonesStaircases,
+                                ApplicationArea.InteriorTrafficZonesLoadingZones,
+                                ApplicationArea.InteriorTrafficZonesCoveLightingCornices,
+                                ApplicationArea.InteriorGeneralAreasInterior,
+                                ApplicationArea.InteriorGeneralAreasInteriorBreakRooms,
+                                ApplicationArea.InteriorGeneralAreasInteriorReceptionAreas,
+                                ApplicationArea.InteriorOffice,
+                                ApplicationArea.InteriorOfficeOfficeDesks,
+                                ApplicationArea.InteriorOfficeGroupOffices,
+                                ApplicationArea.InteriorOfficeDiscussions,
+                                ApplicationArea.InteriorOfficeArchives,
+                                ApplicationArea.InteriorIndustryCraft,
+                                ApplicationArea.InteriorIndustryCraftIndustrialWorkshops,
+                                ApplicationArea.InteriorIndustryCraftWarehouses,
+                                ApplicationArea.InteriorIndustryCraftColdStorageFacilities,
+                                ApplicationArea.InteriorIndustryCraftKitchens,
+                                ApplicationArea.InteriorIndustryCraftAssemblyWorkStations,
+                                ApplicationArea.InteriorIndustryCraftMachineIllumination,
+                                ApplicationArea.InteriorIndustryCraftControlWorkStations,
+                                ApplicationArea.InteriorIndustryCraftLaboratories,
+                                ApplicationArea.InteriorIndustryCraftHangars,
+                                ApplicationArea.InteriorShopLighting,
+                                ApplicationArea.InteriorShopLightingRetail,
+                                ApplicationArea.InteriorShopLightingFood,
+                                ApplicationArea.InteriorShopLightingClothing,
+                                ApplicationArea.InteriorShopLightingDisplayWindows,
+                                ApplicationArea.InteriorShopLightingHalls,
+                                ApplicationArea.InteriorShopLightingGreatHalls,
+                                ApplicationArea.InteriorShopLightingMirrors,
+                                ApplicationArea.InteriorPublicAreas,
+                                ApplicationArea.InteriorPublicAreasRestaurants,
+                                ApplicationArea.InteriorPublicAreasTheatres,
+                                ApplicationArea.InteriorPublicAreasRailwayStations,
+                                ApplicationArea.InteriorPublicAreasMuseums,
+                                ApplicationArea.InteriorPublicAreasFairs,
+                                ApplicationArea.InteriorPublicAreasPrisons,
+                                ApplicationArea.InteriorPublicAreasCanteens,
+                                ApplicationArea.InteriorEmergencyLighting,
+                                ApplicationArea.InteriorEmergencyLightingEmergencyLighting,
+                                ApplicationArea.InteriorEmergencyLightingSignalLighting,
+                                ApplicationArea.InteriorEducationalFacilities,
+                                ApplicationArea.InteriorEducationalFacilitiesClassrooms,
+                                ApplicationArea.InteriorEducationalFacilitiesLibraries,
+                                ApplicationArea.InteriorEducationalFacilitiesLounges,
+                                ApplicationArea.InteriorEducationalFacilitiesSportsHalls,
+                                ApplicationArea.InteriorPrivateAreas,
+                                ApplicationArea.InteriorPrivateAreasLivingAreas,
+                                ApplicationArea.InteriorPrivateAreasBaths,
+                                ApplicationArea.InteriorPrivateAreasKitchens,
+                                ApplicationArea.InteriorHospitalsandCarePlaces,
+                                ApplicationArea.InteriorHospitalsandCarePlacesHospitalWards,
+                                ApplicationArea.InteriorHospitalsandCarePlacesPatientRooms,
+                                ApplicationArea.InteriorHospitalsandCarePlacesCleanRoomAreas,
+                                ApplicationArea.InteriorHospitalsandCarePlacesExaminationRooms,
+                                ApplicationArea.InteriorHospitalsandCarePlacesCirculationAreas,
+                                ApplicationArea.ExteriorGeneralAreasExterior,
+                                ApplicationArea.ExteriorGeneralAreasPlaces,
+                                ApplicationArea.ExteriorGeneralAreasParks,
+                                ApplicationArea.ExteriorGeneralAreasUnderpasses,
+                                ApplicationArea.ExteriorGeneralAreasOutdoorStairs,
+                                ApplicationArea.ExteriorGeneralAreasPlatformRoofs,
+                                ApplicationArea.ExteriorGeneralAreasParkingSpacesIndoor,
+                                ApplicationArea.ExteriorGeneralAreasOutdoorParkings,
+                                ApplicationArea.ExteriorGeneralAreasPools,
+                                ApplicationArea.ExteriorGeneralAreasFountains,
+                                ApplicationArea.ExteriorStreets,
+                                ApplicationArea.ExteriorStreetsMotorways,
+                                ApplicationArea.ExteriorStreetsAccessRoads,
+                                ApplicationArea.ExteriorStreetsResidentialAreas,
+                                ApplicationArea.ExteriorStreetsBicyclePaths,
+                                ApplicationArea.ExteriorStreetsFootpaths,
+                                ApplicationArea.ExteriorStreetsPetrolGasStations,
+                                ApplicationArea.ExteriorStreetsTunnels,
+                                ApplicationArea.ExteriorSportsFields,
+                                ApplicationArea.ExteriorSportsFieldsSpotlightings,
+                                ApplicationArea.ExteriorOther,
+                                ApplicationArea.ExteriorOtherFacades
+                            }
                         }
                     }
                 }

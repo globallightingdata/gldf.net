@@ -301,7 +301,7 @@ public static class ProductMetaDataCompleteModel
                             Height = 3
                         },
                         ProductForm = ProductForm.Cylinder,
-                        Adjustabilities = new []
+                        Adjustabilities = new[]
                         {
                             Adjustability.Fixed,
                             Adjustability.Orientation,
@@ -309,7 +309,7 @@ public static class ProductMetaDataCompleteModel
                             Adjustability.Tilt,
                             Adjustability.Cardanic,
                             Adjustability.HeightAdjustable,
-                            Adjustability.UserDefined,
+                            Adjustability.UserDefined
                         },
                         SealingMaterial = new[]
                         {
@@ -325,11 +325,11 @@ public static class ProductMetaDataCompleteModel
                             }
                         },
                         IKRating = IKRating.IK06,
-                        ProtectiveAreas = new []
+                        ProtectiveAreas = new[]
                         {
                             ProtectiveArea.BallimpactProof,
                             ProtectiveArea.CleanroomSuitable,
-                            ProtectiveArea.DriveOrRollOverProof,
+                            ProtectiveArea.DriveOrRollOverProof
                         },
                         Weight = 0.01
                     },
@@ -415,7 +415,7 @@ public static class ProductMetaDataCompleteModel
                         Designer = "Designer",
                         ApprovalMarks = new[] { "ApprovalMark 1", "ApprovalMark 2" },
                         DesignAwards = new[] { "DesignAward 1", "DesignAward 2" },
-                        Labels = new []
+                        Labels = new[]
                         {
                             Label.CE,
                             Label.GS,
@@ -701,6 +701,45 @@ public static class ProductMetaDataCompleteModel
                         {
                             EmitterId = "emitter"
                         }
+                    }
+                },
+                new Variant
+                {
+                    Id = "variant-2",
+                    Name = new[]
+                    {
+                        new Locale { Language = "en", Text = "Variant 2" }
+                    },
+                    DescriptiveAttributes = new DescriptiveAttributes
+                    {
+                        Marketing = new Marketing
+                        {
+                            Applications = new[]
+                            {
+                                ApplicationArea.ExteriorGeneralAreasParks
+                            }
+                        }
+                    }
+                },
+                new Variant
+                {
+                    Id = "variant-3",
+                    Name = new[]
+                    {
+                        new Locale { Language = "en", Text = "Variant 3" }
+                    },
+                    DescriptiveAttributes = new DescriptiveAttributes()
+                },
+                new Variant
+                {
+                    Id = "variant-4",
+                    Name = new[]
+                    {
+                        new Locale { Language = "en", Text = "Variant 4" }
+                    },
+                    DescriptiveAttributes = new DescriptiveAttributes
+                    {
+                        Marketing = new Marketing()
                     }
                 }
             }
