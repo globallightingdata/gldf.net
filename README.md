@@ -392,6 +392,24 @@ using Stream stream = new MemoryStream(Encoding.UTF8.GetBytes(xml));
 MetaInformation metaInformation = serializer.DeserializeFromXmlStream(stream);
 ```
 
+### Other
+
+#### Read [`FormatVersion`](https://gldf.io/docs/structure/header) from GLDF XML string or XML file. Or from GLDF container  
+
+```CSharp
+const string xml = "<Root><Header><FormatVersion major='1' minor='2'/></Header></Root>";
+var formatVersion = GldfFormatVersionReader.GetFromXml(xml);
+// or
+const string filePath = @"c:\path\product.xml";
+var formatVersion = GldfFormatVersionReader.GetFromXmlFile(filePath);
+// or
+const string filePath = @"c:\path\product.gldf";
+var formatVersion = GldfFormatVersionReader.GetFromGldfFile(filePath);
+// or
+using var stream = File.OpenRead(@"c:\path\product.gldf");
+var formatVersion = GldfFormatVersionReader.GetFromGldfStream(stream, leaveOpen: false);
+```
+
 ---
 
 ### Interfaces
