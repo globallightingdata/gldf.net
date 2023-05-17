@@ -40,11 +40,11 @@ internal class LuminaireTransform : TransformBase
 
     private static void UpdateDescriptiveAttributes(VariantTyped variant, ProductMetaDataTyped product)
     {
-        if (product.DescriptiveAttributes == null)
+        if (product.DescriptiveAttributes is null)
         {
             return;
         }
-        if (variant.DescriptiveAttributes == null && product.DescriptiveAttributes != null)
+        if (variant.DescriptiveAttributes is null && product.DescriptiveAttributes is not null)
         {
             variant.DescriptiveAttributes = product.DescriptiveAttributes;
             return;
@@ -54,7 +54,7 @@ internal class LuminaireTransform : TransformBase
 
     private static void UpdateMarketing(DescriptiveAttributesTyped variantDescriptive, DescriptiveAttributesTyped productDescriptive)
     {
-        if (productDescriptive.Marketing == null)
+        if (productDescriptive.Marketing is null)
         {
             return;
         }
