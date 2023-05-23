@@ -12,19 +12,21 @@ namespace Gldf.Net.Parser;
 
 internal class FilesLoadTransform : TransformBase
 {
-    public static ParserDto Map(ParserDto parserDto)
-    {
-        return ExecuteSafe(() =>
+    public static ParserDto Map(ParserDto parserDto) =>
+        ExecuteSafe(() =>
         {
-            bool LoadLocalFiles(GldfFileTyped file) =>
-                parserDto.Settings.LocalFileLoadBehaviour == LocalFileLoadBehaviour.Load && file.Type == FileType.LocalFileName;
             bool LoadOnlineFiles(GldfFileTyped file) =>
                 parserDto.Settings.OnlineFileLoadBehaviour == OnlineFileLoadBehaviour.Load && file.Type == FileType.Url;
-            Parallel.ForEach(parserDto.GeneralDefinitions.Files.Where(LoadLocalFiles), file => LoadLocalFile(file, parserDto));
-            Parallel.ForEach(parserDto.GeneralDefinitions.Files.Where(LoadOnlineFiles), file => LoadOnlineFile(file, parserDto));
+            bool LoadLocalFiles(GldfFileTyped file) =>
+                parserDto.Settings.LocalFileLoadBehaviour == LocalFileLoadBehaviour.Load && file.Type == FileType.LocalFileName;
+            var localFilesToLoad = parserDto.GeneralDefinitions.Files.Where(LoadLocalFiles);
+            var onlineFilesToLoad = parserDto.GeneralDefinitions.Files.Where(LoadOnlineFiles);
+            var parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount };
+
+            Parallel.ForEach(localFilesToLoad, parallelOptions, file => LoadLocalFile(file, parserDto));
+            Parallel.ForEach(onlineFilesToLoad, parallelOptions, file => LoadOnlineFile(file, parserDto));
             return parserDto;
         }, parserDto);
-    }
 
     private static void LoadOnlineFile(GldfFileTyped file, ParserDto parserDto)
     {
