@@ -1,9 +1,6 @@
 ﻿using FluentAssertions;
 using Gldf.Net.Domain.Xml.Head.Types;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Gldf.Net.Tests.DomainTests.Xml;
 
@@ -47,42 +44,4 @@ public class FormatVersionTests
         formatVersion1.ToString().Should().Be("v1.2");
         formatVersion2.ToString().Should().Be("v1.2-rc3");
     }
-
-    [Test, TestCaseSource(nameof(CompareToTestData))]
-    public void CompareTo_ShouldReturnExpected(FormatVersion version, FormatVersion other, int expected)
-    {
-        var compareTo = version.CompareTo(other);
-        compareTo.Should().Be(expected);
-    }
-
-    [Test]
-    public void Test()
-    {
-        var versions = new List<FormatVersion>
-        {
-            new(0, 9, 9),
-            new(1, 0, 1),
-            new(1, 0, 2),
-            new(1, 0, 1),
-            new(1, 2, 0),
-            new(1, 3),
-            new(1, 1),
-            new(1, 3, 0),
-        };
-        Console.WriteLine(versions.Max());
-    }
-
-    public static IEnumerable<TestCaseData> CompareToTestData => new List<TestCaseData>
-    {
-        new(new FormatVersion(1, 1), new FormatVersion(1, 1), 0),
-        new(new FormatVersion(1, 1, 1), new FormatVersion(1, 1, 1), 0),
-        new(new FormatVersion(2, 1), new FormatVersion(1, 1), 1),
-        new(new FormatVersion(1, 2), new FormatVersion(1, 1), 1),
-        new(new FormatVersion(1, 1, 0), new FormatVersion(1, 1), -1),
-        new(new FormatVersion(1, 1, 1), new FormatVersion(1, 1), -1),
-        new(new FormatVersion(1, 1), new FormatVersion(2, 1), -1),
-        new(new FormatVersion(1, 1), new FormatVersion(1, 2), -1),
-        new(new FormatVersion(1, 1), new FormatVersion(1, 1, 0), 1),
-        new(new FormatVersion(1, 1), new FormatVersion(1, 1, 1), 1)
-    };
 }

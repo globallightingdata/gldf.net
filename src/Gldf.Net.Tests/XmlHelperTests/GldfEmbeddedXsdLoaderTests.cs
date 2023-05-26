@@ -53,7 +53,7 @@ public class GldfEmbeddedXsdLoaderTests
     public async Task LoadXsd_ShouldBeEquivalentTo_NewestVersionOnline_WhenLoadMaxVersion()
     {
         using var httpClient = new HttpClient();
-        var newestEmbeddedVersion = GldfEmbeddedXsdLoader.KnownVersions.Max();
+        var newestEmbeddedVersion = GldfEmbeddedXsdLoader.KnownVersions.Max(FormatVersionComparer.Instance);
         var newestEmbeddedXsd = GldfEmbeddedXsdLoader.Load(newestEmbeddedVersion);
         var xsdSchemaLocation = new Root().SchemaLocation;
         var xsdSchemaOnline = await httpClient.GetStringAsync(xsdSchemaLocation);

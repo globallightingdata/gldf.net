@@ -18,9 +18,9 @@ public static class GldfEmbeddedXsdLoader
 
     public static string Load(FormatVersion version)
     {
-        var schemaVersionToLoad = KnownVersions.Any(toCompare => toCompare.CompareTo(version) == 0)
+        var schemaVersionToLoad = KnownVersions.Any(toCompare => FormatVersionComparer.Instance.Compare(toCompare, version) == 0)
             ? version
-            : KnownVersions.Max();
+            : KnownVersions.Max(FormatVersionComparer.Instance);
         return ReadResourceFromAssembly(schemaVersionToLoad);
     }
 
