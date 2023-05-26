@@ -10,7 +10,7 @@ internal class DataFlowProcessor : IParserProcessor
     {
         // Mapping Elements 1→1 (map input from xml serializer to parser domain)
         var transformFiles = new TransformBlock<ParserDto, ParserDto>(FilesTransform.Map);
-        var transformFilesContent = new TransformBlock<ParserDto, ParserDto>(FilesLoadTransform.MapAsync);
+        var transformFilesContent = new TransformBlock<ParserDto, ParserDto>(FilesLoadTransform.Map);
         var transformControlGears = new TransformBlock<ParserDto, ParserDto>(ControlGearsTransform.Map);
         var transformSimpleGeo = new TransformBlock<ParserDto, ParserDto>(SimpleGeometryTransform.Map);
         var transformHeader = new TransformBlock<ParserDto, ParserDto>(HeaderTransform.Map);
