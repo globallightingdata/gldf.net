@@ -6,14 +6,15 @@ using Gldf.Net.Parser.DataFlow;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Gldf.Net.Parser;
 
 internal class FilesLoadTransform : TransformBase
 {
-    public static ParserDto Map(ParserDto parserDto) =>
-        ExecuteSafe(() =>
+    public static Task<ParserDto> MapAsync(ParserDto parserDto) =>
+        ExecuteSafeAsync(async () =>
         {
             bool LoadOnlineFiles(GldfFileTyped file) =>
                 parserDto.Settings.OnlineFileLoadBehaviour == OnlineFileLoadBehaviour.Load && file.Type == FileType.Url;
@@ -24,15 +25,15 @@ internal class FilesLoadTransform : TransformBase
             var parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount };
 
             Parallel.ForEach(localFilesToLoad, parallelOptions, file => LoadLocalFile(file, parserDto));
-            Parallel.ForEach(onlineFilesToLoad, parallelOptions, file => LoadOnlineFile(file, parserDto));
+            await Parallel.ForEachAsync(onlineFilesToLoad, parallelOptions, async (file, ct) => await LoadOnlineFileAsync(file, parserDto, ct).ConfigureAwait(false)).ConfigureAwait(false);
             return parserDto;
         }, parserDto);
 
-    private static void LoadOnlineFile(GldfFileTyped file, ParserDto parserDto)
+    private static async Task LoadOnlineFileAsync(GldfFileTyped file, ParserDto parserDto, CancellationToken ct)
     {
         try
         {
-            file.BinaryContent = parserDto.Settings.HttpClient.GetByteArrayAsync(file.Uri).GetAwaiter().GetResult();
+            file.BinaryContent = await parserDto.Settings.HttpClient.GetByteArrayAsync(file.Uri, ct).ConfigureAwait(false);
         }
         catch
         {
