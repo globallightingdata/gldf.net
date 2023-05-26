@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.Files;
 
-public class FilesMandatoryTyped
+public static class FilesMandatoryTyped
 {
     public static RootTyped RootTyped => new()
     {

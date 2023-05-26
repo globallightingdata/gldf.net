@@ -10,7 +10,7 @@ using System;
 
 namespace Gldf.Net.Tests.TestData.LightSources;
 
-public class FixedCompleteModel
+public static class FixedCompleteModel
 {
     public static Root Root => new()
     {

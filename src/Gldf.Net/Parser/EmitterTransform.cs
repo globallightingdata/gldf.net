@@ -17,7 +17,7 @@ internal class EmitterTransform : TransformBase
         {
             var parserDto = parserDtos[0];
             var emitters = parserDto.Container.Product.GeneralDefinitions.Emitters?.ToArray();
-            if (emitters?.Any() != true) return parserDto;
+            if (emitters == null || !emitters.Any()) return parserDto;
             foreach (var emitter in emitters)
                 MapEmitter(emitter, parserDto);
             return parserDto;
