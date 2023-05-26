@@ -10,7 +10,7 @@ using System;
 
 namespace Gldf.Net.Tests.TestData.Files;
 
-public class FilesMandatoryModel
+public static class FilesMandatoryModel
 {
     public static Root Root => new()
     {

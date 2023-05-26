@@ -51,7 +51,7 @@ public class FormatVersion : IComparable<FormatVersion>
     public int CompareTo(FormatVersion other)
     {
         if (ReferenceEquals(this, other)) return 0;
-        if (ReferenceEquals(null, other)) return 1;
+        if (other is null) return 1;
         var majorComparison = Major.CompareTo(other.Major);
         if (majorComparison != 0) return majorComparison;
         var minorComparison = Minor.CompareTo(other.Minor);

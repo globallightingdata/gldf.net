@@ -10,7 +10,7 @@ using System;
 
 namespace Gldf.Net.Tests.TestData.Files;
 
-public class FilesCompleteModel
+public static class FilesCompleteModel
 {
     public static Root Root => new()
     {
