@@ -218,7 +218,7 @@ public static class GeometryMandatoryTyped
                                             }
                                         }
                                     },
-                                    EmitterObjectExtrernalName = "Leo"
+                                    EmitterObjectExternalName = "Leo"
                                 }
                             }
                         }

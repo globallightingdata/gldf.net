@@ -86,7 +86,7 @@ public static class GeometryExtensions
                     SensorEmitterOptions = GetSensorEmitter(emitter)
                 },
                 TargetModelType = emitterReference.TargetModelTypeSpecified ? emitterReference.TargetModelType : null,
-                EmitterObjectExtrernalName = emitterReference.EmitterObjectExternalName
+                EmitterObjectExternalName = emitterReference.EmitterObjectExternalName
             };
     }
 

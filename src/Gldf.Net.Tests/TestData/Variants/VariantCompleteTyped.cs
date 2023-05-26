@@ -536,7 +536,7 @@ public static class VariantCompleteTyped
                                             }
                                         }
                                     },
-                                    EmitterObjectExtrernalName = "leo1"
+                                    EmitterObjectExternalName = "leo1"
                                 },
                                 new()
                                 {
@@ -562,7 +562,7 @@ public static class VariantCompleteTyped
                                             }
                                         }
                                     },
-                                    EmitterObjectExtrernalName = "leo1",
+                                    EmitterObjectExternalName = "leo1",
                                     TargetModelType = TargetModelType.L3d
                                 },
                                 new()
@@ -589,7 +589,7 @@ public static class VariantCompleteTyped
                                             }
                                         }
                                     },
-                                    EmitterObjectExtrernalName = "leo1",
+                                    EmitterObjectExternalName = "leo1",
                                     TargetModelType = TargetModelType.M3d
                                 },
                                 new()
@@ -616,7 +616,7 @@ public static class VariantCompleteTyped
                                             }
                                         }
                                     },
-                                    EmitterObjectExtrernalName = "leo1",
+                                    EmitterObjectExternalName = "leo1",
                                     TargetModelType = TargetModelType.R3d
                                 },
                                 new()
@@ -643,7 +643,7 @@ public static class VariantCompleteTyped
                                             }
                                         }
                                     },
-                                    EmitterObjectExtrernalName = "sensor",
+                                    EmitterObjectExternalName = "sensor",
                                 }
                             }
                         }
@@ -821,7 +821,7 @@ public static class VariantCompleteTyped
                                 new()
                                 {
                                     TargetModelType = TargetModelType.L3d,
-                                    EmitterObjectExtrernalName = "Leo",
+                                    EmitterObjectExternalName = "Leo",
                                     Emitter = new EmitterTyped
                                     {
                                         Id = "leoEmitter",
@@ -927,7 +927,7 @@ public static class VariantCompleteTyped
                             {
                                 new()
                                 {
-                                    EmitterObjectExtrernalName = "Leo",
+                                    EmitterObjectExternalName = "Leo",
                                     Emitter = new EmitterTyped
                                     {
                                         Id = "leoEmitter",

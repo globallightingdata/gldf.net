@@ -28,7 +28,7 @@ public class ModelGeometryEmitterTyped
 
 public class ModelEmitterTyped
 {
-    public string EmitterObjectExtrernalName { get; set; }
+    public string EmitterObjectExternalName { get; set; }
 
     public TargetModelType? TargetModelType { get; set; }
 
