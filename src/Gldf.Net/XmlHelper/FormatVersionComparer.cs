@@ -10,8 +10,8 @@ public class FormatVersionComparer : IComparer<FormatVersion>
     public int Compare(FormatVersion x, FormatVersion y)
     {
         if (ReferenceEquals(x, y)) return 0;
-        if (ReferenceEquals(null, x)) return -1;
-        if (ReferenceEquals(null, y)) return 1;
+        if (x is null) return -1;
+        if (y is null) return 1;
         var majorComparison = x.Major.CompareTo(y.Major);
         if (majorComparison != 0) return majorComparison;
         var minorComparison = x.Minor.CompareTo(y.Minor);
