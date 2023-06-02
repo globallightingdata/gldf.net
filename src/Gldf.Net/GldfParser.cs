@@ -81,8 +81,7 @@ public class GldfParser : IGldfParser
     public RootTyped ParseFromRoot(Root root)
     {
         var gldfContainer = new GldfContainer(root);
-        var parserDto = new ParserDto(gldfContainer, _settings);
-        return _processor.Process(parserDto);
+        return ParseFromGldf(gldfContainer);
     }
 
     /// <summary>
