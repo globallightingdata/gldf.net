@@ -1,7 +1,9 @@
+using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Typed.Definition.Types;
 using Gldf.Net.Domain.Typed.Global;
+using Gldf.Net.Domain.Typed.Product.Types;
 
-namespace Gldf.Net.Domain.Typed.Definition;
+namespace Gldf.Net.Domain.Typed.Product;
 
 public class ProductMetaDataTyped
 {

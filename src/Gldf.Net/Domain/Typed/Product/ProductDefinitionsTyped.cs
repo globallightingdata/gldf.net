@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Gldf.Net.Domain.Typed.Definition;
+namespace Gldf.Net.Domain.Typed.Product;
 
 public class ProductDefinitionsTyped
 {

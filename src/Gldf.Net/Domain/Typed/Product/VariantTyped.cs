@@ -1,10 +1,12 @@
+using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Typed.Definition.Types;
-using Gldf.Net.Domain.Typed.Definition.Types.Mounting;
 using Gldf.Net.Domain.Typed.Global;
+using Gldf.Net.Domain.Typed.Product.Types;
+using Gldf.Net.Domain.Typed.Product.Types.Mounting;
 
 // ReSharper disable InconsistentNaming
 
-namespace Gldf.Net.Domain.Typed.Definition;
+namespace Gldf.Net.Domain.Typed.Product;
 
 public class VariantTyped
 {

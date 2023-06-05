@@ -1,4 +1,4 @@
-namespace Gldf.Net.Domain.Typed.Definition.Types.Mounting;
+namespace Gldf.Net.Domain.Typed.Product.Types.Mounting;
 
 public class PoleIntegratedTyped
 {

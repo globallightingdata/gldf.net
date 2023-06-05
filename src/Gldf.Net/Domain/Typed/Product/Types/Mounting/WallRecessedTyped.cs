@@ -1,6 +1,6 @@
-namespace Gldf.Net.Domain.Typed.Definition.Types.Mounting;
+namespace Gldf.Net.Domain.Typed.Product.Types.Mounting;
 
-public class RecessedTyped
+public class WallRecessedTyped
 {
     public int RecessedDepth { get; set; }
 

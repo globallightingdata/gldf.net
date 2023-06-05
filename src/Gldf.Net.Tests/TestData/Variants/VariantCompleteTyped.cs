@@ -1,10 +1,12 @@
 ﻿using Gldf.Net.Domain.Typed;
 using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Typed.Definition.Types;
-using Gldf.Net.Domain.Typed.Definition.Types.Mounting;
 using Gldf.Net.Domain.Typed.Global;
 using Gldf.Net.Domain.Typed.Head;
 using Gldf.Net.Domain.Typed.Head.Types;
+using Gldf.Net.Domain.Typed.Product;
+using Gldf.Net.Domain.Typed.Product.Types;
+using Gldf.Net.Domain.Typed.Product.Types.Mounting;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using Gldf.Net.Domain.Xml.Global;
 using Gldf.Net.Domain.Xml.Product.Types;

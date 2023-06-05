@@ -3,6 +3,7 @@ using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Typed.Global;
 using Gldf.Net.Domain.Typed.Head;
 using Gldf.Net.Domain.Typed.Head.Types;
+using Gldf.Net.Domain.Typed.Product;
 using System;
 using System.Collections.Generic;
 

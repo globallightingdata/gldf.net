@@ -5,6 +5,8 @@ using Gldf.Net.Domain.Typed.Descriptive;
 using Gldf.Net.Domain.Typed.Global;
 using Gldf.Net.Domain.Typed.Head;
 using Gldf.Net.Domain.Typed.Head.Types;
+using Gldf.Net.Domain.Typed.Product;
+using Gldf.Net.Domain.Typed.Product.Types;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using Gldf.Net.Domain.Xml.Descriptive.Types;
 using Gldf.Net.Domain.Xml.Global;

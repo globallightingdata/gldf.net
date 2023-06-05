@@ -1,6 +1,6 @@
 using Gldf.Net.Domain.Xml.Product.Types;
 
-namespace Gldf.Net.Domain.Typed.Definition.Types;
+namespace Gldf.Net.Domain.Typed.Product.Types;
 
 public class CieMaintenanceFactorTyped
 {

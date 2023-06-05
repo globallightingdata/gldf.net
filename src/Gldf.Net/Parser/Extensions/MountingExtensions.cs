@@ -1,4 +1,4 @@
-using Gldf.Net.Domain.Typed.Definition.Types.Mounting;
+using Gldf.Net.Domain.Typed.Product.Types.Mounting;
 using Gldf.Net.Domain.Xml.Product.Types.Mounting;
 
 namespace Gldf.Net.Parser.Extensions;

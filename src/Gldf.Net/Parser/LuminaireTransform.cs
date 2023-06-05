@@ -1,5 +1,6 @@
 using Gldf.Net.Domain.Typed;
 using Gldf.Net.Domain.Typed.Definition;
+using Gldf.Net.Domain.Typed.Product;
 using Gldf.Net.Parser.DataFlow;
 using Gldf.Net.Parser.Extensions.Descriptive;
 

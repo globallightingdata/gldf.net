@@ -1,5 +1,5 @@
 using Gldf.Net.Domain.Typed.Definition;
-using Gldf.Net.Domain.Typed.Definition.Types;
+using Gldf.Net.Domain.Typed.Product.Types;
 using Gldf.Net.Domain.Xml.Product.Types;
 using System.Collections.Generic;
 using System.Linq;

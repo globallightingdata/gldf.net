@@ -6,6 +6,7 @@ using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Typed.Global;
 using Gldf.Net.Domain.Typed.Definition.Types;
 using Gldf.Net.Domain.Typed.Head.Types;
+using Gldf.Net.Domain.Typed.Product;
 using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.LightSources;

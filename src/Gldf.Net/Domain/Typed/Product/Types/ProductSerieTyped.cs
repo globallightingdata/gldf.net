@@ -1,6 +1,7 @@
+using Gldf.Net.Domain.Typed.Definition.Types;
 using Gldf.Net.Domain.Typed.Global;
 
-namespace Gldf.Net.Domain.Typed.Definition.Types;
+namespace Gldf.Net.Domain.Typed.Product.Types;
 
 public class ProductSerieTyped
 {

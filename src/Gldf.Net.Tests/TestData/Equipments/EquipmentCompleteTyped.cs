@@ -6,6 +6,7 @@ using Gldf.Net.Domain.Xml.Definition.Types;
 using System;
 using Gldf.Net.Domain.Typed.Definition.Types;
 using Gldf.Net.Domain.Typed.Head.Types;
+using Gldf.Net.Domain.Typed.Product;
 using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.Equipments;
