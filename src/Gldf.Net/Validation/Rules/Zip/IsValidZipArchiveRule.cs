@@ -1,26 +1,22 @@
 ﻿using Gldf.Net.Abstract;
 using Gldf.Net.Container;
+using Gldf.Net.Validation.Model;
 using System.Collections.Generic;
+using System.IO;
 
-namespace Gldf.Net.Validation.Rules.Zip
+namespace Gldf.Net.Validation.Rules.Zip;
+
+internal class IsValidZipArchiveRule : IZipArchiveValidationRule
 {
-    internal class IsValidZipArchiveRule : IZipArchiveValidationRule
-    {
-        public int Priority => 10;
+    public IEnumerable<ValidationHint> ValidateGldfFile(string gldfFilePath) =>
+        ZipArchiveReader.IsZipArchive(gldfFilePath)
+            ? ValidationHint.Empty()
+            : ValidationHint.Error($"The GLDF container '{gldfFilePath}' seems not to be a " +
+                                   "valid ZIP file or can't be accessed", ErrorType.InvalidZip);
 
-        private readonly ZipArchiveReader _zipArchiveReader;
-
-        public IsValidZipArchiveRule()
-        {
-            _zipArchiveReader = new ZipArchiveReader();
-        }
-
-        public IEnumerable<ValidationHint> Validate(string filePath)
-        {
-            return _zipArchiveReader.IsZipArchive(filePath)
-                ? ValidationHint.Empty()
-                : ValidationHint.Error($"The GLDF container '{filePath}' seems not to be a " +
-                                       "valid ZIP file or can't be accessed", ErrorType.InvalidZipFile);
-        }
-    }
+    public IEnumerable<ValidationHint> ValidateGldfStream(Stream zipStream, bool leaveOpen) =>
+        ZipArchiveReader.IsZipArchive(zipStream, leaveOpen)
+            ? ValidationHint.Empty()
+            : ValidationHint.Error("The GLDF container stream seems not to be a " +
+                                   "valid ZIP file or can't be accessed", ErrorType.InvalidZip);
 }

@@ -1,12 +1,12 @@
-﻿using Gldf.Net.Validation;
+﻿using Gldf.Net.Validation.Model;
 using System.Collections.Generic;
+using System.IO;
 
-namespace Gldf.Net.Abstract
+namespace Gldf.Net.Abstract;
+
+internal interface IZipArchiveValidationRule
 {
-    internal interface IZipArchiveValidationRule
-    {
-        public int Priority { get; }
+    IEnumerable<ValidationHint> ValidateGldfFile(string gldfFilePath);
 
-        IEnumerable<ValidationHint> Validate(string filePath);
-    }
+    IEnumerable<ValidationHint> ValidateGldfStream(Stream zipStream, bool leaveOpen);
 }

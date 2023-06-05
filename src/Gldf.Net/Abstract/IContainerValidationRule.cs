@@ -1,13 +1,10 @@
 ﻿using Gldf.Net.Container;
-using Gldf.Net.Validation;
+using Gldf.Net.Validation.Model;
 using System.Collections.Generic;
 
-namespace Gldf.Net.Abstract
-{
-    public interface IContainerValidationRule
-    {
-        public int Priority { get; }
+namespace Gldf.Net.Abstract;
 
-        IEnumerable<ValidationHint> Validate(GldfContainer container);
-    }
+public interface IContainerValidationRule
+{
+    IEnumerable<ValidationHint> ValidateGldf(GldfContainer gldf);
 }

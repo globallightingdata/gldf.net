@@ -6,50 +6,45 @@ using System.IO.Compression;
 using System.Text;
 
 // ReSharper disable InconsistentNaming
-namespace Gldf.Net.Tests.ContainerTests
+namespace Gldf.Net.Tests.ContainerTests;
+
+[TestFixture]
+public class ZipArchiveIOTests
 {
-    [TestFixture]
-    public class ZipArchiveIOTests
+    [Test]
+    public void Ctor_Should_SetParameterDefaults_AsExpected()
     {
-        [Test]
-        public void Ctor_Should_SetParameterDefaults_AsExpected()
-        {
-            var zipArchiveIODerived = new ZipArchiveIODerived();
+        var zipArchiveIODerived = new ZipArchiveIODerived();
 
-            zipArchiveIODerived.SerializerBase.Should().NotBeNull();
-            zipArchiveIODerived.CompressionLevelBase.Should().Be(CompressionLevel.Optimal);
-            zipArchiveIODerived.EncodingBase.Should().BeEquivalentTo(Encoding.UTF8);
+        zipArchiveIODerived.GldfSerializerBase.Should().NotBeNull();
+        zipArchiveIODerived.GldfSerializerBase.Encoding.Should().Be(Encoding.UTF8);
+        zipArchiveIODerived.MetaInfoSerializerBase.Should().NotBeNull();
+        zipArchiveIODerived.MetaInfoSerializerBase.Encoding.Should().Be(Encoding.UTF8);
+        zipArchiveIODerived.CompressionLevelBase.Should().Be(CompressionLevel.Optimal);
+    }
+
+    [Test]
+    public void Ctor_Should_SetParameter_InBaseClass()
+    {
+        var expectedEncoding = Encoding.UTF32;
+        var sut = new ZipArchiveIODerived(expectedEncoding);
+        sut.GldfSerializerBase.Encoding.Should().Be(expectedEncoding);
+        sut.MetaInfoSerializerBase.Encoding.Should().Be(expectedEncoding);
+    }
+
+    internal class ZipArchiveIODerived : ZipArchiveIO
+    {
+        internal IGldfXmlSerializer GldfSerializerBase => GldfXmlSerializer;
+        internal IMetaInfoSerializer MetaInfoSerializerBase => MetaInfoSerializer;
+        internal CompressionLevel CompressionLevelBase => CompressionLevel;
+
+        public ZipArchiveIODerived()
+        {
         }
 
-        [Test]
-        public void Ctor_Should_SetParameter_InBaseClass()
+        public ZipArchiveIODerived(Encoding encoding) : base(encoding)
         {
-            var serializer = new GldfXmlSerializer();
-            var compressionLevel = CompressionLevel.NoCompression;
-            var encoding = Encoding.ASCII;
-
-            var sut = new ZipArchiveIODerived(serializer, compressionLevel, encoding);
-
-            sut.SerializerBase.Should().BeSameAs(serializer);
-            sut.CompressionLevelBase.Should().Be(compressionLevel);
-            sut.EncodingBase.Should().BeSameAs(encoding);
         }
 
-        internal class ZipArchiveIODerived : ZipArchiveIO
-        {
-            internal IGldfXmlSerializer SerializerBase => GldfXmlSerializer;
-            internal Encoding EncodingBase => Encoding;
-            internal CompressionLevel CompressionLevelBase => CompressionLevel;
-
-            public ZipArchiveIODerived()
-            {
-            }
-
-            public ZipArchiveIODerived(IGldfXmlSerializer gldfXmlSerializer, CompressionLevel compressionLevel,
-                Encoding encoding)
-                : base(gldfXmlSerializer, compressionLevel, encoding)
-            {
-            }
-        }
     }
 }

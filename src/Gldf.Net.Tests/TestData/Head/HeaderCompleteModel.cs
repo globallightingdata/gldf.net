@@ -1,179 +1,192 @@
-﻿using Gldf.Net.Domain;
-using Gldf.Net.Domain.Definition;
-using Gldf.Net.Domain.Definition.Types;
-using Gldf.Net.Domain.Global;
-using Gldf.Net.Domain.Head;
-using Gldf.Net.Domain.Head.Types;
-using Gldf.Net.Domain.Product;
-using Gldf.Net.Domain.Product.Types;
+﻿using Gldf.Net.Domain.Xml;
+using Gldf.Net.Domain.Xml.Definition;
+using Gldf.Net.Domain.Xml.Definition.Types;
+using Gldf.Net.Domain.Xml.Global;
+using Gldf.Net.Domain.Xml.Head;
+using Gldf.Net.Domain.Xml.Head.Types;
+using Gldf.Net.Domain.Xml.Product;
+using Gldf.Net.Domain.Xml.Product.Types;
 using System;
 
-namespace Gldf.Net.Tests.TestData.Head
+namespace Gldf.Net.Tests.TestData.Head;
+
+public class HeaderCompleteModel
 {
-    public class HeaderCompleteModel
+    public static Root Root => new()
     {
-        public static Root Root => new()
+        Header = new Header
         {
-            Header = new Header
+            Manufacturer = "DIAL",
+            FormatVersion = new FormatVersion { Major = 1, Minor = 0, PreRelease = 2, PreReleaseSpecified = true },
+            CreatedWithApplication = "Visual Studio Code",
+            GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E",
+            ProductDataTimeCode = new DateTime(2019, 10, 29, 6, 20, 30, DateTimeKind.Utc),
+            DefaultLanguage = "de",
+            ManufacturerLogo = new ManufacturerLogo
             {
-                Author = "Author",
-                Manufacturer = "Manufacturer",
-                CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
-                CreatedWithApplication = "CreatedWithApplication",
-                FormatVersion = FormatVersion.V100,
-                DefaultLanguage = "de",
-                LicenseKeys = new[]
+                FileId = "manufLogo"
+            },
+            LicenseKeys = new[]
+            {
+                new LicenseKey
                 {
-                    new LicenseKey
-                    {
-                        Application = Application.DIALux,
-                        Key = "Key 1"
-                    },
-                    new LicenseKey
-                    {
-                        Application = Application.RELUX,
-                        Key = "Key 2"
-                    }
+                    Application = "DIALux",
+                    Key = "Key 1"
                 },
-                ReluxMemberId = "ReluxMemberId",
-                DIALuxMemberId = "DIALuxMemberId",
-                Contact = new[]
+                new LicenseKey
                 {
-                    new Address
+                    Application = "RELUX",
+                    Key = "Key 2"
+                }
+            },
+            ReluxMemberId = "ReluxMemberId",
+            DIALuxMemberId = "DIALuxMemberId",
+            Author = "Author",
+            Contact = new[]
+            {
+                new Address
+                {
+                    FirstName = "FirstName",
+                    Name = "Name 1",
+                    Street = "Street",
+                    Number = "Number",
+                    ZipCode = "ZipCode",
+                    City = "City",
+                    Country = "Country",
+                    Phone = "Phone",
+                    EMailAddresses = new[]
                     {
-                        FirstName = "FirstName",
-                        Name = "Name 1",
-                        Street = "Street",
-                        Number = "Number",
-                        ZipCode = "ZipCode",
-                        City = "City",
-                        Country = "Country",
-                        Phone = "Phone",
-                        EMailAddresses = new[]
+                        new EMail
                         {
-                            new EMail
-                            {
-                                Mailto = "mailto",
-                                PlainText = "PlainText"
-                            }
-                        },
-                        Websites = new[]
-                        {
-                            new Hyperlink
-                            {
-                                Href = "href 1",
-                                CountryCode = "de",
-                                PlainText = "PlainText 1"
-                            },
-                            new Hyperlink
-                            {
-                                Href = "href 2",
-                                Language = "en",
-                                PlainText = "PlainText 2"
-                            }
-                        },
-                        AdditionalInfo = "AdditionalInfo"
+                            Mailto = "mailto",
+                            PlainText = "PlainText"
+                        }
                     },
-                    new Address
+                    Websites = new[]
                     {
-                        Name = "Name 2",
-                        EMailAddresses = new[]
+                        new Hyperlink
                         {
-                            new EMail
-                            {
-                                Mailto = "Mailto 1",
-                                PlainText = "PlainText 1"
-                            },
-                            new EMail
-                            {
-                                Mailto = "Mailto 2",
-                                PlainText = "PlainText 2"
-                            }
+                            Href = "href 1",
+                            CountryCode = "de",
+                            PlainText = "PlainText 1"
+                        },
+                        new Hyperlink
+                        {
+                            Href = "href 2",
+                            Language = "en",
+                            PlainText = "PlainText 2"
+                        }
+                    },
+                    AdditionalInfo = "AdditionalInfo"
+                },
+                new Address
+                {
+                    Name = "Name 2",
+                    EMailAddresses = new[]
+                    {
+                        new EMail
+                        {
+                            Mailto = "Mailto 1",
+                            PlainText = "PlainText 1"
+                        },
+                        new EMail
+                        {
+                            Mailto = "Mailto 2",
+                            PlainText = "PlainText 2"
                         }
                     }
                 }
-            },
-            GeneralDefinitions = new GeneralDefinitions
+            }
+        },
+        GeneralDefinitions = new GeneralDefinitions
+        {
+            Files = new[]
             {
-                Files = new[]
+                new GldfFile
                 {
-                    new GldfFile
-                    {
-                        Id = "eulumdat",
-                        ContentType = FileContentType.LdcEulumdat,
-                        Type = FileType.Url,
-                        File = "https://example.org/eulumdat.ldt"
-                    }
+                    Id = "manufLogo",
+                    ContentType = FileContentType.ImagePng,
+                    Type = FileType.Url,
+                    File = "https://example.org/logo.png"
                 },
-                Photometries = new[]
+                new GldfFile
                 {
-                    new Photometry
-                    {
-                        Id = "photometry",
-                        Content = new PhotometryFileReference
-                        {
-                            FileId = "eulumdat"
-                        }
-                    }
-                },
-                Emitters = new[]
+                    Id = "eulumdat",
+                    ContentType = FileContentType.LdcEulumdat,
+                    Type = FileType.Url,
+                    File = "https://example.org/eulumdat.ldt"
+                }
+            },
+            Photometries = new[]
+            {
+                new Photometry
                 {
-                    new Emitter
+                    Id = "photometry",
+                    Content = new PhotometryFileReference
                     {
-                        Id = "emitter",
-                        PossibleFittings = new EmitterBase[]
-                        {
-                            new ChangeableLightEmitter
-                            {
-                                PhotometryReference = new PhotometryReference
-                                {
-                                    PhotometryId = "photometry"
-                                }
-                            }
-                        }
+                        FileId = "eulumdat"
                     }
                 }
             },
-            ProductDefinitions = new ProductDefinitions
+            Emitters = new[]
             {
-                ProductMetaData = new ProductMetaData
+                new Emitter
                 {
-                    ProductNumber = new[]
+                    Id = "emitter",
+                    PossibleFittings = new EmitterBase[]
                     {
-                        new Locale
+                        new ChangeableLightEmitter
                         {
-                            Language = "en",
-                            Text = "Product number"
-                        }
-                    },
-                    Name = new[]
-                    {
-                        new Locale
-                        {
-                            Language = "en",
-                            Text = "Product name"
-                        }
-                    }
-                },
-                Variants = new[]
-                {
-                    new Variant
-                    {
-                        Id = "variant-1",
-                        Name = new[]
-                        {
-                            new Locale { Language = "en", Text = "Variant 1" }
-                        },
-                        Geometry = new Geometry
-                        {
-                            Reference = new EmitterReference
+                            PhotometryReference = new PhotometryReference
                             {
-                                EmitterId = "emitter"
+                                PhotometryId = "photometry"
                             }
                         }
                     }
                 }
             }
-        };
-    }
+        },
+        ProductDefinitions = new ProductDefinitions
+        {
+            ProductMetaData = new ProductMetaData
+            {
+                UniqueProductId = "Product 1",
+                ProductNumber = new[]
+                {
+                    new Locale
+                    {
+                        Language = "en",
+                        Text = "Product number"
+                    }
+                },
+                Name = new[]
+                {
+                    new Locale
+                    {
+                        Language = "en",
+                        Text = "Product name"
+                    }
+                }
+            },
+            Variants = new[]
+            {
+                new Variant
+                {
+                    Id = "variant-1",
+                    Name = new[]
+                    {
+                        new Locale { Language = "en", Text = "Variant 1" }
+                    },
+                    Geometry = new GeometryReference
+                    {
+                        Reference = new EmitterReference
+                        {
+                            EmitterId = "emitter"
+                        }
+                    }
+                }
+            }
+        }
+    };
 }

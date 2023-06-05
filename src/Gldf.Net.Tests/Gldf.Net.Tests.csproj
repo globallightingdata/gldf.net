@@ -3,13 +3,14 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <IsPackable>false</IsPackable>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentAssertions" Version="6.6.0" />
+        <PackageReference Include="FluentAssertions" Version="6.11.0" />
         <PackageReference Include="NUnit" Version="3.13.3" />
-        <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+        <PackageReference Include="NUnit3TestAdapter" Version="4.4.2" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -37,6 +38,7 @@
         <EmbeddedResource Include="TestData\LightSources\ChangeableCompleteXml.xml" />
         <EmbeddedResource Include="TestData\LightSources\FixedCompleteXml.xml" />
         <EmbeddedResource Include="TestData\LightSources\LightSourceMandatoryXml.xml" />
+        <EmbeddedResource Include="TestData\Other\GeneralsEmptyXml.xml" />
         <EmbeddedResource Include="TestData\Photometries\PhotometryCompleteXml.xml" />
         <EmbeddedResource Include="TestData\Photometries\PhotometryMandatoryXml.xml" />
         <EmbeddedResource Include="TestData\MetaData\ProductMetaDataCompleteXml.xml" />
@@ -50,16 +52,20 @@
         <EmbeddedResource Include="TestData\Variants\VariantCompleteXml.xml" />
         <EmbeddedResource Include="TestData\Variants\VariantMandatoryXml.xml" />
         <EmbeddedResource Include="TestData\Container\GldfWithHeaderMandatory.gldf" />
+        <EmbeddedResource Include="TestData\Container\GldfWithMissingProduct.gldf" />
         <EmbeddedResource Include="TestData\Container\GldfWithFiles.gldf" />
-        <EmbeddedResource Include="TestData\Container\GldfWithSignature.gldf" />
         <EmbeddedResource Include="TestData\Container\GldfWithNoFiles.gldf" />
         <EmbeddedResource Include="TestData\Container\GldfWithLargeFiles.gldf" />
         <EmbeddedResource Include="TestData\Container\GldfWithInvalidRoot.gldf" />
         <EmbeddedResource Include="TestData\Container\GldfWithOrphanedFiles.gldf" />
         <EmbeddedResource Include="TestData\Container\GldfWithMissingFiles.gldf" />
+        <EmbeddedResource Include="TestData\Container\GldfWithFilesComplete.gldf" />
+        <EmbeddedResource Include="TestData\Container\GldfWithMetaInfo.gldf" />
+        <EmbeddedResource Include="TestData\MetaInfo\meta-information.xml" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="TestData\Container" />
+      <Folder Include="TestData\MetaInfo" />
     </ItemGroup>
 </Project>

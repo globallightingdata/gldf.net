@@ -1,21 +1,21 @@
-﻿using Gldf.Net.Domain;
-using Gldf.Net.Domain.Head;
-using Gldf.Net.Domain.Head.Types;
+﻿using Gldf.Net.Domain.Xml;
+using Gldf.Net.Domain.Xml.Head;
+using Gldf.Net.Domain.Xml.Head.Types;
 using System;
 
-namespace Gldf.Net.Tests.TestData.Simple
+namespace Gldf.Net.Tests.TestData.Simple;
+
+public class RootWithHeaderModel
 {
-    public class RootWithHeaderModel
+    public static Root Root => new()
     {
-        public static Root Root => new()
+        Header = new Header
         {
-            Header = new Header
-            {
-                Manufacturer = "Manufacturer",
-                CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
-                CreatedWithApplication = "Visual Studio Code",
-                FormatVersion = FormatVersion.V100
-            }
-        };
-    }
+            Manufacturer = "DIAL",
+            GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            CreatedWithApplication = "Visual Studio Code",
+            FormatVersion  = new FormatVersion { Major = 1, Minor = 0, PreRelease = 2 },
+            UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E"
+        }
+    };
 }

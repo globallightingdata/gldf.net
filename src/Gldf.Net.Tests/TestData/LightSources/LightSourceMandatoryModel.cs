@@ -1,126 +1,143 @@
-﻿using Gldf.Net.Domain;
-using Gldf.Net.Domain.Definition;
-using Gldf.Net.Domain.Definition.Types;
-using Gldf.Net.Domain.Global;
-using Gldf.Net.Domain.Head;
-using Gldf.Net.Domain.Product;
-using Gldf.Net.Domain.Product.Types;
+﻿using Gldf.Net.Domain.Xml;
+using Gldf.Net.Domain.Xml.Definition;
+using Gldf.Net.Domain.Xml.Definition.Types;
+using Gldf.Net.Domain.Xml.Global;
+using Gldf.Net.Domain.Xml.Head;
+using Gldf.Net.Domain.Xml.Head.Types;
+using Gldf.Net.Domain.Xml.Product;
+using Gldf.Net.Domain.Xml.Product.Types;
 using System;
 
-namespace Gldf.Net.Tests.TestData.LightSources
+namespace Gldf.Net.Tests.TestData.LightSources;
+
+public static class LightSourceMandatoryModel
 {
-    public class LightSourceMandatoryModel
+    public static Root Root => new()
     {
-        public static Root Root => new()
+        Header = new Header
         {
-            Header = new Header
+            Manufacturer = "DIAL",
+            GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            CreatedWithApplication = "Visual Studio Code",
+            FormatVersion = new FormatVersion { Major = 1, Minor = 0, PreRelease = 2, PreReleaseSpecified = true },
+            UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E"
+        },
+        GeneralDefinitions = new GeneralDefinitions
+        {
+            Files = new[]
             {
-                Manufacturer = "DIAL",
-                CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
-                CreatedWithApplication = "Visual Studio Code"
+                new GldfFile
+                {
+                    Id = "eulumdat",
+                    ContentType = FileContentType.LdcEulumdat,
+                    Type = FileType.Url,
+                    File = "https://example.org/eulumdat.ldt"
+                }
             },
-            GeneralDefinitions = new GeneralDefinitions
+            Photometries = new[]
             {
-                Files = new[]
+                new Photometry
                 {
-                    new GldfFile
+                    Id = "photometry",
+                    Content = new PhotometryFileReference
                     {
-                        Id = "eulumdat",
-                        ContentType = FileContentType.LdcEulumdat,
-                        Type = FileType.Url,
-                        File = "https://example.org/eulumdat.ldt"
-                    }
-                },
-                Photometries = new[]
-                {
-                    new Photometry
-                    {
-                        Id = "photometry",
-                        Content = new PhotometryFileReference
-                        {
-                            FileId = "eulumdat"
-                        }
-                    }
-                },
-                LightSources = new LightSourceBase[]
-                {
-                    new FixedLightSource
-                    {
-                        Id = "lightSource",
-                        Name = new[]
-                        {
-                            new Locale
-                            {
-                                Language = "en",
-                                Text = "LightSource name"
-                            }
-                        },
-                        RatedInputPower = 50
-                    }
-                },
-                Emitters = new[]
-                {
-                    new Emitter
-                    {
-                        Id = "emitter",
-                        PossibleFittings = new EmitterBase[]
-                        {
-                            new FixedLightEmitter
-                            {
-                                PhotometryReference = new PhotometryReference
-                                {
-                                    PhotometryId = "photometry"
-                                },
-                                LightSourceReference = new FixedLightSourceReference
-                                {
-                                    FixedLightSourceId = "lightSource"
-                                },
-                                RatedLuminousFlux = 250
-                            }
-                        }
+                        FileId = "eulumdat"
                     }
                 }
             },
-            ProductDefinitions = new ProductDefinitions
+            LightSources = new LightSourceBase[]
             {
-                ProductMetaData = new ProductMetaData
+                new FixedLightSource
                 {
-                    ProductNumber = new[]
-                    {
-                        new Locale
-                        {
-                            Language = "en",
-                            Text = "Product number"
-                        }
-                    },
+                    Id = "lightSource",
                     Name = new[]
                     {
                         new Locale
                         {
                             Language = "en",
-                            Text = "Product name"
+                            Text = "LightSource name"
                         }
-                    }
+                    },
+                    RatedInputPower = 50
                 },
-                Variants = new[]
+                new FixedLightSource
                 {
-                    new Variant
+                    Id = "lightSource-2",
+                    Name = new[]
                     {
-                        Id = "variant-1",
-                        Name = new[]
+                        new Locale
                         {
-                            new Locale { Language = "en", Text = "Variant 1" }
-                        },
-                        Geometry = new Geometry
+                            Language = "en",
+                            Text = "LightSource name 2"
+                        }
+                    },
+                    RatedInputPower = 60,
+                    ColorInformation = new ColorInformation()
+                }
+            },
+            Emitters = new[]
+            {
+                new Emitter
+                {
+                    Id = "emitter",
+                    PossibleFittings = new EmitterBase[]
+                    {
+                        new FixedLightEmitter
                         {
-                            Reference = new EmitterReference
+                            PhotometryReference = new PhotometryReference
                             {
-                                EmitterId = "emitter"
-                            }
+                                PhotometryId = "photometry"
+                            },
+                            LightSourceReference = new FixedLightSourceReference
+                            {
+                                FixedLightSourceId = "lightSource"
+                            },
+                            RatedLuminousFlux = 250
                         }
                     }
                 }
             }
-        };
-    }
+        },
+        ProductDefinitions = new ProductDefinitions
+        {
+            ProductMetaData = new ProductMetaData
+            {
+                UniqueProductId = "Product 1",
+                ProductNumber = new[]
+                {
+                    new Locale
+                    {
+                        Language = "en",
+                        Text = "Product number"
+                    }
+                },
+                Name = new[]
+                {
+                    new Locale
+                    {
+                        Language = "en",
+                        Text = "Product name"
+                    }
+                }
+            },
+            Variants = new[]
+            {
+                new Variant
+                {
+                    Id = "variant-1",
+                    Name = new[]
+                    {
+                        new Locale { Language = "en", Text = "Variant 1" }
+                    },
+                    Geometry = new GeometryReference
+                    {
+                        Reference = new EmitterReference
+                        {
+                            EmitterId = "emitter"
+                        }
+                    }
+                }
+            }
+        }
+    };
 }

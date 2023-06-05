@@ -1,24 +1,26 @@
-﻿using Gldf.Net.Domain;
-using Gldf.Net.Domain.Definition;
-using Gldf.Net.Domain.Definition.Types;
-using Gldf.Net.Domain.Global;
-using Gldf.Net.Domain.Head;
-using Gldf.Net.Domain.Product;
-using Gldf.Net.Domain.Product.Types;
-using NUnit.Framework.Internal;
+using Gldf.Net.Domain.Xml;
+using Gldf.Net.Domain.Xml.Definition;
+using Gldf.Net.Domain.Xml.Definition.Types;
+using Gldf.Net.Domain.Xml.Global;
+using Gldf.Net.Domain.Xml.Head;
+using Gldf.Net.Domain.Xml.Head.Types;
+using Gldf.Net.Domain.Xml.Product;
+using Gldf.Net.Domain.Xml.Product.Types;
 using System;
 
 namespace Gldf.Net.Tests.TestData.Variants;
 
-public class VariantMandatoryModel
+public static class VariantMandatoryModel
 {
     public static Root Root => new()
     {
         Header = new Header
         {
             Manufacturer = "DIAL",
-            CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
-            CreatedWithApplication = "Visual Studio Code"
+            GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            CreatedWithApplication = "Visual Studio Code",
+            FormatVersion = new FormatVersion { Major = 1, Minor = 0, PreRelease = 2, PreReleaseSpecified = true },
+            UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E"
         },
         GeneralDefinitions = new GeneralDefinitions
         {
@@ -59,7 +61,7 @@ public class VariantMandatoryModel
                     RatedInputPower = 50
                 }
             },
-            Geometries = new Geometry[]
+            Geometries = new GeometryBase[]
             {
                 new SimpleGeometry
                 {
@@ -104,6 +106,7 @@ public class VariantMandatoryModel
         {
             ProductMetaData = new ProductMetaData
             {
+                UniqueProductId = "Product 1",
                 ProductNumber = new[]
                 {
                     new Locale
@@ -146,7 +149,7 @@ public class VariantMandatoryModel
                             Text = "Variant 2"
                         }
                     },
-                    Geometry = new Geometry
+                    Geometry = new GeometryReference
                     {
                         Reference = new SimpleGeometryReference
                         {

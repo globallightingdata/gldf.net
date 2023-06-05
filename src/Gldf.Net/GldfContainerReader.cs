@@ -2,76 +2,121 @@
 using Gldf.Net.Container;
 using Gldf.Net.Exceptions;
 using System;
+using System.IO;
+using System.Text;
 
-namespace Gldf.Net
+namespace Gldf.Net;
+
+/// <summary>
+///     Provides functionality to read GLDF container files into instances of type <see cref="GldfContainer" />.
+///     As well as to extract them to a directory path. This type is threadsafe.
+/// </summary>
+public class GldfContainerReader : IGldfContainerReader
 {
+    private readonly ZipArchiveReader _zipArchiveReader;
+
     /// <summary>
-    ///     Provides functionality to read GLDF container files into instances of type
-    ///     <see cref="GldfContainer" />. As well as to extract them to a directory path.
-    ///     This type is threadsafe.
+    ///     Initializes a new instance of the <see cref="GldfContainerReader" /> class that can read
+    ///     instances of type <see cref="GldfContainer" />. With default UTF-8 encoding.
     /// </summary>
-    public class GldfContainerReader : IGldfContainerReader
+    public GldfContainerReader() : this(Encoding.UTF8)
     {
-        private readonly ZipArchiveReader _zipArchiveReader;
+    }
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="GldfContainerReader" /> class that can read
-        ///     instances of type <see cref="GldfContainer" />.
-        /// </summary>
-        public GldfContainerReader()
+    /// <summary>
+    ///     Initializes a new instance of the <see cref="GldfContainerReader" /> class that can read
+    ///     instances of type <see cref="GldfContainer" />.
+    /// </summary>
+    /// <param name="encoding">The encoding to read files with</param>
+    public GldfContainerReader(Encoding encoding)
+    {
+        _zipArchiveReader = new ZipArchiveReader(encoding);
+    }
+
+    /// <summary>
+    ///     Reads the GLDF container from file into an instance of <see cref="GldfContainer" />.
+    /// </summary>
+    /// <param name="gldfFilePath">The path on disk of the GLDF container file</param>
+    /// <returns><see cref="GldfContainer" /> with deserialized product.xml, file assets and meta-information</returns>
+    public GldfContainer ReadFromGldfFile(string gldfFilePath)
+        => ReadFromGldfFile(gldfFilePath, ContainerLoadSettings.Default);
+
+    /// <summary>
+    ///     Reads the GLDF container from file into an instance of <see cref="GldfContainer" />.
+    ///     With specified load behaviour settings for product.xml, file assets and meta-information.
+    /// </summary>
+    /// <exception cref="ArgumentNullException">If filepath or settings is null.</exception>
+    /// <param name="gldfFilePath">The path on disk of the GLDF container file</param>
+    /// <param name="settings">Load behaviour for product.xml, asset files and meta-information</param>
+    /// <returns><see cref="GldfContainer" /> with deserialized product.xml, file assets and meta-information</returns>
+    public GldfContainer ReadFromGldfFile(string gldfFilePath, ContainerLoadSettings settings)
+    {
+        if (gldfFilePath == null) throw new ArgumentNullException(nameof(gldfFilePath));
+        if (settings == null) throw new ArgumentNullException(nameof(settings));
+
+        try
         {
-            _zipArchiveReader = new ZipArchiveReader();
+            return _zipArchiveReader.ReadContainer(gldfFilePath, settings);
         }
-
-        /// <summary>
-        ///     Reads the GLDF container from file into an instance of <see cref="GldfContainer" />.
-        /// </summary>
-        /// <param name="filePath">The path on disk of the GLDF container file</param>
-        /// <returns><see cref="GldfContainer" /> with deserialised product.xml, file assets and signature</returns>
-        public GldfContainer ReadFromFile(string filePath) => ReadFromFile(filePath, ContainerLoadSettings.Default);
-
-        /// <summary>
-        ///     Reads the GLDF container from file into an instance of <see cref="GldfContainer" />.
-        ///     With specified load behaviour settings for product.xml, file assets and signature.
-        /// </summary>
-        /// <param name="filePath">The path on disk of the GLDF container file</param>
-        /// <param name="settings">Load behaviour for product.xml, asset files and signature</param>
-        /// <returns><see cref="GldfContainer" /> with deserialised product.xml, file assets and signature</returns>
-        public GldfContainer ReadFromFile(string filePath, ContainerLoadSettings settings)
+        catch (Exception e)
         {
-            if (filePath == null) throw new ArgumentNullException(nameof(filePath));
-            if (settings == null) throw new ArgumentNullException(nameof(settings));
-
-            try
-            {
-                return _zipArchiveReader.ReadContainer(filePath, settings);
-            }
-            catch (Exception e)
-            {
-                throw new GldfContainerException($"Failed to read {nameof(GldfContainer)} from " +
-                                                 $"'{filePath}'. See inner exception", e);
-            }
+            throw new GldfContainerException($"Failed to read {nameof(GldfContainer)} from " +
+                                             $"'{gldfFilePath}'. See inner exception", e);
         }
+    }
 
-        /// <summary>
-        ///     Extracts the content of a GLDF container file to disk
-        /// </summary>
-        /// <param name="sourceContainerFilePath">Filepath to the GLDF container file</param>
-        /// <param name="targetDirectory">The target directory the content wil be extracted to</param>
-        public void ExtractToDirectory(string sourceContainerFilePath, string targetDirectory)
+    /// <summary>
+    ///     Reads the GLDF container from a stream into an instance of <see cref="GldfContainer" />.
+    /// </summary>
+    /// <param name="zipStream">Stream to read the <see cref="GldfContainer" /> from</param>
+    /// <param name="leaveOpen">To leave the stream open after read, otherwise it will be disposed</param>
+    /// <returns><see cref="GldfContainer" /> with deserialized product.xml, file assets and meta-information</returns>
+    public GldfContainer ReadFromGldfStream(Stream zipStream, bool leaveOpen) =>
+        ReadFromGldfStream(zipStream, leaveOpen, ContainerLoadSettings.Default);
+
+    /// <summary>
+    ///     Reads the GLDF container from a stream into an instance of <see cref="GldfContainer" />.
+    /// </summary>
+    /// <exception cref="ArgumentNullException">If the stream or setting is null.</exception>
+    /// <param name="zipStream">Stream of a ZIP archive to read the <see cref="GldfContainer" /> from</param>
+    /// <param name="leaveOpen">To leave the stream open after read, otherwise it will be disposed</param>
+    /// <param name="settings">Load behaviour for product.xml, asset files and meta-information</param>
+    /// <returns><see cref="GldfContainer" /> with deserialized product.xml, file assets and meta-information</returns>
+    public GldfContainer ReadFromGldfStream(Stream zipStream, bool leaveOpen, ContainerLoadSettings settings)
+    {
+        if (zipStream == null) throw new ArgumentNullException(nameof(zipStream));
+        if (settings == null) throw new ArgumentNullException(nameof(settings));
+
+        try
         {
-            if (sourceContainerFilePath == null) throw new ArgumentNullException(nameof(sourceContainerFilePath));
-            if (targetDirectory == null) throw new ArgumentNullException(nameof(targetDirectory));
+            return _zipArchiveReader.ReadContainer(zipStream, leaveOpen, settings);
+        }
+        catch (Exception e)
+        {
+            throw new GldfContainerException($"Failed to read {nameof(GldfContainer)} from stream. " +
+                                             "See inner exception", e);
+        }
+    }
 
-            try
-            {
-                _zipArchiveReader.ExtractToDirectory(sourceContainerFilePath, targetDirectory);
-            }
-            catch (Exception e)
-            {
-                throw new GldfContainerException($"Failed to extract '{sourceContainerFilePath}' to directory " +
-                                                 $"'{targetDirectory}'. See inner exception", e);
-            }
+    /// <summary>
+    ///     Extracts the content of a GLDF container file to disk
+    /// </summary>
+    /// <exception cref="ArgumentNullException">If the source or target filepath is null.</exception>
+    /// <param name="sourceGldfFilePath">Filepath to the GLDF container file</param>
+    /// <param name="targetDirectory">The target directory the content wil be extracted to</param>
+    public void ExtractToDirectory(string sourceGldfFilePath, string targetDirectory)
+    {
+        if (sourceGldfFilePath == null) throw new ArgumentNullException(nameof(sourceGldfFilePath));
+        if (targetDirectory == null) throw new ArgumentNullException(nameof(targetDirectory));
+
+        try
+        {
+            ZipArchiveReader.ExtractToDirectory(sourceGldfFilePath, targetDirectory);
+        }
+        catch (Exception e)
+        {
+            throw new GldfContainerException($"Failed to extract '{sourceGldfFilePath}' to directory " +
+                                             $"'{targetDirectory}'. See inner exception", e);
         }
     }
 }

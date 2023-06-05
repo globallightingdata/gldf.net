@@ -1,10 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
-        <LangVersion>9</LangVersion>
+        <TargetFramework>net6.0</TargetFramework>
         <Description>GLDF XML serializer, validator and .gldf container reader/writer</Description>
-        <Copyright>Copyright (c) DIAL GmbH 2021</Copyright>
+        <Copyright>Copyright (c) DIAL GmbH 2023</Copyright>
         <Authors>Alex Kurpanik</Authors>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>GLDF.Net</PackageId>
@@ -23,13 +22,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MinVer" PrivateAssets="all" Version="3.1.0" />
+        <PackageReference Include="MinVer" PrivateAssets="all" Version="4.3.0" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="Xsd\gldf.xsd" />
-        <EmbeddedResource Include="Xsd\V100.xsd" />
+        <EmbeddedResource Include="Xsd\v0.9-rc9.xsd" />
+        <EmbeddedResource Include="Xsd\v1.0-rc1.xsd" />
+        <EmbeddedResource Include="Xsd\v1.0-rc2.xsd" />
         <None Include=".\..\..\img\logo.png">
             <Pack>true</Pack>
             <PackagePath>\</PackagePath>

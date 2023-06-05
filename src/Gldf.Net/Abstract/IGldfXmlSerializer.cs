@@ -1,13 +1,18 @@
-﻿using Gldf.Net.Domain;
+﻿using Gldf.Net.Domain.Xml;
+using System.IO;
+using System.Text;
 
-namespace Gldf.Net.Abstract
+namespace Gldf.Net.Abstract;
+
+public interface IGldfXmlSerializer
 {
-    internal interface IGldfXmlSerializer
-    {
-        string SerializeToString(Root root);
-        void SerializeToFile(Root root, string filePath);
+    Encoding Encoding { get; }
+    
+    string SerializeToXml(Root value);
+    void SerializeToXmlFile(Root value, string xmlFilePath);
+    void SerializeToXmlStream(Root value, Stream xmlStream, bool leaveOpen);
 
-        Root DeserializeFromString(string xml);
-        Root DeserializeFromFile(string filePath);
-    }
+    Root DeserializeFromXml(string xml);
+    Root DeserializeFromXmlFile(string xmlFilePath);
+    Root DeserializeFromXmlStream(Stream xmlStream, bool leaveOpen);
 }

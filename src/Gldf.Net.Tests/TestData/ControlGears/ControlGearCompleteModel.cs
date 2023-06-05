@@ -1,189 +1,190 @@
-﻿using Gldf.Net.Domain;
-using Gldf.Net.Domain.Definition;
-using Gldf.Net.Domain.Definition.Types;
-using Gldf.Net.Domain.Global;
-using Gldf.Net.Domain.Head;
-using Gldf.Net.Domain.Head.Types;
-using Gldf.Net.Domain.Product;
-using Gldf.Net.Domain.Product.Types;
+﻿using Gldf.Net.Domain.Xml;
+using Gldf.Net.Domain.Xml.Definition;
+using Gldf.Net.Domain.Xml.Definition.Types;
+using Gldf.Net.Domain.Xml.Global;
+using Gldf.Net.Domain.Xml.Head;
+using Gldf.Net.Domain.Xml.Head.Types;
+using Gldf.Net.Domain.Xml.Product;
+using Gldf.Net.Domain.Xml.Product.Types;
 using System;
 
-namespace Gldf.Net.Tests.TestData.ControlGears
+namespace Gldf.Net.Tests.TestData.ControlGears;
+
+public static class ControlGearCompleteModel
 {
-    public class ControlGearCompleteModel
+    public static Root Root => new()
     {
-        public static Root Root => new()
+        Header = new Header
         {
-            Header = new Header
+            Manufacturer = "DIAL",
+            GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            CreatedWithApplication = "Visual Studio Code",
+            FormatVersion = new FormatVersion { Major = 1, Minor = 0, PreRelease = 2, PreReleaseSpecified = true },
+            UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E"
+        },
+        GeneralDefinitions = new GeneralDefinitions
+        {
+            Files = new[]
             {
-                Manufacturer = "DIAL",
-                CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
-                CreatedWithApplication = "Visual Studio Code",
-                FormatVersion = FormatVersion.V100
+                new GldfFile
+                {
+                    Id = "eulumdat",
+                    ContentType = FileContentType.LdcEulumdat,
+                    Type = FileType.Url,
+                    File = "https://example.org/eulumdat.ldt"
+                }
             },
-            GeneralDefinitions = new GeneralDefinitions
+            Photometries = new[]
             {
-                Files = new[]
+                new Photometry
                 {
-                    new GldfFile
+                    Id = "photometry",
+                    Content = new PhotometryFileReference
                     {
-                        Id = "eulumdat",
-                        ContentType = FileContentType.LdcEulumdat,
-                        Type = FileType.Url,
-                        File = "https://example.org/eulumdat.ldt"
-                    }
-                },
-                Photometries = new[]
-                {
-                    new Photometry
-                    {
-                        Id = "photometry",
-                        Content = new PhotometryFileReference
-                        {
-                            FileId = "eulumdat"
-                        }
-                    }
-                },
-                ControlGears = new[]
-                {
-                    new ControlGear
-                    {
-                        Id = "controlGear-1",
-                        Name = new[]
-                        {
-                            new Locale
-                            {
-                                Language = "en",
-                                Text = "ControlGear name"
-                            }
-                        },
-                        Description = new[]
-                        {
-                            new Locale
-                            {
-                                Language = "en",
-                                Text = "ControlGear description"
-                            }
-                        },
-                        NominalVoltage = new Voltage
-                        {
-                            Value = new VoltageRange
-                            {
-                                Min = 120,
-                                Max = 230
-                            },
-                            Type = VoltageType.DC,
-                            Frequency = VoltageFrequency.Hz400
-                        },
-                        StandbyPower = 0.1,
-                        ConstantLightOutputStartPower = 0.2,
-                        ConstantLightOutputEndPower = 0.3,
-                        PowerConsumptionControls = 0.4,
-                        IsDimmable = true,
-                        IsColorControllable = false,
-                        Interfaces = new[]
-                        {
-                            Interface.DaliBroadcast,
-                            Interface.DaliAddressable
-                        },
-                        EnergyLabels = new[]
-                        {
-                            new EnergyLabel { Region = "eu", Label = "A+" },
-                            new EnergyLabel { Region = "us", Label = "B" }
-                        }
-                    },
-                    new ControlGear
-                    {
-                        Id = "controlGear-2",
-                        Name = new[]
-                        {
-                            new Locale
-                            {
-                                Language = "en",
-                                Text = "ControlGear name"
-                            }
-                        },
-                        Description = new[]
-                        {
-                            new Locale
-                            {
-                                Language = "en",
-                                Text = "ControlGear description"
-                            }
-                        },
-                        Interfaces = new[]
-                        {
-                            Interface.Knx,
-                            Interface.Volt0To10,
-                            Interface.Volt1To10,
-                            Interface.Volt230,
-                            Interface.Rf,
-                            Interface.WiFi,
-                            Interface.Bluetooth,
-                            Interface.InterConnection,
-                            Interface.Dmx,
-                            Interface.DmxRdm
-                        }
-                    }
-                },
-                Emitters = new[]
-                {
-                    new Emitter
-                    {
-                        Id = "emitter",
-                        PossibleFittings = new EmitterBase[]
-                        {
-                            new ChangeableLightEmitter
-                            {
-                                PhotometryReference = new PhotometryReference
-                                {
-                                    PhotometryId = "photometry"
-                                }
-                            }
-                        }
+                        FileId = "eulumdat"
                     }
                 }
             },
-            ProductDefinitions = new ProductDefinitions
+            ControlGears = new[]
             {
-                ProductMetaData = new ProductMetaData
+                new ControlGear
                 {
-                    ProductNumber = new[]
-                    {
-                        new Locale
-                        {
-                            Language = "en",
-                            Text = "Product number"
-                        }
-                    },
+                    Id = "controlGear-1",
                     Name = new[]
                     {
                         new Locale
                         {
                             Language = "en",
-                            Text = "Product name"
+                            Text = "ControlGear name"
                         }
+                    },
+                    Description = new[]
+                    {
+                        new Locale
+                        {
+                            Language = "en",
+                            Text = "ControlGear description"
+                        }
+                    },
+                    NominalVoltage = new Voltage
+                    {
+                        Value = new VoltageRange
+                        {
+                            Min = 120,
+                            Max = 230
+                        },
+                        Type = VoltageType.DC,
+                        Frequency = VoltageFrequency.Hz400
+                    },
+                    StandbyPower = 0.1,
+                    ConstantLightOutputStartPower = 0.2,
+                    ConstantLightOutputEndPower = 0.3,
+                    PowerConsumptionControls = 0.4,
+                    IsDimmable = true,
+                    IsColorControllable = false,
+                    Interfaces = new[]
+                    {
+                        Interface.DaliBroadcast,
+                        Interface.DaliAddressable
+                    },
+                    EnergyLabels = new[]
+                    {
+                        new EnergyLabel { Region = "eu", Label = "A+" },
+                        new EnergyLabel { Region = "us", Label = "B" }
                     }
                 },
-                Variants = new[]
+                new ControlGear
                 {
-                    new Variant
+                    Id = "controlGear-2",
+                    Name = new[]
                     {
-                        Id = "variant-1",
-                        Name = new[]
+                        new Locale
                         {
-                            new Locale { Language = "en", Text = "Variant 1" }
-                        },
-                        Geometry = new Geometry
+                            Language = "en",
+                            Text = "ControlGear name"
+                        }
+                    },
+                    Description = new[]
+                    {
+                        new Locale
                         {
-                            Reference = new EmitterReference
+                            Language = "en",
+                            Text = "ControlGear description"
+                        }
+                    },
+                    Interfaces = new[]
+                    {
+                        Interface.Knx,
+                        Interface.Volt0To10,
+                        Interface.Volt1To10,
+                        Interface.Volt230,
+                        Interface.Rf,
+                        Interface.WiFi,
+                        Interface.Bluetooth,
+                        Interface.InterConnection,
+                        Interface.Dmx,
+                        Interface.DmxRdm
+                    }
+                }
+            },
+            Emitters = new[]
+            {
+                new Emitter
+                {
+                    Id = "emitter",
+                    PossibleFittings = new EmitterBase[]
+                    {
+                        new ChangeableLightEmitter
+                        {
+                            PhotometryReference = new PhotometryReference
                             {
-                                EmitterId = "emitter"
+                                PhotometryId = "photometry"
                             }
                         }
                     }
                 }
             }
-        };
-    }
+        },
+        ProductDefinitions = new ProductDefinitions
+        {
+            ProductMetaData = new ProductMetaData
+            {
+                UniqueProductId = "Product 1",
+                ProductNumber = new[]
+                {
+                    new Locale
+                    {
+                        Language = "en",
+                        Text = "Product number"
+                    }
+                },
+                Name = new[]
+                {
+                    new Locale
+                    {
+                        Language = "en",
+                        Text = "Product name"
+                    }
+                }
+            },
+            Variants = new[]
+            {
+                new Variant
+                {
+                    Id = "variant-1",
+                    Name = new[]
+                    {
+                        new Locale { Language = "en", Text = "Variant 1" }
+                    },
+                    Geometry = new GeometryReference
+                    {
+                        Reference = new EmitterReference
+                        {
+                            EmitterId = "emitter"
+                        }
+                    }
+                }
+            }
+        }
+    };
 }

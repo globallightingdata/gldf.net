@@ -1,14 +1,13 @@
 ﻿using System;
 
-namespace Gldf.Net.Exceptions
+namespace Gldf.Net.Exceptions;
+
+internal static class ExceptionExtensions
 {
-    internal static class ExceptionExtensions
+    public static string FlattenMessage(this Exception exception)
     {
-        public static string FlattenMessage(this Exception exception)
-        {
-            return exception.InnerException == null
-                ? exception.Message
-                : $"{exception.Message}: {exception.InnerException.FlattenMessage()}";
-        }
+        return exception.InnerException == null
+            ? exception.Message
+            : $"{exception.Message}: {exception.InnerException.FlattenMessage()}";
     }
 }

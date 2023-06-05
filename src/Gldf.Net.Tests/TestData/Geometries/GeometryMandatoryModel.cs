@@ -1,147 +1,148 @@
-﻿using Gldf.Net.Domain;
-using Gldf.Net.Domain.Definition;
-using Gldf.Net.Domain.Definition.Types;
-using Gldf.Net.Domain.Global;
-using Gldf.Net.Domain.Head;
-using Gldf.Net.Domain.Head.Types;
-using Gldf.Net.Domain.Product;
-using Gldf.Net.Domain.Product.Types;
+﻿using Gldf.Net.Domain.Xml;
+using Gldf.Net.Domain.Xml.Definition;
+using Gldf.Net.Domain.Xml.Definition.Types;
+using Gldf.Net.Domain.Xml.Global;
+using Gldf.Net.Domain.Xml.Head;
+using Gldf.Net.Domain.Xml.Head.Types;
+using Gldf.Net.Domain.Xml.Product;
+using Gldf.Net.Domain.Xml.Product.Types;
 using System;
 
-namespace Gldf.Net.Tests.TestData.Geometries
+namespace Gldf.Net.Tests.TestData.Geometries;
+
+public static class GeometryMandatoryModel
 {
-    public class GeometryMandatoryModel
+    public static Root Root => new()
     {
-        public static Root Root => new()
+        Header = new Header
         {
-            Header = new Header
+            Manufacturer = "DIAL",
+            GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            CreatedWithApplication = "Visual Studio Code",
+            FormatVersion = new FormatVersion { Major = 1, Minor = 0, PreRelease = 2, PreReleaseSpecified = true },
+            UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E"
+        },
+        GeneralDefinitions = new GeneralDefinitions
+        {
+            Files = new[]
             {
-                Manufacturer = "DIAL",
-                CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
-                CreatedWithApplication = "Visual Studio Code",
-                FormatVersion = FormatVersion.V100
+                new GldfFile
+                {
+                    Id = "eulumdat",
+                    ContentType = FileContentType.LdcEulumdat,
+                    Type = FileType.Url,
+                    File = "https://example.org/eulumdat.ldt"
+                },
+                new GldfFile
+                {
+                    Id = "geometryFile",
+                    ContentType = FileContentType.GeoL3d,
+                    Type = FileType.Url,
+                    File = "https://example.org/geometry.l3d"
+                }
             },
-            GeneralDefinitions = new GeneralDefinitions
+            Photometries = new[]
             {
-                Files = new[]
+                new Photometry
                 {
-                    new GldfFile
+                    Id = "photometry",
+                    Content = new PhotometryFileReference
                     {
-                        Id = "eulumdat",
-                        ContentType = FileContentType.LdcEulumdat,
-                        Type = FileType.Url,
-                        File = "https://example.org/eulumdat.ldt"
-                    },
-                    new GldfFile
-                    {
-                        Id = "geometryFile",
-                        ContentType = FileContentType.GeoL3d,
-                        Type = FileType.Url,
-                        File = "https://example.org/geometry.l3d"
+                        FileId = "eulumdat"
                     }
-                },
-                Photometries = new[]
+                }
+            },
+            Emitters = new[]
+            {
+                new Emitter
                 {
-                    new Photometry
+                    Id = "emitter",
+                    PossibleFittings = new EmitterBase[]
                     {
-                        Id = "photometry",
-                        Content = new PhotometryFileReference
+                        new ChangeableLightEmitter
                         {
-                            FileId = "eulumdat"
-                        }
-                    }
-                },
-                Emitters = new[]
-                {
-                    new Emitter
-                    {
-                        Id = "emitter",
-                        PossibleFittings = new EmitterBase[]
-                        {
-                            new ChangeableLightEmitter
+                            PhotometryReference = new PhotometryReference
                             {
-                                PhotometryReference = new PhotometryReference
-                                {
-                                    PhotometryId = "photometry"
-                                }
-                            }
-                        }
-                    }
-                },
-                Geometries = new Geometry[]
-                {
-                    new ModelGeometry
-                    {
-                        Id = "geometry",
-                        GeometryFileReferences = new GeometryFileReference[]
-                        {
-                            new()
-                            {
-                                FileId = "geometryFile",
-                                LevelOfDetail = LevelOfDetail.Low
-                            },
-                            new()
-                            {
-                                FileId = "geometryFile",
-                                LevelOfDetail = LevelOfDetail.Medium
-                            },
-                            new()
-                            {
-                                FileId = "geometryFile",
-                                LevelOfDetail = LevelOfDetail.High
+                                PhotometryId = "photometry"
                             }
                         }
                     }
                 }
             },
-            ProductDefinitions = new ProductDefinitions
+            Geometries = new GeometryBase[]
             {
-                ProductMetaData = new ProductMetaData
+                new ModelGeometry
                 {
-                    ProductNumber = new[]
+                    Id = "geometry",
+                    GeometryFileReferences = new GeometryFileReference[]
                     {
-                        new Locale
+                        new()
                         {
-                            Language = "en",
-                            Text = "Product number"
-                        }
-                    },
-                    Name = new[]
-                    {
-                        new Locale
+                            FileId = "geometryFile",
+                            LevelOfDetail = LevelOfDetail.Low
+                        },
+                        new()
                         {
-                            Language = "en",
-                            Text = "Product name"
+                            FileId = "geometryFile",
+                            LevelOfDetail = LevelOfDetail.Medium
+                        },
+                        new()
+                        {
+                            FileId = "geometryFile",
+                            LevelOfDetail = LevelOfDetail.High
                         }
                     }
-                },
-                Variants = new[]
+                }
+            }
+        },
+        ProductDefinitions = new ProductDefinitions
+        {
+            ProductMetaData = new ProductMetaData
+            {
+                UniqueProductId = "Product 1",
+                ProductNumber = new[]
                 {
-                    new Variant
+                    new Locale
                     {
-                        Id = "variant-1",
-                        Name = new[]
+                        Language = "en",
+                        Text = "Product number"
+                    }
+                },
+                Name = new[]
+                {
+                    new Locale
+                    {
+                        Language = "en",
+                        Text = "Product name"
+                    }
+                }
+            },
+            Variants = new[]
+            {
+                new Variant
+                {
+                    Id = "variant-1",
+                    Name = new[]
+                    {
+                        new Locale { Language = "en", Text = "Variant 1" }
+                    },
+                    Geometry = new GeometryReference
+                    {
+                        Reference = new ModelGeometryReference
                         {
-                            new Locale { Language = "en", Text = "Variant 1" }
-                        },
-                        Geometry = new Geometry
-                        {
-                            Reference = new ModelGeometryReference
+                            GeometryId = "geometry",
+                            EmitterReferences = new[]
                             {
-                                GeometryId = "geometry",
-                                EmitterReferences = new[]
+                                new GeometryEmitterReference
                                 {
-                                    new GeometryEmitterReference
-                                    {
-                                        EmitterId = "emitter",
-                                        EmitterObjectExternalName = "Leo"
-                                    }
+                                    EmitterId = "emitter",
+                                    EmitterObjectExternalName = "Leo"
                                 }
                             }
                         }
                     }
                 }
             }
-        };
-    }
+        }
+    };
 }

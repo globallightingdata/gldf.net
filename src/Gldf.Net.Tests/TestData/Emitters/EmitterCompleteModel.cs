@@ -1,242 +1,251 @@
-﻿using Gldf.Net.Domain;
-using Gldf.Net.Domain.Definition;
-using Gldf.Net.Domain.Definition.Types;
-using Gldf.Net.Domain.Global;
-using Gldf.Net.Domain.Head;
-using Gldf.Net.Domain.Product;
-using Gldf.Net.Domain.Product.Types;
+﻿using Gldf.Net.Domain.Xml;
+using Gldf.Net.Domain.Xml.Definition;
+using Gldf.Net.Domain.Xml.Definition.Types;
+using Gldf.Net.Domain.Xml.Global;
+using Gldf.Net.Domain.Xml.Head;
+using Gldf.Net.Domain.Xml.Head.Types;
+using Gldf.Net.Domain.Xml.Product;
+using Gldf.Net.Domain.Xml.Product.Types;
 using System;
 
-namespace Gldf.Net.Tests.TestData.Emitters
+namespace Gldf.Net.Tests.TestData.Emitters;
+
+public static class EmitterCompleteModel
 {
-    public class EmitterCompleteModel
+    public static Root Root => new()
     {
-        public static Root Root => new()
+        Header = new Header
         {
-            Header = new Header
+            Manufacturer = "DIAL",
+            GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
+            CreatedWithApplication = "Visual Studio Code",
+            FormatVersion = new FormatVersion { Major = 1, Minor = 0, PreRelease = 2, PreReleaseSpecified = true },
+            UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E"
+        },
+        GeneralDefinitions = new GeneralDefinitions
+        {
+            Files = new[]
             {
-                Manufacturer = "DIAL",
-                CreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
-                CreatedWithApplication = "Visual Studio Code"
+                new GldfFile
+                {
+                    Id = "eulumdat",
+                    ContentType = FileContentType.LdcEulumdat,
+                    Type = FileType.Url,
+                    File = "https://example.org/eulumdat.ldt"
+                },
+                new GldfFile
+                {
+                    Id = "sensorFile",
+                    ContentType = FileContentType.SensorSensXml,
+                    Type = FileType.Url,
+                    File = "https://example.org/sensor.xml"
+                }
             },
-            GeneralDefinitions = new GeneralDefinitions
+            Sensors = new[]
             {
-                Files = new[]
+                new Sensor
                 {
-                    new GldfFile
+                    Id = "sensor",
+                    SensorFileReference = new SensorFileReference
                     {
-                        Id = "eulumdat",
-                        ContentType = FileContentType.LdcEulumdat,
-                        Type = FileType.Url,
-                        File = "https://example.org/eulumdat.ldt"
-                    },
-                    new GldfFile
-                    {
-                        Id = "sensorFile",
-                        ContentType = FileContentType.SensorSensXml,
-                        Type = FileType.Url,
-                        File = "https://example.org/sensor.xml"
+                        FileId = "sensorFile"
                     }
-                },
-                Sensors = new[]
+                }
+            },
+            Photometries = new[]
+            {
+                new Photometry
                 {
-                    new Sensor
+                    Id = "photometry",
+                    Content = new PhotometryFileReference
                     {
-                        Id = "sensor",
-                        SensorFileReference = new SensorFileReference
-                        {
-                            FileId = "sensorFile"
-                        }
+                        FileId = "eulumdat"
                     }
-                },
-                Photometries = new[]
+                }
+            },
+            LightSources = new LightSourceBase[]
+            {
+                new ChangeableLightSource
                 {
-                    new Photometry
+                    Id = "lightSource",
+                    Name = new[]
                     {
-                        Id = "photometry",
-                        Content = new PhotometryFileReference
+                        new Locale
                         {
-                            FileId = "eulumdat"
-                        }
-                    }
-                },
-                LightSources = new LightSourceBase[]
-                {
-                    new ChangeableLightSource
-                    {
-                        Id = "lightSource",
-                        Name = new[]
-                        {
-                            new Locale
-                            {
-                                Language = "en",
-                                Text = "LightSource name"
-                            }
-                        },
-                        RatedInputPower = 50,
-                        RatedLuminousFlux = 250
-                    }
-                },
-                Equipments = new[]
-                {
-                    new Equipment
-                    {
-                        Id = "equipment",
-                        LightSourceReference = new LightSourceReference
-                        {
-                            ChangeableLightSourceId = "lightSource"
-                        },
-                        RatedInputPower = 10
-                    }
-                },
-                Emitters = new[]
-                {
-                    new Emitter
-                    {
-                        Id = "emitter-1",
-                        PossibleFittings = new EmitterBase[]
-                        {
-                            new ChangeableLightEmitter
-                            {
-                                Name = new[]
-                                {
-                                    new Locale
-                                    {
-                                        Language = "en",
-                                        Text = "Display name"
-                                    },
-                                    new Locale
-                                    {
-                                        Language = "de",
-                                        Text = "Anzeigename"
-                                    }
-                                },
-                                PhotometryReference = new PhotometryReference
-                                {
-                                    PhotometryId = "photometry"
-                                },
-                                Rotation = new Rotation
-                                {
-                                    X = 1,
-                                    Y = 2,
-                                    Z = 3,
-                                    G0 = 4
-                                }
-                            },
-                            new ChangeableLightEmitter
-                            {
-                                PhotometryReference = new PhotometryReference
-                                {
-                                    PhotometryId = "photometry"
-                                },
-                                EquipmentReference = new EquipmentReference
-                                {
-                                    EquipmentId = "equipment"
-                                }
-                            },
-                            new ChangeableLightEmitter
-                            {
-                                EmergencyBehaviour = EmergencyBehaviour.None,
-                                PhotometryReference = new PhotometryReference
-                                {
-                                    PhotometryId = "photometry"
-                                }
-                            },
-                            new ChangeableLightEmitter
-                            {
-                                EmergencyBehaviour = EmergencyBehaviour.Combined,
-                                PhotometryReference = new PhotometryReference
-                                {
-                                    PhotometryId = "photometry"
-                                }
-                            },
-                            new ChangeableLightEmitter
-                            {
-                                EmergencyBehaviour = EmergencyBehaviour.EmergencyOnly,
-                                PhotometryReference = new PhotometryReference
-                                {
-                                    PhotometryId = "photometry"
-                                }
-                            }
+                            Language = "en",
+                            Text = "LightSource name"
                         }
                     },
-                    new Emitter
+                    RatedInputPower = 50,
+                    RatedLuminousFlux = 250
+                }
+            },
+            Equipments = new[]
+            {
+                new Equipment
+                {
+                    Id = "equipment",
+                    LightSourceReference = new LightSourceReference
                     {
-                        Id = "emitter-2",
-                        PossibleFittings = new EmitterBase[]
+                        ChangeableLightSourceId = "lightSource"
+                    },
+                    RatedInputPower = 10
+                }
+            },
+            Emitters = new[]
+            {
+                new Emitter
+                {
+                    Id = "emitter-1",
+                    PossibleFittings = new EmitterBase[]
+                    {
+                        new ChangeableLightEmitter
                         {
-                            new SensorEmitter
+                            Name = new[]
                             {
-                                SensorId = "sensor",
-                                Name = new[]
+                                new Locale
                                 {
-                                    new Locale
-                                    {
-                                        Language = "en",
-                                        Text = "Display name"
-                                    },
-                                    new Locale
-                                    {
-                                        Language = "de",
-                                        Text = "Anzeigename"
-                                    }
+                                    Language = "en",
+                                    Text = "Display name"
                                 },
-                                Rotation = new Rotation
+                                new Locale
                                 {
-                                    X = 10.1,
-                                    Y = 11.2,
-                                    Z = 12.3,
-                                    G0 = 13.4
+                                    Language = "de",
+                                    Text = "Anzeigename"
                                 }
                             },
-                            new SensorEmitter
+                            PhotometryReference = new PhotometryReference
+                            {
+                                PhotometryId = "photometry"
+                            },
+                            Rotation = new Rotation
+                            {
+                                X = 1,
+                                Y = 2,
+                                Z = 3,
+                                G0 = 4
+                            }
+                        },
+                        new ChangeableLightEmitter
+                        {
+                            PhotometryReference = new PhotometryReference
+                            {
+                                PhotometryId = "photometry"
+                            },
+                            EquipmentReference = new EquipmentReference
+                            {
+                                EquipmentId = "equipment"
+                            }
+                        },
+                        new ChangeableLightEmitter
+                        {
+                            EmergencyBehaviour = EmergencyBehaviour.None,
+                            PhotometryReference = new PhotometryReference
+                            {
+                                PhotometryId = "photometry"
+                            }
+                        },
+                        new ChangeableLightEmitter
+                        {
+                            EmergencyBehaviour = EmergencyBehaviour.Combined,
+                            PhotometryReference = new PhotometryReference
+                            {
+                                PhotometryId = "photometry"
+                            }
+                        },
+                        new ChangeableLightEmitter
+                        {
+                            EmergencyBehaviour = EmergencyBehaviour.EmergencyOnly,
+                            PhotometryReference = new PhotometryReference
+                            {
+                                PhotometryId = "photometry"
+                            }
+                        }
+                    }
+                },
+                new Emitter
+                {
+                    Id = "emitter-2",
+                    PossibleFittings = new EmitterBase[]
+                    {
+                        new SensorEmitter
+                        {
+                            Name = new[]
+                            {
+                                new Locale
+                                {
+                                    Language = "en",
+                                    Text = "Display name"
+                                },
+                                new Locale
+                                {
+                                    Language = "de",
+                                    Text = "Anzeigename"
+                                }
+                            },
+                            Rotation = new Rotation
+                            {
+                                X = 10.1,
+                                Y = 11.2,
+                                Z = 12.3,
+                                G0 = 13.4
+                            },
+                            SensorReference = new SensorReference
+                            {
+                                SensorId = "sensor"
+                            }
+                        },
+                        new SensorEmitter
+                        {
+                            SensorReference = new SensorReference
                             {
                                 SensorId = "sensor"
                             }
                         }
                     }
                 }
-            },
-            ProductDefinitions = new ProductDefinitions
+            }
+        },
+        ProductDefinitions = new ProductDefinitions
+        {
+            ProductMetaData = new ProductMetaData
             {
-                ProductMetaData = new ProductMetaData
+                UniqueProductId = "Product 1",
+                ProductNumber = new[]
                 {
-                    ProductNumber = new[]
+                    new Locale
                     {
-                        new Locale
-                        {
-                            Language = "en",
-                            Text = "Product number"
-                        }
-                    },
-                    Name = new[]
-                    {
-                        new Locale
-                        {
-                            Language = "en",
-                            Text = "Product name"
-                        }
+                        Language = "en",
+                        Text = "Product number"
                     }
                 },
-                Variants = new[]
+                Name = new[]
                 {
-                    new Variant
+                    new Locale
                     {
-                        Id = "variant-1",
-                        Name = new[]
+                        Language = "en",
+                        Text = "Product name"
+                    }
+                }
+            },
+            Variants = new[]
+            {
+                new Variant
+                {
+                    Id = "variant-1",
+                    Name = new[]
+                    {
+                        new Locale { Language = "en", Text = "Variant 1" }
+                    },
+                    Geometry = new GeometryReference
+                    {
+                        Reference = new EmitterReference
                         {
-                            new Locale { Language = "en", Text = "Variant 1" }
-                        },
-                        Geometry = new Geometry
-                        {
-                            Reference = new EmitterReference
-                            {
-                                EmitterId = "emitter-1"
-                            }
+                            EmitterId = "emitter-1"
                         }
                     }
                 }
             }
-        };
-    }
+        }
+    };
 }

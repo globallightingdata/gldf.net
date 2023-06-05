@@ -1,11 +1,13 @@
 ﻿using Gldf.Net.Container;
+using System.IO;
 
-namespace Gldf.Net.Abstract
+namespace Gldf.Net.Abstract;
+
+public interface IGldfContainerWriter
 {
-    public interface IGldfContainerWriter
-    {
-        void WriteToFile(string filePath, GldfContainer gldfContainer);
+    void WriteToGldfFile(string gldfFilePath, GldfContainer gldf);
 
-        void CreateFromDirectory(string sourceDirectory, string targetContainerFilePath);
-    }
+    void WriteToGldfStream(Stream zipStream, bool leaveOpen, GldfContainer gldf);
+
+    void CreateFromDirectory(string sourceDirectory, string targetContainerFilePath);
 }

@@ -1,47 +1,54 @@
 ﻿using Gldf.Net.Abstract;
 using Gldf.Net.Container;
 using Gldf.Net.Exceptions;
+using Gldf.Net.Validation.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
-namespace Gldf.Net.Validation.Rules.Zip
+namespace Gldf.Net.Validation.Rules.Zip;
+
+internal class HasNoLargeFilesRule : IZipArchiveValidationRule
 {
-    internal class HasNoLargeFilesRule : IZipArchiveValidationRule
+    public const int LimitInBytes = 5 * 1024 * 1024;
+
+    public IEnumerable<ValidationHint> ValidateGldfFile(string gldfFilePath) =>
+        ValidateSafe(() =>
+        {
+            var toLargeFiles = ZipArchiveReader.GetLargeFileNames(gldfFilePath, LimitInBytes).ToArray();
+            return toLargeFiles.Any()
+                ? ValidationHint.Warning("Large files found. It is recommended to limit the " +
+                                         "maximum file size to 5MB each: " +
+                                         $"{FlattenFileNames(toLargeFiles)}", ErrorType.TooLargeFiles)
+                : ValidationHint.Empty();
+        });
+
+    public IEnumerable<ValidationHint> ValidateGldfStream(Stream zipStream, bool leaveOpen) =>
+        ValidateSafe(() =>
+        {
+            var toLargeFiles = ZipArchiveReader.GetLargeFileNames(zipStream, leaveOpen, LimitInBytes).ToArray();
+            return toLargeFiles.Any()
+                ? ValidationHint.Warning("Large files found. It is recommended to limit the " +
+                                         "maximum file size to 5MB each: " +
+                                         $"{FlattenFileNames(toLargeFiles)}", ErrorType.TooLargeFiles)
+                : ValidationHint.Empty();
+        });
+
+    private static string FlattenFileNames(IEnumerable<string> filesWithoutAssets) =>
+        filesWithoutAssets.Aggregate(string.Empty, (result, fileName)
+            => result == string.Empty ? $"{fileName}" : $"{result}, {fileName}");
+
+    private static IEnumerable<ValidationHint> ValidateSafe(Func<IEnumerable<ValidationHint>> func)
     {
-        public int Priority => 50;
-        public const int LimitInBytes = 5 * 1024 * 1024;
-
-        private readonly ZipArchiveReader _zipArchiveReader;
-
-        public HasNoLargeFilesRule()
+        try
         {
-            _zipArchiveReader = new ZipArchiveReader();
+            return func();
         }
-
-        public IEnumerable<ValidationHint> Validate(string filePath)
+        catch (Exception e)
         {
-            try
-            {
-                var toLargeFiles = _zipArchiveReader.GetLargeFileNames(filePath, LimitInBytes).ToList();
-                return toLargeFiles.Any()
-                    ? ValidationHint.Warning("Large files found. It is recommended to limit the " +
-                                             "maximum file size to 5MB each: " +
-                                             $"{FlattenFileNames(toLargeFiles)}", ErrorType.ToLargeFiles)
-                    : ValidationHint.Empty();
-            }
-            catch (Exception e)
-            {
-                return ValidationHint.Warning($"The GLDF container '{filePath}' could not be validated " +
-                                              "to have no large Files. " +
-                                              $"Error: {e.FlattenMessage()}", ErrorType.ToLargeFiles);
-            }
-        }
-
-        private static string FlattenFileNames(IEnumerable<string> filesWithoutAssets)
-        {
-            return filesWithoutAssets.Aggregate(string.Empty, (result, fileName)
-                => result == string.Empty ? $"{fileName}" : $"{result}, {fileName}");
+            return ValidationHint.Warning($"The GLDF container could not be validated to have no large Files. " +
+                                          $"Error: {e.FlattenMessage()}", ErrorType.TooLargeFiles);
         }
     }
 }

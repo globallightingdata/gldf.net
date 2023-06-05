@@ -1,19 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/1.0.0-rc.1/gldf.xsd">
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/1.0.0-rc.2/gldf.xsd">
     <Header>
-        <Author>Author</Author>
-        <Manufacturer>Manufacturer</Manufacturer>
-        <CreationTimeCode>2021-03-29T14:30:00Z</CreationTimeCode>
-        <CreatedWithApplication>CreatedWithApplication</CreatedWithApplication>
-        <FormatVersion>1.0.0-rc.1</FormatVersion>
+        <Manufacturer>DIAL</Manufacturer>
+        <FormatVersion major="1" minor="0" pre-release="2" />
+        <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
+        <GldfCreationTimeCode>2021-03-29T14:30:00Z</GldfCreationTimeCode>
+        <UniqueGldfId>3BE556FF-9061-4592-AEB1-1BC9D507280E</UniqueGldfId>
+        <ProductDataTimeCode>2019-10-29T06:20:30Z</ProductDataTimeCode>
         <DefaultLanguage>de</DefaultLanguage>
+        <ManufacturerLogo fileId="manufLogo"/>
         <LicenseKeys>
             <LicenseKey application="DIALux">Key 1</LicenseKey>
             <LicenseKey application="RELUX">Key 2</LicenseKey>
         </LicenseKeys>
         <ReluxMemberId>ReluxMemberId</ReluxMemberId>
         <DIALuxMemberId>DIALuxMemberId</DIALuxMemberId>
+        <Author>Author</Author>
         <Contact>
             <Address>
                 <FirstName>FirstName</FirstName>
@@ -44,6 +47,7 @@
     </Header>
     <GeneralDefinitions>
         <Files>
+            <File id="manufLogo" contentType="image/png" type="url">https://example.org/logo.png</File>
             <File id="eulumdat" contentType="ldc/eulumdat" type="url">https://example.org/eulumdat.ldt</File>
         </Files>
         <Photometries>
@@ -61,6 +65,7 @@
     </GeneralDefinitions>
     <ProductDefinitions>
         <ProductMetaData>
+            <UniqueProductId>Product 1</UniqueProductId>
             <ProductNumber>
                 <Locale language="en">Product number</Locale>
             </ProductNumber>

@@ -1,44 +1,54 @@
 ﻿using Gldf.Net.Abstract;
 using Gldf.Net.Container;
 using Gldf.Net.Exceptions;
+using Gldf.Net.Validation.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 
-namespace Gldf.Net.Validation.Rules.Zip
+namespace Gldf.Net.Validation.Rules.Zip;
+
+internal class CanDeserializeProductXmlRule : IZipArchiveValidationRule
 {
-    internal class CanDeserializeProductXmlRule : IZipArchiveValidationRule
+    private readonly GldfContainerReader _gldfContainerReader;
+    private readonly ContainerLoadSettings _loadRootOnlySettings;
+
+    public CanDeserializeProductXmlRule(Encoding encoding)
     {
-        public int Priority => 40;
-
-        private readonly GldfContainerReader _gldfContainerReader;
-
-        public CanDeserializeProductXmlRule()
+        _gldfContainerReader = new GldfContainerReader(encoding);
+        _loadRootOnlySettings = new ContainerLoadSettings
         {
-            _gldfContainerReader = new GldfContainerReader();
+            ProductLoadBehaviour = ProductLoadBehaviour.Load,
+            AssetLoadBehaviour = AssetLoadBehaviour.Skip,
+            MetaInfoLoadBehaviour = MetaInfoLoadBehaviour.Skip
+        };
+    }
+
+    public IEnumerable<ValidationHint> ValidateGldfFile(string gldfFilePath) =>
+        ValidateSafe(() =>
+            _gldfContainerReader.ReadFromGldfFile(gldfFilePath, _loadRootOnlySettings).Product != null
+                ? ValidationHint.Empty()
+                : ValidationHint.Error($"The product.xml in GLDF container '{gldfFilePath}' could not be " +
+                                       "deserialized.", ErrorType.NonDeserialisableRoot));
+
+    public IEnumerable<ValidationHint> ValidateGldfStream(Stream zipStream, bool leaveOpen) =>
+        ValidateSafe(() =>
+            _gldfContainerReader.ReadFromGldfStream(zipStream, leaveOpen, _loadRootOnlySettings).Product != null
+                ? ValidationHint.Empty()
+                : ValidationHint.Error("The product.xml in GLDF container could not be " +
+                                       "deserialized.", ErrorType.NonDeserialisableRoot));
+
+    private static IEnumerable<ValidationHint> ValidateSafe(Func<IEnumerable<ValidationHint>> func)
+    {
+        try
+        {
+            return func();
         }
-
-        public IEnumerable<ValidationHint> Validate(string filePath)
+        catch (Exception e)
         {
-            try
-            {
-                var loadRootOnlySettings = new ContainerLoadSettings
-                {
-                    ProductLoadBehaviour = ProductLoadBehaviour.Load,
-                    AssetLoadBehaviour = AssetLoadBehaviour.Skip,
-                    SignatureLoadBehaviour = SignatureLoadBehaviour.Skip
-                };
-                var container = _gldfContainerReader.ReadFromFile(filePath, loadRootOnlySettings);
-                return container.Product != null
-                    ? ValidationHint.Empty()
-                    : ValidationHint.Error($"The product.xml in GLDF container '{filePath}' could not be " +
-                                           "deserialised.", ErrorType.NonDeserialisableRoot);
-            }
-            catch (Exception e)
-            {
-                return ValidationHint.Error($"The product.xml in GLDF container '{filePath}' could " +
-                                            "not be deserialised. Error: " +
-                                            $"{e.FlattenMessage()}", ErrorType.NonDeserialisableRoot);
-            }
+            return ValidationHint.Error($"The product.xml in GLDF container could not be deserialized. Error: " +
+                                        $"{e.FlattenMessage()}", ErrorType.NonDeserialisableRoot);
         }
     }
 }
