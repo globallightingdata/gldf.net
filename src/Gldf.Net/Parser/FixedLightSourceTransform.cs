@@ -13,8 +13,8 @@ internal class FixedLightSourceTransform : TransformBase
         return ExecuteSafe(() =>
         {
             var parserDto = parserDtos[0];
-            var fixedLightSources = parserDto.Container.Product.GeneralDefinitions.LightSources?.OfType<FixedLightSource>().ToArray();
-            if (fixedLightSources?.Any() != true) return parserDto;
+            var fixedLightSources = parserDto.Container.Product.GeneralDefinitions.GetAsFixedLightSources();
+            if (!fixedLightSources.Any()) return parserDto;
             parserDto.GeneralDefinitions.FixedLightSources =
                 fixedLightSources.Select(x => Map(x, parserDto.GeneralDefinitions)).ToList();
             return parserDto;

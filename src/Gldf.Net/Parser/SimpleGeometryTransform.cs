@@ -12,9 +12,9 @@ internal class SimpleGeometryTransform : TransformBase
     {
         return ExecuteSafe(() =>
         {
-            var geometries = parserDto.Container.Product.GeneralDefinitions.Geometries;
-            if (geometries?.OfType<SimpleGeometry>().Any() != true) return parserDto;
-            parserDto.GeneralDefinitions.SimpleGeometries = geometries.OfType<SimpleGeometry>().Select(Map).ToList();
+            var simpleGeometries = parserDto.Container.Product.GeneralDefinitions.GetAsSimpleGeometries();
+            if (!simpleGeometries.Any()) return parserDto;
+            parserDto.GeneralDefinitions.SimpleGeometries = simpleGeometries.Select(Map).ToList();
             return parserDto;
         }, parserDto);
     }

@@ -14,9 +14,9 @@ internal class ModelGeometryTransform : TransformBase
     {
         return ExecuteSafe(() =>
         {
-            var geometries = parserDto.Container.Product.GeneralDefinitions.Geometries?.OfType<ModelGeometry>().ToArray();
-            if (geometries?.Any() != true) return parserDto;
-            parserDto.GeneralDefinitions.ModelGeometries = geometries.Select(x => Map(x, parserDto.GeneralDefinitions.Files)).ToList();
+            var modelGeometries = parserDto.Container.Product.GeneralDefinitions.GetAsModelGeometries();
+            if (!modelGeometries.Any()) return parserDto;
+            parserDto.GeneralDefinitions.ModelGeometries = modelGeometries.Select(x => Map(x, parserDto.GeneralDefinitions.Files)).ToList();
             return parserDto;
         }, parserDto);
     }
