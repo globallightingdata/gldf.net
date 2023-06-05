@@ -51,6 +51,7 @@ public static class EmbeddedXmlTestData
     private const string DescriptiveAttributesXml = "TestData.Descriptive.DescriptiveAttributesXml.xml";
     private const string RootWithHeaderXml = "TestData.Simple.RootWithHeaderXml.xml";
     private const string RootWithUnintendedXml = "TestData.Simple.RootWithHeaderUnintendedXml.xml";
+    private const string MissingVariantImageFileXml = "TestData.Invalid.MissingVariantImageFile.xml";
 
     private const string GeneralsEmptyXml = "TestData.Other.GeneralsEmptyXml.xml";
 
@@ -209,4 +210,7 @@ public static class EmbeddedXmlTestData
     // Meta-Information
     public static string GetMetaInformationXml() => ResourceLoader.LoadEmbeddedXml(MetaInformationXml);
     public static MetaInformation GetMetaInformationModel() => MetaInfo.MetaInfo.MetaInformation;
+    
+    // Invalid
+    public static string GetMissingVariantImageFileXml() => ResourceLoader.LoadEmbeddedXml(MissingVariantImageFileXml);
 }

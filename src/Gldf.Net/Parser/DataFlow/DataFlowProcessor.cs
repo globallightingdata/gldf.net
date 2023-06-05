@@ -1,12 +1,13 @@
 using Gldf.Net.Abstract;
 using Gldf.Net.Domain.Typed;
+using System.Collections.Generic;
 using System.Threading.Tasks.Dataflow;
 
 namespace Gldf.Net.Parser.DataFlow;
 
 internal class DataFlowProcessor : IParserProcessor
 {
-    public RootTyped Process(ParserDto parserDto)
+    public RootTyped Process(ParserDto parserDto, out IEnumerable<ParserError> errors)
     {
         // Mapping Elements 1→1 (map input from xml serializer to parser domain)
         var transformFiles = new TransformBlock<ParserDto, ParserDto>(FilesTransform.Map);
@@ -93,6 +94,8 @@ internal class DataFlowProcessor : IParserProcessor
 
         broadcastContainer.Post(parserDto);
         broadcastContainer.Complete();
+        errors = parserDto.Errors;
+        
         return transformLuminaire.Receive();
     }
 }

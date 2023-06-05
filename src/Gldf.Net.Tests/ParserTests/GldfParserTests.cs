@@ -3,6 +3,7 @@ using Gldf.Net.Container;
 using Gldf.Net.Parser;
 using Gldf.Net.Tests.TestData;
 using NUnit.Framework;
+using System;
 using System.IO;
 using System.Text;
 
@@ -34,7 +35,7 @@ public class GldfParserTests
     {
         var settings = new ParserSettings(LocalFileLoadBehaviour.Skip);
         var gldfParser = new GldfParser(settings);
-        var rootTyped = gldfParser.ParseFromXml(xml);
+        var rootTyped = gldfParser.ParseFromXml(xml, out _);
         rootTyped.Should().NotBeNull();
     }
 
@@ -44,7 +45,7 @@ public class GldfParserTests
         using var memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(xml));
         var settings = new ParserSettings(LocalFileLoadBehaviour.Skip);
         var gldfParser = new GldfParser(settings);
-        var rootTyped = gldfParser.ParseFromXmlStream(memoryStream, false);
+        var rootTyped = gldfParser.ParseFromXmlStream(memoryStream, false, out _);
         rootTyped.Should().NotBeNull();
     }
 
@@ -54,7 +55,7 @@ public class GldfParserTests
         File.WriteAllText(_tempGldfPath, xml);
         var settings = new ParserSettings(LocalFileLoadBehaviour.Skip);
         var gldfParser = new GldfParser(settings);
-        var rootTyped = gldfParser.ParseFromXmlFile(_tempGldfPath);
+        var rootTyped = gldfParser.ParseFromXmlFile(_tempGldfPath, out _);
         rootTyped.Should().NotBeNull();
     }
 
@@ -65,7 +66,7 @@ public class GldfParserTests
         var container = new GldfContainerReader().ReadFromGldfStream(memoryStream, false);
         var settings = new ParserSettings(LocalFileLoadBehaviour.Skip);
         var gldfParser = new GldfParser(settings);
-        var rootTyped = gldfParser.ParseFromRoot(container.Product);
+        var rootTyped = gldfParser.ParseFromRoot(container.Product, out _);
         rootTyped.Should().NotBeNull();
     }
 
@@ -76,7 +77,7 @@ public class GldfParserTests
         var container = new GldfContainerReader().ReadFromGldfStream(memoryStream, false);
         var settings = new ParserSettings(LocalFileLoadBehaviour.Skip);
         var gldfParser = new GldfParser(settings);
-        var rootTyped = gldfParser.ParseFromGldf(container);
+        var rootTyped = gldfParser.ParseFromGldf(container, out _);
         rootTyped.Should().NotBeNull();
     }
 
@@ -86,7 +87,7 @@ public class GldfParserTests
         File.WriteAllBytes(_tempGldfPath, gldf);
         var settings = new ParserSettings(LocalFileLoadBehaviour.Skip);
         var gldfParser = new GldfParser(settings);
-        var rootTyped = gldfParser.ParseFromGldfFile(_tempGldfPath);
+        var rootTyped = gldfParser.ParseFromGldfFile(_tempGldfPath, out _);
         rootTyped.Should().NotBeNull();
     }
 
@@ -96,7 +97,7 @@ public class GldfParserTests
         using var memoryStream = new MemoryStream(gldf);
         var settings = new ParserSettings(LocalFileLoadBehaviour.Skip);
         var gldfParser = new GldfParser(settings);
-        var rootTyped = gldfParser.ParseFromGldfStream(memoryStream, false);
+        var rootTyped = gldfParser.ParseFromGldfStream(memoryStream, false, out _);
         rootTyped.Should().NotBeNull();
     }
 
@@ -106,7 +107,7 @@ public class GldfParserTests
         var xml = EmbeddedXmlTestData.GetHeaderMandatoryXml();
         var expected = EmbeddedXmlTestData.GetHeaderMandatoryTyped();
         var gldfParser = new GldfParser();
-        var rootTyped = gldfParser.ParseFromXml(xml);
+        var rootTyped = gldfParser.ParseFromXml(xml, out _);
         rootTyped.Should().BeEquivalentTo(expected);
     }
 
@@ -117,7 +118,7 @@ public class GldfParserTests
         var expected = EmbeddedXmlTestData.GetHeaderMandatoryTyped();
         File.WriteAllText(_tempGldfPath, xml);
         var gldfParser = new GldfParser();
-        var rootTyped = gldfParser.ParseFromXmlFile(_tempGldfPath);
+        var rootTyped = gldfParser.ParseFromXmlFile(_tempGldfPath, out _);
         rootTyped.Should().BeEquivalentTo(expected);
     }
 
@@ -128,7 +129,7 @@ public class GldfParserTests
         var expected = EmbeddedXmlTestData.GetHeaderMandatoryTyped();
         using var memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(xml));
         var gldfParser = new GldfParser();
-        var rootTyped = gldfParser.ParseFromXmlStream(memoryStream, false);
+        var rootTyped = gldfParser.ParseFromXmlStream(memoryStream, false, out _);
         rootTyped.Should().BeEquivalentTo(expected);
     }
 
@@ -138,7 +139,7 @@ public class GldfParserTests
         var root = EmbeddedXmlTestData.GetHeaderMandatoryModel();
         var expected = EmbeddedXmlTestData.GetHeaderMandatoryTyped();
         var gldfParser = new GldfParser();
-        var rootTyped = gldfParser.ParseFromRoot(root);
+        var rootTyped = gldfParser.ParseFromRoot(root, out _);
         rootTyped.Should().BeEquivalentTo(expected);
     }
 
@@ -148,7 +149,7 @@ public class GldfParserTests
         var root = EmbeddedXmlTestData.GetHeaderMandatoryModel();
         var expected = EmbeddedXmlTestData.GetHeaderMandatoryTyped();
         var gldfParser = new GldfParser();
-        var rootTyped = gldfParser.ParseFromGldf(new GldfContainer(root));
+        var rootTyped = gldfParser.ParseFromGldf(new GldfContainer(root), out _);
         rootTyped.Should().BeEquivalentTo(expected);
     }
 
@@ -160,7 +161,7 @@ public class GldfParserTests
         new GldfContainerWriter().WriteToGldfFile(_tempGldfPath, gldfContainer);
         var expected = EmbeddedXmlTestData.GetHeaderMandatoryTyped();
         var gldfParser = new GldfParser();
-        var rootTyped = gldfParser.ParseFromGldfFile(_tempGldfPath);
+        var rootTyped = gldfParser.ParseFromGldfFile(_tempGldfPath, out _);
         rootTyped.Should().BeEquivalentTo(expected);
     }
 
@@ -174,7 +175,7 @@ public class GldfParserTests
         var expected = EmbeddedXmlTestData.GetHeaderMandatoryTyped();
         var gldfParser = new GldfParser();
         memoryStream.Seek(0, SeekOrigin.Begin);
-        var rootTyped = gldfParser.ParseFromGldfStream(memoryStream, false);
+        var rootTyped = gldfParser.ParseFromGldfStream(memoryStream, false, out _);
         rootTyped.Should().BeEquivalentTo(expected);
     }
 }

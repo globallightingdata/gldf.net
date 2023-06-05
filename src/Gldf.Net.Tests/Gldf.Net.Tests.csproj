@@ -35,6 +35,7 @@
         <EmbeddedResource Include="TestData\Geometries\GeometryMandatoryXml.xml" />
         <EmbeddedResource Include="TestData\Head\HeaderCompleteXml.xml" />
         <EmbeddedResource Include="TestData\Head\HeaderMandatoryXml.xml" />
+        <EmbeddedResource Include="TestData\Invalid\MissingVariantImageFile.xml" />
         <EmbeddedResource Include="TestData\LightSources\ChangeableCompleteXml.xml" />
         <EmbeddedResource Include="TestData\LightSources\FixedCompleteXml.xml" />
         <EmbeddedResource Include="TestData\LightSources\LightSourceMandatoryXml.xml" />

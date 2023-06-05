@@ -14,7 +14,7 @@ public class ModelParserTests
     public void ParseXml_ShouldBeExpected(string xml, RootTyped expected)
     {
         var gldfParser = new GldfParser(new ParserSettings(LocalFileLoadBehaviour.Skip));
-        var rootTyped = gldfParser.ParseFromXml(xml);
+        var rootTyped = gldfParser.ParseFromXml(xml, out _);
         AssertionOptions.FormattingOptions.MaxDepth = 10;
         AssertionOptions.FormattingOptions.MaxLines = 1000;
         rootTyped.Should().BeEquivalentTo(expected, opt => opt.WithStrictOrdering());

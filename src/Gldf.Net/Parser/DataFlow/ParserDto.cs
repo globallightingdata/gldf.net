@@ -2,6 +2,7 @@ using Gldf.Net.Container;
 using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Typed.Head;
 using Gldf.Net.Domain.Typed.Product;
+using System.Collections.Generic;
 
 namespace Gldf.Net.Parser.DataFlow;
 
@@ -17,6 +18,10 @@ internal class ParserDto
 
     public ProductDefinitionsTyped ProductDefinitions { get; }
 
+    public List<ParserError> Errors { get; }
+
+    public bool HasParsingErrors => Errors.Count > 0;
+
     public ParserDto(GldfContainer container, ParserSettings settings)
     {
         Container = container;
@@ -24,5 +29,6 @@ internal class ParserDto
         Header = new HeaderTyped();
         GeneralDefinitions = new GeneralDefinitionsTyped();
         ProductDefinitions = new ProductDefinitionsTyped();
+        Errors = new List<ParserError>();
     }
 }
