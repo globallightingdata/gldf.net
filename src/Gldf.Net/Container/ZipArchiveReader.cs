@@ -20,26 +20,26 @@ internal class ZipArchiveReader : ZipArchiveIO
     public static bool IsZipArchive(string filePath) =>
         EvaluateFuncSafe(() =>
         {
-            using var _ = ZipFile.OpenRead(filePath);
+            using var _ = OpenRead(filePath);
             return true;
         });
 
     public static bool IsZipArchive(Stream stream, bool leaveOpen) =>
         EvaluateFuncSafe(() =>
         {
-            using var _ = new ZipArchive(stream, ZipArchiveMode.Read, leaveOpen);
+            using var _ = OpenRead(stream, leaveOpen);
             return true;
         });
 
     public static bool ContainsRootXml(string filePath)
     {
-        using var zipArchive = ZipFile.OpenRead(filePath);
+        using var zipArchive = OpenRead(filePath);
         return ContainsProductXmlEntry(zipArchive);
     }
 
     public static bool ContainsRootXml(Stream zipStream, bool leaveOpen)
     {
-        using var zipArchive = new ZipArchive(zipStream, ZipArchiveMode.Read, leaveOpen);
+        using var zipArchive = OpenRead(zipStream, leaveOpen);
         return ContainsProductXmlEntry(zipArchive);
     }
 
@@ -51,25 +51,25 @@ internal class ZipArchiveReader : ZipArchiveIO
 
     public GldfContainer ReadContainer(string filePath, ContainerLoadSettings settings)
     {
-        using var zipArchive = ZipFile.OpenRead(filePath);
+        using var zipArchive = OpenRead(filePath);
         return ReadZipContent(zipArchive, settings);
     }
 
     public GldfContainer ReadContainer(Stream zipStream, bool leaveOpen, ContainerLoadSettings settings)
     {
-        using var zipArchive = new ZipArchive(zipStream, ZipArchiveMode.Read, leaveOpen);
+        using var zipArchive = OpenRead(zipStream, leaveOpen);
         return ReadZipContent(zipArchive, settings);
     }
 
     public string ReadRootXml(string filePath)
     {
-        using var zipArchive = ZipFile.OpenRead(filePath);
+        using var zipArchive = OpenRead(filePath);
         return ReadXml(zipArchive, GldfStaticNames.Files.Product, GldfXmlSerializer.Encoding);
     }
 
     public string ReadRootXml(Stream zipStream, bool leaveOpen)
     {
-        using var zipArchive = new ZipArchive(zipStream, ZipArchiveMode.Read, leaveOpen);
+        using var zipArchive = OpenRead(zipStream, leaveOpen);
         return ReadXml(zipArchive, GldfStaticNames.Files.Product, GldfXmlSerializer.Encoding);
     }
 
@@ -93,13 +93,13 @@ internal class ZipArchiveReader : ZipArchiveIO
 
     public static IEnumerable<string> GetLargeFileNames(string filePath, long minBytes)
     {
-        using var zipArchive = ZipFile.OpenRead(filePath);
+        using var zipArchive = OpenRead(filePath);
         return zipArchive.Entries.Where(e => e.Length >= minBytes).Select(e => e.FullName);
     }
 
     public static IEnumerable<string> GetLargeFileNames(Stream zipStream, bool leaveOpen, long minBytes)
     {
-        using var zipArchive = new ZipArchive(zipStream, ZipArchiveMode.Read, leaveOpen);
+        using var zipArchive = OpenRead(zipStream, leaveOpen);
         return zipArchive.Entries.Where(e => e.Length >= minBytes).Select(e => e.FullName);
     }
 

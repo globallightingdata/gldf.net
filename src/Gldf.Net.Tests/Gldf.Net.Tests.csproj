@@ -61,6 +61,8 @@
         <EmbeddedResource Include="TestData\Container\GldfWithMissingFiles.gldf" />
         <EmbeddedResource Include="TestData\Container\GldfWithFilesComplete.gldf" />
         <EmbeddedResource Include="TestData\Container\GldfWithMetaInfo.gldf" />
+        <EmbeddedResource Include="TestData\Container\GldfWithCodepage850.gldf" />
+        <EmbeddedResource Include="TestData\Container\GldfWithEncodingUtf8.gldf" />
         <EmbeddedResource Include="TestData\MetaInfo\meta-information.xml" />
     </ItemGroup>
 
