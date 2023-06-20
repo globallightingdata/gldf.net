@@ -60,6 +60,24 @@ public class ZipArchiveIOTests
         zipArchive.Entries.Select(e => e.Name).Should().Contain("Äöü°§.ldt");
     }
 
+    [Test, TestCaseSource(nameof(TestGldfsWithEncoding))]
+    public void OpenReadStream_ShouldCloseStream_WhenLeaveOpenSetToFalse(byte[] gldf)
+    {
+        using var memoryStream = new MemoryStream(gldf);
+        using var zipArchive = ZipArchiveIODerived.OpenRead(memoryStream, false);
+        zipArchive.Dispose();
+        memoryStream.CanWrite.Should().BeFalse();
+    }
+
+    [Test, TestCaseSource(nameof(TestGldfsWithEncoding))]
+    public void OpenReadStream_ShouldKeepStreamOpen_WhenLeaveOpenSetToTrue(byte[] gldf)
+    {
+        using var memoryStream = new MemoryStream(gldf);
+        using var zipArchive = ZipArchiveIODerived.OpenRead(memoryStream, true);
+        zipArchive.Dispose();
+        memoryStream.CanWrite.Should().BeTrue();
+    }
+
     public static IEnumerable<TestCaseData> TestGldfsWithEncoding => new[]
     {
         new TestCaseData(EmbeddedGldfTestData.GetGldfWithEncodingUtf8()).SetName("When Encoding Utf8"),
