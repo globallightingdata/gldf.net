@@ -65,7 +65,10 @@ public static class LightSourceMandatoryTyped
                         }
                     },
                     RatedInputPower = 50
-                },
+                }
+            },
+            ChangeableLightSources = new List<ChangeableLightSourceTyped>
+            {
                 new()
                 {
                     Id = "lightSource-2",
@@ -78,6 +81,7 @@ public static class LightSourceMandatoryTyped
                         }
                     },
                     RatedInputPower = 60,
+                    RatedLuminousFlux = 500,
                     ColorInformation = new ColorInformationTyped()
                 }
             },

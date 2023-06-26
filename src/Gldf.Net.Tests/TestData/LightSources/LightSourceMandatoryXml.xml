@@ -24,13 +24,14 @@
                 </Name>
                 <RatedInputPower>50</RatedInputPower>
             </FixedLightSource>
-            <FixedLightSource id="lightSource-2">
+            <ChangeableLightSource id="lightSource-2">
                 <Name>
                     <Locale language="en">LightSource name 2</Locale>
                 </Name>
                 <RatedInputPower>60</RatedInputPower>
-                <ColorInformation />
-            </FixedLightSource>
+                <ColorInformation/>
+                <RatedLuminousFlux>500</RatedLuminousFlux>
+            </ChangeableLightSource>
         </LightSources>
         <Emitters>
             <Emitter id="emitter">

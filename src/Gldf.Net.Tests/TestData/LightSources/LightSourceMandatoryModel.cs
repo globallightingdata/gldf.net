@@ -60,7 +60,7 @@ public static class LightSourceMandatoryModel
                     },
                     RatedInputPower = 50
                 },
-                new FixedLightSource
+                new ChangeableLightSource
                 {
                     Id = "lightSource-2",
                     Name = new[]
@@ -72,6 +72,7 @@ public static class LightSourceMandatoryModel
                         }
                     },
                     RatedInputPower = 60,
+                    RatedLuminousFlux = 500,
                     ColorInformation = new ColorInformation()
                 }
             },
