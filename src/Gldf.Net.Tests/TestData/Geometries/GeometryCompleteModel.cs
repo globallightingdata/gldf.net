@@ -19,7 +19,7 @@ public static class GeometryCompleteModel
             Manufacturer = "DIAL",
             GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
             CreatedWithApplication = "Visual Studio Code",
-            FormatVersion = new FormatVersion { Major = 1, Minor = 0, PreRelease = 2, PreReleaseSpecified = true },
+            FormatVersion = new FormatVersion { Major = 1, Minor = 0, PreRelease = 3, PreReleaseSpecified = true },
             UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E"
         },
         GeneralDefinitions = new GeneralDefinitions
@@ -99,7 +99,6 @@ public static class GeometryCompleteModel
                     Id = "geometry2",
                     GeometryType = new SimpleCylinderGeometry
                     {
-                        Plane = SimpleCylinderPlane.X,
                         Diameter = 1,
                         Height = 2
                     },
@@ -113,7 +112,6 @@ public static class GeometryCompleteModel
                     Id = "geometry3",
                     GeometryType = new SimpleCylinderGeometry
                     {
-                        Plane = SimpleCylinderPlane.Y,
                         Diameter = 1,
                         Height = 2
                     },
@@ -128,7 +126,6 @@ public static class GeometryCompleteModel
                     Id = "geometry4",
                     GeometryType = new SimpleCylinderGeometry
                     {
-                        Plane = SimpleCylinderPlane.Z,
                         Diameter = 1,
                         Height = 2
                     },

@@ -33,7 +33,7 @@ public class GldfEmbeddedXsdLoaderTests
     [Test]
     public void LoadXsd_ShouldLoadAllKnownVersions()
     {
-        GldfEmbeddedXsdLoader.KnownVersions.Should().HaveCount(3);
+        GldfEmbeddedXsdLoader.KnownVersions.Should().HaveCount(4);
         foreach (var knownVersion in GldfEmbeddedXsdLoader.KnownVersions)
         {
             var xsd = GldfEmbeddedXsdLoader.Load(knownVersion);
@@ -65,13 +65,14 @@ public class GldfEmbeddedXsdLoaderTests
     {
         var invalidFormatVersion = new FormatVersion(-1, -2, -3);
         var xsd = GldfEmbeddedXsdLoader.Load(invalidFormatVersion);
-        xsd.Should().Contain(@"version=""1.0.0-rc.2""");
+        xsd.Should().Contain(@"version=""1.0.0-rc.3""");
     }
 
     private static IEnumerable<TestCaseData> ExpectedXsdTestData => new[]
     {
         new TestCaseData(new FormatVersion(0, 9, 9), @"version=""0.9-beta.9"""),
         new TestCaseData(new FormatVersion(1, 0, 1), @"version=""1.0.0-rc.1"""),
-        new TestCaseData(new FormatVersion(1, 0, 2), @"version=""1.0.0-rc.2""")
+        new TestCaseData(new FormatVersion(1, 0, 2), @"version=""1.0.0-rc.2"""),
+        new TestCaseData(new FormatVersion(1, 0, 3), @"version=""1.0.0-rc.3""")
     };
 }

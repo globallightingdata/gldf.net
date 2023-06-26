@@ -128,7 +128,7 @@ public class GldfXmlValidatorTests
     [Test, TestCaseSource(nameof(ValidXmlTestCases))]
     public void ValidateXml_ShouldReturnEmptyList_WhendXmlIsValid_AndSchemaSetProvided(string xml)
     {
-        var xsd = GldfEmbeddedXsdLoader.Load(new FormatVersion(1, 0, 2));
+        var xsd = GldfEmbeddedXsdLoader.Load(new FormatVersion(1, 0, 3));
         var xmlSchema = GldfXmlSchemaFactory.CreateXmlSchema(xsd);
         var xmlValidator = new GldfXmlValidator(xmlSchema);
         var validationResult = xmlValidator.ValidateXml(xml);
@@ -211,7 +211,7 @@ public class GldfXmlValidatorTests
     [Test, TestCaseSource(nameof(ValidXmlTestCases))]
     public void ValidateFile_ShouldReturnEmptyList_WhenDataIsValid_AndXmlSchemaIsProvided(string xml)
     {
-        var xsd = GldfEmbeddedXsdLoader.Load(new FormatVersion(1, 0, 2));
+        var xsd = GldfEmbeddedXsdLoader.Load(new FormatVersion(1, 0, 3));
         var xmlSchema = GldfXmlSchemaFactory.CreateXmlSchema(xsd);
         File.WriteAllText(_tempFile, xml);
         var xmlValidator = new GldfXmlValidator(xmlSchema);
@@ -244,7 +244,7 @@ public class GldfXmlValidatorTests
     [Test, TestCaseSource(nameof(ValidXmlTestCases))]
     public void ValidateXmlStream_ShouldReturnEmptyList_WhenDataIsValid_AndXmlSchemaIsProvided(string xml)
     {
-        var xsd = GldfEmbeddedXsdLoader.Load(new FormatVersion(1, 0, 2));
+        var xsd = GldfEmbeddedXsdLoader.Load(new FormatVersion(1, 0, 3));
         var xmlSchema = GldfXmlSchemaFactory.CreateXmlSchema(xsd);
         var xmlValidator = new GldfXmlValidator(xmlSchema);
         using var memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(xml));

@@ -18,12 +18,7 @@ public class HeaderCompleteTyped
         Header = new HeaderTyped
         {
             Manufacturer = "DIAL",
-            FormatVersion = new FormatVersionTyped
-            {
-                Major = 1,
-                Minor = 0,
-                PreRelease = 2
-            },
+            FormatVersion = new FormatVersionTyped { Major = 1, Minor = 0, PreRelease = 3 },
             CreatedWithApplication = "Visual Studio Code",
             GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
             UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E",

@@ -125,7 +125,7 @@ public class GldfFormatVersionReaderTests
     public void GetFromGldfFile_ShouldReturnExpected()
     {
         var gldf = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
-        var expected = new FormatVersion { Major = 1, Minor = 0, PreRelease = 2 };
+        var expected = new FormatVersion { Major = 1, Minor = 0, PreRelease = 3 };
         var tempFileName = Path.GetTempFileName();
         File.WriteAllBytes(tempFileName, gldf);
 
@@ -149,7 +149,7 @@ public class GldfFormatVersionReaderTests
     {
         var gldf = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
         using var memoryStream = new MemoryStream(gldf);
-        var expected = new FormatVersion { Major = 1, Minor = 0, PreRelease = 2 };
+        var expected = new FormatVersion { Major = 1, Minor = 0, PreRelease = 3 };
 
         var formatVersion = GldfFormatVersionReader.GetFromGldfStream(memoryStream, false);
 

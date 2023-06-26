@@ -17,7 +17,7 @@ public class HeaderCompleteModel
         Header = new Header
         {
             Manufacturer = "DIAL",
-            FormatVersion = new FormatVersion { Major = 1, Minor = 0, PreRelease = 2, PreReleaseSpecified = true },
+            FormatVersion = new FormatVersion { Major = 1, Minor = 0, PreRelease = 3, PreReleaseSpecified = true },
             CreatedWithApplication = "Visual Studio Code",
             GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
             UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E",
