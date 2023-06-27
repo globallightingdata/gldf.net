@@ -1,12 +1,12 @@
-﻿using Gldf.Net.Domain.Xml.Definition.Types;
-using System;
-using Gldf.Net.Domain.Typed;
-using Gldf.Net.Domain.Typed.Head;
+﻿using Gldf.Net.Domain.Typed;
 using Gldf.Net.Domain.Typed.Definition;
-using Gldf.Net.Domain.Typed.Global;
 using Gldf.Net.Domain.Typed.Definition.Types;
+using Gldf.Net.Domain.Typed.Global;
+using Gldf.Net.Domain.Typed.Head;
 using Gldf.Net.Domain.Typed.Head.Types;
 using Gldf.Net.Domain.Typed.Product;
+using Gldf.Net.Domain.Xml.Definition.Types;
+using System;
 using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.LightSources;
@@ -51,11 +51,26 @@ public static class LightSourceMandatoryTyped
                     }
                 }
             },
+            Spectrums = new List<SpectrumTyped>
+            {
+                new()
+                {
+                    Id = "spectrum",
+                    Intensities = new[]
+                    {
+                        new SpectrumIntensityTyped
+                        {
+                            Wavelength = 380,
+                            Intensity = 0.8
+                        }
+                    }
+                }
+            },
             FixedLightSources = new List<FixedLightSourceTyped>
             {
                 new()
                 {
-                    Id = "lightSource",
+                    Id = "lightSource-1",
                     Name = new[]
                     {
                         new LocaleTyped
@@ -85,6 +100,62 @@ public static class LightSourceMandatoryTyped
                     ColorInformation = new ColorInformationTyped()
                 }
             },
+            MultiChannelLightSources = new List<MultiChannelLightSourceTyped>
+            {
+                new()
+                {
+                    Id = "lightSource-3",
+                    Name = new[]
+                    {
+                        new LocaleTyped
+                        {
+                            Language = "en",
+                            Text = "LightSource name 3"
+                        }
+                    },
+                    RatedInputPower = 30,
+                    Channels = new ChannelTyped[]
+                    {
+                        new()
+                        {
+                            Type = ChannelType.WarmWhite,
+                            DisplayName = new LocaleTyped[]
+                            {
+                                new()
+                                {
+                                    Language = "en",
+                                    Text = "WarmWhite channel"
+                                }
+                            },
+                            Spectrum = new SpectrumTyped
+                            {
+                                Id = "spectrum",
+                                Intensities = new[]
+                                {
+                                    new SpectrumIntensityTyped
+                                    {
+                                        Wavelength = 380,
+                                        Intensity = 0.8
+                                    }
+                                }
+                            },
+                            Photometry = new PhotometryTyped
+                            {
+                                Id = "photometry",
+                                PhotometryFile = new GldfFileTyped
+                                {
+                                    Id = "eulumdat",
+                                    ContentType = FileContentType.LdcEulumdat,
+                                    Type = FileType.Url,
+                                    FileName = "eulumdat.ldt",
+                                    Uri = "https://example.org/eulumdat.ldt"
+                                }
+                            },
+                            RatedLuminousFlux = 150
+                        }
+                    }
+                }
+            },
             Emitter = new List<EmitterTyped>
             {
                 new()
@@ -108,7 +179,7 @@ public static class LightSourceMandatoryTyped
                             },
                             FixedLightSource = new FixedLightSourceTyped
                             {
-                                Id = "lightSource",
+                                Id = "lightSource-1",
                                 Name = new LocaleTyped[]
                                 {
                                     new()
@@ -167,7 +238,7 @@ public static class LightSourceMandatoryTyped
                                 {
                                     FixedLightSource = new FixedLightSourceTyped
                                     {
-                                        Id = "lightSource",
+                                        Id = "lightSource-1",
                                         Name = new LocaleTyped[]
                                         {
                                             new()

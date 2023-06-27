@@ -6,5 +6,7 @@ public class EmitterTyped : TypedBase
 
     public FixedLightEmitterTyped[] FixedEmitterOptions { get; set; }
 
+    public MultiChannelLightEmitterTyped[] MultiChannelEmitterOptions { get; set; }
+
     public SensorEmitterTyped[] SensorEmitterOptions { get; set; }
 }

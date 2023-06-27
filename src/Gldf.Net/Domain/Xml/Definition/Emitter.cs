@@ -20,5 +20,7 @@ public class Emitter
         
     public IEnumerable<FixedLightEmitter> GetFixedLightEmitters() => PossibleFittings?.OfType<FixedLightEmitter>();
 
+    public IEnumerable<MultiChannelLightEmitter> GetMultiChannelLightEmitters() => PossibleFittings?.OfType<MultiChannelLightEmitter>();
+
     public IEnumerable<SensorEmitter> GetSensorEmitters() => PossibleFittings?.OfType<SensorEmitter>();
 }

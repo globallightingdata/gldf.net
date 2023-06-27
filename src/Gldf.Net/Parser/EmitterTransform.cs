@@ -28,6 +28,7 @@ internal class EmitterTransform : TransformBase
     {
         var changeableLightEmitter = emitter.GetChangeableLightEmitters()?.ToArray();
         var fixedLightEmitter = emitter.GetFixedLightEmitters()?.ToArray();
+        var multiChannelLightEmitter = emitter.GetMultiChannelLightEmitters()?.ToArray();
         var sensorEmitter = emitter.GetSensorEmitters()?.ToArray();
 
         if (changeableLightEmitter?.Any() == true)
@@ -39,6 +40,11 @@ internal class EmitterTransform : TransformBase
         {
             var fixedEmitterTyped = MapFixed(emitter.Id, fixedLightEmitter, parserDto.GeneralDefinitions);
             parserDto.GeneralDefinitions.Emitter.Add(fixedEmitterTyped);
+        }
+        if (multiChannelLightEmitter?.Any() == true)
+        {
+            var multiChannelEmitterTyped = MapMultiChannel(emitter.Id, multiChannelLightEmitter, parserDto.GeneralDefinitions);
+            parserDto.GeneralDefinitions.Emitter.Add(multiChannelEmitterTyped);
         }
         if (sensorEmitter?.Any() == true)
         {
@@ -80,6 +86,24 @@ internal class EmitterTransform : TransformBase
                 : null,
             ControlGear = definitions.ControlGears.GetTyped(emitter.ControlGearReference),
             FixedLightSource = definitions.FixedLightSources.GetFixedTyped(emitter.LightSourceReference)
+        }).ToArray()
+    };
+    
+    private static EmitterTyped MapMultiChannel(string emitterId, IEnumerable<MultiChannelLightEmitter> emitters,
+        GeneralDefinitionsTyped definitions) => new()
+    {
+        Id = emitterId,
+        MultiChannelEmitterOptions = emitters.Select(emitter => new MultiChannelLightEmitterTyped
+        {
+            
+            Name = emitter.Name?.ToTypedArray(),
+            Rotation = emitter.Rotation?.ToTyped(),
+            MultiChannelLightSource = definitions.MultiChannelLightSources.GetMultiChannelTyped(emitter.LightSourceReference),
+            EmergencyBehaviour = emitter.EmergencyBehaviourSpecified ? emitter.EmergencyBehaviour : null,
+            ControlGearCount = emitter.ControlGearReference?.ControlGearCountSpecified == true
+                ? emitter.ControlGearReference?.ControlGearCount
+                : null,
+            ControlGear = definitions.ControlGears.GetTyped(emitter.ControlGearReference),
         }).ToArray()
     };
 

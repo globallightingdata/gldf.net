@@ -4,6 +4,14 @@ namespace Gldf.Net.Domain.Typed.Definition;
 
 public class ChangeableLightSourceTyped : LightSourceBaseTyped
 {
+    public SpectrumTyped Spectrum { get; set; }
+
+    public ActivePowerTableTyped ActivePowerTable { get; set; }
+
+    public ColorInformationTyped ColorInformation { get; set; }
+
+    public ImageFileTyped[] LightSourceImages { get; set; }
+    
     public string Zvei { get; set; }
 
     public string Socket { get; set; }

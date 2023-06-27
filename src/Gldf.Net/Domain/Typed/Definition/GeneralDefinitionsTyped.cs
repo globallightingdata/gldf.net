@@ -18,6 +18,8 @@ public class GeneralDefinitionsTyped
     public List<ChangeableLightSourceTyped> ChangeableLightSources { get; set; } = new();
 
     public List<FixedLightSourceTyped> FixedLightSources { get; set; } = new();
+    
+    public List<MultiChannelLightSourceTyped> MultiChannelLightSources { get; set; } = new();
 
     public List<ControlGearTyped> ControlGears { get; set; } = new();
 

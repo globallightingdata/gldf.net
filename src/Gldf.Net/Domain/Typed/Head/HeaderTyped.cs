@@ -25,6 +25,7 @@ public class HeaderTyped
 
     public string ReluxMemberId { get; set; }
 
+    // ReSharper disable InconsistentNaming
     public string DIALuxMemberId { get; set; }
 
     public string Author { get; set; }
