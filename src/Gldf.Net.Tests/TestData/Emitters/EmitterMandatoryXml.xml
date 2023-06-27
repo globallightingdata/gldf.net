@@ -23,13 +23,34 @@
                 <PhotometryFileReference fileId="eulumdat"/>
             </Photometry>
         </Photometries>
+        <Spectrums>
+            <Spectrum id="spectrum">
+                <Intensity wavelength="380">0.8</Intensity>
+            </Spectrum>
+        </Spectrums>
         <LightSources>
             <FixedLightSource id="fixedLightSource">
                 <Name>
                     <Locale language="en">FixedLightSource</Locale>
                 </Name>
-                <RatedInputPower>10</RatedInputPower> 
+                <RatedInputPower>10</RatedInputPower>
             </FixedLightSource>
+            <MultiChannelLightSource id="multiChannelLightSource">
+                <Name>
+                    <Locale language="en">RGB module</Locale>
+                </Name>
+                <RatedInputPower>10</RatedInputPower>
+                <Channels>
+                    <Channel type="Red">
+                        <DisplayName>
+                            <Locale language="en">Red channel</Locale>
+                        </DisplayName>
+                        <SpectrumReference spectrumId="spectrum"/>
+                        <PhotometryReference photometryId="photometry"/>
+                        <RatedLuminousFlux>80</RatedLuminousFlux>
+                    </Channel>
+                </Channels>
+            </MultiChannelLightSource>
         </LightSources>
         <Emitters>
             <Emitter id="emitter-1">
@@ -48,6 +69,11 @@
                 <SensorEmitter>
                     <SensorReference sensorId="sensor"/>
                 </SensorEmitter>
+            </Emitter>
+            <Emitter id="emitter-4">
+                <MultiChannelLightEmitter>
+                    <LightSourceReference multiChannelLightSourceId="multiChannelLightSource"/>
+                </MultiChannelLightEmitter>
             </Emitter>
         </Emitters>
     </GeneralDefinitions>

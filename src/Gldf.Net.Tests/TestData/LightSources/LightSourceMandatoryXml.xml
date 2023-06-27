@@ -17,8 +17,13 @@
                 <PhotometryFileReference fileId="eulumdat"/>
             </Photometry>
         </Photometries>
+        <Spectrums>
+            <Spectrum id="spectrum">
+                <Intensity wavelength="380">0.8</Intensity>
+            </Spectrum>
+        </Spectrums>
         <LightSources>
-            <FixedLightSource id="lightSource">
+            <FixedLightSource id="lightSource-1">
                 <Name>
                     <Locale language="en">LightSource name</Locale>
                 </Name>
@@ -32,12 +37,28 @@
                 <ColorInformation/>
                 <RatedLuminousFlux>500</RatedLuminousFlux>
             </ChangeableLightSource>
+            <MultiChannelLightSource id="lightSource-3">
+                <Name>
+                    <Locale language="en">LightSource name 3</Locale>
+                </Name>
+                <RatedInputPower>30</RatedInputPower>
+                <Channels>
+                    <Channel type="WarmWhite">
+                        <DisplayName>
+                            <Locale language="en">WarmWhite channel</Locale>
+                        </DisplayName>
+                        <SpectrumReference spectrumId="spectrum"/>
+                        <PhotometryReference photometryId="photometry"/>
+                        <RatedLuminousFlux>150</RatedLuminousFlux>
+                    </Channel>
+                </Channels>
+            </MultiChannelLightSource>
         </LightSources>
         <Emitters>
             <Emitter id="emitter">
                 <FixedLightEmitter>
                     <PhotometryReference photometryId="photometry"/>
-                    <LightSourceReference fixedLightSourceId="lightSource"/>
+                    <LightSourceReference fixedLightSourceId="lightSource-1"/>
                     <RatedLuminousFlux>250</RatedLuminousFlux>
                 </FixedLightEmitter>
             </Emitter>

@@ -12,6 +12,7 @@ public class Emitter
 
     [XmlElement("ChangeableLightEmitter", typeof(ChangeableLightEmitter))]
     [XmlElement("FixedLightEmitter", typeof(FixedLightEmitter))]
+    [XmlElement("MultiChannelLightEmitter", typeof(MultiChannelLightEmitter))]
     [XmlElement("SensorEmitter", typeof(SensorEmitter))]
     public EmitterBase[] PossibleFittings { get; set; }
 

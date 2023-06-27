@@ -19,9 +19,10 @@ public class GeneralDefinitions
     [XmlArrayItem("Spectrum")]
     public Spectrum[] Spectrums { get; set; }
 
-    [XmlArrayItem("LightSource")]
+    [XmlArray("LightSources")]
     [XmlArrayItem("ChangeableLightSource", typeof(ChangeableLightSource))]
     [XmlArrayItem("FixedLightSource", typeof(FixedLightSource))]
+    [XmlArrayItem("MultiChannelLightSource", typeof(MultiChannelLightSource))]
     public LightSourceBase[] LightSources { get; set; }
 
     [XmlArrayItem("ControlGear")]

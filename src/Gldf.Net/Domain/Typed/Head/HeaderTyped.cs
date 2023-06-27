@@ -1,8 +1,6 @@
 ﻿using Gldf.Net.Domain.Typed.Head.Types;
 using System;
 
-// ReSharper disable InconsistentNaming
-
 namespace Gldf.Net.Domain.Typed.Head;
 
 public class HeaderTyped

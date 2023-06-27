@@ -1,7 +1,5 @@
 using Gldf.Net.Domain.Typed.Definition.Types;
 
-// ReSharper disable InconsistentNaming
-
 namespace Gldf.Net.Domain.Typed.Definition;
 
 public class EquipmentTyped : TypedBase
