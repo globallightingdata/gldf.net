@@ -27,6 +27,7 @@
         <EmbeddedResource Include="TestData\Descriptive\DescriptiveAttributesXml.xml" />
         <EmbeddedResource Include="TestData\Emitters\EmitterCompleteXml.xml" />
         <EmbeddedResource Include="TestData\Emitters\EmitterMandatoryXml.xml" />
+        <EmbeddedResource Include="TestData\Emitters\EmitterMultiCompleteXml.xml" />
         <EmbeddedResource Include="TestData\Equipments\EquipmentCompleteXml.xml" />
         <EmbeddedResource Include="TestData\Equipments\EquipmentMandatoryXml.xml" />
         <EmbeddedResource Include="TestData\Files\FilesCompleteXml.xml" />
@@ -38,6 +39,7 @@
         <EmbeddedResource Include="TestData\LightSources\ChangeableCompleteXml.xml" />
         <EmbeddedResource Include="TestData\LightSources\FixedCompleteXml.xml" />
         <EmbeddedResource Include="TestData\LightSources\LightSourceMandatoryXml.xml" />
+        <EmbeddedResource Include="TestData\LightSources\MultiChannelCompleteXml.xml" />
         <EmbeddedResource Include="TestData\Other\GeneralsEmptyXml.xml" />
         <EmbeddedResource Include="TestData\Photometries\PhotometryCompleteXml.xml" />
         <EmbeddedResource Include="TestData\Photometries\PhotometryMandatoryXml.xml" />

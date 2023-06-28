@@ -61,6 +61,9 @@ public class ModelParserTests
         new TestCaseData(EmbeddedXmlTestData.GetFixedCompleteXml(),
                 EmbeddedXmlTestData.GetFixedCompleteTyped())
             { TestName = "Fixed complete property set" },
+        new TestCaseData(EmbeddedXmlTestData.GetMultiChannelCompleteXml(),
+                EmbeddedXmlTestData.GetMultiChannelCompleteTyped())
+        { TestName = "MultiChannel complete property set" },
         new TestCaseData(EmbeddedXmlTestData.GetControlGearMandatoryXml(),
                 EmbeddedXmlTestData.GetControlGearMandatoryTyped())
             { TestName = "ControlGear mandatory property set" },
