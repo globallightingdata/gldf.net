@@ -35,6 +35,7 @@ public static class GeometryExtensions
             Id = emitterReference.EmitterId,
             ChangeableEmitterOptions = GetChangeableEmitter(emitter),
             FixedEmitterOptions = GetFixedEmitter(emitter),
+            MultiChannelEmitterOptions = GetMultiChannelEmitter(emitter),
             SensorEmitterOptions = GetSensorEmitter(emitter)
         };
     }
@@ -52,6 +53,7 @@ public static class GeometryExtensions
                 Id = reference.EmitterId,
                 ChangeableEmitterOptions = GetChangeableEmitter(emitter),
                 FixedEmitterOptions = GetFixedEmitter(emitter),
+                MultiChannelEmitterOptions = GetMultiChannelEmitter(emitter),
                 SensorEmitterOptions = GetSensorEmitter(emitter)
             },
             Geometry = geometry
@@ -103,6 +105,14 @@ public static class GeometryExtensions
         var emitterTyped = emitter
             .Where(e => e.FixedEmitterOptions != null)
             .SelectMany(e => e.FixedEmitterOptions).ToArray();
+        return emitterTyped.Any() ? emitterTyped : null;
+    }
+    
+    private static MultiChannelLightEmitterTyped[] GetMultiChannelEmitter(IEnumerable<EmitterTyped> emitter)
+    {
+        var emitterTyped = emitter
+            .Where(e => e.MultiChannelEmitterOptions != null)
+            .SelectMany(e => e.MultiChannelEmitterOptions).ToArray();
         return emitterTyped.Any() ? emitterTyped : null;
     }
 
