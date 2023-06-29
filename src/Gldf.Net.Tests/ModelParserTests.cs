@@ -88,6 +88,9 @@ public class ModelParserTests
         new TestCaseData(EmbeddedXmlTestData.GetEmitterCompleteXml(),
                 EmbeddedXmlTestData.GetEmitterCompleteTyped())
             { TestName = "Emitter complete property set" },
+        new TestCaseData(EmbeddedXmlTestData.GetEmitterMultiCompleteXml(),
+                EmbeddedXmlTestData.GetEmitterMultiCompleteTyped())
+            { TestName = "Emitter multi channel complete property set" },
         new TestCaseData(EmbeddedXmlTestData.GetMetaDataMandatoryXml(),
                 EmbeddedXmlTestData.GetMetaDataMandatoryTyped())
             { TestName = "MetaData mandatory property set" },

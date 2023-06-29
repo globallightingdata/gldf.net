@@ -97,6 +97,9 @@ public class ModelSerializationTests
         new TestCaseData(EmbeddedXmlTestData.GetEmitterCompleteModel(),
                 EmbeddedXmlTestData.GetEmitterCompleteXml())
             {TestName = "Emitter complete property set"},
+        new TestCaseData(EmbeddedXmlTestData.GetEmitterMultiCompleteModel(),
+                EmbeddedXmlTestData.GetEmitterMultiCompleteXml())
+            {TestName = "Emitter multi channel complete property set"},
         new TestCaseData(EmbeddedXmlTestData.GetGeometryMandatoryModel(),
                 EmbeddedXmlTestData.GetGeometryMandatoryXml())
             {TestName = "Geometry mandatory property set"},

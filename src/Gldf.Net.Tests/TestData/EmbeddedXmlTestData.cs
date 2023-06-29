@@ -43,6 +43,7 @@ public static class EmbeddedXmlTestData
     private const string EquipmentCompleteXml = "TestData.Equipments.EquipmentCompleteXml.xml";
     private const string EmitterMandatoryXml = "TestData.Emitters.EmitterMandatoryXml.xml";
     private const string EmitterCompleteXml = "TestData.Emitters.EmitterCompleteXml.xml";
+    private const string EmitterMultiCompleteXml = "TestData.Emitters.EmitterMultiCompleteXml.xml";
     private const string GeometryMandatoryXml = "TestData.Geometries.GeometryMandatoryXml.xml";
     private const string GeometryCompleteXml = "TestData.Geometries.GeometryCompleteXml.xml";
     private const string MetaDataMandatoryXml = "TestData.MetaData.ProductMetaDataMandatoryXml.xml";
@@ -168,10 +169,13 @@ public static class EmbeddedXmlTestData
     // GeneralDefinitions => Emitters
     public static string GetEmitterMandatoryXml() => ResourceLoader.LoadEmbeddedXml(EmitterMandatoryXml);
     public static string GetEmitterCompleteXml() => ResourceLoader.LoadEmbeddedXml(EmitterCompleteXml);
+    public static string GetEmitterMultiCompleteXml() => ResourceLoader.LoadEmbeddedXml(EmitterMultiCompleteXml);
     public static Root GetEmitterMandatoryModel() => EmitterMandatoryModel.Root;
     public static RootTyped GetEmitterMandatoryTyped() => EmitterMandatoryTyped.RootTyped;
     public static Root GetEmitterCompleteModel() => EmitterCompleteModel.Root;
     public static RootTyped GetEmitterCompleteTyped() => EmitterCompleteTyped.RootTyped;
+    public static Root GetEmitterMultiCompleteModel() => EmitterMultiCompleteModel.Root;
+    public static RootTyped GetEmitterMultiCompleteTyped() => EmitterMultiCompleteTyped.RootTyped;
 
     // GeneralDefinitions => Geometries
     public static string GetGeometryMandatoryXml() => ResourceLoader.LoadEmbeddedXml(GeometryMandatoryXml);

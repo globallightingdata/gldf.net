@@ -11,8 +11,7 @@
     <GeneralDefinitions>
         <Files>
             <File id="photometryFile" contentType="ldc/eulumdat"
-                  type="url">https://example.org/photometry.ldt
-            </File>
+                  type="url">https://example.org/photometry.ldt</File>
         </Files>
         <Photometries>
             <Photometry id="photometry">
@@ -33,7 +32,7 @@
                 <Channels>
                     <Channel type="NeutralWhite">
                         <DisplayName>
-                            <Locale language="en">NeutralWhite</Locale>
+                            <Locale language="en">Neutral-White</Locale>
                         </DisplayName>
                         <SpectrumReference spectrumId="spectrum"/>
                         <PhotometryReference photometryId="photometry"/>
@@ -54,7 +53,7 @@
                 <MultiChannelLightEmitter emergencyBehaviour="EmergencyOnly">
                     <Name>
                         <Locale language="en">Lightoutput RGB 1</Locale>
-                        <Locale language="de">Lichtaustritt RGB 2</Locale>
+                        <Locale language="de">Lichtaustritt RGB 1</Locale>
                     </Name>
                     <Rotation>
                         <X>1</X>
@@ -68,6 +67,15 @@
             </Emitter>
             <Emitter id="emitter-2">
                 <MultiChannelLightEmitter emergencyBehaviour="Combined">
+                    <LightSourceReference multiChannelLightSourceId="multiChannelLightSource"/>
+                    <ControlGearReference controlGearId="controlGear" controlGearCount="2"/>
+                </MultiChannelLightEmitter>
+            </Emitter>
+            <Emitter id="emitter-3">
+                <MultiChannelLightEmitter emergencyBehaviour="None">
+                    <LightSourceReference multiChannelLightSourceId="multiChannelLightSource"/>
+                </MultiChannelLightEmitter>
+                <MultiChannelLightEmitter>
                     <LightSourceReference multiChannelLightSourceId="multiChannelLightSource"/>
                 </MultiChannelLightEmitter>
             </Emitter>
