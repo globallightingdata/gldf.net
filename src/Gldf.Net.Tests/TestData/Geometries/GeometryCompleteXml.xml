@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/1.0.0-rc.2/gldf.xsd">
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/1.0.0-rc.3/gldf.xsd">
     <Header>
         <Manufacturer>DIAL</Manufacturer>
-        <FormatVersion major="1" minor="0" pre-release="2"/>
+        <FormatVersion major="1" minor="0" pre-release="3" />
         <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
         <GldfCreationTimeCode>2021-03-29T14:30:00Z</GldfCreationTimeCode>
         <UniqueGldfId>3BE556FF-9061-4592-AEB1-1BC9D507280E</UniqueGldfId>
@@ -44,7 +44,7 @@
                 </C-Heights>
             </SimpleGeometry>
             <SimpleGeometry id="geometry2">
-                <Cylinder plane="X">
+                <Cylinder>
                     <Diameter>1</Diameter>
                     <Height>2</Height>
                 </Cylinder>
@@ -53,7 +53,7 @@
                 </CircularEmitter>
             </SimpleGeometry>
             <SimpleGeometry id="geometry3">
-                <Cylinder plane="Y">
+                <Cylinder>
                     <Diameter>1</Diameter>
                     <Height>2</Height>
                 </Cylinder>
@@ -63,7 +63,7 @@
                 </RectangularEmitter>
             </SimpleGeometry>
             <SimpleGeometry id="geometry4">
-                <Cylinder plane="Z">
+                <Cylinder>
                     <Diameter>1</Diameter>
                     <Height>2</Height>
                 </Cylinder>

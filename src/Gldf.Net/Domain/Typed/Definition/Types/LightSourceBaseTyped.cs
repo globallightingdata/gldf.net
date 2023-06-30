@@ -21,12 +21,4 @@ public abstract class LightSourceBaseTyped : TypedBase
     public string LightSourcePositionOfUsage { get; set; }
 
     public EnergyLabelTyped[] EnergyLabels { get; set; }
-
-    public SpectrumTyped Spectrum { get; set; }
-
-    public ActivePowerTableTyped ActivePowerTable { get; set; }
-
-    public ColorInformationTyped ColorInformation { get; set; }
-
-    public ImageFileTyped[] LightSourceImages { get; set; }
 }

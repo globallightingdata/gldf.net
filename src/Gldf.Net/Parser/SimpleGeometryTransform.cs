@@ -36,8 +36,7 @@ internal class SimpleGeometryTransform : TransformBase
                 ? new SimpleCylinderGeometryTyped
                 {
                     Diameter = cylinderGeometry.Diameter,
-                    Height = cylinderGeometry.Height,
-                    Plane = cylinderGeometry.Plane
+                    Height = cylinderGeometry.Height
                 }
                 : null,
             RectangularEmitter = simpleGeometry.EmitterType is SimpleRectangularEmitter rectangularEmitter

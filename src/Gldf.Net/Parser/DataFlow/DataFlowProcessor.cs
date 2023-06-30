@@ -21,6 +21,7 @@ internal class DataFlowProcessor : IParserProcessor
         var transformModelGeo = new TransformBlock<ParserDto, ParserDto>(ModelGeometryTransform.Map);
         var transformChangeableLightSources = new TransformBlock<ParserDto[], ParserDto>(ChangeableLightSourceTransform.Map);
         var transformFixedLightSources = new TransformBlock<ParserDto[], ParserDto>(FixedLightSourceTransform.Map);
+        var transformMultiChannelLightSources = new TransformBlock<ParserDto[], ParserDto>(MultiChannelLightSourceTransform.Map);
         var transformEquipments = new TransformBlock<ParserDto[], ParserDto>(EquipmentTransform.Map);
         var transformEmitters = new TransformBlock<ParserDto[], ParserDto>(EmitterTransform.Map);
         var transformVariants = new TransformBlock<ParserDto[], ParserDto>(VariantTransform.Map);
@@ -36,7 +37,7 @@ internal class DataFlowProcessor : IParserProcessor
         var blockOptions = new GroupingDataflowBlockOptions { Greedy = false };
         var lightSourceBatchBlock = new BatchBlock<ParserDto>(3, blockOptions);
         var equipmentBatchBlock = new BatchBlock<ParserDto>(2, blockOptions);
-        var emitterBatchBlock = new BatchBlock<ParserDto>(4, blockOptions);
+        var emitterBatchBlock = new BatchBlock<ParserDto>(5, blockOptions);
         var variantBatchBlock = new BatchBlock<ParserDto>(3, blockOptions);
         var luminaireBatchBlock = new BatchBlock<ParserDto>(4, blockOptions);
 
@@ -63,16 +64,18 @@ internal class DataFlowProcessor : IParserProcessor
         lightSourceBatchBlock.LinkTo(broadcastLightSources);
         broadcastLightSources.LinkTo(transformChangeableLightSources);
         broadcastLightSources.LinkTo(transformFixedLightSources);
+        broadcastLightSources.LinkTo(transformMultiChannelLightSources);
 
         // Parallel layer 4: { ChangeableLS + ControlGear } => Equipments
         transformChangeableLightSources.LinkTo(equipmentBatchBlock);
         transformControlGears.LinkTo(equipmentBatchBlock);
         equipmentBatchBlock.LinkTo(transformEquipments);
 
-        // Parallel layer 5: { Sensors + Photometry + FixedLS + Equipments } => Emitter
+        // Parallel layer 5: { Sensors + Photometry + FixedLS + MultiChannelLS + Equipments } => Emitter
         transformSensors.LinkTo(emitterBatchBlock);
         broadcastPhotometries.LinkTo(emitterBatchBlock);
         transformFixedLightSources.LinkTo(emitterBatchBlock);
+        transformMultiChannelLightSources.LinkTo(emitterBatchBlock);
         transformEquipments.LinkTo(emitterBatchBlock);
         emitterBatchBlock.LinkTo(transformEmitters);
 

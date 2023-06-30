@@ -36,12 +36,14 @@ public static class EmbeddedXmlTestData
     private const string LightSourceMandatoryXml = "TestData.LightSources.LightSourceMandatoryXml.xml";
     private const string ChangeableCompleteXml = "TestData.LightSources.ChangeableCompleteXml.xml";
     private const string FixedCompleteXml = "TestData.LightSources.FixedCompleteXml.xml";
+    private const string MultiChannelCompleteXml = "TestData.LightSources.MultiChannelCompleteXml.xml";
     private const string ControlGearMandatoryXml = "TestData.ControlGears.ControlGearMandatoryXml.xml";
     private const string ControlGearCompleteXml = "TestData.ControlGears.ControlGearCompleteXml.xml";
     private const string EquipmentMandatoryXml = "TestData.Equipments.EquipmentMandatoryXml.xml";
     private const string EquipmentCompleteXml = "TestData.Equipments.EquipmentCompleteXml.xml";
     private const string EmitterMandatoryXml = "TestData.Emitters.EmitterMandatoryXml.xml";
     private const string EmitterCompleteXml = "TestData.Emitters.EmitterCompleteXml.xml";
+    private const string EmitterMultiCompleteXml = "TestData.Emitters.EmitterMultiCompleteXml.xml";
     private const string GeometryMandatoryXml = "TestData.Geometries.GeometryMandatoryXml.xml";
     private const string GeometryCompleteXml = "TestData.Geometries.GeometryCompleteXml.xml";
     private const string MetaDataMandatoryXml = "TestData.MetaData.ProductMetaDataMandatoryXml.xml";
@@ -72,6 +74,7 @@ public static class EmbeddedXmlTestData
         new TestCaseData(GetLightSourceMandatoryXml()).SetName("LightSource Mandatory"),
         new TestCaseData(GetChangeableCompleteXml()).SetName("LightSource Changeable Complete"),
         new TestCaseData(GetFixedCompleteXml()).SetName("LightSource Fixed Complete"),
+        new TestCaseData(GetMultiChannelCompleteXml()).SetName("LightSource MultiChannel Complete"),
         new TestCaseData(GetControlGearMandatoryXml()).SetName("ControlGear Mandatory"),
         new TestCaseData(GetControlGearCompleteXml()).SetName("ControlGear Complete"),
         new TestCaseData(GetEquipmentMandatoryXml()).SetName("Equipment Mandatory"),
@@ -137,12 +140,15 @@ public static class EmbeddedXmlTestData
     public static string GetLightSourceMandatoryXml() => ResourceLoader.LoadEmbeddedXml(LightSourceMandatoryXml);
     public static string GetChangeableCompleteXml() => ResourceLoader.LoadEmbeddedXml(ChangeableCompleteXml);
     public static string GetFixedCompleteXml() => ResourceLoader.LoadEmbeddedXml(FixedCompleteXml);
+    public static string GetMultiChannelCompleteXml() => ResourceLoader.LoadEmbeddedXml(MultiChannelCompleteXml);
     public static Root GetLightSourceMandatoryModel() => LightSourceMandatoryModel.Root;
     public static RootTyped GetLightSourceMandatoryTyped() => LightSourceMandatoryTyped.RootTyped;
     public static Root GetChangeableCompleteModel() => ChangeableCompleteModel.Root;
     public static RootTyped GetChangeableCompleteTyped() => ChangeableCompleteTyped.RootTyped;
     public static Root GetFixedCompleteModel() => FixedCompleteModel.Root;
     public static RootTyped GetFixedCompleteTyped() => FixedCompleteTyped.RootTyped;
+    public static Root GetMultiChannelCompleteModel() => MultiChannelCompleteModel.Root;
+    public static RootTyped GetMultiChannelCompleteTyped() => MultiChannelCompleteTyped.RootTyped;
 
     // GeneralDefinitions => ControlGears
     public static string GetControlGearMandatoryXml() => ResourceLoader.LoadEmbeddedXml(ControlGearMandatoryXml);
@@ -163,10 +169,13 @@ public static class EmbeddedXmlTestData
     // GeneralDefinitions => Emitters
     public static string GetEmitterMandatoryXml() => ResourceLoader.LoadEmbeddedXml(EmitterMandatoryXml);
     public static string GetEmitterCompleteXml() => ResourceLoader.LoadEmbeddedXml(EmitterCompleteXml);
+    public static string GetEmitterMultiCompleteXml() => ResourceLoader.LoadEmbeddedXml(EmitterMultiCompleteXml);
     public static Root GetEmitterMandatoryModel() => EmitterMandatoryModel.Root;
     public static RootTyped GetEmitterMandatoryTyped() => EmitterMandatoryTyped.RootTyped;
     public static Root GetEmitterCompleteModel() => EmitterCompleteModel.Root;
     public static RootTyped GetEmitterCompleteTyped() => EmitterCompleteTyped.RootTyped;
+    public static Root GetEmitterMultiCompleteModel() => EmitterMultiCompleteModel.Root;
+    public static RootTyped GetEmitterMultiCompleteTyped() => EmitterMultiCompleteTyped.RootTyped;
 
     // GeneralDefinitions => Geometries
     public static string GetGeometryMandatoryXml() => ResourceLoader.LoadEmbeddedXml(GeometryMandatoryXml);

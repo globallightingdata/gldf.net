@@ -19,9 +19,10 @@ public class GeneralDefinitions
     [XmlArrayItem("Spectrum")]
     public Spectrum[] Spectrums { get; set; }
 
-    [XmlArrayItem("LightSource")]
+    [XmlArray("LightSources")]
     [XmlArrayItem("ChangeableLightSource", typeof(ChangeableLightSource))]
     [XmlArrayItem("FixedLightSource", typeof(FixedLightSource))]
+    [XmlArrayItem("MultiChannelLightSource", typeof(MultiChannelLightSource))]
     public LightSourceBase[] LightSources { get; set; }
 
     [XmlArrayItem("ControlGear")]
@@ -43,6 +44,9 @@ public class GeneralDefinitions
         
     public FixedLightSource[] GetAsFixedLightSources()
         => LightSources?.OfType<FixedLightSource>().ToArray() ?? Array.Empty<FixedLightSource>();
+    
+    public MultiChannelLightSource[] GetAsMultiChannelLightSources()
+        => LightSources?.OfType<MultiChannelLightSource>().ToArray() ?? Array.Empty<MultiChannelLightSource>();
         
     public SimpleGeometry[] GetAsSimpleGeometries()
         => Geometries?.OfType<SimpleGeometry>().ToArray() ?? Array.Empty<SimpleGeometry>();

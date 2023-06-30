@@ -74,7 +74,7 @@ public class GldfValidatorTests
     [Test, TestCaseSource(nameof(ValidGldfTestCases))]
     public void ValidateGldf_ShouldReturnNoHints_WhenCustomSchemaIsSet(byte[] gldf)
     {
-        var schema = GldfEmbeddedXsdLoader.Load(new FormatVersion(1, 0, 2));
+        var schema = GldfEmbeddedXsdLoader.Load(new FormatVersion(1, 0, 3));
         var xmlSchema = GldfXmlSchemaFactory.CreateXmlSchema(schema);
         using var memoryStream = new MemoryStream(gldf);
         var container = new GldfContainerReader().ReadFromGldfStream(memoryStream, false);
@@ -96,7 +96,7 @@ public class GldfValidatorTests
     [Test, TestCaseSource(nameof(ValidGldfTestCases))]
     public void ValidateGldf_ShouldReturnNoHints_WhenSchemaAndEncodingIsSet(byte[] gldf)
     {
-        var schema = GldfEmbeddedXsdLoader.Load(new FormatVersion(1, 0, 2));
+        var schema = GldfEmbeddedXsdLoader.Load(new FormatVersion(1, 0, 3));
         var xmlSchema = GldfXmlSchemaFactory.CreateXmlSchema(schema);
         using var memoryStream = new MemoryStream(gldf);
         var container = new GldfContainerReader().ReadFromGldfStream(memoryStream, false);

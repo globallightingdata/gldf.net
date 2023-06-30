@@ -15,4 +15,8 @@ public static class LightSourceExtensions
     public static FixedLightSourceTyped GetFixedTyped(
         this IEnumerable<FixedLightSourceTyped> lightSources, FixedLightSourceReference reference) =>
         lightSources.FirstOrDefault(lightSource => lightSource.Id.Equals(reference?.FixedLightSourceId, StringComparison.Ordinal));
+
+    public static MultiChannelLightSourceTyped GetMultiChannelTyped(
+        this IEnumerable<MultiChannelLightSourceTyped> lightSources, MultiChannelLightSourceReference reference) =>
+        lightSources.FirstOrDefault(lightSource => lightSource.Id.Equals(reference?.MultiChannelLightSourceId, StringComparison.Ordinal));
 }

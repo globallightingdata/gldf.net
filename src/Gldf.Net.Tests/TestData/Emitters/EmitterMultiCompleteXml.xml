@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/1.0.0-rc.3/gldf.xsd">
+    <Header>
+        <Manufacturer>DIAL</Manufacturer>
+        <FormatVersion major="1" minor="0" pre-release="3"/>
+        <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
+        <GldfCreationTimeCode>2021-03-29T14:30:00Z</GldfCreationTimeCode>
+        <UniqueGldfId>3BE556FF-9061-4592-AEB1-1BC9D507280E</UniqueGldfId>
+    </Header>
+    <GeneralDefinitions>
+        <Files>
+            <File id="photometryFile" contentType="ldc/eulumdat"
+                  type="url">https://example.org/photometry.ldt</File>
+        </Files>
+        <Photometries>
+            <Photometry id="photometry">
+                <PhotometryFileReference fileId="photometryFile"/>
+            </Photometry>
+        </Photometries>
+        <Spectrums>
+            <Spectrum id="spectrum">
+                <Intensity wavelength="380">0.8</Intensity>
+            </Spectrum>
+        </Spectrums>
+        <LightSources>
+            <MultiChannelLightSource id="multiChannelLightSource">
+                <Name>
+                    <Locale language="en">RGB module</Locale>
+                </Name>
+                <RatedInputPower>30</RatedInputPower>
+                <Channels>
+                    <Channel type="NeutralWhite">
+                        <DisplayName>
+                            <Locale language="en">Neutral-White</Locale>
+                        </DisplayName>
+                        <SpectrumReference spectrumId="spectrum"/>
+                        <PhotometryReference photometryId="photometry"/>
+                        <RatedLuminousFlux>150</RatedLuminousFlux>
+                    </Channel>
+                </Channels>
+            </MultiChannelLightSource>
+        </LightSources>
+        <ControlGears>
+            <ControlGear id="controlGear">
+                <Name>
+                    <Locale language="en">Electronic ballast</Locale>
+                </Name>
+            </ControlGear>
+        </ControlGears>
+        <Emitters>
+            <Emitter id="emitter-1">
+                <MultiChannelLightEmitter emergencyBehaviour="EmergencyOnly">
+                    <Name>
+                        <Locale language="en">Lightoutput RGB 1</Locale>
+                        <Locale language="de">Lichtaustritt RGB 1</Locale>
+                    </Name>
+                    <Rotation>
+                        <X>1</X>
+                        <Y>2</Y>
+                        <Z>3</Z>
+                        <G0>4</G0>
+                    </Rotation>
+                    <LightSourceReference multiChannelLightSourceId="multiChannelLightSource"/>
+                    <ControlGearReference controlGearId="controlGear"/>
+                </MultiChannelLightEmitter>
+            </Emitter>
+            <Emitter id="emitter-2">
+                <MultiChannelLightEmitter emergencyBehaviour="Combined">
+                    <LightSourceReference multiChannelLightSourceId="multiChannelLightSource"/>
+                    <ControlGearReference controlGearId="controlGear" controlGearCount="2"/>
+                </MultiChannelLightEmitter>
+            </Emitter>
+            <Emitter id="emitter-3">
+                <MultiChannelLightEmitter emergencyBehaviour="None">
+                    <LightSourceReference multiChannelLightSourceId="multiChannelLightSource"/>
+                </MultiChannelLightEmitter>
+                <MultiChannelLightEmitter>
+                    <LightSourceReference multiChannelLightSourceId="multiChannelLightSource"/>
+                </MultiChannelLightEmitter>
+            </Emitter>
+        </Emitters>
+    </GeneralDefinitions>
+    <ProductDefinitions>
+        <ProductMetaData>
+            <UniqueProductId>Product 1</UniqueProductId>
+            <ProductNumber>
+                <Locale language="en">Product number</Locale>
+            </ProductNumber>
+            <Name>
+                <Locale language="en">Product name</Locale>
+            </Name>
+        </ProductMetaData>
+        <Variants>
+            <Variant id="variant-1">
+                <Name>
+                    <Locale language="en">Variant 1</Locale>
+                </Name>
+                <Geometry>
+                    <EmitterReference emitterId="emitter-1"/>
+                </Geometry>
+            </Variant>
+        </Variants>
+    </ProductDefinitions>
+</Root>

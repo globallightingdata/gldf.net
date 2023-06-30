@@ -19,7 +19,7 @@ public static class LightSourceMandatoryModel
             Manufacturer = "DIAL",
             GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
             CreatedWithApplication = "Visual Studio Code",
-            FormatVersion = new FormatVersion { Major = 1, Minor = 0, PreRelease = 2, PreReleaseSpecified = true },
+            FormatVersion = new FormatVersion { Major = 1, Minor = 0, PreRelease = 3, PreReleaseSpecified = true },
             UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E"
         },
         GeneralDefinitions = new GeneralDefinitions
@@ -45,11 +45,26 @@ public static class LightSourceMandatoryModel
                     }
                 }
             },
+            Spectrums = new[]
+            {
+                new Spectrum
+                {
+                    Id = "spectrum",
+                    Intensities = new[]
+                    {
+                        new SpectrumIntensity
+                        {
+                            Wavelength = 380,
+                            Intensity = 0.8
+                        }
+                    }
+                }
+            },
             LightSources = new LightSourceBase[]
             {
                 new FixedLightSource
                 {
-                    Id = "lightSource",
+                    Id = "lightSource-1",
                     Name = new[]
                     {
                         new Locale
@@ -60,7 +75,7 @@ public static class LightSourceMandatoryModel
                     },
                     RatedInputPower = 50
                 },
-                new FixedLightSource
+                new ChangeableLightSource
                 {
                     Id = "lightSource-2",
                     Name = new[]
@@ -72,7 +87,45 @@ public static class LightSourceMandatoryModel
                         }
                     },
                     RatedInputPower = 60,
+                    RatedLuminousFlux = 500,
                     ColorInformation = new ColorInformation()
+                },
+                new MultiChannelLightSource
+                {
+                    Id = "lightSource-3",
+                    Name = new[]
+                    {
+                        new Locale
+                        {
+                            Language = "en",
+                            Text = "LightSource name 3"
+                        }
+                    },
+                    RatedInputPower = 30,
+                    Channels = new[]
+                    {
+                        new Channel
+                        {
+                            Type = ChannelType.WarmWhite,
+                            DisplayName = new[]
+                            {
+                                new Locale
+                                {
+                                    Language = "en",
+                                    Text = "WarmWhite channel"
+                                }
+                            },
+                            SpectrumReference = new SpectrumReference
+                            {
+                                SpectrumId = "spectrum"
+                            },
+                            PhotometryReference = new PhotometryReference
+                            {
+                                PhotometryId = "photometry"
+                            },
+                            RatedLuminousFlux = 150
+                        }
+                    }
                 }
             },
             Emitters = new[]
@@ -90,7 +143,7 @@ public static class LightSourceMandatoryModel
                             },
                             LightSourceReference = new FixedLightSourceReference
                             {
-                                FixedLightSourceId = "lightSource"
+                                FixedLightSourceId = "lightSource-1"
                             },
                             RatedLuminousFlux = 250
                         }

@@ -76,6 +76,9 @@ public class ModelSerializationTests
         new TestCaseData(EmbeddedXmlTestData.GetFixedCompleteModel(),
                 EmbeddedXmlTestData.GetFixedCompleteXml())
             {TestName = "LightSource fixed complete property set"},
+        new TestCaseData(EmbeddedXmlTestData.GetMultiChannelCompleteModel(),
+                EmbeddedXmlTestData.GetMultiChannelCompleteXml())
+            {TestName = "LightSource mutlichannel complete property set"},
         new TestCaseData(EmbeddedXmlTestData.GetControlGearMandatoryModel(),
                 EmbeddedXmlTestData.GetControlGearMandatoryXml())
             {TestName = "ControlGear mandatory property set"},
@@ -94,6 +97,9 @@ public class ModelSerializationTests
         new TestCaseData(EmbeddedXmlTestData.GetEmitterCompleteModel(),
                 EmbeddedXmlTestData.GetEmitterCompleteXml())
             {TestName = "Emitter complete property set"},
+        new TestCaseData(EmbeddedXmlTestData.GetEmitterMultiCompleteModel(),
+                EmbeddedXmlTestData.GetEmitterMultiCompleteXml())
+            {TestName = "Emitter multi channel complete property set"},
         new TestCaseData(EmbeddedXmlTestData.GetGeometryMandatoryModel(),
                 EmbeddedXmlTestData.GetGeometryMandatoryXml())
             {TestName = "Geometry mandatory property set"},

@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/1.0.0-rc.3/gldf.xsd">
+    <Header>
+        <Manufacturer>DIAL</Manufacturer>
+        <FormatVersion major="1" minor="0" pre-release="3"/>
+        <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
+        <GldfCreationTimeCode>2021-03-29T14:30:00Z</GldfCreationTimeCode>
+        <UniqueGldfId>3BE556FF-9061-4592-AEB1-1BC9D507280E</UniqueGldfId>
+    </Header>
+    <GeneralDefinitions>
+        <Files>
+            <File id="photometryRedFile" contentType="ldc/eulumdat"
+                  type="url">https://example.org/photometryRed.ldt</File>
+            <File id="photometryGreenFile" contentType="ldc/eulumdat"
+                  type="url">https://example.org/photometryGreen.ldt</File>
+            <File id="photometryBlueFile" contentType="ldc/eulumdat"
+                  type="url">https://example.org/photometryBlue.ldt</File>
+            <File id="lightSourceImage" contentType="image/jpg"
+                  type="url">https://example.org/image.jpg</File>
+        </Files>
+        <Photometries>
+            <Photometry id="photometryRed">
+                <PhotometryFileReference fileId="photometryRedFile"/>
+            </Photometry>
+            <Photometry id="photometryGreen">
+                <PhotometryFileReference fileId="photometryGreenFile"/>
+            </Photometry>
+            <Photometry id="photometryBlue">
+                <PhotometryFileReference fileId="photometryBlueFile"/>
+            </Photometry>
+        </Photometries>
+        <Spectrums>
+            <Spectrum id="spectrumRed">
+                <Intensity wavelength="380">0.7</Intensity>
+            </Spectrum>
+            <Spectrum id="spectrumGreen">
+                <Intensity wavelength="380">0.8</Intensity>
+            </Spectrum>
+            <Spectrum id="spectrumBlue">
+                <Intensity wavelength="380">0.9</Intensity>
+            </Spectrum>
+        </Spectrums>
+        <LightSources>
+            <MultiChannelLightSource id="multiChannelLightSource">
+                <Name>
+                    <Locale language="en">RGB MultiChannel</Locale>
+                    <Locale language="de">RGB Mehrkanal</Locale>
+                </Name>
+                <Description>
+                    <Locale language="en">MultiChannel description</Locale>
+                    <Locale language="de">Mehrkanal Beschreibung</Locale>
+                </Description>
+                <Manufacturer>DIAL</Manufacturer>
+                <GTIN>12345678</GTIN>
+                <RatedInputPower>1</RatedInputPower>
+                <RatedInputVoltage>
+                    <FixedVoltage>230</FixedVoltage>
+                    <Type>AC</Type>
+                    <Frequency>50</Frequency>
+                </RatedInputVoltage>
+                <PowerRange>
+                    <Lower>3</Lower>
+                    <Upper>4</Upper>
+                    <DefaultLightSourcePower>5</DefaultLightSourcePower>
+                </PowerRange>
+                <LightSourcePositionOfUsage>LightSourcePositionOfUsage</LightSourcePositionOfUsage>
+                <EnergyLabels>
+                    <EnergyLabel region="de">A+</EnergyLabel>
+                    <EnergyLabel region="gb">A++</EnergyLabel>
+                </EnergyLabels>
+                <ActivePowerTable type="Continuously">
+                    <FluxFactor inputPower="0.1" flickerPstLM="flicker 1"
+                                stroboscopicEffectsSVM="stroboscopic 1" description="Description 1">0.2</FluxFactor>
+                    <FluxFactor inputPower="0.3" flickerPstLM="flicker 2"
+                                stroboscopicEffectsSVM="stroboscopic 2" description="Description 2">0.4</FluxFactor>
+                </ActivePowerTable>
+                <ColorInformation>
+                    <ColorRenderingIndex>1</ColorRenderingIndex>
+                    <CorrelatedColorTemperature>2</CorrelatedColorTemperature>
+                    <ColorTemperatureAdjustingRange>
+                        <Lower>3</Lower>
+                        <Upper>4</Upper>
+                    </ColorTemperatureAdjustingRange>
+                    <Cie1931ColorAppearance>
+                        <X>0.1</X>
+                        <Y>0.2</Y>
+                        <Z>0.3</Z>
+                    </Cie1931ColorAppearance>
+                    <InitialColorTolerance>3 SDCM</InitialColorTolerance>
+                    <MaintainedColorTolerance>4 SDCM</MaintainedColorTolerance>
+                    <RatedChromacityCoordinateValues>
+                        <X>0.4</X>
+                        <Y>0.5</Y>
+                    </RatedChromacityCoordinateValues>
+                    <TLCI>5</TLCI>
+                    <IES-TM-30-15>
+                        <Rf>6</Rf>
+                        <Rg>7</Rg>
+                    </IES-TM-30-15>
+                    <MelanopicFactor>0.8</MelanopicFactor>
+                </ColorInformation>
+                <LightSourceImages>
+                    <Image fileId="lightSourceImage" imageType="Technical Sketch"/>
+                </LightSourceImages>
+                <Channels>
+                    <Channel type="Red">
+                        <DisplayName>
+                            <Locale language="en">Red</Locale>
+                        </DisplayName>
+                        <SpectrumReference spectrumId="spectrumRed"/>
+                        <PhotometryReference photometryId="photometryRed"/>
+                        <RatedLuminousFlux>150</RatedLuminousFlux>
+                        <ColorInformation>
+                            <ColorRenderingIndex>8</ColorRenderingIndex>
+                            <CorrelatedColorTemperature>9</CorrelatedColorTemperature>
+                            <ColorTemperatureAdjustingRange>
+                                <Lower>10</Lower>
+                                <Upper>11</Upper>
+                            </ColorTemperatureAdjustingRange>
+                            <Cie1931ColorAppearance>
+                                <X>0.12</X>
+                                <Y>0.13</Y>
+                                <Z>0.14</Z>
+                            </Cie1931ColorAppearance>
+                            <InitialColorTolerance>5 SDCM</InitialColorTolerance>
+                            <MaintainedColorTolerance>6 SDCM</MaintainedColorTolerance>
+                            <RatedChromacityCoordinateValues>
+                                <X>0.17</X>
+                                <Y>0.18</Y>
+                            </RatedChromacityCoordinateValues>
+                            <TLCI>19</TLCI>
+                            <IES-TM-30-15>
+                                <Rf>20</Rf>
+                                <Rg>21</Rg>
+                            </IES-TM-30-15>
+                            <MelanopicFactor>22.1</MelanopicFactor>
+                        </ColorInformation>
+                    </Channel>
+                    <Channel type="Green">
+                        <DisplayName>
+                            <Locale language="en">Green</Locale>
+                        </DisplayName>
+                        <SpectrumReference spectrumId="spectrumGreen"/>
+                        <PhotometryReference photometryId="photometryGreen"/>
+                        <RatedLuminousFlux>160</RatedLuminousFlux>
+                        <ColorInformation/>
+                    </Channel>
+                    <Channel type="Blue">
+                        <DisplayName>
+                            <Locale language="en">Blue</Locale>
+                        </DisplayName>
+                        <SpectrumReference spectrumId="spectrumBlue"/>
+                        <PhotometryReference photometryId="photometryBlue"/>
+                        <RatedLuminousFlux>170</RatedLuminousFlux>
+                    </Channel>
+                </Channels>
+                <LightSourceMaintenance lifetime="9">
+                    <LedMaintenanceFactor hours="10">0.11</LedMaintenanceFactor>
+                </LightSourceMaintenance>
+                <EmergencyBallastLumenFactor>0.7</EmergencyBallastLumenFactor>
+            </MultiChannelLightSource>
+        </LightSources>
+        <Emitters>
+            <Emitter id="emitter">
+                <MultiChannelLightEmitter>
+                    <LightSourceReference multiChannelLightSourceId="multiChannelLightSource"/>
+                </MultiChannelLightEmitter>
+            </Emitter>
+        </Emitters>
+    </GeneralDefinitions>
+    <ProductDefinitions>
+        <ProductMetaData>
+            <UniqueProductId>Product 1</UniqueProductId>
+            <ProductNumber>
+                <Locale language="en">Product number</Locale>
+            </ProductNumber>
+            <Name>
+                <Locale language="en">Product name</Locale>
+            </Name>
+        </ProductMetaData>
+        <Variants>
+            <Variant id="variant-1">
+                <Name>
+                    <Locale language="en">Variant 1</Locale>
+                </Name>
+                <Geometry>
+                    <EmitterReference emitterId="emitter"/>
+                </Geometry>
+            </Variant>
+        </Variants>
+    </ProductDefinitions>
+</Root>

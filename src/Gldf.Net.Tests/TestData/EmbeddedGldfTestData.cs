@@ -20,6 +20,8 @@ public static class EmbeddedGldfTestData
     private const string GldfWithInvalidRoot = "TestData.Container.GldfWithInvalidRoot.gldf";
     private const string GldfWithOrphanedFiles = "TestData.Container.GldfWithOrphanedFiles.gldf";
     private const string GldfWithMissingFiles = "TestData.Container.GldfWithMissingFiles.gldf";
+    private const string GldfWithCodepage850 = "TestData.Container.GldfWithCodepage850.gldf";
+    private const string GldfWithEncodingUtf8 = "TestData.Container.GldfWithEncodingUtf8.gldf";
 
     public static byte[] GetGldfWithHeaderMandatory() => ResourceLoader.LoadEmbeddedBytes(GldfWithHeaderMandatory);
     public static byte[] GetGldfWithMissingProduct() => ResourceLoader.LoadEmbeddedBytes(GldfWithMissingProduct);
@@ -31,6 +33,8 @@ public static class EmbeddedGldfTestData
     public static byte[] GetGldfWithInvalidRoot() => ResourceLoader.LoadEmbeddedBytes(GldfWithInvalidRoot);
     public static byte[] GetGldfWithOrphanedFiles() => ResourceLoader.LoadEmbeddedBytes(GldfWithOrphanedFiles);
     public static byte[] GetGldfWithMissingFiles() => ResourceLoader.LoadEmbeddedBytes(GldfWithMissingFiles);
+    public static byte[] GetGldfWithCodepage850() => ResourceLoader.LoadEmbeddedBytes(GldfWithCodepage850);
+    public static byte[] GetGldfWithEncodingUtf8() => ResourceLoader.LoadEmbeddedBytes(GldfWithEncodingUtf8);
 
     public static IEnumerable<string> ExpectedZipEntryNames => new[]
     {

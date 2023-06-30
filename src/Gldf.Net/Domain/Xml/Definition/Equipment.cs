@@ -1,8 +1,6 @@
 ﻿using Gldf.Net.Domain.Xml.Definition.Types;
 using System.Xml.Serialization;
 
-// ReSharper disable InconsistentNaming
-
 namespace Gldf.Net.Domain.Xml.Definition;
 
 public class Equipment

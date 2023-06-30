@@ -19,7 +19,7 @@ public static class EmitterMandatoryModel
             Manufacturer = "DIAL",
             GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
             CreatedWithApplication = "Visual Studio Code",
-            FormatVersion = new FormatVersion { Major = 1, Minor = 0, PreRelease = 2, PreReleaseSpecified = true },
+            FormatVersion = new FormatVersion { Major = 1, Minor = 0, PreRelease = 3, PreReleaseSpecified = true },
             UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E"
         },
         GeneralDefinitions = new GeneralDefinitions
@@ -63,6 +63,21 @@ public static class EmitterMandatoryModel
                     }
                 }
             },
+            Spectrums = new[]
+            {
+                new Spectrum
+                {
+                    Id = "spectrum",
+                    Intensities = new[]
+                    {
+                        new SpectrumIntensity
+                        {
+                            Wavelength = 380,
+                            Intensity = 0.8
+                        }
+                    }
+                }
+            },
             LightSources = new LightSourceBase[]
             {
                 new FixedLightSource
@@ -77,6 +92,45 @@ public static class EmitterMandatoryModel
                         }
                     },
                     RatedInputPower = 10
+                },
+                new MultiChannelLightSource
+                {
+                    Id = "multiChannelLightSource",
+                    Name = new[]
+                    {
+                        new Locale
+                        {
+                            Language = "en",
+                            Text = "RGB module"
+                        }
+                    },
+                    RatedInputPower = 10,
+                    Channels = new[]
+                    {
+                        new Channel
+                        {
+                            Type = ChannelType.Red,
+                            DisplayName = new[]
+                            {
+                                new Locale
+                                {
+                                    Language = "en",
+                                    Text = "Red channel"
+                                }
+                            },
+                            SpectrumReference = new SpectrumReference
+                            {
+                                SpectrumId = "spectrum"
+                            },
+                            PhotometryReference = new PhotometryReference
+                            {
+                                PhotometryId = "photometry"
+                            },
+                            RatedLuminousFlux = 80
+                        }
+                    },
+                    Maintenance = null,
+                    EmergencyBallastLumenFactor = null
                 }
             },
             Emitters = new[]
@@ -124,6 +178,20 @@ public static class EmitterMandatoryModel
                             SensorReference = new SensorReference
                             {
                                 SensorId = "sensor"
+                            }
+                        }
+                    }
+                },
+                new Emitter
+                {
+                    Id = "emitter-4",
+                    PossibleFittings = new EmitterBase[]
+                    {
+                        new MultiChannelLightEmitter
+                        {
+                            LightSourceReference = new MultiChannelLightSourceReference
+                            {
+                                MultiChannelLightSourceId = "multiChannelLightSource"
                             }
                         }
                     }

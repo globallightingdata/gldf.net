@@ -61,6 +61,9 @@ public class ModelParserTests
         new TestCaseData(EmbeddedXmlTestData.GetFixedCompleteXml(),
                 EmbeddedXmlTestData.GetFixedCompleteTyped())
             { TestName = "Fixed complete property set" },
+        new TestCaseData(EmbeddedXmlTestData.GetMultiChannelCompleteXml(),
+                EmbeddedXmlTestData.GetMultiChannelCompleteTyped())
+        { TestName = "MultiChannel complete property set" },
         new TestCaseData(EmbeddedXmlTestData.GetControlGearMandatoryXml(),
                 EmbeddedXmlTestData.GetControlGearMandatoryTyped())
             { TestName = "ControlGear mandatory property set" },
@@ -85,6 +88,9 @@ public class ModelParserTests
         new TestCaseData(EmbeddedXmlTestData.GetEmitterCompleteXml(),
                 EmbeddedXmlTestData.GetEmitterCompleteTyped())
             { TestName = "Emitter complete property set" },
+        new TestCaseData(EmbeddedXmlTestData.GetEmitterMultiCompleteXml(),
+                EmbeddedXmlTestData.GetEmitterMultiCompleteTyped())
+            { TestName = "Emitter multi channel complete property set" },
         new TestCaseData(EmbeddedXmlTestData.GetMetaDataMandatoryXml(),
                 EmbeddedXmlTestData.GetMetaDataMandatoryTyped())
             { TestName = "MetaData mandatory property set" },

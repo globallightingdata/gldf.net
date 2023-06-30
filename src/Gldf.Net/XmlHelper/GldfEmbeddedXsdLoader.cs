@@ -13,7 +13,8 @@ public static class GldfEmbeddedXsdLoader
     {
         new(0, 9, 9),
         new(1, 0, 1),
-        new(1, 0, 2)
+        new(1, 0, 2),
+        new(1, 0, 3)
     };
 
     public static string Load(FormatVersion version)

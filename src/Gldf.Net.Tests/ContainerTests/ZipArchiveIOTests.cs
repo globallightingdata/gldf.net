@@ -1,8 +1,12 @@
 ﻿using FluentAssertions;
 using Gldf.Net.Abstract;
 using Gldf.Net.Container;
+using Gldf.Net.Tests.TestData;
 using NUnit.Framework;
+using System.Collections.Generic;
+using System.IO;
 using System.IO.Compression;
+using System.Linq;
 using System.Text;
 
 // ReSharper disable InconsistentNaming
@@ -32,6 +36,54 @@ public class ZipArchiveIOTests
         sut.MetaInfoSerializerBase.Encoding.Should().Be(expectedEncoding);
     }
 
+    [Test, TestCaseSource(nameof(TestGldfsWithEncoding))]
+    public void OpenReadFile_ShouldReadExpectedFileName(byte[] gldf)
+    {
+        var tempFile = Path.GetTempFileName();
+        try
+        {
+            File.WriteAllBytes(tempFile, gldf);
+            using var zipArchive = ZipArchiveIODerived.OpenRead(tempFile);
+            zipArchive.Entries.Select(e => e.Name).Should().Contain("Äöü°§.ldt");
+        }
+        finally
+        {
+            File.Delete(tempFile);
+        }
+    }
+
+    [Test, TestCaseSource(nameof(TestGldfsWithEncoding))]
+    public void OpenReadStream_ShouldReadExpectedFileName(byte[] gldf)
+    {
+        using var memoryStream = new MemoryStream(gldf);
+        using var zipArchive = ZipArchiveIODerived.OpenRead(memoryStream, false);
+        zipArchive.Entries.Select(e => e.Name).Should().Contain("Äöü°§.ldt");
+    }
+
+    [Test, TestCaseSource(nameof(TestGldfsWithEncoding))]
+    public void OpenReadStream_ShouldCloseStream_WhenLeaveOpenSetToFalse(byte[] gldf)
+    {
+        using var memoryStream = new MemoryStream(gldf);
+        using var zipArchive = ZipArchiveIODerived.OpenRead(memoryStream, false);
+        zipArchive.Dispose();
+        memoryStream.CanWrite.Should().BeFalse();
+    }
+
+    [Test, TestCaseSource(nameof(TestGldfsWithEncoding))]
+    public void OpenReadStream_ShouldKeepStreamOpen_WhenLeaveOpenSetToTrue(byte[] gldf)
+    {
+        using var memoryStream = new MemoryStream(gldf);
+        using var zipArchive = ZipArchiveIODerived.OpenRead(memoryStream, true);
+        zipArchive.Dispose();
+        memoryStream.CanWrite.Should().BeTrue();
+    }
+
+    public static IEnumerable<TestCaseData> TestGldfsWithEncoding => new[]
+    {
+        new TestCaseData(EmbeddedGldfTestData.GetGldfWithEncodingUtf8()).SetName("When Encoding Utf8"),
+        new TestCaseData(EmbeddedGldfTestData.GetGldfWithCodepage850()).SetName("When CodePage 850")
+    };
+
     internal class ZipArchiveIODerived : ZipArchiveIO
     {
         internal IGldfXmlSerializer GldfSerializerBase => GldfXmlSerializer;
@@ -46,5 +98,10 @@ public class ZipArchiveIOTests
         {
         }
 
+        public new static ZipArchive OpenRead(string filepath) =>
+            ZipArchiveIO.OpenRead(filepath);
+
+        public new static ZipArchive OpenRead(Stream zipStream, bool leaveOpen) =>
+            ZipArchiveIO.OpenRead(zipStream, leaveOpen);
     }
 }

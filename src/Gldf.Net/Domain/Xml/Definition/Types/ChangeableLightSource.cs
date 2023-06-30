@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using Gldf.Net.Domain.Xml.Global;
+using System.Xml.Serialization;
 
 // ReSharper disable InconsistentNaming
 
@@ -6,6 +7,14 @@ namespace Gldf.Net.Domain.Xml.Definition.Types;
 
 public class ChangeableLightSource : LightSourceBase
 {
+    public SpectrumReference SpectrumReference { get; set; }
+
+    public ActivePowerTable ActivePowerTable { get; set; }
+
+    public ColorInformation ColorInformation { get; set; }
+
+    public Image[] LightSourceImages { get; set; }
+
     [XmlElement(ElementName = "ZVEI")]
     public string Zvei { get; set; }
 

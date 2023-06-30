@@ -20,12 +20,7 @@ public static class GeometryCompleteTyped
             Manufacturer = "DIAL",
             GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
             CreatedWithApplication = "Visual Studio Code",
-            FormatVersion = new FormatVersionTyped()
-            {
-                Major = 1,
-                Minor = 0,
-                PreRelease = 2
-            },
+            FormatVersion = new FormatVersionTyped { Major = 1, Minor = 0, PreRelease = 3 },
             UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E"
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
@@ -119,7 +114,6 @@ public static class GeometryCompleteTyped
                     Id = "geometry2",
                     CylinderGeometry = new SimpleCylinderGeometryTyped
                     {
-                        Plane = SimpleCylinderPlane.X,
                         Diameter = 1,
                         Height = 2
                     },
@@ -133,7 +127,6 @@ public static class GeometryCompleteTyped
                     Id = "geometry3",
                     CylinderGeometry = new SimpleCylinderGeometryTyped
                     {
-                        Plane = SimpleCylinderPlane.Y,
                         Diameter = 1,
                         Height = 2
                     },
@@ -148,7 +141,6 @@ public static class GeometryCompleteTyped
                     Id = "geometry4",
                     CylinderGeometry = new SimpleCylinderGeometryTyped
                     {
-                        Plane = SimpleCylinderPlane.Z,
                         Diameter = 1,
                         Height = 2
                     },

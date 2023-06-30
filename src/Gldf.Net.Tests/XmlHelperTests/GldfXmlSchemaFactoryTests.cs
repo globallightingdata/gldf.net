@@ -14,14 +14,14 @@ public class GldfXmlSchemaFactoryTests
     [Test]
     public void CreateXmlSchema_ShouldCreateSchemaAsExpected()
     {
-        var xsd = GldfEmbeddedXsdLoader.Load(new FormatVersion(1, 0, 2));
+        var xsd = GldfEmbeddedXsdLoader.Load(new FormatVersion(1, 0, 3));
         var xmlSchema = GldfXmlSchemaFactory.CreateXmlSchema(xsd);
         xmlSchema.Schemas().Count.Should().Be(1);
         foreach (var generatedSchema in xmlSchema.Schemas())
         {
             using var stringWriter = new StringWriter();
             generatedSchema.As<XmlSchema>().Write(stringWriter);
-            stringWriter.ToString().Should().Contain(@"xs:schema version=""1.0.0-rc.2""");
+            stringWriter.ToString().Should().Contain(@"xs:schema version=""1.0.0-rc.3""");
         }
     }
 
@@ -35,7 +35,7 @@ public class GldfXmlSchemaFactoryTests
         {
             using var stringWriter = new StringWriter();
             generatedSchema.As<XmlSchema>().Write(stringWriter);
-            stringWriter.ToString().Should().Contain(@"xs:schema version=""1.0.0-rc.2""");
+            stringWriter.ToString().Should().Contain(@"xs:schema version=""1.0.0-rc.3""");
         }
     }
     
@@ -61,7 +61,7 @@ public class GldfXmlSchemaFactoryTests
         {
             using var stringWriter = new StringWriter();
             generatedSchema.As<XmlSchema>().Write(stringWriter);
-            stringWriter.ToString().Should().Contain(@"xs:schema version=""1.0.0-rc.2""");
+            stringWriter.ToString().Should().Contain(@"xs:schema version=""1.0.0-rc.3""");
         }
     }
 }

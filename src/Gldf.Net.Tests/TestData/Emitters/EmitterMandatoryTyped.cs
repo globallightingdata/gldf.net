@@ -20,7 +20,7 @@ public static class EmitterMandatoryTyped
             Manufacturer = "DIAL",
             GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
             CreatedWithApplication = "Visual Studio Code",
-            FormatVersion = new FormatVersionTyped { Major = 1, Minor = 0, PreRelease = 2 },
+            FormatVersion = new FormatVersionTyped { Major = 1, Minor = 0, PreRelease = 3 },
             UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E"
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
@@ -74,6 +74,21 @@ public static class EmitterMandatoryTyped
                     }
                 }
             },
+            Spectrums = new List<SpectrumTyped>
+            {
+                new()
+                {
+                    Id = "spectrum",
+                    Intensities = new[]
+                    {
+                        new SpectrumIntensityTyped
+                        {
+                            Wavelength = 380,
+                            Intensity = 0.8
+                        }
+                    }
+                }
+            },
             FixedLightSources = new List<FixedLightSourceTyped>
             {
                 new()
@@ -88,6 +103,62 @@ public static class EmitterMandatoryTyped
                         }
                     },
                     RatedInputPower = 10
+                }
+            },
+            MultiChannelLightSources = new List<MultiChannelLightSourceTyped>
+            {
+                new()
+                {
+                    Id = "multiChannelLightSource",
+                    Name = new[]
+                    {
+                        new LocaleTyped
+                        {
+                            Language = "en",
+                            Text = "RGB module"
+                        }
+                    },
+                    RatedInputPower = 10,
+                    Channels = new[]
+                    {
+                        new ChannelTyped
+                        {
+                            Type = ChannelType.Red,
+                            DisplayName = new[]
+                            {
+                                new LocaleTyped
+                                {
+                                    Language = "en",
+                                    Text = "Red channel"
+                                }
+                            },
+                            Spectrum = new SpectrumTyped
+                            {
+                                Id = "spectrum",
+                                Intensities = new[]
+                                {
+                                    new SpectrumIntensityTyped
+                                    {
+                                        Wavelength = 380,
+                                        Intensity = 0.8
+                                    }
+                                }
+                            },
+                            Photometry = new PhotometryTyped
+                            {
+                                Id = "photometry",
+                                PhotometryFile = new GldfFileTyped
+                                {
+                                    Id = "eulumdat",
+                                    ContentType = FileContentType.LdcEulumdat,
+                                    Type = FileType.Url,
+                                    Uri = "https://example.org/eulumdat.ldt",
+                                    FileName = "eulumdat.ldt"
+                                }
+                            },
+                            RatedLuminousFlux = 80
+                        }
+                    }
                 }
             },
             Emitter = new List<EmitterTyped>
@@ -167,6 +238,69 @@ public static class EmitterMandatoryTyped
                                     Type = FileType.Url,
                                     Uri = "https://example.org/sens.xml",
                                     FileName = "sens.xml"
+                                }
+                            }
+                        }
+                    }
+                },
+                new()
+                {
+                    Id = "emitter-4",
+                    MultiChannelEmitterOptions = new[]
+                    {
+                        new MultiChannelLightEmitterTyped
+                        {
+                            MultiChannelLightSource = new()
+                            {
+                                Id = "multiChannelLightSource",
+                                Name = new[]
+                                {
+                                    new LocaleTyped
+                                    {
+                                        Language = "en",
+                                        Text = "RGB module"
+                                    }
+                                },
+                                RatedInputPower = 10,
+                                Channels = new[]
+                                {
+                                    new ChannelTyped
+                                    {
+                                        Type = ChannelType.Red,
+                                        DisplayName = new[]
+                                        {
+                                            new LocaleTyped
+                                            {
+                                                Language = "en",
+                                                Text = "Red channel"
+                                            }
+                                        },
+                                        Spectrum = new SpectrumTyped
+                                        {
+                                            Id = "spectrum",
+                                            Intensities = new[]
+                                            {
+                                                new SpectrumIntensityTyped
+                                                {
+                                                    Wavelength = 380,
+                                                    Intensity = 0.8
+                                                }
+                                            }
+                                        },
+                                        Photometry = new PhotometryTyped
+                                        {
+                                            Id = "photometry",
+                                            PhotometryFile = new GldfFileTyped
+                                            {
+                                                Id = "eulumdat",
+                                                ContentType = FileContentType.LdcEulumdat,
+                                                Type = FileType.Url,
+                                                Uri = "https://example.org/eulumdat.ldt",
+                                                FileName = "eulumdat.ldt"
+                                            }
+                                        },
+                                        RatedLuminousFlux = 80
+                                    }
                                 }
                             }
                         }

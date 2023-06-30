@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/1.0.0-rc.2/gldf.xsd">
+      xsi:noNamespaceSchemaLocation="https://gldf.io/xsd/gldf/1.0.0-rc.3/gldf.xsd">
     <Header>
         <Manufacturer>DIAL</Manufacturer>
-        <FormatVersion major="1" minor="0" pre-release="2" />
+        <FormatVersion major="1" minor="0" pre-release="3" />
         <CreatedWithApplication>Visual Studio Code</CreatedWithApplication>
         <GldfCreationTimeCode>2021-03-29T14:30:00Z</GldfCreationTimeCode>
         <UniqueGldfId>3BE556FF-9061-4592-AEB1-1BC9D507280E</UniqueGldfId>
@@ -17,26 +17,48 @@
                 <PhotometryFileReference fileId="eulumdat"/>
             </Photometry>
         </Photometries>
+        <Spectrums>
+            <Spectrum id="spectrum">
+                <Intensity wavelength="380">0.8</Intensity>
+            </Spectrum>
+        </Spectrums>
         <LightSources>
-            <FixedLightSource id="lightSource">
+            <FixedLightSource id="lightSource-1">
                 <Name>
                     <Locale language="en">LightSource name</Locale>
                 </Name>
                 <RatedInputPower>50</RatedInputPower>
             </FixedLightSource>
-            <FixedLightSource id="lightSource-2">
+            <ChangeableLightSource id="lightSource-2">
                 <Name>
                     <Locale language="en">LightSource name 2</Locale>
                 </Name>
                 <RatedInputPower>60</RatedInputPower>
-                <ColorInformation />
-            </FixedLightSource>
+                <ColorInformation/>
+                <RatedLuminousFlux>500</RatedLuminousFlux>
+            </ChangeableLightSource>
+            <MultiChannelLightSource id="lightSource-3">
+                <Name>
+                    <Locale language="en">LightSource name 3</Locale>
+                </Name>
+                <RatedInputPower>30</RatedInputPower>
+                <Channels>
+                    <Channel type="WarmWhite">
+                        <DisplayName>
+                            <Locale language="en">WarmWhite channel</Locale>
+                        </DisplayName>
+                        <SpectrumReference spectrumId="spectrum"/>
+                        <PhotometryReference photometryId="photometry"/>
+                        <RatedLuminousFlux>150</RatedLuminousFlux>
+                    </Channel>
+                </Channels>
+            </MultiChannelLightSource>
         </LightSources>
         <Emitters>
             <Emitter id="emitter">
                 <FixedLightEmitter>
                     <PhotometryReference photometryId="photometry"/>
-                    <LightSourceReference fixedLightSourceId="lightSource"/>
+                    <LightSourceReference fixedLightSourceId="lightSource-1"/>
                     <RatedLuminousFlux>250</RatedLuminousFlux>
                 </FixedLightEmitter>
             </Emitter>

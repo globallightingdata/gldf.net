@@ -1,8 +1,6 @@
 ﻿using Gldf.Net.Domain.Typed.Head.Types;
 using System;
 
-// ReSharper disable InconsistentNaming
-
 namespace Gldf.Net.Domain.Typed.Head;
 
 public class HeaderTyped
@@ -27,6 +25,7 @@ public class HeaderTyped
 
     public string ReluxMemberId { get; set; }
 
+    // ReSharper disable InconsistentNaming
     public string DIALuxMemberId { get; set; }
 
     public string Author { get; set; }
