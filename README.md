@@ -13,12 +13,12 @@
 Features
 
 - Serialize and deserialize GLDF XML
-- 100% format coverage of [version 1.0-rc2](https://github.com/globallightingdata/gldf/releases)
+- 100% format coverage of [version 1.0-rc3](https://github.com/globallightingdata/gldf/releases)
 - Validate GLDF XML with the GLDF XmlSchema (XSD)
 - Read and write .gldf container files, including all assets and meta-information.xml
 - Validate .gldf container files
 - Parse XML/container either into 1:1 .NET POCOs or alternatively with resolved references
-- No dependencies, small footprint (~950kb)
+- No dependencies, small footprint (~1MB)
 - Windows & Unix compatible
 
 If you would like to read the GLDF L3D format as well, have a look on [GLDF.L3d](https://github.com/globallightingdata/l3d.net)
