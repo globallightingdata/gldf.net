@@ -53,6 +53,13 @@ public static class MultiChannelCompleteModel
                     ContentType = FileContentType.ImageJpg,
                     Type = FileType.Url,
                     File = "https://example.org/image.jpg"
+                },
+                new()
+                {
+                    Id = "geometryFile",
+                    ContentType = FileContentType.GeoL3d,
+                    Type = FileType.Url,
+                    File = "https://example.org/geometry.l3d"
                 }
             },
             Photometries = new[]
@@ -362,6 +369,22 @@ public static class MultiChannelCompleteModel
                         }
                     }
                 }
+            },
+            Geometries = new GeometryBase[]
+            {
+                new ModelGeometry()
+                {
+                    Id = "geometry",
+                    GeometryFileReferences = new GeometryFileReference[]
+                    {
+                        new()
+                        {
+                            FileId = "geometryFile",
+                            LevelOfDetail = LevelOfDetail.Low,
+                            LevelOfDetailSpecified = true
+                        }
+                    }
+                }
             }
         },
         ProductDefinitions = new ProductDefinitions
@@ -400,6 +423,29 @@ public static class MultiChannelCompleteModel
                         Reference = new EmitterReference
                         {
                             EmitterId = "emitter"
+                        }
+                    }
+                },
+                new Variant
+                {
+                    Id = "variant-2",
+                    Name = new[]
+                    {
+                        new Locale { Language = "en", Text = "Variant 2" }
+                    },
+                    Geometry = new GeometryReference
+                    {
+                        Reference = new ModelGeometryReference
+                        {
+                            GeometryId = "geometry",
+                            EmitterReferences = new[]
+                            {
+                                new GeometryEmitterReference
+                                {
+                                    EmitterId = "emitter",
+                                    EmitterObjectExternalName = "leo"
+                                }
+                            }
                         }
                     }
                 }
