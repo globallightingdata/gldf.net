@@ -18,6 +18,8 @@
                   type="url">https://example.org/photometryBlue.ldt</File>
             <File id="lightSourceImage" contentType="image/jpg"
                   type="url">https://example.org/image.jpg</File>
+	        <File id="geometryFile" contentType="geo/l3d"
+	              type="url">https://example.org/geometry.l3d</File>
         </Files>
         <Photometries>
             <Photometry id="photometryRed">
@@ -168,6 +170,11 @@
                 </MultiChannelLightEmitter>
             </Emitter>
         </Emitters>
+	    <Geometries>
+		    <ModelGeometry id="geometry">
+			    <GeometryFileReference fileId="geometryFile" levelOfDetail="Low"/>
+		    </ModelGeometry>
+	    </Geometries>
     </GeneralDefinitions>
     <ProductDefinitions>
         <ProductMetaData>
@@ -188,6 +195,18 @@
                     <EmitterReference emitterId="emitter"/>
                 </Geometry>
             </Variant>
+	        <Variant id="variant-2">
+		        <Name>
+			        <Locale language="en">Variant 2</Locale>
+		        </Name>
+		        <Geometry>
+			        <ModelGeometryReference geometryId="geometry">
+				        <EmitterReference emitterId="emitter">
+					        <EmitterObjectExternalName>leo</EmitterObjectExternalName>
+				        </EmitterReference>
+			        </ModelGeometryReference>
+		        </Geometry>
+	        </Variant>
         </Variants>
     </ProductDefinitions>
 </Root>

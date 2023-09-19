@@ -75,21 +75,19 @@ public static class GeometryExtensions
 
     private static IEnumerable<ModelEmitterTyped> MapModelEmitter(IEnumerable<GeometryEmitterReference> emitters, GeneralDefinitionsTyped definitions)
     {
-        return
-            from emitterReference in emitters
-            let emitter = definitions.GetEmitterById(emitterReference.EmitterId)
-            select new ModelEmitterTyped
+        return from emitterReference in emitters let emitter = definitions.GetEmitterById(emitterReference.EmitterId) select new ModelEmitterTyped
+        {
+            Emitter = new EmitterTyped
             {
-                Emitter = new EmitterTyped
-                {
-                    Id = emitterReference.EmitterId,
-                    ChangeableEmitterOptions = GetChangeableEmitter(emitter),
-                    FixedEmitterOptions = GetFixedEmitter(emitter),
-                    SensorEmitterOptions = GetSensorEmitter(emitter)
-                },
-                TargetModelType = emitterReference.TargetModelTypeSpecified ? emitterReference.TargetModelType : null,
-                EmitterObjectExternalName = emitterReference.EmitterObjectExternalName
-            };
+                Id = emitterReference.EmitterId,
+                ChangeableEmitterOptions = GetChangeableEmitter(emitter),
+                FixedEmitterOptions = GetFixedEmitter(emitter), 
+                SensorEmitterOptions = GetSensorEmitter(emitter),
+                MultiChannelEmitterOptions = GetMultiChannelEmitter(emitter)
+            },
+            TargetModelType = emitterReference.TargetModelTypeSpecified ? emitterReference.TargetModelType : null,
+            EmitterObjectExternalName = emitterReference.EmitterObjectExternalName
+        };
     }
 
     private static ChangeableLightEmitterTyped[] GetChangeableEmitter(IEnumerable<EmitterTyped> emitter)

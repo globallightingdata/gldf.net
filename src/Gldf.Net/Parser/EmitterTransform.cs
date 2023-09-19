@@ -88,14 +88,13 @@ internal class EmitterTransform : TransformBase
             FixedLightSource = definitions.FixedLightSources.GetFixedTyped(emitter.LightSourceReference)
         }).ToArray()
     };
-    
+
     private static EmitterTyped MapMultiChannel(string emitterId, IEnumerable<MultiChannelLightEmitter> emitters,
         GeneralDefinitionsTyped definitions) => new()
     {
         Id = emitterId,
         MultiChannelEmitterOptions = emitters.Select(emitter => new MultiChannelLightEmitterTyped
         {
-            
             Name = emitter.Name?.ToTypedArray(),
             Rotation = emitter.Rotation?.ToTyped(),
             MultiChannelLightSource = definitions.MultiChannelLightSources.GetMultiChannelTyped(emitter.LightSourceReference),

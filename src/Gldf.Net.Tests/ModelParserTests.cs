@@ -15,9 +15,8 @@ public class ModelParserTests
     {
         var gldfParser = new GldfParser(new ParserSettings(LocalFileLoadBehaviour.Skip));
         var rootTyped = gldfParser.ParseFromXml(xml);
-        AssertionOptions.FormattingOptions.MaxDepth = 10;
         AssertionOptions.FormattingOptions.MaxLines = 1000;
-        rootTyped.Should().BeEquivalentTo(expected, opt => opt.WithStrictOrdering());
+        rootTyped.Should().BeEquivalentTo(expected, opt => opt.WithStrictOrdering().AllowingInfiniteRecursion());
     }
 
     public static IEnumerable<TestCaseData> TestCaseData => new[]
@@ -63,7 +62,7 @@ public class ModelParserTests
             { TestName = "Fixed complete property set" },
         new TestCaseData(EmbeddedXmlTestData.GetMultiChannelCompleteXml(),
                 EmbeddedXmlTestData.GetMultiChannelCompleteTyped())
-        { TestName = "MultiChannel complete property set" },
+            { TestName = "MultiChannel complete property set" },
         new TestCaseData(EmbeddedXmlTestData.GetControlGearMandatoryXml(),
                 EmbeddedXmlTestData.GetControlGearMandatoryTyped())
             { TestName = "ControlGear mandatory property set" },
