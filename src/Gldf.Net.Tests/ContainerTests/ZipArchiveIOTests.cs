@@ -65,6 +65,7 @@ public class ZipArchiveIOTests
     {
         using var memoryStream = new MemoryStream(gldf);
         using var zipArchive = ZipArchiveIODerived.OpenRead(memoryStream, false);
+        // ReSharper disable once DisposeOnUsingVariable
         zipArchive.Dispose();
         memoryStream.CanWrite.Should().BeFalse();
     }
@@ -74,6 +75,7 @@ public class ZipArchiveIOTests
     {
         using var memoryStream = new MemoryStream(gldf);
         using var zipArchive = ZipArchiveIODerived.OpenRead(memoryStream, true);
+        // ReSharper disable once DisposeOnUsingVariable
         zipArchive.Dispose();
         memoryStream.CanWrite.Should().BeTrue();
     }
