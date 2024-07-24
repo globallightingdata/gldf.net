@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
         <Description>GLDF XML serializer, validator and .gldf container reader/writer</Description>
         <Copyright>Copyright (c) DIAL GmbH 2024</Copyright>
         <Authors>Alex Kurpanik</Authors>
