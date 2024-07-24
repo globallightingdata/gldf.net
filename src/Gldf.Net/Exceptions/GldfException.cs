@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 
 namespace Gldf.Net.Exceptions;
 
-[Serializable, ExcludeFromCodeCoverage]
+[ExcludeFromCodeCoverage]
 public class GldfException : Exception
 {
     public GldfException()
