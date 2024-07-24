@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Runtime.Serialization;
 
 namespace Gldf.Net.Exceptions;
 
@@ -16,10 +15,6 @@ public class GldfContainerException : GldfException
     }
 
     public GldfContainerException(string message, Exception inner) : base(message, inner)
-    {
-    }
-
-    protected GldfContainerException(SerializationInfo info, StreamingContext context) : base(info, context)
     {
     }
 }

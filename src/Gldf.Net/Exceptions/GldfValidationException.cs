@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Runtime.Serialization;
 
 namespace Gldf.Net.Exceptions;
 
@@ -16,10 +15,6 @@ public class GldfValidationException : Exception
     }
 
     public GldfValidationException(string message, Exception inner) : base(message, inner)
-    {
-    }
-
-    protected GldfValidationException(SerializationInfo info, StreamingContext context) : base(info, context)
     {
     }
 }
