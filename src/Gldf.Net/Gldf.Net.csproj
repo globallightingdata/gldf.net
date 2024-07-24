@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <Description>GLDF XML serializer, validator and .gldf container reader/writer</Description>
-        <Copyright>Copyright (c) DIAL GmbH 2023</Copyright>
+        <Copyright>Copyright (c) DIAL GmbH 2024</Copyright>
         <Authors>Alex Kurpanik</Authors>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>GLDF.Net</PackageId>
