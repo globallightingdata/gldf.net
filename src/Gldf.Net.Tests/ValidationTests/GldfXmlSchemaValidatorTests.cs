@@ -143,11 +143,18 @@ public class GldfXmlSchemaValidatorTests
     [Test]
     public void ValidateXmlFile_ShouldThrow_WhenPathIsEmpty()
     {
+#if Net6_0
         Action act = () => _xmlValidator.ValidateXmlFile(string.Empty);
-
         act.Should()
             .Throw<ArgumentException>()
             .WithMessage("Empty path name is not legal. (Parameter 'path')");
+#endif
+#if Net8_0
+        Action act = () => _xmlValidator.ValidateXmlFile(string.Empty);
+        act.Should()
+            .Throw<ArgumentException>()
+            .WithMessage("The value cannot be an empty string. (Parameter 'path')");
+#endif
     }
 
     [Test]

@@ -487,6 +487,7 @@ public class ZipArchiveReaderTests
         using var stream = new MemoryStream();
         using var zipArchive = new ZipArchive(stream, ZipArchiveMode.Create, true);
         zipArchive.CreateEntry(fileName);
+        // ReSharper disable once DisposeOnUsingVariable
         zipArchive.Dispose();
 
         var containsRootXml = ZipArchiveReader.ContainsRootXml(stream, false);

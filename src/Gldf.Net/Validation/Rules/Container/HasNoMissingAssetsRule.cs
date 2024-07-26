@@ -31,27 +31,27 @@ internal class HasNoMissingAssetsRule : IContainerValidationRule
     private static bool HasNoAsset(GldfFile file, GldfAssets assets) =>
         file.ContentType switch
         {
-            FileContentType.LdcEulumdat => AssetNotExists(assets.Photometries, file),
-            FileContentType.LdcIes => AssetNotExists(assets.Photometries, file),
-            FileContentType.LdcIesXml => AssetNotExists(assets.Photometries, file),
-            FileContentType.ImagePng => AssetNotExists(assets.Images, file),
-            FileContentType.ImageJpg => AssetNotExists(assets.Images, file),
-            FileContentType.ImageSvg => AssetNotExists(assets.Images, file),
-            FileContentType.GeoL3d => AssetNotExists(assets.Geometries, file),
-            FileContentType.GeoR3d => AssetNotExists(assets.Geometries, file),
-            FileContentType.GeoM3d => AssetNotExists(assets.Geometries, file),
-            FileContentType.DocPdf => AssetNotExists(assets.Documents, file),
-            FileContentType.SymbolSvg => AssetNotExists(assets.Symbols, file),
-            FileContentType.SymbolDxf => AssetNotExists(assets.Symbols, file),
-            FileContentType.SensorSensXml => AssetNotExists(assets.Sensors, file),
-            FileContentType.SensorSensLdt => AssetNotExists(assets.Sensors, file),
-            FileContentType.SpectrumText => AssetNotExists(assets.Spectrums, file),
-            FileContentType.Other => AssetNotExists(assets.Other, file),
+            FileContentType.LdcEulumdat => HasNoAsset(assets.Photometries, file),
+            FileContentType.LdcIes => HasNoAsset(assets.Photometries, file),
+            FileContentType.LdcIesXml => HasNoAsset(assets.Photometries, file),
+            FileContentType.ImagePng => HasNoAsset(assets.Images, file),
+            FileContentType.ImageJpg => HasNoAsset(assets.Images, file),
+            FileContentType.ImageSvg => HasNoAsset(assets.Images, file),
+            FileContentType.GeoL3d => HasNoAsset(assets.Geometries, file),
+            FileContentType.GeoR3d => HasNoAsset(assets.Geometries, file),
+            FileContentType.GeoM3d => HasNoAsset(assets.Geometries, file),
+            FileContentType.DocPdf => HasNoAsset(assets.Documents, file),
+            FileContentType.SymbolSvg => HasNoAsset(assets.Symbols, file),
+            FileContentType.SymbolDxf => HasNoAsset(assets.Symbols, file),
+            FileContentType.SensorSensXml => HasNoAsset(assets.Sensors, file),
+            FileContentType.SensorSensLdt => HasNoAsset(assets.Sensors, file),
+            FileContentType.SpectrumText => HasNoAsset(assets.Spectrums, file),
+            FileContentType.Other => HasNoAsset(assets.Other, file),
             _ => throw new ArgumentOutOfRangeException(nameof(file.ContentType))
         };
 
-    private static bool AssetNotExists(IEnumerable<ContainerFile> assets, GldfFile file) =>
-        assets.All(asset => asset.FileName != file.File);
+    private static bool HasNoAsset(IEnumerable<ContainerFile> assets, GldfFile file) =>
+        assets.All(asset => !asset.FileName.Equals(file.File, StringComparison.OrdinalIgnoreCase));
 
     private static string FlattenFileNames(IEnumerable<GldfFile> filesWithoutAssets) =>
         filesWithoutAssets.Aggregate(string.Empty, (result, file)

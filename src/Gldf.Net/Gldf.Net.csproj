@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
         <Description>GLDF XML serializer, validator and .gldf container reader/writer</Description>
-        <Copyright>Copyright (c) DIAL GmbH 2023</Copyright>
+        <Copyright>Copyright (c) DIAL GmbH 2024</Copyright>
         <Authors>Alex Kurpanik</Authors>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>GLDF.Net</PackageId>
@@ -22,8 +22,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MinVer" PrivateAssets="all" Version="4.3.0" />
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+        <PackageReference Include="MinVer" PrivateAssets="all" Version="5.0.0" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     </ItemGroup>
 
     <ItemGroup>

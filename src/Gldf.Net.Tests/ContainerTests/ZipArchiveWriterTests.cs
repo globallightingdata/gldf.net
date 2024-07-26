@@ -133,11 +133,18 @@ public class ZipArchiveWriterTests
     [Test]
     public void Write_ShouldThrowArgumentNullException_WhenPathIsNull()
     {
+#if NET6_0
         var act = () => _zipArchiveWriter.Write(null, new GldfContainer());
-
         act.Should()
             .Throw<ArgumentNullException>()
             .WithMessage("Path cannot be null. (Parameter 'path')");
+#endif
+#if NET8_0
+        var act = () => _zipArchiveWriter.Write(null, new GldfContainer());
+        act.Should()
+            .Throw<ArgumentNullException>()
+            .WithMessage("Value cannot be null. (Parameter 'path')");
+#endif
     }
 
     [Test]

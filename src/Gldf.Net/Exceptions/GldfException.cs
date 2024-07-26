@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Runtime.Serialization;
 
 namespace Gldf.Net.Exceptions;
 
-[Serializable, ExcludeFromCodeCoverage]
+[ExcludeFromCodeCoverage]
 public class GldfException : Exception
 {
     public GldfException()
@@ -16,10 +15,6 @@ public class GldfException : Exception
     }
 
     public GldfException(string message, Exception inner) : base(message, inner)
-    {
-    }
-
-    protected GldfException(SerializationInfo info, StreamingContext context) : base(info, context)
     {
     }
 }
