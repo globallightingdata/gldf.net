@@ -50,7 +50,7 @@ internal class HasNoOrphanAssetsRule : IContainerValidationRule
         };
 
     private static ContainerFile FindAsset(IEnumerable<ContainerFile> assets, GldfFile file) =>
-        assets.FirstOrDefault(asset => asset.FileName == file.File);
+        assets.FirstOrDefault(asset => asset.FileName.Equals(file.File, StringComparison.OrdinalIgnoreCase));
 
     private static string FlattenFileNames(IEnumerable<ContainerFile> filesWithoutAssets) =>
         filesWithoutAssets.Aggregate(string.Empty, (result, file)
