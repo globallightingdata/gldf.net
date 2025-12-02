@@ -6,32 +6,35 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
-        dotnet-quality: 'ga'
-    - name: Restore dependencies
-      run: |
-       dotnet restore ./src/Gldf.Net/Gldf.Net.csproj
-       dotnet restore ./src/Gldf.Net.Tests/Gldf.Net.Tests.csproj
-    - name: Build
-      run: |
-       dotnet build --no-restore --configuration Release ./src/Gldf.Net/Gldf.Net.csproj
-       dotnet build --no-restore --configuration Debug ./src/Gldf.Net.Tests/Gldf.Net.Tests.csproj
-    - name: Test
-      run: dotnet test --no-build --verbosity normal ./src/Gldf.Net.Tests/Gldf.Net.Tests.csproj
-    - name: publish on nuget.org
-      id: publish_nuget
-      uses: alirezanet/publish-nuget@v3.1.0
-      with:
-        PROJECT_FILE_PATH: ./src/Gldf.Net/Gldf.Net.csproj
-        PACKAGE_NAME: GLDF.Net
-        VERSION_STATIC: 1.0.0
-        TAG_COMMIT: false
-        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
-        NUGET_SOURCE: https://api.nuget.org
-        INCLUDE_SYMBOLS: false
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: |
+            8.0.x
+            9.0.x
+            10.0.x
+          dotnet-quality: 'ga'
+      - name: Restore dependencies
+        run: |
+          dotnet restore ./src/Gldf.Net/Gldf.Net.csproj
+          dotnet restore ./src/Gldf.Net.Tests/Gldf.Net.Tests.csproj
+      - name: Build
+        run: |
+          dotnet build --no-restore --configuration Release ./src/Gldf.Net/Gldf.Net.csproj
+          dotnet build --no-restore --configuration Debug ./src/Gldf.Net.Tests/Gldf.Net.Tests.csproj
+      - name: Test
+        run: dotnet test --no-build --verbosity normal ./src/Gldf.Net.Tests/Gldf.Net.Tests.csproj
+      - name: publish on nuget.org
+        id: publish_nuget
+        uses: alirezanet/publish-nuget@v3.1.0
+        with:
+          PROJECT_FILE_PATH: ./src/Gldf.Net/Gldf.Net.csproj
+          PACKAGE_NAME: GLDF.Net
+          VERSION_STATIC: 1.0.0
+          TAG_COMMIT: false
+          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+          NUGET_SOURCE: https://api.nuget.org
+          INCLUDE_SYMBOLS: false

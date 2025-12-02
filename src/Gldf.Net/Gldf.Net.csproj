@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+        <TargetFrameworks>net10.0;net9.0;net8.0</TargetFrameworks>
         <Description>GLDF XML serializer, validator and .gldf container reader/writer</Description>
         <Copyright>Copyright (c) DIAL GmbH 2024</Copyright>
         <Authors>Alex Kurpanik</Authors>
@@ -19,10 +19,11 @@
         <PackageIcon>logo.png</PackageIcon>
         <EmbedAllSources>true</EmbedAllSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
+        <LangVersion>14.0</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MinVer" PrivateAssets="all" Version="5.0.0" />
+        <PackageReference Include="MinVer" PrivateAssets="all" Version="6.0.0" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     </ItemGroup>
 
@@ -46,8 +47,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
-            <_Parameter1>$(AssemblyName).Tests</_Parameter1>
-        </AssemblyAttribute>
+        <InternalsVisibleTo Include="$(AssemblyName).Tests" />
     </ItemGroup>
 </Project>
