@@ -27,7 +27,7 @@ If you would like to read the GLDF L3D format as well, have a look on [GLDF.L3d]
 
 ### Requirements
 
-- [.NET 8/9/10](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) compatible project
+- [.NET 8/9/10](https://dotnet.microsoft.com/en-us/download/dotnet/10.0) compatible project
 
 ### Nuget package
 
