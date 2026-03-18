@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/.github/">
+    <File Path="../.github/workflows/ManualBuildOnly.yml" />
+    <File Path="../.github/workflows/ManualBuildWithNuget.yml" />
+    <File Path="../.github/workflows/OnPublishedRelease.yml" />
+    <File Path="../.github/workflows/OnPushDevelop.yml" />
+  </Folder>
+  <Folder Name="/Build/">
+    <File Path=".gitignore" />
+    <File Path="global.json" />
+  </Folder>
+  <Project Path="Gldf.Net.Tests/Gldf.Net.Tests.csproj" />
+  <Project Path="Gldf.Net/Gldf.Net.csproj" />
+</Solution>
