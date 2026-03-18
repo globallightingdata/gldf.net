@@ -1,5 +1,3 @@
-using Gldf.Net.Domain.Typed.Definition.Types;
-
 namespace Gldf.Net.Domain.Typed.Definition;
 
 public class EquipmentTyped : TypedBase
@@ -14,7 +12,7 @@ public class EquipmentTyped : TypedBase
 
     public double RatedInputPower { get; set; }
 
-    public EmergencyBallastLumenFactorTyped EmergencyBallastLumenFactor { get; set; }
+    public double? EmergencyBallastLumenFactor { get; set; }
 
-    public EmergencyRatedLuminousFluxTyped EmergencyRatedLuminousFlux { get; set; }
+    public int? EmergencyRatedLuminousFlux { get; set; }
 }

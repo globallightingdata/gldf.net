@@ -132,7 +132,7 @@ public static class EquipmentCompleteTyped
                     },
                     ControlGearCount = 2,
                     RatedInputPower = 0.1,
-                    EmergencyBallastLumenFactor = new EmergencyBallastLumenFactorTyped { Factor = 0.2 }
+                    EmergencyBallastLumenFactor = 0.2
                 },
                 new()
                 {
@@ -172,10 +172,7 @@ public static class EquipmentCompleteTyped
                         }
                     },
                     RatedInputPower = 0.1,
-                    EmergencyRatedLuminousFlux = new EmergencyRatedLuminousFluxTyped
-                    {
-                        Flux = 2
-                    }
+                    EmergencyRatedLuminousFlux = 2
                 }
             },
             Emitter = new List<EmitterTyped>
@@ -238,7 +235,7 @@ public static class EquipmentCompleteTyped
                                 },
                                 ControlGearCount = 2,
                                 RatedInputPower = 0.1,
-                                EmergencyBallastLumenFactor = new EmergencyBallastLumenFactorTyped { Factor = 0.2 }
+                                EmergencyBallastLumenFactor = 0.2
                             }
                         }
                     }
@@ -300,10 +297,7 @@ public static class EquipmentCompleteTyped
                                     }
                                 },
                                 RatedInputPower = 0.1,
-                                EmergencyRatedLuminousFlux = new EmergencyRatedLuminousFluxTyped
-                                {
-                                    Flux = 2
-                                }
+                                EmergencyRatedLuminousFlux = 2
                             }
                         }
                     }
@@ -409,10 +403,7 @@ public static class EquipmentCompleteTyped
                                         },
                                         ControlGearCount = 2,
                                         RatedInputPower = 0.1,
-                                        EmergencyBallastLumenFactor = new EmergencyBallastLumenFactorTyped
-                                        {
-                                            Factor = 0.2
-                                        }
+                                        EmergencyBallastLumenFactor = 0.2
                                     }
                                 }
                             }

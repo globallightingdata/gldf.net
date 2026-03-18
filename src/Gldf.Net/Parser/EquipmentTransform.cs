@@ -34,8 +34,8 @@ internal class EquipmentTransform : TransformBase
                 : null,
             ControlGear = definitions.ControlGears.GetTyped(equipment.ControlGearReference),
             RatedInputPower = equipment.RatedInputPower,
-            EmergencyBallastLumenFactor = equipment.GetEmergencyModeOutputAsLumenFactor()?.ToTyped(),
-            EmergencyRatedLuminousFlux = equipment.GetEmergencyModeOutputAsLuminousFlux()?.ToTyped()
+            EmergencyBallastLumenFactor = equipment.GetEmergencyModeOutputAsLumenFactor()?.Factor,
+            EmergencyRatedLuminousFlux = equipment.GetEmergencyModeOutputAsLuminousFlux()?.Flux
         };
     }
 }
