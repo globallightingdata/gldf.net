@@ -17,7 +17,7 @@ public class GldfFormatVersionReaderTests
     [Test]
     public void GetFromXml_ShouldBeExpected_WhenPreReleaseIsSet()
     {
-        var expected = new FormatVersion { Major = 1, Minor = 2, PreRelease = 3 };
+        var expected = new FormatVersion {Major = 1, Minor = 2, PreRelease = 3};
         const string xml = "<Root><Header><FormatVersion major='1' minor='2' pre-release='3' /></Header></Root>";
 
         var formatVersion = GldfFormatVersionReader.GetFromXml(xml);
@@ -28,7 +28,7 @@ public class GldfFormatVersionReaderTests
     [Test]
     public void GetFormatVersion_ShouldBeExpected_WhenPreReleaseIsMissing()
     {
-        var expected = new FormatVersion { Major = 1, Minor = 2, PreReleaseSpecified = false };
+        var expected = new FormatVersion {Major = 1, Minor = 2, PreReleaseSpecified = false};
         const string xml = "<Root><Header><FormatVersion major='1' minor='2' /></Header></Root>";
 
         var formatVersion = GldfFormatVersionReader.GetFromXml(xml);
@@ -84,7 +84,7 @@ public class GldfFormatVersionReaderTests
     public void GetFromXmlFile_ShouldReturnExpected()
     {
         const string xml = "<Root><Header><FormatVersion major='1' minor='2' pre-release='3' /></Header></Root>";
-        var expected = new FormatVersion { Major = 1, Minor = 2, PreRelease = 3 };
+        var expected = new FormatVersion {Major = 1, Minor = 2, PreRelease = 3};
         var tempFileName = Path.GetTempFileName();
         File.WriteAllText(tempFileName, xml);
 
@@ -97,7 +97,7 @@ public class GldfFormatVersionReaderTests
     public void GetFromXmlFile_ShouldReturnExpected_WhenEncodingIsSet()
     {
         const string xml = "<Root><Header><FormatVersion major='1' minor='2' pre-release='3' /></Header></Root>";
-        var expected = new FormatVersion { Major = 1, Minor = 2, PreRelease = 3 };
+        var expected = new FormatVersion {Major = 1, Minor = 2, PreRelease = 3};
         var tempFileName = Path.GetTempFileName();
         var encoding = Encoding.ASCII;
         File.WriteAllText(tempFileName, xml, encoding);
@@ -125,7 +125,7 @@ public class GldfFormatVersionReaderTests
     public void GetFromGldfFile_ShouldReturnExpected()
     {
         var gldf = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
-        var expected = new FormatVersion { Major = 1, Minor = 0, PreRelease = 3 };
+        var expected = new FormatVersion {Major = 1, Minor = 0, PreRelease = 3};
         var tempFileName = Path.GetTempFileName();
         File.WriteAllBytes(tempFileName, gldf);
 
@@ -149,7 +149,7 @@ public class GldfFormatVersionReaderTests
     {
         var gldf = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
         using var memoryStream = new MemoryStream(gldf);
-        var expected = new FormatVersion { Major = 1, Minor = 0, PreRelease = 3 };
+        var expected = new FormatVersion {Major = 1, Minor = 0, PreRelease = 3};
 
         var formatVersion = GldfFormatVersionReader.GetFromGldfStream(memoryStream, false);
 

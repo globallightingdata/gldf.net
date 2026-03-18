@@ -24,8 +24,8 @@ public static class MultiChannelCompleteModel
         },
         GeneralDefinitions = new GeneralDefinitions
         {
-            Files = new[]
-            {
+            Files =
+            [
                 new GldfFile
                 {
                     Id = "photometryRedFile",
@@ -61,9 +61,9 @@ public static class MultiChannelCompleteModel
                     Type = FileType.Url,
                     File = "https://example.org/geometry.l3d"
                 }
-            },
-            Photometries = new[]
-            {
+            ],
+            Photometries =
+            [
                 new Photometry
                 {
                     Id = "photometryRed",
@@ -88,53 +88,53 @@ public static class MultiChannelCompleteModel
                         FileId = "photometryBlueFile"
                     }
                 }
-            },
-            Spectrums = new[]
-            {
+            ],
+            Spectrums =
+            [
                 new Spectrum
                 {
                     Id = "spectrumRed",
-                    Intensities = new[]
-                    {
+                    Intensities =
+                    [
                         new SpectrumIntensity
                         {
                             Wavelength = 380,
                             Intensity = 0.7
                         }
-                    }
+                    ]
                 },
                 new Spectrum
                 {
                     Id = "spectrumGreen",
-                    Intensities = new[]
-                    {
+                    Intensities =
+                    [
                         new SpectrumIntensity
                         {
                             Wavelength = 380,
                             Intensity = 0.8
                         }
-                    }
+                    ]
                 },
                 new Spectrum
                 {
                     Id = "spectrumBlue",
-                    Intensities = new[]
-                    {
+                    Intensities =
+                    [
                         new SpectrumIntensity
                         {
                             Wavelength = 380,
                             Intensity = 0.9
                         }
-                    }
+                    ]
                 }
-            },
-            LightSources = new LightSourceBase[]
-            {
+            ],
+            LightSources =
+            [
                 new MultiChannelLightSource
                 {
                     Id = "multiChannelLightSource",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale
                         {
                             Language = "en",
@@ -145,9 +145,9 @@ public static class MultiChannelCompleteModel
                             Language = "de",
                             Text = "RGB Mehrkanal"
                         }
-                    },
-                    Description = new[]
-                    {
+                    ],
+                    Description =
+                    [
                         new Locale
                         {
                             Language = "en",
@@ -158,7 +158,7 @@ public static class MultiChannelCompleteModel
                             Language = "de",
                             Text = "Mehrkanal Beschreibung"
                         }
-                    },
+                    ],
                     Manufacturer = "DIAL",
                     Gtin = "12345678",
                     RatedInputPower = 1,
@@ -178,16 +178,16 @@ public static class MultiChannelCompleteModel
                         Default = 5
                     },
                     LightSourcePositionOfUsage = "LightSourcePositionOfUsage",
-                    EnergyLabels = new[]
-                    {
+                    EnergyLabels =
+                    [
                         new EnergyLabel { Region = "de", Label = "A+" },
                         new EnergyLabel { Region = "gb", Label = "A++" }
-                    },
+                    ],
                     ActivePowerTable = new ActivePowerTable
                     {
                         Type = ActivePowerTableType.Continuously,
-                        FluxFactor = new[]
-                        {
+                        FluxFactor =
+                        [
                             new FluxFactor
                             {
                                 InputPower = 0.1,
@@ -204,7 +204,7 @@ public static class MultiChannelCompleteModel
                                 StroboscopicEffectsSvm = "stroboscopic 2",
                                 Description = "Description 2"
                             }
-                        }
+                        ]
                     },
                     ColorInformation = new ColorInformation
                     {
@@ -236,27 +236,27 @@ public static class MultiChannelCompleteModel
                         },
                         MelanopicFactor = 0.8
                     },
-                    LightSourceImages = new[]
-                    {
+                    LightSourceImages =
+                    [
                         new Image
                         {
                             FileId = "lightSourceImage",
                             ImageType = ImageType.TechnicalSketch
                         }
-                    },
-                    Channels = new[]
-                    {
+                    ],
+                    Channels =
+                    [
                         new Channel
                         {
                             Type = ChannelType.Red,
-                            DisplayName = new Locale[]
-                            {
+                            DisplayName =
+                            [
                                 new()
                                 {
                                     Language = "en",
                                     Text = "Red"
                                 }
-                            },
+                            ],
                             SpectrumReference = new SpectrumReference
                             {
                                 SpectrumId = "spectrumRed"
@@ -300,14 +300,14 @@ public static class MultiChannelCompleteModel
                         new Channel
                         {
                             Type = ChannelType.Green,
-                            DisplayName = new Locale[]
-                            {
+                            DisplayName =
+                            [
                                 new()
                                 {
                                     Language = "en",
                                     Text = "Green"
                                 }
-                            },
+                            ],
                             SpectrumReference = new SpectrumReference
                             {
                                 SpectrumId = "spectrumGreen"
@@ -322,14 +322,14 @@ public static class MultiChannelCompleteModel
                         new Channel
                         {
                             Type = ChannelType.Blue,
-                            DisplayName = new Locale[]
-                            {
+                            DisplayName =
+                            [
                                 new()
                                 {
                                     Language = "en",
                                     Text = "Blue"
                                 }
-                            },
+                            ],
                             SpectrumReference = new SpectrumReference
                             {
                                 SpectrumId = "spectrumBlue"
@@ -340,7 +340,7 @@ public static class MultiChannelCompleteModel
                             },
                             RatedLuminousFlux = 170
                         }
-                    },
+                    ],
                     Maintenance = new LightSourceMaintenance
                     {
                         Lifetime = 9,
@@ -352,14 +352,14 @@ public static class MultiChannelCompleteModel
                     },
                     EmergencyBallastLumenFactor = 0.7
                 }
-            },
-            Emitters = new[]
-            {
+            ],
+            Emitters =
+            [
                 new Emitter
                 {
                     Id = "emitter",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new MultiChannelLightEmitter
                         {
                             LightSourceReference = new MultiChannelLightSourceReference
@@ -367,57 +367,57 @@ public static class MultiChannelCompleteModel
                                 MultiChannelLightSourceId = "multiChannelLightSource"
                             }
                         }
-                    }
+                    ]
                 }
-            },
-            Geometries = new GeometryBase[]
-            {
+            ],
+            Geometries =
+            [
                 new ModelGeometry()
                 {
                     Id = "geometry",
-                    GeometryFileReferences = new GeometryFileReference[]
-                    {
+                    GeometryFileReferences =
+                    [
                         new()
                         {
                             FileId = "geometryFile",
                             LevelOfDetail = LevelOfDetail.Low,
                             LevelOfDetailSpecified = true
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitions
         {
             ProductMetaData = new ProductMetaData
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new[]
-            {
+            Variants =
+            [
                 new Variant
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 1" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new EmitterReference
@@ -429,27 +429,27 @@ public static class MultiChannelCompleteModel
                 new Variant
                 {
                     Id = "variant-2",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 2" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new ModelGeometryReference
                         {
                             GeometryId = "geometry",
-                            EmitterReferences = new[]
-                            {
+                            EmitterReferences =
+                            [
                                 new GeometryEmitterReference
                                 {
                                     EmitterId = "emitter",
                                     EmitterObjectExternalName = "leo"
                                 }
-                            }
+                            ]
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

@@ -103,7 +103,7 @@ public class GldfContainerDirectoryTests
         File.WriteAllBytes(_tempFile1, gldfWithFiles);
 
         _gldfContainerReader.ExtractToDirectory(_tempFile1, tempSubDirectory);
-        var options = new EnumerationOptions { RecurseSubdirectories = true };
+        var options = new EnumerationOptions {RecurseSubdirectories = true};
         var filesInsideDirectory = Directory.EnumerateFiles(tempSubDirectory, "*.*", options).ToList();
         Directory.Delete(tempSubDirectory, true);
 

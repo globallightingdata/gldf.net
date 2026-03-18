@@ -6,12 +6,7 @@ namespace Gldf.Net.Tests.TestHelper;
 public static class ResourceLoader
 {
     private const string AssemblyPath = "Gldf.Net.Tests";
-    private static readonly Assembly ExecutingAssembly;
-
-    static ResourceLoader()
-    {
-        ExecutingAssembly = Assembly.GetExecutingAssembly();
-    }
+    private static readonly Assembly ExecutingAssembly = Assembly.GetExecutingAssembly();
 
     public static string LoadEmbeddedXml(string pathWithinAssembly)
     {

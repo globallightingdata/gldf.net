@@ -29,7 +29,7 @@ public class GldfValidator : IGldfValidator
     public GldfValidator() : this(Encoding.UTF8)
     {
     }
-    
+
     /// <summary>
     ///     Initializes a new instance of the <see cref="GldfValidator" /> class that can validate GLDF XML as
     ///     string, file or stream. Overload with Encoding parameter that is used when reading files.
@@ -38,7 +38,7 @@ public class GldfValidator : IGldfValidator
     /// <param name="encoding">Encoding for reading XML</param>
     public GldfValidator(Encoding encoding)
     {
-        if (encoding is null) throw new ArgumentNullException(nameof(encoding));
+        ArgumentNullException.ThrowIfNull(encoding);
         _schemaValidator = new GldfXmlValidator(encoding);
         _zipValidator = new GldfZipValidator(encoding);
         _containerValidator = new GldfContainerValidator(encoding);
@@ -52,7 +52,7 @@ public class GldfValidator : IGldfValidator
     /// <param name="xmlSchema">The Xml schema which should be used for XSD validation</param>
     public GldfValidator(XmlSchemaSet xmlSchema)
     {
-        if (xmlSchema is null) throw new ArgumentNullException(nameof(xmlSchema));
+        ArgumentNullException.ThrowIfNull(xmlSchema);
         _schemaValidator = new GldfXmlValidator(Encoding.UTF8, xmlSchema);
         _zipValidator = new GldfZipValidator(Encoding.UTF8);
         _containerValidator = new GldfContainerValidator(Encoding.UTF8);
@@ -67,8 +67,8 @@ public class GldfValidator : IGldfValidator
     /// <param name="xmlSchema">The Xml schema which should be used for XSD validation</param>
     public GldfValidator(Encoding encoding, XmlSchemaSet xmlSchema)
     {
-        if (encoding is null) throw new ArgumentNullException(nameof(encoding));
-        if (xmlSchema is null) throw new ArgumentNullException(nameof(xmlSchema));
+        ArgumentNullException.ThrowIfNull(encoding);
+        ArgumentNullException.ThrowIfNull(xmlSchema);
         _schemaValidator = new GldfXmlValidator(encoding, xmlSchema);
         _zipValidator = new GldfZipValidator(encoding);
         _containerValidator = new GldfContainerValidator(encoding);
@@ -84,7 +84,7 @@ public class GldfValidator : IGldfValidator
         _containerValidator.ValidateGldf(gldf);
 
     /// <summary>
-    ///     Validates the GLDF container file on disk. 
+    ///     Validates the GLDF container file on disk.
     /// </summary>
     /// <param name="gldfFilePath">The filepath of the GLDF conatiner file</param>
     /// <param name="flags">Defines which parts of the GLDF should be validated</param>
@@ -110,7 +110,7 @@ public class GldfValidator : IGldfValidator
         });
 
     /// <summary>
-    ///     Validates the GLDF container stream. 
+    ///     Validates the GLDF container stream.
     /// </summary>
     /// <param name="zipStream">The stream with the GLDF conatiner</param>
     /// <param name="leaveOpen">Whether to close the stream after serialization.</param>
@@ -151,7 +151,7 @@ public class GldfValidator : IGldfValidator
         }
         catch (Exception e)
         {
-            return new[] { new ValidationHint(SeverityType.Error, e.Message, ErrorType.GenericError) };
+            return [new ValidationHint(SeverityType.Error, e.Message, ErrorType.GenericError)];
         }
     }
 }

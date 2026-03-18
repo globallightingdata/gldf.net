@@ -27,8 +27,8 @@ public static class DescriptiveAttributesModel
         },
         GeneralDefinitions = new GeneralDefinitions
         {
-            Files = new[]
-            {
+            Files =
+            [
                 new GldfFile
                 {
                     Id = "eulumdat",
@@ -36,9 +36,9 @@ public static class DescriptiveAttributesModel
                     Type = FileType.Url,
                     File = "https://example.org/eulumdat.ldt"
                 }
-            },
-            Photometries = new[]
-            {
+            ],
+            Photometries =
+            [
                 new Photometry
                 {
                     Id = "photometry",
@@ -47,14 +47,14 @@ public static class DescriptiveAttributesModel
                         FileId = "eulumdat"
                     }
                 }
-            },
-            Emitters = new[]
-            {
+            ],
+            Emitters =
+            [
                 new Emitter
                 {
                     Id = "emitter",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new ChangeableLightEmitter
                         {
                             PhotometryReference = new PhotometryReference
@@ -62,41 +62,41 @@ public static class DescriptiveAttributesModel
                                 PhotometryId = "photometry"
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitions
         {
             ProductMetaData = new ProductMetaData
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new[]
-            {
+            Variants =
+            [
                 new Variant
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 1" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new EmitterReference
@@ -124,8 +124,8 @@ public static class DescriptiveAttributesModel
                         },
                         Marketing = new Marketing
                         {
-                            Applications = new[]
-                            {
+                            Applications =
+                            [
                                 ApplicationArea.InteriorTrafficZones,
                                 ApplicationArea.InteriorTrafficZonesCorridors,
                                 ApplicationArea.InteriorTrafficZonesStaircases,
@@ -205,17 +205,17 @@ public static class DescriptiveAttributesModel
                                 ApplicationArea.ExteriorSportsFieldsSpotlightings,
                                 ApplicationArea.ExteriorOther,
                                 ApplicationArea.ExteriorOtherFacades
-                            }
+                            ]
                         }
                     }
                 },
                 new Variant
                 {
                     Id = "variant-2",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 2" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new EmitterReference
@@ -245,74 +245,74 @@ public static class DescriptiveAttributesModel
                         {
                             Atex = new Atex
                             {
-                                Directives = new[]
-                                {
+                                Directives =
+                                [
                                     AtexDirective.ATEX,
                                     AtexDirective.IECEx,
                                     AtexDirective.CEC,
                                     AtexDirective.NEC
-                                },
-                                Classes = new[]
-                                {
+                                ],
+                                Classes =
+                                [
                                     AtexClass.I,
                                     AtexClass.II,
                                     AtexClass.III
-                                },
-                                Divisions = new[]
-                                {
+                                ],
+                                Divisions =
+                                [
                                     AtexDivision.Division1,
                                     AtexDivision.Division2
-                                },
+                                ],
                                 DivisionGroups = new AtexDivisionGroups
                                 {
-                                    Gas = new[]
-                                    {
+                                    Gas =
+                                    [
                                         AtexDivisionGroupGas.A,
                                         AtexDivisionGroupGas.B,
                                         AtexDivisionGroupGas.C,
                                         AtexDivisionGroupGas.D
-                                    },
-                                    Dust = new[]
-                                    {
+                                    ],
+                                    Dust =
+                                    [
                                         AtexDivisionGroupDust.E,
                                         AtexDivisionGroupDust.F,
                                         AtexDivisionGroupDust.G
-                                    }
+                                    ]
                                 },
                                 Zones = new AtexZones
                                 {
-                                    Gas = new[]
-                                    {
+                                    Gas =
+                                    [
                                         AtexZoneGas.Zone0,
                                         AtexZoneGas.Zone1,
                                         AtexZoneGas.Zone2
-                                    },
-                                    Dust = new[]
-                                    {
+                                    ],
+                                    Dust =
+                                    [
                                         AtexZoneDust.Zone20,
                                         AtexZoneDust.Zone21,
                                         AtexZoneDust.Zone22
-                                    }
+                                    ]
                                 },
                                 ZoneGroups = new AtexZoneGroups
                                 {
-                                    Gas = new[]
-                                    {
+                                    Gas =
+                                    [
                                         AtexZoneGroupGas.IIC,
                                         AtexZoneGroupGas.IIBH2,
                                         AtexZoneGroupGas.IIB,
                                         AtexZoneGroupGas.IIA
-                                    },
-                                    Dust = new[]
-                                    {
+                                    ],
+                                    Dust =
+                                    [
                                         AtexZoneGroupDust.IIIC,
                                         AtexZoneGroupDust.IIIB,
                                         AtexZoneGroupDust.IIIA
-                                    }
+                                    ]
                                 },
                                 MaximumSurfaceTemperature = "MaximumSurfaceTemperature",
-                                TemperatureClasses = new[]
-                                {
+                                TemperatureClasses =
+                                [
                                     AtexTemperatureClass.T1,
                                     AtexTemperatureClass.T2,
                                     AtexTemperatureClass.T2A,
@@ -327,9 +327,9 @@ public static class DescriptiveAttributesModel
                                     AtexTemperatureClass.T4A,
                                     AtexTemperatureClass.T5,
                                     AtexTemperatureClass.T6
-                                },
-                                ExCodes = new[]
-                                {
+                                ],
+                                ExCodes =
+                                [
                                     AtexExCode.da,
                                     AtexExCode.db,
                                     AtexExCode.dc,
@@ -356,9 +356,9 @@ public static class DescriptiveAttributesModel
                                     AtexExCode.ta,
                                     AtexExCode.tb,
                                     AtexExCode.tc
-                                },
-                                EquipmentProtectionLevels = new[]
-                                {
+                                ],
+                                EquipmentProtectionLevels =
+                                [
                                     AtexEquipmentProtectionLevel.Ga,
                                     AtexEquipmentProtectionLevel.Gb,
                                     AtexEquipmentProtectionLevel.Gc,
@@ -367,14 +367,14 @@ public static class DescriptiveAttributesModel
                                     AtexEquipmentProtectionLevel.Dc,
                                     AtexEquipmentProtectionLevel.Ma,
                                     AtexEquipmentProtectionLevel.Mb
-                                },
-                                EquipmentGroups = new[]
-                                {
+                                ],
+                                EquipmentGroups =
+                                [
                                     AtexEquipmentGroup.GroupI,
                                     AtexEquipmentGroup.GroupII
-                                },
-                                EquipmentCategories = new[]
-                                {
+                                ],
+                                EquipmentCategories =
+                                [
                                     AtexEquipmentCategory.CategoryM1,
                                     AtexEquipmentCategory.CategoryM2,
                                     AtexEquipmentCategory.Category1G,
@@ -383,14 +383,14 @@ public static class DescriptiveAttributesModel
                                     AtexEquipmentCategory.Category1D,
                                     AtexEquipmentCategory.Category2D,
                                     AtexEquipmentCategory.Category3D
-                                },
-                                Atmospheres = new[]
-                                {
+                                ],
+                                Atmospheres =
+                                [
                                     AtexAtmosphere.G,
                                     AtexAtmosphere.D
-                                },
-                                Groups = new[]
-                                {
+                                ],
+                                Groups =
+                                [
                                     AtexGroup.I,
                                     AtexGroup.II,
                                     AtexGroup.IIA,
@@ -400,7 +400,7 @@ public static class DescriptiveAttributesModel
                                     AtexGroup.IIIA,
                                     AtexGroup.IIIB,
                                     AtexGroup.IIIC
-                                }
+                                ]
                             }
                         }
                     }
@@ -408,10 +408,10 @@ public static class DescriptiveAttributesModel
                 new Variant
                 {
                     Id = "variant-3",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 3" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new EmitterReference
@@ -441,10 +441,10 @@ public static class DescriptiveAttributesModel
                 new Variant
                 {
                     Id = "variant-4",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 4" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new EmitterReference
@@ -474,10 +474,10 @@ public static class DescriptiveAttributesModel
                 new Variant
                 {
                     Id = "variant-5",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 5" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new EmitterReference
@@ -507,10 +507,10 @@ public static class DescriptiveAttributesModel
                 new Variant
                 {
                     Id = "variant-6",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 6" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new EmitterReference
@@ -539,10 +539,10 @@ public static class DescriptiveAttributesModel
                 new Variant
                 {
                     Id = "variant-7",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 7" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new EmitterReference
@@ -564,7 +564,7 @@ public static class DescriptiveAttributesModel
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

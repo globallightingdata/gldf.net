@@ -7,7 +7,6 @@ using Gldf.Net.Domain.Typed.Head.Types;
 using Gldf.Net.Domain.Typed.Product;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using System;
-using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.Sensors;
 
@@ -25,8 +24,8 @@ public class SensorsMandatoryTyped
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new List<GldfFileTyped>
-            {
+            Files =
+            [
                 new()
                 {
                     Id = "sensorFile",
@@ -35,9 +34,9 @@ public class SensorsMandatoryTyped
                     FileName = "sensor.sensldt",
                     Uri = "https://example.org/sensor.sensldt"
                 }
-            },
-            Sensors = new List<SensorTyped>
-            {
+            ],
+            Sensors =
+            [
                 new()
                 {
                     Id = "sensor",
@@ -50,14 +49,14 @@ public class SensorsMandatoryTyped
                         Uri = "https://example.org/sensor.sensldt"
                     }
                 }
-            },
-            Emitter = new List<EmitterTyped>
-            {
+            ],
+            Emitter =
+            [
                 new()
                 {
                     Id = "emitter",
-                    SensorEmitterOptions = new[]
-                    {
+                    SensorEmitterOptions =
+                    [
                         new SensorEmitterTyped
                         {
                             Sensor = new SensorTyped
@@ -73,60 +72,60 @@ public class SensorsMandatoryTyped
                                 }
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitionsTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new List<VariantTyped>
-            {
+            Variants =
+            [
                 new()
                 {
                     Id = "variant-1",
-                    ProductNumber = new[]
-                    {
+                    ProductNumber =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "Product number"
                         }
-                    },
-                    Name = new[]
-                    {
+                    ],
+                    Name =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "Variant 1"
                         }
-                    },
+                    ],
                     Geometry = new GeometryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
                             Id = "emitter",
-                            SensorEmitterOptions = new[]
-                            {
+                            SensorEmitterOptions =
+                            [
                                 new SensorEmitterTyped
                                 {
                                     Sensor = new SensorTyped
@@ -142,11 +141,11 @@ public class SensorsMandatoryTyped
                                         }
                                     }
                                 }
-                            }
+                            ]
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

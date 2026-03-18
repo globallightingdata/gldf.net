@@ -50,7 +50,7 @@ public class ImageFileTyped
         _gldfFileTyped = new GldfFileTyped();
         ImageType = ImageType.Other;
     }
-        
+
     public ImageFileTyped(GldfFileTyped gldfFileTyped, ImageType imageType)
     {
         _gldfFileTyped = gldfFileTyped;

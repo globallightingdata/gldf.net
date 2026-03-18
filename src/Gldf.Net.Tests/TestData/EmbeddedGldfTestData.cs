@@ -1,6 +1,5 @@
 ﻿using Gldf.Net.Container;
 using Gldf.Net.Domain.Xml;
-using Gldf.Net.Domain.Xml.MetaInfo;
 using Gldf.Net.Tests.TestHelper;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -36,8 +35,8 @@ public static class EmbeddedGldfTestData
     public static byte[] GetGldfWithCodepage850() => ResourceLoader.LoadEmbeddedBytes(GldfWithCodepage850);
     public static byte[] GetGldfWithEncodingUtf8() => ResourceLoader.LoadEmbeddedBytes(GldfWithEncodingUtf8);
 
-    public static IEnumerable<string> ExpectedZipEntryNames => new[]
-    {
+    public static IEnumerable<string> ExpectedZipEntryNames =>
+    [
         GldfStaticNames.Files.Product,
         $"{GldfStaticNames.Folder.Documents}/document.docx",
         $"{GldfStaticNames.Folder.Geometries}/geometry.l3d",
@@ -50,21 +49,21 @@ public static class EmbeddedGldfTestData
         $"{GldfStaticNames.Folder.Sensors}/sensor.xml",
         $"{GldfStaticNames.Folder.Spectrums}/spectrum.txt",
         $"{GldfStaticNames.Folder.Symbols}/symbol.svg"
-    };
+    ];
 
     public static readonly TestCaseData[] ValidGldfTestCases =
-    {
+    [
         new TestCaseData(GetGldfWithHeaderMandatory()).SetName("Header Mandatory"),
         new TestCaseData(GetGldfNoFiles()).SetName("No files"),
         new TestCaseData(GetGldfWithMetaInfo()).SetName("With MetaInfo"),
-        new TestCaseData(GetGldfWithFilesComplete()).SetName("With files complete"),
-    };
+        new TestCaseData(GetGldfWithFilesComplete()).SetName("With files complete")
+    ];
 
     public static MetaInformation ExpectedMetaInformation => new()
     {
         SchemaLocation = null,
-        Properties = new Property[]
-        {
+        Properties =
+        [
             new()
             {
                 Name = "Acme-Signature",
@@ -75,11 +74,11 @@ public static class EmbeddedGldfTestData
                 Name = "ExampleLLC-Signature",
                 Content = "5437af9d-18c4-485e-b396-1d3d6531fb29"
             }
-        }
+        ]
     };
 
-    public static List<string> ExpectedDirectoryFilePaths => new()
-    {
+    public static List<string> ExpectedDirectoryFilePaths =>
+    [
         $"*{Path.DirectorySeparatorChar}{GldfStaticNames.Files.Product}",
         $"*{Path.DirectorySeparatorChar}{GldfStaticNames.Folder.Documents}{Path.DirectorySeparatorChar}document.docx",
         $"*{Path.DirectorySeparatorChar}{GldfStaticNames.Folder.Geometries}{Path.DirectorySeparatorChar}geometry.l3d",
@@ -92,5 +91,5 @@ public static class EmbeddedGldfTestData
         $"*{Path.DirectorySeparatorChar}{GldfStaticNames.Folder.Sensors}{Path.DirectorySeparatorChar}sensor.xml",
         $"*{Path.DirectorySeparatorChar}{GldfStaticNames.Folder.Spectrums}{Path.DirectorySeparatorChar}spectrum.txt",
         $"*{Path.DirectorySeparatorChar}{GldfStaticNames.Folder.Symbols}{Path.DirectorySeparatorChar}symbol.svg"
-    };
+    ];
 }

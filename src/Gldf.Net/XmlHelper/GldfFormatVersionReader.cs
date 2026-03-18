@@ -22,8 +22,8 @@ public static class GldfFormatVersionReader
             var hasPreRelease = int.TryParse(formatElement.Attribute("pre-release")?.Value, out var preRelease);
             return (hasMajor, hasMinor, hasPreRelease) switch
             {
-                (true, true, true) => new FormatVersion { Major = major, Minor = minor, PreRelease = preRelease },
-                (true, true, false) => new FormatVersion { Major = major, Minor = minor },
+                (true, true, true) => new FormatVersion {Major = major, Minor = minor, PreRelease = preRelease},
+                (true, true, false) => new FormatVersion {Major = major, Minor = minor},
                 _ => throw new XmlException("FormatVersion attributes missing. At least major and minor (:int) required")
             };
         }

@@ -21,8 +21,8 @@ public abstract class XmlSerializerBase<T>
     ///     Initializes a new instance that can serialize <see cref="T" /> to and from XML.
     /// </summary>
     protected XmlSerializerBase() : this(
-        new XmlWriterSettings { Indent = true },
-        new XmlReaderSettings { IgnoreWhitespace = true })
+        new XmlWriterSettings {Indent = true},
+        new XmlReaderSettings {IgnoreWhitespace = true})
     {
     }
 
@@ -73,7 +73,7 @@ public abstract class XmlSerializerBase<T>
     public void SerializeToXmlFile(T value, string xmlFilePath)
     {
         if (value == null) throw new ArgumentNullException(nameof(value));
-        if (xmlFilePath == null) throw new ArgumentNullException(nameof(xmlFilePath));
+        ArgumentNullException.ThrowIfNull(xmlFilePath);
         try
         {
             using var streamWriter = new StreamWriter(xmlFilePath, false, WriterSettings.Encoding);
@@ -100,7 +100,7 @@ public abstract class XmlSerializerBase<T>
     public void SerializeToXmlStream(T value, Stream xmlStream, bool leaveOpen)
     {
         if (value == null) throw new ArgumentNullException(nameof(value));
-        if (xmlStream == null) throw new ArgumentNullException(nameof(xmlStream));
+        ArgumentNullException.ThrowIfNull(xmlStream);
         try
         {
             var settingsToUse = WriterSettings.Clone();
@@ -121,13 +121,13 @@ public abstract class XmlSerializerBase<T>
     /// <exception cref="GldfException">Input is invalid XML. See also InnerException.</exception>
     public T DeserializeFromXml(string xml)
     {
-        if (xml == null) throw new ArgumentNullException(nameof(xml));
+        ArgumentNullException.ThrowIfNull(xml);
         try
         {
             using var stringReader = new StringReader(xml);
             using var xmlReader = XmlReader.Create(stringReader, ReaderSettings);
             var deserializedXml = XmlSerializer.Deserialize(xmlReader);
-            return (T)deserializedXml;
+            return (T) deserializedXml;
         }
         catch (Exception e)
         {
@@ -144,13 +144,13 @@ public abstract class XmlSerializerBase<T>
     /// </exception>
     public T DeserializeFromXmlFile(string xmlFilePath)
     {
-        if (xmlFilePath == null) throw new ArgumentNullException(nameof(xmlFilePath));
+        ArgumentNullException.ThrowIfNull(xmlFilePath);
         try
         {
             using var streamIn = new StreamReader(xmlFilePath, true);
             using var xmlReader = XmlReader.Create(streamIn, ReaderSettings);
             var deserializedXml = XmlSerializer.Deserialize(xmlReader);
-            return (T)deserializedXml;
+            return (T) deserializedXml;
         }
         catch (Exception e)
         {
@@ -168,7 +168,7 @@ public abstract class XmlSerializerBase<T>
     /// </exception>
     public T DeserializeFromXmlStream(Stream xmlStream, bool leaveOpen)
     {
-        if (xmlStream == null) throw new ArgumentNullException(nameof(xmlStream));
+        ArgumentNullException.ThrowIfNull(xmlStream);
 
         try
         {
@@ -176,7 +176,7 @@ public abstract class XmlSerializerBase<T>
             settingsToUse.CloseInput = !leaveOpen;
             using var xmlReader = XmlReader.Create(xmlStream, settingsToUse);
             var deserializedXml = XmlSerializer.Deserialize(xmlReader);
-            return (T)deserializedXml;
+            return (T) deserializedXml;
         }
         catch (Exception e)
         {

@@ -35,7 +35,7 @@ public class GldfXmlValidatorTests
     [Test]
     public void Ctor_ShouldThrow_WhenEncodingIsNull()
     {
-        Action act = () => _ = new GldfXmlValidator((Encoding)null);
+        Action act = () => _ = new GldfXmlValidator((Encoding) null);
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
@@ -45,7 +45,7 @@ public class GldfXmlValidatorTests
     [Test]
     public void Ctor_ShouldThrow_WhenXmlSchemaSetEncodingIsNull()
     {
-        Action act = () => _ = new GldfXmlValidator((XmlSchemaSet)null);
+        Action act = () => _ = new GldfXmlValidator((XmlSchemaSet) null);
 
         act.Should()
             .ThrowExactly<ArgumentNullException>()
@@ -81,7 +81,7 @@ public class GldfXmlValidatorTests
     {
         var xml = EmbeddedXmlTestData.GetRootWithHeaderXml();
         const string expectedMmessage = "The element 'Root' has incomplete content. " +
-                               "List of possible elements expected: 'GeneralDefinitions'.";
+                                        "List of possible elements expected: 'GeneralDefinitions'.";
         var expectedHint = new ValidationHint(SeverityType.Error, expectedMmessage, ErrorType.XmlSchema);
 
         var validationResult = _xmlValidator.ValidateXml(xml);

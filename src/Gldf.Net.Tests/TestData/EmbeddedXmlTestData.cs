@@ -60,7 +60,7 @@ public static class EmbeddedXmlTestData
     private const string MetaInformationXml = "TestData.MetaInfo.meta-information.xml";
 
     public static readonly TestCaseData[] ValidXmlTestCases =
-    {
+    [
         new TestCaseData(GetHeaderMandatoryXml()).SetName("Header Mandatory"),
         new TestCaseData(GetHeaderCompleteXml()).SetName("Header Complete"),
         new TestCaseData(GetFileMandatoryXml()).SetName("File Mandatory"),
@@ -89,12 +89,12 @@ public static class EmbeddedXmlTestData
         new TestCaseData(GetVariantCompleteXml()).SetName("Variant Complete"),
         new TestCaseData(GetDescriptiveAttributesXml()).SetName("Descriptive Attributes"),
         new TestCaseData(GetGeneralsEmptyXml()).SetName("GeneralDefinitions empty")
-    };
+    ];
 
     public static readonly TestCaseData[] InvalidXmlTestCases =
-    {
+    [
         new TestCaseData(GetRootWithHeaderXml()).SetName("Root with Header only")
-    };
+    ];
 
     // Header
     public static string GetHeaderMandatoryXml() => ResourceLoader.LoadEmbeddedXml(HeaderMandatoryXml);

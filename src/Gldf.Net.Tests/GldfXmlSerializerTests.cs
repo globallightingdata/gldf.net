@@ -183,7 +183,7 @@ public class GldfXmlSerializerTests
             .ThrowExactly<ArgumentNullException>()
             .WithMessage("Value cannot be null. (Parameter 'value')");
     }
-    
+
     [Test]
     public void SerializeToXmlStream_ShouldThrow_WhenStreamIsNull()
     {

@@ -36,9 +36,9 @@ public class GldfContainer
     public void AddAssetFile(FileContentType fileContentType, string fileName, byte[] fileContent)
     {
         if (!Enum.IsDefined(typeof(FileContentType), fileContentType))
-            throw new InvalidEnumArgumentException(nameof(fileContentType), (int)fileContentType, typeof(FileContentType));
-        if (fileName == null) throw new ArgumentNullException(nameof(fileName));
-        if (fileContent == null) throw new ArgumentNullException(nameof(fileContent));
+            throw new InvalidEnumArgumentException(nameof(fileContentType), (int) fileContentType, typeof(FileContentType));
+        ArgumentNullException.ThrowIfNull(fileName);
+        ArgumentNullException.ThrowIfNull(fileContent);
         var assetCollection = this.GetAssetCollection(fileContentType);
         assetCollection.Add(new ContainerFile(fileName, fileContent));
     }

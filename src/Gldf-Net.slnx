@@ -6,6 +6,7 @@
     <File Path="../.github/workflows/OnPushDevelop.yml" />
   </Folder>
   <Folder Name="/Build/">
+    <File Path=".editorconfig" />
     <File Path=".gitignore" />
     <File Path="global.json" />
   </Folder>

@@ -7,7 +7,6 @@ using Gldf.Net.Domain.Typed.Head.Types;
 using Gldf.Net.Domain.Typed.Product;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using System;
-using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.Variants;
 
@@ -25,8 +24,8 @@ public static class VariantMandatoryTyped
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new List<GldfFileTyped>
-            {
+            Files =
+            [
                 new()
                 {
                     Id = "eulumdat",
@@ -35,9 +34,9 @@ public static class VariantMandatoryTyped
                     Uri = "https://example.org/eulumdat.ldt",
                     FileName = "eulumdat.ldt"
                 }
-            },
-            Photometries = new List<PhotometryTyped>
-            {
+            ],
+            Photometries =
+            [
                 new()
                 {
                     Id = "photometry",
@@ -50,25 +49,25 @@ public static class VariantMandatoryTyped
                         FileName = "eulumdat.ldt"
                     }
                 }
-            },
-            FixedLightSources = new List<FixedLightSourceTyped>
-            {
+            ],
+            FixedLightSources =
+            [
                 new()
                 {
                     Id = "fixedLightSource",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "FixedLightSource"
                         }
-                    },
+                    ],
                     RatedInputPower = 50
                 }
-            },
-            SimpleGeometries = new List<SimpleGeometryTyped>
-            {
+            ],
+            SimpleGeometries =
+            [
                 new()
                 {
                     Id = "geometry",
@@ -84,14 +83,14 @@ public static class VariantMandatoryTyped
                         Length = 5
                     }
                 }
-            },
-            Emitter = new List<EmitterTyped>
-            {
+            ],
+            Emitter =
+            [
                 new()
                 {
                     Id = "emitter",
-                    FixedEmitterOptions = new FixedLightEmitterTyped[]
-                    {
+                    FixedEmitterOptions =
+                    [
                         new()
                         {
                             Photometry = new PhotometryTyped
@@ -109,85 +108,86 @@ public static class VariantMandatoryTyped
                             FixedLightSource = new FixedLightSourceTyped
                             {
                                 Id = "fixedLightSource",
-                                Name = new LocaleTyped[]
-                                {
+                                Name =
+                                [
                                     new()
                                     {
                                         Language = "en",
                                         Text = "FixedLightSource"
                                     }
-                                },
+                                ],
                                 RatedInputPower = 50
                             },
                             RatedLuminousFlux = 250
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitionsTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new List<VariantTyped>
-            {
+            Variants =
+            [
                 new()
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "Variant 1"
                         }
-                    },
-                    ProductNumber = new LocaleTyped[]
-                    {
+                    ],
+                    ProductNumber =
+                    [
                         new()
                         {
                             Language = "en",
                             Text = "Product number"
                         }
-                    }
+                    ]
                 },
+
                 new()
                 {
                     Id = "variant-2",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "Variant 2"
                         }
-                    },
-                    ProductNumber = new LocaleTyped[]
-                    {
+                    ],
+                    ProductNumber =
+                    [
                         new()
                         {
                             Language = "en",
                             Text = "Product number"
                         }
-                    },
+                    ],
                     Geometry = new GeometryTyped
                     {
                         Simple = new SimpleGeometryEmitterTyped
@@ -195,8 +195,8 @@ public static class VariantMandatoryTyped
                             Emitter = new EmitterTyped
                             {
                                 Id = "emitter",
-                                FixedEmitterOptions = new FixedLightEmitterTyped[]
-                                {
+                                FixedEmitterOptions =
+                                [
                                     new()
                                     {
                                         Photometry = new PhotometryTyped
@@ -214,19 +214,19 @@ public static class VariantMandatoryTyped
                                         FixedLightSource = new FixedLightSourceTyped
                                         {
                                             Id = "fixedLightSource",
-                                            Name = new LocaleTyped[]
-                                            {
+                                            Name =
+                                            [
                                                 new()
                                                 {
                                                     Language = "en",
                                                     Text = "FixedLightSource"
                                                 }
-                                            },
+                                            ],
                                             RatedInputPower = 50
                                         },
                                         RatedLuminousFlux = 250
                                     }
-                                }
+                                ]
                             },
                             Geometry = new SimpleGeometryTyped
                             {
@@ -246,7 +246,7 @@ public static class VariantMandatoryTyped
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

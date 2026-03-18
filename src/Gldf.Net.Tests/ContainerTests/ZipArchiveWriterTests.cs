@@ -36,11 +36,11 @@ public class ZipArchiveWriterTests
     public void Write_ShouldCreateEmptyContainer()
     {
         var gldfContainer = new GldfContainer();
-        
+
         _zipArchiveWriter.Write(_tempFile1, gldfContainer);
         using var zipArchive = ZipFile.Open(_tempFile1, ZipArchiveMode.Read);
         var entries = zipArchive.Entries;
-        
+
         entries.Should().HaveCount(0);
     }
 
@@ -62,8 +62,8 @@ public class ZipArchiveWriterTests
     [Test]
     public void Write_ShouldOverwriteContainer_WhenAlreadyExists()
     {
-        var gldfContainer1 = new GldfContainer(new Root { SchemaLocation = "Old" });
-        var gldfContainer2 = new GldfContainer(new Root { SchemaLocation = "New" });
+        var gldfContainer1 = new GldfContainer(new Root {SchemaLocation = "Old"});
+        var gldfContainer2 = new GldfContainer(new Root {SchemaLocation = "New"});
         var zipArchiveReader = new ZipArchiveReader();
 
         _zipArchiveWriter.Write(_tempFile1, gldfContainer1);
@@ -122,11 +122,11 @@ public class ZipArchiveWriterTests
     public void Write_ShouldCreateMetaInfo()
     {
         var gldfContainer = new GldfContainer(new Root(), new MetaInformation());
-        
+
         _zipArchiveWriter.Write(_tempFile1, gldfContainer);
         using var zipArchive = ZipFile.Open(_tempFile1, ZipArchiveMode.Read);
         var entries = zipArchive.Entries;
-        
+
         entries.Should().Contain(e => e.Name == GldfStaticNames.Files.MetaInfo);
     }
 

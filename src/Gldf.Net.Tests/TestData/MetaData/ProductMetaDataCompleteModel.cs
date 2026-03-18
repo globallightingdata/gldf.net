@@ -27,8 +27,8 @@ public static class ProductMetaDataCompleteModel
         },
         GeneralDefinitions = new GeneralDefinitions
         {
-            Files = new[]
-            {
+            Files =
+            [
                 new GldfFile
                 {
                     Id = "eulumdat",
@@ -43,9 +43,9 @@ public static class ProductMetaDataCompleteModel
                     Type = FileType.Url,
                     File = "https://example.org/image.png"
                 }
-            },
-            Photometries = new[]
-            {
+            ],
+            Photometries =
+            [
                 new Photometry
                 {
                     Id = "photometry",
@@ -54,14 +54,14 @@ public static class ProductMetaDataCompleteModel
                         FileId = "eulumdat"
                     }
                 }
-            },
-            Emitters = new[]
-            {
+            ],
+            Emitters =
+            [
                 new Emitter
                 {
                     Id = "emitter",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new ChangeableLightEmitter
                         {
                             PhotometryReference = new PhotometryReference
@@ -69,17 +69,17 @@ public static class ProductMetaDataCompleteModel
                                 PhotometryId = "photometry"
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitions
         {
             ProductMetaData = new ProductMetaData
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new Locale
                     {
                         Language = "en",
@@ -90,9 +90,9 @@ public static class ProductMetaDataCompleteModel
                         Language = "de",
                         Text = "Produktnummer"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new Locale
                     {
                         Language = "en",
@@ -103,9 +103,9 @@ public static class ProductMetaDataCompleteModel
                         Language = "de",
                         Text = "Produktname"
                     }
-                },
-                Description = new[]
-                {
+                ],
+                Description =
+                [
                     new Locale
                     {
                         Language = "en",
@@ -116,9 +116,9 @@ public static class ProductMetaDataCompleteModel
                         Language = "de",
                         Text = "Produktbeschreibung"
                     }
-                },
-                TenderText = new[]
-                {
+                ],
+                TenderText =
+                [
                     new Locale
                     {
                         Language = "en",
@@ -129,14 +129,14 @@ public static class ProductMetaDataCompleteModel
                         Language = "de",
                         Text = "Produkt Auschreibungstext"
                     }
-                },
-                ProductSeries = new[]
-                {
+                ],
+                ProductSeries =
+                [
                     new ProductSerie
                     {
                         Id = "serie-1",
-                        Name = new[]
-                        {
+                        Name =
+                        [
                             new Locale
                             {
                                 Language = "en",
@@ -147,9 +147,9 @@ public static class ProductMetaDataCompleteModel
                                 Language = "de",
                                 Text = "Produktserienname"
                             }
-                        },
-                        Description = new[]
-                        {
+                        ],
+                        Description =
+                        [
                             new Locale
                             {
                                 Language = "en",
@@ -160,9 +160,9 @@ public static class ProductMetaDataCompleteModel
                                 Language = "de",
                                 Text = "Produktserienbeschreibung"
                             }
-                        },
-                        Pictures = new[]
-                        {
+                        ],
+                        Pictures =
+                        [
                             new Image
                             {
                                 FileId = "image",
@@ -183,9 +183,9 @@ public static class ProductMetaDataCompleteModel
                                 FileId = "image",
                                 ImageType = ImageType.Other
                             }
-                        },
-                        Hyperlinks = new[]
-                        {
+                        ],
+                        Hyperlinks =
+                        [
                             new Hyperlink
                             {
                                 Href = "https://example.org",
@@ -194,22 +194,22 @@ public static class ProductMetaDataCompleteModel
                                 CountryCode = "gb",
                                 PlainText = "Hyperlink PlainText"
                             }
-                        }
+                        ]
                     }
-                },
-                Pictures = new[]
-                {
+                ],
+                Pictures =
+                [
                     new Image
                     {
                         FileId = "image",
                         ImageType = ImageType.Other
                     }
-                },
+                ],
                 Maintenance = new LuminaireMaintenance
                 {
                     Cie97LuminaireType = Cie97LuminaireType.DustProofIp5X,
-                    CieMaintenanceFactors = new[]
-                    {
+                    CieMaintenanceFactors =
+                    [
                         new CieMaintenanceFactor
                         {
                             Years = 1,
@@ -234,9 +234,9 @@ public static class ProductMetaDataCompleteModel
                             RoomCondition = MfRoomCondition.Clean,
                             Factor = 0.2
                         }
-                    },
-                    IesLightLossFactors = new[]
-                    {
+                    ],
+                    IesLightLossFactors =
+                    [
                         new IesDirtDepreciation
                         {
                             Years = 5,
@@ -267,9 +267,9 @@ public static class ProductMetaDataCompleteModel
                             RoomCondition = DdRoomCondition.Moderate,
                             Factor = 0.4
                         }
-                    },
-                    JiegMaintenanceFactors = new[]
-                    {
+                    ],
+                    JiegMaintenanceFactors =
+                    [
                         new JiegMaintenanceFactor
                         {
                             Years = 10,
@@ -288,7 +288,7 @@ public static class ProductMetaDataCompleteModel
                             RoomCondition = JiegRoomCondition.Clean,
                             Factor = 0.6
                         }
-                    }
+                    ]
                 },
                 DescriptiveAttributes = new DescriptiveAttributes
                 {
@@ -301,8 +301,8 @@ public static class ProductMetaDataCompleteModel
                             Height = 3
                         },
                         ProductForm = ProductForm.Cylinder,
-                        Adjustabilities = new[]
-                        {
+                        Adjustabilities =
+                        [
                             Adjustability.Fixed,
                             Adjustability.Orientation,
                             Adjustability.Turn,
@@ -310,9 +310,9 @@ public static class ProductMetaDataCompleteModel
                             Adjustability.Cardanic,
                             Adjustability.HeightAdjustable,
                             Adjustability.UserDefined
-                        },
-                        SealingMaterial = new[]
-                        {
+                        ],
+                        SealingMaterial =
+                        [
                             new Locale
                             {
                                 Language = "en",
@@ -323,14 +323,14 @@ public static class ProductMetaDataCompleteModel
                                 Language = "de",
                                 Text = "Gehäusematerial"
                             }
-                        },
+                        ],
                         IKRating = IKRating.IK06,
-                        ProtectiveAreas = new[]
-                        {
+                        ProtectiveAreas =
+                        [
                             ProtectiveArea.BallimpactProof,
                             ProtectiveArea.CleanroomSuitable,
                             ProtectiveArea.DriveOrRollOverProof
-                        },
+                        ],
                         Weight = 0.01
                     },
                     Electrical = new Electrical
@@ -349,26 +349,26 @@ public static class ProductMetaDataCompleteModel
                     },
                     Emergency = new Emergency
                     {
-                        DurationTimeAndFlux = new[]
-                        {
+                        DurationTimeAndFlux =
+                        [
                             new EmergencyFlux { Hours = 3, Flux = 4 },
                             new EmergencyFlux { Hours = 5, Flux = 6 }
-                        },
+                        ],
                         DedicatedEmergencyLightingType = EmergencyLightingType.ForSignage
                     },
                     Marketing = new Marketing
                     {
-                        ListPrices = new[]
-                        {
+                        ListPrices =
+                        [
                             new ListPrice { Currency = "eur", Price = 9 },
                             new ListPrice { Currency = "usd", Price = 10 }
-                        },
-                        HousingColors = new[]
-                        {
+                        ],
+                        HousingColors =
+                        [
                             new HousingColor
                             {
-                                Ral = "3000", ColorNames = new[]
-                                {
+                                Ral = "3000", ColorNames =
+                                [
                                     new Locale
                                     {
                                         Language = "en",
@@ -379,15 +379,15 @@ public static class ProductMetaDataCompleteModel
                                         Language = "de",
                                         Text = "Rot"
                                     }
-                                }
+                                ]
                             }
-                        },
-                        Markets = new[]
-                        {
+                        ],
+                        Markets =
+                        [
                             new Region
                             {
-                                RegionName = new[]
-                                {
+                                RegionName =
+                                [
                                     new Locale
                                     {
                                         Language = "en",
@@ -398,11 +398,11 @@ public static class ProductMetaDataCompleteModel
                                         Language = "de",
                                         Text = "Südeuropa"
                                     }
-                                }
+                                ]
                             }
-                        },
-                        Hyperlinks = new[]
-                        {
+                        ],
+                        Hyperlinks =
+                        [
                             new Hyperlink
                             {
                                 Href = "https://example.org",
@@ -411,12 +411,12 @@ public static class ProductMetaDataCompleteModel
                                 CountryCode = "gb",
                                 PlainText = "Hyperlink PlainText"
                             }
-                        },
+                        ],
                         Designer = "Designer",
-                        ApprovalMarks = new[] { "ApprovalMark 1", "ApprovalMark 2" },
-                        DesignAwards = new[] { "DesignAward 1", "DesignAward 2" },
-                        Labels = new[]
-                        {
+                        ApprovalMarks = ["ApprovalMark 1", "ApprovalMark 2"],
+                        DesignAwards = ["DesignAward 1", "DesignAward 2"],
+                        Labels =
+                        [
                             Label.CE,
                             Label.GS,
                             Label.ENEC,
@@ -431,9 +431,9 @@ public static class ProductMetaDataCompleteModel
                             Label.UL,
                             Label.Handwarm,
                             Label.IFSFood
-                        },
-                        Applications = new[]
-                        {
+                        ],
+                        Applications =
+                        [
                             ApplicationArea.InteriorTrafficZones,
                             ApplicationArea.InteriorTrafficZonesCorridors,
                             ApplicationArea.InteriorTrafficZonesStaircases,
@@ -513,20 +513,20 @@ public static class ProductMetaDataCompleteModel
                             ApplicationArea.ExteriorSportsFieldsSpotlightings,
                             ApplicationArea.ExteriorOther,
                             ApplicationArea.ExteriorOtherFacades
-                        }
+                        ]
                     },
                     OperationsAndMaintenance = new OperationsAndMaintenance
                     {
-                        UsefulLifeTimes = new[]
-                        {
+                        UsefulLifeTimes =
+                        [
                             "L80B50 50000h 25°C",
                             "L80B75 40000h 25°C"
-                        },
-                        MedianUsefulLifeTimes = new[]
-                        {
+                        ],
+                        MedianUsefulLifeTimes =
+                        [
                             "L100B50 40000h 20°C",
                             "L80B50 50000h 20°C"
-                        },
+                        ],
                         OperatingTemperature = new TemperatureRange
                         {
                             Lower = 4,
@@ -540,110 +540,110 @@ public static class ProductMetaDataCompleteModel
                         RatedAmbientTemperature = 11,
                         Atex = new Atex
                         {
-                            Directives = new[]
-                            {
+                            Directives =
+                            [
                                 AtexDirective.IECEx,
                                 AtexDirective.ATEX
-                            },
-                            Classes = new[]
-                            {
+                            ],
+                            Classes =
+                            [
                                 AtexClass.I,
                                 AtexClass.III
-                            },
-                            Divisions = new[]
-                            {
+                            ],
+                            Divisions =
+                            [
                                 AtexDivision.Division1,
                                 AtexDivision.Division2
-                            },
+                            ],
                             DivisionGroups = new AtexDivisionGroups
                             {
-                                Gas = new[]
-                                {
+                                Gas =
+                                [
                                     AtexDivisionGroupGas.A,
                                     AtexDivisionGroupGas.C
-                                },
-                                Dust = new[]
-                                {
+                                ],
+                                Dust =
+                                [
                                     AtexDivisionGroupDust.F,
                                     AtexDivisionGroupDust.G
-                                }
+                                ]
                             },
                             Zones = new AtexZones
                             {
-                                Gas = new[]
-                                {
+                                Gas =
+                                [
                                     AtexZoneGas.Zone0,
                                     AtexZoneGas.Zone2
-                                },
-                                Dust = new[]
-                                {
+                                ],
+                                Dust =
+                                [
                                     AtexZoneDust.Zone21,
                                     AtexZoneDust.Zone22
-                                }
+                                ]
                             },
                             ZoneGroups = new AtexZoneGroups
                             {
-                                Gas = new[]
-                                {
+                                Gas =
+                                [
                                     AtexZoneGroupGas.IIB,
                                     AtexZoneGroupGas.IIBH2
-                                },
-                                Dust = new[]
-                                {
+                                ],
+                                Dust =
+                                [
                                     AtexZoneGroupDust.IIIA,
                                     AtexZoneGroupDust.IIIC
-                                }
+                                ]
                             },
                             MaximumSurfaceTemperature = "MaximumSurfaceTemperature",
-                            TemperatureClasses = new[]
-                            {
+                            TemperatureClasses =
+                            [
                                 AtexTemperatureClass.T2B,
                                 AtexTemperatureClass.T2C
-                            },
-                            ExCodes = new[]
-                            {
+                            ],
+                            ExCodes =
+                            [
                                 AtexExCode.eb,
                                 AtexExCode.ib
-                            },
-                            EquipmentProtectionLevels = new[]
-                            {
+                            ],
+                            EquipmentProtectionLevels =
+                            [
                                 AtexEquipmentProtectionLevel.Ga,
                                 AtexEquipmentProtectionLevel.Ma
-                            },
-                            EquipmentGroups = new[]
-                            {
+                            ],
+                            EquipmentGroups =
+                            [
                                 AtexEquipmentGroup.GroupI,
                                 AtexEquipmentGroup.GroupII
-                            },
-                            EquipmentCategories = new[]
-                            {
+                            ],
+                            EquipmentCategories =
+                            [
                                 AtexEquipmentCategory.Category2G,
                                 AtexEquipmentCategory.CategoryM1
-                            },
-                            Atmospheres = new[]
-                            {
+                            ],
+                            Atmospheres =
+                            [
                                 AtexAtmosphere.D,
                                 AtexAtmosphere.G
-                            },
-                            Groups = new[]
-                            {
+                            ],
+                            Groups =
+                            [
                                 AtexGroup.II,
                                 AtexGroup.IIA
-                            }
+                            ]
                         },
-                        AcousticAbsorptionRates = new[]
-                        {
+                        AcousticAbsorptionRates =
+                        [
                             new AbsorptionRate { Hertz = 12, Rate = 0.05 },
                             new AbsorptionRate { Hertz = 13, Rate = 0.06 }
-                        }
+                        ]
                     },
-                    CustomProperties = new[]
-                    {
+                    CustomProperties =
+                    [
                         new CustomProperty
                         {
                             Id = "propertyWithFileReference",
-                            Name = new[]
-                            {
+                            Name =
+                            [
                                 new Locale
                                 {
                                     Language = "en",
@@ -654,7 +654,7 @@ public static class ProductMetaDataCompleteModel
                                     Language = "de",
                                     Text = "Eigenschaft 1"
                                 }
-                            },
+                            ],
                             PropertySource = "PropertySource 1",
                             Content = new PropertyFileReference
                             {
@@ -664,8 +664,8 @@ public static class ProductMetaDataCompleteModel
                         new CustomProperty
                         {
                             Id = "propertyWithValue",
-                            Name = new[]
-                            {
+                            Name =
+                            [
                                 new Locale
                                 {
                                     Language = "en",
@@ -676,25 +676,25 @@ public static class ProductMetaDataCompleteModel
                                     Language = "de",
                                     Text = "Eigenschaft 2"
                                 }
-                            },
+                            ],
                             PropertySource = "PropertySource 2",
                             Content = new PropertyText
                             {
                                 Value = "Value 2"
                             }
                         }
-                    }
+                    ]
                 }
             },
-            Variants = new[]
-            {
+            Variants =
+            [
                 new Variant
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 1" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new EmitterReference
@@ -706,43 +706,43 @@ public static class ProductMetaDataCompleteModel
                 new Variant
                 {
                     Id = "variant-2",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 2" }
-                    },
+                    ],
                     DescriptiveAttributes = new DescriptiveAttributes
                     {
                         Marketing = new Marketing
                         {
-                            Applications = new[]
-                            {
+                            Applications =
+                            [
                                 ApplicationArea.ExteriorGeneralAreasParks
-                            }
+                            ]
                         }
                     }
                 },
                 new Variant
                 {
                     Id = "variant-3",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 3" }
-                    },
+                    ],
                     DescriptiveAttributes = new DescriptiveAttributes()
                 },
                 new Variant
                 {
                     Id = "variant-4",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 4" }
-                    },
+                    ],
                     DescriptiveAttributes = new DescriptiveAttributes
                     {
                         Marketing = new Marketing()
                     }
                 }
-            }
+            ]
         }
     };
 }

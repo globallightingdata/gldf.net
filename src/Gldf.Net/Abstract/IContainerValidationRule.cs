@@ -6,5 +6,5 @@ namespace Gldf.Net.Abstract;
 
 public interface IContainerValidationRule
 {
-    IEnumerable<ValidationHint> ValidateGldf(GldfContainer gldf);
+    public IEnumerable<ValidationHint> ValidateGldf(GldfContainer gldf);
 }

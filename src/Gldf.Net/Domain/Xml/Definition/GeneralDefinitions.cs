@@ -41,13 +41,13 @@ public class GeneralDefinitions
 
     public ChangeableLightSource[] GetAsChangeableLightSources()
         => LightSources?.OfType<ChangeableLightSource>().ToArray() ?? Array.Empty<ChangeableLightSource>();
-        
+
     public FixedLightSource[] GetAsFixedLightSources()
         => LightSources?.OfType<FixedLightSource>().ToArray() ?? Array.Empty<FixedLightSource>();
-    
+
     public MultiChannelLightSource[] GetAsMultiChannelLightSources()
         => LightSources?.OfType<MultiChannelLightSource>().ToArray() ?? Array.Empty<MultiChannelLightSource>();
-        
+
     public SimpleGeometry[] GetAsSimpleGeometries()
         => Geometries?.OfType<SimpleGeometry>().ToArray() ?? Array.Empty<SimpleGeometry>();
 

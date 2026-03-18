@@ -24,8 +24,8 @@ public static class GeometryMandatoryModel
         },
         GeneralDefinitions = new GeneralDefinitions
         {
-            Files = new[]
-            {
+            Files =
+            [
                 new GldfFile
                 {
                     Id = "eulumdat",
@@ -40,9 +40,9 @@ public static class GeometryMandatoryModel
                     Type = FileType.Url,
                     File = "https://example.org/geometry.l3d"
                 }
-            },
-            Photometries = new[]
-            {
+            ],
+            Photometries =
+            [
                 new Photometry
                 {
                     Id = "photometry",
@@ -51,14 +51,14 @@ public static class GeometryMandatoryModel
                         FileId = "eulumdat"
                     }
                 }
-            },
-            Emitters = new[]
-            {
+            ],
+            Emitters =
+            [
                 new Emitter
                 {
                     Id = "emitter",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new ChangeableLightEmitter
                         {
                             PhotometryReference = new PhotometryReference
@@ -66,16 +66,16 @@ public static class GeometryMandatoryModel
                                 PhotometryId = "photometry"
                             }
                         }
-                    }
+                    ]
                 }
-            },
-            Geometries = new GeometryBase[]
-            {
+            ],
+            Geometries =
+            [
                 new ModelGeometry
                 {
                     Id = "geometry",
-                    GeometryFileReferences = new GeometryFileReference[]
-                    {
+                    GeometryFileReferences =
+                    [
                         new()
                         {
                             FileId = "geometryFile",
@@ -91,58 +91,58 @@ public static class GeometryMandatoryModel
                             FileId = "geometryFile",
                             LevelOfDetail = LevelOfDetail.High
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitions
         {
             ProductMetaData = new ProductMetaData
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new[]
-            {
+            Variants =
+            [
                 new Variant
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 1" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new ModelGeometryReference
                         {
                             GeometryId = "geometry",
-                            EmitterReferences = new[]
-                            {
+                            EmitterReferences =
+                            [
                                 new GeometryEmitterReference
                                 {
                                     EmitterId = "emitter",
                                     EmitterObjectExternalName = "Leo"
                                 }
-                            }
+                            ]
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

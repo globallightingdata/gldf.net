@@ -7,7 +7,6 @@ using Gldf.Net.Domain.Typed.Head.Types;
 using Gldf.Net.Domain.Typed.Product;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using System;
-using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.LightSources;
 
@@ -25,8 +24,8 @@ public static class LightSourceMandatoryTyped
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new List<GldfFileTyped>
-            {
+            Files =
+            [
                 new()
                 {
                     Id = "eulumdat",
@@ -35,9 +34,9 @@ public static class LightSourceMandatoryTyped
                     FileName = "eulumdat.ldt",
                     Uri = "https://example.org/eulumdat.ldt"
                 }
-            },
-            Photometries = new List<PhotometryTyped>
-            {
+            ],
+            Photometries =
+            [
                 new()
                 {
                     Id = "photometry",
@@ -50,94 +49,94 @@ public static class LightSourceMandatoryTyped
                         Uri = "https://example.org/eulumdat.ldt"
                     }
                 }
-            },
-            Spectrums = new List<SpectrumTyped>
-            {
+            ],
+            Spectrums =
+            [
                 new()
                 {
                     Id = "spectrum",
-                    Intensities = new[]
-                    {
+                    Intensities =
+                    [
                         new SpectrumIntensityTyped
                         {
                             Wavelength = 380,
                             Intensity = 0.8
                         }
-                    }
+                    ]
                 }
-            },
-            FixedLightSources = new List<FixedLightSourceTyped>
-            {
+            ],
+            FixedLightSources =
+            [
                 new()
                 {
                     Id = "lightSource-1",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "LightSource name"
                         }
-                    },
+                    ],
                     RatedInputPower = 50
                 }
-            },
-            ChangeableLightSources = new List<ChangeableLightSourceTyped>
-            {
+            ],
+            ChangeableLightSources =
+            [
                 new()
                 {
                     Id = "lightSource-2",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "LightSource name 2"
                         }
-                    },
+                    ],
                     RatedInputPower = 60,
                     RatedLuminousFlux = 500,
                     ColorInformation = new ColorInformationTyped()
                 }
-            },
-            MultiChannelLightSources = new List<MultiChannelLightSourceTyped>
-            {
+            ],
+            MultiChannelLightSources =
+            [
                 new()
                 {
                     Id = "lightSource-3",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "LightSource name 3"
                         }
-                    },
+                    ],
                     RatedInputPower = 30,
-                    Channels = new ChannelTyped[]
-                    {
+                    Channels =
+                    [
                         new()
                         {
                             Type = ChannelType.WarmWhite,
-                            DisplayName = new LocaleTyped[]
-                            {
+                            DisplayName =
+                            [
                                 new()
                                 {
                                     Language = "en",
                                     Text = "WarmWhite channel"
                                 }
-                            },
+                            ],
                             Spectrum = new SpectrumTyped
                             {
                                 Id = "spectrum",
-                                Intensities = new[]
-                                {
+                                Intensities =
+                                [
                                     new SpectrumIntensityTyped
                                     {
                                         Wavelength = 380,
                                         Intensity = 0.8
                                     }
-                                }
+                                ]
                             },
                             Photometry = new PhotometryTyped
                             {
@@ -153,16 +152,16 @@ public static class LightSourceMandatoryTyped
                             },
                             RatedLuminousFlux = 150
                         }
-                    }
+                    ]
                 }
-            },
-            Emitter = new List<EmitterTyped>
-            {
+            ],
+            Emitter =
+            [
                 new()
                 {
                     Id = "emitter",
-                    FixedEmitterOptions = new[]
-                    {
+                    FixedEmitterOptions =
+                    [
                         new FixedLightEmitterTyped
                         {
                             Photometry = new PhotometryTyped
@@ -180,73 +179,73 @@ public static class LightSourceMandatoryTyped
                             FixedLightSource = new FixedLightSourceTyped
                             {
                                 Id = "lightSource-1",
-                                Name = new LocaleTyped[]
-                                {
+                                Name =
+                                [
                                     new()
                                     {
                                         Language = "en",
                                         Text = "LightSource name"
                                     }
-                                },
+                                ],
                                 RatedInputPower = 50
                             },
                             RatedLuminousFlux = 250
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitionsTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new List<VariantTyped>
-            {
+            Variants =
+            [
                 new()
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
-                        new LocaleTyped { Language = "en", Text = "Variant 1" }
-                    },
+                    Name =
+                    [
+                        new LocaleTyped {Language = "en", Text = "Variant 1"}
+                    ],
                     Geometry = new GeometryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
                             Id = "emitter",
-                            FixedEmitterOptions = new FixedLightEmitterTyped[]
-                            {
+                            FixedEmitterOptions =
+                            [
                                 new()
                                 {
                                     FixedLightSource = new FixedLightSourceTyped
                                     {
                                         Id = "lightSource-1",
-                                        Name = new LocaleTyped[]
-                                        {
+                                        Name =
+                                        [
                                             new()
                                             {
                                                 Language = "en",
                                                 Text = "LightSource name"
                                             }
-                                        },
+                                        ],
                                         RatedInputPower = 50
                                     },
                                     Photometry = new PhotometryTyped
@@ -262,19 +261,19 @@ public static class LightSourceMandatoryTyped
                                     },
                                     RatedLuminousFlux = 250
                                 }
-                            }
+                            ]
                         }
                     },
-                    ProductNumber = new LocaleTyped[]
-                    {
+                    ProductNumber =
+                    [
                         new()
                         {
                             Language = "en",
                             Text = "Product number"
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         }
     };
 }

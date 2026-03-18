@@ -27,8 +27,8 @@ public class HeaderCompleteModel
             {
                 FileId = "manufLogo"
             },
-            LicenseKeys = new[]
-            {
+            LicenseKeys =
+            [
                 new LicenseKey
                 {
                     Application = "DIALux",
@@ -39,12 +39,12 @@ public class HeaderCompleteModel
                     Application = "RELUX",
                     Key = "Key 2"
                 }
-            },
+            ],
             ReluxMemberId = "ReluxMemberId",
             DIALuxMemberId = "DIALuxMemberId",
             Author = "Author",
-            Contact = new[]
-            {
+            Contact =
+            [
                 new Address
                 {
                     FirstName = "FirstName",
@@ -55,16 +55,16 @@ public class HeaderCompleteModel
                     City = "City",
                     Country = "Country",
                     Phone = "Phone",
-                    EMailAddresses = new[]
-                    {
+                    EMailAddresses =
+                    [
                         new EMail
                         {
                             Mailto = "mailto",
                             PlainText = "PlainText"
                         }
-                    },
-                    Websites = new[]
-                    {
+                    ],
+                    Websites =
+                    [
                         new Hyperlink
                         {
                             Href = "href 1",
@@ -77,14 +77,14 @@ public class HeaderCompleteModel
                             Language = "en",
                             PlainText = "PlainText 2"
                         }
-                    },
+                    ],
                     AdditionalInfo = "AdditionalInfo"
                 },
                 new Address
                 {
                     Name = "Name 2",
-                    EMailAddresses = new[]
-                    {
+                    EMailAddresses =
+                    [
                         new EMail
                         {
                             Mailto = "Mailto 1",
@@ -95,14 +95,14 @@ public class HeaderCompleteModel
                             Mailto = "Mailto 2",
                             PlainText = "PlainText 2"
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         GeneralDefinitions = new GeneralDefinitions
         {
-            Files = new[]
-            {
+            Files =
+            [
                 new GldfFile
                 {
                     Id = "manufLogo",
@@ -117,9 +117,9 @@ public class HeaderCompleteModel
                     Type = FileType.Url,
                     File = "https://example.org/eulumdat.ldt"
                 }
-            },
-            Photometries = new[]
-            {
+            ],
+            Photometries =
+            [
                 new Photometry
                 {
                     Id = "photometry",
@@ -128,14 +128,14 @@ public class HeaderCompleteModel
                         FileId = "eulumdat"
                     }
                 }
-            },
-            Emitters = new[]
-            {
+            ],
+            Emitters =
+            [
                 new Emitter
                 {
                     Id = "emitter",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new ChangeableLightEmitter
                         {
                             PhotometryReference = new PhotometryReference
@@ -143,41 +143,41 @@ public class HeaderCompleteModel
                                 PhotometryId = "photometry"
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitions
         {
             ProductMetaData = new ProductMetaData
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new[]
-            {
+            Variants =
+            [
                 new Variant
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 1" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new EmitterReference
@@ -186,7 +186,7 @@ public class HeaderCompleteModel
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

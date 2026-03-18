@@ -7,7 +7,6 @@ using Gldf.Net.Domain.Typed.Head.Types;
 using Gldf.Net.Domain.Typed.Product;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using System;
-using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.Emitters;
 
@@ -25,8 +24,8 @@ public static class EmitterMandatoryTyped
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new List<GldfFileTyped>
-            {
+            Files =
+            [
                 new()
                 {
                     Id = "eulumdat",
@@ -35,6 +34,7 @@ public static class EmitterMandatoryTyped
                     Uri = "https://example.org/eulumdat.ldt",
                     FileName = "eulumdat.ldt"
                 },
+
                 new()
                 {
                     Id = "sensorXml",
@@ -43,9 +43,9 @@ public static class EmitterMandatoryTyped
                     Uri = "https://example.org/sens.xml",
                     FileName = "sens.xml"
                 }
-            },
-            Sensors = new List<SensorTyped>
-            {
+            ],
+            Sensors =
+            [
                 new()
                 {
                     Id = "sensor",
@@ -58,9 +58,9 @@ public static class EmitterMandatoryTyped
                         FileName = "sens.xml"
                     }
                 }
-            },
-            Photometries = new List<PhotometryTyped>
-            {
+            ],
+            Photometries =
+            [
                 new()
                 {
                     Id = "photometry",
@@ -73,76 +73,76 @@ public static class EmitterMandatoryTyped
                         FileName = "eulumdat.ldt"
                     }
                 }
-            },
-            Spectrums = new List<SpectrumTyped>
-            {
+            ],
+            Spectrums =
+            [
                 new()
                 {
                     Id = "spectrum",
-                    Intensities = new[]
-                    {
+                    Intensities =
+                    [
                         new SpectrumIntensityTyped
                         {
                             Wavelength = 380,
                             Intensity = 0.8
                         }
-                    }
+                    ]
                 }
-            },
-            FixedLightSources = new List<FixedLightSourceTyped>
-            {
+            ],
+            FixedLightSources =
+            [
                 new()
                 {
                     Id = "fixedLightSource",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "FixedLightSource"
                         }
-                    },
+                    ],
                     RatedInputPower = 10
                 }
-            },
-            MultiChannelLightSources = new List<MultiChannelLightSourceTyped>
-            {
+            ],
+            MultiChannelLightSources =
+            [
                 new()
                 {
                     Id = "multiChannelLightSource",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "RGB module"
                         }
-                    },
+                    ],
                     RatedInputPower = 10,
-                    Channels = new[]
-                    {
+                    Channels =
+                    [
                         new ChannelTyped
                         {
                             Type = ChannelType.Red,
-                            DisplayName = new[]
-                            {
+                            DisplayName =
+                            [
                                 new LocaleTyped
                                 {
                                     Language = "en",
                                     Text = "Red channel"
                                 }
-                            },
+                            ],
                             Spectrum = new SpectrumTyped
                             {
                                 Id = "spectrum",
-                                Intensities = new[]
-                                {
+                                Intensities =
+                                [
                                     new SpectrumIntensityTyped
                                     {
                                         Wavelength = 380,
                                         Intensity = 0.8
                                     }
-                                }
+                                ]
                             },
                             Photometry = new PhotometryTyped
                             {
@@ -158,16 +158,16 @@ public static class EmitterMandatoryTyped
                             },
                             RatedLuminousFlux = 80
                         }
-                    }
+                    ]
                 }
-            },
-            Emitter = new List<EmitterTyped>
-            {
+            ],
+            Emitter =
+            [
                 new()
                 {
                     Id = "emitter-1",
-                    ChangeableEmitterOptions = new[]
-                    {
+                    ChangeableEmitterOptions =
+                    [
                         new ChangeableLightEmitterTyped
                         {
                             Photometry = new PhotometryTyped
@@ -183,13 +183,14 @@ public static class EmitterMandatoryTyped
                                 }
                             }
                         }
-                    }
+                    ]
                 },
+
                 new()
                 {
                     Id = "emitter-2",
-                    FixedEmitterOptions = new[]
-                    {
+                    FixedEmitterOptions =
+                    [
                         new FixedLightEmitterTyped
                         {
                             Photometry = new PhotometryTyped
@@ -207,25 +208,26 @@ public static class EmitterMandatoryTyped
                             FixedLightSource = new FixedLightSourceTyped
                             {
                                 Id = "fixedLightSource",
-                                Name = new LocaleTyped[]
-                                {
+                                Name =
+                                [
                                     new()
                                     {
                                         Language = "en",
                                         Text = "FixedLightSource"
                                     }
-                                },
+                                ],
                                 RatedInputPower = 10
                             },
                             RatedLuminousFlux = 50
                         }
-                    }
+                    ]
                 },
+
                 new()
                 {
                     Id = "emitter-3",
-                    SensorEmitterOptions = new[]
-                    {
+                    SensorEmitterOptions =
+                    [
                         new SensorEmitterTyped
                         {
                             Sensor = new SensorTyped
@@ -241,51 +243,52 @@ public static class EmitterMandatoryTyped
                                 }
                             }
                         }
-                    }
+                    ]
                 },
+
                 new()
                 {
                     Id = "emitter-4",
-                    MultiChannelEmitterOptions = new[]
-                    {
+                    MultiChannelEmitterOptions =
+                    [
                         new MultiChannelLightEmitterTyped
                         {
                             MultiChannelLightSource = new()
                             {
                                 Id = "multiChannelLightSource",
-                                Name = new[]
-                                {
+                                Name =
+                                [
                                     new LocaleTyped
                                     {
                                         Language = "en",
                                         Text = "RGB module"
                                     }
-                                },
+                                ],
                                 RatedInputPower = 10,
-                                Channels = new[]
-                                {
+                                Channels =
+                                [
                                     new ChannelTyped
                                     {
                                         Type = ChannelType.Red,
-                                        DisplayName = new[]
-                                        {
+                                        DisplayName =
+                                        [
                                             new LocaleTyped
                                             {
                                                 Language = "en",
                                                 Text = "Red channel"
                                             }
-                                        },
+                                        ],
                                         Spectrum = new SpectrumTyped
                                         {
                                             Id = "spectrum",
-                                            Intensities = new[]
-                                            {
+                                            Intensities =
+                                            [
                                                 new SpectrumIntensityTyped
                                                 {
                                                     Wavelength = 380,
                                                     Intensity = 0.8
                                                 }
-                                            }
+                                            ]
                                         },
                                         Photometry = new PhotometryTyped
                                         {
@@ -301,51 +304,51 @@ public static class EmitterMandatoryTyped
                                         },
                                         RatedLuminousFlux = 80
                                     }
-                                }
+                                ]
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitionsTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new List<VariantTyped>
-            {
+            Variants =
+            [
                 new()
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
-                        new LocaleTyped { Language = "en", Text = "Variant 1" }
-                    },
+                    Name =
+                    [
+                        new LocaleTyped {Language = "en", Text = "Variant 1"}
+                    ],
                     Geometry = new GeometryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
                             Id = "emitter-1",
-                            ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
-                            {
+                            ChangeableEmitterOptions =
+                            [
                                 new()
                                 {
                                     Photometry = new PhotometryTyped
@@ -361,19 +364,19 @@ public static class EmitterMandatoryTyped
                                         }
                                     }
                                 }
-                            }
+                            ]
                         }
                     },
-                    ProductNumber = new LocaleTyped[]
-                    {
+                    ProductNumber =
+                    [
                         new()
                         {
                             Language = "en",
                             Text = "Product number"
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         }
     };
 }

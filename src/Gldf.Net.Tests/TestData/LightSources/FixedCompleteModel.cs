@@ -24,8 +24,8 @@ public static class FixedCompleteModel
         },
         GeneralDefinitions = new GeneralDefinitions
         {
-            Files = new[]
-            {
+            Files =
+            [
                 new GldfFile
                 {
                     Id = "eulumdat",
@@ -47,9 +47,9 @@ public static class FixedCompleteModel
                     Type = FileType.Url,
                     File = "https://example.org/image.jpg"
                 }
-            },
-            Photometries = new[]
-            {
+            ],
+            Photometries =
+            [
                 new Photometry
                 {
                     Id = "photometry",
@@ -58,9 +58,9 @@ public static class FixedCompleteModel
                         FileId = "eulumdat"
                     }
                 }
-            },
-            Spectrums = new[]
-            {
+            ],
+            Spectrums =
+            [
                 new Spectrum
                 {
                     Id = "spectrum",
@@ -69,14 +69,14 @@ public static class FixedCompleteModel
                         FileId = "spectrumFile"
                     }
                 }
-            },
-            LightSources = new LightSourceBase[]
-            {
+            ],
+            LightSources =
+            [
                 new FixedLightSource
                 {
                     Id = "fixedLightSource",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale
                         {
                             Language = "en",
@@ -87,9 +87,9 @@ public static class FixedCompleteModel
                             Language = "de",
                             Text = "Absolute Lichtquelle"
                         }
-                    },
-                    Description = new[]
-                    {
+                    ],
+                    Description =
+                    [
                         new Locale
                         {
                             Language = "en",
@@ -100,7 +100,7 @@ public static class FixedCompleteModel
                             Language = "de",
                             Text = "Absolute Lichtquelle Beschreibung"
                         }
-                    },
+                    ],
                     Manufacturer = "DIAL",
                     Gtin = "12345678",
                     RatedInputPower = 1,
@@ -120,17 +120,17 @@ public static class FixedCompleteModel
                         Default = 5
                     },
                     LightSourcePositionOfUsage = "LightSourcePositionOfUsage",
-                    EnergyLabels = new[]
-                    {
+                    EnergyLabels =
+                    [
                         new EnergyLabel { Region = "de", Label = "A+" },
                         new EnergyLabel { Region = "gb", Label = "A++" }
-                    },
+                    ],
                     SpectrumReference = new SpectrumReference { SpectrumId = "spectrum" },
                     ActivePowerTable = new ActivePowerTable
                     {
                         Type = ActivePowerTableType.Continuously,
-                        FluxFactor = new[]
-                        {
+                        FluxFactor =
+                        [
                             new FluxFactor
                             {
                                 InputPower = 0.1,
@@ -147,7 +147,7 @@ public static class FixedCompleteModel
                                 StroboscopicEffectsSvm = "stroboscopic 2",
                                 Description = "Description 2"
                             }
-                        }
+                        ]
                     },
                     ColorInformation = new ColorInformation
                     {
@@ -179,14 +179,14 @@ public static class FixedCompleteModel
                         },
                         MelanopicFactor = 0.8
                     },
-                    LightSourceImages = new[]
-                    {
+                    LightSourceImages =
+                    [
                         new Image
                         {
                             FileId = "image",
                             ImageType = ImageType.ProductPicture
                         }
-                    },
+                    ],
                     Maintenance = new LightSourceMaintenance
                     {
                         Lifetime = 9,
@@ -198,40 +198,40 @@ public static class FixedCompleteModel
                     },
                     ZhagaStandard = true
                 }
-            },
-            ControlGears = new []
-            {
+            ],
+            ControlGears =
+            [
                 new ControlGear
                 {
                     Id = "controlGear",
-                    Name = new Locale[]
-                    {
+                    Name =
+                    [
                         new()
                         {
                             Language = "en",
                             Text = "ControlGear"
                         }
-                    }
+                    ]
                 }
-            },
-            Emitters = new[]
-            {
+            ],
+            Emitters =
+            [
                 new Emitter
                 {
                     Id = "emitter-1",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new FixedLightEmitter
                         {
                             EmergencyBehaviour = EmergencyBehaviour.Combined,
-                            Name = new[]
-                            {
+                            Name =
+                            [
                                 new Locale
                                 {
                                     Language = "en",
                                     Text = "FixedLightEmitter"
                                 }
-                            },
+                            ],
                             Rotation = new Rotation
                             {
                                 X = 1,
@@ -259,13 +259,13 @@ public static class FixedCompleteModel
                                 Factor = 0.1
                             }
                         }
-                    }
+                    ]
                 },
                 new Emitter
                 {
                     Id = "emitter-2",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new FixedLightEmitter
                         {
                             EmergencyBehaviour = EmergencyBehaviour.EmergencyOnly,
@@ -283,41 +283,41 @@ public static class FixedCompleteModel
                                 Flux = 240
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitions
         {
             ProductMetaData = new ProductMetaData
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new[]
-            {
+            Variants =
+            [
                 new Variant
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 1" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new EmitterReference
@@ -326,7 +326,7 @@ public static class FixedCompleteModel
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

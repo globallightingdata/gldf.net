@@ -7,7 +7,6 @@ using Gldf.Net.Domain.Typed.Head.Types;
 using Gldf.Net.Domain.Typed.Product;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using System;
-using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.Photometries;
 
@@ -25,8 +24,8 @@ public class PhotometryCompleteTyped
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new List<GldfFileTyped>
-            {
+            Files =
+            [
                 new()
                 {
                     Id = "eulumdat",
@@ -35,9 +34,9 @@ public class PhotometryCompleteTyped
                     FileName = "eulumdat.ldt",
                     Uri = "https://example.org/eulumdat.ldt"
                 }
-            },
-            Photometries = new List<PhotometryTyped>
-            {
+            ],
+            Photometries =
+            [
                 new()
                 {
                     Id = "photometry",
@@ -79,14 +78,14 @@ public class PhotometryCompleteTyped
                         LightDistributionBugRating = "LightDistributionBUG-Rating"
                     }
                 }
-            },
-            Emitter = new List<EmitterTyped>
-            {
+            ],
+            Emitter =
+            [
                 new()
                 {
                     Id = "emitter",
-                    ChangeableEmitterOptions = new[]
-                    {
+                    ChangeableEmitterOptions =
+                    [
                         new ChangeableLightEmitterTyped
                         {
                             Photometry = new PhotometryTyped
@@ -131,60 +130,60 @@ public class PhotometryCompleteTyped
                                 }
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitionsTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new List<VariantTyped>
-            {
+            Variants =
+            [
                 new()
                 {
                     Id = "variant-1",
-                    ProductNumber = new[]
-                    {
+                    ProductNumber =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "Product number"
                         }
-                    },
-                    Name = new[]
-                    {
+                    ],
+                    Name =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "Variant 1"
                         }
-                    },
+                    ],
                     Geometry = new GeometryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
                             Id = "emitter",
-                            ChangeableEmitterOptions = new[]
-                            {
+                            ChangeableEmitterOptions =
+                            [
                                 new ChangeableLightEmitterTyped
                                 {
                                     Photometry = new PhotometryTyped
@@ -229,11 +228,11 @@ public class PhotometryCompleteTyped
                                         }
                                     }
                                 }
-                            }
+                            ]
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

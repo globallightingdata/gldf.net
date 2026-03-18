@@ -51,8 +51,8 @@ public class GldfContainerReader : IGldfContainerReader
     /// <returns><see cref="GldfContainer" /> with deserialized product.xml, file assets and meta-information</returns>
     public GldfContainer ReadFromGldfFile(string gldfFilePath, ContainerLoadSettings settings)
     {
-        if (gldfFilePath == null) throw new ArgumentNullException(nameof(gldfFilePath));
-        if (settings == null) throw new ArgumentNullException(nameof(settings));
+        ArgumentNullException.ThrowIfNull(gldfFilePath);
+        ArgumentNullException.ThrowIfNull(settings);
 
         try
         {
@@ -84,8 +84,8 @@ public class GldfContainerReader : IGldfContainerReader
     /// <returns><see cref="GldfContainer" /> with deserialized product.xml, file assets and meta-information</returns>
     public GldfContainer ReadFromGldfStream(Stream zipStream, bool leaveOpen, ContainerLoadSettings settings)
     {
-        if (zipStream == null) throw new ArgumentNullException(nameof(zipStream));
-        if (settings == null) throw new ArgumentNullException(nameof(settings));
+        ArgumentNullException.ThrowIfNull(zipStream);
+        ArgumentNullException.ThrowIfNull(settings);
 
         try
         {
@@ -106,8 +106,8 @@ public class GldfContainerReader : IGldfContainerReader
     /// <param name="targetDirectory">The target directory the content wil be extracted to</param>
     public void ExtractToDirectory(string sourceGldfFilePath, string targetDirectory)
     {
-        if (sourceGldfFilePath == null) throw new ArgumentNullException(nameof(sourceGldfFilePath));
-        if (targetDirectory == null) throw new ArgumentNullException(nameof(targetDirectory));
+        ArgumentNullException.ThrowIfNull(sourceGldfFilePath);
+        ArgumentNullException.ThrowIfNull(targetDirectory);
 
         try
         {

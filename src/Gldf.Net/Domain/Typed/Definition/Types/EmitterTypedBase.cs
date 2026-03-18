@@ -6,7 +6,7 @@ namespace Gldf.Net.Domain.Typed.Definition.Types;
 public class EmitterTypedBase
 {
     public EmergencyBehaviour? EmergencyBehaviour { get; set; }
-    
+
     public LocaleTyped[] Name { get; set; }
 
     public RotationTyped Rotation { get; set; }

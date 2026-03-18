@@ -27,7 +27,7 @@ public class GeneralDefinitionsTests
     {
         var simpleGeometry = new SimpleGeometry();
         var modelGeometry = new ModelGeometry();
-        var definitions = new GeneralDefinitions { Geometries = new GeometryBase[] { simpleGeometry, modelGeometry } };
+        var definitions = new GeneralDefinitions {Geometries = [simpleGeometry, modelGeometry]};
 
         definitions.GetAsSimpleGeometries().Should().HaveCount(1);
         definitions.GetAsSimpleGeometries().Should().OnlyContain(geo => geo == simpleGeometry);
@@ -38,17 +38,17 @@ public class GeneralDefinitionsTests
     {
         var simpleGeometry = new SimpleGeometry();
         var modelGeometry = new ModelGeometry();
-        var definitions = new GeneralDefinitions { Geometries = new GeometryBase[] { simpleGeometry, modelGeometry } };
+        var definitions = new GeneralDefinitions {Geometries = [simpleGeometry, modelGeometry]};
 
         definitions.GetAsModelGeometries().Should().HaveCount(1);
         definitions.GetAsModelGeometries().Should().OnlyContain(geo => geo == modelGeometry);
     }
-    
+
     [Test]
     public void GetAsChangeableLightSources_ShouldReturnExpected()
     {
         var expected = new ChangeableLightSource();
-        var definitions = new GeneralDefinitions { LightSources = new LightSourceBase[] { expected } };
+        var definitions = new GeneralDefinitions {LightSources = [expected]};
 
         definitions.GetAsChangeableLightSources().Should().HaveCount(1);
         definitions.GetAsChangeableLightSources().Should().OnlyContain(ls => ls == expected);
@@ -58,7 +58,7 @@ public class GeneralDefinitionsTests
     public void GetAsFixedLightSource_ShouldReturnExpected()
     {
         var expected = new FixedLightSource();
-        var definitions = new GeneralDefinitions { LightSources = new LightSourceBase[] { expected } };
+        var definitions = new GeneralDefinitions {LightSources = [expected]};
 
         definitions.GetAsFixedLightSources().Should().HaveCount(1);
         definitions.GetAsFixedLightSources().Should().OnlyContain(ls => ls == expected);

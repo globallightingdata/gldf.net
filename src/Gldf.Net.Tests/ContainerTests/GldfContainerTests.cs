@@ -158,8 +158,8 @@ public class GldfContainerTests
                          "is invalid for Enum type 'FileContentType'*");
     }
 
-    public static List<TestCaseData> TestData => new()
-    {
+    public static List<TestCaseData> TestData =>
+    [
         new TestCaseData(new ListSelector(container => container.Assets.Geometries), FileContentType.GeoL3d),
         new TestCaseData(new ListSelector(container => container.Assets.Geometries), FileContentType.GeoM3d),
         new TestCaseData(new ListSelector(container => container.Assets.Geometries), FileContentType.GeoR3d),
@@ -176,5 +176,5 @@ public class GldfContainerTests
         new TestCaseData(new ListSelector(container => container.Assets.Symbols), FileContentType.SymbolSvg),
         new TestCaseData(new ListSelector(container => container.Assets.Symbols), FileContentType.SymbolDxf),
         new TestCaseData(new ListSelector(container => container.Assets.Spectrums), FileContentType.SpectrumText)
-    };
+    ];
 }

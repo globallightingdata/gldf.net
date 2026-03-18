@@ -32,8 +32,8 @@ public class GldfContainerWriter : IGldfContainerWriter
     /// <param name="gldf">The <see cref="GldfContainer" /> to wirte to disk</param>
     public void WriteToGldfFile(string gldfFilePath, GldfContainer gldf)
     {
-        if (gldfFilePath == null) throw new ArgumentNullException(nameof(gldfFilePath));
-        if (gldf == null) throw new ArgumentNullException(nameof(gldf));
+        ArgumentNullException.ThrowIfNull(gldfFilePath);
+        ArgumentNullException.ThrowIfNull(gldf);
 
         try
         {
@@ -55,8 +55,8 @@ public class GldfContainerWriter : IGldfContainerWriter
     /// <param name="gldf">The <see cref="GldfContainer" /> to wirte to the stream</param>
     public void WriteToGldfStream(Stream zipStream, bool leaveOpen, GldfContainer gldf)
     {
-        if (zipStream == null) throw new ArgumentNullException(nameof(zipStream));
-        if (gldf == null) throw new ArgumentNullException(nameof(gldf));
+        ArgumentNullException.ThrowIfNull(zipStream);
+        ArgumentNullException.ThrowIfNull(gldf);
 
         try
         {
@@ -81,8 +81,8 @@ public class GldfContainerWriter : IGldfContainerWriter
     /// </param>
     public void CreateFromDirectory(string sourceDirectory, string targetContainerFilePath)
     {
-        if (sourceDirectory == null) throw new ArgumentNullException(nameof(sourceDirectory));
-        if (targetContainerFilePath == null) throw new ArgumentNullException(nameof(targetContainerFilePath));
+        ArgumentNullException.ThrowIfNull(sourceDirectory);
+        ArgumentNullException.ThrowIfNull(targetContainerFilePath);
 
         try
         {

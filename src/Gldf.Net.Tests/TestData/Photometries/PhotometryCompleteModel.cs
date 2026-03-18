@@ -24,8 +24,8 @@ public class PhotometryCompleteModel
         },
         GeneralDefinitions = new GeneralDefinitions
         {
-            Files = new[]
-            {
+            Files =
+            [
                 new GldfFile
                 {
                     Id = "eulumdat",
@@ -33,9 +33,9 @@ public class PhotometryCompleteModel
                     Type = FileType.Url,
                     File = "https://example.org/eulumdat.ldt"
                 }
-            },
-            Photometries = new[]
-            {
+            ],
+            Photometries =
+            [
                 new Photometry
                 {
                     Id = "photometry",
@@ -70,14 +70,14 @@ public class PhotometryCompleteModel
                         LightDistributionBugRating = "LightDistributionBUG-Rating"
                     }
                 }
-            },
-            Emitters = new[]
-            {
+            ],
+            Emitters =
+            [
                 new Emitter
                 {
                     Id = "emitter",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new ChangeableLightEmitter
                         {
                             PhotometryReference = new PhotometryReference
@@ -85,41 +85,41 @@ public class PhotometryCompleteModel
                                 PhotometryId = "photometry"
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitions
         {
             ProductMetaData = new ProductMetaData
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new[]
-            {
+            Variants =
+            [
                 new Variant
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 1" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new EmitterReference
@@ -128,7 +128,7 @@ public class PhotometryCompleteModel
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

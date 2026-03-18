@@ -7,7 +7,6 @@ using Gldf.Net.Domain.Typed.Head.Types;
 using Gldf.Net.Domain.Typed.Product;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using System;
-using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.Spectrums;
 
@@ -25,8 +24,8 @@ public static class SpectrumCompleteTyped
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new List<GldfFileTyped>
-            {
+            Files =
+            [
                 new()
                 {
                     Id = "eulumdat",
@@ -35,6 +34,7 @@ public static class SpectrumCompleteTyped
                     FileName = "eulumdat.ldt",
                     Uri = "https://example.org/eulumdat.ldt"
                 },
+
                 new()
                 {
                     Id = "spectrumFile",
@@ -43,9 +43,9 @@ public static class SpectrumCompleteTyped
                     FileName = "spectrum.txt",
                     Uri = "https://example.org/spectrum.txt"
                 }
-            },
-            Photometries = new List<PhotometryTyped>
-            {
+            ],
+            Photometries =
+            [
                 new()
                 {
                     Id = "photometry",
@@ -58,9 +58,9 @@ public static class SpectrumCompleteTyped
                         Uri = "https://example.org/eulumdat.ldt"
                     }
                 }
-            },
-            Spectrums = new List<SpectrumTyped>
-            {
+            ],
+            Spectrums =
+            [
                 new()
                 {
                     Id = "spectrum-1",
@@ -73,11 +73,12 @@ public static class SpectrumCompleteTyped
                         Uri = "https://example.org/spectrum.txt"
                     }
                 },
+
                 new()
                 {
                     Id = "spectrum-2",
-                    Intensities = new[]
-                    {
+                    Intensities =
+                    [
                         new SpectrumIntensityTyped
                         {
                             Wavelength = 380,
@@ -93,16 +94,16 @@ public static class SpectrumCompleteTyped
                             Wavelength = 390,
                             Intensity = 0.3
                         }
-                    }
+                    ]
                 }
-            },
-            Emitter = new List<EmitterTyped>
-            {
+            ],
+            Emitter =
+            [
                 new()
                 {
                     Id = "emitter",
-                    ChangeableEmitterOptions = new[]
-                    {
+                    ChangeableEmitterOptions =
+                    [
                         new ChangeableLightEmitterTyped
                         {
                             Photometry = new PhotometryTyped
@@ -118,60 +119,60 @@ public static class SpectrumCompleteTyped
                                 }
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitionsTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new List<VariantTyped>
-            {
+            Variants =
+            [
                 new()
                 {
                     Id = "variant-1",
-                    ProductNumber = new[]
-                    {
+                    ProductNumber =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "Product number"
                         }
-                    },
-                    Name = new[]
-                    {
+                    ],
+                    Name =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "Variant 1"
                         }
-                    },
+                    ],
                     Geometry = new GeometryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
                             Id = "emitter",
-                            ChangeableEmitterOptions = new[]
-                            {
+                            ChangeableEmitterOptions =
+                            [
                                 new ChangeableLightEmitterTyped
                                 {
                                     Photometry = new PhotometryTyped
@@ -187,11 +188,11 @@ public static class SpectrumCompleteTyped
                                         }
                                     }
                                 }
-                            }
+                            ]
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

@@ -5,7 +5,7 @@ namespace Gldf.Net.Domain.Typed.Global;
 public class VoltageTyped
 {
     public double? FixedVoltage { get; set; }
-        
+
     public double? VoltageRangeMin { get; set; }
 
     public double? VoltageRangeMax { get; set; }

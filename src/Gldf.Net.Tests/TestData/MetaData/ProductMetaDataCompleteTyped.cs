@@ -12,7 +12,6 @@ using Gldf.Net.Domain.Xml.Descriptive.Types;
 using Gldf.Net.Domain.Xml.Global;
 using Gldf.Net.Domain.Xml.Product.Types;
 using System;
-using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.MetaData;
 
@@ -30,8 +29,8 @@ public static class ProductMetaDataCompleteTyped
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new List<GldfFileTyped>
-            {
+            Files =
+            [
                 new()
                 {
                     Id = "eulumdat",
@@ -40,6 +39,7 @@ public static class ProductMetaDataCompleteTyped
                     Uri = "https://example.org/eulumdat.ldt",
                     FileName = "eulumdat.ldt"
                 },
+
                 new()
                 {
                     Id = "image",
@@ -48,9 +48,9 @@ public static class ProductMetaDataCompleteTyped
                     Uri = "https://example.org/image.png",
                     FileName = "image.png"
                 }
-            },
-            Photometries = new List<PhotometryTyped>
-            {
+            ],
+            Photometries =
+            [
                 new()
                 {
                     Id = "photometry",
@@ -63,14 +63,14 @@ public static class ProductMetaDataCompleteTyped
                         FileName = "eulumdat.ldt"
                     }
                 }
-            },
-            Emitter = new List<EmitterTyped>
-            {
+            ],
+            Emitter =
+            [
                 new()
                 {
                     Id = "emitter",
-                    ChangeableEmitterOptions = new[]
-                    {
+                    ChangeableEmitterOptions =
+                    [
                         new ChangeableLightEmitterTyped
                         {
                             Photometry = new PhotometryTyped
@@ -86,17 +86,17 @@ public static class ProductMetaDataCompleteTyped
                                 }
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitionsTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
@@ -107,9 +107,9 @@ public static class ProductMetaDataCompleteTyped
                         Language = "de",
                         Text = "Produktnummer"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
@@ -120,9 +120,9 @@ public static class ProductMetaDataCompleteTyped
                         Language = "de",
                         Text = "Produktname"
                     }
-                },
-                Description = new[]
-                {
+                ],
+                Description =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
@@ -133,9 +133,9 @@ public static class ProductMetaDataCompleteTyped
                         Language = "de",
                         Text = "Produktbeschreibung"
                     }
-                },
-                TenderText = new[]
-                {
+                ],
+                TenderText =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
@@ -146,14 +146,14 @@ public static class ProductMetaDataCompleteTyped
                         Language = "de",
                         Text = "Produkt Auschreibungstext"
                     }
-                },
-                ProductSeries = new[]
-                {
+                ],
+                ProductSeries =
+                [
                     new ProductSerieTyped
                     {
                         Id = "serie-1",
-                        Name = new[]
-                        {
+                        Name =
+                        [
                             new LocaleTyped
                             {
                                 Language = "en",
@@ -164,9 +164,9 @@ public static class ProductMetaDataCompleteTyped
                                 Language = "de",
                                 Text = "Produktserienname"
                             }
-                        },
-                        Description = new[]
-                        {
+                        ],
+                        Description =
+                        [
                             new LocaleTyped
                             {
                                 Language = "en",
@@ -177,9 +177,9 @@ public static class ProductMetaDataCompleteTyped
                                 Language = "de",
                                 Text = "Produktserienbeschreibung"
                             }
-                        },
-                        Pictures = new[]
-                        {
+                        ],
+                        Pictures =
+                        [
                             new ImageFileTyped
                             {
                                 FileName = "image.png",
@@ -212,9 +212,9 @@ public static class ProductMetaDataCompleteTyped
                                 ContentType = FileContentType.ImagePng,
                                 Type = FileType.Url
                             }
-                        },
-                        Hyperlinks = new[]
-                        {
+                        ],
+                        Hyperlinks =
+                        [
                             new HyperlinkTyped
                             {
                                 Href = "https://example.org",
@@ -223,11 +223,11 @@ public static class ProductMetaDataCompleteTyped
                                 CountryCode = "gb",
                                 PlainText = "Hyperlink PlainText"
                             }
-                        }
+                        ]
                     }
-                },
-                Pictures = new[]
-                {
+                ],
+                Pictures =
+                [
                     new ImageFileTyped
                     {
                         ImageType = ImageType.Other,
@@ -236,12 +236,12 @@ public static class ProductMetaDataCompleteTyped
                         Type = FileType.Url,
                         Uri = "https://example.org/image.png"
                     }
-                },
+                ],
                 Maintenance = new LuminaireMaintenanceTyped
                 {
                     Cie97LuminaireType = Cie97LuminaireType.DustProofIp5X,
-                    CieMaintenanceFactors = new[]
-                    {
+                    CieMaintenanceFactors =
+                    [
                         new CieMaintenanceFactorTyped
                         {
                             Years = 1,
@@ -266,9 +266,9 @@ public static class ProductMetaDataCompleteTyped
                             RoomCondition = MfRoomCondition.Clean,
                             Factor = 0.2
                         }
-                    },
-                    IesLightLossFactors = new[]
-                    {
+                    ],
+                    IesLightLossFactors =
+                    [
                         new IesDirtDepreciationTyped
                         {
                             Years = 5,
@@ -299,9 +299,9 @@ public static class ProductMetaDataCompleteTyped
                             RoomCondition = DdRoomCondition.Moderate,
                             Factor = 0.4
                         }
-                    },
-                    JiegMaintenanceFactors = new[]
-                    {
+                    ],
+                    JiegMaintenanceFactors =
+                    [
                         new JiegMaintenanceFactorTyped
                         {
                             Years = 10,
@@ -320,14 +320,14 @@ public static class ProductMetaDataCompleteTyped
                             RoomCondition = JiegRoomCondition.Clean,
                             Factor = 0.6
                         }
-                    }
+                    ]
                 },
                 DescriptiveAttributes = new DescriptiveAttributesTyped
                 {
                     Marketing = new MarketingTyped
                     {
-                        Applications = new[]
-                        {
+                        Applications =
+                        [
                             ApplicationArea.InteriorTrafficZones,
                             ApplicationArea.InteriorTrafficZonesCorridors,
                             ApplicationArea.InteriorTrafficZonesStaircases,
@@ -407,21 +407,21 @@ public static class ProductMetaDataCompleteTyped
                             ApplicationArea.ExteriorSportsFieldsSpotlightings,
                             ApplicationArea.ExteriorOther,
                             ApplicationArea.ExteriorOtherFacades
-                        }
+                        ]
                     }
                 }
             },
-            Variants = new List<VariantTyped>
-            {
+            Variants =
+            [
                 new()
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
-                        new LocaleTyped { Language = "en", Text = "Variant 1" }
-                    },
-                    ProductNumber = new LocaleTyped[]
-                    {
+                    Name =
+                    [
+                        new LocaleTyped {Language = "en", Text = "Variant 1"}
+                    ],
+                    ProductNumber =
+                    [
                         new()
                         {
                             Language = "en",
@@ -432,9 +432,9 @@ public static class ProductMetaDataCompleteTyped
                             Language = "de",
                             Text = "Produktnummer"
                         }
-                    },
-                    Description = new LocaleTyped[]
-                    {
+                    ],
+                    Description =
+                    [
                         new()
                         {
                             Language = "en",
@@ -445,9 +445,9 @@ public static class ProductMetaDataCompleteTyped
                             Language = "de",
                             Text = "Produktbeschreibung"
                         }
-                    },
-                    TenderText = new LocaleTyped[]
-                    {
+                    ],
+                    TenderText =
+                    [
                         new()
                         {
                             Language = "en",
@@ -458,14 +458,14 @@ public static class ProductMetaDataCompleteTyped
                             Language = "de",
                             Text = "Produkt Auschreibungstext"
                         }
-                    },
+                    ],
                     Geometry = new GeometryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
                             Id = "emitter",
-                            ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
-                            {
+                            ChangeableEmitterOptions =
+                            [
                                 new()
                                 {
                                     Photometry = new PhotometryTyped
@@ -481,16 +481,16 @@ public static class ProductMetaDataCompleteTyped
                                         }
                                     }
                                 }
-                            }
+                            ]
                         }
                     },
-                    ProductSeries = new ProductSerieTyped[]
-                    {
+                    ProductSeries =
+                    [
                         new()
                         {
                             Id = "serie-1",
-                            Description = new LocaleTyped[]
-                            {
+                            Description =
+                            [
                                 new()
                                 {
                                     Language = "en",
@@ -501,9 +501,9 @@ public static class ProductMetaDataCompleteTyped
                                     Language = "de",
                                     Text = "Produktserienbeschreibung"
                                 }
-                            },
-                            Hyperlinks = new HyperlinkTyped[]
-                            {
+                            ],
+                            Hyperlinks =
+                            [
                                 new()
                                 {
                                     CountryCode = "gb",
@@ -512,9 +512,9 @@ public static class ProductMetaDataCompleteTyped
                                     PlainText = "Hyperlink PlainText",
                                     Region = "eu"
                                 }
-                            },
-                            Name = new LocaleTyped[]
-                            {
+                            ],
+                            Name =
+                            [
                                 new()
                                 {
                                     Language = "en",
@@ -525,9 +525,9 @@ public static class ProductMetaDataCompleteTyped
                                     Language = "de",
                                     Text = "Produktserienname"
                                 }
-                            },
-                            Pictures = new[]
-                            {
+                            ],
+                            Pictures =
+                            [
                                 new ImageFileTyped
                                 {
                                     FileName = "image.png",
@@ -560,11 +560,11 @@ public static class ProductMetaDataCompleteTyped
                                     ContentType = FileContentType.ImagePng,
                                     Type = FileType.Url
                                 }
-                            }
+                            ]
                         }
-                    },
-                    Pictures = new ImageFileTyped[]
-                    {
+                    ],
+                    Pictures =
+                    [
                         new()
                         {
                             ImageType = ImageType.Other,
@@ -573,13 +573,13 @@ public static class ProductMetaDataCompleteTyped
                             Type = FileType.Url,
                             Uri = "https://example.org/image.png"
                         }
-                    },
+                    ],
                     DescriptiveAttributes = new DescriptiveAttributesTyped
                     {
                         Marketing = new MarketingTyped
                         {
-                            Applications = new[]
-                            {
+                            Applications =
+                            [
                                 ApplicationArea.InteriorTrafficZones,
                                 ApplicationArea.InteriorTrafficZonesCorridors,
                                 ApplicationArea.InteriorTrafficZonesStaircases,
@@ -659,19 +659,20 @@ public static class ProductMetaDataCompleteTyped
                                 ApplicationArea.ExteriorSportsFieldsSpotlightings,
                                 ApplicationArea.ExteriorOther,
                                 ApplicationArea.ExteriorOtherFacades
-                            }
+                            ]
                         }
                     }
                 },
+
                 new()
                 {
                     Id = "variant-2",
-                    Name = new[]
-                    {
-                        new LocaleTyped { Language = "en", Text = "Variant 2" }
-                    },
-                    ProductNumber = new LocaleTyped[]
-                    {
+                    Name =
+                    [
+                        new LocaleTyped {Language = "en", Text = "Variant 2"}
+                    ],
+                    ProductNumber =
+                    [
                         new()
                         {
                             Language = "en",
@@ -682,9 +683,9 @@ public static class ProductMetaDataCompleteTyped
                             Language = "de",
                             Text = "Produktnummer"
                         }
-                    },
-                    Description = new LocaleTyped[]
-                    {
+                    ],
+                    Description =
+                    [
                         new()
                         {
                             Language = "en",
@@ -695,9 +696,9 @@ public static class ProductMetaDataCompleteTyped
                             Language = "de",
                             Text = "Produktbeschreibung"
                         }
-                    },
-                    TenderText = new LocaleTyped[]
-                    {
+                    ],
+                    TenderText =
+                    [
                         new()
                         {
                             Language = "en",
@@ -708,14 +709,14 @@ public static class ProductMetaDataCompleteTyped
                             Language = "de",
                             Text = "Produkt Auschreibungstext"
                         }
-                    },
-                    ProductSeries = new ProductSerieTyped[]
-                    {
+                    ],
+                    ProductSeries =
+                    [
                         new()
                         {
                             Id = "serie-1",
-                            Description = new LocaleTyped[]
-                            {
+                            Description =
+                            [
                                 new()
                                 {
                                     Language = "en",
@@ -726,9 +727,9 @@ public static class ProductMetaDataCompleteTyped
                                     Language = "de",
                                     Text = "Produktserienbeschreibung"
                                 }
-                            },
-                            Hyperlinks = new HyperlinkTyped[]
-                            {
+                            ],
+                            Hyperlinks =
+                            [
                                 new()
                                 {
                                     CountryCode = "gb",
@@ -737,9 +738,9 @@ public static class ProductMetaDataCompleteTyped
                                     PlainText = "Hyperlink PlainText",
                                     Region = "eu"
                                 }
-                            },
-                            Name = new LocaleTyped[]
-                            {
+                            ],
+                            Name =
+                            [
                                 new()
                                 {
                                     Language = "en",
@@ -750,9 +751,9 @@ public static class ProductMetaDataCompleteTyped
                                     Language = "de",
                                     Text = "Produktserienname"
                                 }
-                            },
-                            Pictures = new[]
-                            {
+                            ],
+                            Pictures =
+                            [
                                 new ImageFileTyped
                                 {
                                     FileName = "image.png",
@@ -785,11 +786,11 @@ public static class ProductMetaDataCompleteTyped
                                     ContentType = FileContentType.ImagePng,
                                     Type = FileType.Url
                                 }
-                            }
+                            ]
                         }
-                    },
-                    Pictures = new ImageFileTyped[]
-                    {
+                    ],
+                    Pictures =
+                    [
                         new()
                         {
                             ImageType = ImageType.Other,
@@ -798,27 +799,28 @@ public static class ProductMetaDataCompleteTyped
                             Type = FileType.Url,
                             Uri = "https://example.org/image.png"
                         }
-                    },
+                    ],
                     DescriptiveAttributes = new DescriptiveAttributesTyped
                     {
                         Marketing = new MarketingTyped
                         {
-                            Applications = new[]
-                            {
+                            Applications =
+                            [
                                 ApplicationArea.ExteriorGeneralAreasParks
-                            }
+                            ]
                         }
                     }
                 },
+
                 new()
                 {
                     Id = "variant-3",
-                    Name = new[]
-                    {
-                        new LocaleTyped { Language = "en", Text = "Variant 3" }
-                    },
-                    ProductNumber = new LocaleTyped[]
-                    {
+                    Name =
+                    [
+                        new LocaleTyped {Language = "en", Text = "Variant 3"}
+                    ],
+                    ProductNumber =
+                    [
                         new()
                         {
                             Language = "en",
@@ -829,9 +831,9 @@ public static class ProductMetaDataCompleteTyped
                             Language = "de",
                             Text = "Produktnummer"
                         }
-                    },
-                    Description = new LocaleTyped[]
-                    {
+                    ],
+                    Description =
+                    [
                         new()
                         {
                             Language = "en",
@@ -842,9 +844,9 @@ public static class ProductMetaDataCompleteTyped
                             Language = "de",
                             Text = "Produktbeschreibung"
                         }
-                    },
-                    TenderText = new LocaleTyped[]
-                    {
+                    ],
+                    TenderText =
+                    [
                         new()
                         {
                             Language = "en",
@@ -855,14 +857,14 @@ public static class ProductMetaDataCompleteTyped
                             Language = "de",
                             Text = "Produkt Auschreibungstext"
                         }
-                    },
-                    ProductSeries = new ProductSerieTyped[]
-                    {
+                    ],
+                    ProductSeries =
+                    [
                         new()
                         {
                             Id = "serie-1",
-                            Description = new LocaleTyped[]
-                            {
+                            Description =
+                            [
                                 new()
                                 {
                                     Language = "en",
@@ -873,9 +875,9 @@ public static class ProductMetaDataCompleteTyped
                                     Language = "de",
                                     Text = "Produktserienbeschreibung"
                                 }
-                            },
-                            Hyperlinks = new HyperlinkTyped[]
-                            {
+                            ],
+                            Hyperlinks =
+                            [
                                 new()
                                 {
                                     CountryCode = "gb",
@@ -884,9 +886,9 @@ public static class ProductMetaDataCompleteTyped
                                     PlainText = "Hyperlink PlainText",
                                     Region = "eu"
                                 }
-                            },
-                            Name = new LocaleTyped[]
-                            {
+                            ],
+                            Name =
+                            [
                                 new()
                                 {
                                     Language = "en",
@@ -897,9 +899,9 @@ public static class ProductMetaDataCompleteTyped
                                     Language = "de",
                                     Text = "Produktserienname"
                                 }
-                            },
-                            Pictures = new[]
-                            {
+                            ],
+                            Pictures =
+                            [
                                 new ImageFileTyped
                                 {
                                     FileName = "image.png",
@@ -932,11 +934,11 @@ public static class ProductMetaDataCompleteTyped
                                     ContentType = FileContentType.ImagePng,
                                     Type = FileType.Url
                                 }
-                            }
+                            ]
                         }
-                    },
-                    Pictures = new ImageFileTyped[]
-                    {
+                    ],
+                    Pictures =
+                    [
                         new()
                         {
                             ImageType = ImageType.Other,
@@ -945,13 +947,13 @@ public static class ProductMetaDataCompleteTyped
                             Type = FileType.Url,
                             Uri = "https://example.org/image.png"
                         }
-                    },
+                    ],
                     DescriptiveAttributes = new DescriptiveAttributesTyped
                     {
                         Marketing = new MarketingTyped
                         {
-                            Applications = new[]
-                            {
+                            Applications =
+                            [
                                 ApplicationArea.InteriorTrafficZones,
                                 ApplicationArea.InteriorTrafficZonesCorridors,
                                 ApplicationArea.InteriorTrafficZonesStaircases,
@@ -1031,19 +1033,20 @@ public static class ProductMetaDataCompleteTyped
                                 ApplicationArea.ExteriorSportsFieldsSpotlightings,
                                 ApplicationArea.ExteriorOther,
                                 ApplicationArea.ExteriorOtherFacades
-                            }
+                            ]
                         }
                     }
                 },
+
                 new()
                 {
                     Id = "variant-4",
-                    Name = new[]
-                    {
-                        new LocaleTyped { Language = "en", Text = "Variant 4" }
-                    },
-                    ProductNumber = new LocaleTyped[]
-                    {
+                    Name =
+                    [
+                        new LocaleTyped {Language = "en", Text = "Variant 4"}
+                    ],
+                    ProductNumber =
+                    [
                         new()
                         {
                             Language = "en",
@@ -1054,9 +1057,9 @@ public static class ProductMetaDataCompleteTyped
                             Language = "de",
                             Text = "Produktnummer"
                         }
-                    },
-                    Description = new LocaleTyped[]
-                    {
+                    ],
+                    Description =
+                    [
                         new()
                         {
                             Language = "en",
@@ -1067,9 +1070,9 @@ public static class ProductMetaDataCompleteTyped
                             Language = "de",
                             Text = "Produktbeschreibung"
                         }
-                    },
-                    TenderText = new LocaleTyped[]
-                    {
+                    ],
+                    TenderText =
+                    [
                         new()
                         {
                             Language = "en",
@@ -1080,14 +1083,14 @@ public static class ProductMetaDataCompleteTyped
                             Language = "de",
                             Text = "Produkt Auschreibungstext"
                         }
-                    },
-                    ProductSeries = new ProductSerieTyped[]
-                    {
+                    ],
+                    ProductSeries =
+                    [
                         new()
                         {
                             Id = "serie-1",
-                            Description = new LocaleTyped[]
-                            {
+                            Description =
+                            [
                                 new()
                                 {
                                     Language = "en",
@@ -1098,9 +1101,9 @@ public static class ProductMetaDataCompleteTyped
                                     Language = "de",
                                     Text = "Produktserienbeschreibung"
                                 }
-                            },
-                            Hyperlinks = new HyperlinkTyped[]
-                            {
+                            ],
+                            Hyperlinks =
+                            [
                                 new()
                                 {
                                     CountryCode = "gb",
@@ -1109,9 +1112,9 @@ public static class ProductMetaDataCompleteTyped
                                     PlainText = "Hyperlink PlainText",
                                     Region = "eu"
                                 }
-                            },
-                            Name = new LocaleTyped[]
-                            {
+                            ],
+                            Name =
+                            [
                                 new()
                                 {
                                     Language = "en",
@@ -1122,9 +1125,9 @@ public static class ProductMetaDataCompleteTyped
                                     Language = "de",
                                     Text = "Produktserienname"
                                 }
-                            },
-                            Pictures = new[]
-                            {
+                            ],
+                            Pictures =
+                            [
                                 new ImageFileTyped
                                 {
                                     FileName = "image.png",
@@ -1157,11 +1160,11 @@ public static class ProductMetaDataCompleteTyped
                                     ContentType = FileContentType.ImagePng,
                                     Type = FileType.Url
                                 }
-                            }
+                            ]
                         }
-                    },
-                    Pictures = new ImageFileTyped[]
-                    {
+                    ],
+                    Pictures =
+                    [
                         new()
                         {
                             ImageType = ImageType.Other,
@@ -1170,13 +1173,13 @@ public static class ProductMetaDataCompleteTyped
                             Type = FileType.Url,
                             Uri = "https://example.org/image.png"
                         }
-                    },
+                    ],
                     DescriptiveAttributes = new DescriptiveAttributesTyped
                     {
                         Marketing = new MarketingTyped
                         {
-                            Applications = new[]
-                            {
+                            Applications =
+                            [
                                 ApplicationArea.InteriorTrafficZones,
                                 ApplicationArea.InteriorTrafficZonesCorridors,
                                 ApplicationArea.InteriorTrafficZonesStaircases,
@@ -1256,11 +1259,11 @@ public static class ProductMetaDataCompleteTyped
                                 ApplicationArea.ExteriorSportsFieldsSpotlightings,
                                 ApplicationArea.ExteriorOther,
                                 ApplicationArea.ExteriorOtherFacades
-                            }
+                            ]
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

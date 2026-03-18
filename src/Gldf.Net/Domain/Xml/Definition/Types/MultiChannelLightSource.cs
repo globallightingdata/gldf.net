@@ -10,13 +10,13 @@ public class MultiChannelLightSource : LightSourceBase
     public ColorInformation ColorInformation { get; set; }
 
     public Image[] LightSourceImages { get; set; }
-    
+
     public Channel[] Channels { get; set; }
 
     [XmlElement("LightSourceMaintenance")]
     public LightSourceMaintenance Maintenance { get; set; }
 
     public double? EmergencyBallastLumenFactor { get; set; }
-    
+
     public bool ShouldSerializeEmergencyBallastLumenFactor() => EmergencyBallastLumenFactor != null;
 }

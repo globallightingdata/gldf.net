@@ -11,7 +11,7 @@ public class ChangeableLightSourceTyped : LightSourceBaseTyped
     public ColorInformationTyped ColorInformation { get; set; }
 
     public ImageFileTyped[] LightSourceImages { get; set; }
-    
+
     public string Zvei { get; set; }
 
     public string Socket { get; set; }

@@ -8,7 +8,6 @@ using Gldf.Net.Domain.Typed.Product;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using Gldf.Net.Domain.Xml.Global;
 using System;
-using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.LightSources;
 
@@ -26,8 +25,8 @@ public static class ChangeableCompleteTyped
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new List<GldfFileTyped>
-            {
+            Files =
+            [
                 new()
                 {
                     Id = "eulumdat",
@@ -36,6 +35,7 @@ public static class ChangeableCompleteTyped
                     FileName = "eulumdat.ldt",
                     Uri = "https://example.org/eulumdat.ldt"
                 },
+
                 new()
                 {
                     Id = "spectrumFile",
@@ -44,6 +44,7 @@ public static class ChangeableCompleteTyped
                     FileName = "spectrum.txt",
                     Uri = "https://example.org/spectrum.txt"
                 },
+
                 new()
                 {
                     Id = "image",
@@ -53,9 +54,9 @@ public static class ChangeableCompleteTyped
                     Uri = "https://example.org/image.jpg",
                     Language = "en"
                 }
-            },
-            Photometries = new List<PhotometryTyped>
-            {
+            ],
+            Photometries =
+            [
                 new()
                 {
                     Id = "photometry",
@@ -68,9 +69,9 @@ public static class ChangeableCompleteTyped
                         Uri = "https://example.org/eulumdat.ldt"
                     }
                 }
-            },
-            Spectrums = new List<SpectrumTyped>
-            {
+            ],
+            Spectrums =
+            [
                 new()
                 {
                     Id = "spectrum",
@@ -83,14 +84,14 @@ public static class ChangeableCompleteTyped
                         Uri = "https://example.org/spectrum.txt"
                     }
                 }
-            },
-            ChangeableLightSources = new List<ChangeableLightSourceTyped>
-            {
+            ],
+            ChangeableLightSources =
+            [
                 new()
                 {
                     Id = "lightSource-1",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
@@ -101,9 +102,9 @@ public static class ChangeableCompleteTyped
                             Language = "de",
                             Text = "Lichtquelle1"
                         }
-                    },
-                    Description = new[]
-                    {
+                    ],
+                    Description =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
@@ -114,7 +115,7 @@ public static class ChangeableCompleteTyped
                             Language = "de",
                             Text = "Beschreibung"
                         }
-                    },
+                    ],
                     Manufacturer = "DIAL",
                     Gtin = "12345678",
                     RatedInputPower = 1,
@@ -131,11 +132,11 @@ public static class ChangeableCompleteTyped
                         Default = 5
                     },
                     LightSourcePositionOfUsage = "LightSourcePositionOfUsage",
-                    EnergyLabels = new[]
-                    {
-                        new EnergyLabelTyped { Region = "de", Label = "A+" },
-                        new EnergyLabelTyped { Region = "gb", Label = "A++" }
-                    },
+                    EnergyLabels =
+                    [
+                        new EnergyLabelTyped {Region = "de", Label = "A+"},
+                        new EnergyLabelTyped {Region = "gb", Label = "A++"}
+                    ],
                     Spectrum = new SpectrumTyped
                     {
                         Id = "spectrum",
@@ -151,8 +152,8 @@ public static class ChangeableCompleteTyped
                     ActivePowerTable = new ActivePowerTableTyped
                     {
                         Type = ActivePowerTableType.Continuously,
-                        FluxFactor = new[]
-                        {
+                        FluxFactor =
+                        [
                             new FluxFactorTyped
                             {
                                 InputPower = 0.1,
@@ -169,7 +170,7 @@ public static class ChangeableCompleteTyped
                                 StroboscopicEffectsSvm = "stroboscopic 2",
                                 Description = "Description 2"
                             }
-                        }
+                        ]
                     },
                     ColorInformation = new ColorInformationTyped
                     {
@@ -201,8 +202,8 @@ public static class ChangeableCompleteTyped
                         },
                         MelanopicFactor = 0.8
                     },
-                    LightSourceImages = new[]
-                    {
+                    LightSourceImages =
+                    [
                         new ImageFileTyped
                         {
                             ContentType = FileContentType.ImageJpg,
@@ -212,7 +213,7 @@ public static class ChangeableCompleteTyped
                             Uri = "https://example.org/image.jpg",
                             Language = "en"
                         }
-                    },
+                    ],
                     Zvei = "ZVEI",
                     Socket = "Socket",
                     Ilcos = "ILCOS",
@@ -237,17 +238,18 @@ public static class ChangeableCompleteTyped
                         }
                     }
                 },
+
                 new()
                 {
                     Id = "lightSource-2",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "LightSource2"
                         }
-                    },
+                    ],
                     RatedInputPower = 10,
                     RatedInputVoltage = new VoltageTyped
                     {
@@ -260,8 +262,8 @@ public static class ChangeableCompleteTyped
                     Maintenance = new LightSourceMaintenanceTyped
                     {
                         Lifetime = 12,
-                        CieLampMaintenanceFactor = new[]
-                        {
+                        CieLampMaintenanceFactor =
+                        [
                             new CieLampMaintenanceFactorTyped
                             {
                                 BurningTime = 13,
@@ -274,20 +276,21 @@ public static class ChangeableCompleteTyped
                                 LampLumenMaintenanceFactor = 0.17,
                                 LampSurvivalFactor = 0.18
                             }
-                        }
+                        ]
                     }
                 },
+
                 new()
                 {
                     Id = "lightSource-3",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "LightSource3"
                         }
-                    },
+                    ],
                     RatedInputPower = 19,
                     RatedInputVoltage = new VoltageTyped
                     {
@@ -305,51 +308,52 @@ public static class ChangeableCompleteTyped
                         }
                     }
                 },
+
                 new()
                 {
                     Id = "lightSource-4",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "LightSource4"
                         }
-                    },
+                    ],
                     RatedInputPower = 21,
                     RatedLuminousFlux = 22
                 }
-            },
-            Equipments = new List<EquipmentTyped>
-            {
+            ],
+            Equipments =
+            [
                 new()
                 {
                     Id = "equipment",
                     ChangeableLightSource = new ChangeableLightSourceTyped
                     {
                         Id = "lightSource-4",
-                        Name = new[]
-                        {
+                        Name =
+                        [
                             new LocaleTyped
                             {
                                 Language = "en",
                                 Text = "LightSource4"
                             }
-                        },
+                        ],
                         RatedInputPower = 21,
                         RatedLuminousFlux = 22
                     },
                     LightSourceCount = 2,
                     RatedInputPower = 23
                 }
-            },
-            Emitter = new List<EmitterTyped>
-            {
+            ],
+            Emitter =
+            [
                 new()
                 {
                     Id = "emitter",
-                    ChangeableEmitterOptions = new[]
-                    {
+                    ChangeableEmitterOptions =
+                    [
                         new ChangeableLightEmitterTyped
                         {
                             Photometry = new PhotometryTyped
@@ -365,56 +369,56 @@ public static class ChangeableCompleteTyped
                                 }
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitionsTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new List<VariantTyped>
-            {
+            Variants =
+            [
                 new()
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
-                        new LocaleTyped { Language = "en", Text = "Variant 1" }
-                    },
-                    ProductNumber = new LocaleTyped[]
-                    {
+                    Name =
+                    [
+                        new LocaleTyped {Language = "en", Text = "Variant 1"}
+                    ],
+                    ProductNumber =
+                    [
                         new()
                         {
                             Language = "en",
                             Text = "Product number"
                         }
-                    },
+                    ],
                     Geometry = new GeometryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
                             Id = "emitter",
-                            ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
-                            {
+                            ChangeableEmitterOptions =
+                            [
                                 new()
                                 {
                                     Photometry = new PhotometryTyped
@@ -430,11 +434,11 @@ public static class ChangeableCompleteTyped
                                         }
                                     }
                                 }
-                            }
+                            ]
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

@@ -9,7 +9,7 @@ public static class GldfContainerExtensions
 {
     public static List<ContainerFile> GetAssetCollection(this GldfContainer gldf, FileContentType contentType)
     {
-        if (gldf == null) throw new ArgumentNullException(nameof(gldf));
+        ArgumentNullException.ThrowIfNull(gldf);
         switch (contentType)
         {
             case FileContentType.LdcEulumdat:

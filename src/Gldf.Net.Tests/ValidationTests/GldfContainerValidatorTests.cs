@@ -12,7 +12,6 @@ namespace Gldf.Net.Tests.ValidationTests;
 [TestFixture]
 public class GldfContainerValidatorTests
 {
-
     private GldfContainerValidator _validator;
 
     private string _tempFile;
@@ -163,7 +162,7 @@ public class GldfContainerValidatorTests
         using var memoryStream = new MemoryStream(new byte[1]);
         var message = $"The GLDF container seems not to be a valid ZIP archive or can't be accessed";
         var expected = ValidationHint.Error(message, ErrorType.InvalidZip);
-        var hints = _validator. ValidateGldfStream(memoryStream, true);
+        var hints = _validator.ValidateGldfStream(memoryStream, true);
         hints.Should().BeEquivalentTo(expected);
     }
 
@@ -172,7 +171,7 @@ public class GldfContainerValidatorTests
     {
         var gldfWithInvalidRoot = EmbeddedGldfTestData.GetGldfWithHeaderMandatory();
         using var memoryStream = new MemoryStream(gldfWithInvalidRoot);
-        var hints = _validator. ValidateGldfStream(memoryStream, false);
+        var hints = _validator.ValidateGldfStream(memoryStream, false);
         hints.Should().BeEmpty();
     }
 
@@ -181,7 +180,7 @@ public class GldfContainerValidatorTests
     {
         var gldfWithInvalidRoot = EmbeddedGldfTestData.GetGldfWithFilesComplete();
         using var memoryStream = new MemoryStream(gldfWithInvalidRoot);
-        var hints = _validator. ValidateGldfStream(memoryStream, false);
+        var hints = _validator.ValidateGldfStream(memoryStream, false);
         hints.Should().BeEmpty();
     }
 
@@ -193,7 +192,7 @@ public class GldfContainerValidatorTests
         const string message = "Failed to deserialize Root from XML";
         var expected = ValidationHint.Error(message, ErrorType.GenericError);
 
-        var hints = _validator. ValidateGldfStream(memoryStream, false);
+        var hints = _validator.ValidateGldfStream(memoryStream, false);
 
         hints.Should().BeEquivalentTo(expected);
     }
@@ -211,7 +210,7 @@ public class GldfContainerValidatorTests
                                "(SymbolDxf), file.svg (SymbolSvg), file.doc (Other)";
         var expected = ValidationHint.Error(message, ErrorType.MissingContainerAssets);
 
-        var hints = _validator. ValidateGldfStream(memoryStream, false);
+        var hints = _validator.ValidateGldfStream(memoryStream, false);
 
         hints.Should().BeEquivalentTo(expected);
     }
@@ -225,7 +224,7 @@ public class GldfContainerValidatorTests
                                "They should be deleted: orphan.txt";
         var expected = ValidationHint.Warning(message, ErrorType.OrphanedContainerAssets);
 
-        var hints = _validator. ValidateGldfStream(memoryStream, false);
+        var hints = _validator.ValidateGldfStream(memoryStream, false);
 
         hints.Should().BeEquivalentTo(expected);
     }

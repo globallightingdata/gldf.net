@@ -43,7 +43,7 @@ public class MetaInfoSerializerTests
             .ThrowExactly<ArgumentNullException>()
             .WithMessage("Value cannot be null. (Parameter 'writerSettings')");
     }
-    
+
     [Test]
     public void Ctor_ShouldThrow_WhenReaderWriterSettingIsNull()
     {

@@ -7,7 +7,6 @@ using Gldf.Net.Domain.Typed.Head.Types;
 using Gldf.Net.Domain.Typed.Product;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using System;
-using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.Head;
 
@@ -28,8 +27,8 @@ public class HeaderCompleteTyped
             {
                 FileId = "manufLogo"
             },
-            LicenseKeys = new[]
-            {
+            LicenseKeys =
+            [
                 new LicenseKeyTyped
                 {
                     Application = "DIALux",
@@ -40,12 +39,12 @@ public class HeaderCompleteTyped
                     Application = "RELUX",
                     Key = "Key 2"
                 }
-            },
+            ],
             ReluxMemberId = "ReluxMemberId",
             DIALuxMemberId = "DIALuxMemberId",
             Author = "Author",
-            Contact = new[]
-            {
+            Contact =
+            [
                 new AddressTyped
                 {
                     FirstName = "FirstName",
@@ -56,16 +55,16 @@ public class HeaderCompleteTyped
                     City = "City",
                     Country = "Country",
                     Phone = "Phone",
-                    EMailAddresses = new[]
-                    {
+                    EMailAddresses =
+                    [
                         new EMailTyped
                         {
                             Mailto = "mailto",
                             PlainText = "PlainText"
                         }
-                    },
-                    Websites = new[]
-                    {
+                    ],
+                    Websites =
+                    [
                         new HyperlinkTyped
                         {
                             Href = "href 1",
@@ -78,14 +77,14 @@ public class HeaderCompleteTyped
                             Language = "en",
                             PlainText = "PlainText 2"
                         }
-                    },
+                    ],
                     AdditionalInfo = "AdditionalInfo"
                 },
                 new AddressTyped
                 {
                     Name = "Name 2",
-                    EMailAddresses = new[]
-                    {
+                    EMailAddresses =
+                    [
                         new EMailTyped
                         {
                             Mailto = "Mailto 1",
@@ -96,14 +95,14 @@ public class HeaderCompleteTyped
                             Mailto = "Mailto 2",
                             PlainText = "PlainText 2"
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new List<GldfFileTyped>
-            {
+            Files =
+            [
                 new()
                 {
                     Id = "manufLogo",
@@ -112,6 +111,7 @@ public class HeaderCompleteTyped
                     FileName = "logo.png",
                     Uri = "https://example.org/logo.png"
                 },
+
                 new()
                 {
                     Id = "eulumdat",
@@ -120,9 +120,9 @@ public class HeaderCompleteTyped
                     FileName = "eulumdat.ldt",
                     Uri = "https://example.org/eulumdat.ldt"
                 }
-            },
-            Photometries = new List<PhotometryTyped>
-            {
+            ],
+            Photometries =
+            [
                 new()
                 {
                     Id = "photometry",
@@ -135,14 +135,14 @@ public class HeaderCompleteTyped
                         Uri = "https://example.org/eulumdat.ldt"
                     }
                 }
-            },
-            Emitter = new List<EmitterTyped>
-            {
+            ],
+            Emitter =
+            [
                 new()
                 {
                     Id = "emitter",
-                    ChangeableEmitterOptions = new[]
-                    {
+                    ChangeableEmitterOptions =
+                    [
                         new ChangeableLightEmitterTyped
                         {
                             Photometry = new PhotometryTyped
@@ -158,60 +158,60 @@ public class HeaderCompleteTyped
                                 }
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitionsTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new List<VariantTyped>
-            {
+            Variants =
+            [
                 new()
                 {
                     Id = "variant-1",
-                    ProductNumber = new[]
-                    {
+                    ProductNumber =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "Product number"
                         }
-                    },
-                    Name = new[]
-                    {
+                    ],
+                    Name =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "Variant 1"
                         }
-                    },
+                    ],
                     Geometry = new GeometryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
                             Id = "emitter",
-                            ChangeableEmitterOptions = new[]
-                            {
+                            ChangeableEmitterOptions =
+                            [
                                 new ChangeableLightEmitterTyped
                                 {
                                     Photometry = new PhotometryTyped
@@ -227,11 +227,11 @@ public class HeaderCompleteTyped
                                         }
                                     }
                                 }
-                            }
+                            ]
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

@@ -6,13 +6,17 @@ namespace Gldf.Net.Abstract;
 
 public interface IGldfXmlSerializer
 {
-    Encoding Encoding { get; }
-    
-    string SerializeToXml(Root value);
-    void SerializeToXmlFile(Root value, string xmlFilePath);
-    void SerializeToXmlStream(Root value, Stream xmlStream, bool leaveOpen);
+    public Encoding Encoding { get; }
 
-    Root DeserializeFromXml(string xml);
-    Root DeserializeFromXmlFile(string xmlFilePath);
-    Root DeserializeFromXmlStream(Stream xmlStream, bool leaveOpen);
+    public string SerializeToXml(Root value);
+
+    public void SerializeToXmlFile(Root value, string xmlFilePath);
+
+    public void SerializeToXmlStream(Root value, Stream xmlStream, bool leaveOpen);
+
+    public Root DeserializeFromXml(string xml);
+
+    public Root DeserializeFromXmlFile(string xmlFilePath);
+
+    public Root DeserializeFromXmlStream(Stream xmlStream, bool leaveOpen);
 }

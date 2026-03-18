@@ -34,9 +34,8 @@ public class GldfEmbeddedXsdLoaderTests
     public void LoadXsd_ShouldLoadAllKnownVersions()
     {
         GldfEmbeddedXsdLoader.KnownVersions.Should().HaveCount(4);
-        foreach (var knownVersion in GldfEmbeddedXsdLoader.KnownVersions)
+        foreach (var xsd in GldfEmbeddedXsdLoader.KnownVersions.Select(GldfEmbeddedXsdLoader.Load))
         {
-            var xsd = GldfEmbeddedXsdLoader.Load(knownVersion);
             const string expectedXsdRow = @"<?xml version=""1.0"" encoding=""UTF-8""?>";
             xsd.Should().StartWith(expectedXsdRow);
         }
@@ -68,11 +67,11 @@ public class GldfEmbeddedXsdLoaderTests
         xsd.Should().Contain(@"version=""1.0.0-rc.3""");
     }
 
-    private static IEnumerable<TestCaseData> ExpectedXsdTestData => new[]
-    {
+    private static IEnumerable<TestCaseData> ExpectedXsdTestData =>
+    [
         new TestCaseData(new FormatVersion(0, 9, 9), @"version=""0.9-beta.9"""),
         new TestCaseData(new FormatVersion(1, 0, 1), @"version=""1.0.0-rc.1"""),
         new TestCaseData(new FormatVersion(1, 0, 2), @"version=""1.0.0-rc.2"""),
         new TestCaseData(new FormatVersion(1, 0, 3), @"version=""1.0.0-rc.3""")
-    };
+    ];
 }

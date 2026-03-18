@@ -8,7 +8,6 @@ using Gldf.Net.Domain.Typed.Product;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using Gldf.Net.Domain.Xml.Global;
 using System;
-using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.LightSources;
 
@@ -26,8 +25,8 @@ public static class MultiChannelCompleteTyped
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new List<GldfFileTyped>
-            {
+            Files =
+            [
                 new()
                 {
                     Id = "photometryRedFile",
@@ -36,6 +35,7 @@ public static class MultiChannelCompleteTyped
                     FileName = "photometryRed.ldt",
                     Uri = "https://example.org/photometryRed.ldt"
                 },
+
                 new()
                 {
                     Id = "photometryGreenFile",
@@ -44,6 +44,7 @@ public static class MultiChannelCompleteTyped
                     FileName = "photometryGreen.ldt",
                     Uri = "https://example.org/photometryGreen.ldt"
                 },
+
                 new()
                 {
                     Id = "photometryBlueFile",
@@ -52,6 +53,7 @@ public static class MultiChannelCompleteTyped
                     FileName = "photometryBlue.ldt",
                     Uri = "https://example.org/photometryBlue.ldt"
                 },
+
                 new()
                 {
                     Id = "lightSourceImage",
@@ -60,6 +62,7 @@ public static class MultiChannelCompleteTyped
                     FileName = "image.jpg",
                     Uri = "https://example.org/image.jpg"
                 },
+
                 new()
                 {
                     Id = "geometryFile",
@@ -68,9 +71,9 @@ public static class MultiChannelCompleteTyped
                     FileName = "geometry.l3d",
                     Uri = "https://example.org/geometry.l3d"
                 }
-            },
-            Photometries = new List<PhotometryTyped>
-            {
+            ],
+            Photometries =
+            [
                 new()
                 {
                     Id = "photometryRed",
@@ -83,6 +86,7 @@ public static class MultiChannelCompleteTyped
                         Uri = "https://example.org/photometryRed.ldt"
                     }
                 },
+
                 new()
                 {
                     Id = "photometryGreen",
@@ -95,6 +99,7 @@ public static class MultiChannelCompleteTyped
                         Uri = "https://example.org/photometryGreen.ldt"
                     }
                 },
+
                 new()
                 {
                     Id = "photometryBlue",
@@ -107,53 +112,55 @@ public static class MultiChannelCompleteTyped
                         Uri = "https://example.org/photometryBlue.ldt"
                     }
                 }
-            },
-            Spectrums = new List<SpectrumTyped>
-            {
+            ],
+            Spectrums =
+            [
                 new()
                 {
                     Id = "spectrumRed",
-                    Intensities = new SpectrumIntensityTyped[]
-                    {
+                    Intensities =
+                    [
                         new()
                         {
                             Wavelength = 380,
                             Intensity = 0.7
                         }
-                    }
+                    ]
                 },
+
                 new()
                 {
                     Id = "spectrumGreen",
-                    Intensities = new SpectrumIntensityTyped[]
-                    {
+                    Intensities =
+                    [
                         new()
                         {
                             Wavelength = 380,
                             Intensity = 0.8
                         }
-                    }
+                    ]
                 },
+
                 new()
                 {
                     Id = "spectrumBlue",
-                    Intensities = new SpectrumIntensityTyped[]
-                    {
+                    Intensities =
+                    [
                         new()
                         {
                             Wavelength = 380,
                             Intensity = 0.9
                         }
-                    }
+                    ]
                 }
-            },
-            MultiChannelLightSources = new List<MultiChannelLightSourceTyped>
-            {
+            ],
+            MultiChannelLightSources =
+            [
                 new()
                 {
                     Id = "multiChannelLightSource",
-                    Name = new LocaleTyped[]
-                    {
+                    Name =
+                    [
                         new()
                         {
                             Language = "en",
@@ -164,9 +171,9 @@ public static class MultiChannelCompleteTyped
                             Language = "de",
                             Text = "RGB Mehrkanal"
                         }
-                    },
-                    Description = new LocaleTyped[]
-                    {
+                    ],
+                    Description =
+                    [
                         new()
                         {
                             Language = "en",
@@ -177,7 +184,7 @@ public static class MultiChannelCompleteTyped
                             Language = "de",
                             Text = "Mehrkanal Beschreibung"
                         }
-                    },
+                    ],
                     Manufacturer = "DIAL",
                     Gtin = "12345678",
                     RatedInputPower = 1,
@@ -194,16 +201,16 @@ public static class MultiChannelCompleteTyped
                         Default = 5
                     },
                     LightSourcePositionOfUsage = "LightSourcePositionOfUsage",
-                    EnergyLabels = new EnergyLabelTyped[]
-                    {
-                        new() { Region = "de", Label = "A+" },
-                        new() { Region = "gb", Label = "A++" }
-                    },
+                    EnergyLabels =
+                    [
+                        new() {Region = "de", Label = "A+"},
+                        new() {Region = "gb", Label = "A++"}
+                    ],
                     ActivePowerTable = new ActivePowerTableTyped
                     {
                         Type = ActivePowerTableType.Continuously,
-                        FluxFactor = new FluxFactorTyped[]
-                        {
+                        FluxFactor =
+                        [
                             new()
                             {
                                 InputPower = 0.1,
@@ -220,7 +227,7 @@ public static class MultiChannelCompleteTyped
                                 StroboscopicEffectsSvm = "stroboscopic 2",
                                 Description = "Description 2"
                             }
-                        }
+                        ]
                     },
                     ColorInformation = new ColorInformationTyped
                     {
@@ -252,8 +259,8 @@ public static class MultiChannelCompleteTyped
                         },
                         MelanopicFactor = 0.8
                     },
-                    LightSourceImages = new[]
-                    {
+                    LightSourceImages =
+                    [
                         new ImageFileTyped
                         {
                             ContentType = FileContentType.ImageJpg,
@@ -262,31 +269,31 @@ public static class MultiChannelCompleteTyped
                             FileName = "image.jpg",
                             Uri = "https://example.org/image.jpg"
                         }
-                    },
-                    Channels = new ChannelTyped[]
-                    {
+                    ],
+                    Channels =
+                    [
                         new()
                         {
                             Type = ChannelType.Red,
-                            DisplayName = new LocaleTyped[]
-                            {
+                            DisplayName =
+                            [
                                 new()
                                 {
                                     Language = "en",
                                     Text = "Red"
                                 }
-                            },
+                            ],
                             Spectrum = new SpectrumTyped
                             {
                                 Id = "spectrumRed",
-                                Intensities = new SpectrumIntensityTyped[]
-                                {
+                                Intensities =
+                                [
                                     new()
                                     {
                                         Wavelength = 380,
                                         Intensity = 0.7
                                     }
-                                }
+                                ]
                             },
                             Photometry = new PhotometryTyped
                             {
@@ -335,25 +342,25 @@ public static class MultiChannelCompleteTyped
                         new()
                         {
                             Type = ChannelType.Green,
-                            DisplayName = new LocaleTyped[]
-                            {
+                            DisplayName =
+                            [
                                 new()
                                 {
                                     Language = "en",
                                     Text = "Green"
                                 }
-                            },
+                            ],
                             Spectrum = new SpectrumTyped
                             {
                                 Id = "spectrumGreen",
-                                Intensities = new SpectrumIntensityTyped[]
-                                {
+                                Intensities =
+                                [
                                     new()
                                     {
                                         Wavelength = 380,
                                         Intensity = 0.8
                                     }
-                                }
+                                ]
                             },
                             Photometry = new PhotometryTyped
                             {
@@ -373,25 +380,25 @@ public static class MultiChannelCompleteTyped
                         new()
                         {
                             Type = ChannelType.Blue,
-                            DisplayName = new LocaleTyped[]
-                            {
+                            DisplayName =
+                            [
                                 new()
                                 {
                                     Language = "en",
                                     Text = "Blue"
                                 }
-                            },
+                            ],
                             Spectrum = new SpectrumTyped
                             {
                                 Id = "spectrumBlue",
-                                Intensities = new SpectrumIntensityTyped[]
-                                {
+                                Intensities =
+                                [
                                     new()
                                     {
                                         Wavelength = 380,
                                         Intensity = 0.9
                                     }
-                                }
+                                ]
                             },
                             Photometry = new PhotometryTyped
                             {
@@ -407,7 +414,7 @@ public static class MultiChannelCompleteTyped
                             },
                             RatedLuminousFlux = 170
                         }
-                    },
+                    ],
                     Maintenance = new LightSourceMaintenanceTyped
                     {
                         Lifetime = 9,
@@ -419,21 +426,21 @@ public static class MultiChannelCompleteTyped
                     },
                     EmergencyBallastLumenFactor = 0.7
                 }
-            },
-            Emitter = new List<EmitterTyped>
-            {
+            ],
+            Emitter =
+            [
                 new()
                 {
                     Id = "emitter",
-                    MultiChannelEmitterOptions = new[]
-                    {
+                    MultiChannelEmitterOptions =
+                    [
                         new MultiChannelLightEmitterTyped
                         {
                             MultiChannelLightSource = new()
                             {
                                 Id = "multiChannelLightSource",
-                                Name = new LocaleTyped[]
-                                {
+                                Name =
+                                [
                                     new()
                                     {
                                         Language = "en",
@@ -444,9 +451,9 @@ public static class MultiChannelCompleteTyped
                                         Language = "de",
                                         Text = "RGB Mehrkanal"
                                     }
-                                },
-                                Description = new LocaleTyped[]
-                                {
+                                ],
+                                Description =
+                                [
                                     new()
                                     {
                                         Language = "en",
@@ -457,7 +464,7 @@ public static class MultiChannelCompleteTyped
                                         Language = "de",
                                         Text = "Mehrkanal Beschreibung"
                                     }
-                                },
+                                ],
                                 Manufacturer = "DIAL",
                                 Gtin = "12345678",
                                 RatedInputPower = 1,
@@ -474,16 +481,16 @@ public static class MultiChannelCompleteTyped
                                     Default = 5
                                 },
                                 LightSourcePositionOfUsage = "LightSourcePositionOfUsage",
-                                EnergyLabels = new EnergyLabelTyped[]
-                                {
-                                    new() { Region = "de", Label = "A+" },
-                                    new() { Region = "gb", Label = "A++" }
-                                },
+                                EnergyLabels =
+                                [
+                                    new() {Region = "de", Label = "A+"},
+                                    new() {Region = "gb", Label = "A++"}
+                                ],
                                 ActivePowerTable = new ActivePowerTableTyped
                                 {
                                     Type = ActivePowerTableType.Continuously,
-                                    FluxFactor = new FluxFactorTyped[]
-                                    {
+                                    FluxFactor =
+                                    [
                                         new()
                                         {
                                             InputPower = 0.1,
@@ -500,7 +507,7 @@ public static class MultiChannelCompleteTyped
                                             StroboscopicEffectsSvm = "stroboscopic 2",
                                             Description = "Description 2"
                                         }
-                                    }
+                                    ]
                                 },
                                 ColorInformation = new ColorInformationTyped
                                 {
@@ -532,8 +539,8 @@ public static class MultiChannelCompleteTyped
                                     },
                                     MelanopicFactor = 0.8
                                 },
-                                LightSourceImages = new[]
-                                {
+                                LightSourceImages =
+                                [
                                     new ImageFileTyped
                                     {
                                         ContentType = FileContentType.ImageJpg,
@@ -542,31 +549,31 @@ public static class MultiChannelCompleteTyped
                                         FileName = "image.jpg",
                                         Uri = "https://example.org/image.jpg"
                                     }
-                                },
-                                Channels = new ChannelTyped[]
-                                {
+                                ],
+                                Channels =
+                                [
                                     new()
                                     {
                                         Type = ChannelType.Red,
-                                        DisplayName = new LocaleTyped[]
-                                        {
+                                        DisplayName =
+                                        [
                                             new()
                                             {
                                                 Language = "en",
                                                 Text = "Red"
                                             }
-                                        },
+                                        ],
                                         Spectrum = new SpectrumTyped
                                         {
                                             Id = "spectrumRed",
-                                            Intensities = new SpectrumIntensityTyped[]
-                                            {
+                                            Intensities =
+                                            [
                                                 new()
                                                 {
                                                     Wavelength = 380,
                                                     Intensity = 0.7
                                                 }
-                                            }
+                                            ]
                                         },
                                         Photometry = new PhotometryTyped
                                         {
@@ -615,25 +622,25 @@ public static class MultiChannelCompleteTyped
                                     new()
                                     {
                                         Type = ChannelType.Green,
-                                        DisplayName = new LocaleTyped[]
-                                        {
+                                        DisplayName =
+                                        [
                                             new()
                                             {
                                                 Language = "en",
                                                 Text = "Green"
                                             }
-                                        },
+                                        ],
                                         Spectrum = new SpectrumTyped
                                         {
                                             Id = "spectrumGreen",
-                                            Intensities = new SpectrumIntensityTyped[]
-                                            {
+                                            Intensities =
+                                            [
                                                 new()
                                                 {
                                                     Wavelength = 380,
                                                     Intensity = 0.8
                                                 }
-                                            }
+                                            ]
                                         },
                                         Photometry = new PhotometryTyped
                                         {
@@ -653,25 +660,25 @@ public static class MultiChannelCompleteTyped
                                     new()
                                     {
                                         Type = ChannelType.Blue,
-                                        DisplayName = new LocaleTyped[]
-                                        {
+                                        DisplayName =
+                                        [
                                             new()
                                             {
                                                 Language = "en",
                                                 Text = "Blue"
                                             }
-                                        },
+                                        ],
                                         Spectrum = new SpectrumTyped
                                         {
                                             Id = "spectrumBlue",
-                                            Intensities = new SpectrumIntensityTyped[]
-                                            {
+                                            Intensities =
+                                            [
                                                 new()
                                                 {
                                                     Wavelength = 380,
                                                     Intensity = 0.9
                                                 }
-                                            }
+                                            ]
                                         },
                                         Photometry = new PhotometryTyped
                                         {
@@ -687,7 +694,7 @@ public static class MultiChannelCompleteTyped
                                         },
                                         RatedLuminousFlux = 170
                                     }
-                                },
+                                ],
                                 Maintenance = new LightSourceMaintenanceTyped
                                 {
                                     Lifetime = 9,
@@ -700,16 +707,16 @@ public static class MultiChannelCompleteTyped
                                 EmergencyBallastLumenFactor = 0.7
                             }
                         }
-                    }
+                    ]
                 }
-            },
-            ModelGeometries = new List<ModelGeometryTyped>
-            {
+            ],
+            ModelGeometries =
+            [
                 new()
                 {
                     Id = "geometry",
-                    GeometryFiles = new ModelFileTyped[]
-                    {
+                    GeometryFiles =
+                    [
                         new()
                         {
                             ContentType = FileContentType.GeoL3d,
@@ -718,63 +725,63 @@ public static class MultiChannelCompleteTyped
                             FileName = "geometry.l3d",
                             LevelOfDetail = LevelOfDetail.Low
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitionsTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new LocaleTyped[]
-                {
+                ProductNumber =
+                [
                     new()
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new LocaleTyped[]
-                {
+                ],
+                Name =
+                [
                     new()
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new List<VariantTyped>
-            {
+            Variants =
+            [
                 new()
                 {
                     Id = "variant-1",
-                    Name = new LocaleTyped[]
-                    {
-                        new() { Language = "en", Text = "Variant 1" }
-                    },
-                    ProductNumber = new LocaleTyped[]
-                    {
+                    Name =
+                    [
+                        new() {Language = "en", Text = "Variant 1"}
+                    ],
+                    ProductNumber =
+                    [
                         new()
                         {
                             Language = "en",
                             Text = "Product number"
                         }
-                    },
+                    ],
                     Geometry = new GeometryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
                             Id = "emitter",
-                            MultiChannelEmitterOptions = new MultiChannelLightEmitterTyped[]
-                            {
+                            MultiChannelEmitterOptions =
+                            [
                                 new()
                                 {
                                     MultiChannelLightSource = new MultiChannelLightSourceTyped
                                     {
                                         Id = "multiChannelLightSource",
-                                        Name = new LocaleTyped[]
-                                        {
+                                        Name =
+                                        [
                                             new()
                                             {
                                                 Language = "en",
@@ -785,9 +792,9 @@ public static class MultiChannelCompleteTyped
                                                 Language = "de",
                                                 Text = "RGB Mehrkanal"
                                             }
-                                        },
-                                        Description = new LocaleTyped[]
-                                        {
+                                        ],
+                                        Description =
+                                        [
                                             new()
                                             {
                                                 Language = "en",
@@ -798,7 +805,7 @@ public static class MultiChannelCompleteTyped
                                                 Language = "de",
                                                 Text = "Mehrkanal Beschreibung"
                                             }
-                                        },
+                                        ],
                                         Manufacturer = "DIAL",
                                         Gtin = "12345678",
                                         RatedInputPower = 1,
@@ -815,16 +822,16 @@ public static class MultiChannelCompleteTyped
                                             Default = 5
                                         },
                                         LightSourcePositionOfUsage = "LightSourcePositionOfUsage",
-                                        EnergyLabels = new EnergyLabelTyped[]
-                                        {
-                                            new() { Region = "de", Label = "A+" },
-                                            new() { Region = "gb", Label = "A++" }
-                                        },
+                                        EnergyLabels =
+                                        [
+                                            new() {Region = "de", Label = "A+"},
+                                            new() {Region = "gb", Label = "A++"}
+                                        ],
                                         ActivePowerTable = new ActivePowerTableTyped
                                         {
                                             Type = ActivePowerTableType.Continuously,
-                                            FluxFactor = new FluxFactorTyped[]
-                                            {
+                                            FluxFactor =
+                                            [
                                                 new()
                                                 {
                                                     InputPower = 0.1,
@@ -841,7 +848,7 @@ public static class MultiChannelCompleteTyped
                                                     StroboscopicEffectsSvm = "stroboscopic 2",
                                                     Description = "Description 2"
                                                 }
-                                            }
+                                            ]
                                         },
                                         ColorInformation = new ColorInformationTyped
                                         {
@@ -873,8 +880,8 @@ public static class MultiChannelCompleteTyped
                                             },
                                             MelanopicFactor = 0.8
                                         },
-                                        LightSourceImages = new[]
-                                        {
+                                        LightSourceImages =
+                                        [
                                             new ImageFileTyped
                                             {
                                                 ContentType = FileContentType.ImageJpg,
@@ -883,31 +890,31 @@ public static class MultiChannelCompleteTyped
                                                 FileName = "image.jpg",
                                                 Uri = "https://example.org/image.jpg"
                                             }
-                                        },
-                                        Channels = new ChannelTyped[]
-                                        {
+                                        ],
+                                        Channels =
+                                        [
                                             new()
                                             {
                                                 Type = ChannelType.Red,
-                                                DisplayName = new LocaleTyped[]
-                                                {
+                                                DisplayName =
+                                                [
                                                     new()
                                                     {
                                                         Language = "en",
                                                         Text = "Red"
                                                     }
-                                                },
+                                                ],
                                                 Spectrum = new SpectrumTyped
                                                 {
                                                     Id = "spectrumRed",
-                                                    Intensities = new SpectrumIntensityTyped[]
-                                                    {
+                                                    Intensities =
+                                                    [
                                                         new()
                                                         {
                                                             Wavelength = 380,
                                                             Intensity = 0.7
                                                         }
-                                                    }
+                                                    ]
                                                 },
                                                 Photometry = new PhotometryTyped
                                                 {
@@ -956,25 +963,25 @@ public static class MultiChannelCompleteTyped
                                             new()
                                             {
                                                 Type = ChannelType.Green,
-                                                DisplayName = new LocaleTyped[]
-                                                {
+                                                DisplayName =
+                                                [
                                                     new()
                                                     {
                                                         Language = "en",
                                                         Text = "Green"
                                                     }
-                                                },
+                                                ],
                                                 Spectrum = new SpectrumTyped
                                                 {
                                                     Id = "spectrumGreen",
-                                                    Intensities = new SpectrumIntensityTyped[]
-                                                    {
+                                                    Intensities =
+                                                    [
                                                         new()
                                                         {
                                                             Wavelength = 380,
                                                             Intensity = 0.8
                                                         }
-                                                    }
+                                                    ]
                                                 },
                                                 Photometry = new PhotometryTyped
                                                 {
@@ -994,25 +1001,25 @@ public static class MultiChannelCompleteTyped
                                             new()
                                             {
                                                 Type = ChannelType.Blue,
-                                                DisplayName = new LocaleTyped[]
-                                                {
+                                                DisplayName =
+                                                [
                                                     new()
                                                     {
                                                         Language = "en",
                                                         Text = "Blue"
                                                     }
-                                                },
+                                                ],
                                                 Spectrum = new SpectrumTyped
                                                 {
                                                     Id = "spectrumBlue",
-                                                    Intensities = new SpectrumIntensityTyped[]
-                                                    {
+                                                    Intensities =
+                                                    [
                                                         new()
                                                         {
                                                             Wavelength = 380,
                                                             Intensity = 0.9
                                                         }
-                                                    }
+                                                    ]
                                                 },
                                                 Photometry = new PhotometryTyped
                                                 {
@@ -1028,7 +1035,7 @@ public static class MultiChannelCompleteTyped
                                                 },
                                                 RatedLuminousFlux = 170
                                             }
-                                        },
+                                        ],
                                         Maintenance = new LightSourceMaintenanceTyped
                                         {
                                             Lifetime = 9,
@@ -1041,25 +1048,26 @@ public static class MultiChannelCompleteTyped
                                         EmergencyBallastLumenFactor = 0.7
                                     }
                                 }
-                            }
+                            ]
                         }
                     }
                 },
+
                 new()
                 {
                     Id = "variant-2",
-                    Name = new LocaleTyped[]
-                    {
-                        new() { Language = "en", Text = "Variant 2" }
-                    },
-                    ProductNumber = new LocaleTyped[]
-                    {
+                    Name =
+                    [
+                        new() {Language = "en", Text = "Variant 2"}
+                    ],
+                    ProductNumber =
+                    [
                         new()
                         {
                             Language = "en",
                             Text = "Product number"
                         }
-                    },
+                    ],
                     Geometry = new GeometryTyped
                     {
                         Model = new ModelGeometryEmitterTyped
@@ -1067,8 +1075,8 @@ public static class MultiChannelCompleteTyped
                             Geometry = new ModelGeometryTyped
                             {
                                 Id = "geometry",
-                                GeometryFiles = new ModelFileTyped[]
-                                {
+                                GeometryFiles =
+                                [
                                     new()
                                     {
                                         ContentType = FileContentType.GeoL3d,
@@ -1077,24 +1085,24 @@ public static class MultiChannelCompleteTyped
                                         FileName = "geometry.l3d",
                                         LevelOfDetail = LevelOfDetail.Low
                                     }
-                                }
+                                ]
                             },
-                            Emitter = new ModelEmitterTyped[]
-                            {
+                            Emitter =
+                            [
                                 new()
                                 {
                                     Emitter = new EmitterTyped
                                     {
                                         Id = "emitter",
-                                        MultiChannelEmitterOptions = new MultiChannelLightEmitterTyped[]
-                                        {
+                                        MultiChannelEmitterOptions =
+                                        [
                                             new()
                                             {
                                                 MultiChannelLightSource = new MultiChannelLightSourceTyped
                                                 {
                                                     Id = "multiChannelLightSource",
-                                                    Name = new LocaleTyped[]
-                                                    {
+                                                    Name =
+                                                    [
                                                         new()
                                                         {
                                                             Language = "en",
@@ -1105,9 +1113,9 @@ public static class MultiChannelCompleteTyped
                                                             Language = "de",
                                                             Text = "RGB Mehrkanal"
                                                         }
-                                                    },
-                                                    Description = new LocaleTyped[]
-                                                    {
+                                                    ],
+                                                    Description =
+                                                    [
                                                         new()
                                                         {
                                                             Language = "en",
@@ -1118,7 +1126,7 @@ public static class MultiChannelCompleteTyped
                                                             Language = "de",
                                                             Text = "Mehrkanal Beschreibung"
                                                         }
-                                                    },
+                                                    ],
                                                     Manufacturer = "DIAL",
                                                     Gtin = "12345678",
                                                     RatedInputPower = 1,
@@ -1135,16 +1143,16 @@ public static class MultiChannelCompleteTyped
                                                         Default = 5
                                                     },
                                                     LightSourcePositionOfUsage = "LightSourcePositionOfUsage",
-                                                    EnergyLabels = new EnergyLabelTyped[]
-                                                    {
-                                                        new() { Region = "de", Label = "A+" },
-                                                        new() { Region = "gb", Label = "A++" }
-                                                    },
+                                                    EnergyLabels =
+                                                    [
+                                                        new() {Region = "de", Label = "A+"},
+                                                        new() {Region = "gb", Label = "A++"}
+                                                    ],
                                                     ActivePowerTable = new ActivePowerTableTyped
                                                     {
                                                         Type = ActivePowerTableType.Continuously,
-                                                        FluxFactor = new FluxFactorTyped[]
-                                                        {
+                                                        FluxFactor =
+                                                        [
                                                             new()
                                                             {
                                                                 InputPower = 0.1,
@@ -1161,7 +1169,7 @@ public static class MultiChannelCompleteTyped
                                                                 StroboscopicEffectsSvm = "stroboscopic 2",
                                                                 Description = "Description 2"
                                                             }
-                                                        }
+                                                        ]
                                                     },
                                                     ColorInformation = new ColorInformationTyped
                                                     {
@@ -1193,8 +1201,8 @@ public static class MultiChannelCompleteTyped
                                                         },
                                                         MelanopicFactor = 0.8
                                                     },
-                                                    LightSourceImages = new[]
-                                                    {
+                                                    LightSourceImages =
+                                                    [
                                                         new ImageFileTyped
                                                         {
                                                             ContentType = FileContentType.ImageJpg,
@@ -1203,31 +1211,31 @@ public static class MultiChannelCompleteTyped
                                                             FileName = "image.jpg",
                                                             Uri = "https://example.org/image.jpg"
                                                         }
-                                                    },
-                                                    Channels = new ChannelTyped[]
-                                                    {
+                                                    ],
+                                                    Channels =
+                                                    [
                                                         new()
                                                         {
                                                             Type = ChannelType.Red,
-                                                            DisplayName = new LocaleTyped[]
-                                                            {
+                                                            DisplayName =
+                                                            [
                                                                 new()
                                                                 {
                                                                     Language = "en",
                                                                     Text = "Red"
                                                                 }
-                                                            },
+                                                            ],
                                                             Spectrum = new SpectrumTyped
                                                             {
                                                                 Id = "spectrumRed",
-                                                                Intensities = new SpectrumIntensityTyped[]
-                                                                {
+                                                                Intensities =
+                                                                [
                                                                     new()
                                                                     {
                                                                         Wavelength = 380,
                                                                         Intensity = 0.7
                                                                     }
-                                                                }
+                                                                ]
                                                             },
                                                             Photometry = new PhotometryTyped
                                                             {
@@ -1276,25 +1284,25 @@ public static class MultiChannelCompleteTyped
                                                         new()
                                                         {
                                                             Type = ChannelType.Green,
-                                                            DisplayName = new LocaleTyped[]
-                                                            {
+                                                            DisplayName =
+                                                            [
                                                                 new()
                                                                 {
                                                                     Language = "en",
                                                                     Text = "Green"
                                                                 }
-                                                            },
+                                                            ],
                                                             Spectrum = new SpectrumTyped
                                                             {
                                                                 Id = "spectrumGreen",
-                                                                Intensities = new SpectrumIntensityTyped[]
-                                                                {
+                                                                Intensities =
+                                                                [
                                                                     new()
                                                                     {
                                                                         Wavelength = 380,
                                                                         Intensity = 0.8
                                                                     }
-                                                                }
+                                                                ]
                                                             },
                                                             Photometry = new PhotometryTyped
                                                             {
@@ -1314,25 +1322,25 @@ public static class MultiChannelCompleteTyped
                                                         new()
                                                         {
                                                             Type = ChannelType.Blue,
-                                                            DisplayName = new LocaleTyped[]
-                                                            {
+                                                            DisplayName =
+                                                            [
                                                                 new()
                                                                 {
                                                                     Language = "en",
                                                                     Text = "Blue"
                                                                 }
-                                                            },
+                                                            ],
                                                             Spectrum = new SpectrumTyped
                                                             {
                                                                 Id = "spectrumBlue",
-                                                                Intensities = new SpectrumIntensityTyped[]
-                                                                {
+                                                                Intensities =
+                                                                [
                                                                     new()
                                                                     {
                                                                         Wavelength = 380,
                                                                         Intensity = 0.9
                                                                     }
-                                                                }
+                                                                ]
                                                             },
                                                             Photometry = new PhotometryTyped
                                                             {
@@ -1348,7 +1356,7 @@ public static class MultiChannelCompleteTyped
                                                             },
                                                             RatedLuminousFlux = 170
                                                         }
-                                                    },
+                                                    ],
                                                     Maintenance = new LightSourceMaintenanceTyped
                                                     {
                                                         Lifetime = 9,
@@ -1361,15 +1369,15 @@ public static class MultiChannelCompleteTyped
                                                     EmergencyBallastLumenFactor = 0.7
                                                 }
                                             }
-                                        }
+                                        ]
                                     },
                                     EmitterObjectExternalName = "leo"
                                 }
-                            }
+                            ]
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }
