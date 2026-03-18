@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFrameworks>net10.0;net9.0;net8.0</TargetFrameworks>
         <Description>GLDF XML serializer, validator and .gldf container reader/writer</Description>
-        <Copyright>Copyright (c) DIAL GmbH 2024</Copyright>
+        <Copyright>Copyright (c) DIAL GmbH $([System.DateTime]::UtcNow.Year.ToString())</Copyright>
         <Authors>Alex Kurpanik</Authors>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>GLDF.Net</PackageId>
