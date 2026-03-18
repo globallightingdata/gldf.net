@@ -18,11 +18,14 @@ jobs:
             10.0.x
           dotnet-quality: 'ga'
       - name: Restore dependencies
+        working-directory: ./src
         run: |
           dotnet restore
       - name: Build
+        working-directory: ./src
         run: |
           dotnet build --no-restore --configuration Release
       - name: Test
+        working-directory: ./src
         run: |
           dotnet test --no-build --configuration Release --verbosity normal
