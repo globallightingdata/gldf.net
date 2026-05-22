@@ -1,6 +1,7 @@
 ﻿using Gldf.Net.Exceptions;
 using Gldf.Net.XmlHelper;
 using System;
+using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -51,8 +52,12 @@ public abstract class XmlSerializerBase<T>
         try
         {
             var stringBuilder = new StringBuilder();
-            using var xmlWriter = XmlWriter.Create(stringBuilder, WriterSettings);
-            XmlSerializer.Serialize(xmlWriter, value, XmlNamespaces);
+            using (var stringWriter = new StringWriterWithEncoding(stringBuilder, Encoding))
+            {
+                using var xmlWriter = XmlWriter.Create(stringWriter, WriterSettings);
+                XmlSerializer.Serialize(xmlWriter, value, XmlNamespaces);
+            }
+
             return stringBuilder.ToString();
         }
         catch (Exception e)
@@ -182,5 +187,10 @@ public abstract class XmlSerializerBase<T>
         {
             throw new GldfException($"Failed to deserialize {typeof(T).Name} from stream", e);
         }
+    }
+
+    private class StringWriterWithEncoding(StringBuilder sb, Encoding encoding) : StringWriter(sb, CultureInfo.InvariantCulture)
+    {
+        public override Encoding Encoding => encoding;
     }
 }

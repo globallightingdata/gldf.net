@@ -1,4 +1,5 @@
-﻿using Gldf.Net.Domain.Typed;
+﻿using System.Text;
+using Gldf.Net.Domain.Typed;
 using Gldf.Net.Domain.Xml;
 using Gldf.Net.Tests.TestData.ControlGears;
 using Gldf.Net.Tests.TestData.Descriptive;
@@ -58,6 +59,7 @@ public static class EmbeddedXmlTestData
 
     // Meta-Information
     private const string MetaInformationXml = "TestData.MetaInfo.meta-information.xml";
+    private const string MetaInformationXmlWithSettings = "TestData.MetaInfo.meta-information.with_settings.xml";
 
     public static readonly TestCaseData[] ValidXmlTestCases =
     [
@@ -217,5 +219,6 @@ public static class EmbeddedXmlTestData
 
     // Meta-Information
     public static string GetMetaInformationXml() => ResourceLoader.LoadEmbeddedXml(MetaInformationXml);
+    public static string GetMetaInformationXmlWithSettings() => ResourceLoader.LoadEmbeddedXml(MetaInformationXmlWithSettings, Encoding.Unicode);
     public static MetaInformation GetMetaInformationModel() => MetaInfo.MetaInfo.MetaInformation;
 }

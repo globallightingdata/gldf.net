@@ -2,6 +2,7 @@
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using System;
+using System.IO;
 using System.Xml.Linq;
 
 namespace Gldf.Net.Tests.TestHelper;
@@ -28,7 +29,17 @@ public class XmlStringAssertions : ReferenceTypeAssertions<string, XmlStringAsse
                 var xDocument = XDocument.Parse(xml!).ToString();
                 return xDocument.Equals(expected, StringComparison.OrdinalIgnoreCase);
             })
-            .FailWith($"{xml}\n\n does not match\n\n{Subject}");
+            .FailWith($"{xml}\n\n does not match\n\n{Subject}")
+            .Then
+            .Given(_ => GetFirstLine(Subject))
+            .ForCondition(expected => GetFirstLine(xml).Equals(expected, StringComparison.OrdinalIgnoreCase))
+            .FailWith($"{GetFirstLine(xml)}\ndoes not match\n{GetFirstLine(Subject)}");
         return new AndConstraint<XmlStringAssertions>(this);
+
+        string GetFirstLine(string str)
+        {
+            using var reader = new StringReader(str);
+            return reader.ReadLine() ?? string.Empty;
+        }
     }
 }

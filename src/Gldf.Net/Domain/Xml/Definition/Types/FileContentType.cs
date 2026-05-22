@@ -23,12 +23,15 @@ public enum FileContentType
     ImageJpg,
 
     [XmlEnum("geo/l3d")]
+    // ReSharper disable once InconsistentNaming
     GeoL3d,
 
     [XmlEnum("geo/r3d")]
+    // ReSharper disable once InconsistentNaming
     GeoR3d,
 
     [XmlEnum("geo/m3d")]
+    // ReSharper disable once InconsistentNaming
     GeoM3d,
 
     [XmlEnum("document/pdf")]
