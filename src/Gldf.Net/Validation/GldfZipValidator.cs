@@ -19,13 +19,13 @@ internal class GldfZipValidator
 
     public GldfZipValidator(Encoding encoding)
     {
-        _zipValidationRules = new List<IZipArchiveValidationRule>
-        {
+        _zipValidationRules =
+        [
             new IsValidZipArchiveRule(),
             new ContainsProductXmlRule(),
             new CanDeserializeProductXmlRule(encoding),
             new HasNoLargeFilesRule()
-        };
+        ];
     }
 
     public IEnumerable<ValidationHint> ValidateGldfFile(string gldfFilePath) => ValidateSafe(() =>
@@ -42,7 +42,7 @@ internal class GldfZipValidator
         }
         catch (Exception e)
         {
-            return new[] { new ValidationHint(SeverityType.Error, e.Message, ErrorType.GenericError) };
+            return [new ValidationHint(SeverityType.Error, e.Message, ErrorType.GenericError)];
         }
     }
 }

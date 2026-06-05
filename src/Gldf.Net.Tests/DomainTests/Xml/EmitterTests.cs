@@ -19,25 +19,25 @@ public class EmitterTests
         _changeableLightEmitter = new ChangeableLightEmitter();
         _fixedLightEmitter = new FixedLightEmitter();
         _sensorEmitter = new SensorEmitter();
-        _possibleFittings = new EmitterBase[] { _fixedLightEmitter, _changeableLightEmitter, _sensorEmitter };
+        _possibleFittings = [_fixedLightEmitter, _changeableLightEmitter, _sensorEmitter];
     }
-        
+
     [Test]
     public void GetChangeableLightEmitters_ShouldReturnExpected()
     {
-        var expected = new EmitterBase[] { _changeableLightEmitter };
-        var emitter = new Emitter { PossibleFittings = _possibleFittings };
+        var expected = new EmitterBase[] {_changeableLightEmitter};
+        var emitter = new Emitter {PossibleFittings = _possibleFittings};
 
         var lightEmitters = emitter.GetChangeableLightEmitters();
 
         lightEmitters.Should().BeEquivalentTo(expected);
     }
-        
+
     [Test]
     public void GetFixedLightEmitters_ShouldReturnExpected()
     {
-        var expected = new EmitterBase[] { _fixedLightEmitter };
-        var emitter = new Emitter { PossibleFittings = _possibleFittings };
+        var expected = new EmitterBase[] {_fixedLightEmitter};
+        var emitter = new Emitter {PossibleFittings = _possibleFittings};
 
         var lightEmitters = emitter.GetFixedLightEmitters();
 
@@ -47,8 +47,8 @@ public class EmitterTests
     [Test]
     public void GetSensorEmitters_ShouldRetur_Expected()
     {
-        var expected = new EmitterBase[] { _sensorEmitter };
-        var emitter = new Emitter { PossibleFittings = _possibleFittings };
+        var expected = new EmitterBase[] {_sensorEmitter};
+        var emitter = new Emitter {PossibleFittings = _possibleFittings};
 
         var sensorEmitters = emitter.GetSensorEmitters();
 

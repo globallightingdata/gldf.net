@@ -80,11 +80,11 @@ public class ZipArchiveIOTests
         memoryStream.CanWrite.Should().BeTrue();
     }
 
-    public static IEnumerable<TestCaseData> TestGldfsWithEncoding => new[]
-    {
+    public static IEnumerable<TestCaseData> TestGldfsWithEncoding =>
+    [
         new TestCaseData(EmbeddedGldfTestData.GetGldfWithEncodingUtf8()).SetName("When Encoding Utf8"),
         new TestCaseData(EmbeddedGldfTestData.GetGldfWithCodepage850()).SetName("When CodePage 850")
-    };
+    ];
 
     internal class ZipArchiveIODerived : ZipArchiveIO
     {

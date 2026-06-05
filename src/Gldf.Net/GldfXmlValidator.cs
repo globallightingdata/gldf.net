@@ -49,15 +49,15 @@ public class GldfXmlValidator : IGldfXmlValidator
     public GldfXmlValidator(XmlSchemaSet xmlSchema)
     {
         Encoding = Encoding.UTF8;
-        if(xmlSchema is null) throw new ArgumentNullException(nameof(xmlSchema));
+        ArgumentNullException.ThrowIfNull(xmlSchema);
         _gldfXmlValidator = new GldfXmlSchemaValidator(Encoding, xmlSchema);
         _zipArchiveReader = new ZipArchiveReader(Encoding);
     }
-    
+
     public GldfXmlValidator(Encoding encoding, XmlSchemaSet xmlSchema)
     {
         Encoding = encoding ?? throw new ArgumentNullException(nameof(encoding));
-        if(xmlSchema is null) throw new ArgumentNullException(nameof(xmlSchema));
+        ArgumentNullException.ThrowIfNull(xmlSchema);
         _gldfXmlValidator = new GldfXmlSchemaValidator(Encoding, xmlSchema);
         _zipArchiveReader = new ZipArchiveReader(Encoding);
     }

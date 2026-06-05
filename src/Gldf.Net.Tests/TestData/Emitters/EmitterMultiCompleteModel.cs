@@ -24,8 +24,8 @@ public static class EmitterMultiCompleteModel
         },
         GeneralDefinitions = new GeneralDefinitions
         {
-            Files = new[]
-            {
+            Files =
+            [
                 new GldfFile
                 {
                     Id = "photometryFile",
@@ -33,9 +33,9 @@ public static class EmitterMultiCompleteModel
                     Type = FileType.Url,
                     File = "https://example.org/photometry.ldt"
                 }
-            },
-            Photometries = new[]
-            {
+            ],
+            Photometries =
+            [
                 new Photometry
                 {
                     Id = "photometry",
@@ -44,49 +44,49 @@ public static class EmitterMultiCompleteModel
                         FileId = "photometryFile"
                     }
                 }
-            },
-            Spectrums = new[]
-            {
+            ],
+            Spectrums =
+            [
                 new Spectrum
                 {
                     Id = "spectrum",
-                    Intensities = new[]
-                    {
+                    Intensities =
+                    [
                         new SpectrumIntensity
                         {
                             Wavelength = 380,
                             Intensity = 0.8
                         }
-                    }
+                    ]
                 }
-            },
-            LightSources = new LightSourceBase[]
-            {
+            ],
+            LightSources =
+            [
                 new MultiChannelLightSource
                 {
                     Id = "multiChannelLightSource",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale
                         {
                             Language = "en",
                             Text = "RGB module"
                         }
-                    },
+                    ],
                     RatedInputPower = 30,
-                    Channels = new[]
-                    {
+                    Channels =
+                    [
                         new Channel
                         {
                             Type = ChannelType.NeutralWhite,
-                            DisplayName = new Locale[]
-                            {
+                            DisplayName =
+                            [
                                 new()
                                 {
                                     Language = "en",
                                     Text = "Neutral-White"
                                 }
-                            },
+                            ],
                             SpectrumReference = new SpectrumReference
                             {
                                 SpectrumId = "spectrum"
@@ -97,36 +97,36 @@ public static class EmitterMultiCompleteModel
                             },
                             RatedLuminousFlux = 150
                         }
-                    }
+                    ]
                 }
-            },
-            ControlGears = new ControlGear[]
-            {
+            ],
+            ControlGears =
+            [
                 new()
                 {
                     Id = "controlGear",
-                    Name = new Locale[]
-                    {
+                    Name =
+                    [
                         new()
                         {
                             Language = "en",
                             Text = "Electronic ballast"
                         }
-                    }
+                    ]
                 }
-            },
-            Emitters = new[]
-            {
+            ],
+            Emitters =
+            [
                 new Emitter
                 {
                     Id = "emitter-1",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new MultiChannelLightEmitter
                         {
                             EmergencyBehaviour = EmergencyBehaviour.EmergencyOnly,
-                            Name = new Locale[]
-                            {
+                            Name =
+                            [
                                 new()
                                 {
                                     Language = "en",
@@ -137,7 +137,7 @@ public static class EmitterMultiCompleteModel
                                     Language = "de",
                                     Text = "Lichtaustritt RGB 1"
                                 }
-                            },
+                            ],
                             Rotation = new Rotation
                             {
                                 X = 1,
@@ -154,13 +154,13 @@ public static class EmitterMultiCompleteModel
                                 ControlGearId = "controlGear"
                             }
                         }
-                    }
+                    ]
                 },
                 new Emitter
                 {
                     Id = "emitter-2",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new MultiChannelLightEmitter
                         {
                             EmergencyBehaviour = EmergencyBehaviour.Combined,
@@ -174,13 +174,13 @@ public static class EmitterMultiCompleteModel
                                 ControlGearCount = 2
                             }
                         }
-                    }
+                    ]
                 },
                 new Emitter
                 {
                     Id = "emitter-3",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new MultiChannelLightEmitter
                         {
                             EmergencyBehaviour = EmergencyBehaviour.None,
@@ -196,41 +196,41 @@ public static class EmitterMultiCompleteModel
                                 MultiChannelLightSourceId = "multiChannelLightSource"
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitions
         {
             ProductMetaData = new ProductMetaData
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new[]
-            {
+            Variants =
+            [
                 new Variant
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 1" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new EmitterReference
@@ -239,7 +239,7 @@ public static class EmitterMultiCompleteModel
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

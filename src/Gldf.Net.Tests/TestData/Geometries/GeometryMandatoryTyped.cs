@@ -7,7 +7,6 @@ using Gldf.Net.Domain.Typed.Head.Types;
 using Gldf.Net.Domain.Typed.Product;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using System;
-using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.Geometries;
 
@@ -25,8 +24,8 @@ public static class GeometryMandatoryTyped
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new List<GldfFileTyped>
-            {
+            Files =
+            [
                 new()
                 {
                     Id = "eulumdat",
@@ -35,6 +34,7 @@ public static class GeometryMandatoryTyped
                     Uri = "https://example.org/eulumdat.ldt",
                     FileName = "eulumdat.ldt"
                 },
+
                 new()
                 {
                     Id = "geometryFile",
@@ -43,9 +43,9 @@ public static class GeometryMandatoryTyped
                     Uri = "https://example.org/geometry.l3d",
                     FileName = "geometry.l3d"
                 }
-            },
-            Photometries = new List<PhotometryTyped>
-            {
+            ],
+            Photometries =
+            [
                 new()
                 {
                     Id = "photometry",
@@ -58,14 +58,14 @@ public static class GeometryMandatoryTyped
                         FileName = "eulumdat.ldt"
                     }
                 }
-            },
-            Emitter = new List<EmitterTyped>
-            {
+            ],
+            Emitter =
+            [
                 new()
                 {
                     Id = "emitter",
-                    ChangeableEmitterOptions = new[]
-                    {
+                    ChangeableEmitterOptions =
+                    [
                         new ChangeableLightEmitterTyped
                         {
                             Photometry = new PhotometryTyped
@@ -81,16 +81,16 @@ public static class GeometryMandatoryTyped
                                 }
                             }
                         }
-                    }
+                    ]
                 }
-            },
-            ModelGeometries = new List<ModelGeometryTyped>
-            {
+            ],
+            ModelGeometries =
+            [
                 new()
                 {
                     Id = "geometry",
-                    GeometryFiles = new ModelFileTyped[]
-                    {
+                    GeometryFiles =
+                    [
                         new()
                         {
                             ContentType = FileContentType.GeoL3d,
@@ -115,49 +115,49 @@ public static class GeometryMandatoryTyped
                             FileName = "geometry.l3d",
                             LevelOfDetail = LevelOfDetail.High
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitionsTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new List<VariantTyped>
-            {
+            Variants =
+            [
                 new()
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
-                        new LocaleTyped { Language = "en", Text = "Variant 1" }
-                    },
-                    ProductNumber = new LocaleTyped[]
-                    {
+                    Name =
+                    [
+                        new LocaleTyped {Language = "en", Text = "Variant 1"}
+                    ],
+                    ProductNumber =
+                    [
                         new()
                         {
                             Language = "en",
                             Text = "Product number"
                         }
-                    },
+                    ],
                     Geometry = new GeometryTyped
                     {
                         Model = new ModelGeometryEmitterTyped
@@ -165,15 +165,15 @@ public static class GeometryMandatoryTyped
                             Geometry = new ModelGeometryTyped
                             {
                                 Id = "geometry",
-                                GeometryFiles = new ModelFileTyped[]
-                                {
+                                GeometryFiles =
+                                [
                                     new()
                                     {
                                         ContentType = FileContentType.GeoL3d,
                                         Type = FileType.Url,
                                         Uri = "https://example.org/geometry.l3d",
                                         FileName = "geometry.l3d",
-                                        LevelOfDetail = LevelOfDetail.Low 
+                                        LevelOfDetail = LevelOfDetail.Low
                                     },
                                     new()
                                     {
@@ -191,17 +191,17 @@ public static class GeometryMandatoryTyped
                                         FileName = "geometry.l3d",
                                         LevelOfDetail = LevelOfDetail.High
                                     }
-                                }
+                                ]
                             },
-                            Emitter = new[]
-                            {
+                            Emitter =
+                            [
                                 new ModelEmitterTyped
                                 {
                                     Emitter = new EmitterTyped
                                     {
                                         Id = "emitter",
-                                        ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
-                                        {
+                                        ChangeableEmitterOptions =
+                                        [
                                             new()
                                             {
                                                 Photometry = new PhotometryTyped
@@ -217,15 +217,15 @@ public static class GeometryMandatoryTyped
                                                     }
                                                 }
                                             }
-                                        }
+                                        ]
                                     },
                                     EmitterObjectExternalName = "Leo"
                                 }
-                            }
+                            ]
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

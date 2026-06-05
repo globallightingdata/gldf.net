@@ -24,8 +24,8 @@ public static class EmitterCompleteModel
         },
         GeneralDefinitions = new GeneralDefinitions
         {
-            Files = new[]
-            {
+            Files =
+            [
                 new GldfFile
                 {
                     Id = "eulumdat",
@@ -40,9 +40,9 @@ public static class EmitterCompleteModel
                     Type = FileType.Url,
                     File = "https://example.org/sensor.xml"
                 }
-            },
-            Sensors = new[]
-            {
+            ],
+            Sensors =
+            [
                 new Sensor
                 {
                     Id = "sensor",
@@ -51,9 +51,9 @@ public static class EmitterCompleteModel
                         FileId = "sensorFile"
                     }
                 }
-            },
-            Photometries = new[]
-            {
+            ],
+            Photometries =
+            [
                 new Photometry
                 {
                     Id = "photometry",
@@ -62,26 +62,26 @@ public static class EmitterCompleteModel
                         FileId = "eulumdat"
                     }
                 }
-            },
-            LightSources = new LightSourceBase[]
-            {
+            ],
+            LightSources =
+            [
                 new ChangeableLightSource
                 {
                     Id = "lightSource",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale
                         {
                             Language = "en",
                             Text = "LightSource name"
                         }
-                    },
+                    ],
                     RatedInputPower = 50,
                     RatedLuminousFlux = 250
                 }
-            },
-            Equipments = new[]
-            {
+            ],
+            Equipments =
+            [
                 new Equipment
                 {
                     Id = "equipment",
@@ -91,18 +91,18 @@ public static class EmitterCompleteModel
                     },
                     RatedInputPower = 10
                 }
-            },
-            Emitters = new[]
-            {
+            ],
+            Emitters =
+            [
                 new Emitter
                 {
                     Id = "emitter-1",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new ChangeableLightEmitter
                         {
-                            Name = new[]
-                            {
+                            Name =
+                            [
                                 new Locale
                                 {
                                     Language = "en",
@@ -113,7 +113,7 @@ public static class EmitterCompleteModel
                                     Language = "de",
                                     Text = "Anzeigename"
                                 }
-                            },
+                            ],
                             PhotometryReference = new PhotometryReference
                             {
                                 PhotometryId = "photometry"
@@ -161,17 +161,17 @@ public static class EmitterCompleteModel
                                 PhotometryId = "photometry"
                             }
                         }
-                    }
+                    ]
                 },
                 new Emitter
                 {
                     Id = "emitter-2",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new SensorEmitter
                         {
-                            Name = new[]
-                            {
+                            Name =
+                            [
                                 new Locale
                                 {
                                     Language = "en",
@@ -182,7 +182,7 @@ public static class EmitterCompleteModel
                                     Language = "de",
                                     Text = "Anzeigename"
                                 }
-                            },
+                            ],
                             Rotation = new Rotation
                             {
                                 X = 10.1,
@@ -202,41 +202,41 @@ public static class EmitterCompleteModel
                                 SensorId = "sensor"
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitions
         {
             ProductMetaData = new ProductMetaData
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new[]
-            {
+            Variants =
+            [
                 new Variant
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 1" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new EmitterReference
@@ -245,7 +245,7 @@ public static class EmitterCompleteModel
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

@@ -1,4 +1,5 @@
-﻿using Gldf.Net.Domain.Typed;
+﻿using System.Text;
+using Gldf.Net.Domain.Typed;
 using Gldf.Net.Domain.Xml;
 using Gldf.Net.Tests.TestData.ControlGears;
 using Gldf.Net.Tests.TestData.Descriptive;
@@ -58,9 +59,10 @@ public static class EmbeddedXmlTestData
 
     // Meta-Information
     private const string MetaInformationXml = "TestData.MetaInfo.meta-information.xml";
+    private const string MetaInformationXmlWithSettings = "TestData.MetaInfo.meta-information.with_settings.xml";
 
     public static readonly TestCaseData[] ValidXmlTestCases =
-    {
+    [
         new TestCaseData(GetHeaderMandatoryXml()).SetName("Header Mandatory"),
         new TestCaseData(GetHeaderCompleteXml()).SetName("Header Complete"),
         new TestCaseData(GetFileMandatoryXml()).SetName("File Mandatory"),
@@ -89,12 +91,12 @@ public static class EmbeddedXmlTestData
         new TestCaseData(GetVariantCompleteXml()).SetName("Variant Complete"),
         new TestCaseData(GetDescriptiveAttributesXml()).SetName("Descriptive Attributes"),
         new TestCaseData(GetGeneralsEmptyXml()).SetName("GeneralDefinitions empty")
-    };
+    ];
 
     public static readonly TestCaseData[] InvalidXmlTestCases =
-    {
+    [
         new TestCaseData(GetRootWithHeaderXml()).SetName("Root with Header only")
-    };
+    ];
 
     // Header
     public static string GetHeaderMandatoryXml() => ResourceLoader.LoadEmbeddedXml(HeaderMandatoryXml);
@@ -217,5 +219,6 @@ public static class EmbeddedXmlTestData
 
     // Meta-Information
     public static string GetMetaInformationXml() => ResourceLoader.LoadEmbeddedXml(MetaInformationXml);
+    public static string GetMetaInformationXmlWithSettings() => ResourceLoader.LoadEmbeddedXml(MetaInformationXmlWithSettings, Encoding.Unicode);
     public static MetaInformation GetMetaInformationModel() => MetaInfo.MetaInfo.MetaInformation;
 }

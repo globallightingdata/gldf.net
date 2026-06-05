@@ -7,7 +7,6 @@ using Gldf.Net.Domain.Typed.Head.Types;
 using Gldf.Net.Domain.Typed.Product;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using System;
-using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.MetaData;
 
@@ -25,8 +24,8 @@ public static class ProductMetaDataMandatoryTyped
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new List<GldfFileTyped>
-            {
+            Files =
+            [
                 new()
                 {
                     Id = "eulumdat",
@@ -35,9 +34,9 @@ public static class ProductMetaDataMandatoryTyped
                     Uri = "https://example.org/eulumdat.ldt",
                     FileName = "eulumdat.ldt"
                 }
-            },
-            Photometries = new List<PhotometryTyped>
-            {
+            ],
+            Photometries =
+            [
                 new()
                 {
                     Id = "photometry",
@@ -50,14 +49,14 @@ public static class ProductMetaDataMandatoryTyped
                         FileName = "eulumdat.ldt"
                     }
                 }
-            },
-            Emitter = new List<EmitterTyped>
-            {
+            ],
+            Emitter =
+            [
                 new()
                 {
                     Id = "emitter",
-                    ChangeableEmitterOptions = new[]
-                    {
+                    ChangeableEmitterOptions =
+                    [
                         new ChangeableLightEmitterTyped
                         {
                             Photometry = new PhotometryTyped
@@ -73,17 +72,17 @@ public static class ProductMetaDataMandatoryTyped
                                 }
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitionsTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
@@ -94,9 +93,9 @@ public static class ProductMetaDataMandatoryTyped
                         Language = "de",
                         Text = "Produktnummer"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
@@ -107,24 +106,24 @@ public static class ProductMetaDataMandatoryTyped
                         Language = "de",
                         Text = "Produktname"
                     }
-                }
+                ]
             },
-            Variants = new List<VariantTyped>
-            {
+            Variants =
+            [
                 new()
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
-                        new LocaleTyped { Language = "en", Text = "Variant 1" }
-                    },
+                    Name =
+                    [
+                        new LocaleTyped {Language = "en", Text = "Variant 1"}
+                    ],
                     Geometry = new GeometryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
                             Id = "emitter",
-                            ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
-                            {
+                            ChangeableEmitterOptions =
+                            [
                                 new()
                                 {
                                     Photometry = new PhotometryTyped
@@ -140,11 +139,11 @@ public static class ProductMetaDataMandatoryTyped
                                         }
                                     }
                                 }
-                            }
+                            ]
                         }
                     },
-                    ProductNumber = new LocaleTyped[]
-                    {
+                    ProductNumber =
+                    [
                         new()
                         {
                             Language = "en",
@@ -155,9 +154,9 @@ public static class ProductMetaDataMandatoryTyped
                             Language = "de",
                             Text = "Produktnummer"
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         }
     };
 }

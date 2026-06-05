@@ -8,7 +8,7 @@ namespace Gldf.Net.Domain.Xml.Definition.Types;
 public class FixedLightEmitter : EmitterBase
 {
     public PhotometryReference PhotometryReference { get; set; }
-        
+
     [XmlAttribute("emergencyBehaviour")]
     public EmergencyBehaviour EmergencyBehaviour
     {

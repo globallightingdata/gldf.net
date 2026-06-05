@@ -17,28 +17,28 @@ public class GldfContainerExtensionsTests
         var assetCollection = gldf.GetAssetCollection(type);
         assetCollection.Should().BeSameAs(expected);
     }
-    
+
     [Test]
     public void GetAssetCollection_ShouldThrow_WhenUnknownFileContentType()
     {
-        const FileContentType unknownContentType = (FileContentType)int.MaxValue;
+        const FileContentType unknownContentType = (FileContentType) int.MaxValue;
         var gldf = new GldfContainer();
         var act = () => gldf.GetAssetCollection(unknownContentType);
         act.Should()
             .Throw<ArgumentOutOfRangeException>()
             .WithMessage("Specified argument was out of the range*");
     }
-    
+
     [Test]
     public void GetAssetCollection_ShouldThrow_WhenParameterIsNull()
     {
-        var act = () => ((GldfContainer)null).GetAssetCollection(FileContentType.ImageJpg);
+        var act = () => ((GldfContainer) null).GetAssetCollection(FileContentType.ImageJpg);
         act.Should()
             .Throw<ArgumentNullException>()
             .WithMessage("Value cannot be null. (Parameter 'gldf')");
     }
 
-    private static IEnumerable<TestCaseData> TestData() 
+    private static IEnumerable<TestCaseData> TestData()
     {
         var gldf = new GldfContainer();
         return new List<TestCaseData>

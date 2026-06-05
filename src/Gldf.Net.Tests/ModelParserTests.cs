@@ -19,8 +19,8 @@ public class ModelParserTests
         rootTyped.Should().BeEquivalentTo(expected, opt => opt.WithStrictOrdering().AllowingInfiniteRecursion());
     }
 
-    public static IEnumerable<TestCaseData> TestCaseData => new[]
-    {
+    public static IEnumerable<TestCaseData> TestCaseData =>
+    [
         new TestCaseData(EmbeddedXmlTestData.GetHeaderMandatoryXml(),
                 EmbeddedXmlTestData.GetHeaderMandatoryTyped())
             { TestName = "Header mandatory property set" },
@@ -102,5 +102,5 @@ public class ModelParserTests
         new TestCaseData(EmbeddedXmlTestData.GetVariantCompleteXml(),
                 EmbeddedXmlTestData.GetVariantCompleteTyped())
             { TestName = "Variant complete property set" }
-    };
+    ];
 }

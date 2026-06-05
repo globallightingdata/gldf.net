@@ -24,8 +24,8 @@ public static class ControlGearMandatoryModel
         },
         GeneralDefinitions = new GeneralDefinitions
         {
-            Files = new[]
-            {
+            Files =
+            [
                 new GldfFile
                 {
                     Id = "eulumdat",
@@ -33,9 +33,9 @@ public static class ControlGearMandatoryModel
                     Type = FileType.Url,
                     File = "https://example.org/eulumdat.ldt"
                 }
-            },
-            Photometries = new[]
-            {
+            ],
+            Photometries =
+            [
                 new Photometry
                 {
                     Id = "photometry",
@@ -44,29 +44,29 @@ public static class ControlGearMandatoryModel
                         FileId = "eulumdat"
                     }
                 }
-            },
-            ControlGears = new[]
-            {
+            ],
+            ControlGears =
+            [
                 new ControlGear
                 {
                     Id = "controlGear",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale
                         {
                             Language = "en",
                             Text = "ControlGear name"
                         }
-                    }
+                    ]
                 }
-            },
-            Emitters = new[]
-            {
+            ],
+            Emitters =
+            [
                 new Emitter
                 {
                     Id = "emitter",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new ChangeableLightEmitter
                         {
                             PhotometryReference = new PhotometryReference
@@ -74,41 +74,41 @@ public static class ControlGearMandatoryModel
                                 PhotometryId = "photometry"
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitions
         {
             ProductMetaData = new ProductMetaData
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new[]
-            {
+            Variants =
+            [
                 new Variant
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 1" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new EmitterReference
@@ -117,7 +117,7 @@ public static class ControlGearMandatoryModel
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

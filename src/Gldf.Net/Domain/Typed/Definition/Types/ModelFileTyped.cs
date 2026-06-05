@@ -41,14 +41,14 @@ public class ModelFileTyped
         get => _gldfFileTyped.BinaryContent;
         set => _gldfFileTyped.BinaryContent = value;
     }
-        
+
     public LevelOfDetail? LevelOfDetail { get; set; }
-        
+
     public ModelFileTyped()
     {
         _gldfFileTyped = new GldfFileTyped();
     }
-        
+
     public ModelFileTyped(GldfFileTyped gldfFileTyped, LevelOfDetail? levelOfDetail = null)
     {
         _gldfFileTyped = gldfFileTyped;

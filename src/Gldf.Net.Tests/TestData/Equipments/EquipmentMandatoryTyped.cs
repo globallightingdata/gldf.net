@@ -7,7 +7,6 @@ using Gldf.Net.Domain.Typed.Head.Types;
 using Gldf.Net.Domain.Typed.Product;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using System;
-using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.Equipments;
 
@@ -25,8 +24,8 @@ public static class EquipmentMandatoryTyped
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new List<GldfFileTyped>
-            {
+            Files =
+            [
                 new()
                 {
                     Id = "eulumdat",
@@ -35,9 +34,9 @@ public static class EquipmentMandatoryTyped
                     Uri = "https://example.org/eulumdat.ldt",
                     FileName = "eulumdat.ldt"
                 }
-            },
-            Photometries = new List<PhotometryTyped>
-            {
+            ],
+            Photometries =
+            [
                 new()
                 {
                     Id = "photometry",
@@ -50,26 +49,26 @@ public static class EquipmentMandatoryTyped
                         FileName = "eulumdat.ldt"
                     }
                 }
-            },
-            ChangeableLightSources = new List<ChangeableLightSourceTyped>
-            {
+            ],
+            ChangeableLightSources =
+            [
                 new()
                 {
                     Id = "lightSource",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "LightSource name"
                         }
-                    },
+                    ],
                     RatedInputPower = 50,
                     RatedLuminousFlux = 250
                 }
-            },
-            Equipments = new List<EquipmentTyped>
-            {
+            ],
+            Equipments =
+            [
                 new()
                 {
                     Id = "equipment",
@@ -78,25 +77,25 @@ public static class EquipmentMandatoryTyped
                         Id = "lightSource",
                         RatedLuminousFlux = 250,
                         RatedInputPower = 50,
-                        Name = new LocaleTyped[]
-                        {
+                        Name =
+                        [
                             new()
                             {
                                 Language = "en",
                                 Text = "LightSource name"
                             }
-                        }
+                        ]
                     },
                     RatedInputPower = 0.1
                 }
-            },
-            Emitter = new List<EmitterTyped>
-            {
+            ],
+            Emitter =
+            [
                 new()
                 {
                     Id = "emitter",
-                    ChangeableEmitterOptions = new[]
-                    {
+                    ChangeableEmitterOptions =
+                    [
                         new ChangeableLightEmitterTyped
                         {
                             Photometry = new PhotometryTyped
@@ -112,52 +111,52 @@ public static class EquipmentMandatoryTyped
                                 }
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitionsTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new List<VariantTyped>
-            {
+            Variants =
+            [
                 new()
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "Variant 1"
                         }
-                    },
+                    ],
                     Geometry = new GeometryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
                             Id = "emitter",
-                            ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
-                            {
+                            ChangeableEmitterOptions =
+                            [
                                 new()
                                 {
                                     Photometry = new PhotometryTyped
@@ -173,19 +172,19 @@ public static class EquipmentMandatoryTyped
                                         }
                                     }
                                 }
-                            }
+                            ]
                         }
                     },
-                    ProductNumber = new LocaleTyped[]
-                    {
+                    ProductNumber =
+                    [
                         new()
                         {
                             Language = "en",
                             Text = "Product number"
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         }
     };
 }

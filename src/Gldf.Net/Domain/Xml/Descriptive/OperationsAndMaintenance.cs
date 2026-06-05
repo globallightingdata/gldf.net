@@ -12,9 +12,9 @@ public class OperationsAndMaintenance
 
     [XmlArray("MedianUsefulLifeTimes"), XmlArrayItem("MedianUsefulLife")]
     public string[] MedianUsefulLifeTimes { get; set; }
-        
+
     public TemperatureRange OperatingTemperature { get; set; }
-        
+
     public TemperatureRange AmbientTemperature { get; set; }
 
     public int? RatedAmbientTemperature { get; set; }

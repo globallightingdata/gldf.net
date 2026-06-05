@@ -39,7 +39,7 @@ public class GldfValidatorTests
             .Throw<ArgumentNullException>()
             .WithMessage("Value cannot be null. (Parameter 'encoding')");
     }
-    
+
     [Test]
     public void Ctor_ShouldThrow_WhenXmlSchemaSetIsNull()
     {
@@ -48,7 +48,7 @@ public class GldfValidatorTests
             .Throw<ArgumentNullException>()
             .WithMessage("Value cannot be null. (Parameter 'xmlSchema')");
     }
-    
+
     [Test]
     public void Ctor_ShouldThrow_WhenXmlSchemaSetIsNull_AndEncodingIsNull()
     {
@@ -60,7 +60,7 @@ public class GldfValidatorTests
         Test(() => _ = new GldfValidator(null, new XmlSchemaSet()), "Value cannot be null. (Parameter 'encoding')");
         Test(() => _ = new GldfValidator(Encoding.UTF8, null), "Value cannot be null. (Parameter 'xmlSchema')");
     }
-    
+
     [Test, TestCaseSource(nameof(ValidGldfTestCases))]
     public void ValidateGldf_ShouldReturnNoHints(byte[] gldf)
     {
@@ -70,7 +70,7 @@ public class GldfValidatorTests
         var validationHints = gldfValidator.ValidateGldf(container);
         validationHints.Should().HaveCount(0);
     }
-    
+
     [Test, TestCaseSource(nameof(ValidGldfTestCases))]
     public void ValidateGldf_ShouldReturnNoHints_WhenCustomSchemaIsSet(byte[] gldf)
     {
@@ -82,7 +82,7 @@ public class GldfValidatorTests
         var validationHints = gldfValidator.ValidateGldf(container);
         validationHints.Should().HaveCount(0);
     }
-    
+
     [Test, TestCaseSource(nameof(ValidGldfTestCases))]
     public void ValidateGldf_ShouldReturnNoHints_WhenEncodingIsSet(byte[] gldf)
     {
@@ -92,7 +92,7 @@ public class GldfValidatorTests
         var validationHints = gldfValidator.ValidateGldf(container);
         validationHints.Should().HaveCount(0);
     }
-    
+
     [Test, TestCaseSource(nameof(ValidGldfTestCases))]
     public void ValidateGldf_ShouldReturnNoHints_WhenSchemaAndEncodingIsSet(byte[] gldf)
     {
@@ -104,7 +104,7 @@ public class GldfValidatorTests
         var validationHints = gldfValidator.ValidateGldf(container);
         validationHints.Should().HaveCount(0);
     }
-    
+
     [Test, TestCaseSource(nameof(ValidGldfTestCases))]
     public void ValidateGldfFile_ShouldReturnNoHints(byte[] gldf)
     {
@@ -113,7 +113,7 @@ public class GldfValidatorTests
         var validationHints = gldfValidator.ValidateGldfFile(_tempGldfPath, ValidationFlags.All);
         validationHints.Should().HaveCount(0);
     }
-    
+
     [Test, TestCaseSource(nameof(ValidGldfTestCases))]
     public void ValidateGldfStream_ShouldReturnNoHints(byte[] gldf)
     {

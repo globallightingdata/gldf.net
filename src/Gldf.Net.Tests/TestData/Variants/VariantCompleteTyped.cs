@@ -11,7 +11,6 @@ using Gldf.Net.Domain.Xml.Definition.Types;
 using Gldf.Net.Domain.Xml.Global;
 using Gldf.Net.Domain.Xml.Product.Types;
 using System;
-using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.Variants;
 
@@ -29,8 +28,8 @@ public static class VariantCompleteTyped
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new List<GldfFileTyped>
-            {
+            Files =
+            [
                 new()
                 {
                     Id = "eulumdatFile",
@@ -39,6 +38,7 @@ public static class VariantCompleteTyped
                     Uri = "https://example.org/eulumdat.ldt",
                     FileName = "eulumdat.ldt"
                 },
+
                 new()
                 {
                     Id = "geometryFile",
@@ -47,6 +47,7 @@ public static class VariantCompleteTyped
                     Uri = "https://example.org/geo.l3d",
                     FileName = "geo.l3d"
                 },
+
                 new()
                 {
                     Id = "sensorFile",
@@ -55,6 +56,7 @@ public static class VariantCompleteTyped
                     Uri = "https://example.org/sensor.xml",
                     FileName = "sensor.xml"
                 },
+
                 new()
                 {
                     Id = "pictureFile",
@@ -62,9 +64,9 @@ public static class VariantCompleteTyped
                     Type = FileType.LocalFileName,
                     FileName = "picture.svg"
                 }
-            },
-            Sensors = new List<SensorTyped>
-            {
+            ],
+            Sensors =
+            [
                 new()
                 {
                     Id = "sensor",
@@ -77,9 +79,9 @@ public static class VariantCompleteTyped
                         FileName = "sensor.xml"
                     }
                 }
-            },
-            Photometries = new List<PhotometryTyped>
-            {
+            ],
+            Photometries =
+            [
                 new()
                 {
                     Id = "photometry",
@@ -92,14 +94,14 @@ public static class VariantCompleteTyped
                         FileName = "eulumdat.ldt"
                     }
                 }
-            },
-            Emitter = new List<EmitterTyped>
-            {
+            ],
+            Emitter =
+            [
                 new()
                 {
                     Id = "leoEmitter",
-                    ChangeableEmitterOptions = new[]
-                    {
+                    ChangeableEmitterOptions =
+                    [
                         new ChangeableLightEmitterTyped
                         {
                             Photometry = new PhotometryTyped
@@ -115,13 +117,14 @@ public static class VariantCompleteTyped
                                 }
                             }
                         }
-                    }
+                    ]
                 },
+
                 new()
                 {
                     Id = "sensorEmitter",
-                    SensorEmitterOptions = new[]
-                    {
+                    SensorEmitterOptions =
+                    [
                         new SensorEmitterTyped
                         {
                             Sensor = new SensorTyped
@@ -137,11 +140,11 @@ public static class VariantCompleteTyped
                                 }
                             }
                         }
-                    }
+                    ]
                 }
-            },
-            SimpleGeometries = new List<SimpleGeometryTyped>
-            {
+            ],
+            SimpleGeometries =
+            [
                 new()
                 {
                     Id = "simpleGeometry",
@@ -157,14 +160,14 @@ public static class VariantCompleteTyped
                         Length = 5
                     }
                 }
-            },
-            ModelGeometries = new List<ModelGeometryTyped>
-            {
+            ],
+            ModelGeometries =
+            [
                 new()
                 {
                     Id = "geometry",
-                    GeometryFiles = new ModelFileTyped[]
-                    {
+                    GeometryFiles =
+                    [
                         new()
                         {
                             ContentType = FileContentType.GeoL3d,
@@ -172,39 +175,39 @@ public static class VariantCompleteTyped
                             Uri = "https://example.org/geo.l3d",
                             FileName = "geo.l3d"
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitionsTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new List<VariantTyped>
-            {
+            Variants =
+            [
                 new()
                 {
                     Id = "variant-1",
-                    ProductNumber = new[]
-                    {
+                    ProductNumber =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
@@ -215,9 +218,9 @@ public static class VariantCompleteTyped
                             Language = "de",
                             Text = "Produktnummer"
                         }
-                    },
-                    Name = new[]
-                    {
+                    ],
+                    Name =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
@@ -228,9 +231,9 @@ public static class VariantCompleteTyped
                             Language = "de",
                             Text = "Variante 1"
                         }
-                    },
-                    Description = new[]
-                    {
+                    ],
+                    Description =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
@@ -241,9 +244,9 @@ public static class VariantCompleteTyped
                             Language = "de",
                             Text = "Variantenbeschreibung"
                         }
-                    },
-                    TenderText = new[]
-                    {
+                    ],
+                    TenderText =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
@@ -254,7 +257,7 @@ public static class VariantCompleteTyped
                             Language = "de",
                             Text = "Varianten Ausschreibungstext"
                         }
-                    },
+                    ],
                     GTIN = "12345678",
                     Mountings = new MountingsTyped
                     {
@@ -322,8 +325,8 @@ public static class VariantCompleteTyped
                         EmitterOnly = new EmitterTyped
                         {
                             Id = "leoEmitter",
-                            ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
-                            {
+                            ChangeableEmitterOptions =
+                            [
                                 new()
                                 {
                                     Photometry = new PhotometryTyped
@@ -339,11 +342,11 @@ public static class VariantCompleteTyped
                                         }
                                     }
                                 }
-                            }
+                            ]
                         }
                     },
-                    Pictures = new[]
-                    {
+                    Pictures =
+                    [
                         new ImageFileTyped
                         {
                             FileName = "picture.svg",
@@ -368,7 +371,7 @@ public static class VariantCompleteTyped
                             ImageType = ImageType.ProductPicture,
                             ContentType = FileContentType.ImageSvg
                         }
-                    },
+                    ],
                     Symbol = new GldfFileTyped
                     {
                         Id = "pictureFile",
@@ -377,21 +380,22 @@ public static class VariantCompleteTyped
                         FileName = "picture.svg"
                     }
                 },
+
                 new()
                 {
                     Id = "variant-2",
-                    Name = new[]
-                    {
-                        new LocaleTyped { Language = "en", Text = "Variant 2" }
-                    },
-                    ProductNumber = new LocaleTyped[]
-                    {
+                    Name =
+                    [
+                        new LocaleTyped {Language = "en", Text = "Variant 2"}
+                    ],
+                    ProductNumber =
+                    [
                         new()
                         {
                             Language = "en",
                             Text = "Product number"
                         }
-                    },
+                    ],
                     Mountings = new MountingsTyped
                     {
                         Ceiling = new CeilingTyped
@@ -456,8 +460,8 @@ public static class VariantCompleteTyped
                             Emitter = new EmitterTyped
                             {
                                 Id = "leoEmitter",
-                                ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
-                                {
+                                ChangeableEmitterOptions =
+                                [
                                     new()
                                     {
                                         Photometry = new PhotometryTyped
@@ -473,27 +477,28 @@ public static class VariantCompleteTyped
                                             }
                                         }
                                     }
-                                }
+                                ]
                             }
                         }
                     }
                 },
+
                 new()
                 {
                     Id = "variant-3",
                     SortOrder = 3,
-                    Name = new[]
-                    {
-                        new LocaleTyped { Language = "en", Text = "Variant 3" }
-                    },
-                    ProductNumber = new LocaleTyped[]
-                    {
+                    Name =
+                    [
+                        new LocaleTyped {Language = "en", Text = "Variant 3"}
+                    ],
+                    ProductNumber =
+                    [
                         new()
                         {
                             Language = "en",
                             Text = "Product number"
                         }
-                    },
+                    ],
                     Geometry = new GeometryTyped
                     {
                         Model = new ModelGeometryEmitterTyped
@@ -501,8 +506,8 @@ public static class VariantCompleteTyped
                             Geometry = new ModelGeometryTyped
                             {
                                 Id = "geometry",
-                                GeometryFiles = new ModelFileTyped[]
-                                {
+                                GeometryFiles =
+                                [
                                     new()
                                     {
                                         ContentType = FileContentType.GeoL3d,
@@ -510,17 +515,17 @@ public static class VariantCompleteTyped
                                         Uri = "https://example.org/geo.l3d",
                                         FileName = "geo.l3d"
                                     }
-                                }
+                                ]
                             },
-                            Emitter = new ModelEmitterTyped[]
-                            {
+                            Emitter =
+                            [
                                 new()
                                 {
                                     Emitter = new EmitterTyped
                                     {
                                         Id = "leoEmitter",
-                                        ChangeableEmitterOptions = new[]
-                                        {
+                                        ChangeableEmitterOptions =
+                                        [
                                             new ChangeableLightEmitterTyped
                                             {
                                                 Photometry = new PhotometryTyped
@@ -536,7 +541,7 @@ public static class VariantCompleteTyped
                                                     }
                                                 }
                                             }
-                                        }
+                                        ]
                                     },
                                     EmitterObjectExternalName = "leo1"
                                 },
@@ -545,8 +550,8 @@ public static class VariantCompleteTyped
                                     Emitter = new EmitterTyped
                                     {
                                         Id = "leoEmitter",
-                                        ChangeableEmitterOptions = new[]
-                                        {
+                                        ChangeableEmitterOptions =
+                                        [
                                             new ChangeableLightEmitterTyped
                                             {
                                                 Photometry = new PhotometryTyped
@@ -562,7 +567,7 @@ public static class VariantCompleteTyped
                                                     }
                                                 }
                                             }
-                                        }
+                                        ]
                                     },
                                     EmitterObjectExternalName = "leo1",
                                     TargetModelType = TargetModelType.L3d
@@ -572,8 +577,8 @@ public static class VariantCompleteTyped
                                     Emitter = new EmitterTyped
                                     {
                                         Id = "leoEmitter",
-                                        ChangeableEmitterOptions = new[]
-                                        {
+                                        ChangeableEmitterOptions =
+                                        [
                                             new ChangeableLightEmitterTyped
                                             {
                                                 Photometry = new PhotometryTyped
@@ -589,7 +594,7 @@ public static class VariantCompleteTyped
                                                     }
                                                 }
                                             }
-                                        }
+                                        ]
                                     },
                                     EmitterObjectExternalName = "leo1",
                                     TargetModelType = TargetModelType.M3d
@@ -599,8 +604,8 @@ public static class VariantCompleteTyped
                                     Emitter = new EmitterTyped
                                     {
                                         Id = "leoEmitter",
-                                        ChangeableEmitterOptions = new[]
-                                        {
+                                        ChangeableEmitterOptions =
+                                        [
                                             new ChangeableLightEmitterTyped
                                             {
                                                 Photometry = new PhotometryTyped
@@ -616,7 +621,7 @@ public static class VariantCompleteTyped
                                                     }
                                                 }
                                             }
-                                        }
+                                        ]
                                     },
                                     EmitterObjectExternalName = "leo1",
                                     TargetModelType = TargetModelType.R3d
@@ -626,8 +631,8 @@ public static class VariantCompleteTyped
                                     Emitter = new EmitterTyped
                                     {
                                         Id = "sensorEmitter",
-                                        SensorEmitterOptions = new SensorEmitterTyped[]
-                                        {
+                                        SensorEmitterOptions =
+                                        [
                                             new()
                                             {
                                                 Sensor = new SensorTyped
@@ -643,20 +648,20 @@ public static class VariantCompleteTyped
                                                     }
                                                 }
                                             }
-                                        }
+                                        ]
                                     },
                                     EmitterObjectExternalName = "sensor",
                                 }
-                            }
+                            ]
                         }
                     },
-                    ProductSeries = new[]
-                    {
+                    ProductSeries =
+                    [
                         new ProductSerieTyped
                         {
                             Id = "serie-1",
-                            Name = new[]
-                            {
+                            Name =
+                            [
                                 new LocaleTyped
                                 {
                                     Language = "en",
@@ -667,9 +672,9 @@ public static class VariantCompleteTyped
                                     Language = "de",
                                     Text = "Variantenname 1"
                                 }
-                            },
-                            Description = new[]
-                            {
+                            ],
+                            Description =
+                            [
                                 new LocaleTyped
                                 {
                                     Language = "en",
@@ -680,9 +685,9 @@ public static class VariantCompleteTyped
                                     Language = "de",
                                     Text = "Variantenbeschreibung"
                                 }
-                            },
-                            Pictures = new[]
-                            {
+                            ],
+                            Pictures =
+                            [
                                 new ImageFileTyped
                                 {
                                     FileName = "picture.svg",
@@ -707,9 +712,9 @@ public static class VariantCompleteTyped
                                     ContentType = FileContentType.ImageSvg,
                                     ImageType = ImageType.Other
                                 }
-                            },
-                            Hyperlinks = new[]
-                            {
+                            ],
+                            Hyperlinks =
+                            [
                                 new HyperlinkTyped
                                 {
                                     Href = "href1",
@@ -723,13 +728,13 @@ public static class VariantCompleteTyped
                                     CountryCode = "de",
                                     PlainText = "Hyperlink 2"
                                 }
-                            }
+                            ]
                         },
                         new ProductSerieTyped
                         {
                             Id = "serie-2",
-                            Name = new[]
-                            {
+                            Name =
+                            [
                                 new LocaleTyped
                                 {
                                     Language = "en",
@@ -740,26 +745,27 @@ public static class VariantCompleteTyped
                                     Language = "de",
                                     Text = "Variantenname 2"
                                 }
-                            }
+                            ]
                         }
-                    }
+                    ]
                 },
+
                 new()
                 {
                     Id = "variant-4",
                     SortOrder = 4,
-                    Name = new[]
-                    {
-                        new LocaleTyped { Language = "en", Text = "Variant 4" }
-                    },
-                    ProductNumber = new LocaleTyped[]
-                    {
+                    Name =
+                    [
+                        new LocaleTyped {Language = "en", Text = "Variant 4"}
+                    ],
+                    ProductNumber =
+                    [
                         new()
                         {
                             Language = "en",
                             Text = "Product number"
                         }
-                    },
+                    ],
                     Geometry = new GeometryTyped
                     {
                         Simple = new SimpleGeometryEmitterTyped
@@ -782,8 +788,8 @@ public static class VariantCompleteTyped
                             Emitter = new EmitterTyped
                             {
                                 Id = "leoEmitter",
-                                ChangeableEmitterOptions = new[]
-                                {
+                                ChangeableEmitterOptions =
+                                [
                                     new ChangeableLightEmitterTyped
                                     {
                                         Photometry = new PhotometryTyped
@@ -799,7 +805,7 @@ public static class VariantCompleteTyped
                                             }
                                         }
                                     }
-                                }
+                                ]
                             }
                         },
                         Model = new ModelGeometryEmitterTyped
@@ -807,8 +813,8 @@ public static class VariantCompleteTyped
                             Geometry = new ModelGeometryTyped
                             {
                                 Id = "geometry",
-                                GeometryFiles = new ModelFileTyped[]
-                                {
+                                GeometryFiles =
+                                [
                                     new()
                                     {
                                         ContentType = FileContentType.GeoL3d,
@@ -816,10 +822,10 @@ public static class VariantCompleteTyped
                                         Uri = "https://example.org/geo.l3d",
                                         FileName = "geo.l3d"
                                     }
-                                }
+                                ]
                             },
-                            Emitter = new ModelEmitterTyped[]
-                            {
+                            Emitter =
+                            [
                                 new()
                                 {
                                     TargetModelType = TargetModelType.L3d,
@@ -827,8 +833,8 @@ public static class VariantCompleteTyped
                                     Emitter = new EmitterTyped
                                     {
                                         Id = "leoEmitter",
-                                        ChangeableEmitterOptions = new[]
-                                        {
+                                        ChangeableEmitterOptions =
+                                        [
                                             new ChangeableLightEmitterTyped
                                             {
                                                 Photometry = new PhotometryTyped
@@ -844,29 +850,30 @@ public static class VariantCompleteTyped
                                                     }
                                                 }
                                             }
-                                        }
+                                        ]
                                     }
                                 }
-                            }
+                            ]
                         }
                     }
                 },
+
                 new()
                 {
                     Id = "variant-5",
                     SortOrder = 5,
-                    Name = new[]
-                    {
-                        new LocaleTyped { Language = "en", Text = "Variant 5" }
-                    },
-                    ProductNumber = new LocaleTyped[]
-                    {
+                    Name =
+                    [
+                        new LocaleTyped {Language = "en", Text = "Variant 5"}
+                    ],
+                    ProductNumber =
+                    [
                         new()
                         {
                             Language = "en",
                             Text = "Product number"
                         }
-                    },
+                    ],
                     Geometry = new GeometryTyped
                     {
                         Simple = new SimpleGeometryEmitterTyped
@@ -874,8 +881,8 @@ public static class VariantCompleteTyped
                             Emitter = new EmitterTyped
                             {
                                 Id = "leoEmitter",
-                                ChangeableEmitterOptions = new[]
-                                {
+                                ChangeableEmitterOptions =
+                                [
                                     new ChangeableLightEmitterTyped
                                     {
                                         Photometry = new PhotometryTyped
@@ -891,7 +898,7 @@ public static class VariantCompleteTyped
                                             }
                                         }
                                     }
-                                }
+                                ]
                             },
                             Geometry = new SimpleGeometryTyped
                             {
@@ -914,8 +921,8 @@ public static class VariantCompleteTyped
                             Geometry = new ModelGeometryTyped
                             {
                                 Id = "geometry",
-                                GeometryFiles = new ModelFileTyped[]
-                                {
+                                GeometryFiles =
+                                [
                                     new()
                                     {
                                         ContentType = FileContentType.GeoL3d,
@@ -923,18 +930,18 @@ public static class VariantCompleteTyped
                                         Uri = "https://example.org/geo.l3d",
                                         FileName = "geo.l3d"
                                     }
-                                }
+                                ]
                             },
-                            Emitter = new ModelEmitterTyped[]
-                            {
+                            Emitter =
+                            [
                                 new()
                                 {
                                     EmitterObjectExternalName = "Leo",
                                     Emitter = new EmitterTyped
                                     {
                                         Id = "leoEmitter",
-                                        ChangeableEmitterOptions = new[]
-                                        {
+                                        ChangeableEmitterOptions =
+                                        [
                                             new ChangeableLightEmitterTyped
                                             {
                                                 Photometry = new PhotometryTyped
@@ -950,14 +957,14 @@ public static class VariantCompleteTyped
                                                     }
                                                 }
                                             }
-                                        }
+                                        ]
                                     }
                                 }
-                            }
+                            ]
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

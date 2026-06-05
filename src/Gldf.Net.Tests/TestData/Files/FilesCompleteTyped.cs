@@ -7,7 +7,6 @@ using Gldf.Net.Domain.Typed.Head.Types;
 using Gldf.Net.Domain.Typed.Product;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using System;
-using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.Files;
 
@@ -25,8 +24,8 @@ public static class FilesCompleteTyped
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new List<GldfFileTyped>
-            {
+            Files =
+            [
                 new()
                 {
                     Id = "eulumdat",
@@ -36,6 +35,7 @@ public static class FilesCompleteTyped
                     Uri = "https://example.org/test.ldt",
                     FileName = "test.ldt"
                 },
+
                 new()
                 {
                     Id = "ies",
@@ -44,6 +44,7 @@ public static class FilesCompleteTyped
                     Language = "de",
                     FileName = "product.ies"
                 },
+
                 new()
                 {
                     Id = "iesxml",
@@ -52,6 +53,7 @@ public static class FilesCompleteTyped
                     Language = "de",
                     FileName = "product.iesxml"
                 },
+
                 new()
                 {
                     Id = "jpg",
@@ -60,6 +62,7 @@ public static class FilesCompleteTyped
                     Language = "de",
                     FileName = "product.jpg"
                 },
+
                 new()
                 {
                     Id = "png",
@@ -68,6 +71,7 @@ public static class FilesCompleteTyped
                     Language = "de",
                     FileName = "product.png"
                 },
+
                 new()
                 {
                     Id = "svg",
@@ -76,6 +80,7 @@ public static class FilesCompleteTyped
                     Language = "de",
                     FileName = "product.svg"
                 },
+
                 new()
                 {
                     Id = "sensxml",
@@ -84,6 +89,7 @@ public static class FilesCompleteTyped
                     Language = "de",
                     FileName = "product.sensxml"
                 },
+
                 new()
                 {
                     Id = "sensldt",
@@ -92,6 +98,7 @@ public static class FilesCompleteTyped
                     Language = "de",
                     FileName = "product.sensldt"
                 },
+
                 new()
                 {
                     Id = "text",
@@ -100,6 +107,7 @@ public static class FilesCompleteTyped
                     Language = "de",
                     FileName = "product.text"
                 },
+
                 new()
                 {
                     Id = "l3d",
@@ -108,6 +116,7 @@ public static class FilesCompleteTyped
                     Language = "de",
                     FileName = "product.l3d"
                 },
+
                 new()
                 {
                     Id = "m3d",
@@ -116,6 +125,7 @@ public static class FilesCompleteTyped
                     Language = "de",
                     FileName = "product.m3d"
                 },
+
                 new()
                 {
                     Id = "r3d",
@@ -124,6 +134,7 @@ public static class FilesCompleteTyped
                     Language = "de",
                     FileName = "product.r3d"
                 },
+
                 new()
                 {
                     Id = "pdf",
@@ -132,6 +143,7 @@ public static class FilesCompleteTyped
                     Language = "de",
                     FileName = "product.pdf"
                 },
+
                 new()
                 {
                     Id = "symbol-dxf",
@@ -140,6 +152,7 @@ public static class FilesCompleteTyped
                     Language = "de",
                     FileName = "product.dxf"
                 },
+
                 new()
                 {
                     Id = "symbol-svg",
@@ -148,6 +161,7 @@ public static class FilesCompleteTyped
                     Language = "de",
                     FileName = "product.svg"
                 },
+
                 new()
                 {
                     Id = "other",
@@ -156,9 +170,9 @@ public static class FilesCompleteTyped
                     Language = "de",
                     FileName = "product.other"
                 }
-            },
-            Photometries = new List<PhotometryTyped>
-            {
+            ],
+            Photometries =
+            [
                 new()
                 {
                     Id = "photometry",
@@ -172,14 +186,14 @@ public static class FilesCompleteTyped
                         FileName = "test.ldt"
                     }
                 }
-            },
-            Emitter = new List<EmitterTyped>
-            {
+            ],
+            Emitter =
+            [
                 new()
                 {
                     Id = "emitter",
-                    ChangeableEmitterOptions = new[]
-                    {
+                    ChangeableEmitterOptions =
+                    [
                         new ChangeableLightEmitterTyped
                         {
                             Photometry = new PhotometryTyped
@@ -196,60 +210,60 @@ public static class FilesCompleteTyped
                                 }
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitionsTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new List<VariantTyped>
-            {
+            Variants =
+            [
                 new()
                 {
                     Id = "variant-1",
-                    ProductNumber = new[]
-                    {
+                    ProductNumber =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "Product number"
                         }
-                    },
-                    Name = new[]
-                    {
+                    ],
+                    Name =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "Variant 1"
                         }
-                    },
+                    ],
                     Geometry = new GeometryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
                             Id = "emitter",
-                            ChangeableEmitterOptions = new[]
-                            {
+                            ChangeableEmitterOptions =
+                            [
                                 new ChangeableLightEmitterTyped
                                 {
                                     Photometry = new PhotometryTyped
@@ -266,11 +280,11 @@ public static class FilesCompleteTyped
                                         }
                                     }
                                 }
-                            }
+                            ]
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

@@ -14,11 +14,11 @@ internal class GldfContainerValidator
 {
     private readonly ZipArchiveReader _zipArchiveReader;
 
-    private static readonly List<IContainerValidationRule> ContainerValidationRules = new()
-    {
+    private static readonly List<IContainerValidationRule> ContainerValidationRules =
+    [
         new HasNoMissingAssetsRule(),
         new HasNoOrphanAssetsRule()
-    };
+    ];
 
     public GldfContainerValidator() : this(Encoding.UTF8)
     {
@@ -29,8 +29,8 @@ internal class GldfContainerValidator
         _zipArchiveReader = new ZipArchiveReader(encoding);
     }
 
-    public IEnumerable<ValidationHint> ValidateGldf(GldfContainer gldf) => ValidateSafe(() => gldf == null 
-        ? ValidationHint.Error("The GLDF is null", ErrorType.GenericError) 
+    public IEnumerable<ValidationHint> ValidateGldf(GldfContainer gldf) => ValidateSafe(() => gldf == null
+        ? ValidationHint.Error("The GLDF is null", ErrorType.GenericError)
         : ContainerValidationRules.SelectMany(rule => rule.ValidateGldf(gldf)));
 
     public IEnumerable<ValidationHint> ValidateGldfFile(string gldfFilePath) =>
@@ -65,7 +65,7 @@ internal class GldfContainerValidator
         }
         catch (Exception e)
         {
-            return new[] { new ValidationHint(SeverityType.Error, e.Message, ErrorType.GenericError) };
+            return [new ValidationHint(SeverityType.Error, e.Message, ErrorType.GenericError)];
         }
     }
 }

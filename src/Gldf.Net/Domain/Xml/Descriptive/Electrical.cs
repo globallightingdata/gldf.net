@@ -27,6 +27,6 @@ public class Electrical
     public bool ShouldSerializePowerFactor() => PowerFactor != null;
 
     public bool ShouldSerializeConstantLightOutput() => ConstantLightOutput != null;
-        
+
     public bool ShouldSerializeLightDistribution() => LightDistribution != null;
 }

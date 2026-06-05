@@ -17,7 +17,7 @@ public class ModelSerializationTests
         var serializedXml = gldfSerializer.SerializeToXml(model);
         expectedXml.ShouldBe().EquivalentTo(serializedXml);
     }
-        
+
     [TestCaseSource(nameof(TestCaseData))]
     public void DeserializeXml_ShouldReturnExpectedModel(Root expectedModel, string xml)
     {
@@ -35,8 +35,8 @@ public class ModelSerializationTests
         resultModel.Should().BeEquivalentTo(model);
     }
 
-    public static IEnumerable<TestCaseData> TestCaseData => new[]
-    {
+    public static IEnumerable<TestCaseData> TestCaseData =>
+    [
         new TestCaseData(EmbeddedXmlTestData.GetHeaderMandatoryModel(),
                 EmbeddedXmlTestData.GetHeaderMandatoryXml())
             {TestName = "Header mandatory property set"},
@@ -124,5 +124,5 @@ public class ModelSerializationTests
         new TestCaseData(EmbeddedXmlTestData.GetGeneralsEmptyModel(),
                 EmbeddedXmlTestData.GetGeneralsEmptyXml())
             {TestName = "GeneralDefinitions empty set"}
-    };
+    ];
 }

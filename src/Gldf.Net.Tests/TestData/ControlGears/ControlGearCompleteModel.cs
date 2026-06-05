@@ -24,8 +24,8 @@ public static class ControlGearCompleteModel
         },
         GeneralDefinitions = new GeneralDefinitions
         {
-            Files = new[]
-            {
+            Files =
+            [
                 new GldfFile
                 {
                     Id = "eulumdat",
@@ -33,9 +33,9 @@ public static class ControlGearCompleteModel
                     Type = FileType.Url,
                     File = "https://example.org/eulumdat.ldt"
                 }
-            },
-            Photometries = new[]
-            {
+            ],
+            Photometries =
+            [
                 new Photometry
                 {
                     Id = "photometry",
@@ -44,28 +44,28 @@ public static class ControlGearCompleteModel
                         FileId = "eulumdat"
                     }
                 }
-            },
-            ControlGears = new[]
-            {
+            ],
+            ControlGears =
+            [
                 new ControlGear
                 {
                     Id = "controlGear-1",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale
                         {
                             Language = "en",
                             Text = "ControlGear name"
                         }
-                    },
-                    Description = new[]
-                    {
+                    ],
+                    Description =
+                    [
                         new Locale
                         {
                             Language = "en",
                             Text = "ControlGear description"
                         }
-                    },
+                    ],
                     NominalVoltage = new Voltage
                     {
                         Value = new VoltageRange
@@ -82,38 +82,38 @@ public static class ControlGearCompleteModel
                     PowerConsumptionControls = 0.4,
                     IsDimmable = true,
                     IsColorControllable = false,
-                    Interfaces = new[]
-                    {
+                    Interfaces =
+                    [
                         Interface.DaliBroadcast,
                         Interface.DaliAddressable
-                    },
-                    EnergyLabels = new[]
-                    {
+                    ],
+                    EnergyLabels =
+                    [
                         new EnergyLabel { Region = "eu", Label = "A+" },
                         new EnergyLabel { Region = "us", Label = "B" }
-                    }
+                    ]
                 },
                 new ControlGear
                 {
                     Id = "controlGear-2",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale
                         {
                             Language = "en",
                             Text = "ControlGear name"
                         }
-                    },
-                    Description = new[]
-                    {
+                    ],
+                    Description =
+                    [
                         new Locale
                         {
                             Language = "en",
                             Text = "ControlGear description"
                         }
-                    },
-                    Interfaces = new[]
-                    {
+                    ],
+                    Interfaces =
+                    [
                         Interface.Knx,
                         Interface.Volt0To10,
                         Interface.Volt1To10,
@@ -124,16 +124,16 @@ public static class ControlGearCompleteModel
                         Interface.InterConnection,
                         Interface.Dmx,
                         Interface.DmxRdm
-                    }
+                    ]
                 }
-            },
-            Emitters = new[]
-            {
+            ],
+            Emitters =
+            [
                 new Emitter
                 {
                     Id = "emitter",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new ChangeableLightEmitter
                         {
                             PhotometryReference = new PhotometryReference
@@ -141,41 +141,41 @@ public static class ControlGearCompleteModel
                                 PhotometryId = "photometry"
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitions
         {
             ProductMetaData = new ProductMetaData
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new[]
-            {
+            Variants =
+            [
                 new Variant
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 1" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new EmitterReference
@@ -184,7 +184,7 @@ public static class ControlGearCompleteModel
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

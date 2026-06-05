@@ -6,13 +6,13 @@ namespace Gldf.Net.Abstract;
 
 public interface IGldfXmlValidator
 {
-    IEnumerable<ValidationHint> ValidateXml(string xml);
+    public IEnumerable<ValidationHint> ValidateXml(string xml);
 
-    IEnumerable<ValidationHint> ValidateXmlFile(string xmlFilePath);
+    public IEnumerable<ValidationHint> ValidateXmlFile(string xmlFilePath);
 
-    IEnumerable<ValidationHint> ValidateXmlStream(Stream xmlStream, bool leaveOpen);
+    public IEnumerable<ValidationHint> ValidateXmlStream(Stream xmlStream, bool leaveOpen);
 
-    IEnumerable<ValidationHint> ValidateGldfFile(string gldfFilePath);
+    public IEnumerable<ValidationHint> ValidateGldfFile(string gldfFilePath);
 
-    IEnumerable<ValidationHint> ValidateGldfStream(Stream zipStream, bool leaveOpen);
+    public IEnumerable<ValidationHint> ValidateGldfStream(Stream zipStream, bool leaveOpen);
 }

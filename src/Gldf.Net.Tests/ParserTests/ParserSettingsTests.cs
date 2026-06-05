@@ -28,15 +28,12 @@ public class ParserSettingsTests
         parserSettings.LocalFileLoadBehaviour.Should().Be(localFileLoadBehaviour);
         parserSettings.OnlineFileLoadBehaviour.Should().Be(OnlineFileLoadBehaviour.Load);
     }
-    
+
     [TestCase(LocalFileLoadBehaviour.Load)]
     [TestCase(LocalFileLoadBehaviour.Skip)]
     public void Ctor_ShouldThrow_WhenOnlineFileLoadBehaviour_AndMissingHttpClient(LocalFileLoadBehaviour localFileLoadBehaviour)
     {
-        var act = new Action(() =>
-        {
-            _ = new ParserSettings(localFileLoadBehaviour, OnlineFileLoadBehaviour.Load);
-        });
+        var act = new Action(() => { _ = new ParserSettings(localFileLoadBehaviour, OnlineFileLoadBehaviour.Load); });
         act.Should()
             .ThrowExactly<ArgumentException>()
             .WithMessage("HttpClient must be set when OnlineFileLoadBehaviour is activated");

@@ -29,9 +29,9 @@ public class ColorInformation
     public bool ShouldSerializeColorRenderingIndex() => ColorRenderingIndex != null;
 
     public bool ShouldSerializeCorrelatedColorTemperature() => CorrelatedColorTemperature != null;
-        
+
     public bool ShouldSerializeInitialColorTolerance() => InitialColorTolerance != null;
-        
+
     public bool ShouldSerializeMaintainedColorTolerance() => MaintainedColorTolerance != null;
 
     public bool ShouldSerializeTlci() => Tlci != null;

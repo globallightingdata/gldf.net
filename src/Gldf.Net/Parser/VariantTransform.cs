@@ -38,7 +38,7 @@ internal class VariantTransform : TransformBase
             ProductSeries = variant.ProductSeries?.ToTypedArray(definitions.Files),
             Pictures = definitions.Files.ToImageTypedArray(variant.Pictures),
             Symbol = definitions.Files.ToFileTyped(variant.Symbol?.FileId),
-            DescriptiveAttributes = variant.DescriptiveAttributes?.ToTyped() 
+            DescriptiveAttributes = variant.DescriptiveAttributes?.ToTyped()
         };
     }
 }

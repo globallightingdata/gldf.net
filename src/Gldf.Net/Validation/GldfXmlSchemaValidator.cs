@@ -22,12 +22,12 @@ internal class GldfXmlSchemaValidator
     {
         _encoding = encoding;
     }
-    
+
     public GldfXmlSchemaValidator(XmlSchemaSet xmlSchema) : this()
     {
         _xmlSchema = xmlSchema;
     }
-    
+
     public GldfXmlSchemaValidator(Encoding encoding, XmlSchemaSet xmlSchema)
     {
         _encoding = encoding;

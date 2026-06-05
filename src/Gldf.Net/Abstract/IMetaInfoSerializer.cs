@@ -6,13 +6,17 @@ namespace Gldf.Net.Abstract;
 
 public interface IMetaInfoSerializer
 {
-    Encoding Encoding { get; }
+    public Encoding Encoding { get; }
 
-    string SerializeToXml(MetaInformation value);
-    void SerializeToXmlFile(MetaInformation value, string xmlFilePath);
-    void SerializeToXmlStream(MetaInformation value, Stream xmlStream, bool leaveOpen);
+    public string SerializeToXml(MetaInformation value);
 
-    MetaInformation DeserializeFromXml(string xml);
-    MetaInformation DeserializeFromXmlFile(string xmlFilePath);
-    MetaInformation DeserializeFromXmlStream(Stream xmlStream, bool leaveOpen);
+    public void SerializeToXmlFile(MetaInformation value, string xmlFilePath);
+
+    public void SerializeToXmlStream(MetaInformation value, Stream xmlStream, bool leaveOpen);
+
+    public MetaInformation DeserializeFromXml(string xml);
+
+    public MetaInformation DeserializeFromXmlFile(string xmlFilePath);
+
+    public MetaInformation DeserializeFromXmlStream(Stream xmlStream, bool leaveOpen);
 }

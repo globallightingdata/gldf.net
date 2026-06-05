@@ -10,8 +10,8 @@ public static class GldfFileExtensions
 {
     public static byte[] GetBytesFromContainer(this GldfFile file, GldfContainer container)
     {
-        if (file == null) throw new ArgumentNullException(nameof(file));
-        if (container == null) throw new ArgumentNullException(nameof(container));
+        ArgumentNullException.ThrowIfNull(file);
+        ArgumentNullException.ThrowIfNull(container);
         var assetCollection = container.GetAssetCollection(file.ContentType);
         return GetBytes(assetCollection, file.File);
     }

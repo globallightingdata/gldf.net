@@ -8,7 +8,6 @@ using Gldf.Net.Domain.Typed.Product;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using Gldf.Net.Domain.Xml.Global;
 using System;
-using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.ControlGears;
 
@@ -21,13 +20,13 @@ public static class ControlGearCompleteTyped
             Manufacturer = "DIAL",
             GldfCreationTimeCode = new DateTime(2021, 3, 29, 14, 30, 0, DateTimeKind.Utc),
             CreatedWithApplication = "Visual Studio Code",
-            FormatVersion = new FormatVersionTyped { Major = 1, Minor = 0, PreRelease = 3 },
+            FormatVersion = new FormatVersionTyped {Major = 1, Minor = 0, PreRelease = 3},
             UniqueGldfId = "3BE556FF-9061-4592-AEB1-1BC9D507280E"
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new List<GldfFileTyped>
-            {
+            Files =
+            [
                 new()
                 {
                     Id = "eulumdat",
@@ -36,9 +35,9 @@ public static class ControlGearCompleteTyped
                     Uri = "https://example.org/eulumdat.ldt",
                     FileName = "eulumdat.ldt"
                 }
-            },
-            Photometries = new List<PhotometryTyped>
-            {
+            ],
+            Photometries =
+            [
                 new()
                 {
                     Id = "photometry",
@@ -51,28 +50,28 @@ public static class ControlGearCompleteTyped
                         FileName = "eulumdat.ldt"
                     }
                 }
-            },
-            ControlGears = new List<ControlGearTyped>
-            {
+            ],
+            ControlGears =
+            [
                 new()
                 {
                     Id = "controlGear-1",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "ControlGear name"
                         }
-                    },
-                    Description = new[]
-                    {
+                    ],
+                    Description =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "ControlGear description"
                         }
-                    },
+                    ],
                     NominalVoltage = new VoltageTyped
                     {
                         VoltageRangeMin = 120,
@@ -86,38 +85,39 @@ public static class ControlGearCompleteTyped
                     PowerConsumptionControls = 0.4,
                     IsDimmable = true,
                     IsColorControllable = false,
-                    Interfaces = new[]
-                    {
+                    Interfaces =
+                    [
                         Interface.DaliBroadcast,
                         Interface.DaliAddressable
-                    },
-                    EnergyLabels = new[]
-                    {
-                        new EnergyLabelTyped { Region = "eu", Label = "A+" },
-                        new EnergyLabelTyped { Region = "us", Label = "B" }
-                    }
+                    ],
+                    EnergyLabels =
+                    [
+                        new EnergyLabelTyped {Region = "eu", Label = "A+"},
+                        new EnergyLabelTyped {Region = "us", Label = "B"}
+                    ]
                 },
+
                 new()
                 {
                     Id = "controlGear-2",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "ControlGear name"
                         }
-                    },
-                    Description = new[]
-                    {
+                    ],
+                    Description =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "ControlGear description"
                         }
-                    },
-                    Interfaces = new[]
-                    {
+                    ],
+                    Interfaces =
+                    [
                         Interface.Knx,
                         Interface.Volt0To10,
                         Interface.Volt1To10,
@@ -128,16 +128,16 @@ public static class ControlGearCompleteTyped
                         Interface.InterConnection,
                         Interface.Dmx,
                         Interface.DmxRdm
-                    }
+                    ]
                 }
-            },
-            Emitter = new List<EmitterTyped>
-            {
+            ],
+            Emitter =
+            [
                 new()
                 {
                     Id = "emitter",
-                    ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
-                    {
+                    ChangeableEmitterOptions =
+                    [
                         new()
                         {
                             Photometry = new PhotometryTyped
@@ -152,48 +152,48 @@ public static class ControlGearCompleteTyped
                                 }
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitionsTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new List<VariantTyped>
-            {
+            Variants =
+            [
                 new()
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
-                        new LocaleTyped { Language = "en", Text = "Variant 1" }
-                    },
+                    Name =
+                    [
+                        new LocaleTyped {Language = "en", Text = "Variant 1"}
+                    ],
                     Geometry = new GeometryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
                             Id = "emitter",
-                            ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
-                            {
+                            ChangeableEmitterOptions =
+                            [
                                 new()
                                 {
                                     Photometry = new PhotometryTyped
@@ -209,19 +209,19 @@ public static class ControlGearCompleteTyped
                                         }
                                     }
                                 }
-                            }
+                            ]
                         }
                     },
-                    ProductNumber = new LocaleTyped[]
-                    {
+                    ProductNumber =
+                    [
                         new()
                         {
                             Language = "en",
                             Text = "Product number"
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         }
     };
 }

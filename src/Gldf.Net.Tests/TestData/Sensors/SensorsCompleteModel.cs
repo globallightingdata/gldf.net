@@ -24,8 +24,8 @@ public static class SensorsCompleteModel
         },
         GeneralDefinitions = new GeneralDefinitions
         {
-            Files = new[]
-            {
+            Files =
+            [
                 new GldfFile
                 {
                     Id = "sensorFile",
@@ -33,9 +33,9 @@ public static class SensorsCompleteModel
                     Type = FileType.Url,
                     File = "https://example.org/sensor.sensldt"
                 }
-            },
-            Sensors = new[]
-            {
+            ],
+            Sensors =
+            [
                 new Sensor
                 {
                     Id = "sensor",
@@ -43,37 +43,37 @@ public static class SensorsCompleteModel
                     {
                         FileId = "sensorFile"
                     },
-                    DetectorCharacteristics = new[]
-                    {
+                    DetectorCharacteristics =
+                    [
                         DetectorCharacteristic.Round,
                         DetectorCharacteristic.Square,
                         DetectorCharacteristic.Other
-                    },
-                    DetectionMethods = new[]
-                    {
+                    ],
+                    DetectionMethods =
+                    [
                         DetectionMethod.PassiveInfrared,
                         DetectionMethod.HighFrequency,
                         DetectionMethod.Microwave,
                         DetectionMethod.Ultrasonic,
                         DetectionMethod.Camera,
                         DetectionMethod.Other
-                    },
-                    DetectorTypes = new[]
-                    {
+                    ],
+                    DetectorTypes =
+                    [
                         DetectorType.MotionDetector,
                         DetectorType.PresenceDetector,
                         DetectorType.DaylightDetector,
                         DetectorType.Other
-                    }
+                    ]
                 }
-            },
-            Emitters = new[]
-            {
+            ],
+            Emitters =
+            [
                 new Emitter
                 {
                     Id = "emitter",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new SensorEmitter
                         {
                             SensorReference = new SensorReference
@@ -81,41 +81,41 @@ public static class SensorsCompleteModel
                                 SensorId = "sensor"
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitions
         {
             ProductMetaData = new ProductMetaData
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new[]
-            {
+            Variants =
+            [
                 new Variant
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 1" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new EmitterReference
@@ -124,7 +124,7 @@ public static class SensorsCompleteModel
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

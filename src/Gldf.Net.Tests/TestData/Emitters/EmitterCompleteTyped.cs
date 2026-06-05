@@ -8,7 +8,6 @@ using Gldf.Net.Domain.Typed.Product;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using Gldf.Net.Domain.Xml.Product.Types;
 using System;
-using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.Emitters;
 
@@ -26,8 +25,8 @@ public static class EmitterCompleteTyped
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new List<GldfFileTyped>
-            {
+            Files =
+            [
                 new()
                 {
                     Id = "eulumdat",
@@ -36,6 +35,7 @@ public static class EmitterCompleteTyped
                     Uri = "https://example.org/eulumdat.ldt",
                     FileName = "eulumdat.ldt"
                 },
+
                 new()
                 {
                     Id = "sensorFile",
@@ -44,9 +44,9 @@ public static class EmitterCompleteTyped
                     Uri = "https://example.org/sensor.xml",
                     FileName = "sensor.xml"
                 }
-            },
-            Sensors = new List<SensorTyped>
-            {
+            ],
+            Sensors =
+            [
                 new()
                 {
                     Id = "sensor",
@@ -59,9 +59,9 @@ public static class EmitterCompleteTyped
                         FileName = "sensor.xml"
                     }
                 }
-            },
-            Photometries = new List<PhotometryTyped>
-            {
+            ],
+            Photometries =
+            [
                 new()
                 {
                     Id = "photometry",
@@ -74,58 +74,57 @@ public static class EmitterCompleteTyped
                         FileName = "eulumdat.ldt"
                     }
                 }
-            },
-            ChangeableLightSources = new List<ChangeableLightSourceTyped>
-            {
+            ],
+            ChangeableLightSources =
+            [
                 new()
                 {
                     Id = "lightSource",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "LightSource name"
                         }
-                    },
+                    ],
                     RatedInputPower = 50,
                     RatedLuminousFlux = 250
                 }
-            },
-            Equipments = new List<EquipmentTyped>
-            {
+            ],
+            Equipments =
+            [
                 new()
                 {
                     Id = "equipment",
                     ChangeableLightSource = new ChangeableLightSourceTyped
                     {
                         Id = "lightSource",
-                        Name = new LocaleTyped[]
-                        {
+                        Name =
+                        [
                             new()
                             {
                                 Language = "en",
                                 Text = "LightSource name"
                             }
-                        },
+                        ],
                         RatedLuminousFlux = 250,
                         RatedInputPower = 50
                     },
                     RatedInputPower = 10
                 }
-            },
-            Emitter = new List<EmitterTyped>
-            {
-
+            ],
+            Emitter =
+            [
                 new()
                 {
                     Id = "emitter-1",
-                    ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
-                    {
+                    ChangeableEmitterOptions =
+                    [
                         new()
                         {
-                            Name = new[]
-                            {
+                            Name =
+                            [
                                 new LocaleTyped
                                 {
                                     Language = "en",
@@ -136,7 +135,7 @@ public static class EmitterCompleteTyped
                                     Language = "de",
                                     Text = "Anzeigename"
                                 }
-                            },
+                            ],
                             Photometry = new PhotometryTyped
                             {
                                 Id = "photometry",
@@ -177,14 +176,14 @@ public static class EmitterCompleteTyped
                                 ChangeableLightSource = new ChangeableLightSourceTyped
                                 {
                                     Id = "lightSource",
-                                    Name = new LocaleTyped[]
-                                    {
+                                    Name =
+                                    [
                                         new()
                                         {
                                             Language = "en",
                                             Text = "LightSource name"
                                         }
-                                    },
+                                    ],
                                     RatedInputPower = 50.0,
                                     RatedLuminousFlux = 250
                                 },
@@ -239,17 +238,18 @@ public static class EmitterCompleteTyped
                                 }
                             }
                         }
-                    }
+                    ]
                 },
+
                 new()
                 {
                     Id = "emitter-2",
-                    SensorEmitterOptions = new SensorEmitterTyped[]
-                    {
+                    SensorEmitterOptions =
+                    [
                         new()
                         {
-                            Name = new[]
-                            {
+                            Name =
+                            [
                                 new LocaleTyped
                                 {
                                     Language = "en",
@@ -260,7 +260,7 @@ public static class EmitterCompleteTyped
                                     Language = "de",
                                     Text = "Anzeigename"
                                 }
-                            },
+                            ],
                             Rotation = new RotationTyped
                             {
                                 X = 10.1,
@@ -296,60 +296,60 @@ public static class EmitterCompleteTyped
                                 }
                             }
                         }
-                    },
+                    ],
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitionsTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new List<VariantTyped>
-            {
+            Variants =
+            [
                 new()
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
-                        new LocaleTyped { Language = "en", Text = "Variant 1" }
-                    },
-                    ProductNumber = new LocaleTyped[]
-                    {
+                    Name =
+                    [
+                        new LocaleTyped {Language = "en", Text = "Variant 1"}
+                    ],
+                    ProductNumber =
+                    [
                         new()
                         {
                             Language = "en",
                             Text = "Product number"
                         }
-                    },
+                    ],
                     Geometry = new GeometryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
                             Id = "emitter-1",
-                            ChangeableEmitterOptions = new ChangeableLightEmitterTyped[]
-                            {
+                            ChangeableEmitterOptions =
+                            [
                                 new()
                                 {
-                                    Name = new LocaleTyped[]
-                                    {
+                                    Name =
+                                    [
                                         new()
                                         {
                                             Language = "en",
@@ -360,7 +360,7 @@ public static class EmitterCompleteTyped
                                             Language = "de",
                                             Text = "Anzeigename"
                                         }
-                                    },
+                                    ],
                                     Photometry = new PhotometryTyped
                                     {
                                         Id = "photometry",
@@ -389,14 +389,14 @@ public static class EmitterCompleteTyped
                                         ChangeableLightSource = new ChangeableLightSourceTyped
                                         {
                                             Id = "lightSource",
-                                            Name = new LocaleTyped[]
-                                            {
+                                            Name =
+                                            [
                                                 new()
                                                 {
                                                     Language = "en",
                                                     Text = "LightSource name"
                                                 }
-                                            },
+                                            ],
                                             RatedInputPower = 50,
                                             RatedLuminousFlux = 250
                                         },
@@ -463,11 +463,11 @@ public static class EmitterCompleteTyped
                                         }
                                     }
                                 }
-                            }
+                            ]
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

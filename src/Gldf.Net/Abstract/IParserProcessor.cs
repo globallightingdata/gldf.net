@@ -5,5 +5,5 @@ namespace Gldf.Net.Abstract;
 
 internal interface IParserProcessor
 {
-    RootTyped Process(ParserDto parserDto);
+    public RootTyped Process(ParserDto parserDto);
 }

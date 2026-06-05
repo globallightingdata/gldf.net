@@ -24,8 +24,8 @@ public static class LightSourceMandatoryModel
         },
         GeneralDefinitions = new GeneralDefinitions
         {
-            Files = new[]
-            {
+            Files =
+            [
                 new GldfFile
                 {
                     Id = "eulumdat",
@@ -33,9 +33,9 @@ public static class LightSourceMandatoryModel
                     Type = FileType.Url,
                     File = "https://example.org/eulumdat.ldt"
                 }
-            },
-            Photometries = new[]
-            {
+            ],
+            Photometries =
+            [
                 new Photometry
                 {
                     Id = "photometry",
@@ -44,48 +44,48 @@ public static class LightSourceMandatoryModel
                         FileId = "eulumdat"
                     }
                 }
-            },
-            Spectrums = new[]
-            {
+            ],
+            Spectrums =
+            [
                 new Spectrum
                 {
                     Id = "spectrum",
-                    Intensities = new[]
-                    {
+                    Intensities =
+                    [
                         new SpectrumIntensity
                         {
                             Wavelength = 380,
                             Intensity = 0.8
                         }
-                    }
+                    ]
                 }
-            },
-            LightSources = new LightSourceBase[]
-            {
+            ],
+            LightSources =
+            [
                 new FixedLightSource
                 {
                     Id = "lightSource-1",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale
                         {
                             Language = "en",
                             Text = "LightSource name"
                         }
-                    },
+                    ],
                     RatedInputPower = 50
                 },
                 new ChangeableLightSource
                 {
                     Id = "lightSource-2",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale
                         {
                             Language = "en",
                             Text = "LightSource name 2"
                         }
-                    },
+                    ],
                     RatedInputPower = 60,
                     RatedLuminousFlux = 500,
                     ColorInformation = new ColorInformation()
@@ -93,28 +93,28 @@ public static class LightSourceMandatoryModel
                 new MultiChannelLightSource
                 {
                     Id = "lightSource-3",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale
                         {
                             Language = "en",
                             Text = "LightSource name 3"
                         }
-                    },
+                    ],
                     RatedInputPower = 30,
-                    Channels = new[]
-                    {
+                    Channels =
+                    [
                         new Channel
                         {
                             Type = ChannelType.WarmWhite,
-                            DisplayName = new[]
-                            {
+                            DisplayName =
+                            [
                                 new Locale
                                 {
                                     Language = "en",
                                     Text = "WarmWhite channel"
                                 }
-                            },
+                            ],
                             SpectrumReference = new SpectrumReference
                             {
                                 SpectrumId = "spectrum"
@@ -125,16 +125,16 @@ public static class LightSourceMandatoryModel
                             },
                             RatedLuminousFlux = 150
                         }
-                    }
+                    ]
                 }
-            },
-            Emitters = new[]
-            {
+            ],
+            Emitters =
+            [
                 new Emitter
                 {
                     Id = "emitter",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new FixedLightEmitter
                         {
                             PhotometryReference = new PhotometryReference
@@ -147,41 +147,41 @@ public static class LightSourceMandatoryModel
                             },
                             RatedLuminousFlux = 250
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitions
         {
             ProductMetaData = new ProductMetaData
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new[]
-            {
+            Variants =
+            [
                 new Variant
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 1" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new EmitterReference
@@ -190,7 +190,7 @@ public static class LightSourceMandatoryModel
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

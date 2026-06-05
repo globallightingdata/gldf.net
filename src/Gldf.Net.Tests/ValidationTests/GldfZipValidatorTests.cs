@@ -38,7 +38,7 @@ public class GldfZipValidatorTests
 
         hints.Should().BeEmpty();
     }
-    
+
     [Test]
     public void ValidateStream_ShouldReturnEmptyHintList_WhenZipIsValid()
     {

@@ -24,8 +24,8 @@ public static class VariantMandatoryModel
         },
         GeneralDefinitions = new GeneralDefinitions
         {
-            Files = new[]
-            {
+            Files =
+            [
                 new GldfFile
                 {
                     Id = "eulumdat",
@@ -33,9 +33,9 @@ public static class VariantMandatoryModel
                     Type = FileType.Url,
                     File = "https://example.org/eulumdat.ldt"
                 }
-            },
-            Photometries = new[]
-            {
+            ],
+            Photometries =
+            [
                 new Photometry
                 {
                     Id = "photometry",
@@ -44,25 +44,25 @@ public static class VariantMandatoryModel
                         FileId = "eulumdat"
                     }
                 }
-            },
-            LightSources = new LightSourceBase[]
-            {
+            ],
+            LightSources =
+            [
                 new FixedLightSource
                 {
                     Id = "fixedLightSource",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale
                         {
                             Language = "en",
                             Text = "FixedLightSource"
                         }
-                    },
+                    ],
                     RatedInputPower = 50
                 }
-            },
-            Geometries = new GeometryBase[]
-            {
+            ],
+            Geometries =
+            [
                 new SimpleGeometry
                 {
                     Id = "geometry",
@@ -78,14 +78,14 @@ public static class VariantMandatoryModel
                         Length = 5
                     }
                 }
-            },
-            Emitters = new[]
-            {
+            ],
+            Emitters =
+            [
                 new Emitter
                 {
                     Id = "emitter",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new FixedLightEmitter
                         {
                             PhotometryReference = new PhotometryReference
@@ -98,57 +98,57 @@ public static class VariantMandatoryModel
                             },
                             RatedLuminousFlux = 250
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitions
         {
             ProductMetaData = new ProductMetaData
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new[]
-            {
+            Variants =
+            [
                 new Variant
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale
                         {
                             Language = "en",
                             Text = "Variant 1"
                         }
-                    }
+                    ]
                 },
                 new Variant
                 {
                     Id = "variant-2",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale
                         {
                             Language = "en",
                             Text = "Variant 2"
                         }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new SimpleGeometryReference
@@ -158,7 +158,7 @@ public static class VariantMandatoryModel
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

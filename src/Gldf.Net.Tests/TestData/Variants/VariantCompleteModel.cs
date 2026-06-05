@@ -25,8 +25,8 @@ public static class VariantCompleteModel
         },
         GeneralDefinitions = new GeneralDefinitions
         {
-            Files = new[]
-            {
+            Files =
+            [
                 new GldfFile
                 {
                     Id = "eulumdatFile",
@@ -55,9 +55,9 @@ public static class VariantCompleteModel
                     Type = FileType.LocalFileName,
                     File = "picture.svg"
                 }
-            },
-            Sensors = new[]
-            {
+            ],
+            Sensors =
+            [
                 new Sensor
                 {
                     Id = "sensor",
@@ -66,9 +66,9 @@ public static class VariantCompleteModel
                         FileId = "sensorFile"
                     }
                 }
-            },
-            Photometries = new[]
-            {
+            ],
+            Photometries =
+            [
                 new Photometry
                 {
                     Id = "photometry",
@@ -77,14 +77,14 @@ public static class VariantCompleteModel
                         FileId = "eulumdatFile"
                     }
                 }
-            },
-            Emitters = new[]
-            {
+            ],
+            Emitters =
+            [
                 new Emitter
                 {
                     Id = "leoEmitter",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new ChangeableLightEmitter
                         {
                             PhotometryReference = new PhotometryReference
@@ -92,13 +92,13 @@ public static class VariantCompleteModel
                                 PhotometryId = "photometry"
                             }
                         }
-                    }
+                    ]
                 },
                 new Emitter
                 {
                     Id = "sensorEmitter",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new SensorEmitter
                         {
                             SensorReference = new SensorReference
@@ -106,11 +106,11 @@ public static class VariantCompleteModel
                                 SensorId = "sensor"
                             }
                         }
-                    }
+                    ]
                 }
-            },
-            Geometries = new GeometryBase[]
-            {
+            ],
+            Geometries =
+            [
                 new SimpleGeometry
                 {
                     Id = "simpleGeometry",
@@ -129,45 +129,45 @@ public static class VariantCompleteModel
                 new ModelGeometry
                 {
                     Id = "geometry",
-                    GeometryFileReferences = new GeometryFileReference[]
-                    {
+                    GeometryFileReferences =
+                    [
                         new()
                         {
                             FileId = "geometryFile"
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitions
         {
             ProductMetaData = new ProductMetaData
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new[]
-            {
+            Variants =
+            [
                 new Variant
                 {
                     Id = "variant-1",
-                    ProductNumber = new[]
-                    {
+                    ProductNumber =
+                    [
                         new Locale
                         {
                             Language = "en",
@@ -178,9 +178,9 @@ public static class VariantCompleteModel
                             Language = "de",
                             Text = "Produktnummer"
                         }
-                    },
-                    Name = new[]
-                    {
+                    ],
+                    Name =
+                    [
                         new Locale
                         {
                             Language = "en",
@@ -191,9 +191,9 @@ public static class VariantCompleteModel
                             Language = "de",
                             Text = "Variante 1"
                         }
-                    },
-                    Description = new[]
-                    {
+                    ],
+                    Description =
+                    [
                         new Locale
                         {
                             Language = "en",
@@ -204,9 +204,9 @@ public static class VariantCompleteModel
                             Language = "de",
                             Text = "Variantenbeschreibung"
                         }
-                    },
-                    TenderText = new[]
-                    {
+                    ],
+                    TenderText =
+                    [
                         new Locale
                         {
                             Language = "en",
@@ -217,7 +217,7 @@ public static class VariantCompleteModel
                             Language = "de",
                             Text = "Varianten Ausschreibungstext"
                         }
-                    },
+                    ],
                     GTIN = "12345678",
                     Mountings = new Mountings
                     {
@@ -287,8 +287,8 @@ public static class VariantCompleteModel
                             EmitterId = "leoEmitter"
                         }
                     },
-                    Pictures = new[]
-                    {
+                    Pictures =
+                    [
                         new Image
                         {
                             FileId = "pictureFile",
@@ -309,7 +309,7 @@ public static class VariantCompleteModel
                             FileId = "pictureFile",
                             ImageType = ImageType.ProductPicture
                         }
-                    },
+                    ],
                     Symbol = new Symbol
                     {
                         FileId = "pictureFile"
@@ -318,10 +318,10 @@ public static class VariantCompleteModel
                 new Variant
                 {
                     Id = "variant-2",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 2" }
-                    },
+                    ],
                     Mountings = new Mountings
                     {
                         Ceiling = new Ceiling
@@ -377,17 +377,17 @@ public static class VariantCompleteModel
                 {
                     Id = "variant-3",
                     SortOrder = 3,
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 3" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new ModelGeometryReference
                         {
                             GeometryId = "geometry",
-                            EmitterReferences = new[]
-                            {
+                            EmitterReferences =
+                            [
                                 new GeometryEmitterReference
                                 {
                                     EmitterId = "leoEmitter",
@@ -416,16 +416,16 @@ public static class VariantCompleteModel
                                     EmitterId = "sensorEmitter",
                                     EmitterObjectExternalName = "sensor"
                                 }
-                            }
+                            ]
                         }
                     },
-                    ProductSeries = new[]
-                    {
+                    ProductSeries =
+                    [
                         new ProductSerie
                         {
                             Id = "serie-1",
-                            Name = new[]
-                            {
+                            Name =
+                            [
                                 new Locale
                                 {
                                     Language = "en",
@@ -436,9 +436,9 @@ public static class VariantCompleteModel
                                     Language = "de",
                                     Text = "Variantenname 1"
                                 }
-                            },
-                            Description = new[]
-                            {
+                            ],
+                            Description =
+                            [
                                 new Locale
                                 {
                                     Language = "en",
@@ -449,9 +449,9 @@ public static class VariantCompleteModel
                                     Language = "de",
                                     Text = "Variantenbeschreibung"
                                 }
-                            },
-                            Pictures = new[]
-                            {
+                            ],
+                            Pictures =
+                            [
                                 new Image
                                 {
                                     FileId = "pictureFile",
@@ -472,9 +472,9 @@ public static class VariantCompleteModel
                                     FileId = "pictureFile",
                                     ImageType = ImageType.Other
                                 }
-                            },
-                            Hyperlinks = new[]
-                            {
+                            ],
+                            Hyperlinks =
+                            [
                                 new Hyperlink
                                 {
                                     Href = "href1",
@@ -488,13 +488,13 @@ public static class VariantCompleteModel
                                     CountryCode = "de",
                                     PlainText = "Hyperlink 2"
                                 }
-                            }
+                            ]
                         },
                         new ProductSerie
                         {
                             Id = "serie-2",
-                            Name = new[]
-                            {
+                            Name =
+                            [
                                 new Locale
                                 {
                                     Language = "en",
@@ -505,18 +505,18 @@ public static class VariantCompleteModel
                                     Language = "de",
                                     Text = "Variantenname 2"
                                 }
-                            }
+                            ]
                         }
-                    }
+                    ]
                 },
                 new Variant
                 {
                     Id = "variant-4",
                     SortOrder = 4,
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 4" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new GeometryReferences
@@ -529,15 +529,15 @@ public static class VariantCompleteModel
                             ModelGeometryReference = new ModelGeometryReference
                             {
                                 GeometryId = "geometry",
-                                EmitterReferences = new[]
-                                {
+                                EmitterReferences =
+                                [
                                     new GeometryEmitterReference
                                     {
                                         EmitterId = "leoEmitter",
                                         TargetModelType = TargetModelType.L3d,
                                         EmitterObjectExternalName = "Leo"
                                     }
-                                }
+                                ]
                             }
                         }
                     }
@@ -546,10 +546,10 @@ public static class VariantCompleteModel
                 {
                     Id = "variant-5",
                     SortOrder = 5,
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 5" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new GeometryReferences
@@ -562,19 +562,19 @@ public static class VariantCompleteModel
                             ModelGeometryReference = new ModelGeometryReference
                             {
                                 GeometryId = "geometry",
-                                EmitterReferences = new[]
-                                {
+                                EmitterReferences =
+                                [
                                     new GeometryEmitterReference
                                     {
                                         EmitterId = "leoEmitter",
                                         EmitterObjectExternalName = "Leo"
                                     }
-                                }
+                                ]
                             }
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

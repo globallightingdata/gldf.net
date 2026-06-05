@@ -38,7 +38,7 @@ public class GldfXmlSchemaFactoryTests
             stringWriter.ToString().Should().Contain(@"xs:schema version=""1.0.0-rc.3""");
         }
     }
-    
+
     [Test]
     public void GetEmbeddedXmlSchema_ShouldReturnExpecteSchema_WhenKnownFormatVersionParameter()
     {

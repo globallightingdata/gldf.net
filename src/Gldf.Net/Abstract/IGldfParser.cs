@@ -7,17 +7,17 @@ namespace Gldf.Net.Abstract;
 
 public interface IGldfParser
 {
-    RootTyped ParseFromXml(string xml);
+    public RootTyped ParseFromXml(string xml);
 
-    RootTyped ParseFromXmlFile(string xmlFilePath);
+    public RootTyped ParseFromXmlFile(string xmlFilePath);
 
-    RootTyped ParseFromXmlStream(Stream xmlStream, bool leaveOpen);
+    public RootTyped ParseFromXmlStream(Stream xmlStream, bool leaveOpen);
 
-    RootTyped ParseFromRoot(Root root);
+    public RootTyped ParseFromRoot(Root root);
 
-    RootTyped ParseFromGldf(GldfContainer gldf);
+    public RootTyped ParseFromGldf(GldfContainer gldf);
 
-    RootTyped ParseFromGldfFile(string gldfFilePath);
+    public RootTyped ParseFromGldfFile(string gldfFilePath);
 
-    RootTyped ParseFromGldfStream(Stream zipStream, bool leaveOpen);
+    public RootTyped ParseFromGldfStream(Stream zipStream, bool leaveOpen);
 }

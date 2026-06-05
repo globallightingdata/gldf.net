@@ -38,7 +38,7 @@ public class GldfContainerReadTests
             .Throw<ArgumentNullException>()
             .WithMessage("Value cannot be null. (Parameter 'gldfFilePath')");
     }
-    
+
     [Test]
     public void ReadFromStream_ShouldThrow_When_FilePathParameter_IsNull()
     {
@@ -58,7 +58,7 @@ public class GldfContainerReadTests
             .Throw<ArgumentNullException>()
             .WithMessage("Value cannot be null. (Parameter 'settings')");
     }
-    
+
     [Test]
     public void ReadFromStream_ShouldThrow_When_SettingsParameter_IsNull()
     {
@@ -82,7 +82,7 @@ public class GldfContainerReadTests
 
         gldfContainer.Product.Should().BeNull();
     }
-    
+
     [Test]
     public void ReadFromStream_EmptyContainer_ShouldReturnNull()
     {
@@ -104,7 +104,7 @@ public class GldfContainerReadTests
             .WithMessage($"Failed to read GldfContainer from '{_tempFile}'*")
             .WithInnerException<InvalidDataException>();
     }
-    
+
     [Test]
     public void ReadFromStream_InvalidContainer_ShouldThrow_UnreadableContainerException()
     {
@@ -127,7 +127,7 @@ public class GldfContainerReadTests
 
         container.Product.Should().BeEquivalentTo(expectedModel);
     }
-    
+
     [Test]
     public void ReadFromStream_Should_ReadAndDeserialize_ProductXml()
     {
@@ -151,7 +151,7 @@ public class GldfContainerReadTests
 
         container.Product.Should().BeNull();
     }
-    
+
     [Test]
     public void ReadFromStream_WithSkipProductSetting_Should_SkipRoot()
     {
@@ -175,7 +175,7 @@ public class GldfContainerReadTests
 
         container.Assets.All.Should().BeEmpty();
     }
-    
+
     [Test]
     public void ReadFromStream_WithSkipFilesSetting_ShouldReturn_EmptyAssets()
     {
@@ -184,7 +184,7 @@ public class GldfContainerReadTests
         using var stream = new MemoryStream(gldfBytesWithHeader);
 
         var container = _gldfContainerReader.ReadFromGldfStream(stream, false, settings);
-        
+
         container.Assets.All.Should().BeEmpty();
     }
 
@@ -200,7 +200,7 @@ public class GldfContainerReadTests
         container.Assets.All.Should().OnlyContain(f => !string.IsNullOrWhiteSpace(f.FileName));
         container.Assets.All.Should().NotContain(f => f.Bytes.Length > 0);
     }
-    
+
     [Test]
     public void ReadFromStream_WithFilesNamesOnlySetting_ShouldReturn_AssetsWithoutContent()
     {
@@ -225,7 +225,7 @@ public class GldfContainerReadTests
 
         container.MetaInformation.Should().BeNull();
     }
-    
+
     [Test]
     public void ReadFromStream_WithSkipMetaInfoSetting_ShouldReturnNull()
     {
@@ -271,7 +271,7 @@ public class GldfContainerReadTests
 
         container.MetaInformation.Should().BeNull();
     }
-    
+
     [Test]
     public void ReadFromStream_Should_ReturnEmptyMetaInfo_WhenMissingInContainer()
     {
@@ -295,7 +295,7 @@ public class GldfContainerReadTests
 
         container.MetaInformation.Should().BeEquivalentTo(metaInformation);
     }
-    
+
     [Test]
     public void ReadFromStream_Should_ReadAndDeserialize_MetaInfo()
     {
@@ -329,7 +329,7 @@ public class GldfContainerReadTests
         container.Assets.Symbols.Should().ContainEquivalentOf(new ContainerFile("symbol.svg", new byte[10]));
         container.Assets.Other.Should().ContainEquivalentOf(new ContainerFile("project.c4d", new byte[11]));
     }
-    
+
     [Test]
     public void ReadFromStream_Should_ReadAndDeserialize_Assets()
     {
@@ -363,7 +363,7 @@ public class GldfContainerReadTests
         container.Assets.All.Should().NotContain(file => file.FileName == "other.txt");
         container.Assets.All.Should().NotContainNulls();
     }
-    
+
     [Test]
     public void ReadFromStream_Should_Ignore_UnknownFiles()
     {

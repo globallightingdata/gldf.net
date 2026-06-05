@@ -1,14 +1,12 @@
 ﻿using Gldf.Net.Domain.Typed;
 using Gldf.Net.Domain.Typed.Definition;
 using Gldf.Net.Domain.Typed.Definition.Types;
-using Gldf.Net.Domain.Typed.Global;
 using Gldf.Net.Domain.Typed.Head;
 using Gldf.Net.Domain.Typed.Head.Types;
 using Gldf.Net.Domain.Typed.Product;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using Gldf.Net.Domain.Xml.Product.Types;
 using System;
-using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.Emitters;
 
@@ -26,8 +24,8 @@ public static class EmitterMultiCompleteTyped
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new List<GldfFileTyped>
-            {
+            Files =
+            [
                 new()
                 {
                     Id = "photometryFile",
@@ -36,9 +34,9 @@ public static class EmitterMultiCompleteTyped
                     FileName = "photometry.ldt",
                     Uri = "https://example.org/photometry.ldt"
                 }
-            },
-            Photometries = new List<PhotometryTyped>
-            {
+            ],
+            Photometries =
+            [
                 new()
                 {
                     Id = "photometry",
@@ -51,60 +49,60 @@ public static class EmitterMultiCompleteTyped
                         Uri = "https://example.org/photometry.ldt"
                     }
                 }
-            },
-            Spectrums = new List<SpectrumTyped>
-            {
+            ],
+            Spectrums =
+            [
                 new()
                 {
                     Id = "spectrum",
-                    Intensities = new SpectrumIntensityTyped[]
-                    {
+                    Intensities =
+                    [
                         new()
                         {
                             Wavelength = 380,
                             Intensity = 0.8
                         }
-                    }
+                    ]
                 }
-            },
-            MultiChannelLightSources = new List<MultiChannelLightSourceTyped>
-            {
+            ],
+            MultiChannelLightSources =
+            [
                 new()
                 {
                     Id = "multiChannelLightSource",
-                    Name = new LocaleTyped[]
-                    {
+                    Name =
+                    [
                         new()
                         {
                             Language = "en",
                             Text = "RGB module"
                         }
-                    },
+                    ],
                     RatedInputPower = 30,
-                    Channels = new ChannelTyped[]
-                    {
+                    Channels =
+                    [
                         new()
                         {
                             Type = ChannelType.NeutralWhite,
-                            DisplayName = new LocaleTyped[]
-                            {
+                            DisplayName =
+                            [
                                 new()
                                 {
                                     Language = "en",
                                     Text = "Neutral-White"
                                 }
-                            },
+                            ],
                             Spectrum = new SpectrumTyped
                             {
                                 Id = "spectrum",
-                                Intensities = new SpectrumIntensityTyped[]
-                                {
+                                Intensities =
+                                [
                                     new()
                                     {
                                         Wavelength = 380,
                                         Intensity = 0.8
                                     }
-                                }
+                                ]
                             },
                             Photometry = new PhotometryTyped
                             {
@@ -120,36 +118,36 @@ public static class EmitterMultiCompleteTyped
                             },
                             RatedLuminousFlux = 150
                         }
-                    }
+                    ]
                 }
-            },
-            ControlGears = new List<ControlGearTyped>
-            {
+            ],
+            ControlGears =
+            [
                 new()
                 {
                     Id = "controlGear",
-                    Name = new LocaleTyped[]
-                    {
+                    Name =
+                    [
                         new()
                         {
                             Language = "en",
                             Text = "Electronic ballast"
                         }
-                    }
+                    ]
                 }
-            },
-            Emitter = new List<EmitterTyped>
-            {
+            ],
+            Emitter =
+            [
                 new()
                 {
                     Id = "emitter-1",
-                    MultiChannelEmitterOptions = new[]
-                    {
+                    MultiChannelEmitterOptions =
+                    [
                         new MultiChannelLightEmitterTyped
                         {
                             EmergencyBehaviour = EmergencyBehaviour.EmergencyOnly,
-                            Name = new LocaleTyped[]
-                            {
+                            Name =
+                            [
                                 new()
                                 {
                                     Language = "en",
@@ -160,7 +158,7 @@ public static class EmitterMultiCompleteTyped
                                     Language = "de",
                                     Text = "Lichtaustritt RGB 1"
                                 }
-                            },
+                            ],
                             Rotation = new RotationTyped
                             {
                                 X = 1,
@@ -171,39 +169,39 @@ public static class EmitterMultiCompleteTyped
                             MultiChannelLightSource = new MultiChannelLightSourceTyped
                             {
                                 Id = "multiChannelLightSource",
-                                Name = new LocaleTyped[]
-                                {
+                                Name =
+                                [
                                     new()
                                     {
                                         Language = "en",
                                         Text = "RGB module"
                                     }
-                                },
+                                ],
                                 RatedInputPower = 30,
-                                Channels = new ChannelTyped[]
-                                {
+                                Channels =
+                                [
                                     new()
                                     {
                                         Type = ChannelType.NeutralWhite,
-                                        DisplayName = new LocaleTyped[]
-                                        {
+                                        DisplayName =
+                                        [
                                             new()
                                             {
                                                 Language = "en",
                                                 Text = "Neutral-White"
                                             }
-                                        },
+                                        ],
                                         Spectrum = new SpectrumTyped
                                         {
                                             Id = "spectrum",
-                                            Intensities = new SpectrumIntensityTyped[]
-                                            {
+                                            Intensities =
+                                            [
                                                 new()
                                                 {
                                                     Wavelength = 380,
                                                     Intensity = 0.8
                                                 }
-                                            }
+                                            ]
                                         },
                                         Photometry = new PhotometryTyped
                                         {
@@ -219,67 +217,68 @@ public static class EmitterMultiCompleteTyped
                                         },
                                         RatedLuminousFlux = 150
                                     }
-                                }
+                                ]
                             },
                             ControlGear = new ControlGearTyped
                             {
                                 Id = "controlGear",
-                                Name = new LocaleTyped[]
-                                {
+                                Name =
+                                [
                                     new()
                                     {
                                         Language = "en",
                                         Text = "Electronic ballast"
                                     }
-                                }
+                                ]
                             }
                         }
-                    }
+                    ]
                 },
+
                 new()
                 {
                     Id = "emitter-2",
-                    MultiChannelEmitterOptions = new[]
-                    {
+                    MultiChannelEmitterOptions =
+                    [
                         new MultiChannelLightEmitterTyped
                         {
                             EmergencyBehaviour = EmergencyBehaviour.Combined,
                             MultiChannelLightSource = new MultiChannelLightSourceTyped
                             {
                                 Id = "multiChannelLightSource",
-                                Name = new LocaleTyped[]
-                                {
+                                Name =
+                                [
                                     new()
                                     {
                                         Language = "en",
                                         Text = "RGB module"
                                     }
-                                },
+                                ],
                                 RatedInputPower = 30,
-                                Channels = new ChannelTyped[]
-                                {
+                                Channels =
+                                [
                                     new()
                                     {
                                         Type = ChannelType.NeutralWhite,
-                                        DisplayName = new LocaleTyped[]
-                                        {
+                                        DisplayName =
+                                        [
                                             new()
                                             {
                                                 Language = "en",
                                                 Text = "Neutral-White"
                                             }
-                                        },
+                                        ],
                                         Spectrum = new SpectrumTyped
                                         {
                                             Id = "spectrum",
-                                            Intensities = new SpectrumIntensityTyped[]
-                                            {
+                                            Intensities =
+                                            [
                                                 new()
                                                 {
                                                     Wavelength = 380,
                                                     Intensity = 0.8
                                                 }
-                                            }
+                                            ]
                                         },
                                         Photometry = new PhotometryTyped
                                         {
@@ -295,68 +294,69 @@ public static class EmitterMultiCompleteTyped
                                         },
                                         RatedLuminousFlux = 150
                                     }
-                                }
+                                ]
                             },
                             ControlGear = new ControlGearTyped
                             {
                                 Id = "controlGear",
-                                Name = new LocaleTyped[]
-                                {
+                                Name =
+                                [
                                     new()
                                     {
                                         Language = "en",
                                         Text = "Electronic ballast"
                                     }
-                                }
+                                ]
                             },
                             ControlGearCount = 2
                         }
-                    }
+                    ]
                 },
+
                 new()
                 {
                     Id = "emitter-3",
-                    MultiChannelEmitterOptions = new[]
-                    {
+                    MultiChannelEmitterOptions =
+                    [
                         new MultiChannelLightEmitterTyped
                         {
                             EmergencyBehaviour = EmergencyBehaviour.None,
                             MultiChannelLightSource = new MultiChannelLightSourceTyped
                             {
                                 Id = "multiChannelLightSource",
-                                Name = new LocaleTyped[]
-                                {
+                                Name =
+                                [
                                     new()
                                     {
                                         Language = "en",
                                         Text = "RGB module"
                                     }
-                                },
+                                ],
                                 RatedInputPower = 30,
-                                Channels = new ChannelTyped[]
-                                {
+                                Channels =
+                                [
                                     new()
                                     {
                                         Type = ChannelType.NeutralWhite,
-                                        DisplayName = new LocaleTyped[]
-                                        {
+                                        DisplayName =
+                                        [
                                             new()
                                             {
                                                 Language = "en",
                                                 Text = "Neutral-White"
                                             }
-                                        },
+                                        ],
                                         Spectrum = new SpectrumTyped
                                         {
                                             Id = "spectrum",
-                                            Intensities = new SpectrumIntensityTyped[]
-                                            {
+                                            Intensities =
+                                            [
                                                 new()
                                                 {
                                                     Wavelength = 380,
                                                     Intensity = 0.8
                                                 }
-                                            }
+                                            ]
                                         },
                                         Photometry = new PhotometryTyped
                                         {
@@ -372,7 +372,7 @@ public static class EmitterMultiCompleteTyped
                                         },
                                         RatedLuminousFlux = 150
                                     }
-                                }
+                                ]
                             }
                         },
                         new MultiChannelLightEmitterTyped
@@ -380,39 +380,39 @@ public static class EmitterMultiCompleteTyped
                             MultiChannelLightSource = new MultiChannelLightSourceTyped
                             {
                                 Id = "multiChannelLightSource",
-                                Name = new LocaleTyped[]
-                                {
+                                Name =
+                                [
                                     new()
                                     {
                                         Language = "en",
                                         Text = "RGB module"
                                     }
-                                },
+                                ],
                                 RatedInputPower = 30,
-                                Channels = new ChannelTyped[]
-                                {
+                                Channels =
+                                [
                                     new()
                                     {
                                         Type = ChannelType.NeutralWhite,
-                                        DisplayName = new LocaleTyped[]
-                                        {
+                                        DisplayName =
+                                        [
                                             new()
                                             {
                                                 Language = "en",
                                                 Text = "Neutral-White"
                                             }
-                                        },
+                                        ],
                                         Spectrum = new SpectrumTyped
                                         {
                                             Id = "spectrum",
-                                            Intensities = new SpectrumIntensityTyped[]
-                                            {
+                                            Intensities =
+                                            [
                                                 new()
                                                 {
                                                     Wavelength = 380,
                                                     Intensity = 0.8
                                                 }
-                                            }
+                                            ]
                                         },
                                         Photometry = new PhotometryTyped
                                         {
@@ -428,64 +428,64 @@ public static class EmitterMultiCompleteTyped
                                         },
                                         RatedLuminousFlux = 150
                                     }
-                                }
+                                ]
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitionsTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new LocaleTyped[]
-                {
+                ProductNumber =
+                [
                     new()
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new LocaleTyped[]
-                {
+                ],
+                Name =
+                [
                     new()
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new List<VariantTyped>
-            {
+            Variants =
+            [
                 new()
                 {
                     Id = "variant-1",
-                    Name = new LocaleTyped[]
-                    {
-                        new() { Language = "en", Text = "Variant 1" }
-                    },
-                    ProductNumber = new LocaleTyped[]
-                    {
+                    Name =
+                    [
+                        new() {Language = "en", Text = "Variant 1"}
+                    ],
+                    ProductNumber =
+                    [
                         new()
                         {
                             Language = "en",
                             Text = "Product number"
                         }
-                    },
+                    ],
                     Geometry = new GeometryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
                             Id = "emitter-1",
-                            MultiChannelEmitterOptions = new[]
-                            {
+                            MultiChannelEmitterOptions =
+                            [
                                 new MultiChannelLightEmitterTyped
                                 {
                                     EmergencyBehaviour = EmergencyBehaviour.EmergencyOnly,
-                                    Name = new LocaleTyped[]
-                                    {
+                                    Name =
+                                    [
                                         new()
                                         {
                                             Language = "en",
@@ -496,7 +496,7 @@ public static class EmitterMultiCompleteTyped
                                             Language = "de",
                                             Text = "Lichtaustritt RGB 1"
                                         }
-                                    },
+                                    ],
                                     Rotation = new RotationTyped
                                     {
                                         X = 1,
@@ -507,39 +507,39 @@ public static class EmitterMultiCompleteTyped
                                     MultiChannelLightSource = new MultiChannelLightSourceTyped
                                     {
                                         Id = "multiChannelLightSource",
-                                        Name = new LocaleTyped[]
-                                        {
+                                        Name =
+                                        [
                                             new()
                                             {
                                                 Language = "en",
                                                 Text = "RGB module"
                                             }
-                                        },
+                                        ],
                                         RatedInputPower = 30,
-                                        Channels = new ChannelTyped[]
-                                        {
+                                        Channels =
+                                        [
                                             new()
                                             {
                                                 Type = ChannelType.NeutralWhite,
-                                                DisplayName = new LocaleTyped[]
-                                                {
+                                                DisplayName =
+                                                [
                                                     new()
                                                     {
                                                         Language = "en",
                                                         Text = "Neutral-White"
                                                     }
-                                                },
+                                                ],
                                                 Spectrum = new SpectrumTyped
                                                 {
                                                     Id = "spectrum",
-                                                    Intensities = new SpectrumIntensityTyped[]
-                                                    {
+                                                    Intensities =
+                                                    [
                                                         new()
                                                         {
                                                             Wavelength = 380,
                                                             Intensity = 0.8
                                                         }
-                                                    }
+                                                    ]
                                                 },
                                                 Photometry = new PhotometryTyped
                                                 {
@@ -555,26 +555,26 @@ public static class EmitterMultiCompleteTyped
                                                 },
                                                 RatedLuminousFlux = 150
                                             }
-                                        }
+                                        ]
                                     },
                                     ControlGear = new ControlGearTyped
                                     {
                                         Id = "controlGear",
-                                        Name = new LocaleTyped[]
-                                        {
+                                        Name =
+                                        [
                                             new()
                                             {
                                                 Language = "en",
                                                 Text = "Electronic ballast"
                                             }
-                                        }
+                                        ]
                                     }
                                 }
-                            }
+                            ]
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

@@ -13,7 +13,7 @@ public static class MarketingExtensions
             Applications = marketing.Applications
         };
     }
-    
+
     public static void Update(this MarketingTyped marketing, MarketingTyped updateFrom)
     {
         marketing.Applications ??= updateFrom.Applications;

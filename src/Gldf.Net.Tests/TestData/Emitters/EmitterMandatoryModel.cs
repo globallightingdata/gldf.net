@@ -24,8 +24,8 @@ public static class EmitterMandatoryModel
         },
         GeneralDefinitions = new GeneralDefinitions
         {
-            Files = new[]
-            {
+            Files =
+            [
                 new GldfFile
                 {
                     Id = "eulumdat",
@@ -40,9 +40,9 @@ public static class EmitterMandatoryModel
                     Type = FileType.Url,
                     File = "https://example.org/sens.xml"
                 }
-            },
-            Sensors = new[]
-            {
+            ],
+            Sensors =
+            [
                 new Sensor
                 {
                     Id = "sensor",
@@ -51,9 +51,9 @@ public static class EmitterMandatoryModel
                         FileId = "sensorXml"
                     }
                 }
-            },
-            Photometries = new[]
-            {
+            ],
+            Photometries =
+            [
                 new Photometry
                 {
                     Id = "photometry",
@@ -62,62 +62,62 @@ public static class EmitterMandatoryModel
                         FileId = "eulumdat"
                     }
                 }
-            },
-            Spectrums = new[]
-            {
+            ],
+            Spectrums =
+            [
                 new Spectrum
                 {
                     Id = "spectrum",
-                    Intensities = new[]
-                    {
+                    Intensities =
+                    [
                         new SpectrumIntensity
                         {
                             Wavelength = 380,
                             Intensity = 0.8
                         }
-                    }
+                    ]
                 }
-            },
-            LightSources = new LightSourceBase[]
-            {
+            ],
+            LightSources =
+            [
                 new FixedLightSource
                 {
                     Id = "fixedLightSource",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale
                         {
                             Language = "en",
                             Text = "FixedLightSource"
                         }
-                    },
+                    ],
                     RatedInputPower = 10
                 },
                 new MultiChannelLightSource
                 {
                     Id = "multiChannelLightSource",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale
                         {
                             Language = "en",
                             Text = "RGB module"
                         }
-                    },
+                    ],
                     RatedInputPower = 10,
-                    Channels = new[]
-                    {
+                    Channels =
+                    [
                         new Channel
                         {
                             Type = ChannelType.Red,
-                            DisplayName = new[]
-                            {
+                            DisplayName =
+                            [
                                 new Locale
                                 {
                                     Language = "en",
                                     Text = "Red channel"
                                 }
-                            },
+                            ],
                             SpectrumReference = new SpectrumReference
                             {
                                 SpectrumId = "spectrum"
@@ -128,18 +128,18 @@ public static class EmitterMandatoryModel
                             },
                             RatedLuminousFlux = 80
                         }
-                    },
+                    ],
                     Maintenance = null,
                     EmergencyBallastLumenFactor = null
                 }
-            },
-            Emitters = new[]
-            {
+            ],
+            Emitters =
+            [
                 new Emitter
                 {
                     Id = "emitter-1",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new ChangeableLightEmitter
                         {
                             PhotometryReference = new PhotometryReference
@@ -147,13 +147,13 @@ public static class EmitterMandatoryModel
                                 PhotometryId = "photometry"
                             }
                         }
-                    }
+                    ]
                 },
                 new Emitter
                 {
                     Id = "emitter-2",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new FixedLightEmitter
                         {
                             PhotometryReference = new PhotometryReference
@@ -166,13 +166,13 @@ public static class EmitterMandatoryModel
                             },
                             RatedLuminousFlux = 50
                         }
-                    }
+                    ]
                 },
                 new Emitter
                 {
                     Id = "emitter-3",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new SensorEmitter
                         {
                             SensorReference = new SensorReference
@@ -180,13 +180,13 @@ public static class EmitterMandatoryModel
                                 SensorId = "sensor"
                             }
                         }
-                    }
+                    ]
                 },
                 new Emitter
                 {
                     Id = "emitter-4",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new MultiChannelLightEmitter
                         {
                             LightSourceReference = new MultiChannelLightSourceReference
@@ -194,41 +194,41 @@ public static class EmitterMandatoryModel
                                 MultiChannelLightSourceId = "multiChannelLightSource"
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitions
         {
             ProductMetaData = new ProductMetaData
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new[]
-            {
+            Variants =
+            [
                 new Variant
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 1" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new EmitterReference
@@ -237,7 +237,7 @@ public static class EmitterMandatoryModel
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

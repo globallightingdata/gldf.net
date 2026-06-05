@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using Gldf.Net.Domain.Xml;
 using Gldf.Net.Domain.Xml.Head.Types;
 using Gldf.Net.Tests.TestHelper;
@@ -13,8 +14,14 @@ using System.Threading.Tasks;
 namespace Gldf.Net.Tests.XmlHelperTests;
 
 [TestFixture]
-public class GldfEmbeddedXsdLoaderTests
+public sealed class GldfEmbeddedXsdLoaderTests : IDisposable
 {
+    private readonly HttpClient _httpClient;
+
+    public GldfEmbeddedXsdLoaderTests()
+    {
+        _httpClient = new HttpClient();
+    }
     [Test]
     public void KnownVersions_ShouldContainAllEmbeddedXsds()
     {
@@ -34,9 +41,8 @@ public class GldfEmbeddedXsdLoaderTests
     public void LoadXsd_ShouldLoadAllKnownVersions()
     {
         GldfEmbeddedXsdLoader.KnownVersions.Should().HaveCount(4);
-        foreach (var knownVersion in GldfEmbeddedXsdLoader.KnownVersions)
+        foreach (var xsd in GldfEmbeddedXsdLoader.KnownVersions.Select(GldfEmbeddedXsdLoader.Load))
         {
-            var xsd = GldfEmbeddedXsdLoader.Load(knownVersion);
             const string expectedXsdRow = @"<?xml version=""1.0"" encoding=""UTF-8""?>";
             xsd.Should().StartWith(expectedXsdRow);
         }
@@ -52,11 +58,10 @@ public class GldfEmbeddedXsdLoaderTests
     [Test]
     public async Task LoadXsd_ShouldBeEquivalentTo_NewestVersionOnline_WhenLoadMaxVersion()
     {
-        using var httpClient = new HttpClient();
         var newestEmbeddedVersion = GldfEmbeddedXsdLoader.KnownVersions.Max(FormatVersionComparer.Instance);
         var newestEmbeddedXsd = GldfEmbeddedXsdLoader.Load(newestEmbeddedVersion);
         var xsdSchemaLocation = new Root().SchemaLocation;
-        var xsdSchemaOnline = await httpClient.GetStringAsync(xsdSchemaLocation);
+        var xsdSchemaOnline = await _httpClient.GetStringAsync(xsdSchemaLocation);
         newestEmbeddedXsd.ShouldBe().EquivalentTo(xsdSchemaOnline);
     }
 
@@ -68,11 +73,16 @@ public class GldfEmbeddedXsdLoaderTests
         xsd.Should().Contain(@"version=""1.0.0-rc.3""");
     }
 
-    private static IEnumerable<TestCaseData> ExpectedXsdTestData => new[]
-    {
+    private static IEnumerable<TestCaseData> ExpectedXsdTestData =>
+    [
         new TestCaseData(new FormatVersion(0, 9, 9), @"version=""0.9-beta.9"""),
         new TestCaseData(new FormatVersion(1, 0, 1), @"version=""1.0.0-rc.1"""),
         new TestCaseData(new FormatVersion(1, 0, 2), @"version=""1.0.0-rc.2"""),
         new TestCaseData(new FormatVersion(1, 0, 3), @"version=""1.0.0-rc.3""")
-    };
+    ];
+
+    public void Dispose()
+    {
+        _httpClient?.Dispose();
+    }
 }

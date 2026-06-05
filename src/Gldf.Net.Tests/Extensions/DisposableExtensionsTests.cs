@@ -14,12 +14,12 @@ public class DisposableExtensionsTests
     {
         var testDisposable = new TestDisposable(failOnDispose);
         var act = new Action(() => testDisposable.DisposeSafe());
-        
+
         act.Should().NotThrow();
         testDisposable.IsDispased.Should().BeTrue();
     }
 
-    public class TestDisposable : IDisposable
+    public sealed class TestDisposable : IDisposable
     {
         private readonly bool _failOnDispose;
 
@@ -29,11 +29,11 @@ public class DisposableExtensionsTests
         }
 
         public bool IsDispased { get; set; }
-        
+
         public void Dispose()
         {
             IsDispased = true;
-            if(_failOnDispose) throw new Exception();
+            if (_failOnDispose) throw new Exception();
         }
     }
 }

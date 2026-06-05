@@ -7,7 +7,6 @@ using Gldf.Net.Domain.Typed.Head.Types;
 using Gldf.Net.Domain.Typed.Product;
 using Gldf.Net.Domain.Xml.Definition.Types;
 using System;
-using System.Collections.Generic;
 
 namespace Gldf.Net.Tests.TestData.Sensors;
 
@@ -25,8 +24,8 @@ public static class SensorsCompleteTyped
         },
         GeneralDefinitions = new GeneralDefinitionsTyped
         {
-            Files = new List<GldfFileTyped>
-            {
+            Files =
+            [
                 new()
                 {
                     Id = "sensorFile",
@@ -35,9 +34,9 @@ public static class SensorsCompleteTyped
                     FileName = "sensor.sensldt",
                     Uri = "https://example.org/sensor.sensldt"
                 }
-            },
-            Sensors = new List<SensorTyped>
-            {
+            ],
+            Sensors =
+            [
                 new()
                 {
                     Id = "sensor",
@@ -49,37 +48,37 @@ public static class SensorsCompleteTyped
                         FileName = "sensor.sensldt",
                         Uri = "https://example.org/sensor.sensldt"
                     },
-                    DetectorCharacteristics = new[]
-                    {
+                    DetectorCharacteristics =
+                    [
                         DetectorCharacteristic.Round,
                         DetectorCharacteristic.Square,
                         DetectorCharacteristic.Other
-                    },
-                    DetectionMethods = new[]
-                    {
+                    ],
+                    DetectionMethods =
+                    [
                         DetectionMethod.PassiveInfrared,
                         DetectionMethod.HighFrequency,
                         DetectionMethod.Microwave,
                         DetectionMethod.Ultrasonic,
                         DetectionMethod.Camera,
                         DetectionMethod.Other
-                    },
-                    DetectorTypes = new[]
-                    {
+                    ],
+                    DetectorTypes =
+                    [
                         DetectorType.MotionDetector,
                         DetectorType.PresenceDetector,
                         DetectorType.DaylightDetector,
                         DetectorType.Other
-                    }
+                    ]
                 }
-            },
-            Emitter = new List<EmitterTyped>
-            {
+            ],
+            Emitter =
+            [
                 new()
                 {
                     Id = "emitter",
-                    SensorEmitterOptions = new[]
-                    {
+                    SensorEmitterOptions =
+                    [
                         new SensorEmitterTyped
                         {
                             Sensor = new SensorTyped
@@ -93,84 +92,84 @@ public static class SensorsCompleteTyped
                                     FileName = "sensor.sensldt",
                                     Uri = "https://example.org/sensor.sensldt"
                                 },
-                                DetectorCharacteristics = new[]
-                                {
+                                DetectorCharacteristics =
+                                [
                                     DetectorCharacteristic.Round,
                                     DetectorCharacteristic.Square,
                                     DetectorCharacteristic.Other
-                                },
-                                DetectionMethods = new[]
-                                {
+                                ],
+                                DetectionMethods =
+                                [
                                     DetectionMethod.PassiveInfrared,
                                     DetectionMethod.HighFrequency,
                                     DetectionMethod.Microwave,
                                     DetectionMethod.Ultrasonic,
                                     DetectionMethod.Camera,
                                     DetectionMethod.Other
-                                },
-                                DetectorTypes = new[]
-                                {
+                                ],
+                                DetectorTypes =
+                                [
                                     DetectorType.MotionDetector,
                                     DetectorType.PresenceDetector,
                                     DetectorType.DaylightDetector,
                                     DetectorType.Other
-                                }
+                                ]
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitionsTyped
         {
             ProductMetaData = new ProductMetaDataTyped
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new LocaleTyped
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new List<VariantTyped>
-            {
+            Variants =
+            [
                 new()
                 {
                     Id = "variant-1",
-                    ProductNumber = new[]
-                    {
+                    ProductNumber =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "Product number"
                         }
-                    },
-                    Name = new[]
-                    {
+                    ],
+                    Name =
+                    [
                         new LocaleTyped
                         {
                             Language = "en",
                             Text = "Variant 1"
                         }
-                    },
+                    ],
                     Geometry = new GeometryTyped
                     {
                         EmitterOnly = new EmitterTyped
                         {
                             Id = "emitter",
-                            SensorEmitterOptions = new[]
-                            {
+                            SensorEmitterOptions =
+                            [
                                 new SensorEmitterTyped
                                 {
                                     Sensor = new SensorTyped
@@ -184,35 +183,35 @@ public static class SensorsCompleteTyped
                                             FileName = "sensor.sensldt",
                                             Uri = "https://example.org/sensor.sensldt"
                                         },
-                                        DetectorCharacteristics = new[]
-                                        {
+                                        DetectorCharacteristics =
+                                        [
                                             DetectorCharacteristic.Round,
                                             DetectorCharacteristic.Square,
                                             DetectorCharacteristic.Other
-                                        },
-                                        DetectionMethods = new[]
-                                        {
+                                        ],
+                                        DetectionMethods =
+                                        [
                                             DetectionMethod.PassiveInfrared,
                                             DetectionMethod.HighFrequency,
                                             DetectionMethod.Microwave,
                                             DetectionMethod.Ultrasonic,
                                             DetectionMethod.Camera,
                                             DetectionMethod.Other
-                                        },
-                                        DetectorTypes = new[]
-                                        {
+                                        ],
+                                        DetectorTypes =
+                                        [
                                             DetectorType.MotionDetector,
                                             DetectorType.PresenceDetector,
                                             DetectorType.DaylightDetector,
                                             DetectorType.Other
-                                        }
+                                        ]
                                     }
                                 }
-                            }
+                            ]
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }

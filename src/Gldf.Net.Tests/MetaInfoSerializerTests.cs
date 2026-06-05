@@ -21,7 +21,7 @@ public class MetaInfoSerializerTests
     [SetUp]
     public void SetUp()
     {
-        var writerSettings = new XmlWriterSettings { Indent = false, Encoding = Encoding.UTF32 };
+        var writerSettings = new XmlWriterSettings { Indent = false, Encoding = Encoding.Unicode };
         var readerSettings = new XmlReaderSettings { IgnoreWhitespace = true };
         _serializer = new MetaInfoSerializer();
         _serializerWithSettings = new MetaInfoSerializer(writerSettings, readerSettings);
@@ -43,7 +43,7 @@ public class MetaInfoSerializerTests
             .ThrowExactly<ArgumentNullException>()
             .WithMessage("Value cannot be null. (Parameter 'writerSettings')");
     }
-    
+
     [Test]
     public void Ctor_ShouldThrow_WhenReaderWriterSettingIsNull()
     {
@@ -78,7 +78,7 @@ public class MetaInfoSerializerTests
     [Test]
     public void SerializeToString_WithSettings_ShouldReturnExpectedXml()
     {
-        var expectedXml = EmbeddedXmlTestData.GetMetaInformationXml();
+        var expectedXml = EmbeddedXmlTestData.GetMetaInformationXmlWithSettings();
         var metaInformation = EmbeddedXmlTestData.GetMetaInformationModel();
 
         var xml = _serializerWithSettings.SerializeToXml(metaInformation);
@@ -121,7 +121,7 @@ public class MetaInfoSerializerTests
     [Test]
     public void SerializeToXmlFile_WithSettings_ShouldSaveExpectedXml()
     {
-        var expectedXml = EmbeddedXmlTestData.GetMetaInformationXml();
+        var expectedXml = EmbeddedXmlTestData.GetMetaInformationXmlWithSettings();
         var metaInformation = EmbeddedXmlTestData.GetMetaInformationModel();
 
         _serializerWithSettings.SerializeToXmlFile(metaInformation, _tempFile);

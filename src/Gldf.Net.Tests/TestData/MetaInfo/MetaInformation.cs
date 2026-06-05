@@ -1,5 +1,4 @@
 ﻿using Gldf.Net.Domain.Xml;
-using Gldf.Net.Domain.Xml.MetaInfo;
 
 namespace Gldf.Net.Tests.TestData.MetaInfo;
 
@@ -7,8 +6,8 @@ public class MetaInfo
 {
     public static MetaInformation MetaInformation => new()
     {
-        Properties = new Property[]
-        {
+        Properties =
+        [
             new()
             {
                 Name = "Acme-Signature",
@@ -19,6 +18,6 @@ public class MetaInfo
                 Name = "ExampleLLC-Signature",
                 Content = "5437af9d-18c4-485e-b396-1d3d6531fb29"
             }
-        }
+        ]
     };
 }

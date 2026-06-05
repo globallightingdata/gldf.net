@@ -17,7 +17,7 @@ public class Emitter
     public EmitterBase[] PossibleFittings { get; set; }
 
     public IEnumerable<ChangeableLightEmitter> GetChangeableLightEmitters() => PossibleFittings?.OfType<ChangeableLightEmitter>();
-        
+
     public IEnumerable<FixedLightEmitter> GetFixedLightEmitters() => PossibleFittings?.OfType<FixedLightEmitter>();
 
     public IEnumerable<MultiChannelLightEmitter> GetMultiChannelLightEmitters() => PossibleFittings?.OfType<MultiChannelLightEmitter>();

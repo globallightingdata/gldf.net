@@ -11,7 +11,7 @@ public class FixedLightSourceTyped : LightSourceBaseTyped
     public ColorInformationTyped ColorInformation { get; set; }
 
     public ImageFileTyped[] LightSourceImages { get; set; }
-    
+
     public LightSourceMaintenanceTyped Maintenance { get; set; }
 
     public bool? ZhagaStandard { get; set; }

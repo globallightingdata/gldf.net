@@ -24,8 +24,8 @@ public static class ChangeableCompleteModel
         },
         GeneralDefinitions = new GeneralDefinitions
         {
-            Files = new[]
-            {
+            Files =
+            [
                 new GldfFile
                 {
                     Id = "eulumdat",
@@ -48,9 +48,9 @@ public static class ChangeableCompleteModel
                     File = "https://example.org/image.jpg",
                     Language = "en"
                 }
-            },
-            Photometries = new[]
-            {
+            ],
+            Photometries =
+            [
                 new Photometry
                 {
                     Id = "photometry",
@@ -59,9 +59,9 @@ public static class ChangeableCompleteModel
                         FileId = "eulumdat"
                     }
                 }
-            },
-            Spectrums = new[]
-            {
+            ],
+            Spectrums =
+            [
                 new Spectrum
                 {
                     Id = "spectrum",
@@ -70,14 +70,14 @@ public static class ChangeableCompleteModel
                         FileId = "spectrumFile"
                     }
                 }
-            },
-            LightSources = new LightSourceBase[]
-            {
+            ],
+            LightSources =
+            [
                 new ChangeableLightSource
                 {
                     Id = "lightSource-1",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale
                         {
                             Language = "en",
@@ -88,9 +88,9 @@ public static class ChangeableCompleteModel
                             Language = "de",
                             Text = "Lichtquelle1"
                         }
-                    },
-                    Description = new[]
-                    {
+                    ],
+                    Description =
+                    [
                         new Locale
                         {
                             Language = "en",
@@ -101,7 +101,7 @@ public static class ChangeableCompleteModel
                             Language = "de",
                             Text = "Beschreibung"
                         }
-                    },
+                    ],
                     Manufacturer = "DIAL",
                     Gtin = "12345678",
                     RatedInputPower = 1,
@@ -121,17 +121,17 @@ public static class ChangeableCompleteModel
                         Default = 5
                     },
                     LightSourcePositionOfUsage = "LightSourcePositionOfUsage",
-                    EnergyLabels = new[]
-                    {
+                    EnergyLabels =
+                    [
                         new EnergyLabel { Region = "de", Label = "A+" },
                         new EnergyLabel { Region = "gb", Label = "A++" }
-                    },
+                    ],
                     SpectrumReference = new SpectrumReference { SpectrumId = "spectrum" },
                     ActivePowerTable = new ActivePowerTable
                     {
                         Type = ActivePowerTableType.Continuously,
-                        FluxFactor = new[]
-                        {
+                        FluxFactor =
+                        [
                             new FluxFactor
                             {
                                 InputPower = 0.1,
@@ -148,7 +148,7 @@ public static class ChangeableCompleteModel
                                 StroboscopicEffectsSvm = "stroboscopic 2",
                                 Description = "Description 2"
                             }
-                        }
+                        ]
                     },
                     ColorInformation = new ColorInformation
                     {
@@ -180,14 +180,14 @@ public static class ChangeableCompleteModel
                         },
                         MelanopicFactor = 0.8
                     },
-                    LightSourceImages = new[]
-                    {
+                    LightSourceImages =
+                    [
                         new Image
                         {
                             FileId = "image",
                             ImageType = ImageType.ProductPicture
                         }
-                    },
+                    ],
                     Zvei = "ZVEI",
                     Socket = "Socket",
                     Ilcos = "ILCOS",
@@ -208,14 +208,14 @@ public static class ChangeableCompleteModel
                 new ChangeableLightSource
                 {
                     Id = "lightSource-2",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale
                         {
                             Language = "en",
                             Text = "LightSource2"
                         }
-                    },
+                    ],
                     RatedInputPower = 10,
                     RatedInputVoltage = new Voltage
                     {
@@ -234,8 +234,8 @@ public static class ChangeableCompleteModel
                         LifetimeSpecified = true,
                         MaintenanceType = new CieLampMaintenanceFactors
                         {
-                            CieLampMaintenanceFactor = new[]
-                            {
+                            CieLampMaintenanceFactor =
+                            [
                                 new CieLampMaintenanceFactor
                                 {
                                     BurningTime = 13,
@@ -248,21 +248,21 @@ public static class ChangeableCompleteModel
                                     LampLumenMaintenanceFactor = 0.17,
                                     LampSurvivalFactor = 0.18
                                 }
-                            }
+                            ]
                         }
                     }
                 },
                 new ChangeableLightSource
                 {
                     Id = "lightSource-3",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale
                         {
                             Language = "en",
                             Text = "LightSource3"
                         }
-                    },
+                    ],
                     RatedInputPower = 19,
                     RatedInputVoltage = new Voltage
                     {
@@ -286,20 +286,20 @@ public static class ChangeableCompleteModel
                 new ChangeableLightSource
                 {
                     Id = "lightSource-4",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale
                         {
                             Language = "en",
                             Text = "LightSource4"
                         }
-                    },
+                    ],
                     RatedInputPower = 21,
                     RatedLuminousFlux = 22
                 }
-            },
-            Equipments = new []
-            {
+            ],
+            Equipments =
+            [
                 new Equipment
                 {
                     Id = "equipment",
@@ -310,14 +310,14 @@ public static class ChangeableCompleteModel
                     },
                     RatedInputPower = 23,
                 }
-            },
-            Emitters = new[]
-            {
+            ],
+            Emitters =
+            [
                 new Emitter
                 {
                     Id = "emitter",
-                    PossibleFittings = new EmitterBase[]
-                    {
+                    PossibleFittings =
+                    [
                         new ChangeableLightEmitter
                         {
                             PhotometryReference = new PhotometryReference
@@ -325,41 +325,41 @@ public static class ChangeableCompleteModel
                                 PhotometryId = "photometry"
                             }
                         }
-                    }
+                    ]
                 }
-            }
+            ]
         },
         ProductDefinitions = new ProductDefinitions
         {
             ProductMetaData = new ProductMetaData
             {
                 UniqueProductId = "Product 1",
-                ProductNumber = new[]
-                {
+                ProductNumber =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product number"
                     }
-                },
-                Name = new[]
-                {
+                ],
+                Name =
+                [
                     new Locale
                     {
                         Language = "en",
                         Text = "Product name"
                     }
-                }
+                ]
             },
-            Variants = new[]
-            {
+            Variants =
+            [
                 new Variant
                 {
                     Id = "variant-1",
-                    Name = new[]
-                    {
+                    Name =
+                    [
                         new Locale { Language = "en", Text = "Variant 1" }
-                    },
+                    ],
                     Geometry = new GeometryReference
                     {
                         Reference = new EmitterReference
@@ -368,7 +368,7 @@ public static class ChangeableCompleteModel
                         }
                     }
                 }
-            }
+            ]
         }
     };
 }
