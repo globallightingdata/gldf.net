@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net10.0;net9.0;net8.0</TargetFrameworks>
+        <TargetFrameworks>net11.0;net10.0</TargetFrameworks>
         <Description>GLDF XML serializer, validator and .gldf container reader/writer</Description>
         <Copyright>Copyright (c) DIAL GmbH $([System.DateTime]::UtcNow.Year.ToString())</Copyright>
         <Authors>Alex Kurpanik</Authors>
@@ -19,12 +19,12 @@
         <PackageIcon>logo.png</PackageIcon>
         <EmbedAllSources>true</EmbedAllSources>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <LangVersion>14.0</LangVersion>
+        <LangVersion>15.0</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="MinVer" PrivateAssets="all" Version="8.0.0" />
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.403" PrivateAssets="All" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="11.0.100" PrivateAssets="All" />
     </ItemGroup>
 
     <ItemGroup>
