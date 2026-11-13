@@ -112,7 +112,7 @@ public class ZipArchiveWriterTests
         _zipArchiveWriter.Write(_tempFile1, gldfContainer);
         using var zipArchive = ZipFile.Open(_tempFile1, ZipArchiveMode.Read);
         var containerEntryCount = zipArchive.Entries.Count;
-        var firstEntryName = zipArchive.Entries.First().Name;
+        var firstEntryName = zipArchive.Entries[0].Name;
 
         containerEntryCount.Should().Be(1);
         firstEntryName.Should().Be(GldfStaticNames.Files.Product);
@@ -133,18 +133,10 @@ public class ZipArchiveWriterTests
     [Test]
     public void Write_ShouldThrowArgumentNullException_WhenPathIsNull()
     {
-#if NET6_0
-        var act = () => _zipArchiveWriter.Write(null, new GldfContainer());
-        act.Should()
-            .Throw<ArgumentNullException>()
-            .WithMessage("Path cannot be null. (Parameter 'path')");
-#endif
-#if NET8_0
         var act = () => _zipArchiveWriter.Write(null, new GldfContainer());
         act.Should()
             .Throw<ArgumentNullException>()
             .WithMessage("Value cannot be null. (Parameter 'path')");
-#endif
     }
 
     [Test]

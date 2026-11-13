@@ -67,9 +67,8 @@ public class GldfXmlSchemaValidatorTests
         const string invalidXml = "<";
         const string expectedMessage = "Data at the root level is invalid. Line 1, position 1.";
         var expectedHint = new ValidationHint(SeverityType.Error, expectedMessage, ErrorType.XmlSchema);
-        var validator = new GldfXmlSchemaValidatorTestClass();
 
-        var validationResult = validator.CallValidateWithSchemaSet(invalidXml);
+        var validationResult = GldfXmlSchemaValidatorTestClass.CallValidateWithSchemaSet(invalidXml);
 
         validationResult.Should().ContainEquivalentOf(expectedHint);
     }
@@ -96,7 +95,7 @@ public class GldfXmlSchemaValidatorTests
 
         var validationResult = _xmlValidator.ValidateXml(xmlWithoutXsd);
 
-        xmlWithoutXsd.ToLower().Should().NotContain("xsd");
+        xmlWithoutXsd.ToLowerInvariant().Should().NotContain("xsd");
         validationResult.Should().BeEmpty();
     }
 
@@ -143,18 +142,10 @@ public class GldfXmlSchemaValidatorTests
     [Test]
     public void ValidateXmlFile_ShouldThrow_WhenPathIsEmpty()
     {
-#if Net6_0
-        Action act = () => _xmlValidator.ValidateXmlFile(string.Empty);
-        act.Should()
-            .Throw<ArgumentException>()
-            .WithMessage("Empty path name is not legal. (Parameter 'path')");
-#endif
-#if Net8_0
         Action act = () => _xmlValidator.ValidateXmlFile(string.Empty);
         act.Should()
             .Throw<ArgumentException>()
             .WithMessage("The value cannot be an empty string. (Parameter 'path')");
-#endif
     }
 
     [Test]
@@ -196,7 +187,7 @@ public class GldfXmlSchemaValidatorTests
 
 internal class GldfXmlSchemaValidatorTestClass : GldfXmlSchemaValidator
 {
-    public IEnumerable<ValidationHint> CallValidateWithSchemaSet(string xml)
+    public static IEnumerable<ValidationHint> CallValidateWithSchemaSet(string xml)
     {
         using var stringReader = new StringReader(xml);
         return Validate(stringReader, null);

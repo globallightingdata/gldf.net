@@ -26,14 +26,15 @@ public sealed class GldfEmbeddedXsdLoaderTests : IDisposable
     public void KnownVersions_ShouldContainAllEmbeddedXsds()
     {
         var gldfAssembly = Assembly.GetAssembly(typeof(GldfEmbeddedXsdLoader));
-        var resourceNames = gldfAssembly!.GetManifestResourceNames();
+        // ReSharper disable once PossibleNullReferenceException
+        var resourceNames = gldfAssembly.GetManifestResourceNames();
         var xsdResources = resourceNames
             .Where(res => res.StartsWith("Gldf.Net.Xsd"))
             .Select(res => res[13..^4])
-            .OrderBy(val => val);
+            .OrderBy(val => val, StringComparer.Ordinal);
         var knownVersion = GldfEmbeddedXsdLoader.KnownVersions
             .Select(versin => versin.ToString())
-            .OrderBy(val => val);
+            .OrderBy(val => val, StringComparer.Ordinal);
         knownVersion.Should().BeEquivalentTo(xsdResources);
     }
 

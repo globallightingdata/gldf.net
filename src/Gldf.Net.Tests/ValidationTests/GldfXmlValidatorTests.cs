@@ -99,7 +99,7 @@ public class GldfXmlValidatorTests
 
         var validationResult = _xmlValidator.ValidateXml(xmlWithoutXsd);
 
-        xmlWithoutXsd.ToLower().Should().NotContain("xsd");
+        xmlWithoutXsd.ToLowerInvariant().Should().NotContain("xsd");
         validationResult.Should().BeEmpty();
     }
 
@@ -180,7 +180,7 @@ public class GldfXmlValidatorTests
         File.WriteAllText(_tempFile, xmlWithoutXsd);
         var validationResult = _xmlValidator.ValidateXmlFile(_tempFile);
 
-        xmlWithoutXsd.ToLower().Should().NotContain("xsd");
+        xmlWithoutXsd.ToLowerInvariant().Should().NotContain("xsd");
         validationResult.Should().BeEmpty();
     }
 
